@@ -10,7 +10,7 @@ import { getRecordTableColumnFieldWidthClassName } from '@/object-record/record-
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { isDefined, isNonEmptyArray } from 'twenty-shared/utils';
 
-export const RecordTableCellsVisible = () => {
+export const RecordTableFieldsCells = () => {
   const { isSelected, rowIndex } = useRecordTableRowContextOrThrow();
 
   const { isDragging } = useRecordTableRowDraggableContextOrThrow();

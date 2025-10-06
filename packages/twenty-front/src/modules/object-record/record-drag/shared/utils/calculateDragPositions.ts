@@ -31,11 +31,11 @@ export const calculateDragPositions = ({
     });
 
   const recordBefore = recordBeforeId
-    ? recordPositionData.find((r) => r.recordId === recordBeforeId)
+    ? recordPositionData.find((r) => r?.recordId === recordBeforeId)
     : null;
 
   const recordAfter = recordAfterId
-    ? recordPositionData.find((r) => r.recordId === recordAfterId)
+    ? recordPositionData.find((r) => r?.recordId === recordAfterId)
     : null;
 
   const basePosition = getDraggedRecordPosition(

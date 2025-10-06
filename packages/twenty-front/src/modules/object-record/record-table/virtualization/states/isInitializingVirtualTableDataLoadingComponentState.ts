@@ -1,9 +1,9 @@
 import { RecordTableComponentInstanceContext } from '@/object-record/record-table/states/context/RecordTableComponentInstanceContext';
 import { createComponentState } from '@/ui/utilities/state/component-state/utils/createComponentState';
 
-export const hasRecordTableFetchedAllRecordsComponentState =
+export const isInitializingVirtualTableDataLoadingComponentState =
   createComponentState<boolean>({
-    key: 'hasRecordTableFetchedAllRecordsComponentState',
+    key: 'isInitializingVirtualTableDataLoadingComponentState',
     componentInstanceContext: RecordTableComponentInstanceContext,
     defaultValue: false,
   });
