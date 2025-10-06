@@ -185,7 +185,6 @@ export abstract class GraphqlQueryBaseResolverService<
         roleId,
         shouldBypassPermissionChecks,
       };
-
       const results = await this.resolve(
         graphqlQueryResolverExecutionArgs,
         featureFlagsMap,
