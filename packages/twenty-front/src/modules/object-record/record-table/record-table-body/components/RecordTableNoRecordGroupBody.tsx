@@ -2,8 +2,8 @@ import { recordIndexHasRecordsComponentSelector } from '@/object-record/record-i
 import { RecordTableNoRecordGroupBodyContextProvider } from '@/object-record/record-table/components/RecordTableNoRecordGroupBodyContextProvider';
 import { RecordTableNoRecordGroupRows } from '@/object-record/record-table/components/RecordTableNoRecordGroupRows';
 import { RecordTableBodyDragDropContextProvider } from '@/object-record/record-table/record-table-body/components/RecordTableBodyDragDropContextProvider';
-import { RecordTableBodyDroppable } from '@/object-record/record-table/record-table-body/components/RecordTableBodyDroppable';
 import { RecordTableBodyLoading } from '@/object-record/record-table/record-table-body/components/RecordTableBodyLoading';
+import { RecordTableBodyNoRecordGroupDroppable } from '@/object-record/record-table/record-table-body/components/RecordTableBodyNoRecordGroupDroppable';
 import { RecordTableCellPortals } from '@/object-record/record-table/record-table-cell/components/RecordTableCellPortals';
 import { RecordTableAggregateFooter } from '@/object-record/record-table/record-table-footer/components/RecordTableAggregateFooter';
 import { isRecordTableInitialLoadingComponentState } from '@/object-record/record-table/states/isRecordTableInitialLoadingComponentState';
@@ -27,10 +27,10 @@ export const RecordTableNoRecordGroupBody = () => {
   return (
     <RecordTableNoRecordGroupBodyContextProvider>
       <RecordTableBodyDragDropContextProvider>
-        <RecordTableBodyDroppable>
+        <RecordTableBodyNoRecordGroupDroppable>
           <RecordTableNoRecordGroupRows />
           <RecordTableCellPortals />
-        </RecordTableBodyDroppable>
+        </RecordTableBodyNoRecordGroupDroppable>
         {!isRecordTableInitialLoading && recordTableHasRecords && (
           <RecordTableAggregateFooter />
         )}
