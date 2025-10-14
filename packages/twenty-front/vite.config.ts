@@ -98,6 +98,7 @@ export default defineConfig(({ command, mode }) => {
         : {
             protocol: 'http',
           }),
+      allowedHosts: ['.nip.io', '.localhost', 'localhost'],
       fs: {
         allow: [
           searchForWorkspaceRoot(process.cwd()),

@@ -4,6 +4,7 @@ import { currentUserWorkspaceState } from '@/auth/states/currentUserWorkspaceSta
 import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
 import { currentWorkspaceMembersState } from '@/auth/states/currentWorkspaceMembersState';
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
+import { isCurrentUserLoadedState } from '@/auth/states/isCurrentUserLoadedState';
 import { useIsCurrentLocationOnAWorkspace } from '@/domain-manager/hooks/useIsCurrentLocationOnAWorkspace';
 import { useLastAuthenticatedWorkspaceDomain } from '@/domain-manager/hooks/useLastAuthenticatedWorkspaceDomain';
 import { useInitializeFormatPreferences } from '@/localization/hooks/useInitializeFormatPreferences';
@@ -15,8 +16,8 @@ import { type ObjectPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { type ColorScheme } from 'twenty-ui/input';
 import {
-  useFindAllCoreViewsLazyQuery,
-  useGetCurrentUserLazyQuery,
+    useFindAllCoreViewsLazyQuery,
+    useGetCurrentUserLazyQuery,
 } from '~/generated-metadata/graphql';
 import { getWorkspaceUrl } from '~/utils/getWorkspaceUrl';
 import { dynamicActivate } from '~/utils/i18n/dynamicActivate';
@@ -36,6 +37,7 @@ export const useLoadCurrentUser = () => {
   const setCurrentWorkspace = useSetRecoilState(currentWorkspaceState);
   const { initializeFormatPreferences } = useInitializeFormatPreferences();
   const setCoreViews = useSetRecoilState(coreViewsState);
+  const setIsCurrentUserLoaded = useSetRecoilState(isCurrentUserLoadedState);
 
   const { isOnAWorkspace } = useIsCurrentLocationOnAWorkspace();
 
@@ -114,6 +116,8 @@ export const useLoadCurrentUser = () => {
       setCoreViews(coreViewsResult.data.getCoreViews);
     }
 
+    setIsCurrentUserLoaded(true);
+
     return {
       user,
       workspaceMember,
@@ -132,6 +136,7 @@ export const useLoadCurrentUser = () => {
     initializeFormatPreferences,
     setLastAuthenticateWorkspaceDomain,
     setCoreViews,
+    setIsCurrentUserLoaded,
   ]);
 
   return {

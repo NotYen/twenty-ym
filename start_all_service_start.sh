@@ -1,0 +1,330 @@
+#!/bin/bash
+
+# ==========================================
+# Twenty CRM 一鍵啟動腳本（完整版）
+# ==========================================
+# 功能：
+# - 自動檢查和啟動所有依賴服務（PostgreSQL, Redis）
+# - 自動診斷和修復配置問題
+# - 確保環境變數正確傳遞
+# - 支持遷移到新機器後一鍵啟動
+# ==========================================
+
+set -e
+
+# 加載配置文件
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+source "${SCRIPT_DIR}/twenty-config.sh"
+
+echo "🚀 Twenty CRM 一鍵啟動系統"
+echo "=========================================="
+echo ""
+
+# ==========================================
+# 步驟 1: 環境檢查
+# ==========================================
+echo "1️⃣  檢查系統環境..."
+
+# 檢查必要命令
+REQUIRED_COMMANDS=("node" "yarn" "npx" "lsof" "brew")
+for cmd in "${REQUIRED_COMMANDS[@]}"; do
+    if ! command -v $cmd &> /dev/null; then
+        echo "   ❌ 錯誤：找不到命令 $cmd"
+        echo "   請先安裝必要的工具"
+        exit 1
+    fi
+done
+echo "   ✅ 系統環境檢查通過"
+echo ""
+
+# ==========================================
+# 步驟 2: 啟動 PostgreSQL
+# ==========================================
+echo "2️⃣  啟動 PostgreSQL (端口 ${POSTGRES_PORT})..."
+if ! lsof -Pi :${POSTGRES_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo "   🔄 正在啟動 PostgreSQL..."
+    brew services start postgresql@16
+    sleep 3
+    
+    # 驗證啟動成功
+    if lsof -Pi :${POSTGRES_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
+        echo "   ✅ PostgreSQL 已啟動"
+    else
+        echo "   ❌ PostgreSQL 啟動失敗"
+        exit 1
+    fi
+else
+    echo "   ✅ PostgreSQL 已運行"
+fi
+echo ""
+
+# ==========================================
+# 步驟 3: 啟動 Redis 並清除快取
+# ==========================================
+echo "3️⃣  啟動 Redis (端口 ${REDIS_PORT})..."
+if ! lsof -Pi :${REDIS_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo "   🔄 正在啟動 Redis..."
+    brew services start redis
+    sleep 3
+    
+    # 驗證啟動成功
+    if lsof -Pi :${REDIS_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
+        echo "   ✅ Redis 已啟動"
+    else
+        echo "   ❌ Redis 啟動失敗"
+        exit 1
+    fi
+else
+    echo "   ✅ Redis 已運行"
+fi
+
+# 清除 Redis 快取（避免舊的權限數據導致問題）
+echo "   🧹 清除 Redis 快取..."
+if command -v redis-cli &> /dev/null; then
+    redis-cli FLUSHALL > /dev/null 2>&1
+    echo "   ✅ Redis 快取已清除"
+else
+    echo "   ⚠️  redis-cli 不可用，跳過快取清除"
+fi
+echo ""
+
+# ==========================================
+# 步驟 4: 檢查端口衝突
+# ==========================================
+echo "4️⃣  檢查端口衝突..."
+
+if lsof -Pi :${FRONTEND_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo "   ⚠️  前端端口 ${FRONTEND_PORT} 已被佔用，嘗試關閉..."
+    lsof -ti:${FRONTEND_PORT} | xargs kill -9 2>/dev/null || true
+    sleep 2
+fi
+
+if lsof -Pi :${BACKEND_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
+    echo "   ⚠️  後端端口 ${BACKEND_PORT} 已被佔用，嘗試關閉..."
+    lsof -ti:${BACKEND_PORT} | xargs kill -9 2>/dev/null || true
+    sleep 2
+fi
+
+echo "   ✅ 端口檢查通過"
+echo ""
+
+# ==========================================
+# 步驟 5: 設置環境變數（關鍵！）
+# ==========================================
+echo "5️⃣  配置環境變數..."
+
+# 基礎配置
+export REACT_APP_PORT=${FRONTEND_PORT}
+export REACT_APP_SERVER_BASE_URL=${BACKEND_URL}
+export VITE_HOST=0.0.0.0
+export NODE_PORT=${BACKEND_PORT}
+export PG_DATABASE_URL=${POSTGRES_URL}
+export REDIS_URL=${REDIS_URL}
+export APP_SECRET=${APP_SECRET}
+export NODE_ENV=${NODE_ENV}
+
+# 多租戶配置（最關鍵！）
+export SERVER_URL=${BACKEND_URL}
+export FRONTEND_URL=${FRONTEND_URL}
+export IS_MULTIWORKSPACE_ENABLED=${IS_MULTIWORKSPACE_ENABLED}
+export IS_WORKSPACE_CREATION_LIMITED_TO_SERVER_ADMINS=${IS_WORKSPACE_CREATION_LIMITED_TO_SERVER_ADMINS}
+export DEFAULT_SUBDOMAIN=${DEFAULT_SUBDOMAIN}
+
+# 登入配置
+export SIGN_IN_PREFILLED=${SIGN_IN_PREFILLED}
+
+# 郵件配置
+export EMAIL_DRIVER=${EMAIL_DRIVER}
+export EMAIL_SMTP_HOST=${EMAIL_SMTP_HOST}
+export EMAIL_SMTP_PORT=${EMAIL_SMTP_PORT}
+export EMAIL_SMTP_USER=${EMAIL_SMTP_USER}
+export EMAIL_SMTP_PASSWORD=${EMAIL_SMTP_PASSWORD}
+export EMAIL_FROM_ADDRESS=${EMAIL_FROM_ADDRESS}
+export EMAIL_FROM_NAME=${EMAIL_FROM_NAME}
+
+# 計費配置
+export IS_BILLING_ENABLED=${IS_BILLING_ENABLED}
+export BILLING_STRIPE_API_KEY=${BILLING_STRIPE_API_KEY}
+export BILLING_STRIPE_BASE_PLAN_PRODUCT_ID=${BILLING_STRIPE_BASE_PLAN_PRODUCT_ID}
+
+echo "   ✅ 環境變數已設置"
+echo ""
+echo "   📋 關鍵配置："
+echo "      FRONTEND_URL: ${FRONTEND_URL}"
+echo "      SERVER_URL: ${SERVER_URL}"
+echo "      DEFAULT_SUBDOMAIN: ${DEFAULT_SUBDOMAIN}"
+echo "      IS_MULTIWORKSPACE_ENABLED: ${IS_MULTIWORKSPACE_ENABLED}"
+echo ""
+
+# ==========================================
+# 步驟 6: 啟動 Twenty 服務
+# ==========================================
+echo "6️⃣  啟動 Twenty CRM 服務..."
+
+cd "${SCRIPT_DIR}"
+
+# 清理舊的日誌
+if [ -f "twenty.log" ]; then
+    mv twenty.log "twenty.log.$(date +%Y%m%d_%H%M%S).bak" 2>/dev/null || true
+fi
+
+# 啟動後端和前端（使用 bash -c 確保環境變數傳遞）
+nohup bash -c "npx nx run-many -t start -p twenty-server twenty-front" > twenty.log 2>&1 &
+
+echo "   ⏳ 等待後端啟動..."
+sleep 5
+
+# ==========================================
+# 步驟 7: 等待後端完全就緒
+# ==========================================
+echo "7️⃣  等待後端 API 完全就緒..."
+
+# 等待後端 API 端口監聽
+MAX_WAIT=60
+WAITED=0
+BACKEND_READY=false
+
+while [ $WAITED -lt $MAX_WAIT ]; do
+    if lsof -Pi :${BACKEND_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
+        echo "   ✅ 後端 API 端口已監聽 (${BACKEND_PORT})"
+        BACKEND_READY=true
+        break
+    fi
+    sleep 2
+    WAITED=$((WAITED + 2))
+    echo "   ⏳ 等待後端啟動... ($WAITED/$MAX_WAIT 秒)"
+done
+
+if [ "$BACKEND_READY" = false ]; then
+    echo "   ❌ 後端啟動超時！"
+    echo ""
+    echo "📋 錯誤日誌："
+    tail -30 twenty.log
+    echo ""
+    echo "💡 可能原因："
+    echo "   1. 資料庫連接失敗"
+    echo "   2. 環境變數配置錯誤"
+    echo "   3. 端口被佔用"
+    echo ""
+    exit 1
+fi
+
+# 額外等待後端初始化完成
+echo "   ⏳ 等待後端初始化完成..."
+sleep 5
+
+# 驗證後端健康狀態
+if curl -s "http://localhost:${BACKEND_PORT}/healthz" > /dev/null 2>&1; then
+    echo "   ✅ 後端健康檢查通過"
+elif curl -s "http://localhost:${BACKEND_PORT}/client-config" > /dev/null 2>&1; then
+    echo "   ✅ 後端 API 可訪問"
+else
+    echo "   ⚠️  後端可能未完全就緒，但繼續啟動..."
+fi
+echo ""
+
+# ==========================================
+# 步驟 8: 等待前端就緒
+# ==========================================
+echo "8️⃣  等待前端 Web 就緒..."
+
+MAX_WAIT=60
+WAITED=0
+FRONTEND_READY=false
+
+while [ $WAITED -lt $MAX_WAIT ]; do
+    if lsof -Pi :${FRONTEND_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
+        echo "   ✅ 前端 Web 已就緒 (${FRONTEND_PORT})"
+        FRONTEND_READY=true
+        break
+    fi
+    sleep 2
+    WAITED=$((WAITED + 2))
+    if [ $((WAITED % 10)) -eq 0 ]; then
+        echo "   ⏳ 等待前端啟動... ($WAITED/$MAX_WAIT 秒)"
+    fi
+done
+
+if [ "$FRONTEND_READY" = false ]; then
+    echo "   ⚠️  前端啟動超時，但可能仍在編譯中..."
+    echo "   💡 前端通常需要較長時間編譯，可以稍後訪問"
+fi
+echo ""
+
+# ==========================================
+# 步驟 9: 啟動 Worker（必須在後端就緒後）
+# ==========================================
+echo "9️⃣  啟動 Worker 服務..."
+
+# Worker 依賴後端，所以必須在後端就緒後啟動
+nohup bash -c "npx nx run twenty-server:worker" >> twenty.log 2>&1 &
+WORKER_PID=$!
+
+sleep 3
+
+# 檢查 Worker 是否成功啟動
+if ps -p $WORKER_PID > /dev/null 2>&1; then
+    echo "   ✅ Worker 已啟動 (PID: $WORKER_PID)"
+else
+    echo "   ⚠️  Worker 可能啟動失敗，請檢查日誌"
+fi
+echo ""
+
+# ==========================================
+# 步驟 10: 驗證配置
+# ==========================================
+echo "🔟 驗證多租戶配置..."
+
+sleep 5
+
+# 獲取後端配置
+CLIENT_CONFIG=$(curl -s "http://localhost:${BACKEND_PORT}/client-config" 2>/dev/null || echo "{}")
+
+if [ "$CLIENT_CONFIG" != "{}" ]; then
+    FRONT_DOMAIN=$(echo "$CLIENT_CONFIG" | grep -o '"frontDomain":"[^"]*"' | cut -d'"' -f4 || echo "")
+    DEFAULT_SUB=$(echo "$CLIENT_CONFIG" | grep -o '"defaultSubdomain":"[^"]*"' | cut -d'"' -f4 || echo "")
+    
+    echo "   後端配置檢查："
+    echo "   - frontDomain: ${FRONT_DOMAIN:-[未設置]}"
+    echo "   - defaultSubdomain: ${DEFAULT_SUB:-[未設置]}"
+    
+    if [ -z "$DEFAULT_SUB" ]; then
+        echo ""
+        echo "   ⚠️  警告：defaultSubdomain 為空！"
+        echo "   這會導致多租戶 URL 錯誤"
+        echo ""
+        echo "   可能原因："
+        echo "   1. 環境變數未正確傳遞給後端"
+        echo "   2. 需要重啟服務以應用新配置"
+        echo ""
+        echo "   建議：執行以下命令重啟"
+        echo "   ./stop-twenty-local.sh && ./一鍵啟動.sh"
+    else
+        echo "   ✅ 配置正確"
+    fi
+else
+    echo "   ⏳ 無法驗證配置（服務可能仍在啟動）"
+fi
+echo ""
+
+# ==========================================
+# 完成
+# ==========================================
+echo "=========================================="
+echo "✅ Twenty CRM 啟動完成！"
+echo "=========================================="
+echo ""
+echo "📍 訪問地址："
+echo "   前端 Web:  ${FRONTEND_URL}"
+echo "   後端 API:  ${BACKEND_URL}"
+echo "   默認工作區: ${DEFAULT_SUBDOMAIN}.${EXTERNAL_HOST}:${FRONTEND_PORT}"
+echo ""
+echo "📝 查看日誌: tail -f twenty.log"
+echo "🛑 停止服務: ./stop-twenty-local.sh"
+echo "🔍 診斷問題: ./診斷並修復.sh"
+echo ""
+echo "💡 提示："
+echo "   - 首次訪問請使用: http://${DEFAULT_SUBDOMAIN}.${EXTERNAL_HOST}:${FRONTEND_PORT}"
+echo "   - 如果遇到跳轉錯誤，請運行診斷腳本"
+echo ""
+

@@ -1,0 +1,663 @@
+
+ NX   Running target start for 2 projects and 7 tasks they depend on:
+
+- twenty-server
+- twenty-front
+
+
+
+> nx run twenty-shared:generateBarrels  [local cache]
+
+> tsx packages/twenty-shared/scripts/generateBarrels.ts
+
+
+> nx run twenty-ui:generateBarrels  [local cache]
+
+> tsx packages/twenty-ui/scripts/generateBarrels.ts
+
+
+> nx run twenty-shared:build  [local cache]
+
+Export "turnRecordFilterIntoRecordGqlOperationFilter" of module "src/utils/filter/turnRecordFilterIntoGqlOperationFilter.ts" was reexported through module "src/utils/index.ts" while both modules are dependencies of each other and will end up in different chunks by current Rollup settings. This scenario is not well supported at the moment as it will produce a circular dependency between chunks and will likely lead to broken execution order.
+Either change the import in "src/utils/filter/computeRecordGqlOperationFilter.ts" to point directly to the exporting module or reconfigure "output.manualChunks" to ensure these modules end up in the same chunk.
+Generated an empty chunk: "index".
+Export "turnRecordFilterIntoRecordGqlOperationFilter" of module "src/utils/filter/turnRecordFilterIntoGqlOperationFilter.ts" was reexported through module "src/utils/index.ts" while both modules are dependencies of each other and will end up in different chunks by current Rollup settings. This scenario is not well supported at the moment as it will produce a circular dependency between chunks and will likely lead to broken execution order.
+Either change the import in "src/utils/filter/computeRecordGqlOperationFilter.ts" to point directly to the exporting module or reconfigure "output.manualChunks" to ensure these modules end up in the same chunk.
+Generated an empty chunk: "index".
+
+> nx run twenty-emails:build  [local cache]
+
+vite v7.0.6 building for production...
+[96msrc/components/BaseEmail.tsx[0m:[93m20[0m:[93m19[0m - [91merror[0m[90m TS2719: [0mType 'import("/Users/ym/twenty-ym/node_modules/@lingui/core/dist/index").I18n' is not assignable to type 'import("/Users/ym/twenty-ym/node_modules/@lingui/core/dist/index").I18n'. Two different types with this name exist, but they are unrelated.
+  Types have separate declarations of a private property '_locale'.
+
+[7m20[0m     <I18nProvider i18n={i18nInstance}>
+[7m  [0m [91m                  ~~~~[0m
+
+  [96mnode_modules/@lingui/react/dist/shared/react.b2b749a9.d.ts[0m:[93m42[0m:[93m5[0m
+    [7m42[0m     i18n: I18n;
+    [7m  [0m [96m    ~~~~[0m
+    The expected type comes from property 'i18n' which is declared here on type 'IntrinsicAttributes & Omit<I18nContext, "_"> & { children?: ReactNode; }'
+
+transforming...
+✓ 488 modules transformed.
+rendering chunks...
+
+[vite:dts] Start generate declaration files...
+computing gzip size...
+dist/locales/generated/zh-CN.mjs        4.09 kB │ gzip:   2.01 kB
+dist/locales/generated/zh-TW.mjs        4.15 kB │ gzip:   2.04 kB
+dist/locales/generated/en.mjs           4.27 kB │ gzip:   1.27 kB
+dist/locales/generated/fi-FI.mjs        4.38 kB │ gzip:   1.88 kB
+dist/locales/generated/af-ZA.mjs        4.43 kB │ gzip:   1.86 kB
+dist/locales/generated/no-NO.mjs        4.45 kB │ gzip:   1.84 kB
+dist/locales/generated/da-DK.mjs        4.46 kB │ gzip:   1.83 kB
+dist/locales/generated/pt-BR.mjs        4.47 kB │ gzip:   1.87 kB
+dist/locales/generated/sv-SE.mjs        4.47 kB │ gzip:   1.87 kB
+dist/locales/generated/nl-NL.mjs        4.48 kB │ gzip:   1.86 kB
+dist/locales/generated/pt-PT.mjs        4.49 kB │ gzip:   1.87 kB
+dist/locales/generated/it-IT.mjs        4.53 kB │ gzip:   1.86 kB
+dist/locales/generated/pl-PL.mjs        4.59 kB │ gzip:   2.02 kB
+dist/locales/generated/cs-CZ.mjs        4.61 kB │ gzip:   2.04 kB
+dist/locales/generated/es-ES.mjs        4.63 kB │ gzip:   1.89 kB
+dist/locales/generated/tr-TR.mjs        4.64 kB │ gzip:   2.01 kB
+dist/locales/generated/de-DE.mjs        4.64 kB │ gzip:   1.95 kB
+dist/locales/generated/ca-ES.mjs        4.66 kB │ gzip:   1.90 kB
+dist/locales/generated/ko-KR.mjs        4.66 kB │ gzip:   2.13 kB
+dist/locales/generated/ro-RO.mjs        4.66 kB │ gzip:   1.94 kB
+dist/locales/generated/fr-FR.mjs        4.68 kB │ gzip:   1.91 kB
+dist/locales/generated/hu-HU.mjs        4.75 kB │ gzip:   2.08 kB
+dist/locales/generated/he-IL.mjs        4.82 kB │ gzip:   1.97 kB
+dist/locales/generated/ja-JP.mjs        4.88 kB │ gzip:   2.18 kB
+dist/locales/generated/vi-VN.mjs        5.13 kB │ gzip:   2.12 kB
+dist/locales/generated/ar-SA.mjs        5.29 kB │ gzip:   2.19 kB
+dist/locales/generated/pseudo-en.mjs    5.60 kB │ gzip:   2.25 kB
+dist/locales/generated/sr-Cyrl.mjs      5.76 kB │ gzip:   2.30 kB
+dist/locales/generated/uk-UA.mjs        6.04 kB │ gzip:   2.40 kB
+dist/locales/generated/el-GR.mjs        6.41 kB │ gzip:   2.51 kB
+dist/locales/generated/ru-RU.mjs        6.55 kB │ gzip:   2.53 kB
+dist/index.mjs                        502.03 kB │ gzip: 122.53 kB
+[vite:dts] Declaration files built in 971ms.
+
+dist/locales/generated/zh-CN.js        4.16 kB │ gzip:   2.06 kB
+dist/locales/generated/zh-TW.js        4.22 kB │ gzip:   2.09 kB
+dist/locales/generated/en.js           4.34 kB │ gzip:   1.32 kB
+dist/locales/generated/fi-FI.js        4.45 kB │ gzip:   1.93 kB
+dist/locales/generated/af-ZA.js        4.50 kB │ gzip:   1.91 kB
+dist/locales/generated/no-NO.js        4.52 kB │ gzip:   1.89 kB
+dist/locales/generated/da-DK.js        4.52 kB │ gzip:   1.88 kB
+dist/locales/generated/pt-BR.js        4.54 kB │ gzip:   1.92 kB
+dist/locales/generated/sv-SE.js        4.54 kB │ gzip:   1.92 kB
+dist/locales/generated/nl-NL.js        4.55 kB │ gzip:   1.91 kB
+dist/locales/generated/pt-PT.js        4.56 kB │ gzip:   1.92 kB
+dist/locales/generated/it-IT.js        4.59 kB │ gzip:   1.91 kB
+dist/locales/generated/pl-PL.js        4.66 kB │ gzip:   2.08 kB
+dist/locales/generated/cs-CZ.js        4.68 kB │ gzip:   2.09 kB
+dist/locales/generated/es-ES.js        4.70 kB │ gzip:   1.94 kB
+dist/locales/generated/tr-TR.js        4.71 kB │ gzip:   2.06 kB
+dist/locales/generated/de-DE.js        4.71 kB │ gzip:   2.01 kB
+dist/locales/generated/ca-ES.js        4.73 kB │ gzip:   1.95 kB
+dist/locales/generated/ko-KR.js        4.73 kB │ gzip:   2.19 kB
+dist/locales/generated/ro-RO.js        4.73 kB │ gzip:   1.99 kB
+dist/locales/generated/fr-FR.js        4.74 kB │ gzip:   1.96 kB
+dist/locales/generated/hu-HU.js        4.82 kB │ gzip:   2.13 kB
+dist/locales/generated/he-IL.js        4.89 kB │ gzip:   2.03 kB
+dist/locales/generated/ja-JP.js        4.95 kB │ gzip:   2.23 kB
+dist/locales/generated/vi-VN.js        5.19 kB │ gzip:   2.18 kB
+dist/locales/generated/ar-SA.js        5.36 kB │ gzip:   2.25 kB
+dist/locales/generated/pseudo-en.js    5.67 kB │ gzip:   2.31 kB
+dist/locales/generated/sr-Cyrl.js      5.83 kB │ gzip:   2.36 kB
+dist/locales/generated/uk-UA.js        6.11 kB │ gzip:   2.45 kB
+dist/locales/generated/el-GR.js        6.48 kB │ gzip:   2.57 kB
+dist/locales/generated/ru-RU.js        6.62 kB │ gzip:   2.59 kB
+dist/index.js                        368.48 kB │ gzip: 107.95 kB
+✓ built in 2.26s
+
+> nx run twenty-ui:build  [local cache]
+
+
+> nx run twenty-server:typecheck  [existing outputs match the cache, left as is]
+
+> tsc -b tsconfig.json --incremental
+
+
+> nx run twenty-front:start
+
+
+> nx run twenty-server:build  [local cache]
+
+> rimraf dist
+
+> nest build --path ./tsconfig.build.json
+
+>  SWC  Running...
+Successfully compiled: 3513 files with swc (394.31ms)
+
+> nx run twenty-server:start
+
+> NODE_ENV=development && nest start --watch
+
+>  SWC  Running...
+  ➜  Local:   http://localhost:8866/
+  ➜  Network: http://118.168.188.27:8866/
+  ➜  Network: http://118.168.188.33:8866/
+(node:2059) [DEP0180] DeprecationWarning: fs.Stats constructor is deprecated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Successfully compiled: 3513 files with swc (196.05ms)
+Watching for file changes.
+query: SELECT * FROM current_schema()
+query: CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
+query: SELECT version();
+Frontend build not found or not writable, assuming it is served independently
+query: SELECT "KeyValuePair"."id" AS "KeyValuePair_id", "KeyValuePair"."userId" AS "KeyValuePair_userId", "KeyValuePair"."workspaceId" AS "KeyValuePair_workspaceId", "KeyValuePair"."key" AS "KeyValuePair_key", "KeyValuePair"."value" AS "KeyValuePair_value", "KeyValuePair"."textValueDeprecated" AS "KeyValuePair_textValueDeprecated", "KeyValuePair"."type" AS "KeyValuePair_type", "KeyValuePair"."createdAt" AS "KeyValuePair_createdAt", "KeyValuePair"."updatedAt" AS "KeyValuePair_updatedAt", "KeyValuePair"."deletedAt" AS "KeyValuePair_deletedAt" FROM "core"."keyValuePair" "KeyValuePair" WHERE (("KeyValuePair"."type" = $1) AND ("KeyValuePair"."userId" IS NULL) AND ("KeyValuePair"."workspaceId" IS NULL)) -- PARAMETERS: ["CONFIG_VARIABLE"]
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [NestFactory] Starting Nest application...
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AppModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] SentryModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GraphQLConfigModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CoreEngineModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TwentyConfigModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeORMModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] StripeSDKModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessageQueueModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RecordTransformerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] I18nModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ObjectMetadataRepositoryModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingSmtpDriverModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FormActionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FilterActionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] EmptyActionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] EmailModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AppTokenModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowBuilderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceQueryBuilderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ImapSmtpCaldavValidatorModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessageQueueModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ModulesModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CalendarModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ViewModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MetadataEngineModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] SearchFieldMetadataModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MetadataGraphQLApiModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] HttpModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] HttpModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] HttpModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ConfigHostModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceSchemaManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CalDavDriverModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MetadataQueryBuilderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ConfigModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ConfigModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ConfigModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMigrationBuilderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceEventEmitterModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DiscoveryModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TerminusModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] EventEmitterModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ScheduleModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GraphQLSchemaBuilderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceQueryHookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceManyOrAllFlatEntityMapsCacheModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DistantTableModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMigrationModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DataSourceModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AgentRoleModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryTypeOrmModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] KeyValuePairModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DatabaseConfigModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [TwentyConfigService] Database configuration is enabled
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [TwentyConfigService] Using database configuration driver
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMigrationRunnerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RemoteTableRelationsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceDataSourceModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] UserVarsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] IndexMetadataModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ServerlessFunctionLayerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TwentyConfigModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RemoteTableSchemaUpdateModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] SearchVectorModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RedisClientModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ClickHouseModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GoogleAPIRefreshAccessTokenModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MicrosoftAPIRefreshAccessTokenModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TelemetryModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DomainManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] JwtModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] OAuth2ClientManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] PgPoolSharedModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FileStorageModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MicrosoftCalendarDriverModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] LoggerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CaptchaModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DnsManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] StripeModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GeoMapModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ExceptionHandlerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] JwtModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GuardRedirectModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessageQueueCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingMicrosoftDriverModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] SubscriptionsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AuditModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GoogleCalendarDriverModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingGmailDriverModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ServerlessModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ClientConfigModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] EmailModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] EmailingDomainModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] PublicDomainModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] PostgresCredentialsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FileUploadModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceSchemaMigrationRunnerActionHandlersModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] OnboardingModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FileModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CacheModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CacheStorageModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceCacheStorageModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ThrottlerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FlatViewModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceFlatMapCacheModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CacheLockModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspacePermissionsCacheModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MetricsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceFeatureFlagsMapCacheModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMetadataCacheModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] PermissionFlagModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ObjectPermissionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FeatureFlagModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DataloaderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMetadataVersionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CodeActionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TwentyORMModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMigrationRunnerV2Module dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ForeignTableModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMigrationBuilderValidatorsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FlatFieldMetadataModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] EmailAliasManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RefreshTokensManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ConnectedAccountQueryHookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingCommonModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CalendarCommonModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RecordPositionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FavoriteFolderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ObjectMetadataRepositoryModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ObjectMetadataRepositoryModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] IMAPAPIsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MatchParticipantModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ConnectedAccountModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] UserRoleModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowCommonModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowStatusModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingMonitoringModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingFolderSyncManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceSyncMetadataModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AdminPanelModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ApprovedAccessDomainModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceSchemaBuilderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingQueryHookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CalendarQueryHookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CalendarEventCleanerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FavoriteModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingMessageCleanerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ActorModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ContactCreationManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CalendarBlocklistManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceQueryRunnerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] BlocklistValidationManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingBlocklistManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] PermissionsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowVersionEdgeModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AutomatedTriggerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RecordCRUDActionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowSchemaModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] UserWorkspaceModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TimelineCalendarEventModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] SearchModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowRunQueueModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowQueryHookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] HealthModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DashboardQueryHookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessageParticipantManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CalendarEventParticipantManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] BlocklistQueryHookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowVersionStepModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceSSOModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] LabModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceInvitationModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingIMAPDriverModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMemberQueryHookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowVersionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMigrationBuilderV2Module dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowRunModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TokenModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MiddlewareModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CoreQueryBuilderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ImapSmtpCaldavModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CalendarEventImportManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] IteratorActionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] McpModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WebhookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceMigrationV2Module dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] BillingModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] GraphqlQueryRunnerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowTriggerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RoleModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] MessagingImportManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ImpersonationModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ApiKeyModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ServerlessFunctionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowToolsModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] PageLayoutModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceResolverBuilderModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DatabaseEventTriggerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CronTriggerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RestApiModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceHealthModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceManagerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CoreGraphQLApiModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ApplicationModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RemoteTableModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] DevSeederModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] OpenApiModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AiAgentActionModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RestApiCoreModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RemoteServerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] ObjectMetadataModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] FieldMetadataModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] RouteTriggerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] UserModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowExecutorModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] NestjsQueryGraphQLModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TimelineMessagingModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] TwoFactorAuthenticationModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkspaceModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] EmailVerificationModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowRunnerModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CoreViewModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AgentModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AiModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] CloudflareModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] BillingWebhookModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] WorkflowApiModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [InstanceLoader] AuthModule dependencies initialized
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] HealthController {/healthz}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/healthz, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/healthz/:indicatorId, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] GoogleAuthController {/auth/google}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/google, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/google/redirect, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] MicrosoftAuthController {/auth/microsoft}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/microsoft, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/microsoft/redirect, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] GoogleAPIsAuthController {/auth/google-apis}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/google-apis, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/google-apis/get-access-token, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] MicrosoftAPIsAuthController {/auth/microsoft-apis}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/microsoft-apis, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/microsoft-apis/get-access-token, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] SSOAuthController {/auth}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/saml/metadata/:identityProviderId, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/oidc/login/:identityProviderId, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/saml/login/:identityProviderId, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/oidc/callback, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/auth/saml/callback/:identityProviderId, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] FileController {/files}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/files/*/:filename, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] AgentChatController {/rest/agent-chat}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/agent-chat/threads/:agentId, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/agent-chat/threads/:threadId/messages, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/agent-chat/threads, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/agent-chat/stream, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ViewController {/rest/metadata/views}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/views, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/views/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/views, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/views/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/views/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ViewFieldController {/rest/metadata/viewFields}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFields, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFields/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFields/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFields, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFields/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ViewFilterController {/rest/metadata/viewFilters}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilters, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilters/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilters, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilters/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilters/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ViewFilterGroupController {/rest/metadata/viewFilterGroups}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilterGroups, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilterGroups/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilterGroups, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilterGroups/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewFilterGroups/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ViewGroupController {/rest/metadata/viewGroups}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewGroups, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewGroups/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewGroups, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewGroups/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewGroups/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ViewSortController {/rest/metadata/viewSorts}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewSorts, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewSorts/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewSorts, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewSorts/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/viewSorts/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] AiController {/chat}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/chat, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] McpController {/mcp}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/mcp, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ApiKeyController {/rest/apiKeys}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/apiKeys, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/apiKeys/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/apiKeys, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/apiKeys/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/apiKeys/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ApiKeyController {/rest/metadata/apiKeys}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/apiKeys, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/apiKeys/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/apiKeys, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/apiKeys/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/apiKeys/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] BillingWebhookController {/}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/webhooks/stripe, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] ClientConfigController {/client-config}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/client-config, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] OpenApiController {/}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/open-api/core, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/open-api/core, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/open-api/metadata, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/open-api/metadata, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] RouteTriggerController {/s}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/s/*, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/s/*, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/s/*, PUT} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/s/*, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/s/*, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] DnsCloudflareController {/}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/cloudflare/custom-hostname-webhooks, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/webhooks/cloudflare, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] WorkflowTriggerController {/webhooks}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/webhooks/workflows/:workspaceId/:workflowId, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/webhooks/workflows/:workspaceId/:workflowId, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] PageLayoutController {/rest/metadata/page-layouts}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layouts, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layouts/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layouts, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layouts/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layouts/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] PageLayoutTabController {/rest/metadata/page-layout-tabs}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-tabs, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-tabs/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-tabs, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-tabs/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-tabs/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] PageLayoutWidgetController {/rest/metadata/page-layout-widgets}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-widgets, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-widgets/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-widgets, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-widgets/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/page-layout-widgets/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] WebhookController {/rest/webhooks}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/webhooks, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/webhooks/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/webhooks, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/webhooks/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/webhooks/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] WebhookController {/rest/metadata/webhooks}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/webhooks, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/webhooks/:id, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/webhooks, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/webhooks/:id, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/webhooks/:id, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] RestApiMetadataController {/rest/metadata/*}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/*, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/*, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/*, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/*, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/metadata/*, PUT} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] RestApiCoreController {/rest}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/batch/*, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/*/duplicates, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/*, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/*, GET} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/*, DELETE} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/*, PATCH} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/rest/*, PUT} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RoutesResolver] McpMetadataController {/mcp/metadata}:
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [RouterExplorer] Mapped {/mcp/metadata, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [PgPoolSharedService] Pool sharing will use max 10 connections per pool with 600000ms idle timeout and allowExitOnIdle=true
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [PgPoolSharedService] pg.Pool patched successfully by this service instance.
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [PgPoolSharedService] Pg pool sharing initialized - pools will be shared across tenants
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [DatabaseConfigDriver] [INIT] Loading initial config variables from database
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [DatabaseConfigDriver] [INIT] Config variables loaded: 1 values found in DB, 54 falling to env vars/defaults
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [GraphQLModule] Mapped {/metadata, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [GraphQLModule] Mapped {/graphql, POST} route
+[Nest] 2168  - 10/14/2025, 12:14:39 PM     LOG [NestApplication] Nest application successfully started
+query: SELECT "KeyValuePair"."id" AS "KeyValuePair_id", "KeyValuePair"."userId" AS "KeyValuePair_userId", "KeyValuePair"."workspaceId" AS "KeyValuePair_workspaceId", "KeyValuePair"."key" AS "KeyValuePair_key", "KeyValuePair"."value" AS "KeyValuePair_value", "KeyValuePair"."textValueDeprecated" AS "KeyValuePair_textValueDeprecated", "KeyValuePair"."type" AS "KeyValuePair_type", "KeyValuePair"."createdAt" AS "KeyValuePair_createdAt", "KeyValuePair"."updatedAt" AS "KeyValuePair_updatedAt", "KeyValuePair"."deletedAt" AS "KeyValuePair_deletedAt" FROM "core"."keyValuePair" "KeyValuePair" WHERE (("KeyValuePair"."type" = $1) AND ("KeyValuePair"."userId" IS NULL) AND ("KeyValuePair"."workspaceId" IS NULL)) -- PARAMETERS: ["CONFIG_VARIABLE"]
+Warning: command "NODE_ENV=development && nest start --watch" exited with non-zero status code
+
+
+ NX   Running target start for 2 projects and 7 tasks they depend on failed
+
+Tasks not run because their dependencies failed or --nx-bail=true:
+
+- twenty-front:start
+
+Failed tasks:
+
+- twenty-server:start
+
