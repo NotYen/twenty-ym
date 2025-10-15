@@ -8,9 +8,9 @@ import { type WorkspaceSubdomainCustomDomainAndIsCustomDomainEnabledType } from 
 import { generateRandomSubdomain } from 'src/engine/core-modules/domain-manager/utils/generate-random-subdomain';
 import { getSubdomainFromEmail } from 'src/engine/core-modules/domain-manager/utils/get-subdomain-from-email';
 import { getSubdomainNameFromDisplayName } from 'src/engine/core-modules/domain-manager/utils/get-subdomain-name-from-display-name';
+import { PublicDomain } from 'src/engine/core-modules/public-domain/public-domain.entity';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
-import { PublicDomain } from 'src/engine/core-modules/public-domain/public-domain.entity';
 import { WorkspaceNotFoundDefaultError } from 'src/engine/core-modules/workspace/workspace.exception';
 
 @Injectable()
@@ -145,7 +145,7 @@ export class DomainManagerService {
 
     const workspaces = await this.workspaceRepository.find({
       order: {
-        createdAt: 'DESC',
+        createdAt: 'ASC',
       },
       relations: ['workspaceSSOIdentityProviders'],
     });

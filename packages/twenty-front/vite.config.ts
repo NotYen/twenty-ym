@@ -98,6 +98,8 @@ export default defineConfig(({ command, mode }) => {
         : {
             protocol: 'http',
           }),
+      // 單租戶模式：允許 localhost 和 nip.io 訪問
+      // 注意：雖然是單租戶，但仍需 nip.io 以支援區域網路訪問
       allowedHosts: ['.nip.io', '.localhost', 'localhost'],
       fs: {
         allow: [
