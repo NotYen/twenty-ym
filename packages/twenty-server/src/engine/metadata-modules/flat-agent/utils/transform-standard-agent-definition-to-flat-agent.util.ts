@@ -7,8 +7,11 @@ export const transformStandardAgentDefinitionToFlatAgent = (
   standardAgentDefinition: StandardAgentDefinition,
   workspaceId: string,
 ): FlatAgent => {
+  // 排除不屬於資料庫的屬性
+  const { createHandoffFromDefaultAgent, standardRoleId, ...agentData } = standardAgentDefinition;
+
   return {
-    ...standardAgentDefinition,
+    ...agentData,
     id: v4(),
     workspaceId,
     universalIdentifier: standardAgentDefinition.standardId || v4(),

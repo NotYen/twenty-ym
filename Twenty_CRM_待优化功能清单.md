@@ -22,6 +22,211 @@
 
 ---
 
+## 🚨 P0 緊急 Bug：sync-metadata 不更新權限緩存
+
+### 問題描述 【GitHub 原生 Bug】
+
+**發現日期**：2025-10-14  
+**嚴重程度**：🔴 P0 Critical（會導致付費升級後功能不可用）
+
+**Bug 現象**：
+執行 `workspace:sync-metadata` 後，新創建的對象不會出現在用戶界面中，即使：
+- ✅ ObjectMetadata 已正確創建
+- ✅ 資料庫表已正確創建  
+- ✅ Feature Flags 已正確開啟
+- ❌ 權限緩存沒有更新
+
+**影響範圍**：
+- 💥 所有付費升級的客戶
+- 💥 所有執行 sync-metadata 的場景
+- 💥 團隊成員（Member 角色）和管理員（Admin 角色）都受影響
+
+### 根本原因
+
+**代碼位置**：`packages/twenty-server/src/engine/workspace-manager/workspace-sync-metadata/workspace-sync-metadata.service.ts`
+
+```typescript
+// 當前代碼（Line 262-268）：
+finally {
+  await queryRunner.release();
+  await this.workspaceMetadataVersionService.incrementMetadataVersion(
+    context.workspaceId,
+  );
+  await this.flatEntityMapsCacheService.invalidateFlatEntityMaps({
+    workspaceId: context.workspaceId,
+    flatMapsKeys: ['flatObjectMetadataMaps', 'flatFieldMetadataMaps'],
+  });
+  
+  // ❌ 缺少這一行！
+  // await this.workspacePermissionsCacheService.recomputeRolesPermissionsCache({
+  //   workspaceId: context.workspaceId,
+  // });
+}
+```
+
+**對比 V2 版本**（已修復）：
+```typescript
+// workspace-migration-runner-v2.service.ts (Line 102-109)
+await this.workspaceMetadataVersionService.incrementMetadataVersion(workspaceId);
+await this.workspacePermissionsCacheService.recomputeRolesPermissionsCache({
+  workspaceId,
+});
+// ✅ V2 版本有權限緩存更新！
+```
+
+### 問題流程
+
+```
+用戶付費升級流程：
+1. 更新 Feature Flags
+   ✅ Admin Panel 或 API 更新 featureFlag 表
+   ↓
+2. 執行 workspace:sync-metadata
+   ✅ 創建新的 ObjectMetadata (dashboard, workflow等)
+   ✅ 創建資料庫表
+   ✅ 更新 Metadata 緩存（版本 7）
+   ❌ 沒有更新權限緩存（還停留在版本 6，34個對象）
+   ↓
+3. 用戶刷新頁面
+   前端查詢：currentUserWorkspace.objectsPermissions
+   後端返回：rolesPermissions[roleId] （34個對象，缺 dashboard）
+   前端判斷：dashboard.canRead = false（因為不在緩存中）
+   結果：❌ Dashboard 不顯示
+   ↓
+4. favorite 查詢失敗
+   錯誤：Entity performing the request does not have permission
+   連鎖反應：❌ 其他對象也不顯示
+   ↓
+5. 最終：只有 Company 顯示（特殊邏輯）
+```
+
+### 驗證證據
+
+**YM workspace 實際狀態**：
+```
+數據庫：
+- ObjectMetadata: 35 個對象（版本 7）
+- Workspace Schema: 35 張表（全部存在）
+- Feature Flags: 20 個已開啟
+
+Redis 緩存：
+- Metadata 緩存: 35 個對象 ✅
+- 權限緩存: 34 個對象 ❌（缺 dashboard）
+
+前端顯示：
+- 只看到 Company
+- favorite 報權限錯誤
+```
+
+### 修復方案
+
+#### 臨時解決（已執行）✅
+
+```bash
+# 清除權限緩存，強制重新計算
+redis-cli DEL "engine:workspace:metadata:permissions:roles-permissions:416f5fc0-a8c8-49a7-baae-f5ab51b9ca56"
+redis-cli DEL "engine:workspace:metadata:permissions:roles-permissions-version:416f5fc0-a8c8-49a7-baae-f5ab51b9ca56"
+redis-cli DEL "engine:workspace:metadata:user-workspace-role-map:416f5fc0-a8c8-49a7-baae-f5ab51b9ca56"
+redis-cli DEL "engine:workspace:metadata:user-workspace-role-map-version:416f5fc0-a8c8-49a7-baae-f5ab51b9ca56"
+
+# 用戶刷新頁面，系統會自動重建緩存（包含所有 35 個對象）
+```
+
+#### 永久修復（需要修改代碼）
+
+**文件**：`packages/twenty-server/src/engine/workspace-manager/workspace-sync-metadata/workspace-sync-metadata.service.ts`
+
+**修改位置**：Line 262-268
+
+```typescript
+// 修改前：
+finally {
+  await queryRunner.release();
+  await this.workspaceMetadataVersionService.incrementMetadataVersion(
+    context.workspaceId,
+  );
+  await this.flatEntityMapsCacheService.invalidateFlatEntityMaps({
+    workspaceId: context.workspaceId,
+    flatMapsKeys: ['flatObjectMetadataMaps', 'flatFieldMetadataMaps'],
+  });
+}
+
+// 修改後：
+finally {
+  await queryRunner.release();
+  await this.workspaceMetadataVersionService.incrementMetadataVersion(
+    context.workspaceId,
+  );
+  
+  // ⭐ 新增：重建權限緩存（參考 V2 版本的做法）
+  await this.workspacePermissionsCacheService.recomputeRolesPermissionsCache({
+    workspaceId: context.workspaceId,
+  });
+  
+  await this.flatEntityMapsCacheService.invalidateFlatEntityMaps({
+    workspaceId: context.workspaceId,
+    flatMapsKeys: ['flatObjectMetadataMaps', 'flatFieldMetadataMaps'],
+  });
+}
+```
+
+**需要添加的依賴**：
+```typescript
+// 在 constructor 中添加：
+private readonly workspacePermissionsCacheService: WorkspacePermissionsCacheService,
+
+// 在 module 中添加：
+import { WorkspacePermissionsCacheModule } from 'src/engine/metadata-modules/workspace-permissions-cache/workspace-permissions-cache.module';
+```
+
+### SaaS 升級流程改進
+
+**改進後的升級流程**：
+```typescript
+async upgradeWorkspacePlan(workspaceId: string, planType: 'trial' | 'premium' | 'enterprise') {
+  // 步驟 1: 更新 Feature Flags
+  await this.updateFeatureFlags(workspaceId, PLAN_FEATURES[planType]);
+  
+  // 步驟 2: Sync Metadata（會自動更新權限緩存）
+  await this.syncMetadata(workspaceId);
+  
+  // 步驟 3: 驗證
+  const permissions = await this.verifyPermissionsCache(workspaceId);
+  if (!permissions.isComplete) {
+    throw new Error('權限緩存更新失敗');
+  }
+  
+  return { success: true };
+}
+```
+
+### 測試驗證
+
+**測試步驟**：
+1. ✅ 清除緩存（已完成）
+2. 刷新 YM workspace 頁面
+3. 檢查是否能看到所有對象：
+   - Company
+   - Person
+   - Opportunity
+   - Task
+   - Note
+   - Dashboard
+   - Workflow
+
+**預期結果**：
+- ✅ 所有對象都應該顯示
+- ✅ 沒有權限錯誤
+- ✅ favorite 查詢成功
+
+### 工作量評估
+
+- **臨時解決**：5 分鐘（清除緩存）
+- **永久修復**：2-3 小時（修改代碼 + 測試）
+- **完整測試**：4-6 小時（各種升級場景）
+
+---
+
 ## 💡 优化方案
 
 ### 方案A：启用Twenty内置计费系统 【P0 必须】
@@ -746,6 +951,220 @@ cd /var/www/twenty
 
 ---
 
-**最后更新**: 2025-10-08  
+## 📦 套餐升級自動化方案 【P1 重要】
+
+### ⚠️ 重要：角色權限澄清
+
+**關鍵發現**：Twenty 的 Member 角色設計**已經完全支持套餐升級**，無需修改用戶角色！
+
+#### Two 層權限架構
+
+```
+第1層: Server-Level Admin (跨 workspace 超級管理員)
+  - core.user.canAccessFullAdminPanel = true
+  - 可以訪問 Admin Panel，管理所有 workspace
+  - 這是「系統管理員」，不是「workspace 管理員」
+
+第2層: Workspace-Level Role (workspace 內部角色)
+  - Admin 角色：workspace 創建者
+  - Member 角色：新加入的成員（workspace.defaultRoleId）
+  - 同一用戶在不同 workspace 可以有不同角色（這是正常的！）
+```
+
+#### Member 角色的完整權限（官方設計）
+
+```typescript
+createMemberRole() {
+  return {
+    label: 'Member',
+    canUpdateAllSettings: false,         // ❌ 不能改 workspace 設置
+    canAccessAllTools: true,             // ✅ 可以使用所有工具
+    canReadAllObjectRecords: true,       // ✅ 可以讀取所有對象
+    canUpdateAllObjectRecords: true,     // ✅ 可以修改所有對象  
+    canSoftDeleteAllObjectRecords: true, // ✅ 可以刪除所有對象
+    canDestroyAllObjectRecords: true,    // ✅ 可以永久刪除
+  }
+}
+```
+
+#### 套餐升級時需要做什麼
+
+```
+✅ 必須做：
+  1. 更新 Feature Flags
+  2. 執行 sync-metadata
+
+❌ 不需要做：
+  1. ❌ 不需要修改用戶角色
+  2. ❌ 不需要創建 objectPermissions
+  3. ❌ 不需要清除權限緩存（自動處理）
+
+原因：Member 角色已經有完整的資料操作權限！
+```
+
+---
+
+### 背景
+
+**場景**: 客戶從體驗版（5個功能）升級到進階版（21個功能）
+
+**當前流程**:
+```
+1. 客戶付費通知
+   ↓
+2. 管理員在 Admin Panel 逐一開啟 21 個功能 (❌ 手動點擊 21 次)
+   ↓
+3. SSH 到服務器執行 sync-metadata (❌ 需要服務器權限)
+   ↓
+4. 通知客戶刷新頁面
+```
+
+**問題**:
+- ⏰ 耗時且容易出錯
+- 🔒 需要服務器訪問權限
+- 🐌 無法大規模運營
+
+---
+
+### 方案D-1: 創建批量升級腳本 【短期方案】
+
+**創建文件**: `tools/upgrade-workspace-package.sh`
+
+```bash
+#!/bin/bash
+# 用途：為 workspace 升級到指定套餐
+
+WORKSPACE_ID=$1
+PACKAGE=$2  # trial, premium, enterprise
+
+# 定義套餐功能
+case $PACKAGE in
+  trial)
+    FLAGS=(
+      "IS_PAGE_LAYOUT_ENABLED"
+      "IS_IMAP_SMTP_CALDAV_ENABLED"
+      "IS_CALENDAR_VIEW_ENABLED"
+      "IS_GROUP_BY_ENABLED"
+      "IS_CORE_VIEW_ENABLED"
+    )
+    ;;
+  premium)
+    # 所有 21 個功能
+    FLAGS=(
+      "IS_PAGE_LAYOUT_ENABLED"
+      "IS_AI_ENABLED"
+      "IS_AIRTABLE_INTEGRATION_ENABLED"
+      "IS_POSTGRESQL_INTEGRATION_ENABLED"
+      "IS_STRIPE_INTEGRATION_ENABLED"
+      "IS_UNIQUE_INDEXES_ENABLED"
+      "IS_JSON_FILTER_ENABLED"
+      "IS_IMAP_SMTP_CALDAV_ENABLED"
+      "IS_MORPH_RELATION_ENABLED"
+      "IS_RELATION_CONNECT_ENABLED"
+      "IS_CORE_VIEW_ENABLED"
+      "IS_CORE_VIEW_SYNCING_ENABLED"
+      "IS_WORKSPACE_MIGRATION_V2_ENABLED"
+      "IS_MESSAGE_FOLDER_CONTROL_ENABLED"
+      "IS_WORKFLOW_ITERATOR_ENABLED"
+      "IS_CALENDAR_VIEW_ENABLED"
+      "IS_GROUP_BY_ENABLED"
+      "IS_PUBLIC_DOMAIN_ENABLED"
+      "IS_EMAILING_DOMAIN_ENABLED"
+      "IS_DYNAMIC_SEARCH_FIELDS_ENABLED"
+    )
+    ;;
+esac
+
+# 批量插入 Feature Flags
+for flag in "${FLAGS[@]}"; do
+  docker exec -it twenty-postgres psql -U twenty -d default -c \
+    "INSERT INTO core.\"featureFlag\" (\"workspaceId\", key, value, \"createdAt\", \"updatedAt\")
+     VALUES ('$WORKSPACE_ID', '$flag', true, NOW(), NOW())
+     ON CONFLICT (\"workspaceId\", key) DO UPDATE SET value = true;"
+done
+
+# 執行 sync
+npx nx run twenty-server:command workspace:sync-metadata -w $WORKSPACE_ID
+```
+
+**工作量**: 1-2 小時
+
+---
+
+### 方案D-2: 新增 GraphQL Mutation 【推薦方案】
+
+**Backend 新增**:
+
+```typescript
+// admin-panel.resolver.ts
+
+@Mutation(() => Boolean)
+@UseGuards(WorkspaceAuthGuard, UserAuthGuard, AdminPanelGuard)
+async upgradeWorkspacePackage(
+  @Args('workspaceId') workspaceId: string,
+  @Args('package') packageType: 'trial' | 'premium' | 'enterprise',
+): Promise<boolean> {
+  // 1. 批量開啟功能
+  const features = this.getPackageFeatures(packageType);
+  await this.featureFlagService.enableFeatureFlags(features, workspaceId);
+  
+  // 2. 自動同步 metadata
+  const dataSource = await this.dataSourceService
+    .getLastDataSourceMetadataFromWorkspaceIdOrFail(workspaceId);
+  const featureFlags = await this.featureFlagService
+    .getWorkspaceFeatureFlagsMap(workspaceId);
+  await this.workspaceSyncMetadataService.synchronize({
+    workspaceId,
+    dataSourceId: dataSource.id,
+    featureFlags,
+  });
+  
+  // 3. 清除緩存
+  await this.workspaceCacheStorageService.flush(workspaceId);
+  
+  return true;
+}
+```
+
+**Frontend 新增**:
+
+```typescript
+// SettingsAdminWorkspaceContent.tsx
+
+<Select
+  label="套餐類型"
+  value={currentPackage}
+  onChange={setCurrentPackage}
+  options={[
+    { value: 'trial', label: '體驗版 - 5個功能' },
+    { value: 'premium', label: '進階版 - 21個功能' },
+    { value: 'enterprise', label: '企業版 - 所有功能' },
+  ]}
+/>
+
+<Button
+  onClick={() => upgradeWorkspacePackage({
+    variables: { workspaceId, package: currentPackage }
+  })}
+  loading={isUpgrading}
+>
+  一鍵升級套餐
+</Button>
+```
+
+**工作量**: 1.5-2 天
+
+---
+
+### 方案對比
+
+| 方案 | 優點 | 缺點 | 工作量 | 推薦度 |
+|------|------|------|--------|--------|
+| D-1 腳本 | 立即可用 | 需要 SSH | 1-2 小時 | ⭐⭐⭐ |
+| D-2 API | 自動化，可擴展 | 需要開發 | 1.5-2 天 | ⭐⭐⭐⭐⭐ |
+
+---
+
+**最后更新**: 2025-10-14  
 **维护者**: YM Team
 
