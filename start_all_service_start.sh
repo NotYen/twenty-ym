@@ -252,9 +252,22 @@ fi
 echo ""
 
 # ==========================================
-# 步驟 9: 啟動 Worker（必須在後端就緒後）
+# 步驟 9: 註冊 Cron Jobs（必須在啟動 Worker 之前）
 # ==========================================
-echo "9️⃣  啟動 Worker 服務..."
+echo "9️⃣  註冊 Cron Jobs..."
+
+# 註冊所有背景同步任務（包括 Workflow Cron Triggers）
+if npx nx run twenty-server:command cron:register:all >> twenty.log 2>&1; then
+    echo "   ✅ Cron Jobs 已成功註冊"
+else
+    echo "   ⚠️  Cron Jobs 註冊失敗，但繼續啟動..."
+fi
+echo ""
+
+# ==========================================
+# 步驟 10: 啟動 Worker（必須在後端就緒後）
+# ==========================================
+echo "🔟 啟動 Worker 服務..."
 
 # Worker 依賴後端，所以必須在後端就緒後啟動
 nohup bash -c "npx nx run twenty-server:worker" >> twenty.log 2>&1 &
@@ -271,9 +284,9 @@ fi
 echo ""
 
 # ==========================================
-# 步驟 10: 驗證配置
+# 步驟 11: 驗證配置
 # ==========================================
-echo "🔟 驗證多租戶配置..."
+echo "1️⃣1️⃣  驗證多租戶配置..."
 
 sleep 5
 

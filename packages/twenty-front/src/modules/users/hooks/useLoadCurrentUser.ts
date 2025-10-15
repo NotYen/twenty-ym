@@ -8,17 +8,24 @@ import { isCurrentUserLoadedState } from '@/auth/states/isCurrentUserLoadedState
 import { useIsCurrentLocationOnAWorkspace } from '@/domain-manager/hooks/useIsCurrentLocationOnAWorkspace';
 import { useLastAuthenticatedWorkspaceDomain } from '@/domain-manager/hooks/useLastAuthenticatedWorkspaceDomain';
 import { useInitializeFormatPreferences } from '@/localization/hooks/useInitializeFormatPreferences';
+import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
+import { getDateFnsLocale } from '@/ui/field/display/utils/getDateFnsLocale.util';
 import { coreViewsState } from '@/views/states/coreViewState';
+import { enUS } from 'date-fns/locale';
 import { useCallback } from 'react';
 import { useSetRecoilState } from 'recoil';
-import { SOURCE_LOCALE, type APP_LOCALES } from 'twenty-shared/translations';
+import { APP_LOCALES, SOURCE_LOCALE } from 'twenty-shared/translations';
 import { type ObjectPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { type ColorScheme } from 'twenty-ui/input';
 import {
-    useFindAllCoreViewsLazyQuery,
-    useGetCurrentUserLazyQuery,
+  useFindAllCoreViewsLazyQuery,
+  useGetCurrentUserLazyQuery,
 } from '~/generated-metadata/graphql';
+import { dateLocaleState } from '~/localization/states/dateLocaleState';
+import { useRefreshObjectMetadataItems } from '~/modules/object-metadata/hooks/useRefreshObjectMetadataItems';
+import { useUpdateOneRecord } from '~/modules/object-record/hooks/useUpdateOneRecord';
+import { useRefreshAllCoreViews } from '~/modules/views/hooks/useRefreshAllCoreViews';
 import { getWorkspaceUrl } from '~/utils/getWorkspaceUrl';
 import { dynamicActivate } from '~/utils/i18n/dynamicActivate';
 
@@ -37,6 +44,15 @@ export const useLoadCurrentUser = () => {
   const setCurrentWorkspace = useSetRecoilState(currentWorkspaceState);
   const { initializeFormatPreferences } = useInitializeFormatPreferences();
   const setCoreViews = useSetRecoilState(coreViewsState);
+  const setDateLocale = useSetRecoilState(dateLocaleState);
+
+  // 添加必要的 hooks
+  const { updateOneRecord } = useUpdateOneRecord({
+    objectNameSingular: CoreObjectNameSingular.WorkspaceMember,
+  });
+  const { refreshObjectMetadataItems } =
+    useRefreshObjectMetadataItems('network-only');
+  const { refreshAllCoreViews } = useRefreshAllCoreViews('network-only');
   const setIsCurrentUserLoaded = useSetRecoilState(isCurrentUserLoadedState);
 
   const { isOnAWorkspace } = useIsCurrentLocationOnAWorkspace();
@@ -96,9 +112,54 @@ export const useLoadCurrentUser = () => {
 
       // Initialize unified format preferences state
       initializeFormatPreferences(workspaceMember);
-      dynamicActivate(
-        (workspaceMember.locale as keyof typeof APP_LOCALES) ?? SOURCE_LOCALE,
-      );
+
+      // 檢查用戶是否已經設定過語言
+      const currentLocale = workspaceMember.locale as keyof typeof APP_LOCALES;
+      const storedLocale = localStorage.getItem('locale');
+
+      // 如果用戶沒有設定過語言（使用預設的 SOURCE_LOCALE），則設定為 zh-TW
+      if (currentLocale === SOURCE_LOCALE && !storedLocale) {
+        // 使用與 LocalePicker 相同的流程來設定語言
+        const newLocale = APP_LOCALES['zh-TW'];
+
+        // 1. 更新前端狀態
+        setCurrentWorkspaceMember({
+          ...workspaceMember,
+          locale: newLocale,
+        });
+
+        // 2. 更新後端數據庫
+        await updateOneRecord({
+          idToUpdate: workspaceMember.id,
+          updateOneRecordInput: { locale: newLocale },
+        });
+
+        // 3. 更新日期格式
+        const dateFnsLocale = await getDateFnsLocale(newLocale);
+        setDateLocale({
+          locale: newLocale,
+          localeCatalog: dateFnsLocale || enUS,
+        });
+
+        // 4. 激活語言
+        await dynamicActivate(newLocale);
+
+        // 5. 保存到 localStorage
+        try {
+          localStorage.setItem('locale', newLocale);
+        } catch {
+          // Silently fail if localStorage is not available
+        }
+
+        // 6. 刷新數據
+        await refreshObjectMetadataItems();
+        await refreshAllCoreViews();
+      } else {
+        // 如果用戶已經設定過語言，使用現有設定
+        const finalLocale =
+          currentLocale || storedLocale || APP_LOCALES['zh-TW'];
+        await dynamicActivate(finalLocale);
+      }
     }
 
     const workspace = user.currentWorkspace ?? null;
@@ -137,6 +198,10 @@ export const useLoadCurrentUser = () => {
     setLastAuthenticateWorkspaceDomain,
     setCoreViews,
     setIsCurrentUserLoaded,
+    updateOneRecord,
+    setDateLocale,
+    refreshObjectMetadataItems,
+    refreshAllCoreViews,
   ]);
 
   return {

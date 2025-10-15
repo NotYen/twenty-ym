@@ -41,14 +41,16 @@ export SIGN_IN_PREFILLED="true"
 # 多租户配置（Multi-Workspace）
 # ==========================================
 # 启用多 Workspace 模式
-export IS_MULTIWORKSPACE_ENABLED="true"
+# true = 多租户模式（SaaS 场景，通过子域名区分不同 workspace）
+# false = 单租户模式（单一 workspace，适合企业内部使用）
+export IS_MULTIWORKSPACE_ENABLED="false"
 
 # 限制只有超级管理员可以创建新 Workspace
 # false = 任何人都可以创建
 # true = 只有超级管理员可以创建（推荐用于 SaaS 场景）
 export IS_WORKSPACE_CREATION_LIMITED_TO_SERVER_ADMINS="true"
 
-# 默认子域名（多租户模式下必须设置！）
+# 默认子域名（仅在多租户模式下使用，单租户模式下无效）
 # 注意：DEFAULT_SUBDOMAIN 不应该与任何真实 workspace 的 subdomain 相同
 # 它仅用于从基础 URL 跳转到默认 workspace
 export DEFAULT_SUBDOMAIN="app"
