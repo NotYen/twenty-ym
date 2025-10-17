@@ -1,3 +1,4 @@
+import { useFirebaseAnalytics } from '@/analytics/firebase';
 import { AppRouter } from '@/app/components/AppRouter';
 import { ApolloDevLogEffect } from '@/debug/components/ApolloDevLogEffect';
 import { RecoilDebugObserverEffect } from '@/debug/components/RecoilDebugObserver';
@@ -16,6 +17,9 @@ import { initialI18nActivate } from '~/utils/i18n/initialI18nActivate';
 initialI18nActivate();
 
 export const App = () => {
+  // 初始化 Firebase Analytics
+  useFirebaseAnalytics();
+
   return (
     <RecoilRoot>
       <AppErrorBoundary

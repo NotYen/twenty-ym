@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 
+import { trackEvent } from '@/analytics/firebase';
 import { triggerUpdateRecordOptimisticEffect } from '@/apollo/optimistic-effect/utils/triggerUpdateRecordOptimisticEffect';
 import { useApolloCoreClient } from '@/object-metadata/hooks/useApolloCoreClient';
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
@@ -9,8 +10,8 @@ import { ACTIVATE_WORKFLOW_VERSION } from '@/workflow/graphql/mutations/activate
 import { type WorkflowVersion } from '@/workflow/types/Workflow';
 import { isDefined } from 'twenty-shared/utils';
 import {
-  type ActivateWorkflowVersionMutation,
-  type ActivateWorkflowVersionMutationVariables,
+    type ActivateWorkflowVersionMutation,
+    type ActivateWorkflowVersionMutationVariables,
 } from '~/generated-metadata/graphql';
 
 export const useActivateWorkflowVersion = () => {
@@ -104,6 +105,12 @@ export const useActivateWorkflowVersion = () => {
           });
         }
       },
+    });
+
+    // Firebase Analytics: 追蹤 Workflow 啟用
+    trackEvent('workflow_activated', {
+      workflow_id: workflowId,
+      workflow_version_id: workflowVersionId,
     });
   };
 

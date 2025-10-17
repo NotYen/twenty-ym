@@ -1,3 +1,4 @@
+import { trackEvent } from '@/analytics/firebase';
 import { useApolloCoreClient } from '@/object-metadata/hooks/useApolloCoreClient';
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
 import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
@@ -10,10 +11,10 @@ import { type WorkflowVersion } from '@/workflow/types/Workflow';
 import { useMutation } from '@apollo/client';
 import { isDefined } from 'twenty-shared/utils';
 import {
-  type UpdateWorkflowVersionStepInput,
-  type UpdateWorkflowVersionStepMutation,
-  type UpdateWorkflowVersionStepMutationVariables,
-  type WorkflowAction,
+    type UpdateWorkflowVersionStepInput,
+    type UpdateWorkflowVersionStepMutation,
+    type UpdateWorkflowVersionStepMutationVariables,
+    type WorkflowAction,
 } from '~/generated-metadata/graphql';
 
 export const useUpdateWorkflowVersionStep = () => {
@@ -71,6 +72,17 @@ export const useUpdateWorkflowVersionStep = () => {
       recordGqlFields,
       objectPermissionsByObjectMetadataId,
     });
+
+    // Firebase Analytics: 追蹤 Workflow Action 配置更新
+    const actionType = (updatedStep as any)?.type;
+    if (isDefined(actionType)) {
+      trackEvent('workflow_action_configured', {
+        step_id: updatedStep.id,
+        action_type: actionType,
+        workflow_version_id: input.workflowVersionId,
+      });
+    }
+
     return result;
   };
 

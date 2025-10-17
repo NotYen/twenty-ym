@@ -1,5 +1,6 @@
 import { useMutation } from '@apollo/client';
 
+import { trackEvent } from '@/analytics/firebase';
 import { triggerUpdateRecordOptimisticEffect } from '@/apollo/optimistic-effect/utils/triggerUpdateRecordOptimisticEffect';
 import { useApolloCoreClient } from '@/object-metadata/hooks/useApolloCoreClient';
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
@@ -9,8 +10,8 @@ import { DEACTIVATE_WORKFLOW_VERSION } from '@/workflow/graphql/mutations/deacti
 import { type WorkflowVersion } from '@/workflow/types/Workflow';
 import { isDefined } from 'twenty-shared/utils';
 import {
-  type DeactivateWorkflowVersionMutation,
-  type DeactivateWorkflowVersionMutationVariables,
+    type DeactivateWorkflowVersionMutation,
+    type DeactivateWorkflowVersionMutationVariables,
 } from '~/generated-metadata/graphql';
 
 export const useDeactivateWorkflowVersion = () => {
@@ -70,6 +71,11 @@ export const useDeactivateWorkflowVersion = () => {
           objectMetadataItems: [objectMetadataItemWorkflowVersion],
         });
       },
+    });
+
+    // Firebase Analytics: 追蹤 Workflow 停用
+    trackEvent('workflow_deactivated', {
+      workflow_version_id: workflowVersionId,
     });
   };
 
