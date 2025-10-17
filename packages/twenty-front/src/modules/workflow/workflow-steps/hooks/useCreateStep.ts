@@ -1,3 +1,4 @@
+import { trackEvent } from '@/analytics/firebase';
 import { useSetRecoilComponentState } from '@/ui/utilities/state/component-state/hooks/useSetRecoilComponentState';
 import { useGetUpdatableWorkflowVersionOrThrow } from '@/workflow/hooks/useGetUpdatableWorkflowVersionOrThrow';
 import { workflowLastCreatedStepIdComponentState } from '@/workflow/states/workflowLastCreatedStepIdComponentState';
@@ -79,6 +80,16 @@ export const useCreateStep = () => {
 
       setWorkflowSelectedNode(id);
       setWorkflowLastCreatedStepId(id);
+
+      // Firebase Analytics: 追蹤 Workflow 步驟創建
+      trackEvent('workflow_step_created', {
+        step_id: id,
+        step_type: newStepType,
+        workflow_version_id: workflowVersionId,
+        has_parent: isDefined(parentStepId),
+        has_next: isDefined(nextStepId),
+        has_position: isDefined(position),
+      });
 
       return isDefined(createdFirstStepDiff)
         ? createdFirstStepDiff.value[0]

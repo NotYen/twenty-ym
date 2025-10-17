@@ -1,9 +1,10 @@
+import { trackEvent } from '@/analytics/firebase';
 import { useApolloCoreClient } from '@/object-metadata/hooks/useApolloCoreClient';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useFindManyRecordsQuery } from '@/object-record/hooks/useFindManyRecordsQuery';
 import {
-  type CreateDraftFromWorkflowVersionInput,
-  useCreateDraftFromWorkflowVersionMutation,
+    type CreateDraftFromWorkflowVersionInput,
+    useCreateDraftFromWorkflowVersionMutation,
 } from '~/generated-metadata/graphql';
 
 export const useCreateDraftFromWorkflowVersion = () => {
@@ -41,7 +42,18 @@ export const useCreateDraftFromWorkflowVersion = () => {
       ],
     });
 
-    return result?.data?.createDraftFromWorkflowVersion.id;
+    const createdDraftId = result?.data?.createDraftFromWorkflowVersion.id;
+
+    // Firebase Analytics: 追蹤 Workflow 草稿創建
+    if (createdDraftId) {
+      trackEvent('workflow_draft_created', {
+        workflow_id: input.workflowId,
+        workflow_version_id: input.workflowVersionId,
+        draft_id: createdDraftId,
+      });
+    }
+
+    return createdDraftId;
   };
 
   return {

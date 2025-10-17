@@ -1,3 +1,4 @@
+import { trackEvent } from '@/analytics/firebase';
 import { triggerCreateRecordsOptimisticEffect } from '@/apollo/optimistic-effect/utils/triggerCreateRecordsOptimisticEffect';
 import { currentWorkspaceMemberState } from '@/auth/states/currentWorkspaceMemberState';
 import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
@@ -134,6 +135,14 @@ export const useRunWorkflowVersion = () => {
     openRecordInCommandMenu({
       objectNameSingular: CoreObjectNameSingular.WorkflowRun,
       recordId: workflowRunId,
+    });
+
+    // Firebase Analytics: 追蹤 Workflow 執行
+    trackEvent('workflow_executed', {
+      workflow_id: workflowId,
+      workflow_version_id: workflowVersionId,
+      workflow_run_id: workflowRunId,
+      has_payload: isDefined(payload),
     });
 
     await mutate({
