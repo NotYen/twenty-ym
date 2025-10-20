@@ -34,8 +34,8 @@ export REDIS_URL="redis://localhost:${REDIS_PORT}"
 # 应用配置
 # ==========================================
 export APP_SECRET="replace_me_with_a_random_string"
-export NODE_ENV="development"
-export SIGN_IN_PREFILLED="true"
+export NODE_ENV="production" #development 开发环境 production 生产环境
+export SIGN_IN_PREFILLED="true" # true 预填登入信息 false 不预填登入信息
 
 # ==========================================
 # 多租户配置（Multi-Workspace）

@@ -64,7 +64,9 @@ export const useFindManyRecords = <T extends ObjectRecord = ObjectRecord>({
     ? {
         and: [...(filter ? [filter] : []), softDeleteFilter],
       }
-    : filter;
+    : {
+        and: [...(filter ? [filter] : []), { deletedAt: { is: 'NULL' } }],
+      };
 
   const queryIdentifier = getQueryIdentifier({
     objectNameSingular,

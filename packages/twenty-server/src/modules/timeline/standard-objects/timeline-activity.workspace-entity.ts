@@ -206,7 +206,7 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
     icon: 'IconTargetArrow',
     inverseSideTarget: () => WorkflowWorkspaceEntity,
     inverseSideFieldKey: 'timelineActivities',
-    onDelete: RelationOnDeleteAction.CASCADE,
+    onDelete: RelationOnDeleteAction.SET_NULL,
   })
   @WorkspaceIsNullable()
   workflow: Relation<WorkflowWorkspaceEntity> | null;
@@ -222,7 +222,7 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
     icon: 'IconTargetArrow',
     inverseSideTarget: () => WorkflowVersionWorkspaceEntity,
     inverseSideFieldKey: 'timelineActivities',
-    onDelete: RelationOnDeleteAction.CASCADE,
+    onDelete: RelationOnDeleteAction.SET_NULL,
   })
   @WorkspaceIsNullable()
   workflowVersion: Relation<WorkflowVersionWorkspaceEntity> | null;
@@ -238,7 +238,7 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
     icon: 'IconTargetArrow',
     inverseSideTarget: () => WorkflowRunWorkspaceEntity,
     inverseSideFieldKey: 'timelineActivities',
-    onDelete: RelationOnDeleteAction.CASCADE,
+    onDelete: RelationOnDeleteAction.SET_NULL,
   })
   @WorkspaceIsNullable()
   workflowRun: Relation<WorkflowRunWorkspaceEntity> | null;

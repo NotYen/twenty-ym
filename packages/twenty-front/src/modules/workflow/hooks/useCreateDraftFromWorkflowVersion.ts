@@ -48,7 +48,7 @@ export const useCreateDraftFromWorkflowVersion = () => {
     if (createdDraftId) {
       trackEvent('workflow_draft_created', {
         workflow_id: input.workflowId,
-        workflow_version_id: input.workflowVersionId,
+        workflow_version_id: input.workflowVersionIdToCopy,
         draft_id: createdDraftId,
       });
     }
