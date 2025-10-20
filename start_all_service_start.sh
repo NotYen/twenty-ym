@@ -168,8 +168,36 @@ if [ -f "twenty.log" ]; then
     mv twenty.log "twenty.log.$(date +%Y%m%d_%H%M%S).bak" 2>/dev/null || true
 fi
 
-# 啟動後端和前端（使用 bash -c 確保環境變數傳遞）
-nohup bash -c "npx nx run-many -t start -p twenty-server twenty-front" > twenty.log 2>&1 &
+# 根據 NODE_ENV 選擇啟動方式
+if [ "$NODE_ENV" = "production" ]; then
+    echo "   🚀 Production 模式：先 build 再啟動"
+    
+    # 1. Build 前端和後端
+    echo "   📦 Building frontend and backend..."
+    npx nx run-many -t build -p twenty-server twenty-front
+    
+    if [ $? -ne 0 ]; then
+        echo "   ❌ Build 失敗！"
+        exit 1
+    fi
+    
+    # 2. 啟動後端（production）
+    echo "   🔧 啟動後端服務..."
+    nohup bash -c "cd packages/twenty-server && node dist/src/main.js" > twenty_backend.log 2>&1 &
+    
+    # 3. 啟動前端（使用 serve）
+    echo "   🌐 啟動前端服務..."
+    nohup npx serve packages/twenty-front/build -l ${FRONTEND_PORT} -s > twenty_frontend.log 2>&1 &
+    
+    echo "   📝 日誌文件：twenty_backend.log, twenty_frontend.log"
+else
+    echo "   🔧 Development 模式：使用熱重載"
+    
+    # Development 模式：使用熱重載
+    nohup bash -c "npx nx run-many -t start -p twenty-server twenty-front" > twenty.log 2>&1 &
+    
+    echo "   📝 日誌文件：twenty.log"
+fi
 
 echo "   ⏳ 等待後端啟動..."
 sleep 5
@@ -257,10 +285,13 @@ echo ""
 echo "9️⃣  註冊 Cron Jobs..."
 
 # 註冊所有背景同步任務（包括 Workflow Cron Triggers）
+# 注意：這個命令會重新編譯後端，所以在後端啟動後延遲執行
+sleep 5
 if npx nx run twenty-server:command cron:register:all >> twenty.log 2>&1; then
     echo "   ✅ Cron Jobs 已成功註冊"
 else
     echo "   ⚠️  Cron Jobs 註冊失敗，但繼續啟動..."
+    echo "   💡 可以稍後手動執行：npx nx run twenty-server:command cron:register:all"
 fi
 echo ""
 
