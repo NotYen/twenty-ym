@@ -77,6 +77,6 @@ echo "✅ 所有 Twenty CRM 服务已完全停止！"
 echo "=========================================="
 echo ""
 echo "💡 下次启动："
-echo "   ./start-twenty-local.sh"
+echo "   ./start_all_service_start.sh"
 echo ""
 

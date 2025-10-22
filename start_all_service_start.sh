@@ -157,9 +157,18 @@ echo "      IS_MULTIWORKSPACE_ENABLED: ${IS_MULTIWORKSPACE_ENABLED}"
 echo ""
 
 # ==========================================
-# 步驟 6: 啟動 Twenty 服務
+# 步驟 6: 清除 Nx 快取（避免使用舊的 build）
 # ==========================================
-echo "6️⃣  啟動 Twenty CRM 服務..."
+echo "6️⃣  清除 Nx 快取..."
+echo "   🧹 清除 Nx 快取以確保重新 build..."
+npx nx reset > /dev/null 2>&1
+echo "   ✅ Nx 快取已清除"
+echo ""
+
+# ==========================================
+# 步驟 7: 啟動 Twenty 服務
+# ==========================================
+echo "7️⃣  啟動 Twenty CRM 服務..."
 
 cd "${SCRIPT_DIR}"
 
@@ -203,9 +212,9 @@ echo "   ⏳ 等待後端啟動..."
 sleep 5
 
 # ==========================================
-# 步驟 7: 等待後端完全就緒
+# 步驟 8: 等待後端完全就緒
 # ==========================================
-echo "7️⃣  等待後端 API 完全就緒..."
+echo "8️⃣  等待後端 API 完全就緒..."
 
 # 等待後端 API 端口監聽
 MAX_WAIT=60
@@ -252,9 +261,9 @@ fi
 echo ""
 
 # ==========================================
-# 步驟 8: 等待前端就緒
+# 步驟 9: 等待前端就緒
 # ==========================================
-echo "8️⃣  等待前端 Web 就緒..."
+echo "9️⃣  等待前端 Web 就緒..."
 
 MAX_WAIT=60
 WAITED=0
@@ -280,9 +289,9 @@ fi
 echo ""
 
 # ==========================================
-# 步驟 9: 註冊 Cron Jobs（必須在啟動 Worker 之前）
+# 步驟 10: 註冊 Cron Jobs（必須在啟動 Worker 之前）
 # ==========================================
-echo "9️⃣  註冊 Cron Jobs..."
+echo "🔟 註冊 Cron Jobs..."
 
 # 註冊所有背景同步任務（包括 Workflow Cron Triggers）
 # 注意：這個命令會重新編譯後端，所以在後端啟動後延遲執行
@@ -296,13 +305,22 @@ fi
 echo ""
 
 # ==========================================
-# 步驟 10: 啟動 Worker（必須在後端就緒後）
+# 步驟 11: 啟動 Worker（必須在後端就緒後）
 # ==========================================
-echo "🔟 啟動 Worker 服務..."
+echo "1️⃣1️⃣  啟動 Worker 服務..."
 
 # Worker 依賴後端，所以必須在後端就緒後啟動
-nohup bash -c "npx nx run twenty-server:worker" >> twenty.log 2>&1 &
-WORKER_PID=$!
+if [ "$NODE_ENV" = "production" ]; then
+    echo "   🚀 Production 模式：直接運行編譯後的 Worker"
+    nohup bash -c "cd packages/twenty-server && node dist/src/queue-worker/queue-worker.js" > twenty_worker.log 2>&1 &
+    WORKER_PID=$!
+    echo "   📝 Worker 日誌文件：twenty_worker.log"
+else
+    echo "   🔧 Development 模式：使用 nx 運行 Worker"
+    nohup bash -c "npx nx run twenty-server:worker" >> twenty.log 2>&1 &
+    WORKER_PID=$!
+    echo "   📝 Worker 日誌文件：twenty.log"
+fi
 
 sleep 3
 
@@ -315,9 +333,9 @@ fi
 echo ""
 
 # ==========================================
-# 步驟 11: 驗證配置
+# 步驟 12: 驗證配置
 # ==========================================
-echo "1️⃣1️⃣  驗證多租戶配置..."
+echo "1️⃣2️⃣  驗證多租戶配置..."
 
 sleep 5
 
@@ -349,6 +367,72 @@ if [ "$CLIENT_CONFIG" != "{}" ]; then
 else
     echo "   ⏳ 無法驗證配置（服務可能仍在啟動）"
 fi
+echo ""
+
+# ==========================================
+# 步驟 13: 啟動後健康檢查
+# ==========================================
+echo "1️⃣3️⃣ 啟動後健康檢查..."
+echo ""
+
+# 等待服務穩定
+echo "   ⏳ 等待服務穩定（10 秒）..."
+sleep 10
+
+# 檢查 Worker 進程
+echo "   🔍 檢查 Worker 進程..."
+WORKER_PID=$(ps aux | grep -E "queue-worker.js" | grep -v grep | awk '{print $2}' | head -1)
+if [ -n "$WORKER_PID" ]; then
+    echo "   ✅ Worker 正在運行（PID: $WORKER_PID）"
+else
+    echo "   ❌ Worker 未運行！"
+fi
+
+# 檢查 Redis 中的 Cron Jobs
+echo ""
+echo "   🔍 檢查 Cron Jobs 註冊狀態..."
+CRON_JOBS=$(redis-cli keys "bull:cron-queue:repeat:*CronJob" 2>/dev/null | wc -l | tr -d ' ')
+if [ "$CRON_JOBS" -gt 0 ]; then
+    echo "   ✅ 已註冊 $CRON_JOBS 個 Cron Jobs"
+    echo ""
+    echo "   📋 主要 Cron Jobs："
+    redis-cli keys "bull:cron-queue:repeat:*CronJob" 2>/dev/null | while read key; do
+        JOB_NAME=$(echo "$key" | sed 's/bull:cron-queue:repeat://;s/:[0-9]*$//')
+        echo "      - $JOB_NAME"
+    done | head -5
+else
+    echo "   ⚠️  警告：未找到 Cron Jobs"
+fi
+
+# 檢查 WorkflowCronTriggerCronJob
+echo ""
+echo "   🔍 檢查 Workflow Schedule Cron Job..."
+WORKFLOW_CRON=$(redis-cli exists "bull:cron-queue:repeat:WorkflowCronTriggerCronJob" 2>/dev/null)
+if [ "$WORKFLOW_CRON" = "1" ]; then
+    PATTERN=$(redis-cli hget "bull:cron-queue:repeat:WorkflowCronTriggerCronJob" "pattern" 2>/dev/null)
+    echo "   ✅ WorkflowCronTriggerCronJob 已註冊（執行頻率: $PATTERN）"
+else
+    echo "   ❌ WorkflowCronTriggerCronJob 未註冊！"
+fi
+
+# 檢查是否有卡住的 Workflow Runs（可選）
+echo ""
+echo "   🔍 檢查卡住的 Workflow Runs..."
+if command -v psql &> /dev/null; then
+    STUCK_WORKFLOWS=$(PGPASSWORD=postgres psql -h localhost -p ${POSTGRES_PORT} -U postgres -d default -t -c "SELECT COUNT(*) FROM workspace_1wgvd1injqtife6y4rvfbu3h5.\"workflowRun\" WHERE status = 'RUNNING' AND \"deletedAt\" IS NULL AND \"startedAt\" < NOW() - INTERVAL '1 hour';" 2>/dev/null | tr -d ' ')
+    
+    if [ -n "$STUCK_WORKFLOWS" ] && [ "$STUCK_WORKFLOWS" -gt 0 ]; then
+        echo "   ⚠️  發現 $STUCK_WORKFLOWS 個可能卡住的 Workflow Runs（超過1小時）"
+        echo "   💡 建議：檢查這些 Workflow 是否需要清理"
+    else
+        echo "   ✅ 沒有卡住的 Workflow Runs"
+    fi
+else
+    echo "   ⏭️  跳過（psql 未安裝）"
+fi
+
+echo ""
+echo "   ✅ 健康檢查完成！"
 echo ""
 
 # ==========================================
