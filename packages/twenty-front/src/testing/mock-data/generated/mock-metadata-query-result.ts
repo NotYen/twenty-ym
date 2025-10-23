@@ -189,50 +189,6 @@ export const mockedStandardObjectMetadataQueryResult: ObjectMetadataItemsQuery =
             },
             {
               "__typename": "Field",
-              "id": "ba9595db-5f25-4fef-b0d7-c72dd63f9cc4",
-              "type": "RAW_JSON",
-              "name": "output",
-              "isCustom": false,
-              "isActive": true,
-              "isSystem": false,
-              "isUIReadOnly": false,
-              "isNullable": true,
-              "isUnique": false,
-              "createdAt": "2025-06-09T18:53:47.000Z",
-              "updatedAt": "2025-06-09T18:53:47.000Z",
-              "defaultValue": null,
-              "options": null,
-              "settings": null,
-              "isLabelSyncedWithName": false,
-              "relation": null,
-              "label": "Output",
-              "description": "Json object to provide output of the workflow run",
-              "icon": "IconText"
-            },
-            {
-              "__typename": "Field",
-              "id": "c1684ba7-c722-4839-9811-cd5af1d02ec2",
-              "type": "RAW_JSON",
-              "name": "context",
-              "isCustom": false,
-              "isActive": true,
-              "isSystem": false,
-              "isUIReadOnly": false,
-              "isNullable": true,
-              "isUnique": false,
-              "createdAt": "2025-06-09T18:53:47.000Z",
-              "updatedAt": "2025-06-09T18:53:47.000Z",
-              "defaultValue": null,
-              "options": null,
-              "settings": null,
-              "isLabelSyncedWithName": false,
-              "relation": null,
-              "label": "Context",
-              "description": "Context",
-              "icon": "IconHierarchy2"
-            },
-            {
-              "__typename": "Field",
               "id": "c47c0563-c7ff-4388-9bae-8db61f5d690e",
               "type": "POSITION",
               "name": "position",
@@ -5172,8 +5128,8 @@ export const mockedStandardObjectMetadataQueryResult: ObjectMetadataItemsQuery =
             {
               "__typename": "Field",
               "id": "3b5634cd-c68f-490c-a2d1-0ee148a6bb1f",
-              "type": "RELATION",
-              "name": "view",
+              "type": "UUID",
+              "name": "viewId",
               "isCustom": false,
               "isActive": true,
               "isSystem": true,
@@ -5184,41 +5140,12 @@ export const mockedStandardObjectMetadataQueryResult: ObjectMetadataItemsQuery =
               "updatedAt": "2025-06-09T18:53:47.000Z",
               "defaultValue": null,
               "options": null,
-              "settings": {
-                "onDelete": "CASCADE",
-                "relationType": "MANY_TO_ONE",
-                "joinColumnName": "viewId"
-              },
+              "settings": null,
               "isLabelSyncedWithName": false,
-              "label": "View",
-              "description": "Favorite view",
-              "icon": "IconLayoutCollage",
-              "relation": {
-                "__typename": "Relation",
-                "type": "MANY_TO_ONE",
-                "sourceObjectMetadata": {
-                  "__typename": "Object",
-                  "id": "b95a4f5d-6fdc-48f9-9598-652960eed462",
-                  "nameSingular": "favorite",
-                  "namePlural": "favorites"
-                },
-                "targetObjectMetadata": {
-                  "__typename": "Object",
-                  "id": "c4b95b85-3b53-4b33-94f2-58a2b5abb746",
-                  "nameSingular": "view",
-                  "namePlural": "views"
-                },
-                "sourceFieldMetadata": {
-                  "__typename": "Field",
-                  "id": "3b5634cd-c68f-490c-a2d1-0ee148a6bb1f",
-                  "name": "view"
-                },
-                "targetFieldMetadata": {
-                  "__typename": "Field",
-                  "id": "e6d5fcd9-21dc-4b16-965e-a6285622c029",
-                  "name": "favorites"
-                }
-              }
+              "relation": null,
+              "label": "ViewId",
+              "description": "Favorite view id foreign key",
+              "icon": "IconLayoutCollage"
             },
             {
               "__typename": "Field",
