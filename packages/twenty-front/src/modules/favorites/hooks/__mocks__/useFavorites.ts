@@ -413,24 +413,6 @@ const UPDATE_ONE_FAVORITE_MUTATION = gql`
         }
         taskId
         updatedAt
-        view {
-          __typename
-          createdAt
-          deletedAt
-          icon
-          id
-          isCompact
-          kanbanAggregateOperation
-          kanbanAggregateOperationFieldMetadataId
-          kanbanFieldMetadataId
-          key
-          name
-          objectMetadataId
-          openRecordIn
-          position
-          type
-          updatedAt
-        }
         viewId
         workflow {
           __typename
@@ -452,19 +434,16 @@ const UPDATE_ONE_FAVORITE_MUTATION = gql`
         workflowId
         workflowRun {
           __typename
-          context
           createdAt
           createdBy {
             source
             workspaceMemberId
             name
-            context
           }
           deletedAt
           endedAt
           id
           name
-          output
           position
           startedAt
           status
@@ -806,24 +785,6 @@ export const mocks = [
         }
         taskId
         updatedAt
-        view {
-          __typename
-          createdAt
-          deletedAt
-          icon
-          id
-          isCompact
-          kanbanAggregateOperation
-          kanbanAggregateOperationFieldMetadataId
-          kanbanFieldMetadataId
-          key
-          name
-          objectMetadataId
-          openRecordIn
-          position
-          type
-          updatedAt
-        }
         viewId
         workflow {
           __typename
@@ -845,19 +806,16 @@ export const mocks = [
         workflowId
         workflowRun {
           __typename
-          context
           createdAt
           createdBy {
             source
             workspaceMemberId
             name
-            context
           }
           deletedAt
           endedAt
           id
           name
-          output
           position
           startedAt
           status

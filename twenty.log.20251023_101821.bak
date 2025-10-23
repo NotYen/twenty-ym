@@ -1,0 +1,444 @@
+
+ NX   Running target command for project twenty-server and 4 tasks it depends on:
+
+
+
+> nx run twenty-shared:generateBarrels  [existing outputs match the cache, left as is]
+
+
+> nx run twenty-shared:build  [existing outputs match the cache, left as is]
+
+
+> nx run twenty-emails:build  [existing outputs match the cache, left as is]
+
+
+> nx run twenty-server:build  [existing outputs match the cache, left as is]
+
+[2m> [22mrimraf dist
+
+[2m> [22mnest build --path ./tsconfig.build.json
+
+[36m> [39m[46m[1m SWC [22m[49m [36mRunning...[39m
+Successfully compiled: 3513 files with swc (963.72ms)
+
+> nx run twenty-server:command cron:register:all
+
+> node dist/src/command/command.js cron:register:all
+
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCommandRootModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSentryModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGraphQLConfigModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCoreEngineModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTwentyConfigModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeORMModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mStripeSDKModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessageQueueModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRecordTransformerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mI18nModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mObjectMetadataRepositoryModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingSmtpDriverModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFormActionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFilterActionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEmptyActionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEmailModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppTokenModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowBuilderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceQueryBuilderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mImapSmtpCaldavValidatorModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessageQueueModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mModulesModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalendarModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mViewModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMetadataEngineModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSearchFieldMetadataModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMetadataGraphQLApiModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSyncWorkspaceLoggerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFileStorageModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mHttpModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mHttpModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mHttpModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceSchemaManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalDavDriverModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMetadataQueryBuilderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMigrationBuilderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDiscoveryModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceEventEmitterModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDiscoveryModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTerminusModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCommandRunnerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEventEmitterModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mScheduleModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGraphQLSchemaBuilderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceQueryHookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceManyOrAllFlatEntityMapsCacheModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDistantTableModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMigrationModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDataSourceModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAgentRoleModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryTypeOrmModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mKeyValuePairModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDatabaseConfigModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[TwentyConfigService] [39m[32mDatabase configuration is enabled[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[TwentyConfigService] [39m[32mUsing database configuration driver[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMigrationRunnerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRemoteTableRelationsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceDataSourceModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUserVarsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mIndexMetadataModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mServerlessFunctionLayerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTwentyConfigModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMigrationRunnerCommandsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRemoteTableSchemaUpdateModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSearchVectorModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRedisClientModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mClickHouseModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGoogleAPIRefreshAccessTokenModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMicrosoftAPIRefreshAccessTokenModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTelemetryModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDomainManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOAuth2ClientManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPgPoolSharedModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFileStorageModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMicrosoftCalendarDriverModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mLoggerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCaptchaModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDnsManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mStripeModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGeoMapModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mExceptionHandlerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGuardRedirectModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessageQueueCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingMicrosoftDriverModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSubscriptionsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuditModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGoogleCalendarDriverModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingGmailDriverModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mServerlessModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mClientConfigModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEmailModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEmailingDomainModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPublicDomainModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPostgresCredentialsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFileUploadModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOnboardingModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceSchemaMigrationRunnerActionHandlersModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFileModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCacheModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCacheStorageModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceCacheStorageModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mThrottlerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFlatViewModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceFlatMapCacheModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCacheLockModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspacePermissionsCacheModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMetricsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceFeatureFlagsMapCacheModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMetadataCacheModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPermissionFlagModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mObjectPermissionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFeatureFlagModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDataloaderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMetadataVersionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCodeActionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTwentyORMModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMigrationRunnerV2Module dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mForeignTableModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMigrationBuilderValidatorsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFlatFieldMetadataModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEmailAliasManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRefreshTokensManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConnectedAccountQueryHookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingCommonModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalendarCommonModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRecordPositionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFavoriteFolderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mObjectMetadataRepositoryModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mObjectMetadataRepositoryModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mIMAPAPIsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mV1_3_UpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMatchParticipantModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConnectedAccountModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mV1_2_UpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mV1_7_UpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUserRoleModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowCommonModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowStatusModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingMonitoringModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mV0_55_UpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mV1_5_UpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mV1_6_UpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingFolderSyncManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mV0_54_UpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceSyncMetadataModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mV1_1_UpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceSyncMetadataCommandsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAdminPanelModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mApprovedAccessDomainModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceSchemaBuilderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingQueryHookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalendarQueryHookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalendarEventCleanerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFavoriteModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingMessageCleanerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mActorModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mContactCreationManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalendarBlocklistManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceQueryRunnerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBlocklistValidationManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingBlocklistManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPermissionsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowVersionEdgeModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAutomatedTriggerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRecordCRUDActionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowSchemaModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUpgradeVersionCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUserWorkspaceModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTimelineCalendarEventModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSearchModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowRunQueueModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowQueryHookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDashboardQueryHookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessageParticipantManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalendarEventParticipantManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mHealthModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBlocklistQueryHookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowVersionStepModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceSSOModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mLabModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceInvitationModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingIMAPDriverModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMemberQueryHookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowVersionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMigrationBuilderV2Module dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTokenModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowRunModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMiddlewareModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCoreQueryBuilderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mImapSmtpCaldavModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCalendarEventImportManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mIteratorActionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMcpModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWebhookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceMigrationV2Module dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBillingModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mGraphqlQueryRunnerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowTriggerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRoleModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMessagingImportManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mImpersonationModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mApiKeyModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mServerlessFunctionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowToolsModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPageLayoutModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceResolverBuilderModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDatabaseEventTriggerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCronTriggerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRestApiModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceHealthModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceManagerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCoreGraphQLApiModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mApplicationModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceHealthCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRemoteTableModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDevSeederModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOpenApiModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAiAgentActionModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRestApiCoreModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRemoteServerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDatabaseCommandModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mObjectMetadataModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mFieldMetadataModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUserModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mRouteTriggerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowExecutorModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTimelineMessagingModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTwoFactorAuthenticationModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceCleanerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mNestjsQueryGraphQLModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkspaceModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEmailVerificationModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowRunnerModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCoreViewModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAgentModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAiModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCloudflareModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBillingWebhookModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWorkflowApiModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthModule dependencies initialized[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[PgPoolSharedService] [39m[32mPool sharing will use max 10 connections per pool with 600000ms idle timeout and allowExitOnIdle=true[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[PgPoolSharedService] [39m[32mpg.Pool patched successfully by this service instance.[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[PgPoolSharedService] [39m[32mPg pool sharing initialized - pools will be shared across tenants[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[DatabaseConfigDriver] [39m[32m[INIT] Loading initial config variables from database[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[DatabaseConfigDriver] [39m[32m[INIT] Config variables loaded: 1 values found in DB, 54 falling to env vars/defaults[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering all background sync cron jobs...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering MessagingMessagesImport cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered MessagingMessagesImport cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering MessagingMessageListFetch cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered MessagingMessageListFetch cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering MessagingOngoingStale cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered MessagingOngoingStale cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering CalendarEventListFetch cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered CalendarEventListFetch cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering CalendarEventsImport cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered CalendarEventsImport cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering CalendarOngoingStale cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered CalendarOngoingStale cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering CheckCustomDomainValidRecords cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered CheckCustomDomainValidRecords cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering CheckPublicDomainsValidRecords cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered CheckPublicDomainsValidRecords cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering WorkflowCronTrigger cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered WorkflowCronTrigger cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering WorkflowRunEnqueue cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered WorkflowRunEnqueue cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering WorkflowHandleStaledRuns cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered WorkflowHandleStaledRuns cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering WorkflowCleanWorkflowRuns cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered WorkflowCleanWorkflowRuns cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering CronTrigger cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered CronTrigger cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering CleanSuspendedWorkspaces cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered CleanSuspendedWorkspaces cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mRegistering CleanOnboardingWorkspaces cron job...[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessfully registered CleanOnboardingWorkspaces cron job[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mCron job registration completed: 15 successful, 0 failed[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[CronRegisterAllCommand] [39m[32mSuccessful commands: MessagingMessagesImport, MessagingMessageListFetch, MessagingOngoingStale, CalendarEventListFetch, CalendarEventsImport, CalendarOngoingStale, CheckCustomDomainValidRecords, CheckPublicDomainsValidRecords, WorkflowCronTrigger, WorkflowRunEnqueue, WorkflowHandleStaledRuns, WorkflowCleanWorkflowRuns, CronTrigger, CleanSuspendedWorkspaces, CleanOnboardingWorkspaces[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[PgPoolSharedService] [39m[32monApplicationShutdown called in PgPoolSharedService[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[PgPoolSharedModule] [39m[32mShutting down PgPoolSharedModule[39m
+[32m[Nest] 83233  - [39m10/23/2025, 10:06:14 AM [32m    LOG[39m [38;5;3m[PgPoolSharedService] [39m[32monApplicationShutdown called in PgPoolSharedService[39m
+
+
+
+ NX   Successfully ran target command for project twenty-server and 4 tasks it depends on
+
+Nx read the output from the cache instead of running the command for 4 out of 5 tasks.
+
