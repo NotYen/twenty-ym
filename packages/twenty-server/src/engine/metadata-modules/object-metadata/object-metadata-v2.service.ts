@@ -14,7 +14,6 @@ import { FlatView } from 'src/engine/core-modules/view/flat-view/types/flat-view
 import { fromCreateViewFieldInputToFlatViewFieldToCreate } from 'src/engine/core-modules/view/flat-view/utils/from-create-view-field-input-to-flat-view-field-to-create.util';
 import { fromCreateViewInputToFlatViewToCreate } from 'src/engine/core-modules/view/flat-view/utils/from-create-view-input-to-flat-view-to-create.util';
 import { FlatFieldMetadata } from 'src/engine/metadata-modules/flat-field-metadata/types/flat-field-metadata.type';
-import { findObjectFieldsInFlatFieldMetadataMapsOrThrow } from 'src/engine/metadata-modules/flat-field-metadata/utils/find-object-fields-in-flat-field-metadata-maps-or-throw.util';
 import { FlatObjectMetadata } from 'src/engine/metadata-modules/flat-object-metadata/types/flat-object-metadata.type';
 import { fromCreateObjectInputToFlatObjectMetadataAndFlatFieldMetadatasToCreate } from 'src/engine/metadata-modules/flat-object-metadata/utils/from-create-object-input-to-flat-object-metadata-and-flat-field-metadatas-to-create.util';
 import { fromDeleteObjectInputToFlatFieldMetadatasToDelete } from 'src/engine/metadata-modules/flat-object-metadata/utils/from-delete-object-input-to-flat-field-metadatas-to-delete.util';
@@ -25,8 +24,8 @@ import { DeleteOneObjectInput } from 'src/engine/metadata-modules/object-metadat
 import { ObjectMetadataDTO } from 'src/engine/metadata-modules/object-metadata/dtos/object-metadata.dto';
 import { UpdateOneObjectInput } from 'src/engine/metadata-modules/object-metadata/dtos/update-object.input';
 import {
-  ObjectMetadataException,
-  ObjectMetadataExceptionCode,
+    ObjectMetadataException,
+    ObjectMetadataExceptionCode,
 } from 'src/engine/metadata-modules/object-metadata/object-metadata.exception';
 import { WorkspacePermissionsCacheService } from 'src/engine/metadata-modules/workspace-permissions-cache/workspace-permissions-cache.service';
 import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
@@ -353,14 +352,11 @@ export class ObjectMetadataServiceV2 {
       flatEntityMaps: existingFlatViewMaps,
     });
 
-    const { objectFlatFieldMetadatas } =
-      findObjectFieldsInFlatFieldMetadataMapsOrThrow({
-        flatFieldMetadataMaps: toFlatFieldMetadataMaps,
-        flatObjectMetadata: flatObjectMetadataToCreate,
-      });
+    // Use flatFieldMetadataToCreateOnObject directly instead of looking up by fieldMetadataIds
+    // because fieldMetadataIds is empty at this point in object creation
     const flatDefaultViewFieldsToCreate =
       await this.createDefaultFlatViewFields({
-        objectFlatFieldMetadatas,
+        objectFlatFieldMetadatas: flatFieldMetadataToCreateOnObject,
         viewId: flatDefaultViewToCreate.id,
         workspaceId,
       });
@@ -482,20 +478,44 @@ export class ObjectMetadataServiceV2 {
     viewId: string;
     workspaceId: string;
   }) {
-    const defaultViewFields = objectFlatFieldMetadatas
-      .filter((field) => field.name !== 'id' && field.name !== 'deletedAt')
-      .map((field, index) =>
+    // Filter out id and deletedAt fields
+    const filteredFields = objectFlatFieldMetadatas.filter(
+      (field) => field.name !== 'id' && field.name !== 'deletedAt',
+    );
+
+    // Find name field - must be at position 0 (same logic as custom-all.view.ts)
+    const nameField = filteredFields.find((field) => field.name === 'name');
+    const otherFields = filteredFields.filter((field) => field.name !== 'name');
+
+    // Build view fields: name first (position 0), then other fields
+    const defaultViewFields = [
+      ...(nameField
+        ? [
+            fromCreateViewFieldInputToFlatViewFieldToCreate({
+              createViewFieldInput: {
+                fieldMetadataId: nameField.id,
+                position: 0,
+                isVisible: true,
+                size: DEFAULT_VIEW_FIELD_SIZE,
+                viewId: viewId,
+              },
+              workspaceId: workspaceId,
+            }),
+          ]
+        : []),
+      ...otherFields.map((field, index) =>
         fromCreateViewFieldInputToFlatViewFieldToCreate({
           createViewFieldInput: {
             fieldMetadataId: field.id,
-            position: index,
+            position: index + 1,
             isVisible: true,
             size: DEFAULT_VIEW_FIELD_SIZE,
             viewId: viewId,
           },
           workspaceId: workspaceId,
         }),
-      );
+      ),
+    ];
 
     return defaultViewFields;
   }
