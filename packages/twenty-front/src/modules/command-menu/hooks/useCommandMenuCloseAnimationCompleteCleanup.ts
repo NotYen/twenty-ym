@@ -1,9 +1,9 @@
 import { COMMAND_MENU_COMPONENT_INSTANCE_ID } from '@/command-menu/constants/CommandMenuComponentInstanceId';
 import { COMMAND_MENU_CONTEXT_CHIP_GROUPS_DROPDOWN_ID } from '@/command-menu/constants/CommandMenuContextChipGroupsDropdownId';
+import { COMMAND_MENU_LIST_SELECTABLE_LIST_ID } from '@/command-menu/constants/CommandMenuListSelectableListId';
 import { COMMAND_MENU_PREVIOUS_COMPONENT_INSTANCE_ID } from '@/command-menu/constants/CommandMenuPreviousComponentInstanceId';
 import { useResetContextStoreStates } from '@/command-menu/hooks/useResetContextStoreStates';
-import { commandMenuNavigationMorphItemByPageState } from '@/command-menu/states/commandMenuNavigationMorphItemsState';
-import { commandMenuNavigationRecordsState } from '@/command-menu/states/commandMenuNavigationRecordsState';
+import { commandMenuNavigationMorphItemsByPageState } from '@/command-menu/states/commandMenuNavigationMorphItemsByPageState';
 import { commandMenuNavigationStackState } from '@/command-menu/states/commandMenuNavigationStackState';
 import { commandMenuPageInfoState } from '@/command-menu/states/commandMenuPageInfoState';
 import { commandMenuPageState } from '@/command-menu/states/commandMenuPageState';
@@ -27,7 +27,9 @@ import { useRecoilCallback } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 
 export const useCommandMenuCloseAnimationCompleteCleanup = () => {
-  const { resetSelectedItem } = useSelectableList('command-menu-list');
+  const { resetSelectedItem } = useSelectableList(
+    COMMAND_MENU_LIST_SELECTABLE_LIST_ID,
+  );
 
   const { resetContextStoreStates } = useResetContextStoreStates();
 
@@ -88,8 +90,7 @@ export const useCommandMenuCloseAnimationCompleteCleanup = () => {
         });
         set(isCommandMenuOpenedState, false);
         set(commandMenuSearchState, '');
-        set(commandMenuNavigationMorphItemByPageState, new Map());
-        set(commandMenuNavigationRecordsState, []);
+        set(commandMenuNavigationMorphItemsByPageState, new Map());
         set(commandMenuNavigationStackState, []);
         resetSelectedItem();
         set(hasUserSelectedCommandState, false);
@@ -103,14 +104,14 @@ export const useCommandMenuCloseAnimationCompleteCleanup = () => {
           WorkflowServerlessFunctionTabId.CODE,
         );
 
-        for (const [pageId, morphItem] of snapshot
-          .getLoadable(commandMenuNavigationMorphItemByPageState)
+        for (const [pageId, morphItems] of snapshot
+          .getLoadable(commandMenuNavigationMorphItemsByPageState)
           .getValue()) {
           set(
             activeTabIdComponentState.atomFamily({
               instanceId: getShowPageTabListComponentId({
                 pageId,
-                targetObjectId: morphItem.recordId,
+                targetObjectId: morphItems[0].recordId,
               }),
             }),
             null,

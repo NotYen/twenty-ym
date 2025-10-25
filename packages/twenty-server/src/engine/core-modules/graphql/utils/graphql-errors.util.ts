@@ -1,3 +1,4 @@
+import { type MessageDescriptor } from '@lingui/core';
 import {
   type ASTNode,
   GraphQLError,
@@ -12,7 +13,7 @@ declare module 'graphql' {
   export interface GraphQLErrorExtensions {
     exception?: {
       code?: string;
-      stacktrace?: ReadonlyArray<string>;
+      stackTrace?: ReadonlyArray<string>;
     };
   }
 }
@@ -33,7 +34,7 @@ export enum ErrorCode {
 }
 
 type RestrictedGraphQLErrorExtensions = {
-  userFriendlyMessage?: string;
+  userFriendlyMessage?: MessageDescriptor;
   subCode?: string;
 };
 
@@ -121,8 +122,8 @@ export class SyntaxError extends BaseGraphQLError {
 }
 
 export class ValidationError extends BaseGraphQLError {
-  constructor(message: string) {
-    super(message, ErrorCode.GRAPHQL_VALIDATION_FAILED);
+  constructor(message: string, extensions?: BaseGraphQLError['extensions']) {
+    super(message, ErrorCode.GRAPHQL_VALIDATION_FAILED, extensions);
 
     Object.defineProperty(this, 'name', { value: 'ValidationError' });
   }

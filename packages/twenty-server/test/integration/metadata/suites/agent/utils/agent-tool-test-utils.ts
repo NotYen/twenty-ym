@@ -5,6 +5,11 @@ import { type Repository } from 'typeorm';
 
 import { ToolAdapterService } from 'src/engine/core-modules/ai/services/tool-adapter.service';
 import { ToolService } from 'src/engine/core-modules/ai/services/tool.service';
+import { type ApplicationEntity } from 'src/engine/core-modules/application/application.entity';
+import { CreateRecordService } from 'src/engine/core-modules/record-crud/services/create-record.service';
+import { DeleteRecordService } from 'src/engine/core-modules/record-crud/services/delete-record.service';
+import { FindRecordsService } from 'src/engine/core-modules/record-crud/services/find-records.service';
+import { UpdateRecordService } from 'src/engine/core-modules/record-crud/services/update-record.service';
 import { RecordInputTransformerService } from 'src/engine/core-modules/record-transformer/services/record-input-transformer.service';
 import { ToolRegistryService } from 'src/engine/core-modules/tool/services/tool-registry.service';
 import { SendEmailTool } from 'src/engine/core-modules/tool/tools/send-email-tool/send-email-tool';
@@ -60,6 +65,7 @@ export const createAgentToolTestModule =
           provide: getRepositoryToken(RoleEntity),
           useValue: {
             findOne: jest.fn(),
+            find: jest.fn(),
           },
         },
         {
@@ -84,6 +90,34 @@ export const createAgentToolTestModule =
         {
           provide: ToolService,
           useClass: ToolService,
+        },
+        {
+          provide: CreateRecordService,
+          useValue: {
+            execute: jest.fn(),
+          },
+        },
+        {
+          provide: UpdateRecordService,
+          useValue: {
+            execute: jest.fn(),
+          },
+        },
+        {
+          provide: DeleteRecordService,
+          useValue: {
+            execute: jest.fn(),
+          },
+        },
+        {
+          provide: FindRecordsService,
+          useValue: {
+            execute: jest.fn().mockResolvedValue({
+              success: true,
+              message: 'Records found successfully',
+              result: [],
+            }),
+          },
         },
         {
           provide: RecordInputTransformerService,
@@ -128,6 +162,7 @@ export const createAgentToolTestModule =
           useValue: {
             hasToolPermission: jest.fn(),
             checkRolePermissions: jest.fn().mockReturnValue(true),
+            checkRolesPermissions: jest.fn().mockResolvedValue(true),
           },
         },
         {
@@ -178,7 +213,10 @@ export const createAgentToolTestModule =
       icon: 'IconTest',
       isCustom: false,
       applicationId: null,
-      application: null,
+      application: {} as ApplicationEntity,
+      standardId: null,
+      deletedAt: null,
+      universalIdentifier: testAgentId,
       description: 'Test agent for integration tests',
       prompt: 'You are a test agent',
       modelId: 'gpt-4o',
@@ -188,7 +226,6 @@ export const createAgentToolTestModule =
       roleId: testRoleId,
       createdAt: new Date(),
       updatedAt: new Date(),
-      chatThreads: [],
       incomingHandoffs: [],
       outgoingHandoffs: [],
       modelConfiguration: {},
@@ -305,10 +342,6 @@ export const setupBasicPermissions = (context: AgentToolTestContext) => {
       data: {
         [context.testRoleId]: {
           [context.testObjectMetadata.id]: {
-            canRead: true,
-            canUpdate: true,
-            canSoftDelete: true,
-            canDestroy: false,
             canReadObjectRecords: true,
             canUpdateObjectRecords: true,
             canSoftDeleteObjectRecords: true,

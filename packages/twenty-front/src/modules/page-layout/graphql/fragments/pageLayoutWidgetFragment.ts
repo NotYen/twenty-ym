@@ -20,10 +20,12 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         graphType
         aggregateFieldMetadataId
         aggregateOperation
-        groupByFieldMetadataIdX
-        orderByX
-        groupByFieldMetadataIdY
-        orderByY
+        primaryAxisGroupByFieldMetadataId
+        primaryAxisGroupBySubFieldName
+        primaryAxisOrderBy
+        secondaryAxisGroupByFieldMetadataId
+        secondaryAxisGroupBySubFieldName
+        secondaryAxisOrderBy
         omitNullValues
         axisNameDisplay
         displayDataLabel
@@ -32,15 +34,18 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         color
         description
         filter
+        groupMode
       }
       ... on LineChartConfiguration {
         graphType
         aggregateFieldMetadataId
         aggregateOperation
-        groupByFieldMetadataIdX
-        orderByX
-        groupByFieldMetadataIdY
-        orderByY
+        primaryAxisGroupByFieldMetadataId
+        primaryAxisGroupBySubFieldName
+        primaryAxisOrderBy
+        secondaryAxisGroupByFieldMetadataId
+        secondaryAxisGroupBySubFieldName
+        secondaryAxisOrderBy
         omitNullValues
         axisNameDisplay
         displayDataLabel
@@ -55,13 +60,14 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         groupByFieldMetadataId
         aggregateFieldMetadataId
         aggregateOperation
+        groupBySubFieldName
         orderBy
         displayDataLabel
         color
         description
         filter
       }
-      ... on NumberChartConfiguration {
+      ... on AggregateChartConfiguration {
         graphType
         aggregateFieldMetadataId
         aggregateOperation

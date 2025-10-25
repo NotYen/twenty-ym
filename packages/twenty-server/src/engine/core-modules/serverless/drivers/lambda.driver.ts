@@ -27,7 +27,6 @@ import {
 } from 'src/engine/core-modules/serverless/drivers/interfaces/serverless-driver.interface';
 
 import { type FileStorageService } from 'src/engine/core-modules/file-storage/file-storage.service';
-import { COMMON_LAYER_NAME } from 'src/engine/core-modules/serverless/drivers/constants/common-layer-name';
 import { copyAndBuildDependencies } from 'src/engine/core-modules/serverless/drivers/utils/copy-and-build-dependencies';
 import { copyExecutor } from 'src/engine/core-modules/serverless/drivers/utils/copy-executor';
 import { createZipFile } from 'src/engine/core-modules/serverless/drivers/utils/create-zip-file';
@@ -47,6 +46,7 @@ import {
 } from 'src/engine/metadata-modules/serverless-function/serverless-function.exception';
 import { buildServerlessFunctionInMemory } from 'src/engine/core-modules/serverless/drivers/utils/build-serverless-function-in-memory';
 import { formatBuildError } from 'src/engine/core-modules/serverless/drivers/utils/format-build-error';
+import { buildEnvVar } from 'src/engine/core-modules/serverless/drivers/utils/build-env-var';
 
 const UPDATE_FUNCTION_DURATION_TIMEOUT_IN_SECONDS = 60;
 const CREDENTIALS_DURATION_IN_SECONDS = 60 * 60; // 1h
@@ -134,11 +134,7 @@ export class LambdaDriver implements ServerlessDriver {
   }
 
   private getLayerName(serverlessFunction: ServerlessFunctionEntity) {
-    if (isDefined(serverlessFunction?.serverlessFunctionLayer)) {
-      return serverlessFunction?.serverlessFunctionLayer.checksum;
-    }
-
-    return COMMON_LAYER_NAME;
+    return serverlessFunction.serverlessFunctionLayer.checksum;
   }
 
   private async createLayerIfNotExists(
@@ -343,6 +339,7 @@ export class LambdaDriver implements ServerlessDriver {
       const executorPayload = {
         params: payload,
         code: compiledCode,
+        env: buildEnvVar(serverlessFunction),
       };
 
       const params: InvokeCommandInput = {

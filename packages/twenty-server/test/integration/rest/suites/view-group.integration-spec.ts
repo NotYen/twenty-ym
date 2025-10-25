@@ -24,11 +24,11 @@ import {
 } from 'test/integration/utils/view-test.util';
 import { FieldMetadataType } from 'twenty-shared/types';
 
-import { type ViewGroupEntity } from 'src/engine/core-modules/view/entities/view-group.entity';
+import { type ViewGroupEntity } from 'src/engine/metadata-modules/view-group/entities/view-group.entity';
 import {
   generateViewGroupExceptionMessage,
   ViewGroupExceptionMessageKey,
-} from 'src/engine/core-modules/view/exceptions/view-group.exception';
+} from 'src/engine/metadata-modules/view-group/exceptions/view-group.exception';
 
 describe('View Group REST API', () => {
   let testObjectMetadataId: string;
@@ -65,6 +65,7 @@ describe('View Group REST API', () => {
         createOneField: { id: fieldMetadataId },
       },
     } = await createOneFieldMetadata({
+      expectToFail: false,
       input: createFieldInput,
       gqlFields: `
           id
@@ -88,6 +89,7 @@ describe('View Group REST API', () => {
       },
     });
     await deleteOneObjectMetadata({
+      expectToFail: false,
       input: { idToDelete: testObjectMetadataId },
     });
   });
