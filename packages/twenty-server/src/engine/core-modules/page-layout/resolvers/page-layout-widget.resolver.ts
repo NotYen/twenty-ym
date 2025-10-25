@@ -1,13 +1,22 @@
 import { UseFilters, UseGuards, UsePipes } from '@nestjs/common';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import {
+  Args,
+  Mutation,
+  Parent,
+  Query,
+  ResolveField,
+  Resolver,
+} from '@nestjs/graphql';
 
 import { ResolverValidationPipe } from 'src/engine/core-modules/graphql/pipes/resolver-validation.pipe';
 import { CreatePageLayoutWidgetInput } from 'src/engine/core-modules/page-layout/dtos/inputs/create-page-layout-widget.input';
 import { UpdatePageLayoutWidgetInput } from 'src/engine/core-modules/page-layout/dtos/inputs/update-page-layout-widget.input';
 import { PageLayoutWidgetDTO } from 'src/engine/core-modules/page-layout/dtos/page-layout-widget.dto';
+import { WidgetConfiguration } from 'src/engine/core-modules/page-layout/dtos/widget-configuration.interface';
 import { PageLayoutWidgetService } from 'src/engine/core-modules/page-layout/services/page-layout-widget.service';
+import { injectWidgetConfigurationDiscriminator } from 'src/engine/core-modules/page-layout/utils/inject-widget-configuration-discriminator.util';
 import { PageLayoutGraphqlApiExceptionFilter } from 'src/engine/core-modules/page-layout/utils/page-layout-graphql-api-exception.filter';
-import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
+import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { AuthWorkspace } from 'src/engine/decorators/auth/auth-workspace.decorator';
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
 
@@ -22,7 +31,7 @@ export class PageLayoutWidgetResolver {
 
   @Query(() => [PageLayoutWidgetDTO])
   async getPageLayoutWidgets(
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
     @Args('pageLayoutTabId', { type: () => String }) pageLayoutTabId: string,
   ): Promise<PageLayoutWidgetDTO[]> {
     return this.pageLayoutWidgetService.findByPageLayoutTabId(
@@ -34,7 +43,7 @@ export class PageLayoutWidgetResolver {
   @Query(() => PageLayoutWidgetDTO)
   async getPageLayoutWidget(
     @Args('id', { type: () => String }) id: string,
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
   ): Promise<PageLayoutWidgetDTO> {
     return this.pageLayoutWidgetService.findByIdOrThrow(id, workspace.id);
   }
@@ -42,7 +51,7 @@ export class PageLayoutWidgetResolver {
   @Mutation(() => PageLayoutWidgetDTO)
   async createPageLayoutWidget(
     @Args('input') input: CreatePageLayoutWidgetInput,
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
   ): Promise<PageLayoutWidgetDTO> {
     return this.pageLayoutWidgetService.create(input, workspace.id);
   }
@@ -51,7 +60,7 @@ export class PageLayoutWidgetResolver {
   async updatePageLayoutWidget(
     @Args('id', { type: () => String }) id: string,
     @Args('input') input: UpdatePageLayoutWidgetInput,
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
   ): Promise<PageLayoutWidgetDTO> {
     return this.pageLayoutWidgetService.update(id, workspace.id, input);
   }
@@ -59,7 +68,7 @@ export class PageLayoutWidgetResolver {
   @Mutation(() => PageLayoutWidgetDTO)
   async deletePageLayoutWidget(
     @Args('id', { type: () => String }) id: string,
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
   ): Promise<PageLayoutWidgetDTO> {
     return this.pageLayoutWidgetService.delete(id, workspace.id);
   }
@@ -67,7 +76,7 @@ export class PageLayoutWidgetResolver {
   @Mutation(() => Boolean)
   async destroyPageLayoutWidget(
     @Args('id', { type: () => String }) id: string,
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
   ): Promise<boolean> {
     return this.pageLayoutWidgetService.destroy(id, workspace.id);
   }
@@ -75,8 +84,16 @@ export class PageLayoutWidgetResolver {
   @Mutation(() => PageLayoutWidgetDTO)
   async restorePageLayoutWidget(
     @Args('id', { type: () => String }) id: string,
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
   ): Promise<PageLayoutWidgetDTO> {
     return this.pageLayoutWidgetService.restore(id, workspace.id);
+  }
+
+  @ResolveField(() => WidgetConfiguration, { nullable: true })
+  configuration(@Parent() widget: PageLayoutWidgetDTO) {
+    return injectWidgetConfigurationDiscriminator(
+      widget.type,
+      widget.configuration,
+    );
   }
 }

@@ -6,10 +6,17 @@ import { t } from '@lingui/core/macro';
 import { MenuPicker } from 'twenty-ui/navigation';
 
 const graphTypeOptions = [
-  GraphType.BAR,
+  GraphType.VERTICAL_BAR,
+  GraphType.HORIZONTAL_BAR,
+  GraphType.AGGREGATE,
   GraphType.PIE,
   GraphType.LINE,
-  GraphType.NUMBER,
+  GraphType.GAUGE,
+];
+
+const disabledGraphTypeOptions = [
+  GraphType.PIE,
+  GraphType.LINE,
   GraphType.GAUGE,
 ];
 
@@ -30,18 +37,25 @@ export const ChartTypeSelectionSection = ({
 }: ChartTypeSelectionSectionProps) => {
   return (
     <StyledChartTypeSelectionContainer>
-      {graphTypeOptions.map((graphType) => (
-        <MenuPicker
-          selected={currentGraphType === graphType}
-          key={graphType}
-          icon={GRAPH_TYPE_INFORMATION[graphType].icon}
-          onClick={() => {
-            setCurrentGraphType(graphType);
-          }}
-          label={t(GRAPH_TYPE_INFORMATION[graphType].label)}
-          showLabel={false}
-        />
-      ))}
+      {graphTypeOptions.map((graphType) => {
+        const isDisabled = disabledGraphTypeOptions.includes(graphType);
+
+        return (
+          <MenuPicker
+            selected={currentGraphType === graphType}
+            key={graphType}
+            icon={GRAPH_TYPE_INFORMATION[graphType].icon}
+            onClick={() => {
+              setCurrentGraphType(graphType);
+            }}
+            label={
+              isDisabled ? t`Soon` : t(GRAPH_TYPE_INFORMATION[graphType].label)
+            }
+            showLabel
+            disabled={isDisabled}
+          />
+        );
+      })}
     </StyledChartTypeSelectionContainer>
   );
 };

@@ -2,15 +2,14 @@ import { PageLayoutComponentInstanceContext } from '@/page-layout/states/context
 import { pageLayoutCurrentLayoutsComponentState } from '@/page-layout/states/pageLayoutCurrentLayoutsComponentState';
 import { pageLayoutDraftComponentState } from '@/page-layout/states/pageLayoutDraftComponentState';
 import { pageLayoutDraggedAreaComponentState } from '@/page-layout/states/pageLayoutDraggedAreaComponentState';
+import { type GraphWidgetFieldSelection } from '@/page-layout/types/GraphWidgetFieldSelection';
 import { addWidgetToTab } from '@/page-layout/utils/addWidgetToTab';
 import { createDefaultGraphWidget } from '@/page-layout/utils/createDefaultGraphWidget';
-import {
-  getWidgetSize,
-  getWidgetTitle,
-} from '@/page-layout/utils/getDefaultWidgetData';
 import { getDefaultWidgetPosition } from '@/page-layout/utils/getDefaultWidgetPosition';
 import { getTabListInstanceIdFromPageLayoutId } from '@/page-layout/utils/getTabListInstanceIdFromPageLayoutId';
 import { getUpdatedTabLayouts } from '@/page-layout/utils/getUpdatedTabLayouts';
+import { getWidgetSize } from '@/page-layout/utils/getWidgetSize';
+import { getWidgetTitle } from '@/page-layout/utils/getWidgetTitle';
 import { activeTabIdComponentState } from '@/ui/layout/tab-list/states/activeTabIdComponentState';
 import { useAvailableComponentInstanceIdOrThrow } from '@/ui/utilities/state/component-state/hooks/useAvailableComponentInstanceIdOrThrow';
 import { useRecoilComponentCallbackState } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentCallbackState';
@@ -52,7 +51,13 @@ export const useCreatePageLayoutGraphWidget = (
 
   const createPageLayoutGraphWidget = useRecoilCallback(
     ({ snapshot, set }) =>
-      (graphType: GraphType): PageLayoutWidget => {
+      ({
+        graphType,
+        fieldSelection,
+      }: {
+        graphType: GraphType;
+        fieldSelection?: GraphWidgetFieldSelection;
+      }): PageLayoutWidget => {
         const activeTabId = snapshot.getLoadable(activeTabIdState).getValue();
 
         if (!isDefined(activeTabId)) {
@@ -84,10 +89,12 @@ export const useCreatePageLayoutGraphWidget = (
         const title = getWidgetTitle(graphType, existingWidgetCount);
         const widgetId = uuidv4();
 
-        const defaultSize = getWidgetSize(graphType);
+        const defaultSize = getWidgetSize(graphType, 'default');
+        const minimumSize = getWidgetSize(graphType, 'minimum');
         const position = getDefaultWidgetPosition(
           pageLayoutDraggedArea,
           defaultSize,
+          minimumSize,
         );
 
         const newWidget = createDefaultGraphWidget({
@@ -101,6 +108,7 @@ export const useCreatePageLayoutGraphWidget = (
             rowSpan: position.h,
             columnSpan: position.w,
           },
+          fieldSelection,
         });
 
         const newLayout = {
@@ -109,6 +117,8 @@ export const useCreatePageLayoutGraphWidget = (
           y: position.y,
           w: position.w,
           h: position.h,
+          minW: minimumSize.w,
+          minH: minimumSize.h,
         };
 
         const updatedLayouts = getUpdatedTabLayouts(

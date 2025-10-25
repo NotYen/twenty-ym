@@ -14,7 +14,7 @@ import { PreventNestToAutoLogGraphqlErrorsFilter } from 'src/engine/core-modules
 import { ResolverValidationPipe } from 'src/engine/core-modules/graphql/pipes/resolver-validation.pipe';
 import { I18nService } from 'src/engine/core-modules/i18n/i18n.service';
 import { I18nContext } from 'src/engine/core-modules/i18n/types/i18n-context.type';
-import { Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
+import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { type IDataloaders } from 'src/engine/dataloaders/dataloader.interface';
 import { AuthWorkspace } from 'src/engine/decorators/auth/auth-workspace.decorator';
 import { SettingsPermissionsGuard } from 'src/engine/guards/settings-permissions.guard';
@@ -116,7 +116,8 @@ export class ObjectMetadataResolver {
   @Mutation(() => ObjectMetadataDTO)
   async deleteOneObject(
     @Args('input') input: DeleteOneObjectInput,
-    @AuthWorkspace() { id: workspaceId }: Workspace,
+    @AuthWorkspace() { id: workspaceId }: WorkspaceEntity,
+    @Context() context: I18nContext,
   ) {
     try {
       return await this.objectMetadataService.deleteOneObject(
@@ -124,7 +125,10 @@ export class ObjectMetadataResolver {
         workspaceId,
       );
     } catch (error) {
-      objectMetadataGraphqlApiExceptionHandler(error);
+      objectMetadataGraphqlApiExceptionHandler(
+        error,
+        this.i18nService.getI18nInstance(context.req.locale),
+      );
     }
   }
 
@@ -132,7 +136,7 @@ export class ObjectMetadataResolver {
   @Mutation(() => ObjectMetadataDTO)
   async updateOneObject(
     @Args('input') updateObjectInput: UpdateOneObjectInput,
-    @AuthWorkspace() { id: workspaceId }: Workspace,
+    @AuthWorkspace() { id: workspaceId }: WorkspaceEntity,
     @Context() context: I18nContext,
   ) {
     const isWorkspaceMigrationV2Enabled =
@@ -148,7 +152,10 @@ export class ObjectMetadataResolver {
           workspaceId,
         });
       } catch (error) {
-        objectMetadataGraphqlApiExceptionHandler(error);
+        objectMetadataGraphqlApiExceptionHandler(
+          error,
+          this.i18nService.getI18nInstance(context.req.locale),
+        );
       }
     }
 
@@ -166,13 +173,16 @@ export class ObjectMetadataResolver {
         workspaceId,
       );
     } catch (error) {
-      objectMetadataGraphqlApiExceptionHandler(error);
+      objectMetadataGraphqlApiExceptionHandler(
+        error,
+        this.i18nService.getI18nInstance(context.req.locale),
+      );
     }
   }
 
   @ResolveField(() => [FieldMetadataDTO], { nullable: false })
   async fieldsList(
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
     @Parent() objectMetadata: ObjectMetadataDTO,
     @Context() context: { loaders: IDataloaders } & I18nContext,
   ): Promise<FieldMetadataDTO[]> {
@@ -187,7 +197,10 @@ export class ObjectMetadataResolver {
 
       return fieldMetadataItems;
     } catch (error) {
-      objectMetadataGraphqlApiExceptionHandler(error);
+      objectMetadataGraphqlApiExceptionHandler(
+        error,
+        this.i18nService.getI18nInstance(context.req.locale),
+      );
 
       return [];
     }
@@ -195,9 +208,9 @@ export class ObjectMetadataResolver {
 
   @ResolveField(() => [IndexMetadataDTO], { nullable: false })
   async indexMetadataList(
-    @AuthWorkspace() workspace: Workspace,
+    @AuthWorkspace() workspace: WorkspaceEntity,
     @Parent() objectMetadata: ObjectMetadataDTO,
-    @Context() context: { loaders: IDataloaders },
+    @Context() context: { loaders: IDataloaders } & I18nContext,
   ): Promise<IndexMetadataDTO[]> {
     try {
       const indexMetadataItems = await context.loaders.indexMetadataLoader.load(
@@ -209,7 +222,10 @@ export class ObjectMetadataResolver {
 
       return indexMetadataItems;
     } catch (error) {
-      objectMetadataGraphqlApiExceptionHandler(error);
+      objectMetadataGraphqlApiExceptionHandler(
+        error,
+        this.i18nService.getI18nInstance(context.req.locale),
+      );
 
       return [];
     }

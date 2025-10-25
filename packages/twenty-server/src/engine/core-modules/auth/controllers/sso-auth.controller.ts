@@ -14,13 +14,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { generateServiceProviderMetadata } from '@node-saml/node-saml';
 import { Response } from 'express';
 import { AppPath } from 'twenty-shared/types';
-import { Repository } from 'typeorm';
 import { assertIsDefinedOrThrow } from 'twenty-shared/utils';
+import { Repository } from 'typeorm';
 
 import {
   AuthException,
   AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
+import {
+  WorkspaceSSOIdentityProviderEntity,
+  IdentityProviderType,
+} from 'src/engine/core-modules/sso/workspace-sso-identity-provider.entity';
 import { AuthRestApiExceptionFilter } from 'src/engine/core-modules/auth/filters/auth-rest-api-exception.filter';
 import { EnterpriseFeaturesEnabledGuard } from 'src/engine/core-modules/auth/guards/enterprise-features-enabled.guard';
 import { OIDCAuthGuard } from 'src/engine/core-modules/auth/guards/oidc-auth.guard';
@@ -29,16 +33,12 @@ import { AuthService } from 'src/engine/core-modules/auth/services/auth.service'
 import { OIDCRequest } from 'src/engine/core-modules/auth/strategies/oidc.auth.strategy';
 import { SAMLRequest } from 'src/engine/core-modules/auth/strategies/saml.auth.strategy';
 import { LoginTokenService } from 'src/engine/core-modules/auth/token/services/login-token.service';
-import { DomainManagerService } from 'src/engine/core-modules/domain-manager/services/domain-manager.service';
+import { WorkspaceDomainsService } from 'src/engine/core-modules/domain/workspace-domains/services/workspace-domains.service';
 import { GuardRedirectService } from 'src/engine/core-modules/guard-redirect/services/guard-redirect.service';
 import { SSOService } from 'src/engine/core-modules/sso/services/sso.service';
-import {
-  IdentityProviderType,
-  WorkspaceSSOIdentityProvider,
-} from 'src/engine/core-modules/sso/workspace-sso-identity-provider.entity';
-import { User } from 'src/engine/core-modules/user/user.entity';
+import { UserService } from 'src/engine/core-modules/user/services/user.service';
 import { AuthProviderEnum } from 'src/engine/core-modules/workspace/types/workspace.type';
-import { type Workspace } from 'src/engine/core-modules/workspace/workspace.entity';
+import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { PublicEndpointGuard } from 'src/engine/guards/public-endpoint.guard';
 
 @Controller('auth')
@@ -48,13 +48,11 @@ export class SSOAuthController {
     private readonly loginTokenService: LoginTokenService,
     private readonly authService: AuthService,
     private readonly guardRedirectService: GuardRedirectService,
-    private readonly domainManagerService: DomainManagerService,
-
+    private readonly workspaceDomainsService: WorkspaceDomainsService,
+    private readonly userService: UserService,
     private readonly sSOService: SSOService,
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
-    @InjectRepository(WorkspaceSSOIdentityProvider)
-    private readonly workspaceSSOIdentityProviderRepository: Repository<WorkspaceSSOIdentityProvider>,
+    @InjectRepository(WorkspaceSSOIdentityProviderEntity)
+    private readonly workspaceSSOIdentityProviderRepository: Repository<WorkspaceSSOIdentityProviderEntity>,
   ) {}
 
   @Get('saml/metadata/:identityProviderId')
@@ -160,7 +158,7 @@ export class SSOAuthController {
         this.guardRedirectService.getRedirectErrorUrlAndCaptureExceptions({
           error,
           workspace:
-            this.domainManagerService.getSubdomainAndCustomDomainFromWorkspaceFallbackOnDefaultSubdomain(
+            this.workspaceDomainsService.getSubdomainAndCustomDomainFromWorkspaceFallbackOnDefaultSubdomain(
               workspaceIdentityProvider?.workspace,
             ),
           pathname: AppPath.Verify,
@@ -171,7 +169,7 @@ export class SSOAuthController {
 
   private async generateLoginToken(
     payload: { email: string; workspaceInviteHash?: string },
-    currentWorkspace: Workspace,
+    currentWorkspace: WorkspaceEntity,
   ) {
     const invitation = payload.email
       ? await this.authService.findInvitationForSignInUp({
@@ -180,11 +178,7 @@ export class SSOAuthController {
         })
       : undefined;
 
-    const existingUser = await this.userRepository.findOne({
-      where: {
-        email: payload.email,
-      },
-    });
+    const existingUser = await this.userService.findUserByEmail(payload.email);
 
     const { userData } = this.authService.formatUserDataPayload(
       payload,

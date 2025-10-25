@@ -1,6 +1,7 @@
 import { useFieldMetadataItemById } from '@/object-metadata/hooks/useFieldMetadataItemById';
 import { configurableViewFilterOperands } from '@/object-record/object-filter-dropdown/utils/configurableViewFilterOperands';
 import { FormFieldInput } from '@/object-record/record-field/ui/components/FormFieldInput';
+import { FormArrayFieldInput } from '@/object-record/record-field/ui/form-types/components/FormArrayFieldInput';
 import { FormMultiSelectFieldInput } from '@/object-record/record-field/ui/form-types/components/FormMultiSelectFieldInput';
 import { FormRelativeDatePicker } from '@/object-record/record-field/ui/form-types/components/FormRelativeDatePicker';
 import { FormSingleRecordPicker } from '@/object-record/record-field/ui/form-types/components/FormSingleRecordPicker';
@@ -19,7 +20,7 @@ import {
   ViewFilterOperand,
   type StepFilter,
 } from 'twenty-shared/types';
-import { isDefined } from 'twenty-shared/utils';
+import { isDefined, parseJson } from 'twenty-shared/utils';
 import { type JsonValue } from 'type-fest';
 
 type WorkflowStepFilterValueInputProps = {
@@ -116,7 +117,7 @@ export const WorkflowStepFilterValueInput = ({
         defaultValue={stepFilter.value}
         onChange={handleValueChange}
         VariablePicker={WorkflowVariablePicker}
-        objectNameSingular={objectMetadataItem.nameSingular}
+        objectNameSingulars={[objectMetadataItem.nameSingular]}
         disabled={readonly}
       />
     );
@@ -167,6 +168,18 @@ export const WorkflowStepFilterValueInput = ({
     return (
       <FormRelativeDatePicker
         defaultValue={stepFilter.value}
+        onChange={handleValueChange}
+        readonly={readonly}
+      />
+    );
+  }
+
+  if (variableType === FieldMetadataType.ARRAY) {
+    const arrayValue = parseJson<string[]>(stepFilter.value) ?? [];
+
+    return (
+      <FormArrayFieldInput
+        defaultValue={arrayValue}
         onChange={handleValueChange}
         readonly={readonly}
       />

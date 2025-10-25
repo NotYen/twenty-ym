@@ -14,7 +14,7 @@ import { GraphQLJSON } from 'graphql-type-json';
 
 import { ObjectRecordFilter } from 'src/engine/api/graphql/workspace-query-builder/interfaces/object-record.interface';
 
-import { ExtendedAggregateOperations } from 'src/engine/api/graphql/graphql-query-runner/constants/extended-aggregate-operations.constant';
+import { AggregateOperations } from 'src/engine/api/graphql/graphql-query-runner/constants/aggregate-operations.constant';
 import { UUIDScalarType } from 'src/engine/api/graphql/workspace-schema-builder/graphql-types/scalars';
 import { AxisNameDisplay } from 'src/engine/core-modules/page-layout/enums/axis-name-display.enum';
 import { GraphOrderBy } from 'src/engine/core-modules/page-layout/enums/graph-order-by.enum';
@@ -32,45 +32,61 @@ export class LineChartConfigurationDTO {
   @IsNotEmpty()
   aggregateFieldMetadataId: string;
 
-  @Field(() => ExtendedAggregateOperations)
-  @IsEnum(ExtendedAggregateOperations)
+  @Field(() => AggregateOperations)
+  @IsEnum(AggregateOperations)
   @IsNotEmpty()
-  aggregateOperation: ExtendedAggregateOperations;
+  aggregateOperation: AggregateOperations;
 
   @Field(() => UUIDScalarType)
   @IsUUID()
   @IsNotEmpty()
-  groupByFieldMetadataIdX: string;
+  primaryAxisGroupByFieldMetadataId: string;
 
-  @Field(() => GraphOrderBy)
+  @Field(() => String, { nullable: true })
+  @IsString()
+  @IsOptional()
+  primaryAxisGroupBySubFieldName?: string;
+
+  @Field(() => GraphOrderBy, {
+    nullable: true,
+    defaultValue: GraphOrderBy.FIELD_ASC,
+  })
   @IsEnum(GraphOrderBy)
-  @IsNotEmpty()
-  orderByX: GraphOrderBy;
+  @IsOptional()
+  primaryAxisOrderBy?: GraphOrderBy;
 
   @Field(() => UUIDScalarType, { nullable: true })
   @IsUUID()
   @IsOptional()
-  groupByFieldMetadataIdY?: string;
+  secondaryAxisGroupByFieldMetadataId?: string;
+
+  @Field(() => String, { nullable: true })
+  @IsString()
+  @IsOptional()
+  secondaryAxisGroupBySubFieldName?: string;
 
   @Field(() => GraphOrderBy, { nullable: true })
   @IsEnum(GraphOrderBy)
   @IsOptional()
-  orderByY?: GraphOrderBy;
+  secondaryAxisOrderBy?: GraphOrderBy;
 
   @Field(() => Boolean, { nullable: true })
   @IsBoolean()
   @IsOptional()
   omitNullValues?: boolean;
 
-  @Field(() => AxisNameDisplay)
+  @Field(() => AxisNameDisplay, {
+    nullable: true,
+    defaultValue: AxisNameDisplay.BOTH,
+  })
   @IsEnum(AxisNameDisplay)
-  @IsNotEmpty()
-  axisNameDisplay: AxisNameDisplay;
+  @IsOptional()
+  axisNameDisplay?: AxisNameDisplay;
 
-  @Field(() => Boolean)
+  @Field(() => Boolean, { nullable: true, defaultValue: false })
   @IsBoolean()
-  @IsNotEmpty()
-  displayDataLabel: boolean;
+  @IsOptional()
+  displayDataLabel?: boolean;
 
   @Field(() => Number, { nullable: true })
   @IsNumber()

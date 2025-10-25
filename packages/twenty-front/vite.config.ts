@@ -46,7 +46,7 @@ export default defineConfig(({ command, mode }) => {
   // Please don't increase this limit for main index chunk
   // If it gets too big then find modules in the code base
   // that can be loaded lazily, there are more!
-  const MAIN_CHUNK_SIZE_LIMIT = 7 * 1024 * 1024; // 7MB for main index chunk (增加以支持报价单 PDF 功能)
+  const MAIN_CHUNK_SIZE_LIMIT = 7 * 1024 * 1024; // 7MB for main index chunk (官方 5.7MB + 增加以支持 PDF 导出功能)
   const OTHER_CHUNK_SIZE_LIMIT = 5 * 1024 * 1024; // 5MB for other chunks
 
   const checkers: Checkers = {
@@ -154,6 +154,9 @@ export default defineConfig(({ command, mode }) => {
             '**/EmailsDisplay.tsx',
             '**/PhonesDisplay.tsx',
             '**/MultiSelectDisplay.tsx',
+            '**/RecordTableRowVirtualizedContainer.tsx',
+            '**/RecordTableVirtualizedBodyPlaceholder.tsx',
+            '**/RecordTableCellLoading.tsx',
           ],
           babelOptions: {
             presets: ['@babel/preset-typescript', '@babel/preset-react'],
@@ -224,7 +227,7 @@ export default defineConfig(({ command, mode }) => {
             /*
             {
               name: 'add-prefetched-modules',
-              transformIndexHtml(html: string, 
+              transformIndexHtml(html: string,
                 ctx: {
                   path: string;
                   filename: string;
@@ -239,13 +242,13 @@ export default defineConfig(({ command, mode }) => {
                     (bundle) => bundle.endsWith('.map') === false
                   );
 
-                  
+
                   // Remove existing files and concatenate them into link tags
                   const prefechBundlesString = modernBundles
                     .filter((bundle) => html.includes(bundle) === false)
                     .map((bundle) => `<link rel="prefetch" href="${ctx.server?.config.base}${bundle}">`)
                     .join('');
-            
+
                   // Use regular expression to get the content within <head> </head>
                   const headContent = html.match(/<head>([\s\S]*)<\/head>/)?.[1] ?? '';
                   // Insert the content of prefetch into the head
@@ -255,10 +258,10 @@ export default defineConfig(({ command, mode }) => {
                     /<head>([\s\S]*)<\/head>/,
                     `<head>${newHeadContent}</head>`
                   );
-            
+
                   return html;
-            
-             
+
+
               },
             }*/
           ],

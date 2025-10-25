@@ -7,11 +7,13 @@ import {
   WorkspaceQueryRunnerException,
   WorkspaceQueryRunnerExceptionCode,
 } from 'src/engine/api/graphql/workspace-query-runner/workspace-query-runner.exception';
-import { WorkspaceManyOrAllFlatEntityMapsCacheService } from 'src/engine/core-modules/common/services/workspace-many-or-all-flat-entity-maps-cache.service';
-import { AllFlatEntityMaps } from 'src/engine/core-modules/common/types/all-flat-entity-maps.type';
 import { LoggerService } from 'src/engine/core-modules/logger/logger.service';
+import { WorkspaceManyOrAllFlatEntityMapsCacheService } from 'src/engine/metadata-modules/flat-entity/services/workspace-many-or-all-flat-entity-maps-cache.service';
+import { AllFlatEntityMaps } from 'src/engine/metadata-modules/flat-entity/types/all-flat-entity-maps.type';
+import { FIND_ALL_CORE_VIEWS_GRAPHQL_OPERATION } from 'src/engine/metadata-modules/view/constants/find-all-core-views-graphql-operation.constant';
 import { WorkspaceMetadataVersionService } from 'src/engine/metadata-modules/workspace-metadata-version/services/workspace-metadata-version.service';
 import { WorkspacePermissionsCacheService } from 'src/engine/metadata-modules/workspace-permissions-cache/workspace-permissions-cache.service';
+import { WorkspaceCacheStorageService } from 'src/engine/workspace-cache-storage/workspace-cache-storage.service';
 import { WorkspaceMigrationV2 } from 'src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/types/workspace-migration-v2';
 import { WorkspaceMigrationRunnerActionHandlerRegistryService } from 'src/engine/workspace-manager/workspace-migration-v2/workspace-migration-runner-v2/registry/workspace-migration-runner-action-handler-registry.service';
 
@@ -24,8 +26,78 @@ export class WorkspaceMigrationRunnerV2Service {
     private readonly workspaceMigrationRunnerActionHandlerRegistry: WorkspaceMigrationRunnerActionHandlerRegistryService,
     private readonly workspaceMetadataVersionService: WorkspaceMetadataVersionService,
     private readonly workspacePermissionsCacheService: WorkspacePermissionsCacheService,
+    private readonly workspaceCacheStorageService: WorkspaceCacheStorageService,
     private readonly logger: LoggerService,
   ) {}
+
+  private async invalidateLegacyCache({
+    workspaceMigration: { actions, workspaceId },
+  }: {
+    workspaceMigration: WorkspaceMigrationV2;
+  }) {
+    const shouldIncrementMetadataGraphqlSchemaVersion = actions.some(
+      (action) => {
+        switch (action.type) {
+          case 'delete_field':
+          case 'create_field':
+          case 'update_field':
+          case 'delete_object':
+          case 'create_object':
+          case 'update_object': {
+            return true;
+          }
+          default: {
+            return false;
+          }
+        }
+      },
+    );
+
+    if (shouldIncrementMetadataGraphqlSchemaVersion) {
+      await this.workspaceMetadataVersionService.incrementMetadataVersion(
+        workspaceId,
+      );
+      await this.workspacePermissionsCacheService.recomputeRolesPermissionsCache(
+        {
+          workspaceId,
+        },
+      );
+    }
+
+    const shouldInvalidFindCoreViewsGraphqlCacheOperation = actions.some(
+      (action) => {
+        switch (action.type) {
+          case 'delete_view':
+          case 'create_view':
+          case 'update_view':
+          case 'delete_view_filter':
+          case 'create_view_filter':
+          case 'update_view_filter':
+          case 'delete_view_group':
+          case 'create_view_group':
+          case 'update_view_group':
+          case 'delete_view_field':
+          case 'create_view_field':
+          case 'update_view_field': {
+            return true;
+          }
+          default: {
+            return false;
+          }
+        }
+      },
+    );
+
+    if (
+      shouldInvalidFindCoreViewsGraphqlCacheOperation ||
+      shouldIncrementMetadataGraphqlSchemaVersion
+    ) {
+      await this.workspaceCacheStorageService.flushGraphQLOperation({
+        operationName: FIND_ALL_CORE_VIEWS_GRAPHQL_OPERATION,
+        workspaceId,
+      });
+    }
+  }
 
   run = async ({
     actions,
@@ -85,7 +157,6 @@ export class WorkspaceMigrationRunnerV2Service {
       await queryRunner.commitTransaction();
 
       this.logger.timeEnd('Runner', 'Transaction execution');
-      this.logger.time('Runner', 'Cache invalidation');
 
       const flatEntitiesCacheToInvalidate = [
         ...new Set([
@@ -94,20 +165,10 @@ export class WorkspaceMigrationRunnerV2Service {
         ]),
       ];
 
-      if (
-        flatEntitiesCacheToInvalidate.includes('flatObjectMetadataMaps') ||
-        flatEntitiesCacheToInvalidate.includes('flatFieldMetadataMaps')
-      ) {
-        // Temporarily invalidation old cache too until it's deprecated
-        await this.workspaceMetadataVersionService.incrementMetadataVersion(
-          workspaceId,
-        );
-        await this.workspacePermissionsCacheService.recomputeRolesPermissionsCache(
-          {
-            workspaceId,
-          },
-        );
-      }
+      this.logger.time(
+        'Runner',
+        `Cache invalidation ${flatEntitiesCacheToInvalidate.join()}`,
+      );
 
       await this.flatEntityMapsCacheService.invalidateFlatEntityMaps({
         workspaceId,
@@ -119,7 +180,14 @@ export class WorkspaceMigrationRunnerV2Service {
         ],
       });
 
-      this.logger.timeEnd('Runner', 'Cache invalidation');
+      await this.invalidateLegacyCache({
+        workspaceMigration: { actions, workspaceId, relatedFlatEntityMapsKeys },
+      });
+
+      this.logger.timeEnd(
+        'Runner',
+        `Cache invalidation ${flatEntitiesCacheToInvalidate.join()}`,
+      );
       this.logger.timeEnd('Runner', 'Total execution');
 
       return allFlatEntityMaps;

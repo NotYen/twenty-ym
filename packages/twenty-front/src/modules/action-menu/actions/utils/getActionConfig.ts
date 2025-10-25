@@ -1,6 +1,7 @@
 import { DASHBOARD_ACTIONS_CONFIG } from '@/action-menu/actions/record-actions/constants/DashboardActionsConfig';
 import { DEFAULT_RECORD_ACTIONS_CONFIG } from '@/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig';
 import { QUOTE_ACTIONS_CONFIG } from '@/action-menu/actions/record-actions/constants/QuoteActionsConfig';
+import { RECORD_PAGE_LAYOUT_ACTIONS_CONFIG } from '@/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig';
 import { WORKFLOW_ACTIONS_CONFIG } from '@/action-menu/actions/record-actions/constants/WorkflowActionsConfig';
 import { WORKFLOW_RUNS_ACTIONS_CONFIG } from '@/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig';
 import { WORKFLOW_VERSIONS_ACTIONS_CONFIG } from '@/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig';
@@ -11,8 +12,10 @@ import { isDefined } from 'twenty-shared/utils';
 
 export const getActionConfig = ({
   objectMetadataItem,
+  isRecordPageLayoutEnabled,
 }: {
   objectMetadataItem?: ObjectMetadataItem;
+  isRecordPageLayoutEnabled: boolean;
 }): Record<string, ActionConfig> => {
   if (!isDefined(objectMetadataItem)) {
     return {};
@@ -36,6 +39,13 @@ export const getActionConfig = ({
         ...DEFAULT_RECORD_ACTIONS_CONFIG,
         ...QUOTE_ACTIONS_CONFIG,
       };
+    }
+    case CoreObjectNameSingular.Company: {
+      if (isRecordPageLayoutEnabled) {
+        return RECORD_PAGE_LAYOUT_ACTIONS_CONFIG;
+      }
+
+      return DEFAULT_RECORD_ACTIONS_CONFIG;
     }
     default: {
       return DEFAULT_RECORD_ACTIONS_CONFIG;
