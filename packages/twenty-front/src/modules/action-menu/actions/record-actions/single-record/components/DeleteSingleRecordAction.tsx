@@ -5,7 +5,8 @@ import { useFavorites } from '@/favorites/hooks/useFavorites';
 import { useDeleteOneRecord } from '@/object-record/hooks/useDeleteOneRecord';
 import { useRecordIndexIdFromCurrentContextStore } from '@/object-record/record-index/hooks/useRecordIndexIdFromCurrentContextStore';
 import { useResetTableRowSelection } from '@/object-record/record-table/hooks/internal/useResetTableRowSelection';
-import { t } from '@lingui/core/macro';
+import { msg, t } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react/macro';
 import { isDefined } from 'twenty-shared/utils';
 
 export const DeleteSingleRecordAction = () => {
@@ -23,6 +24,8 @@ export const DeleteSingleRecordAction = () => {
   const { sortedFavorites: favorites } = useFavorites();
   const { deleteFavorite } = useDeleteFavorite();
 
+  const { _ } = useLingui();
+
   const handleDeleteClick = async () => {
     resetTableRowSelection();
 
@@ -39,10 +42,10 @@ export const DeleteSingleRecordAction = () => {
 
   return (
     <ActionModal
-      title="Delete Record"
+      title={_(msg`Delete`)}
       subtitle={t`Are you sure you want to delete this record? It can be recovered from the Command menu.`}
       onConfirmClick={handleDeleteClick}
-      confirmButtonText="Delete Record"
+      confirmButtonText={_(msg`Confirm Delete`)}
     />
   );
 };
