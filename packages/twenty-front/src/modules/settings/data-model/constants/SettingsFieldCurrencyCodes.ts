@@ -220,7 +220,7 @@ export const SETTINGS_FIELD_CURRENCY_CODES: Record<
   TOP: { label: CURRENCY_CODE_LABELS.TOP.label, Icon: IconCurrencyPaanga },
   TRY: { label: CURRENCY_CODE_LABELS.TRY.label, Icon: IconCurrencyLira },
   TTD: { label: CURRENCY_CODE_LABELS.TTD.label, Icon: IconCurrencyDollar },
-  TWD: { label: CURRENCY_CODE_LABELS.TWD.label, Icon: IconCurrencyRenminbi },
+  TWD: { label: CURRENCY_CODE_LABELS.TWD.label, Icon: IconCurrencyDollar },
   TZS: { label: CURRENCY_CODE_LABELS.TZS.label, Icon: IconCoins },
   UAH: { label: CURRENCY_CODE_LABELS.UAH.label, Icon: IconCurrencyHryvnia },
   UGX: { label: CURRENCY_CODE_LABELS.UGX.label, Icon: IconCoins },
