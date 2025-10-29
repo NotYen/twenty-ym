@@ -5,6 +5,7 @@ import { recordStoreFamilyState } from '@/object-record/record-store/states/reco
 import { ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { useRecoilValue } from 'recoil';
+import { logDebug } from '~/utils/logDebug';
 import { exportQuoteToPdf } from '../utils/exportQuoteToPdf';
 
 type QuoteRecord = ObjectRecord & {
@@ -64,21 +65,21 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
   });
 
   const handleClick = async () => {
-    console.log('=== PDF Export Debug ===');
-    console.log('1. Selected Quote:', selectedQuote);
-    console.log('2. Line Items:', lineItems);
-    console.log('3. Record ID:', recordId);
+    logDebug('=== PDF Export Debug ===');
+    logDebug('1. Selected Quote:', selectedQuote);
+    logDebug('2. Line Items:', lineItems);
+    logDebug('3. Record ID:', recordId);
 
     if (!selectedQuote) {
       console.error('Error: selectedQuote is null or undefined');
-      enqueueErrorSnackBar('無法找到報價單數據');
+      enqueueErrorSnackBar({ message: '無法找到報價單數據' });
       return;
     }
 
-    console.log('4. Quote Number:', selectedQuote.quotenumber);
-    console.log('5. Title:', selectedQuote.title);
-    console.log('6. Issue Date:', selectedQuote.issuedate);
-    console.log('7. Valid Until:', selectedQuote.validuntil);
+    logDebug('4. Quote Number:', selectedQuote.quotenumber);
+    logDebug('5. Title:', selectedQuote.title);
+    logDebug('6. Issue Date:', selectedQuote.issuedate);
+    logDebug('7. Valid Until:', selectedQuote.validuntil);
 
     // 验证必填字段
     if (
@@ -88,15 +89,15 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
       !selectedQuote.validuntil
     ) {
       console.error('Error: Missing required fields');
-      enqueueErrorSnackBar('報價單數據不完整，請檢查必填字段');
+      enqueueErrorSnackBar({ message: '報價單數據不完整，請檢查必填字段' });
       return;
     }
 
     // 显示加载提示（首次加载 PDF 模块需要时间）
-    enqueueSuccessSnackBar('正在生成 PDF，請稍候...');
+    enqueueSuccessSnackBar({ message: '正在生成 PDF，請稍候...' });
 
     try {
-      console.log('8. Preparing PDF data...');
+      logDebug('8. Preparing PDF data...');
       const pdfData = {
         quote: {
           quoteNumber: selectedQuote.quotenumber,
@@ -122,22 +123,22 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
           discount: item.discount,
           amount: item.amount,
         })),
-        language: 'zh',
+        language: 'zh' as const,
       };
-      console.log('9. PDF Data:', pdfData);
+      logDebug('9. PDF Data:', pdfData);
 
-      console.log('10. Calling exportQuoteToPdf...');
+      logDebug('10. Calling exportQuoteToPdf...');
       await exportQuoteToPdf(pdfData);
 
-      console.log('11. PDF export successful!');
-      enqueueSuccessSnackBar('PDF 已成功導出');
+      logDebug('11. PDF export successful!');
+      enqueueSuccessSnackBar({ message: 'PDF 已成功導出' });
     } catch (error) {
       console.error('PDF Export Error:', error);
       console.error('Error details:', {
         message: error instanceof Error ? error.message : 'Unknown error',
         stack: error instanceof Error ? error.stack : undefined,
       });
-      enqueueErrorSnackBar('PDF 導出失敗，請稍後再試');
+      enqueueErrorSnackBar({ message: 'PDF 導出失敗，請稍後再試' });
     }
   };
 

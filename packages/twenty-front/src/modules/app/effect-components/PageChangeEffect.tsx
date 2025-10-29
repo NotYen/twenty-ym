@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import {
-  matchPath,
-  useLocation,
-  useNavigate,
-  useParams,
+    matchPath,
+    useLocation,
+    useNavigate,
+    useParams,
 } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import {
-  setSessionId,
-  useEventTracker,
+    setSessionId,
+    useEventTracker,
 } from '@/analytics/hooks/useEventTracker';
 import { useExecuteTasksOnAnyLocationChange } from '@/app/hooks/useExecuteTasksOnAnyLocationChange';
 import { useRequestFreshCaptchaToken } from '@/captcha/hooks/useRequestFreshCaptchaToken';
@@ -299,7 +299,9 @@ export const PageChangeEffect = () => {
   ]);
 
   useEffect(() => {
-    setTimeout(() => {
+    // 使用 requestIdleCallback 在瀏覽器空閒時執行分析追蹤
+    // 避免阻塞主線程，提升頁面切換流暢度
+    const trackPageViewInIdle = () => {
       setSessionId();
       eventTracker(AnalyticsType['PAGEVIEW'], {
         name: getPageTitleFromPath(location.pathname),
@@ -312,7 +314,14 @@ export const PageChangeEffect = () => {
           timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         },
       });
-    }, 500);
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(trackPageViewInIdle, { timeout: 2000 });
+    } else {
+      // 降級：對於不支持的瀏覽器，使用較短的延遲
+      setTimeout(trackPageViewInIdle, 100);
+    }
   }, [eventTracker, location.pathname]);
 
   const { requestFreshCaptchaToken } = useRequestFreshCaptchaToken();

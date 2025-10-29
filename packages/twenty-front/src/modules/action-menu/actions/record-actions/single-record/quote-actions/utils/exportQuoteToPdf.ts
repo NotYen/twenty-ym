@@ -1,6 +1,4 @@
-import { pdf } from '@react-pdf/renderer';
-import { saveAs } from 'file-saver';
-import { QuotePDFTemplate } from '../templates/QuotePDFTemplate';
+import { logDebug } from '~/utils/logDebug';
 
 type QuoteLineItemData = {
   id: string;
@@ -54,19 +52,20 @@ type ExportQuoteToPdfOptions = {
 
 /**
  * 导出报价单为 PDF 文件
- * 
+ *
  * 功能：
  * - 生成专业格式的报价单 PDF
  * - 支持中英文双语
  * - 支持公司 Logo
  * - 自动下载文件
- * 
+ * - 懒加载 PDF 模块（减少主 bundle 大小）
+ *
  * @param options - 导出选项
  * @param options.quote - 报价单数据
  * @param options.lineItems - 报价项目列表
  * @param options.companyLogoUrl - 公司 Logo URL（可选）
  * @param options.language - 语言（'zh' 或 'en'，默认 'zh'）
- * 
+ *
  * @example
  * ```typescript
  * await exportQuoteToPdf({
@@ -84,6 +83,16 @@ export const exportQuoteToPdf = async ({
   language = 'zh',
 }: ExportQuoteToPdfOptions): Promise<void> => {
   try {
+    // 懒加载 PDF 相关模块 - 只在实际使用时才加载
+    // 这样可以减少主 bundle 大小，提升初始加载速度
+    const [{ pdf }, { saveAs }, { QuotePDFTemplate }] = await Promise.all([
+      import('@react-pdf/renderer'),
+      import('file-saver'),
+      import('../templates/QuotePDFTemplate'),
+    ]);
+
+    logDebug('[PDF Export] Modules loaded, generating document...');
+
     // 生成 PDF 文档
     const document = QuotePDFTemplate({
       quote,
@@ -98,6 +107,8 @@ export const exportQuoteToPdf = async ({
     // 生成文件名：Quote-Q-2025-001.pdf
     const fileName = `Quote-${quote.quoteNumber}.pdf`;
 
+    logDebug(`[PDF Export] Downloading file: ${fileName}`);
+
     // 触发浏览器下载
     saveAs(blob, fileName);
   } catch (error) {
@@ -108,7 +119,7 @@ export const exportQuoteToPdf = async ({
 
 /**
  * 验证报价单数据是否完整
- * 
+ *
  * @param quote - 报价单数据
  * @returns 是否有效
  */
@@ -125,7 +136,7 @@ export const validateQuoteData = (quote: QuoteData): boolean => {
 
 /**
  * 获取报价单预览 URL（用于在新标签页打开）
- * 
+ *
  * @param options - 导出选项
  * @returns Blob URL
  */
@@ -142,6 +153,8 @@ export const getQuotePdfBlobUrl = async ({
       import('../templates/QuotePDFTemplate'),
     ]);
 
+    logDebug('[PDF Preview] Modules loaded, generating preview...');
+
     const document = QuotePDFTemplate({
       quote,
       lineItems,
@@ -150,7 +163,11 @@ export const getQuotePdfBlobUrl = async ({
     });
 
     const blob = await pdf(document).toBlob();
-    return URL.createObjectURL(blob);
+    const blobUrl = URL.createObjectURL(blob);
+
+    logDebug(`[PDF Preview] Preview URL created: ${blobUrl}`);
+
+    return blobUrl;
   } catch (error) {
     console.error('Error generating quote PDF preview:', error);
     throw new Error('Failed to generate quote PDF preview');

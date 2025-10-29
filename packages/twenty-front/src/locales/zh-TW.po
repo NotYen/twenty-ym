@@ -9503,3 +9503,35 @@ msgstr "您的工作區沒有有效的訂閱。請聯絡您的管理員。"
 #: src/modules/billing/components/SettingsBillingContent.tsx
 msgid "Your workspace will be disabled"
 msgstr "您的工作區將被禁用"
+
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Font Size"
+msgstr "字體大小"
+
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Adjust the text size across the entire application"
+msgstr "調整整個應用程式的文字大小"
+
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Extra Small (87.5%)"
+msgstr "極小 (87.5%)"
+
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Small (100%)"
+msgstr "小 (100%)"
+
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Medium (112.5%)"
+msgstr "中等 (112.5%)"
+
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Large (125%)"
+msgstr "大 (125%)"
+
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Extra Large (150%)"
+msgstr "極大 (150%)"
+
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Reset to Default"
+msgstr "還原原廠設定"
