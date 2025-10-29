@@ -1,16 +1,16 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: cf448e737e0d6d7b78742f963d761c61\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-30 18:16+0100\n"
+"PO-Revision-Date: 2025-01-01 00:00\n"
+"Last-Translator: \n"
+"Language-Team: Czech\n"
+"Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: @lingui/cli\n"
-"Language: cs\n"
-"Project-Id-Version: cf448e737e0d6d7b78742f963d761c61\n"
-"Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-01-01 00:00\n"
-"Last-Translator: \n"
-"Language-Team: Czech\n"
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
 "X-Crowdin-Project: cf448e737e0d6d7b78742f963d761c61\n"
 "X-Crowdin-Project-ID: 1\n"
@@ -19,7 +19,6 @@ msgstr ""
 "X-Crowdin-File-ID: 29\n"
 
 #. js-lingui-id: lndIq/
-#: src/modules/billing/hooks/useBillingWording.ts
 #: src/modules/billing/hooks/useBillingWording.ts
 msgid " billed annually"
 msgstr " fakturováno ročně"
@@ -85,7 +84,6 @@ msgstr "· {objectFilterDropdownSearchInput}"
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
-#: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "[empty string]"
@@ -96,16 +94,25 @@ msgstr ""
 #. placeholder {1}: failedResults.length
 #. placeholder {2}: failedResults.length
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
-msgid "{0, plural, one {{1} job could not be deleted} other {{2} jobs could not be deleted}}"
-msgstr "{0, plural, one {{1} úloha nelze smazat} few {{2} úlohy nelze smazat} many {{2} úloh nelze smazat} other {{2} úloh nelze smazat}}"
+msgid ""
+"{0, plural, one {{1} job could not be deleted} other {{2} jobs could not be "
+"deleted}}"
+msgstr ""
+"{0, plural, one {{1} úloha nelze smazat} few {{2} úlohy nelze smazat} many "
+"{{2} úloh nelze smazat} other {{2} úloh nelze smazat}}"
 
 #. js-lingui-id: VjPlMz
 #. placeholder {0}: failedResults.length
 #. placeholder {1}: failedResults.length
 #. placeholder {2}: failedResults.length
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
-msgid "{0, plural, one {{1} job could not be retried} other {{2} jobs could not be retried}}"
-msgstr "{0, plural, one {{1} úloha nelze znovu spustit} few {{2} úlohy nelze znovu spustit} many {{2} úloh nelze znovu spustit} other {{2} úloh nelze znovu spustit}}"
+msgid ""
+"{0, plural, one {{1} job could not be retried} other {{2} jobs could not be "
+"retried}}"
+msgstr ""
+"{0, plural, one {{1} úloha nelze znovu spustit} few {{2} úlohy nelze znovu "
+"spustit} many {{2} úloh nelze znovu spustit} other {{2} úloh nelze znovu "
+"spustit}}"
 
 #. js-lingui-id: m6BGdm
 #. placeholder {0}: Math.abs(days)
@@ -113,7 +120,9 @@ msgstr "{0, plural, one {{1} úloha nelze znovu spustit} few {{2} úlohy nelze z
 #. placeholder {2}: import { isDate, isNumber, isString } from '@sniptt/guards'; import { differenceInCalendarDays, differenceInDays, differenceInYears, format, formatDistance, formatDistanceToNow, isToday, isValid, parseISO, type Locale, } from 'date-fns'; import { DateFormat } from '@/localization/constants/DateFormat'; import { CustomError, isDefined } from 'twenty-shared/utils'; import { i18n } from '@lingui/core'; import { plural, t } from '@lingui/core/macro'; import { logError } from './logError'; export const parseDate = (dateToParse: Date | string | number): Date => { if (dateToParse === 'now') return new Date(); let formattedDate: Date | null = null; if (!dateToParse) { throw new CustomError( `Invalid date passed to formatPastDate: "${dateToParse}"`, 'INVALID_DATE_FORMAT', ); } else if (isString(dateToParse)) { formattedDate = parseISO(dateToParse); } else if (isDate(dateToParse)) { formattedDate = dateToParse; } else if (isNumber(dateToParse)) { formattedDate = new Date(dateToParse); } if (!formattedDate) { throw new CustomError( `Invalid date passed to formatPastDate: "${dateToParse}"`, 'INVALID_DATE_FORMAT', ); } if (!isValid(formattedDate)) { throw new CustomError( `Invalid date passed to formatPastDate: "${dateToParse}"`, 'INVALID_DATE_FORMAT', ); } return formattedDate; }; export const formatDate = ( dateToFormat: Date | string | number, formatString: string, ) => { try { const parsedDate = parseDate(dateToFormat); return format(parsedDate, formatString); } catch (error) { logError(error); return ''; } }; export const beautifyExactDateTime = ( dateToBeautify: Date | string | number, ) => { const parsedDate = parseDate(dateToBeautify); const isTodayDate = isToday(parsedDate); const dateFormat = isTodayDate ? 'HH:mm' : 'MMM d, yyyy · HH:mm'; return formatDate(dateToBeautify, dateFormat); }; export const beautifyExactDate = (dateToBeautify: Date | string | number) => { const parsedDate = parseDate(dateToBeautify); const isTodayDate = isToday(parsedDate); if (isTodayDate) { return t`Today`; } return formatDate(dateToBeautify, 'MMM d, yyyy'); }; export const beautifyPastDateRelativeToNow = ( pastDate: Date | string | number, locale?: Locale, ) => { try { const parsedDate = parseDate(pastDate); const now = new Date(); const diffInSeconds = Math.abs( (now.getTime() - parsedDate.getTime()) / 1000, ); // For very recent times (less than 30 seconds), show "now" if (diffInSeconds < 30) { return t`now`; } return formatDistanceToNow(parsedDate, { addSuffix: true, locale, includeSeconds: true, }); } catch (error) { logError(error); return ''; } }; export const hasDatePassed = (date: Date | string | number) => { try { const parsedDate = parseDate(date); return differenceInCalendarDays(new Date(), parsedDate) >= 1; } catch (error) { logError(error); return false; } }; export const beautifyDateDiff = ( date: string, dateToCompareWith?: string, short = false, locale?: Locale, ) => { // For simple cases, use date-fns which has excellent locale support if (!short && isDefined(locale)) { const fromDate = new Date(date); const toDate = dateToCompareWith ? new Date(dateToCompareWith) : new Date(); return formatDistance(fromDate, toDate, { locale }); } // Manual implementation for complex cases or when locale is not available const fromDate = parseISO(date); const toDate = dateToCompareWith ? parseISO(dateToCompareWith) : new Date(); const years = differenceInYears(fromDate, toDate); // Calculate remaining days after accounting for full years const startDateForDayCalculation = new Date(toDate); startDateForDayCalculation.setFullYear( startDateForDayCalculation.getFullYear() + years, ); const days = differenceInDays(fromDate, startDateForDayCalculation); let result = ''; if (years !== 0) { result = plural(Math.abs(years), { one: `${years} ${t`year`}`, other: `${years} ${t`years`}`, }); if (short) return result; } if (years !== 0 && days !== 0) { result += ` ${t`and`} `; } if (days !== 0) { const daysPart = plural(Math.abs(days), { one: `${days} ${t`day`}`, other: `${days} ${t`days`}`, }); result += daysPart; } return result; }; export const formatToHumanReadableDate = (date: Date | string) => { const parsedJSDate = parseDate(date); return i18n.date(parsedJSDate, { dateStyle: 'medium' }); }; export const getDateFormatString = ( dateFormat: DateFormat, isDateTimeInput: boolean, ): string => { const timePart = isDateTimeInput ? ' HH:mm' : ''; switch (dateFormat) { case DateFormat.DAY_FIRST: return `dd/MM/yyyy${timePart}`; case DateFormat.YEAR_FIRST: return `yyyy-MM-dd${timePart}`; case DateFormat.MONTH_FIRST: default: return `MM/dd/yyyy${timePart}`; } }; 
 #: src/utils/date-utils.ts
 msgid "{0, plural, one {{days} {1}} other {{days} {2}}}"
-msgstr "{0, plural, one {{dní} {1}} few {{dní} {2}} many {{dní} {2}} other {{dní} {2}}}"
+msgstr ""
+"{0, plural, one {{dní} {1}} few {{dní} {2}} many {{dní} {2}} other {{dní} "
+"{2}}}"
 
 #. js-lingui-id: FYY5cK
 #. placeholder {0}: Math.abs(years)
@@ -121,25 +130,39 @@ msgstr "{0, plural, one {{dní} {1}} few {{dní} {2}} many {{dní} {2}} other {{
 #. placeholder {2}: import { isDate, isNumber, isString } from '@sniptt/guards'; import { differenceInCalendarDays, differenceInDays, differenceInYears, format, formatDistance, formatDistanceToNow, isToday, isValid, parseISO, type Locale, } from 'date-fns'; import { DateFormat } from '@/localization/constants/DateFormat'; import { CustomError, isDefined } from 'twenty-shared/utils'; import { i18n } from '@lingui/core'; import { plural, t } from '@lingui/core/macro'; import { logError } from './logError'; export const parseDate = (dateToParse: Date | string | number): Date => { if (dateToParse === 'now') return new Date(); let formattedDate: Date | null = null; if (!dateToParse) { throw new CustomError( `Invalid date passed to formatPastDate: "${dateToParse}"`, 'INVALID_DATE_FORMAT', ); } else if (isString(dateToParse)) { formattedDate = parseISO(dateToParse); } else if (isDate(dateToParse)) { formattedDate = dateToParse; } else if (isNumber(dateToParse)) { formattedDate = new Date(dateToParse); } if (!formattedDate) { throw new CustomError( `Invalid date passed to formatPastDate: "${dateToParse}"`, 'INVALID_DATE_FORMAT', ); } if (!isValid(formattedDate)) { throw new CustomError( `Invalid date passed to formatPastDate: "${dateToParse}"`, 'INVALID_DATE_FORMAT', ); } return formattedDate; }; export const formatDate = ( dateToFormat: Date | string | number, formatString: string, ) => { try { const parsedDate = parseDate(dateToFormat); return format(parsedDate, formatString); } catch (error) { logError(error); return ''; } }; export const beautifyExactDateTime = ( dateToBeautify: Date | string | number, ) => { const parsedDate = parseDate(dateToBeautify); const isTodayDate = isToday(parsedDate); const dateFormat = isTodayDate ? 'HH:mm' : 'MMM d, yyyy · HH:mm'; return formatDate(dateToBeautify, dateFormat); }; export const beautifyExactDate = (dateToBeautify: Date | string | number) => { const parsedDate = parseDate(dateToBeautify); const isTodayDate = isToday(parsedDate); if (isTodayDate) { return t`Today`; } return formatDate(dateToBeautify, 'MMM d, yyyy'); }; export const beautifyPastDateRelativeToNow = ( pastDate: Date | string | number, locale?: Locale, ) => { try { const parsedDate = parseDate(pastDate); const now = new Date(); const diffInSeconds = Math.abs( (now.getTime() - parsedDate.getTime()) / 1000, ); // For very recent times (less than 30 seconds), show "now" if (diffInSeconds < 30) { return t`now`; } return formatDistanceToNow(parsedDate, { addSuffix: true, locale, includeSeconds: true, }); } catch (error) { logError(error); return ''; } }; export const hasDatePassed = (date: Date | string | number) => { try { const parsedDate = parseDate(date); return differenceInCalendarDays(new Date(), parsedDate) >= 1; } catch (error) { logError(error); return false; } }; export const beautifyDateDiff = ( date: string, dateToCompareWith?: string, short = false, locale?: Locale, ) => { // For simple cases, use date-fns which has excellent locale support if (!short && isDefined(locale)) { const fromDate = new Date(date); const toDate = dateToCompareWith ? new Date(dateToCompareWith) : new Date(); return formatDistance(fromDate, toDate, { locale }); } // Manual implementation for complex cases or when locale is not available const fromDate = parseISO(date); const toDate = dateToCompareWith ? parseISO(dateToCompareWith) : new Date(); const years = differenceInYears(fromDate, toDate); // Calculate remaining days after accounting for full years const startDateForDayCalculation = new Date(toDate); startDateForDayCalculation.setFullYear( startDateForDayCalculation.getFullYear() + years, ); const days = differenceInDays(fromDate, startDateForDayCalculation); let result = ''; if (years !== 0) { result = plural(Math.abs(years), { one: `${years} ${t`year`}`, other: `${years} ${t`years`}`, }); if (short) return result; } if (years !== 0 && days !== 0) { result += ` ${t`and`} `; } if (days !== 0) { const daysPart = plural(Math.abs(days), { one: `${days} ${t`day`}`, other: `${days} ${t`days`}`, }); result += daysPart; } return result; }; export const formatToHumanReadableDate = (date: Date | string) => { const parsedJSDate = parseDate(date); return i18n.date(parsedJSDate, { dateStyle: 'medium' }); }; export const getDateFormatString = ( dateFormat: DateFormat, isDateTimeInput: boolean, ): string => { const timePart = isDateTimeInput ? ' HH:mm' : ''; switch (dateFormat) { case DateFormat.DAY_FIRST: return `dd/MM/yyyy${timePart}`; case DateFormat.YEAR_FIRST: return `yyyy-MM-dd${timePart}`; case DateFormat.MONTH_FIRST: default: return `MM/dd/yyyy${timePart}`; } }; 
 #: src/utils/date-utils.ts
 msgid "{0, plural, one {{years} {1}} other {{years} {2}}}"
-msgstr "{0, plural, one {{let} {1}} few {{let} {2}} many {{let} {2}} other {{let} {2}}}"
+msgstr ""
+"{0, plural, one {{let} {1}} few {{let} {2}} many {{let} {2}} other {{let} "
+"{2}}}"
 
 #. js-lingui-id: Qvm3VE
 #. placeholder {0}: selectedOptions.length
 #: src/modules/settings/components/SettingsMorphRelationMultiSelect.tsx
-#: src/modules/settings/components/SettingsMorphRelationMultiSelect.tsx
 msgid "{0, plural, one {# Object} other {# Objects}}"
-msgstr "{0, plural, one {# Objekt} few {# Objekty} many {# Objektů} other {# Objektů}}"
+msgstr ""
+"{0, plural, one {# Objekt} few {# Objekty} many {# Objektů} other {# "
+"Objektů}}"
 
 #. js-lingui-id: WTc9VY
 #. placeholder {0}: restriction.fieldNames.length
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
-msgid "{0, plural, one {You do not have permission to access the {fieldsList} field} other {You do not have permission to access the {fieldsList} fields}}"
-msgstr "{0, plural, one {Nemáte povolení pro přístup k poli {fieldsList}} few {Nemáte povolení pro přístup k polím {fieldsList}} many {Nemáte povolení pro přístup k polím {fieldsList}} other {Nemáte povolení pro přístup k polím {fieldsList}}}"
+msgid ""
+"{0, plural, one {You do not have permission to access the {fieldsList} "
+"field} other {You do not have permission to access the {fieldsList} fields}}"
+msgstr ""
+"{0, plural, one {Nemáte povolení pro přístup k poli {fieldsList}} few "
+"{Nemáte povolení pro přístup k polím {fieldsList}} many {Nemáte povolení pro "
+"přístup k polím {fieldsList}} other {Nemáte povolení pro přístup k polím "
+"{fieldsList}}}"
 
 #. js-lingui-id: qdQhzv
 #: src/modules/views/components/AdvancedFilterChip.tsx
-msgid "{advancedFilterCount, plural, one {{advancedFilterCount} advanced rule} other {{advancedFilterCount} advanced rules}}"
-msgstr "{advancedFilterCount, plural, one {{advancedFilterCount} pokročilé pravidlo} few {{advancedFilterCount} pokročilá pravidla} many {{advancedFilterCount} pokročilých pravidel} other {{advancedFilterCount} pokročilých pravidel}}"
+msgid ""
+"{advancedFilterCount, plural, one {{advancedFilterCount} advanced rule} "
+"other {{advancedFilterCount} advanced rules}}"
+msgstr ""
+"{advancedFilterCount, plural, one {{advancedFilterCount} pokročilé pravidlo} "
+"few {{advancedFilterCount} pokročilá pravidla} many {{advancedFilterCount} "
+"pokročilých pravidel} other {{advancedFilterCount} pokročilých pravidel}}"
 
 #. js-lingui-id: ROdDR9
 #: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts
@@ -157,19 +180,30 @@ msgstr "{contextStoreNumberOfSelectedRecords} vybrané"
 #. placeholder {2}: (type === 'percentage' ? 99 : 1000).toFixed(count)
 #. placeholder {3}: type === 'percentage' ? '%' : ''
 #: src/modules/settings/data-model/fields/forms/number/components/SettingsDataModelFieldNumberForm.tsx
-msgid "{count, plural, one {E.g. {0}{1} for {count} decimal} other {E.g. {2}{3} for {count} decimals}}"
-msgstr "{count, plural, one {Např. {0}{1} pro {count} desetinné místo} few {Např. {2}{3} pro {count} desetinná místa} many {Např. {2}{3} pro {count} desetinných míst} other {Např. {2}{3} pro {count} desetinných míst}}"
+msgid ""
+"{count, plural, one {E.g. {0}{1} for {count} decimal} other {E.g. {2}{3} for "
+"{count} decimals}}"
+msgstr ""
+"{count, plural, one {Např. {0}{1} pro {count} desetinné místo} few {Např. {2}"
+"{3} pro {count} desetinná místa} many {Např. {2}{3} pro {count} desetinných "
+"míst} other {Např. {2}{3} pro {count} desetinných míst}}"
 
 #. js-lingui-id: 0aO0VO
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
 msgid "{days, plural, one {{days} day} other {{days} days}}"
-msgstr "{days, plural, one {{days} den} few {{days} dny} many {{days} dnů} other {{days} dnů}}"
+msgstr ""
+"{days, plural, one {{days} den} few {{days} dny} many {{days} dnů} other "
+"{{days} dnů}}"
 
 #. js-lingui-id: MIIEDl
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
-#: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
-msgid "{deletedCount, plural, one {Successfully deleted {deletedCount} job} other {Successfully deleted {deletedCount} jobs}}"
-msgstr "{deletedCount, plural, one {Úspěšně smazána {deletedCount} úloha} few {Úspěšně smazány {deletedCount} úlohy} many {Úspěšně smazáno {deletedCount} úloh} other {Úspěšně smazáno {deletedCount} úloh}}"
+msgid ""
+"{deletedCount, plural, one {Successfully deleted {deletedCount} job} other "
+"{Successfully deleted {deletedCount} jobs}}"
+msgstr ""
+"{deletedCount, plural, one {Úspěšně smazána {deletedCount} úloha} few "
+"{Úspěšně smazány {deletedCount} úlohy} many {Úspěšně smazáno {deletedCount} "
+"úloh} other {Úspěšně smazáno {deletedCount} úloh}}"
 
 #. js-lingui-id: POhzPf
 #: src/modules/ai/hooks/useAIChatFileUpload.ts
@@ -178,13 +212,22 @@ msgstr "{failedCount} soubor(y) se nepodařilo nahrát"
 
 #. js-lingui-id: WS/avX
 #: src/modules/spreadsheet-import/steps/components/ImportDataStep.tsx
-msgid "{formattedCreatedRecordsProgress} out of {formattedRecordsToImportCount} records imported."
-msgstr "{formattedCreatedRecordsProgress} z {formattedRecordsToImportCount} záznamů importováno."
+msgid ""
+"{formattedCreatedRecordsProgress} out of {formattedRecordsToImportCount} "
+"records imported."
+msgstr ""
+"{formattedCreatedRecordsProgress} z {formattedRecordsToImportCount} záznamů "
+"importováno."
 
 #. js-lingui-id: YF/a2j
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsTableRow.tsx
-msgid "{grantedBy, plural, one {Granted for {grantedBy} object} other {Granted for {grantedBy} objects}}"
-msgstr "{grantedBy, plural, one {Udělena pro {grantedBy} objekt} few {Udělena pro {grantedBy} objekty} many {Udělena pro {grantedBy} objektů} other {Udělena pro {grantedBy} objektů}}"
+msgid ""
+"{grantedBy, plural, one {Granted for {grantedBy} object} other {Granted for "
+"{grantedBy} objects}}"
+msgstr ""
+"{grantedBy, plural, one {Udělena pro {grantedBy} objekt} few {Udělena pro "
+"{grantedBy} objekty} many {Udělena pro {grantedBy} objektů} other {Udělena "
+"pro {grantedBy} objektů}}"
 
 #. js-lingui-id: 2EPGDl
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutGraphTypeSelect.tsx
@@ -195,43 +238,81 @@ msgstr "Graf {graphTypeLabel}"
 #. js-lingui-id: pEl0a0
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
 msgid "{hours, plural, one {{hours} hour} other {{hours} hours}}"
-msgstr "{hours, plural, one {{hours} hodina} few {{hours} hodiny} many {{hours} hodin} other {{hours} hodin}}"
+msgstr ""
+"{hours, plural, one {{hours} hodina} few {{hours} hodiny} many {{hours} "
+"hodin} other {{hours} hodin}}"
 
 #. js-lingui-id: j9A2IB
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminDeleteJobsConfirmationModal.tsx
-msgid "{jobCount, plural, one {Delete {jobCount} Job} other {Delete {jobCount} Jobs}}"
-msgstr "{jobCount, plural, one {Odstranit {jobCount} úlohu} few {Odstranit {jobCount} úlohy} many {Odstranit {jobCount} úloh} other {Odstranit {jobCount} úloh}}"
+msgid ""
+"{jobCount, plural, one {Delete {jobCount} Job} other {Delete {jobCount} "
+"Jobs}}"
+msgstr ""
+"{jobCount, plural, one {Odstranit {jobCount} úlohu} few {Odstranit "
+"{jobCount} úlohy} many {Odstranit {jobCount} úloh} other {Odstranit "
+"{jobCount} úloh}}"
 
 #. js-lingui-id: 48w++B
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminRetryJobsConfirmationModal.tsx
-msgid "{jobCount, plural, one {Retry {jobCount} Job} other {Retry {jobCount} Jobs}}"
-msgstr "{jobCount, plural, one {Opakovat {jobCount} úlohu} few {Opakovat {jobCount} úlohy} many {Opakovat {jobCount} úloh} other {Opakovat {jobCount} úloh}}"
+msgid ""
+"{jobCount, plural, one {Retry {jobCount} Job} other {Retry {jobCount} Jobs}}"
+msgstr ""
+"{jobCount, plural, one {Opakovat {jobCount} úlohu} few {Opakovat {jobCount} "
+"úlohy} many {Opakovat {jobCount} úloh} other {Opakovat {jobCount} úloh}}"
 
 #. js-lingui-id: X78+Nn
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminDeleteJobsConfirmationModal.tsx
-msgid "{jobCount, plural, one {This will permanently remove it from the queue. This action cannot be undone.} other {This will permanently remove them from the queue. This action cannot be undone.}}"
-msgstr "{jobCount, plural, one {Tato akce ji trvale odstraní z fronty. Tuto akci nelze vrátit zpět.} few {Tato akce je trvale odstraní z fronty. Tuto akci nelze vrátit zpět.} many {Tato akce je trvale odstraní z fronty. Tuto akci nelze vrátit zpět.} other {Tato akce je trvale odstraní z fronty. Tuto akci nelze vrátit zpět.}}"
+msgid ""
+"{jobCount, plural, one {This will permanently remove it from the queue. This "
+"action cannot be undone.} other {This will permanently remove them from the "
+"queue. This action cannot be undone.}}"
+msgstr ""
+"{jobCount, plural, one {Tato akce ji trvale odstraní z fronty. Tuto akci "
+"nelze vrátit zpět.} few {Tato akce je trvale odstraní z fronty. Tuto akci "
+"nelze vrátit zpět.} many {Tato akce je trvale odstraní z fronty. Tuto akci "
+"nelze vrátit zpět.} other {Tato akce je trvale odstraní z fronty. Tuto akci "
+"nelze vrátit zpět.}}"
 
 #. js-lingui-id: QJYN9L
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminRetryJobsConfirmationModal.tsx
-msgid "{jobCount, plural, one {This will retry the selected job. It will be re-executed from the beginning.} other {This will retry the selected jobs. They will be re-executed from the beginning.}}"
-msgstr "{jobCount, plural, one {Tato akce znovu spustí vybranou úlohu. Bude spuštěna znovu od začátku.} few {Tato akce znovu spustí vybrané úlohy. Budou spuštěny znovu od začátku.} many {Tato akce znovu spustí vybrané úlohy. Budou spuštěny znovu od začátku.} other {Tato akce znovu spustí vybrané úlohy. Budou spuštěny znovu od začátku.}}"
+msgid ""
+"{jobCount, plural, one {This will retry the selected job. It will be re-"
+"executed from the beginning.} other {This will retry the selected jobs. They "
+"will be re-executed from the beginning.}}"
+msgstr ""
+"{jobCount, plural, one {Tato akce znovu spustí vybranou úlohu. Bude spuštěna "
+"znovu od začátku.} few {Tato akce znovu spustí vybrané úlohy. Budou spuštěny "
+"znovu od začátku.} many {Tato akce znovu spustí vybrané úlohy. Budou "
+"spuštěny znovu od začátku.} other {Tato akce znovu spustí vybrané úlohy. "
+"Budou spuštěny znovu od začátku.}}"
 
 #. js-lingui-id: g9mDO3
 #: src/utils/format/getOrdinalNumber.ts
-msgid "{num, selectordinal, one {{num}st} two {{num}nd} few {{num}rd} other {{num}th}}"
-msgstr "{num, selectordinal, one {{num}.} few {{num}.} many {{num}.} other {{num}.}}"
+msgid ""
+"{num, selectordinal, one {{num}st} two {{num}nd} few {{num}rd} other {{num}"
+"th}}"
+msgstr ""
+"{num, selectordinal, one {{num}.} few {{num}.} many {{num}.} other {{num}.}}"
 
 #. js-lingui-id: 5d0hY6
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
-#: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
-msgid "{retriedCount, plural, one {Successfully retried {retriedCount} job} other {Successfully retried {retriedCount} jobs}}"
-msgstr "{retriedCount, plural, one {Úspěšně znovu spuštěna {retriedCount} úloha} few {Úspěšně znovu spuštěny {retriedCount} úlohy} many {Úspěšně znovu spuštěno {retriedCount} úloh} other {Úspěšně znovu spuštěno {retriedCount} úloh}}"
+msgid ""
+"{retriedCount, plural, one {Successfully retried {retriedCount} job} other "
+"{Successfully retried {retriedCount} jobs}}"
+msgstr ""
+"{retriedCount, plural, one {Úspěšně znovu spuštěna {retriedCount} úloha} few "
+"{Úspěšně znovu spuštěny {retriedCount} úlohy} many {Úspěšně znovu spuštěno "
+"{retriedCount} úloh} other {Úspěšně znovu spuštěno {retriedCount} úloh}}"
 
 #. js-lingui-id: hcRYEH
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsTableRow.tsx
-msgid "{revokedBy, plural, one {Revoked for {revokedBy} object} other {Revoked for {revokedBy} objects}}"
-msgstr "{revokedBy, plural, one {Odebrána pro {revokedBy} objekt} few {Odebrána pro {revokedBy} objekty} many {Odebrána pro {revokedBy} objektů} other {Odebrána pro {revokedBy} objektů}}"
+msgid ""
+"{revokedBy, plural, one {Revoked for {revokedBy} object} other {Revoked for "
+"{revokedBy} objects}}"
+msgstr ""
+"{revokedBy, plural, one {Odebrána pro {revokedBy} objekt} few {Odebrána pro "
+"{revokedBy} objekty} many {Odebrána pro {revokedBy} objektů} other {Odebrána "
+"pro {revokedBy} objektů}}"
 
 #. js-lingui-id: OeIgEg
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelOverrideCell.tsx
@@ -250,13 +331,23 @@ msgstr "{roleTargetName} bude přiřazen k roli \"{newRoleName}\"."
 
 #. js-lingui-id: kvVMdH
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
-msgid "{selectedCount, plural, one {Delete {selectedCount} Job} other {Delete {selectedCount} Jobs}}"
-msgstr "{selectedCount, plural, one {Smazat {selectedCount} úlohu} few {Smazat {selectedCount} úlohy} many {Smazat {selectedCount} úloh} other {Smazat {selectedCount} úloh}}"
+msgid ""
+"{selectedCount, plural, one {Delete {selectedCount} Job} other {Delete "
+"{selectedCount} Jobs}}"
+msgstr ""
+"{selectedCount, plural, one {Smazat {selectedCount} úlohu} few {Smazat "
+"{selectedCount} úlohy} many {Smazat {selectedCount} úloh} other {Smazat "
+"{selectedCount} úloh}}"
 
 #. js-lingui-id: 1y0QK1
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
-msgid "{selectedCount, plural, one {Retry {selectedCount} Job} other {Retry {selectedCount} Jobs}}"
-msgstr "{selectedCount, plural, one {Opakovat {selectedCount} úlohu} few {Opakovat {selectedCount} úlohy} many {Opakovat {selectedCount} úloh} other {Opakovat {selectedCount} úloh}}"
+msgid ""
+"{selectedCount, plural, one {Retry {selectedCount} Job} other {Retry "
+"{selectedCount} Jobs}}"
+msgstr ""
+"{selectedCount, plural, one {Opakovat {selectedCount} úlohu} few {Opakovat "
+"{selectedCount} úlohy} many {Opakovat {selectedCount} úloh} other {Opakovat "
+"{selectedCount} úloh}}"
 
 #. js-lingui-id: Bzjg0/
 #: src/pages/settings/accounts/SettingsAccountsConfigurationStepCalendar.tsx
@@ -265,8 +356,12 @@ msgstr "{stepNumber}. Kalendář"
 
 #. js-lingui-id: riMLMq
 #: src/modules/workflow/workflow-steps/workflow-actions/iterator-action/components/WorkflowIteratorSubStepSwitcher.tsx
-msgid "{workflowRunIteratorSubStepIterationsCount, plural, one {# item} other {# items}}"
-msgstr "{workflowRunIteratorSubStepIterationsCount, plural, one {# položka} few {# položky} many {# položek} other {# položek}}"
+msgid ""
+"{workflowRunIteratorSubStepIterationsCount, plural, one {# item} other {# "
+"items}}"
+msgstr ""
+"{workflowRunIteratorSubStepIterationsCount, plural, one {# položka} few {# "
+"položky} many {# položek} other {# položek}}"
 
 #. js-lingui-id: WN9tFl
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentConfirmationModalSubtitle.tsx
@@ -275,13 +370,10 @@ msgstr "{workspaceMemberName} bude odebrán z následující role:"
 
 #. js-lingui-id: CwstSL
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
-#: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
-#: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "••••••••"
 msgstr "••••••••"
 
 #. js-lingui-id: tEdOxj
-#: src/pages/settings/accounts/SettingsAccountsConfigurationStepEmail.tsx
 #: src/pages/settings/accounts/SettingsAccountsConfigurationStepEmail.tsx
 msgid "1. Email"
 msgstr "1. Email"
@@ -297,7 +389,6 @@ msgid "1. Select an object"
 msgstr "1. Vyberte objekt"
 
 #. js-lingui-id: SLjiTq
-#: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
 msgid "1. Type"
 msgstr "1. Typ"
@@ -318,7 +409,6 @@ msgid "12h ({hour12Label})"
 msgstr "12h ({hour12Label})"
 
 #. js-lingui-id: yXvRMf
-#: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
 msgid "2. Configure"
 msgstr "2. Nakonfigurujte"
@@ -365,8 +455,10 @@ msgstr "Koncept již existuje"
 
 #. js-lingui-id: OITESn
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
-msgid "A draft already exists for this workflow. Are you sure you want to erase it?"
-msgstr "Pro tento pracovní postup již existuje koncept. Opravdu jej chcete smazat?"
+msgid ""
+"A draft already exists for this workflow. Are you sure you want to erase it?"
+msgstr ""
+"Pro tento pracovní postup již existuje koncept. Opravdu jej chcete smazat?"
 
 #. js-lingui-id: C6xZqR
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -375,8 +467,12 @@ msgstr "Pro klíč API musí být vybrána role"
 
 #. js-lingui-id: nMTB1f
 #: src/pages/onboarding/CreateWorkspace.tsx
-msgid "A shared environment where you will be able to manage your customer relations with your team."
-msgstr "Sdílené prostředí, ve kterém budete moci spravovat vztahy se zákazníky se svým týmem."
+msgid ""
+"A shared environment where you will be able to manage your customer "
+"relations with your team."
+msgstr ""
+"Sdílené prostředí, ve kterém budete moci spravovat vztahy se zákazníky se "
+"svým týmem."
 
 #. js-lingui-id: /cSHSG
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
@@ -437,13 +533,16 @@ msgstr "O tomto pracovním prostoru"
 
 #. js-lingui-id: c2UA7k
 #: src/pages/settings/ai/components/SettingsAIMCP.tsx
-msgid "Access your workspace data from your favorite MCP client like Claude Desktop, Windsurf or Cursor."
-msgstr "Přistupujte ke svým pracovním datům z vašeho oblíbeného MCP klienta, jako je Claude Desktop, Windsurf nebo Cursor."
+msgid ""
+"Access your workspace data from your favorite MCP client like Claude "
+"Desktop, Windsurf or Cursor."
+msgstr ""
+"Přistupujte ke svým pracovním datům z vašeho oblíbeného MCP klienta, jako je "
+"Claude Desktop, Windsurf nebo Cursor."
 
 #. js-lingui-id: AeXO77
 #: src/pages/settings/accounts/SettingsAccountsConfigurationStepEmail.tsx
 #: src/pages/settings/accounts/SettingsAccountsConfigurationStepCalendar.tsx
-#: src/pages/settings/accounts/SettingsAccounts.tsx
 #: src/pages/settings/accounts/SettingsAccounts.tsx
 #: src/modules/settings/accounts/components/SettingsConnectedAccountsTableHeader.tsx
 msgid "Account"
@@ -538,12 +637,10 @@ msgstr "Přidat \"{trimmedName}\" do možností"
 
 #. js-lingui-id: m3/V2n
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "Add a node"
 msgstr "Přidat uzel"
 
 #. js-lingui-id: KKfos4
-#: src/modules/workflow/workflow-diagram/workflow-nodes/components/WorkflowDiagramEmptyTriggerReadonly.tsx
 #: src/modules/workflow/workflow-diagram/workflow-nodes/components/WorkflowDiagramEmptyTriggerReadonly.tsx
 #: src/modules/workflow/workflow-diagram/workflow-nodes/components/WorkflowDiagramEmptyTriggerEditable.tsx
 msgid "Add a Trigger"
@@ -579,7 +676,6 @@ msgstr "Přidat pole"
 
 #. js-lingui-id: T7RGT6
 #: src/modules/activities/files/components/FilesCard.tsx
-#: src/modules/activities/files/components/FilesCard.tsx
 msgid "Add file"
 msgstr "Přidat soubor"
 
@@ -590,12 +686,10 @@ msgstr "Přidat filtr"
 
 #. js-lingui-id: kydAxA
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterAddRootStepFilterButton.tsx
-#: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterAddRootStepFilterButton.tsx
 msgid "Add first filter"
 msgstr "Přidat první filtr"
 
 #. js-lingui-id: B0gWuX
-#: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 msgid "Add Handoff"
 msgstr "Přidat předání"
@@ -677,17 +771,13 @@ msgstr "Přidat do seznamu blokovaných"
 
 #. js-lingui-id: yVOmgE
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
-#: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
 msgid "Add to Favorite"
 msgstr "Přidat do oblíbených"
 
 #. js-lingui-id: pBsoKL
 #: src/modules/favorites/components/PageFavoriteButton.tsx
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
-#: src/modules/action-menu/mock/action-menu-actions.mock.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Add to favorites"
 msgstr "Přidat do oblíbených"
@@ -750,7 +840,6 @@ msgstr ""
 #: src/pages/settings/admin-panel/SettingsAdminIndicatorHealthStatus.tsx
 #: src/pages/settings/admin-panel/SettingsAdminConfigVariableDetails.tsx
 #: src/pages/settings/admin-panel/SettingsAdmin.tsx
-#: src/pages/settings/admin-panel/SettingsAdmin.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Admin Panel"
 msgstr "Administrační panel"
@@ -766,7 +855,6 @@ msgid "Advanced filter"
 msgstr "Pokročilý filtr"
 
 #. js-lingui-id: miuPUc
-#: src/modules/command-menu/pages/page-layout/components/dropdown-content/ChartDataSourceDropdownContent.tsx
 #: src/modules/command-menu/pages/page-layout/components/dropdown-content/ChartDataSourceDropdownContent.tsx
 msgid "Advanced objects"
 msgstr "Pokročilé objekty"
@@ -787,7 +875,6 @@ msgid "After a set amount of time"
 msgstr "Po určité době"
 
 #. js-lingui-id: iEQQyu
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "Agent"
 msgstr "Agent"
@@ -832,7 +919,6 @@ msgstr "Souhrn"
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/command-menu/pages/workflow/action/components/CommandMenuWorkflowSelectAction.tsx
@@ -871,8 +957,12 @@ msgstr "Přístup ke všem akcím"
 
 #. js-lingui-id: dJn2LR
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
-msgid "All emails and events linked to this account ({accountHandle}) will be deleted"
-msgstr "Všechny e-maily a události spojené s tímto účtem ({accountHandle}) budou smazány"
+msgid ""
+"All emails and events linked to this account ({accountHandle}) will be "
+"deleted"
+msgstr ""
+"Všechny e-maily a události spojené s tímto účtem ({accountHandle}) budou "
+"smazány"
 
 #. js-lingui-id: GNJgJf
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
@@ -971,25 +1061,11 @@ msgstr "Při zpracování vaší zprávy došlo k chybě"
 
 #. js-lingui-id: XyOToQ
 #: src/utils/get-error-message-from-apollo-error.util.ts
-#: src/utils/get-error-message-from-apollo-error.util.ts
-#: src/modules/views/hooks/internal/usePersistViewGroup.ts
-#: src/modules/views/hooks/internal/usePersistViewGroup.ts
-#: src/modules/views/hooks/internal/usePersistViewGroup.ts
 #: src/modules/views/hooks/internal/usePersistViewGroup.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
-#: src/modules/views/hooks/internal/usePersistViewFilter.ts
-#: src/modules/views/hooks/internal/usePersistViewFilter.ts
-#: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewField.ts
-#: src/modules/views/hooks/internal/usePersistViewField.ts
-#: src/modules/views/hooks/internal/usePersistViewField.ts
-#: src/modules/views/hooks/internal/usePersistViewField.ts
-#: src/modules/views/hooks/internal/usePersistView.ts
-#: src/modules/views/hooks/internal/usePersistView.ts
 #: src/modules/views/hooks/internal/usePersistView.ts
 #: src/modules/ui/feedback/snack-bar-manager/hooks/useSnackBar.ts
-#: src/modules/settings/serverless-functions/hooks/usePersistServerlessFunction.ts
-#: src/modules/settings/serverless-functions/hooks/usePersistServerlessFunction.ts
 #: src/modules/settings/serverless-functions/hooks/usePersistServerlessFunction.ts
 #: src/modules/object-metadata/hooks/useUpdateOneObjectMetadataItem.ts
 #: src/modules/object-metadata/hooks/useUpdateOneFieldMetadataItem.ts
@@ -1002,12 +1078,16 @@ msgstr "Došlo k chybě."
 
 #. js-lingui-id: 2xLtB4
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
-msgid "An internal error occurred while applying your changes. Please contact support and try again later."
+msgid ""
+"An internal error occurred while applying your changes. Please contact "
+"support and try again later."
 msgstr ""
 
 #. js-lingui-id: oRksj8
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
-msgid "An internal error occurred while validating your changes. Please contact support."
+msgid ""
+"An internal error occurred while validating your changes. Please contact "
+"support."
 msgstr ""
 
 #. js-lingui-id: lxentK
@@ -1029,8 +1109,12 @@ msgstr "Jakékoliv pole"
 
 #. js-lingui-id: xJR+Wq
 #: src/pages/settings/domains/SettingsDomains.tsx
-msgid "Anyone with an email address at these domains is allowed to sign up for this workspace."
-msgstr "Kdokoli s e-mailovou adresou na těchto doménách se může přihlásit do tohoto pracovního prostoru."
+msgid ""
+"Anyone with an email address at these domains is allowed to sign up for this "
+"workspace."
+msgstr ""
+"Kdokoli s e-mailovou adresou na těchto doménách se může přihlásit do tohoto "
+"pracovního prostoru."
 
 #. js-lingui-id: OZtEcz
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
@@ -1039,12 +1123,10 @@ msgstr "API"
 
 #. js-lingui-id: 0RqpZr
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
-#: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 msgid "API & Webhooks"
 msgstr "API & Webhooks"
 
 #. js-lingui-id: yRnk5W
-#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
 msgid "API Key"
@@ -1103,12 +1185,10 @@ msgstr "Hodnoty API"
 
 #. js-lingui-id: JR6nY7
 #: src/pages/settings/developers/api-keys/SettingsApiKeys.tsx
-#: src/pages/settings/developers/api-keys/SettingsApiKeys.tsx
 msgid "APIs"
 msgstr "API"
 
 #. js-lingui-id: ZZAOwb
-#: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/developers/playground/SettingsRestPlayground.tsx
 #: src/pages/settings/developers/playground/SettingsGraphQLPlayground.tsx
@@ -1157,7 +1237,6 @@ msgstr "Serverless funkce aplikace"
 #. js-lingui-id: fL7WXr
 #: src/pages/settings/serverless-functions/SettingsServerlessFunctionDetail.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
-#: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Applications"
@@ -1180,17 +1259,27 @@ msgstr "Arabština"
 
 #. js-lingui-id: 2BZAqa
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
-msgid "Are you sure you want to delete these records? They can be recovered from the Command menu."
-msgstr "Jste si jisti, že chcete smazat tyto záznamy? Mohou být obnoveny z příkazové nabídky."
+msgid ""
+"Are you sure you want to delete these records? They can be recovered from "
+"the Command menu."
+msgstr ""
+"Jste si jisti, že chcete smazat tyto záznamy? Mohou být obnoveny z příkazové "
+"nabídky."
 
 #. js-lingui-id: yb2hF4
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
-msgid "Are you sure you want to delete this record? It can be recovered from the Command menu."
-msgstr "Jste si jisti, že chcete odstranit tento záznam? Lze jej obnovit z menu Příkazy."
+msgid ""
+"Are you sure you want to delete this record? It can be recovered from the "
+"Command menu."
+msgstr ""
+"Jste si jisti, že chcete odstranit tento záznam? Lze jej obnovit z menu "
+"Příkazy."
 
 #. js-lingui-id: OJOR8q
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DestroyMultipleRecordsAction.tsx
-msgid "Are you sure you want to destroy these records? They won't be recoverable anymore."
+msgid ""
+"Are you sure you want to destroy these records? They won't be recoverable "
+"anymore."
 msgstr "Jste si jistí, že chcete zničit tyto záznamy? Nebude možné je obnovit."
 
 #. js-lingui-id: rnCqBK
@@ -1201,8 +1290,6 @@ msgstr "Jste si jisti? Vaše aktuální informace nebudou uloženy."
 #. js-lingui-id: nYD/Cq
 #: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowFindRecordsSorts.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/command-menu/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 #: src/modules/command-menu/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 #: src/modules/command-menu/pages/page-layout/hooks/useGraphGroupBySortOptionLabels.ts
 msgid "Ascending"
@@ -1211,8 +1298,6 @@ msgstr "Vzestupně"
 #. js-lingui-id: xWEvuo
 #: src/modules/navigation/components/MainNavigationDrawerFixedItems.tsx
 #: src/modules/command-menu/hooks/useOpenAskAIPageInCommandMenu.ts
-#: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
-#: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
 #: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
 msgid "Ask AI"
 msgstr "Zeptejte se AI"
@@ -1233,7 +1318,6 @@ msgid "Assign roles to specify each API key's access permissions"
 msgstr "Přiřaďte role pro specifikaci přístupových oprávnění každého API klíče"
 
 #. js-lingui-id: rfYmIr
-#: src/modules/settings/roles/components/SettingsRolesList.tsx
 #: src/modules/settings/roles/components/SettingsRolesList.tsx
 msgid "Assign roles to specify each member's access permissions"
 msgstr "Přiřaďte role pro specifikaci přístupových oprávnění každého člena"
@@ -1365,8 +1449,14 @@ msgstr "Autentizační aplikace"
 
 #. js-lingui-id: 9aB4Rs
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
-msgid "Authenticator apps and browser extensions like 1Password, Authy, Microsoft Authenticator, etc. generate one-time passwords that are used as a second factor to verify your identity when prompted during sign-in."
-msgstr "Autentizační aplikace a prohlížečové rozšíření, jako je 1Password, Authy, Microsoft Authenticator atd., generují jednorázová hesla, která se používají jako druhý faktor k ověření vaší identity během přihlášení."
+msgid ""
+"Authenticator apps and browser extensions like 1Password, Authy, Microsoft "
+"Authenticator, etc. generate one-time passwords that are used as a second "
+"factor to verify your identity when prompted during sign-in."
+msgstr ""
+"Autentizační aplikace a prohlížečové rozšíření, jako je 1Password, Authy, "
+"Microsoft Authenticator atd., generují jednorázová hesla, která se používají "
+"jako druhý faktor k ověření vaší identity během přihlášení."
 
 #. js-lingui-id: yIVrHZ
 #: src/pages/auth/Authorize.tsx
@@ -1390,8 +1480,12 @@ msgstr "Automatické vytváření"
 
 #. js-lingui-id: YRT7ZW
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
-msgid "Automatically create contacts for people you've participated in an event with."
-msgstr "Automaticky vytvářet kontakty pro osoby, se kterými jste se zúčastnil(a) události."
+msgid ""
+"Automatically create contacts for people you've participated in an event "
+"with."
+msgstr ""
+"Automaticky vytvářet kontakty pro osoby, se kterými jste se zúčastnil(a) "
+"události."
 
 #. js-lingui-id: lgw3U4
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
@@ -1452,7 +1546,6 @@ msgid "between the {startOrdinal} and {endOrdinal} of the month"
 msgstr "mezi {startOrdinal} a {endOrdinal} měsíce"
 
 #. js-lingui-id: R+w/Va
-#: src/pages/settings/SettingsBilling.tsx
 #: src/pages/settings/SettingsBilling.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Billing"
@@ -1578,7 +1671,6 @@ msgstr "Kalendářní zobrazení"
 
 #. js-lingui-id: EUpfsd
 #: src/pages/settings/accounts/SettingsAccountsCalendars.tsx
-#: src/pages/settings/accounts/SettingsAccountsCalendars.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Calendars"
 msgstr "Kalendáře"
@@ -1600,7 +1692,6 @@ msgstr "Nemůžete skenovat? Zkopírujte"
 #: src/modules/ui/feedback/snack-bar-manager/components/SnackBar.tsx
 #: src/modules/spreadsheet-import/steps/components/ImportDataStep.tsx
 #: src/modules/spreadsheet-import/steps/components/ValidationStep/ValidationStep.tsx
-#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 #: src/modules/spreadsheet-import/provider/components/SpreadsheetImport.tsx
 #: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
@@ -1658,13 +1749,11 @@ msgstr "Zrušit vaše předplatné"
 
 #. js-lingui-id: W3MumH
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
-#: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Cannot impersonate selected user"
 msgstr "Nelze napodobit vybraného uživatele"
 
 #. js-lingui-id: Po5MgW
 #: src/pages/auth/PasswordReset.tsx
-#: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
 #: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
 #: src/modules/auth/sign-in-up/components/internal/SignInUpTwoFactorAuthenticationVerification.tsx
 msgid "Captcha (anti-bot check) is still loading, try again"
@@ -1692,7 +1781,6 @@ msgstr "Změnit typ uzlu"
 
 #. js-lingui-id: VhMDMg
 #: src/pages/auth/PasswordReset.tsx
-#: src/modules/settings/profile/components/ChangePassword.tsx
 #: src/modules/settings/profile/components/ChangePassword.tsx
 msgid "Change Password"
 msgstr "Změnit heslo"
@@ -1755,7 +1843,8 @@ msgstr "Zkontrolujte vaše emaily"
 #. js-lingui-id: SxwQE8
 #: src/modules/billing/hooks/useHandleCheckoutSession.ts
 msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "Chyba při relaci platby. Prosím zkuste to znovu nebo kontaktujte tým Twenty"
+msgstr ""
+"Chyba při relaci platby. Prosím zkuste to znovu nebo kontaktujte tým Twenty"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -1819,13 +1908,29 @@ msgstr "Vyčistěte pole nebo \"X\" pro návrat k výchozí hodnotě prostředí
 
 #. js-lingui-id: HevGC0
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormEmptyMessage.tsx
-msgid "Click on \"Add Field\" below to add the first input to your form. The form will pop up on the user's screen when the workflow is launched from a manual trigger. For other types of triggers, it will be displayed in the Workflow run record page."
-msgstr "Klikněte níže na „Přidat pole” a přidejte první vstup do vašeho formuláře. Formulář se objeví na uživatelské obrazovce, když je spuštěný workflow z manuálního spouštěče. Pro jiné typy spouštěčů se zobrazí na stránce záznamu spuštění workflowu."
+msgid ""
+"Click on \"Add Field\" below to add the first input to your form. The form "
+"will pop up on the user's screen when the workflow is launched from a manual "
+"trigger. For other types of triggers, it will be displayed in the Workflow "
+"run record page."
+msgstr ""
+"Klikněte níže na „Přidat pole” a přidejte první vstup do vašeho formuláře. "
+"Formulář se objeví na uživatelské obrazovce, když je spuštěný workflow z "
+"manuálního spouštěče. Pro jiné typy spouštěčů se zobrazí na stránce záznamu "
+"spuštění workflowu."
 
 #. js-lingui-id: RFmRvm
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowOutputSchemaBuilder.tsx
-msgid "Click on \"Add Output Field\" below to define the structure of your AI agent's response. These fields will be used to format and validate the AI's output when the workflow is executed, and can be referenced by subsequent workflow steps."
-msgstr "Klikněte na \"Přidat výstupní pole\" níže, abyste definovali strukturu odpovědi vašeho AI agenta. Tato pole budou použita k formátování a ověření výstupu AI při spuštění pracovního postupu a mohou být odkazována následujícími kroky pracovního postupu."
+msgid ""
+"Click on \"Add Output Field\" below to define the structure of your AI "
+"agent's response. These fields will be used to format and validate the AI's "
+"output when the workflow is executed, and can be referenced by subsequent "
+"workflow steps."
+msgstr ""
+"Klikněte na \"Přidat výstupní pole\" níže, abyste definovali strukturu "
+"odpovědi vašeho AI agenta. Tato pole budou použita k formátování a ověření "
+"výstupu AI při spuštění pracovního postupu a mohou být odkazována "
+"následujícími kroky pracovního postupu."
 
 #. js-lingui-id: b8wwse
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
@@ -1877,7 +1982,6 @@ msgstr "Editor kódu"
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
-#: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Collapse"
@@ -1895,8 +1999,12 @@ msgstr "Barvy"
 
 #. js-lingui-id: P8gRog
 #: src/modules/spreadsheet-import/utils/setColumn.ts
-msgid "column data is not compatible with Multi-Select. Format required is '[\"option1\", \"option2\"]' or option1,option2."
-msgstr "data ve sloupci není kompatibilní s Multi-Select. Požadovaný formát je '[\"možnost1\", \"možnost2\"]' nebo možnost1,možnost2."
+msgid ""
+"column data is not compatible with Multi-Select. Format required is "
+"'[\"option1\", \"option2\"]' or option1,option2."
+msgstr ""
+"data ve sloupci není kompatibilní s Multi-Select. Požadovaný formát je "
+"'[\"možnost1\", \"možnost2\"]' nebo možnost1,možnost2."
 
 #. js-lingui-id: 93hd3e
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
@@ -1925,7 +2033,6 @@ msgstr "Společnosti"
 
 #. js-lingui-id: 2PsTzL
 #: src/modules/workflow/workflow-diagram/utils/generateNodesAndEdgesForIteratorNode.ts
-#: src/modules/workflow/workflow-diagram/utils/generateNodesAndEdgesForIteratorNode.ts
 msgid "completed"
 msgstr "dokončeno"
 
@@ -1936,8 +2043,12 @@ msgstr "Dokončeno"
 
 #. js-lingui-id: 6y7/Rf
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
-msgid "Completed jobs kept for {completedDuration}, failed jobs kept for {failedDuration} (max {maxCount} each)"
-msgstr "Dokončené úlohy uchovány po dobu {completedDuration}, neúspěšné úlohy uchovány po dobu {failedDuration} (maximálně {maxCount} každá)"
+msgid ""
+"Completed jobs kept for {completedDuration}, failed jobs kept for "
+"{failedDuration} (max {maxCount} each)"
+msgstr ""
+"Dokončené úlohy uchovány po dobu {completedDuration}, neúspěšné úlohy "
+"uchovány po dobu {failedDuration} (maximálně {maxCount} každá)"
 
 #. js-lingui-id: 0CuAor
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowEditActionFilterBody.tsx
@@ -1965,7 +2076,9 @@ msgstr "Nakonfigurujte a přizpůsobte si předvolby kalendáře."
 #. js-lingui-id: 5i71HM
 #: src/pages/settings/domains/SettingsDomains.tsx
 msgid "Configure and verify domains for emailing from this workspace."
-msgstr "Nakonfigurujte a ověřte domény pro odesílání e-mailů z tohoto pracovního prostoru."
+msgstr ""
+"Nakonfigurujte a ověřte domény pro odesílání e-mailů z tohoto pracovního "
+"prostoru."
 
 #. js-lingui-id: 6MDr1S
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -1985,7 +2098,8 @@ msgstr "Nastavit filtry"
 #. js-lingui-id: ghdb7+
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelsGeneral.tsx
 msgid "Configure how we should display your events in your calendar"
-msgstr "Nakonfigurujte, jak by se měly zobrazovat vaše události ve vašem kalendáři"
+msgstr ""
+"Nakonfigurujte, jak by se měly zobrazovat vaše události ve vašem kalendáři"
 
 #. js-lingui-id: EZzl/g
 #: src/modules/command-menu/pages/page-layout/utils/getPageLayoutPageTitle.ts
@@ -2000,7 +2114,8 @@ msgstr "Konfigurace iFrame Widgetu"
 #. js-lingui-id: jbuOOX
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "Configure IMAP settings to receive and sync your emails."
-msgstr "Konfigurujte nastavení IMAP pro přijímání a synchronizaci vašich e-mailů."
+msgstr ""
+"Konfigurujte nastavení IMAP pro přijímání a synchronizaci vašich e-mailů."
 
 #. js-lingui-id: gk/8eh
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -2022,13 +2137,6 @@ msgstr "Nakonfigurujte nastavení svých e-mailů a kalendáře."
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModal.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentConfirmationModal.tsx
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
-#: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Confirm"
 msgstr "Potvrdit"
 
@@ -2044,8 +2152,12 @@ msgstr ""
 
 #. js-lingui-id: FbJ7Si
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModalSubtitle.tsx
-msgid "Confirm deletion of {roleName} role? This cannot be undone. All members will be reassigned to the default role."
-msgstr "Opravdu chcete smazat roli {roleName}? Toto akci nelze vrátit zpět. Všichni členové budou přeřazeni na výchozí roli."
+msgid ""
+"Confirm deletion of {roleName} role? This cannot be undone. All members will "
+"be reassigned to the default role."
+msgstr ""
+"Opravdu chcete smazat roli {roleName}? Toto akci nelze vrátit zpět. Všichni "
+"členové budou přeřazeni na výchozí roli."
 
 #. js-lingui-id: kZkFSm
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
@@ -2120,8 +2232,7 @@ msgid "Context"
 msgstr "Kontext"
 
 #. js-lingui-id: xGVfLh
-#: src/pages/onboarding/InviteTeam.tsx
-#: src/pages/onboarding/CreateWorkspace.tsx
+#: src/pages/onboarding/InviteTeam.tsx src/pages/onboarding/CreateWorkspace.tsx
 #: src/pages/onboarding/CreateProfile.tsx
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/modules/spreadsheet-import/steps/components/SelectHeaderStep/SelectHeaderStep.tsx
@@ -2159,8 +2270,6 @@ msgstr "Zkopírováno do schránky"
 
 #. js-lingui-id: he3ygx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
-#: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
-#: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 #: src/modules/settings/developers/components/ApiKeyInput.tsx
 msgid "Copy"
@@ -2283,7 +2392,6 @@ msgstr "Vytvořit"
 
 #. js-lingui-id: M1NpGt
 #: src/modules/action-menu/actions/record-agnostic-actions/hooks/useRelatedRecordActions.ts
-#: src/modules/action-menu/actions/record-agnostic-actions/hooks/useRelatedRecordActions.ts
 msgid "Create {targetObjectLabelSingular}"
 msgstr "Vytvořit {targetObjectLabelSingular}"
 
@@ -2371,7 +2479,6 @@ msgstr "Vytvořit zobrazení"
 
 #. js-lingui-id: 3D0MXY
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Create View"
 msgstr "Vytvořit zobrazení"
 
@@ -2449,7 +2556,8 @@ msgstr "Aktuální"
 #. js-lingui-id: 6YzXhC
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Current value from server environment. Set a custom value to override."
-msgstr "Současná hodnota z prostředí serveru. Nastavte vlastní hodnotu pro přepsání."
+msgstr ""
+"Současná hodnota z prostředí serveru. Nastavte vlastní hodnotu pro přepsání."
 
 #. js-lingui-id: Hd06oy
 #: src/pages/settings/applications/components/SettingsApplicationVersionContainer.tsx
@@ -2474,7 +2582,6 @@ msgid "Custom domain updated"
 msgstr "Vlastní doména aktualizována"
 
 #. js-lingui-id: 8skTDV
-#: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 msgid "Custom objects"
 msgstr "Vlastní objekty"
@@ -2559,8 +2666,6 @@ msgstr "Datové štítky"
 
 #. js-lingui-id: BCllhB
 #: src/modules/command-menu/pages/page-layout/utils/__tests__/isChartSettingDisabled.test.ts
-#: src/modules/command-menu/pages/page-layout/utils/__tests__/isChartSettingDisabled.test.ts
-#: src/modules/command-menu/pages/page-layout/utils/__tests__/isChartSettingDisabled.test.ts
 msgid "Data Labels"
 msgstr "Popisky dat"
 
@@ -2582,14 +2687,10 @@ msgstr "Datový model - Nastavení"
 
 #. js-lingui-id: fM466x
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
-#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
-#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
-#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Data on display"
 msgstr "Data na displeji"
 
 #. js-lingui-id: r+cVRP
-#: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/field-permissions/components/SettingsRolePermissionsObjectLevelObjectFieldPermissionTable.tsx
 msgid "Data type"
@@ -2670,8 +2771,12 @@ msgstr "Deaktivovat"
 #. js-lingui-id: qk4i22
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIconLabelForm.tsx
-msgid "Deactivate \"Synchronize Objects Labels and API Names\" to set a custom API name"
-msgstr "Deaktivujte \"Synchronizace štítků objektů a API názvů\" pro nastavení vlastního API názvu"
+msgid ""
+"Deactivate \"Synchronize Objects Labels and API Names\" to set a custom API "
+"name"
+msgstr ""
+"Deaktivujte \"Synchronizace štítků objektů a API názvů\" pro nastavení "
+"vlastního API názvu"
 
 #. js-lingui-id: T2YbXF
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectSettings.tsx
@@ -2749,7 +2854,8 @@ msgstr "Definovat role uživatelů a úrovně přístupu"
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
 msgid "Define what will be visible to other users in your workspace"
-msgstr "Definujte, co bude viditelné pro ostatní uživatele ve vaší pracovní oblasti"
+msgstr ""
+"Definujte, co bude viditelné pro ostatní uživatele ve vaší pracovní oblasti"
 
 #. js-lingui-id: EcAkBs
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
@@ -2768,7 +2874,6 @@ msgstr "smazat"
 
 #. js-lingui-id: cnGeoo
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
-#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
 #: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
 #: src/modules/ui/input/editor/components/CustomSideMenu.tsx
@@ -2778,15 +2883,11 @@ msgstr "smazat"
 #: src/modules/settings/emailing-domains/components/SettingsEmailingDomainRowDropdownMenu.tsx
 #: src/modules/settings/domains/components/SettingPublicDomainRowDropdownMenu.tsx
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
-#: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 #: src/modules/settings/data-model/object-details/components/SettingsObjectFieldDisabledActionDropdown.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminDeleteJobsConfirmationModal.tsx
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
-#: src/modules/action-menu/mock/action-menu-actions.mock.tsx
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Delete"
 msgstr "Smazat"
@@ -2799,7 +2900,6 @@ msgstr "Smazat {objectLabelPlural}"
 #. js-lingui-id: ZDGm40
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/modules/settings/profile/components/DeleteAccount.tsx
-#: src/modules/settings/profile/components/DeleteAccount.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
 msgid "Delete account"
 msgstr "Smazat účet"
@@ -2811,7 +2911,6 @@ msgstr "Smazat účet a veškerá související data"
 
 #. js-lingui-id: YMNj8z
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
-#: src/pages/settings/ai/components/SettingsAgentDeleteConfirmationModal.tsx
 #: src/pages/settings/ai/components/SettingsAgentDeleteConfirmationModal.tsx
 msgid "Delete Agent"
 msgstr "Smazat agenta"
@@ -2852,7 +2951,6 @@ msgid "Delete records"
 msgstr "Smazat záznamy"
 
 #. js-lingui-id: rMgHjD
-#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
 msgid "Delete Records"
 msgstr "Smazat záznamy"
@@ -2919,7 +3017,6 @@ msgstr "Smazat pracovní postupy"
 
 #. js-lingui-id: kYu0eF
 #: src/modules/settings/profile/components/DeleteWorkspace.tsx
-#: src/modules/settings/profile/components/DeleteWorkspace.tsx
 msgid "Delete workspace"
 msgstr "Smazat pracovní prostor"
 
@@ -2941,8 +3038,6 @@ msgstr "Smazáním této metody ji trvale odeberete ze svého účtu."
 #. js-lingui-id: Cko536
 #: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowFindRecordsSorts.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/command-menu/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 #: src/modules/command-menu/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 #: src/modules/command-menu/pages/page-layout/hooks/useGraphGroupBySortOptionLabels.ts
 msgid "Descending"
@@ -2988,7 +3083,6 @@ msgstr "zničit"
 
 #. js-lingui-id: 2xxBws
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Destroy"
 msgstr "\"\""
 
@@ -3009,7 +3103,6 @@ msgstr "Zničit záznamy na všech objektech"
 
 #. js-lingui-id: zAg2B9
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "Discard Draft"
 msgstr "Zrušit koncept"
 
@@ -3021,7 +3114,8 @@ msgstr "Zobrazit"
 #. js-lingui-id: r/aDR/
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerManual.tsx
 msgid "Display a button in the top navbar to trigger this workflow"
-msgstr "Zobrazit tlačítko v horní navigační liště pro spuštění tohoto workflowu"
+msgstr ""
+"Zobrazit tlačítko v horní navigační liště pro spuštění tohoto workflowu"
 
 #. js-lingui-id: 8Vg8H7
 #: src/modules/settings/data-model/fields/forms/number/components/SettingsDataModelFieldNumberForm.tsx
@@ -3064,7 +3158,6 @@ msgstr "Neobsahuje"
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
 #: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
 #: src/pages/settings/domains/SettingsDomain.tsx
-#: src/pages/settings/domains/SettingsDomain.tsx
 msgid "Domain"
 msgstr "Doména"
 
@@ -3077,7 +3170,6 @@ msgstr "Doména nenalezena"
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
 #: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
 #: src/pages/settings/domains/SettingsDomains.tsx
-#: src/pages/settings/domains/SettingsDomains.tsx
 #: src/pages/settings/domains/SettingsDomain.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/settings/domains/components/SettingPublicDomain.tsx
@@ -3086,8 +3178,12 @@ msgstr "Domény"
 
 #. js-lingui-id: 7kVRe6
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
-msgid "Domains have to be smaller than 256 characters, cannot contain spaces and cannot contain any special characters."
-msgstr "Domény musí být menší než 256 znaků, nesmí obsahovat mezery a nesmí obsahovat žádné speciální znaky."
+msgid ""
+"Domains have to be smaller than 256 characters, cannot contain spaces and "
+"cannot contain any special characters."
+msgstr ""
+"Domény musí být menší než 256 znaků, nesmí obsahovat mezery a nesmí "
+"obsahovat žádné speciální znaky."
 
 #. js-lingui-id: KUxVkp
 #: src/modules/settings/accounts/components/SettingsAccountsMessageAutoCreationCard.tsx
@@ -3110,7 +3206,6 @@ msgid "Dots and comma - {dotsAndCommaExample}"
 msgstr "Tečky a čárky - {dotsAndCommaExample}"
 
 #. js-lingui-id: LE8J+K
-#: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 msgid "Downgrade"
 msgstr "Snížení úrovně"
@@ -3190,7 +3285,6 @@ msgid "Edit {objectLabelPlural}"
 msgstr "Upravit {objectLabelPlural}"
 
 #. js-lingui-id: 9B436y
-#: src/modules/settings/accounts/components/SettingsAccountsEditImapSmtpCaldavConnection.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsEditImapSmtpCaldavConnection.tsx
 msgid "Edit Account"
 msgstr "Upravit účet"
@@ -3283,9 +3377,7 @@ msgstr "Osmý"
 
 #. js-lingui-id: O3oNi5
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
-#: src/pages/settings/SettingsWorkspaceMembers.tsx
-#: src/pages/settings/SettingsProfile.tsx
-#: src/pages/auth/PasswordReset.tsx
+#: src/pages/settings/SettingsProfile.tsx src/pages/auth/PasswordReset.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTableHeader.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
@@ -3313,7 +3405,6 @@ msgid "Email Editor"
 msgstr "Editor e-mailu"
 
 #. js-lingui-id: lfQsvW
-#: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 msgid "Email integration"
 msgstr "Integrace e-mailů"
@@ -3360,8 +3451,12 @@ msgstr "E-mail/Doména"
 
 #. js-lingui-id: H2lcB9
 #: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
-msgid "Emailing domain created successfully. Please verify the domain to start using it."
-msgstr "E-mailová doména byla úspěšně vytvořena. Prosím, ověřte doménu, abyste ji mohli začít používat."
+msgid ""
+"Emailing domain created successfully. Please verify the domain to start "
+"using it."
+msgstr ""
+"E-mailová doména byla úspěšně vytvořena. Prosím, ověřte doménu, abyste ji "
+"mohli začít používat."
 
 #. js-lingui-id: XDpopO
 #: src/modules/settings/emailing-domains/components/SettingsEmailingDomainRowDropdownMenu.tsx
@@ -3377,7 +3472,6 @@ msgstr "E-mailové domény"
 
 #. js-lingui-id: BXEcos
 #: src/pages/settings/accounts/SettingsAccountsEmails.tsx
-#: src/pages/settings/accounts/SettingsAccountsEmails.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsSettingsSection.tsx
 msgid "Emails"
@@ -3385,8 +3479,12 @@ msgstr "E-maily"
 
 #. js-lingui-id: Ft+sR1
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
-msgid "Emails from the blocklist will be ignored. Manage blocklist on the “Accounts” setting page."
-msgstr "E-maily z blokového seznamu budou ignorovány. Spravujte blokovaný seznam na stránce nastavení \"Účty\"."
+msgid ""
+"Emails from the blocklist will be ignored. Manage blocklist on the "
+"“Accounts” setting page."
+msgstr ""
+"E-maily z blokového seznamu budou ignorovány. Spravujte blokovaný seznam na "
+"stránce nastavení \"Účty\"."
 
 #. js-lingui-id: Ww/M6X
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
@@ -3415,7 +3513,6 @@ msgstr "Prázdné"
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
-#: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Empty Array"
@@ -3430,7 +3527,6 @@ msgstr "Prázdná schránka"
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepOutputDetail.tsx
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
-#: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
@@ -3465,7 +3561,8 @@ msgstr "Zvyšuje bezpečnost tím, že vyžaduje kód společně s vaším hesle
 #. js-lingui-id: /bfFKe
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 msgid "Enjoy a {withCreditCardTrialPeriodDuration}-days free trial"
-msgstr "Užijte si {withCreditCardTrialPeriodDuration}-denní bezplatnou zkušební dobu"
+msgstr ""
+"Užijte si {withCreditCardTrialPeriodDuration}-denní bezplatnou zkušební dobu"
 
 #. js-lingui-id: 20wg2g
 #: src/modules/ai/components/AIChatTab.tsx
@@ -3510,13 +3607,10 @@ msgstr "Zadejte číslo mezi 0 a 23"
 
 #. js-lingui-id: Y2uwqs
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
-#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Enter number between 0 and 59"
 msgstr "Zadejte číslo mezi 0 a 59"
 
 #. js-lingui-id: ahwn7G
-#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
-#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Enter number greater than 1"
 msgstr "Zadejte číslo větší než 1"
@@ -3534,8 +3628,10 @@ msgstr "Zadejte informace pro nastavení připojení"
 #. js-lingui-id: 3EF9HN
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
-msgid "Enter the system prompt that defines this agent's behavior and capabilities"
-msgstr "Zadejte systémovou výzvu, která definuje chování a schopnosti tohoto agenta."
+msgid ""
+"Enter the system prompt that defines this agent's behavior and capabilities"
+msgstr ""
+"Zadejte systémovou výzvu, která definuje chování a schopnosti tohoto agenta."
 
 #. js-lingui-id: rYIISB
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
@@ -3543,7 +3639,6 @@ msgid "Enter user ID or email address"
 msgstr "Zadejte ID uživatele nebo e-mailovou adresu"
 
 #. js-lingui-id: pubQie
-#: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterValueInput.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterValueInput.tsx
 msgid "Enter value"
 msgstr "Zadejte hodnotu"
@@ -3682,17 +3777,17 @@ msgstr "každý {stepNum} den"
 #. js-lingui-id: HzFFPM
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
 msgid "every {stepNumStr} days"
 msgstr "každý {stepNumStr} den"
 
 #. js-lingui-id: iRozlI
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
-msgid "every {stepNumStr} days, between the {startOrdinal} and {endOrdinal} of the month"
+msgid ""
+"every {stepNumStr} days, between the {startOrdinal} and {endOrdinal} of the "
+"month"
 msgstr "každý {stepNumStr} den, mezi {startOrdinal} a {endOrdinal} měsíce"
 
 #. js-lingui-id: iCnbJU
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getHoursDescription.ts
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getHoursDescription.ts
 msgid "every {stepNumStr} hours"
 msgstr "každou {stepNumStr} hodinu"
@@ -3704,7 +3799,6 @@ msgstr "každou {stepNumStr} hodinu, mezi {startTime} a {endTime}"
 
 #. js-lingui-id: Yw2okP
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMinutesDescription.ts
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMinutesDescription.ts
 msgid "every {stepNumStr} minutes"
 msgstr "každých {stepNumStr} minut"
 
@@ -3714,7 +3808,6 @@ msgid "every {stepNumStr} minutes, between minute {start} and {end}"
 msgstr "každých {stepNumStr} minut, mezi minutou {start} a {end}"
 
 #. js-lingui-id: hBdF6X
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
 msgid "every {stepNumStr} months"
 msgstr "každý {stepNumStr} měsíc"
@@ -3727,20 +3820,17 @@ msgstr "každý {stepNumStr} měsíc, mezi {startMonth} a {endMonth}"
 #. js-lingui-id: LhmFKG
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
 msgid "every day"
 msgstr "každý den"
 
 #. js-lingui-id: XWj/lX
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/describeCronExpression.ts
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getHoursDescription.ts
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getHoursDescription.ts
 msgid "every hour"
 msgstr "každou hodinu"
 
 #. js-lingui-id: a9EHxw
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/describeCronExpression.ts
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMinutesDescription.ts
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMinutesDescription.ts
 msgid "every minute"
 msgstr "každou minutu"
@@ -3765,8 +3855,12 @@ msgstr "Vyloučit nepracovní e-maily"
 
 #. js-lingui-id: yhhfqh
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
-msgid "Exclude the following people and domains from my email sync. Internal conversations will not be imported"
-msgstr "Vyloučit následující lidi a domény z mé synchronizace emailů. Interní konverzace nebudou importovány"
+msgid ""
+"Exclude the following people and domains from my email sync. Internal "
+"conversations will not be imported"
+msgstr ""
+"Vyloučit následující lidi a domény z mé synchronizace emailů. Interní "
+"konverzace nebudou importovány"
 
 #. js-lingui-id: fV7V51
 #: src/pages/settings/data-model/SettingsObjects.tsx
@@ -3793,7 +3887,6 @@ msgstr "Opustit nastavení"
 #: src/modules/workflow/workflow-steps/components/WorkflowRunStepInputDetail.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJsonDataIndicatorHealthStatus.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
-#: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Expand"
@@ -3805,7 +3898,6 @@ msgid "Expand to Full Screen"
 msgstr "Rozšířit na celou obrazovku"
 
 #. js-lingui-id: bKBhgb
-#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Experience"
@@ -3851,13 +3943,6 @@ msgstr "Vyprší za {dateDiff}"
 #. js-lingui-id: GS+Mus
 #: src/modules/object-record/record-index/export/hooks/useRecordIndexExportRecords.ts
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
-#: src/modules/action-menu/mock/action-menu-actions.mock.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Export"
 msgstr "Exportovat"
@@ -3894,7 +3979,6 @@ msgstr "Export záznamů"
 
 #. js-lingui-id: iHK6np
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
 msgid "Export run"
 msgstr "Exportovat spuštění"
 
@@ -3909,7 +3993,6 @@ msgid "Export to PDF"
 msgstr "Exportovat do PDF"
 
 #. js-lingui-id: BuprEs
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
 msgid "Export version"
 msgstr "Exportovat verzi"
@@ -3927,7 +4010,6 @@ msgid "Export view"
 msgstr "Exportovat zobrazení"
 
 #. js-lingui-id: +FMXdE
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "Export workflow"
 msgstr "Exportovat pracovní postup"
@@ -3971,7 +4053,9 @@ msgstr ""
 
 #. js-lingui-id: sOnoZ4
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
-msgid "Failed to create {translatedMetadataName}. Related {relatedEntityNames} validation failed. Please check your configuration and try again."
+msgid ""
+"Failed to create {translatedMetadataName}. Related {relatedEntityNames} "
+"validation failed. Please check your configuration and try again."
 msgstr ""
 
 #. js-lingui-id: w/6jdn
@@ -4263,7 +4347,6 @@ msgstr "od {startDay} do {endDay}"
 
 #. js-lingui-id: scmRyR
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
-#: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 msgid "Full access"
 msgstr "Plný přístup"
 
@@ -4278,7 +4361,6 @@ msgid "Gauge"
 msgstr "Měřič"
 
 #. js-lingui-id: Weq9zb
-#: src/pages/settings/SettingsWorkspace.tsx
 #: src/pages/settings/SettingsWorkspace.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminContent.tsx
@@ -4298,7 +4380,8 @@ msgstr "Němčina"
 #. js-lingui-id: NXEW3h
 #: src/pages/onboarding/InviteTeam.tsx
 msgid "Get the most out of your workspace by inviting your team."
-msgstr "Získejte maximum ze svého pracovního prostoru tím, že pozvete svůj tým."
+msgstr ""
+"Získejte maximum ze svého pracovního prostoru tím, že pozvete svůj tým."
 
 #. js-lingui-id: zSGbaR
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -4345,7 +4428,6 @@ msgstr "Přejít na spuštění"
 #. js-lingui-id: mT57+Q
 #: src/modules/views/view-picker/components/ViewPickerEditButton.tsx
 #: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
-#: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Go to Settings"
@@ -4364,7 +4446,9 @@ msgstr "Přejít na pracovní postupy"
 #. js-lingui-id: 6eo66Q
 #: src/modules/settings/workspace/components/ToggleImpersonate.tsx
 msgid "Grant access to your workspace so we can troubleshoot problems."
-msgstr "Poskytněte přístup k vašemu pracovnímu prostoru, abychom mohli řešit problémy."
+msgstr ""
+"Poskytněte přístup k vašemu pracovnímu prostoru, abychom mohli řešit "
+"problémy."
 
 #. js-lingui-id: WUgtid
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -4572,8 +4656,14 @@ msgstr "Pokud je to neočekávané, zkontrolujte prosím vaše nastavení."
 
 #. js-lingui-id: j843N3
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
-msgid "If you’ve lost this key, you can regenerate it, but be aware that any script using this key will need to be updated. Please type\"{confirmationValue}\" to confirm."
-msgstr "Pokud jste ztratili tento klíč, můžete jej obnovit, ale mějte na paměti, že všechny skripty používající tento klíč bude potřeba aktualizovat. Prosím, napište \"<b>{confirmationValue}</b>\" pro potvrzení."
+msgid ""
+"If you’ve lost this key, you can regenerate it, but be aware that any script "
+"using this key will need to be updated. Please type\"{confirmationValue}\" "
+"to confirm."
+msgstr ""
+"Pokud jste ztratili tento klíč, můžete jej obnovit, ale mějte na paměti, že "
+"všechny skripty používající tento klíč bude potřeba aktualizovat. Prosím, "
+"napište \"<b>{confirmationValue}</b>\" pro potvrzení."
 
 #. js-lingui-id: YdCuhS
 #: src/modules/command-menu/pages/page-layout/components/ChartSettings.tsx
@@ -4714,7 +4804,8 @@ msgstr "Nastavení vstupu"
 #. js-lingui-id: T8avpe
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTestTab.tsx
 msgid "Insert a JSON input, then press \"Run\" to test your function."
-msgstr "Vložte vstup JSON a pak stiskněte \"Spustit\" pro testování vaší funkce."
+msgstr ""
+"Vložte vstup JSON a pak stiskněte \"Spustit\" pro testování vaší funkce."
 
 #. js-lingui-id: AwUsnG
 #: src/pages/settings/data-model/constants/SettingsObjectTableMetadata.ts
@@ -4727,7 +4818,6 @@ msgid "Instructions for AI"
 msgstr "Pokyny pro AI"
 
 #. js-lingui-id: nbfdhU
-#: src/pages/settings/integrations/SettingsIntegrations.tsx
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
 #: src/modules/settings/integrations/database-connection/components/SettingsIntegrationEditDatabaseConnectionContent.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
@@ -4777,7 +4867,6 @@ msgstr "Neplatný e-mail"
 
 #. js-lingui-id: /m52AE
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
-#: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
 msgid "Invalid email or domain"
 msgstr "Neplatný e-mail nebo doména"
 
@@ -4799,23 +4888,26 @@ msgstr "Neplatné hodnoty formuláře"
 #. js-lingui-id: 04zLGG
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Invalid hour value '{newHour}'. Should be integer between 0 and 23"
-msgstr "Neplatná hodnota hodiny '{newHour}'. Měla by být celočíselná mezi 0 a 23"
+msgstr ""
+"Neplatná hodnota hodiny '{newHour}'. Měla by být celočíselná mezi 0 a 23"
 
 #. js-lingui-id: fLMLtY
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Invalid hour value '{newHour}'. Should be integer greater than 1"
-msgstr "Neplatná hodnota hodiny '{newHour}'. Měla by být celočíselná větší než 1"
+msgstr ""
+"Neplatná hodnota hodiny '{newHour}'. Měla by být celočíselná větší než 1"
 
 #. js-lingui-id: +Yi3bs
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
-#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Invalid minute value '{newMinute}'. Should be integer between 0 and 59"
-msgstr "Neplatná hodnota minuty '{newMinute}'. Měla by být celočíselná mezi 0 a 59"
+msgstr ""
+"Neplatná hodnota minuty '{newMinute}'. Měla by být celočíselná mezi 0 a 59"
 
 #. js-lingui-id: 942L1w
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Invalid minute value '{newMinute}'. Should be integer greater than 1"
-msgstr "Neplatná hodnota minuty '{newMinute}'. Měla by být celočíselná větší než 1"
+msgstr ""
+"Neplatná hodnota minuty '{newMinute}'. Měla by být celočíselná větší než 1"
 
 #. js-lingui-id: VEKoJx
 #: src/modules/settings/two-factor-authentication/hooks/useTwoFactorVerificationForSettings.ts
@@ -5011,7 +5103,6 @@ msgstr "Pracovní pozice"
 
 #. js-lingui-id: C5FAaq
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
-#: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "john.doe"
 msgstr "john.doe"
 
@@ -5184,8 +5275,6 @@ msgstr "<b>Linie</b>"
 #: src/pages/onboarding/InviteTeam.tsx
 #: src/modules/workspace/components/WorkspaceInviteLink.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownDefaultView.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownDefaultView.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Link copied to clipboard"
 msgstr "Odkaz byl zkopírován do schránky"
@@ -5247,8 +5336,10 @@ msgstr "Přihlášen jako {impersonatedUser}"
 
 #. js-lingui-id: VLuNNu
 #: src/modules/auth/components/TwoFactorAuthenticationProvisionEffect.tsx
-msgid "Login token missing. Two Factor Authentication setup can not be initiated."
-msgstr "Chybí přihlašovací token. Nastavení dvoufaktorového ověřování nelze zahájit."
+msgid ""
+"Login token missing. Two Factor Authentication setup can not be initiated."
+msgstr ""
+"Chybí přihlašovací token. Nastavení dvoufaktorového ověřování nelze zahájit."
 
 #. js-lingui-id: nOhz3x
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
@@ -5262,8 +5353,11 @@ msgstr "Protokoly"
 
 #. js-lingui-id: PTozs8
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
-msgid "Look up users and manage their workspace feature flags or impersonate them."
-msgstr "Vyhledejte uživatele a spravujte jejich funkce ve workspace nebo je impersonujte."
+msgid ""
+"Look up users and manage their workspace feature flags or impersonate them."
+msgstr ""
+"Vyhledejte uživatele a spravujte jejich funkce ve workspace nebo je "
+"impersonujte."
 
 #. js-lingui-id: GPSwzy
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
@@ -5291,7 +5385,6 @@ msgid "Manage billing information"
 msgstr "Správa fakturačních údajů"
 
 #. js-lingui-id: U8dG4j
-#: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
 msgid "Manage favorite"
 msgstr "Spravovat oblíbené"
@@ -5340,13 +5433,19 @@ msgstr "Maximální"
 
 #. js-lingui-id: y2rk49
 #: src/modules/command-menu/pages/page-layout/components/ChartSettings.tsx
-msgid "Max {GRAPH_MAXIMUM_NUMBER_OF_GROUPS} bars per chart. Consider adding a filter"
-msgstr "Max {GRAPH_MAXIMUM_NUMBER_OF_GROUPS} pruhů na graf. Zvažte přidání filtru"
+msgid ""
+"Max {GRAPH_MAXIMUM_NUMBER_OF_GROUPS} bars per chart. Consider adding a filter"
+msgstr ""
+"Max {GRAPH_MAXIMUM_NUMBER_OF_GROUPS} pruhů na graf. Zvažte přidání filtru"
 
 #. js-lingui-id: HFjNu6
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
-msgid "Max import capacity: {formatSpreadsheetMaxRecordImportCapacity} records. Otherwise, consider splitting your file or using the API."
-msgstr "Maximální kapacita importu: {formatSpreadsheetMaxRecordImportCapacity} záznamů. V opačném případě zvažte rozdělení svého souboru nebo použití API."
+msgid ""
+"Max import capacity: {formatSpreadsheetMaxRecordImportCapacity} records. "
+"Otherwise, consider splitting your file or using the API."
+msgstr ""
+"Maximální kapacita importu: {formatSpreadsheetMaxRecordImportCapacity} "
+"záznamů. V opačném případě zvažte rozdělení svého souboru nebo použití API."
 
 #. js-lingui-id: 2ICF9k
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
@@ -5405,7 +5504,6 @@ msgstr "Člen"
 
 #. js-lingui-id: wlQNTg
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
-#: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
@@ -5445,8 +5543,10 @@ msgstr "Synchronizace zpráv"
 
 #. js-lingui-id: i2zgN4
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminConnectedAccountHealthStatus.tsx
-msgid "Message Sync and Calendar Sync are not available because the service is down"
-msgstr "Synchronizace zpráv a kalendáře není dostupná, protože služba nefunguje"
+msgid ""
+"Message Sync and Calendar Sync are not available because the service is down"
+msgstr ""
+"Synchronizace zpráv a kalendáře není dostupná, protože služba nefunguje"
 
 #. js-lingui-id: VRi9O8
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminConnectedAccountHealthStatus.tsx
@@ -5561,13 +5661,23 @@ msgstr "musí být číslo"
 
 #. js-lingui-id: qJVW/e
 #: src/modules/object-record/spreadsheet-import/utils/getSpreadSheetFieldValidationDefinitions.ts
-msgid "must be an array of object with valid phone, calling code and country code (format: '[{\"number\":\"123456789\", \"callingCode\":\"+33\", \"countryCode\":\"FR\"}]')"
-msgstr "musí být pole objektů s platným telefonem, volací a zemí kódem (formát: '[{\"number\":\"123456789\", \"callingCode\":\"+33\", \"countryCode\":\"FR\"}]')"
+msgid ""
+"must be an array of object with valid phone, calling code and country code "
+"(format: '[{\"number\":\"123456789\", \"callingCode\":\"+33\", "
+"\"countryCode\":\"FR\"}]')"
+msgstr ""
+"musí být pole objektů s platným telefonem, volací a zemí kódem (formát: "
+"'[{\"number\":\"123456789\", \"callingCode\":\"+33\", \"countryCode\":"
+"\"FR\"}]')"
 
 #. js-lingui-id: hTW2Fw
 #: src/modules/object-record/spreadsheet-import/utils/getSpreadSheetFieldValidationDefinitions.ts
-msgid "must be an array of object with valid url and label (format: '[{\"url\":\"valid.url\", \"label\":\"label value\")}]'"
-msgstr "musí být pole objektů s platnou URL a popisem (formát: '[{\"url\":\"platná.url\", \"label\":\"název popisu\")}]'"
+msgid ""
+"must be an array of object with valid url and label (format: '[{\"url\":"
+"\"valid.url\", \"label\":\"label value\")}]'"
+msgstr ""
+"musí být pole objektů s platnou URL a popisem (formát: '[{\"url\":"
+"\"platná.url\", \"label\":\"název popisu\")}]'"
 
 #. js-lingui-id: 5rovyq
 #: src/modules/object-record/spreadsheet-import/utils/getSpreadSheetFieldValidationDefinitions.ts
@@ -5582,7 +5692,6 @@ msgstr "musí být pole platných emailů"
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
-#: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/pages/settings/data-model/constants/SettingsObjectTableMetadata.ts
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx
 #: src/pages/settings/applications/components/SettingsApplicationsTable.tsx
@@ -5591,13 +5700,10 @@ msgstr "musí být pole platných emailů"
 #: src/modules/settings/workspace/components/NameField.tsx
 #: src/modules/settings/serverless-functions/components/SettingsServerlessFunctionsTable.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOIdentitiesProvidersForm.tsx
-#: src/modules/settings/security/components/SSO/SettingsSSOIdentitiesProvidersForm.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsTableHeader.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableHeader.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/field-permissions/components/SettingsRolePermissionsObjectLevelObjectFieldPermissionTable.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTableHeader.tsx
-#: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
-#: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/roles/components/SettingsRolesTableHeader.tsx
 #: src/modules/settings/developers/components/SettingsApiKeysTable.tsx
@@ -5613,8 +5719,11 @@ msgstr "Název nesmí být prázdný"
 
 #. js-lingui-id: zaxmAs
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectSettings.tsx
-msgid "Name in both singular (e.g., 'Invoice') and plural (e.g., 'Invoices') forms."
-msgstr "Název v jednotném (<b>např.</b>, 'Faktura') i množném (<b>např.</b>, 'Faktury') čísle."
+msgid ""
+"Name in both singular (e.g., 'Invoice') and plural (e.g., 'Invoices') forms."
+msgstr ""
+"Název v jednotném (<b>např.</b>, 'Faktura') i množném (<b>např.</b>, "
+"'Faktury') čísle."
 
 #. js-lingui-id: 9H6m8L
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx
@@ -5717,13 +5826,10 @@ msgstr "Nový účet"
 
 #. js-lingui-id: zlKiaf
 #: src/modules/settings/accounts/components/SettingsAccountsNewImapSmtpCaldavConnection.tsx
-#: src/modules/settings/accounts/components/SettingsAccountsNewImapSmtpCaldavConnection.tsx
 msgid "New Account"
 msgstr "Nový účet"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
 msgid "New Agent"
@@ -5735,7 +5841,6 @@ msgid "New Approved Access Domain"
 msgstr "Nová schválená přístupová doména"
 
 #. js-lingui-id: wqoYqp
-#: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
 #: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
 msgid "New Emailing Domain"
 msgstr "Nová e-mailová doména"
@@ -5863,8 +5968,12 @@ msgstr "Žádná změna nebyla zjištěna"
 
 #. js-lingui-id: YFLMyY
 #: src/modules/settings/admin-panel/config-variables/components/SettingsAdminConfigVariables.tsx
-msgid "No config variables match your current filters. Try adjusting your filters or search criteria."
-msgstr "Žádné konfigurační proměnné neodpovídají vašim současným filtrům. Zkuste upravit filtry nebo kritéria vyhledávání."
+msgid ""
+"No config variables match your current filters. Try adjusting your filters "
+"or search criteria."
+msgstr ""
+"Žádné konfigurační proměnné neodpovídají vašim současným filtrům. Zkuste "
+"upravit filtry nebo kritéria vyhledávání."
 
 #. js-lingui-id: 4BSfjK
 #: src/modules/settings/data-model/fields/forms/phones/components/SettingsDataModelFieldPhonesForm.tsx
@@ -5884,7 +5993,9 @@ msgstr "Žádná data nejsou dostupná pro vzdálenou tabulku"
 #. js-lingui-id: VwYM0e
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetNoDataDisplay.tsx
 msgid "No data available. Click edit to configure this widget."
-msgstr "Žádná data není k dispozici. Klikněte na upravit a nakonfigurujte tento widget."
+msgstr ""
+"Žádná data není k dispozici. Klikněte na upravit a nakonfigurujte tento "
+"widget."
 
 #. js-lingui-id: pxvJ9B
 #: src/modules/spreadsheet-import/steps/components/ValidationStep/ValidationStep.tsx
@@ -5934,13 +6045,19 @@ msgstr "Pro tento účet nebyly nalezeny žádné složky"
 
 #. js-lingui-id: xlUOps
 #: src/modules/information-banner/components/billing/InformationBannerEndTrialPeriod.tsx
-msgid "No free workflow executions left. End trial period and activate your billing to continue."
-msgstr "Žádné volné spuštění workflowu nezbylo. Ukončete zkušební období a aktivujte si účtování k pokračování."
+msgid ""
+"No free workflow executions left. End trial period and activate your billing "
+"to continue."
+msgstr ""
+"Žádné volné spuštění workflowu nezbylo. Ukončete zkušební období a aktivujte "
+"si účtování k pokračování."
 
 #. js-lingui-id: pxYUeX
 #: src/modules/information-banner/components/billing/InformationBannerEndTrialPeriod.tsx
 msgid "No free workflow executions left. Please contact your admin."
-msgstr "Žádné volné kroky workflow nezbývají. Prosím, kontaktujte svého administrátora."
+msgstr ""
+"Žádné volné kroky workflow nezbývají. Prosím, kontaktujte svého "
+"administrátora."
 
 #. js-lingui-id: S81IYy
 #: src/pages/settings/ai/components/SettingsAgentHandoffTable.tsx
@@ -5996,8 +6113,11 @@ msgstr "Žádná data metrik nejsou k dispozici"
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
-msgid "No models available. Please configure AI models in your workspace settings."
-msgstr "Nejsou dostupné žádné modely. Prosím, nakonfigurujte AI modely v nastavení vašeho pracovního prostoru."
+msgid ""
+"No models available. Please configure AI models in your workspace settings."
+msgstr ""
+"Nejsou dostupné žádné modely. Prosím, nakonfigurujte AI modely v nastavení "
+"vašeho pracovního prostoru."
 
 #. js-lingui-id: daCzI1
 #: src/modules/ui/field/input/components/MultiSelectInput.tsx
@@ -6012,7 +6132,9 @@ msgstr "Žádný výstup není k dispozici"
 #. js-lingui-id: 5pSj4j
 #: src/modules/billing/hooks/useEndSubscriptionTrialPeriod.ts
 msgid "No payment method found. Please update your billing details."
-msgstr "Nenalezen žádný platební prostředek. Prosím, aktualizujte své fakturační údaje."
+msgstr ""
+"Nenalezen žádný platební prostředek. Prosím, aktualizujte své fakturační "
+"údaje."
 
 #. js-lingui-id: kSCxfd
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelSection.tsx
@@ -6110,9 +6232,6 @@ msgstr "Není dostupné ve výchozím zobrazení"
 
 #. js-lingui-id: 0qBE9S
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Not available on Default View"
 msgstr "Není dostupné ve výchozím zobrazení"
 
@@ -6127,7 +6246,6 @@ msgid "Not Found"
 msgstr "Nenalezeno"
 
 #. js-lingui-id: NpVtef
-#: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
 #: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
 msgid "Not Set"
 msgstr "Nenastaveno"
@@ -6196,7 +6314,6 @@ msgid "Object"
 msgstr "Objekt"
 
 #. js-lingui-id: Zrauom
-#: src/modules/settings/data-model/fields/forms/morph-relation/components/SettingsDataModelFieldRelationForm.tsx
 #: src/modules/settings/data-model/fields/forms/morph-relation/components/SettingsDataModelFieldRelationForm.tsx
 msgid "Object destination"
 msgstr "Cíl objektu"
@@ -6280,7 +6397,6 @@ msgstr "na pracovní den nejbližší {ordinalDay} měsíce"
 
 #. js-lingui-id: qF20Rl
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "on weekdays"
 msgstr "na všední dny"
 
@@ -6306,7 +6422,6 @@ msgstr "pouze v {firstMonth} a {secondMonth}"
 
 #. js-lingui-id: scO7qS
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
 msgid "only in {monthName}"
 msgstr "pouze v {monthName}"
 
@@ -6316,7 +6431,6 @@ msgid "only in {remainingMonths} and {lastMonth}"
 msgstr "pouze v {remainingMonths} a {lastMonth}"
 
 #. js-lingui-id: G+ijJ2
-#: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "only on {dayName}"
 msgstr "pouze na {dayName}"
@@ -6434,8 +6548,12 @@ msgstr "Jiné pracovní prostory"
 
 #. js-lingui-id: p5ufK6
 #: src/pages/onboarding/BookCallDecision.tsx
-msgid "Our team can help you set up your workspace to match your specific needs and workflows."
-msgstr "Náš tým vám může pomoci nastavit pracovní prostor tak, aby odpovídal vašim specifickým potřebám a pracovním postupům."
+msgid ""
+"Our team can help you set up your workspace to match your specific needs and "
+"workflows."
+msgstr ""
+"Náš tým vám může pomoci nastavit pracovní prostor tak, aby odpovídal vašim "
+"specifickým potřebám a pracovním postupům."
 
 #. js-lingui-id: xvfn7l
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowOutputSchemaBuilder.tsx
@@ -6651,13 +6769,16 @@ msgstr "Nejprve prosím zahajte své předplatné."
 
 #. js-lingui-id: 6nsIo3
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
-msgid "Please type \"{confirmationValue}\" to confirm you want to delete this API Key. Be aware that any script using this key will stop working."
+msgid ""
+"Please type \"{confirmationValue}\" to confirm you want to delete this API "
+"Key. Be aware that any script using this key will stop working."
 msgstr "Pro zrušení přístupu API klíče zadejte \\"
 
 #. js-lingui-id: GbtYRD
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 msgid "Please type \"yes\" to confirm you want to delete this webhook."
-msgstr "Prosím, napište \"ano\", abyste potvrdili, že chcete smazat tento webhook."
+msgstr ""
+"Prosím, napište \"ano\", abyste potvrdili, že chcete smazat tento webhook."
 
 #. js-lingui-id: BPig2P
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
@@ -6717,7 +6838,6 @@ msgstr "Cena byla aktualizována."
 
 #. js-lingui-id: 0Ni6nR
 #: src/modules/object-record/record-field/ui/form-types/components/FormEmailsFieldInput.tsx
-#: src/modules/object-record/record-field/ui/form-types/components/FormEmailsFieldInput.tsx
 msgid "Primary Email"
 msgstr "Primární e-mail"
 
@@ -6750,7 +6870,6 @@ msgstr "Zpracovává se..."
 #. js-lingui-id: vERlcd
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
 #: src/pages/settings/SettingsProfile.tsx
-#: src/pages/settings/SettingsProfile.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Profile"
 msgstr "Profil"
@@ -6768,7 +6887,8 @@ msgstr "Uveďte údaje o vašem poskytovateli OIDC"
 #. js-lingui-id: AULPv1
 #: src/pages/settings/domains/SettingsDomains.tsx
 msgid "Provision a complete and secure hosting environment on these domains."
-msgstr "Zajistěte kompletní a bezpečné hostingové prostředí na těchto doménách."
+msgstr ""
+"Zajistěte kompletní a bezpečné hostingové prostředí na těchto doménách."
 
 #. js-lingui-id: YJgRqq
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -6776,7 +6896,6 @@ msgid "Pseudo-English"
 msgstr "Pseudo-Angličtina"
 
 #. js-lingui-id: knP82t
-#: src/modules/settings/domains/components/SettingPublicDomain.tsx
 #: src/modules/settings/domains/components/SettingPublicDomain.tsx
 msgid "Public domain"
 msgstr "Veřejná doména"
@@ -6839,8 +6958,11 @@ msgstr "Záznam"
 
 #. js-lingui-id: 2CUci6
 #: src/modules/object-record/hooks/useBatchCreateManyRecords.ts
-msgid "Record creation stopped. {formattedCreatedRecordsCount} records created."
-msgstr "Vytváření záznamů zastaveno. {formattedCreatedRecordsCount} záznamů vytvořeno."
+msgid ""
+"Record creation stopped. {formattedCreatedRecordsCount} records created."
+msgstr ""
+"Vytváření záznamů zastaveno. {formattedCreatedRecordsCount} záznamů "
+"vytvořeno."
 
 #. js-lingui-id: mj1fkT
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
@@ -6848,8 +6970,6 @@ msgid "Record image"
 msgstr "Záznamový obrázek"
 
 #. js-lingui-id: K6/7kH
-#: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
-#: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 msgid "Record label"
 msgstr "Záznamový popisek"
@@ -6882,7 +7002,6 @@ msgstr "URI přesměrování"
 
 #. js-lingui-id: vpZcGd
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
-#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 msgid "Regenerate an API key"
 msgstr "Znovu vygenerujte API klíč"
 
@@ -6907,7 +7026,6 @@ msgid "Relative"
 msgstr "Relativní"
 
 #. js-lingui-id: 5icoS1
-#: src/pages/settings/releases/SettingsReleases.tsx
 #: src/pages/settings/releases/SettingsReleases.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Releases"
@@ -6947,7 +7065,6 @@ msgstr "Odstranit smazaný filtr"
 
 #. js-lingui-id: T/pF0Z
 #: src/modules/favorites/components/PageFavoriteButton.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Remove from favorites"
 msgstr "Odebrat z oblíbených"
@@ -6989,7 +7106,6 @@ msgstr "Přesunout pole"
 
 #. js-lingui-id: BwWIp2
 #: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
-#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
 msgid "Repeat"
 msgstr ""
 
@@ -7005,7 +7121,6 @@ msgstr ""
 
 #. js-lingui-id: G42SNI
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
-#: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Resend email"
 msgstr "Znovu odeslat e-mail"
 
@@ -7016,7 +7131,6 @@ msgid "Reset"
 msgstr "Obnovit"
 
 #. js-lingui-id: 1BEcEg
-#: src/modules/settings/two-factor-authentication/components/DeleteTwoFactorAuthenticationMethod.tsx
 #: src/modules/settings/two-factor-authentication/components/DeleteTwoFactorAuthenticationMethod.tsx
 msgid "Reset 2FA"
 msgstr "Obnovit 2FA"
@@ -7065,12 +7179,10 @@ msgstr "Restartovat"
 
 #. js-lingui-id: 82zWno
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
-#: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 msgid "Restart Import"
 msgstr "Restartovat Import"
 
 #. js-lingui-id: yKu/3Y
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Restore"
 msgstr "Obnovit"
@@ -7162,7 +7274,6 @@ msgstr "Role byla úspěšně aktualizována"
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
-#: src/modules/settings/roles/components/SettingsRolesContainer.tsx
 #: src/modules/settings/roles/components/SettingsRolesContainer.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Roles"
@@ -7283,9 +7394,6 @@ msgstr "Název schématu"
 #: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownFilterInputHeader.tsx
 #: src/modules/navigation/components/MainNavigationDrawerFixedItems.tsx
 #: src/modules/command-menu/hooks/useOpenRecordsSearchPageInCommandMenu.ts
-#: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
-#: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
-#: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
 #: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
 msgid "Search"
 msgstr "Hledat"
@@ -7419,7 +7527,6 @@ msgstr "Hledat operace"
 
 #. js-lingui-id: IMeaSJ
 #: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
-#: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
 msgid "Search records"
 msgstr "Hledání záznamů"
 
@@ -7466,7 +7573,6 @@ msgstr "Tajný klíč (nepovinný)"
 #. js-lingui-id: a3LDKx
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
 #: src/pages/settings/security/SettingsSecurity.tsx
-#: src/pages/settings/security/SettingsSecurity.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Security"
@@ -7488,7 +7594,6 @@ msgid "See {objectLabelPlural}"
 msgstr "Zobrazit {objectLabelPlural}"
 
 #. js-lingui-id: QREcJS
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "See active version"
 msgstr "Zobrazit aktivní verzi"
@@ -7520,16 +7625,11 @@ msgstr "Zobrazit záznamy na všech objektech"
 
 #. js-lingui-id: OpPn5Z
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "See runs"
 msgstr "Zobrazit spuštění"
 
 #. js-lingui-id: gGEfj/
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
 msgid "See version"
 msgstr "Zobrazit verzi"
@@ -7548,8 +7648,6 @@ msgstr "Zobrazit historii verzí"
 
 #. js-lingui-id: qEKLJV
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
 msgid "See workflow"
 msgstr "Zobrazit pracovní postup"
@@ -7667,7 +7765,6 @@ msgid "Send Email"
 msgstr "Odeslat e-mail"
 
 #. js-lingui-id: IoAuJG
-#: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Sending..."
 msgstr "Odesílání..."
@@ -7874,8 +7971,7 @@ msgid "Sixth"
 msgstr "Šestý"
 
 #. js-lingui-id: 6Uau97
-#: src/pages/onboarding/InviteTeam.tsx
-#: src/pages/onboarding/BookCall.tsx
+#: src/pages/onboarding/InviteTeam.tsx src/pages/onboarding/BookCall.tsx
 msgid "Skip"
 msgstr "Přeskočit"
 
@@ -7944,13 +8040,11 @@ msgstr "Omlouváme se, něco se pokazilo"
 #: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowEditActionFindRecords.tsx
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 msgid "Sort"
 msgstr "Seřadit"
 
 #. js-lingui-id: /HgF9q
-#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Sort by"
 msgstr "Třídit podle"
@@ -8008,8 +8102,12 @@ msgstr "Standardní"
 
 #. js-lingui-id: GbQzZA
 #: src/modules/ai/components/AIChatEmptyState.tsx
-msgid "Start a conversation with your AI agent to get workflow insights, task assistance, and process guidance"
-msgstr "Začněte rozhovor se svým AI agentem, abyste získali přehled o pracovních postupech, pomoc s úkoly a vedení procesu"
+msgid ""
+"Start a conversation with your AI agent to get workflow insights, task "
+"assistance, and process guidance"
+msgstr ""
+"Začněte rozhovor se svým AI agentem, abyste získali přehled o pracovních "
+"postupech, pomoc s úkoly a vedení procesu"
 
 #. js-lingui-id: s+K73L
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
@@ -8037,7 +8135,6 @@ msgstr "Stav"
 
 #. js-lingui-id: ygCKqB
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
 msgid "Stop"
 msgstr "Zastavit"
 
@@ -8062,7 +8159,6 @@ msgid "Subdomain"
 msgstr "Subdoména"
 
 #. js-lingui-id: omhc+7
-#: src/pages/settings/domains/SettingsDomain.tsx
 #: src/pages/settings/domains/SettingsDomain.tsx
 msgid "Subdomain already taken"
 msgstr "Subdoména je již zabraná"
@@ -8142,7 +8238,7 @@ msgstr "Úspěšně sloučeno {recordCount} záznamů"
 #. js-lingui-id: nyQWMb
 #: src/modules/spreadsheet-import/components/MatchColumnSelectFieldSelectDropdownContent.tsx
 msgid "Suggested"
-msgstr "Navreen e9"
+msgstr "Navreen"
 
 #. js-lingui-id: AxQiPW
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -8219,8 +8315,6 @@ msgstr "Systémová výzva"
 #. js-lingui-id: D4SseJ
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsTimeZoneSelect.tsx
-#: src/pages/settings/profile/appearance/components/DateTimeSettingsTimeZoneSelect.tsx
-#: src/modules/settings/experience/components/DateTimeSettingsTimeZoneSelect.tsx
 #: src/modules/settings/experience/components/DateTimeSettingsTimeZoneSelect.tsx
 msgid "System settings"
 msgstr "Systémová nastavení"
@@ -8348,7 +8442,8 @@ msgstr "Email spojený s vaším účtem"
 #. js-lingui-id: diO3fm
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerManual.tsx
 msgid "The icon your workflow trigger will display in the command menu"
-msgstr "Ikona, kterou váš spouštěč pracovního postupu zobrazí v příkazové nabídce"
+msgstr ""
+"Ikona, kterou váš spouštěč pracovního postupu zobrazí v příkazové nabídce"
 
 #. js-lingui-id: h8mvCd
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
@@ -8373,8 +8468,12 @@ msgstr "Název vaší organizace"
 
 #. js-lingui-id: L97sPr
 #: src/pages/not-found/NotFound.tsx
-msgid "The page you're seeking is either gone or never was. Let's get you back on track"
-msgstr "Stránka, kterou hledáte, buď zmizela nebo nikdy neexistovala. Pojďme vás dostat zpět na správnou cestu"
+msgid ""
+"The page you're seeking is either gone or never was. Let's get you back on "
+"track"
+msgstr ""
+"Stránka, kterou hledáte, buď zmizela nebo nikdy neexistovala. Pojďme vás "
+"dostat zpět na správnou cestu"
 
 #. js-lingui-id: jrCR2X
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerManual.tsx
@@ -8423,13 +8522,20 @@ msgstr "Tento záznam nemá žádné přidružené soubory."
 
 #. js-lingui-id: /cSDOy
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
-msgid "There are required columns that are not matched or ignored. Do you want to continue?"
-msgstr "Některé povinné sloupce nejsou spojené nebo ignorované. Chcete pokračovat?"
+msgid ""
+"There are required columns that are not matched or ignored. Do you want to "
+"continue?"
+msgstr ""
+"Některé povinné sloupce nejsou spojené nebo ignorované. Chcete pokračovat?"
 
 #. js-lingui-id: luL9RX
 #: src/modules/spreadsheet-import/steps/components/ValidationStep/ValidationStep.tsx
-msgid "There are still some rows that contain errors. Rows with errors will be ignored when submitting."
-msgstr "Stále existují některé řádky, které obsahují chyby. Řádky s chybami budou při odesílání ignorovány."
+msgid ""
+"There are still some rows that contain errors. Rows with errors will be "
+"ignored when submitting."
+msgstr ""
+"Stále existují některé řádky, které obsahují chyby. Řádky s chybami budou "
+"při odesílání ignorovány."
 
 #. js-lingui-id: ynfkhb
 #: src/pages/auth/PasswordReset.tsx
@@ -8453,23 +8559,39 @@ msgstr "Třetí"
 
 #. js-lingui-id: hqCwGc
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
-msgid "This action cannot be undone. This will permanently delete this user and remove them from all their assignments."
-msgstr "Tato akce nemůže být vrácena zpět. Uživatele natrvalo odstraní a odstraní ho z všech přiřazení."
+msgid ""
+"This action cannot be undone. This will permanently delete this user and "
+"remove them from all their assignments."
+msgstr ""
+"Tato akce nemůže být vrácena zpět. Uživatele natrvalo odstraní a odstraní ho "
+"z všech přiřazení."
 
 #. js-lingui-id: bNY3MH
 #: src/pages/settings/ai/components/SettingsAgentDeleteConfirmationModal.tsx
-msgid "This action cannot be undone. This will permanently delete your agent.<0/>Please type in the agent name to confirm."
-msgstr "Tuto akci nelze vrátit zpět. Tím dojde k trvalému smazání vašeho agenta.<0/>Prosím, zadejte jméno agenta pro potvrzení."
+msgid ""
+"This action cannot be undone. This will permanently delete your agent.<0/"
+">Please type in the agent name to confirm."
+msgstr ""
+"Tuto akci nelze vrátit zpět. Tím dojde k trvalému smazání vašeho agenta.<0/"
+">Prosím, zadejte jméno agenta pro potvrzení."
 
 #. js-lingui-id: gWGuHC
 #: src/modules/settings/profile/components/DeleteWorkspace.tsx
-msgid "This action cannot be undone. This will permanently delete your entire workspace. <0/> Please type in your email to confirm."
-msgstr "Tuto akci nelze vrátit zpět. Tímto dojde k trvalému odstranění celého vašeho pracovního prostoru. <0/> Prosím, zadejte váš email k potvrzení."
+msgid ""
+"This action cannot be undone. This will permanently delete your entire "
+"workspace. <0/> Please type in your email to confirm."
+msgstr ""
+"Tuto akci nelze vrátit zpět. Tímto dojde k trvalému odstranění celého vašeho "
+"pracovního prostoru. <0/> Prosím, zadejte váš email k potvrzení."
 
 #. js-lingui-id: igSFzI
 #: src/pages/settings/ai/components/SettingsAgentHandoffTable.tsx
-msgid "This action cannot be undone. This will permanently remove the handoff configuration."
-msgstr "Tuto akci nelze vrátit zpět. Tímto bude trvale odstraněna konfigurace převodu."
+msgid ""
+"This action cannot be undone. This will permanently remove the handoff "
+"configuration."
+msgstr ""
+"Tuto akci nelze vrátit zpět. Tímto bude trvale odstraněna konfigurace "
+"převodu."
 
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
@@ -8494,7 +8616,8 @@ msgstr "Tato role je přiřazena těmto {roleTargetDisplayName}."
 #. js-lingui-id: C/wr0z
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This setting can only be configured through environment variables."
-msgstr "Toto nastavení lze konfigurovat pouze prostřednictvím proměnných prostředí."
+msgstr ""
+"Toto nastavení lze konfigurovat pouze prostřednictvím proměnných prostředí."
 
 #. js-lingui-id: iAubP2
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
@@ -8513,18 +8636,30 @@ msgstr "Tento týden"
 
 #. js-lingui-id: h4VeOo
 #: src/modules/billing/hooks/useBillingWording.ts
-msgid "This will cancel the scheduled interval change and keep your current billing interval ({currentIntervalLabel})."
-msgstr "Toto zruší plánovanou změnu intervalu a zachová váš aktuální fakturační interval ({currentIntervalLabel})."
+msgid ""
+"This will cancel the scheduled interval change and keep your current billing "
+"interval ({currentIntervalLabel})."
+msgstr ""
+"Toto zruší plánovanou změnu intervalu a zachová váš aktuální fakturační "
+"interval ({currentIntervalLabel})."
 
 #. js-lingui-id: XpARoU
 #: src/modules/billing/hooks/useBillingWording.ts
-msgid "This will cancel the scheduled plan change and keep your current plan ({planKeyWord})."
-msgstr "Toto zruší plánovanou změnu plánu a uchová váš současný plán ({planKeyWord})."
+msgid ""
+"This will cancel the scheduled plan change and keep your current plan "
+"({planKeyWord})."
+msgstr ""
+"Toto zruší plánovanou změnu plánu a uchová váš současný plán ({planKeyWord})."
 
 #. js-lingui-id: 4YifBe
 #: src/pages/settings/admin-panel/SettingsAdminConfigVariableDetails.tsx
-msgid "This will revert the database value to environment/default value. The database override will be removed and the system will use the environment settings."
-msgstr "Toto obnoví hodnotu databáze na hodnotu prostředí/výchozí hodnotu. Přepis databáze bude odstraněn a systém použije nastavení prostředí."
+msgid ""
+"This will revert the database value to environment/default value. The "
+"database override will be removed and the system will use the environment "
+"settings."
+msgstr ""
+"Toto obnoví hodnotu databáze na hodnotu prostředí/výchozí hodnotu. Přepis "
+"databáze bude odstraněn a systém použije nastavení prostředí."
 
 #. js-lingui-id: 5g/sE8
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
@@ -8594,7 +8729,8 @@ msgstr "Zítra"
 #. js-lingui-id: YT/cKI
 #: src/modules/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Track your {intervalLabel} workflow credit consumption."
-msgstr "Sledujte spotřebu kreditů ve svém pracovním postupu na {intervalLabel}."
+msgstr ""
+"Sledujte spotřebu kreditů ve svém pracovním postupu na {intervalLabel}."
 
 #. js-lingui-id: lhkaAC
 #: src/modules/billing/components/internal/PlansTags.tsx
@@ -8623,7 +8759,6 @@ msgid "Trigger at hour (UTC)"
 msgstr "Spustit ve hodině (UTC)"
 
 #. js-lingui-id: 4QBmLn
-#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Trigger at minute (UTC)"
 msgstr "Spustit v minutě (UTC)"
@@ -8750,7 +8885,6 @@ msgstr "Neznámá chyba"
 
 #. js-lingui-id: GQCXQS
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
-#: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 msgid "Unlimited contacts"
 msgstr "Neomezený počet kontaktů"
 
@@ -8793,11 +8927,14 @@ msgstr "Aktualizovat informace o agentovi"
 
 #. js-lingui-id: qbg8VE
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
-msgid "Update your account's configuration. Configure any combination of IMAP, SMTP, and CalDAV as needed."
-msgstr "Aktualizujte konfiguraci vašeho účtu. Nastavte libovolnou kombinaci IMAP, SMTP a CalDAV podle potřeby."
+msgid ""
+"Update your account's configuration. Configure any combination of IMAP, "
+"SMTP, and CalDAV as needed."
+msgstr ""
+"Aktualizujte konfiguraci vašeho účtu. Nastavte libovolnou kombinaci IMAP, "
+"SMTP a CalDAV podle potřeby."
 
 #. js-lingui-id: kwkhPe
-#: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 msgid "Upgrade"
 msgstr "Upgrade"
@@ -8835,14 +8972,17 @@ msgstr "URL"
 
 #. js-lingui-id: 6dMpmz
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/WorkflowVersionsActionsConfig.tsx
 msgid "Use as draft"
 msgstr "Použít jako koncept"
 
 #. js-lingui-id: 6kLyt5
 #: src/modules/auth/sign-in-up/components/internal/SignInUpTwoFactorAuthenticationProvision.tsx
-msgid "Use authenticator apps and browser extensions like 1Password, Authy, Microsoft Authenticator to generate one-time passwords"
-msgstr "Používejte autentizační aplikace a rozšíření prohlížeče jako 1Password, Authy, Microsoft Authenticator pro generování jednorázových hesel"
+msgid ""
+"Use authenticator apps and browser extensions like 1Password, Authy, "
+"Microsoft Authenticator to generate one-time passwords"
+msgstr ""
+"Používejte autentizační aplikace a rozšíření prohlížeče jako 1Password, "
+"Authy, Microsoft Authenticator pro generování jednorázových hesel"
 
 #. js-lingui-id: c6uZUV
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateSubTitle.ts
@@ -8876,7 +9016,6 @@ msgstr "Informace o uživateli"
 
 #. js-lingui-id: IjyOjp
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
-#: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
 msgid "User is not logged in"
 msgstr "Uživatel není přihlášen"
 
@@ -8893,7 +9032,8 @@ msgstr "Uživatelé"
 #. js-lingui-id: vUr1/5
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Using default application value. Configure via environment variables."
-msgstr "Použita výchozí hodnota aplikace. Nakonfigurujte pomocí proměnných prostředí."
+msgstr ""
+"Použita výchozí hodnota aplikace. Nakonfigurujte pomocí proměnných prostředí."
 
 #. js-lingui-id: 8Drj7i
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
@@ -8910,8 +9050,6 @@ msgstr "Ověřit data"
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTabEnvironmentVariableTableRow.tsx
 #: src/modules/settings/components/SettingsDnsRecordsTable.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableValueInput.tsx
-#: src/modules/settings/admin-panel/config-variables/components/ConfigVariableValueInput.tsx
-#: src/modules/page-layout/widgets/graph/graphWidgetGaugeChart/components/GraphWidgetGaugeChart.tsx
 #: src/modules/page-layout/widgets/graph/graphWidgetGaugeChart/components/GraphWidgetGaugeChart.tsx
 #: src/modules/command-menu/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 msgid "Value"
@@ -8919,11 +9057,13 @@ msgstr "Hodnota"
 
 #. js-lingui-id: UZHvVi
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
-msgid "Value is set in the server environment, it may be a different value on the worker."
-msgstr "Hodnota je nastavena v prostředí serveru, může být jiná než pracovní hodnoty."
+msgid ""
+"Value is set in the server environment, it may be a different value on the "
+"worker."
+msgstr ""
+"Hodnota je nastavena v prostředí serveru, může být jiná než pracovní hodnoty."
 
 #. js-lingui-id: fXVIZq
-#: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
 msgid "Values"
 msgstr "Hodnoty"
@@ -9027,7 +9167,6 @@ msgstr "Zobrazit úlohy"
 #. js-lingui-id: ecVcAx
 #: src/modules/ai/components/AIChatTab.tsx
 #: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
-#: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
 msgid "View Previous AI Chats"
 msgstr "Zobrazit předchozí AI diskuse"
 
@@ -9105,13 +9244,21 @@ msgstr "Aktivujeme váš placený plán. Chcete pokračovat?"
 
 #. js-lingui-id: KIfYq0
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
-msgid "We will send a POST request to this endpoint for each new event in application/json format"
-msgstr "Na tento koncový bod budeme zasílat POST požadavky při každé nové události ve formátu application/json"
+msgid ""
+"We will send a POST request to this endpoint for each new event in "
+"application/json format"
+msgstr ""
+"Na tento koncový bod budeme zasílat POST požadavky při každé nové události "
+"ve formátu application/json"
 
 #. js-lingui-id: K4HbuR
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
-msgid "We will send a POST request to this endpoint for each new event in application/json format."
-msgstr "Na tento koncový bod budeme zasílat POST požadavek při každé nové události ve formátu application/json."
+msgid ""
+"We will send a POST request to this endpoint for each new event in "
+"application/json format."
+msgstr ""
+"Na tento koncový bod budeme zasílat POST požadavek při každé nové události "
+"ve formátu application/json."
 
 #. js-lingui-id: PI4LiB
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
@@ -9151,8 +9298,6 @@ msgstr "Webhook ID je vyžadován pro aktualizaci"
 #. js-lingui-id: v1kQyJ
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/developers/webhooks/components/SettingsWebhooks.tsx
-#: src/pages/settings/developers/webhooks/components/SettingsWebhooks.tsx
-#: src/pages/settings/developers/webhooks/components/SettingsWebhooks.tsx
 msgid "Webhooks"
 msgstr "Webhooky"
 
@@ -9172,7 +9317,8 @@ msgstr "Vítejte ve {workspaceName}"
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 msgid "What this API can do: Select a user role to define its permissions."
-msgstr "Co může tato API dělat: Vyberte roli uživatele pro definování jeho oprávnění."
+msgstr ""
+"Co může tato API dělat: Vyberte roli uživatele pro definování jeho oprávnění."
 
 #. js-lingui-id: C51ilI
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx
@@ -9310,7 +9456,6 @@ msgstr "Osa X"
 
 #. js-lingui-id: sbYPEJ
 #: src/modules/command-menu/pages/page-layout/utils/__tests__/isChartSettingDisabled.test.ts
-#: src/modules/command-menu/pages/page-layout/utils/__tests__/isChartSettingDisabled.test.ts
 msgid "X Axis Data"
 msgstr "Data osy X"
 
@@ -9320,8 +9465,7 @@ msgid "Y axis"
 msgstr "Osa Y"
 
 #. js-lingui-id: 7qI8sJ
-#: src/utils/date-utils.ts
-#: src/modules/billing/hooks/useBillingWording.ts
+#: src/utils/date-utils.ts src/modules/billing/hooks/useBillingWording.ts
 msgid "year"
 msgstr "rok"
 
@@ -9337,7 +9481,6 @@ msgstr "let"
 
 #. js-lingui-id: 3d1wCB
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
-#: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 msgid "yes"
 msgstr "ano"
@@ -9369,17 +9512,23 @@ msgstr "Nemáte povoleno vytvářet záznamy pro tento objekt"
 
 #. js-lingui-id: OLE3Ky
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
-msgid "You can set up any combination of IMAP (receiving emails), SMTP (sending emails), and CalDAV (calendar sync)."
-msgstr "Můžete nastavit libovolnou kombinaci IMAP (přijímání e-mailů), SMTP (odesílání e-mailů) a CalDAV (synchronizace kalendáře)."
+msgid ""
+"You can set up any combination of IMAP (receiving emails), SMTP (sending "
+"emails), and CalDAV (calendar sync)."
+msgstr ""
+"Můžete nastavit libovolnou kombinaci IMAP (přijímání e-mailů), SMTP "
+"(odesílání e-mailů) a CalDAV (synchronizace kalendáře)."
 
 #. js-lingui-id: aiJY7y
 #: src/modules/settings/integrations/database-connection/components/SettingsIntegrationEditDatabaseConnectionContent.tsx
 msgid ""
 "You cannot edit this connection because it has tracked tables.\n"
-"If you need to make changes, please create a new connection or unsync the tables first."
+"If you need to make changes, please create a new connection or unsync the "
+"tables first."
 msgstr ""
 "Nelze upravit toto připojení, lze se sledovanými tabulkami.\n"
-"Pokud je třeba provést změny, vytvořte nové připojení nebo nejprve zrušte synchronizaci tabulek."
+"Pokud je třeba provést změny, vytvořte nové připojení nebo nejprve zrušte "
+"synchronizaci tabulek."
 
 #. js-lingui-id: eqUj2Z
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay.tsx
@@ -9403,8 +9552,12 @@ msgstr "bude vám účtováno ${enterprisePrice} za uživatele za měsíc"
 
 #. js-lingui-id: u3S6u8
 #: src/modules/billing/hooks/useBillingWording.ts
-msgid "You will be charged ${monthlyPrice} per user per month billed monthly. The change will be applied the {beautifiedRenewDate}."
-msgstr "Bude vám účtováno ${monthlyPrice} na uživatele měsíčně fakturováno měsíčně. Změna bude provedena {beautifiedRenewDate}."
+msgid ""
+"You will be charged ${monthlyPrice} per user per month billed monthly. The "
+"change will be applied the {beautifiedRenewDate}."
+msgstr ""
+"Bude vám účtováno ${monthlyPrice} na uživatele měsíčně fakturováno měsíčně. "
+"Změna bude provedena {beautifiedRenewDate}."
 
 #. js-lingui-id: /T5zAB
 #: src/modules/billing/hooks/useBillingWording.ts
@@ -9413,8 +9566,12 @@ msgstr "Bude vám účtováno ${proPrice} za uživatele za měsíc"
 
 #. js-lingui-id: W3k5LA
 #: src/modules/billing/hooks/useBillingWording.ts
-msgid "You will be charged ${yearlyPrice} per user per year billed annually. A prorata with your current subscription will be applied."
-msgstr "Bude vám účtováno ${yearlyPrice} na uživatele ročně fakturováno ročně. S vaším současným předplatným bude uplatněna poměrná část."
+msgid ""
+"You will be charged ${yearlyPrice} per user per year billed annually. A "
+"prorata with your current subscription will be applied."
+msgstr ""
+"Bude vám účtováno ${yearlyPrice} na uživatele ročně fakturováno ročně. S "
+"vaším současným předplatným bude uplatněna poměrná část."
 
 #. js-lingui-id: C2d+Xk
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
@@ -9423,8 +9580,12 @@ msgstr "Ztratíte všechna vaše mapování."
 
 #. js-lingui-id: Cl+hUj
 #: src/pages/settings/domains/SettingsDomain.tsx
-msgid "You're about to change your workspace subdomain. This action will log out all users."
-msgstr "Chystáte se změnit subdoménu své pracovní oblasti. Tato akce odhlásí všechny uživatele."
+msgid ""
+"You're about to change your workspace subdomain. This action will log out "
+"all users."
+msgstr ""
+"Chystáte se změnit subdoménu své pracovní oblasti. Tato akce odhlásí všechny "
+"uživatele."
 
 #. js-lingui-id: tOPGvO
 #: src/modules/apollo/services/apollo.factory.ts
@@ -9458,8 +9619,14 @@ msgstr "Vaše zkušební období skončí a "
 
 #. js-lingui-id: 2Fkd7s
 #: src/modules/billing/hooks/useBillingWording.ts
-msgid "Your trial period will end, and you will be charged ${yearlyPrice} per user per year billed annually. A prorata with your current subscription will be applied."
-msgstr "Vaše zkušební období skončí a bude vám účtováno ${yearlyPrice} na uživatele ročně fakturováno ročně. S vaším současným předplatným bude uplatněna poměrná část."
+msgid ""
+"Your trial period will end, and you will be charged ${yearlyPrice} per user "
+"per year billed annually. A prorata with your current subscription will be "
+"applied."
+msgstr ""
+"Vaše zkušební období skončí a bude vám účtováno ${yearlyPrice} na uživatele "
+"ročně fakturováno ročně. S vaším současným předplatným bude uplatněna "
+"poměrná část."
 
 #. js-lingui-id: YQK8fJ
 #: src/pages/auth/SignInUp.tsx
@@ -9473,8 +9640,12 @@ msgstr "Vaše pracovní plošina nemá aktivní předplatné."
 
 #. js-lingui-id: QBTEtW
 #: src/modules/information-banner/components/billing/InformationBannerNoBillingSubscription.tsx
-msgid "Your workspace doesn't have an active subscription. Please contact your admin."
-msgstr "Vaše pracovní plošina nemá aktivní předplatné. Prosím, kontaktujte svého administrátora."
+msgid ""
+"Your workspace doesn't have an active subscription. Please contact your "
+"admin."
+msgstr ""
+"Vaše pracovní plošina nemá aktivní předplatné. Prosím, kontaktujte svého "
+"administrátora."
 
 #. js-lingui-id: RhNbPE
 #: src/modules/billing/components/SettingsBillingContent.tsx
