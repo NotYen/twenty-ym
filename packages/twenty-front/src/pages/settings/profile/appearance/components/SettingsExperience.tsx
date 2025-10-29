@@ -8,6 +8,7 @@ import { getSettingsPath } from 'twenty-shared/utils';
 import { H2Title } from 'twenty-ui/display';
 import { ColorSchemePicker } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
+import { FontSizePicker } from '~/pages/settings/profile/appearance/components/FontSizePicker';
 import { LocalePicker } from '~/pages/settings/profile/appearance/components/LocalePicker';
 
 export const SettingsExperience = () => {
@@ -43,6 +44,14 @@ export const SettingsExperience = () => {
             description={t`Select your preferred language`}
           />
           <LocalePicker />
+        </Section>
+
+        <Section>
+          <H2Title
+            title={t`Font Size`}
+            description={t`Adjust the text size across the entire application`}
+          />
+          <FontSizePicker />
         </Section>
 
         <Section>

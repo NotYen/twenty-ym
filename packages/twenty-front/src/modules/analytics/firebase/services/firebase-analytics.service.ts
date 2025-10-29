@@ -1,5 +1,6 @@
-import { initializeApp, FirebaseApp } from 'firebase/app';
-import { getAnalytics, Analytics, isSupported } from 'firebase/analytics';
+import { Analytics, getAnalytics, isSupported } from 'firebase/analytics';
+import { FirebaseApp, initializeApp } from 'firebase/app';
+import { logDebug } from '~/utils/logDebug';
 import { firebaseConfig, isFirebaseEnabled } from '../config/firebase.config';
 
 let firebaseApp: FirebaseApp | null = null;
@@ -29,13 +30,13 @@ export const initializeFirebaseAnalytics = async (): Promise<Analytics | null> =
     // 初始化 Firebase App
     if (!firebaseApp) {
       firebaseApp = initializeApp(firebaseConfig);
-      console.log('[Firebase] Firebase App 已初始化');
+      logDebug('[Firebase] Firebase App 已初始化');
     }
 
     // 初始化 Analytics
     analytics = getAnalytics(firebaseApp);
     isInitialized = true;
-    console.log('[Firebase] Firebase Analytics 已初始化');
+    logDebug('[Firebase] Firebase Analytics 已初始化');
 
     return analytics;
   } catch (error) {

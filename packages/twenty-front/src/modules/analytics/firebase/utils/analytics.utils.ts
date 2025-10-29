@@ -1,4 +1,5 @@
-import { logEvent, setUserProperties, setUserId } from 'firebase/analytics';
+import { logEvent, setUserId, setUserProperties } from 'firebase/analytics';
+import { logDebug } from '~/utils/logDebug';
 import { getFirebaseAnalytics } from '../services/firebase-analytics.service';
 
 // 記錄自定義事件
@@ -11,7 +12,7 @@ export const trackEvent = (
 
   try {
     logEvent(analytics, eventName, params);
-    console.log(`[GA] Event tracked: ${eventName}`, params);
+    logDebug(`[GA] Event tracked: ${eventName}`, params);
   } catch (error) {
     console.error('[GA] 追蹤事件失敗:', error);
   }
@@ -24,7 +25,7 @@ export const setAnalyticsUserId = (userId: string): void => {
 
   try {
     setUserId(analytics, userId);
-    console.log(`[GA] User ID set: ${userId}`);
+    logDebug(`[GA] User ID set: ${userId}`);
   } catch (error) {
     console.error('[GA] 設置用戶 ID 失敗:', error);
   }
@@ -39,7 +40,7 @@ export const setAnalyticsUserProperties = (
 
   try {
     setUserProperties(analytics, properties);
-    console.log('[GA] User properties set:', properties);
+    logDebug('[GA] User properties set:', properties);
   } catch (error) {
     console.error('[GA] 設置用戶屬性失敗:', error);
   }
