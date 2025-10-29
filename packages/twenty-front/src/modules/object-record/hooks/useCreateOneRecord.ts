@@ -23,9 +23,11 @@ import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { computeOptimisticCreateRecordBaseRecordInput } from '@/object-record/utils/computeOptimisticCreateRecordBaseRecordInput';
 import { computeOptimisticRecordFromInput } from '@/object-record/utils/computeOptimisticRecordFromInput';
 import { getCreateOneRecordMutationResponseField } from '@/object-record/utils/getCreateOneRecordMutationResponseField';
+import { getForeignKeyNameFromRelationFieldName } from '@/object-record/utils/getForeignKeyNameFromRelationFieldName';
 import { sanitizeRecordInput } from '@/object-record/utils/sanitizeRecordInput';
 import { useRecoilValue } from 'recoil';
 import { CustomError, isDefined } from 'twenty-shared/utils';
+import { FieldMetadataType, RelationType } from '~/generated-metadata/graphql';
 type useCreateOneRecordProps = {
   objectNameSingular: string;
   recordGqlFields?: RecordGqlOperationGqlRecordFields;
@@ -83,10 +85,44 @@ export const useCreateOneRecord = <
 
     const idForCreation = recordInput.id ?? v4();
 
+    // 如果是创建 salesquote 记录且没有提供 quotenumber，自动生成
+    const finalRecordInput: Partial<ObjectRecord> = { ...recordInput };
+    if (
+      objectMetadataItem.nameSingular === 'salesquote' &&
+      !finalRecordInput.quotenumber
+    ) {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      finalRecordInput.quotenumber = `Q-${year}${month}${day}${hours}${minutes}${seconds}`;
+    }
+
+    // 处理可空的关系字段：将 undefined 转换为 null，避免 Apollo Client 缓存写入错误
+    // 这确保 GraphQL 查询中声明的字段在数据对象中都有有效值（null 而不是 undefined）
+    objectMetadataItem.fields.forEach((field) => {
+      if (
+        field.type === FieldMetadataType.RELATION &&
+        field.relation?.type === RelationType.MANY_TO_ONE &&
+        field.isNullable === true
+      ) {
+        const foreignKeyName = getForeignKeyNameFromRelationFieldName(
+          field.name,
+        );
+        if (finalRecordInput[foreignKeyName] === undefined) {
+          finalRecordInput[foreignKeyName] = null;
+        }
+      }
+    });
+
     const sanitizedInput = {
       ...sanitizeRecordInput({
         objectMetadataItem,
-        recordInput,
+        recordInput: finalRecordInput,
       }),
       id: idForCreation,
     };
@@ -98,7 +134,7 @@ export const useCreateOneRecord = <
       objectMetadataItems,
       recordInput: {
         ...computeOptimisticCreateRecordBaseRecordInput(objectMetadataItem),
-        ...recordInput,
+        ...finalRecordInput,
         id: idForCreation,
       },
       objectPermissionsByObjectMetadataId,
