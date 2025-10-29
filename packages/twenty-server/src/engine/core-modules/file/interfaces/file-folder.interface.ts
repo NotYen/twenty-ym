@@ -5,6 +5,7 @@ import { type KebabCase } from 'type-fest';
 export enum FileFolder {
   ProfilePicture = 'profile-picture',
   WorkspaceLogo = 'workspace-logo',
+  WorkspaceBackground = 'workspace-background',
   Attachment = 'attachment',
   PersonPicture = 'person-picture',
   ServerlessFunction = 'serverless-function',
@@ -26,6 +27,9 @@ export const fileFolderConfigs: Record<FileFolder, FileFolderConfig> = {
     ignoreExpirationToken: true,
   },
   [FileFolder.WorkspaceLogo]: {
+    ignoreExpirationToken: true,
+  },
+  [FileFolder.WorkspaceBackground]: {
     ignoreExpirationToken: true,
   },
   [FileFolder.Attachment]: {

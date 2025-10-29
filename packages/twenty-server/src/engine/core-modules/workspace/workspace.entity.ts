@@ -1,6 +1,7 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 
 import { IDField } from '@ptc-org/nestjs-query-graphql';
+import GraphQLJSON from 'graphql-type-json';
 import { WorkspaceActivationStatus } from 'twenty-shared/workspace';
 import {
   Check,
@@ -67,6 +68,14 @@ export class WorkspaceEntity {
   @Field({ nullable: true })
   @Column({ nullable: true })
   logo?: string;
+
+  @Field({ nullable: true })
+  @Column({ nullable: true })
+  backgroundImage?: string;
+
+  @Field(() => GraphQLJSON, { nullable: true })
+  @Column({ type: 'jsonb', nullable: true })
+  backgroundImageSettings?: Record<string, any>;
 
   @Field({ nullable: true })
   @Column({ nullable: true })

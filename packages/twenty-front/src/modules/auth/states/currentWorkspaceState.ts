@@ -28,6 +28,14 @@ export type CurrentWorkspace = Pick<
   | 'routerModel'
 > & {
   defaultRole?: Omit<Role, 'workspaceMembers' | 'agents' | 'apiKeys'> | null;
+  backgroundImage?: string | null;
+  backgroundImageSettings?: {
+    opacity: number;
+    scale: number;
+    position: { x: number; y: number };
+    size: string;
+    repeat: string;
+  } | null;
 };
 
 export const currentWorkspaceState = createState<CurrentWorkspace | null>({

@@ -10,4 +10,3 @@ export const usePageTracking = () => {
     trackPageView(location.pathname + location.search, document.title);
   }, [location]);
 };
-

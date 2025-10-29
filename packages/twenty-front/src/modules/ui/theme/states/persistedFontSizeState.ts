@@ -9,4 +9,3 @@ export const persistedFontSizeState = atom<FontSizeMultiplier>({
   default: 1.0,
   effects: [localStorageEffect()],
 });
-

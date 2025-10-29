@@ -18,4 +18,3 @@ export const useFirebaseAnalytics = () => {
 
   return { analytics, isLoading };
 };
-

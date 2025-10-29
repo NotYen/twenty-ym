@@ -125,7 +125,12 @@ export const useDeleteOneRecord = ({
             console.log('6. Mutation update callback, data:', data);
             const record = data?.[mutationResponseField];
             if (!isDefined(record) || !shouldHandleOptimisticCache) {
-              console.log('7. 跳过 cache 更新, record:', record, 'shouldHandle:', shouldHandleOptimisticCache);
+              console.log(
+                '7. 跳过 cache 更新, record:',
+                record,
+                'shouldHandle:',
+                shouldHandleOptimisticCache,
+              );
               return;
             }
 
@@ -185,7 +190,10 @@ export const useDeleteOneRecord = ({
         type: 'delete-one',
       });
 
-      console.log('12. 删除完成！返回结果:', deletedRecord.data?.[mutationResponseField]);
+      console.log(
+        '12. 删除完成！返回结果:',
+        deletedRecord.data?.[mutationResponseField],
+      );
       return deletedRecord.data?.[mutationResponseField] ?? null;
     },
     [

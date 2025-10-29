@@ -12,8 +12,8 @@ import { DEACTIVATE_WORKFLOW_VERSION } from '@/workflow/graphql/mutations/deacti
 import { type WorkflowVersion } from '@/workflow/types/Workflow';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    type DeactivateWorkflowVersionMutation,
-    type DeactivateWorkflowVersionMutationVariables,
+  type DeactivateWorkflowVersionMutation,
+  type DeactivateWorkflowVersionMutationVariables,
 } from '~/generated-metadata/graphql';
 import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
 

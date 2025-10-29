@@ -1,3 +1,4 @@
+import { WorkspaceBackgroundManager } from '@/settings/workspace/components/WorkspaceBackgroundManager';
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
 import { FormatPreferencesSettings } from '@/settings/experience/components/FormatPreferencesSettings';
 import { SubMenuTopBarContainer } from '@/ui/layout/page/components/SubMenuTopBarContainer';
@@ -62,6 +63,14 @@ export const SettingsExperience = () => {
           <FormatPreferencesSettings />
         </Section>
         {/* Unified into FormatPreferencesSettings */}
+
+        <Section>
+          <H2Title
+            title={t`Workspace Background`}
+            description={t`Customize the background image for your workspace`}
+          />
+          <WorkspaceBackgroundManager />
+        </Section>
       </SettingsPageContainer>
     </SubMenuTopBarContainer>
   );

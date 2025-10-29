@@ -37,4 +37,6 @@ export enum CoreObjectNameSingular {
   MessageChannelMessageAssociation = 'messageChannelMessageAssociation',
   WorkflowVersion = 'workflowVersion',
   WorkflowRun = 'workflowRun',
+  SalesQuote = 'salesquote',
+  SalesQuoteLineItem = 'salesquotelineitem',
 }

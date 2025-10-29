@@ -2,9 +2,15 @@ import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -39,7 +45,7 @@ export type AdminPanelHealthServiceData = {
 
 export enum AdminPanelHealthServiceStatus {
   OPERATIONAL = 'OPERATIONAL',
-  OUTAGE = 'OUTAGE'
+  OUTAGE = 'OUTAGE',
 }
 
 export type AdminPanelWorkerQueueHealth = {
@@ -150,7 +156,7 @@ export enum AggregateOperations {
   MIN = 'MIN',
   PERCENTAGE_EMPTY = 'PERCENTAGE_EMPTY',
   PERCENTAGE_NOT_EMPTY = 'PERCENTAGE_NOT_EMPTY',
-  SUM = 'SUM'
+  SUM = 'SUM',
 }
 
 export type Analytics = {
@@ -161,7 +167,7 @@ export type Analytics = {
 
 export enum AnalyticsType {
   PAGEVIEW = 'PAGEVIEW',
-  TRACK = 'TRACK'
+  TRACK = 'TRACK',
 }
 
 export type ApiConfig = {
@@ -307,7 +313,7 @@ export enum AxisNameDisplay {
   BOTH = 'BOTH',
   NONE = 'NONE',
   X = 'X',
-  Y = 'Y'
+  Y = 'Y',
 }
 
 export type BarChartConfiguration = {
@@ -335,7 +341,7 @@ export type BarChartConfiguration = {
 /** Display mode for bar charts with secondary grouping */
 export enum BarChartGroupMode {
   GROUPED = 'GROUPED',
-  STACKED = 'STACKED'
+  STACKED = 'STACKED',
 }
 
 export type Billing = {
@@ -384,7 +390,7 @@ export type BillingMeteredProductUsageOutput = {
 /** The different billing plans available */
 export enum BillingPlanKey {
   ENTERPRISE = 'ENTERPRISE',
-  PRO = 'PRO'
+  PRO = 'PRO',
 }
 
 export type BillingPlanOutput = {
@@ -435,7 +441,7 @@ export type BillingProductDto = {
 /** The different billing products available */
 export enum BillingProductKey {
   BASE_PRODUCT = 'BASE_PRODUCT',
-  WORKFLOW_NODE_EXECUTION = 'WORKFLOW_NODE_EXECUTION'
+  WORKFLOW_NODE_EXECUTION = 'WORKFLOW_NODE_EXECUTION',
 }
 
 export type BillingProductMetadata = {
@@ -499,7 +505,7 @@ export type BillingUpdateOutput = {
 
 export enum BillingUsageType {
   LICENSED = 'LICENSED',
-  METERED = 'METERED'
+  METERED = 'METERED',
 }
 
 export type BooleanFieldComparison = {
@@ -509,7 +515,7 @@ export type BooleanFieldComparison = {
 
 export enum CalendarChannelVisibility {
   METADATA = 'METADATA',
-  SHARE_EVERYTHING = 'SHARE_EVERYTHING'
+  SHARE_EVERYTHING = 'SHARE_EVERYTHING',
 }
 
 export type Captcha = {
@@ -520,7 +526,7 @@ export type Captcha = {
 
 export enum CaptchaDriverType {
   GOOGLE_RECAPTCHA = 'GOOGLE_RECAPTCHA',
-  TURNSTILE = 'TURNSTILE'
+  TURNSTILE = 'TURNSTILE',
 }
 
 export type ChannelSyncSuccess = {
@@ -555,7 +561,7 @@ export type ComputeStepOutputSchemaInput = {
 export enum ConfigSource {
   DATABASE = 'DATABASE',
   DEFAULT = 'DEFAULT',
-  ENVIRONMENT = 'ENVIRONMENT'
+  ENVIRONMENT = 'ENVIRONMENT',
 }
 
 export type ConfigVariable = {
@@ -575,7 +581,7 @@ export enum ConfigVariableType {
   BOOLEAN = 'BOOLEAN',
   ENUM = 'ENUM',
   NUMBER = 'NUMBER',
-  STRING = 'STRING'
+  STRING = 'STRING',
 }
 
 export enum ConfigVariablesGroup {
@@ -599,7 +605,7 @@ export enum ConfigVariablesGroup {
   STORAGE_CONFIG = 'STORAGE_CONFIG',
   SUPPORT_CHAT_CONFIG = 'SUPPORT_CHAT_CONFIG',
   TOKENS_DURATION = 'TOKENS_DURATION',
-  TWO_FACTOR_AUTHENTICATION = 'TWO_FACTOR_AUTHENTICATION'
+  TWO_FACTOR_AUTHENTICATION = 'TWO_FACTOR_AUTHENTICATION',
 }
 
 export type ConfigVariablesGroupData = {
@@ -991,7 +997,7 @@ export enum DatabaseEventAction {
   DESTROYED = 'DESTROYED',
   RESTORED = 'RESTORED',
   UPDATED = 'UPDATED',
-  UPSERTED = 'UPSERTED'
+  UPSERTED = 'UPSERTED',
 }
 
 export type DatabaseEventTrigger = {
@@ -1107,7 +1113,7 @@ export enum DistantTableUpdate {
   COLUMNS_ADDED = 'COLUMNS_ADDED',
   COLUMNS_DELETED = 'COLUMNS_DELETED',
   COLUMNS_TYPE_CHANGED = 'COLUMNS_TYPE_CHANGED',
-  TABLE_DELETED = 'TABLE_DELETED'
+  TABLE_DELETED = 'TABLE_DELETED',
 }
 
 export type DomainRecord = {
@@ -1170,14 +1176,14 @@ export type EmailingDomain = {
 };
 
 export enum EmailingDomainDriver {
-  AWS_SES = 'AWS_SES'
+  AWS_SES = 'AWS_SES',
 }
 
 export enum EmailingDomainStatus {
   FAILED = 'FAILED',
   PENDING = 'PENDING',
   TEMPORARY_FAILURE = 'TEMPORARY_FAILURE',
-  VERIFIED = 'VERIFIED'
+  VERIFIED = 'VERIFIED',
 }
 
 export type ExecuteServerlessFunctionInput = {
@@ -1225,7 +1231,7 @@ export enum FeatureFlagKey {
   IS_STRIPE_INTEGRATION_ENABLED = 'IS_STRIPE_INTEGRATION_ENABLED',
   IS_UNIQUE_INDEXES_ENABLED = 'IS_UNIQUE_INDEXES_ENABLED',
   IS_WORKFLOW_RUN_STOPPAGE_ENABLED = 'IS_WORKFLOW_RUN_STOPPAGE_ENABLED',
-  IS_WORKSPACE_MIGRATION_V2_ENABLED = 'IS_WORKSPACE_MIGRATION_V2_ENABLED'
+  IS_WORKSPACE_MIGRATION_V2_ENABLED = 'IS_WORKSPACE_MIGRATION_V2_ENABLED',
 }
 
 export type Field = {
@@ -1306,7 +1312,7 @@ export enum FieldMetadataType {
   SELECT = 'SELECT',
   TEXT = 'TEXT',
   TS_VECTOR = 'TS_VECTOR',
-  UUID = 'UUID'
+  UUID = 'UUID',
 }
 
 export type FieldPermission = {
@@ -1344,12 +1350,13 @@ export enum FileFolder {
   ProfilePicture = 'ProfilePicture',
   ServerlessFunction = 'ServerlessFunction',
   ServerlessFunctionToDelete = 'ServerlessFunctionToDelete',
-  WorkspaceLogo = 'WorkspaceLogo'
+  WorkspaceBackground = 'WorkspaceBackground',
+  WorkspaceLogo = 'WorkspaceLogo',
 }
 
 export enum FilterIs {
   NotNull = 'NotNull',
-  Null = 'Null'
+  Null = 'Null',
 }
 
 export type FindAvailableSsoidpOutput = {
@@ -1417,7 +1424,7 @@ export enum GraphOrderBy {
   FIELD_ASC = 'FIELD_ASC',
   FIELD_DESC = 'FIELD_DESC',
   VALUE_ASC = 'VALUE_ASC',
-  VALUE_DESC = 'VALUE_DESC'
+  VALUE_DESC = 'VALUE_DESC',
 }
 
 /** Type of graph widget */
@@ -1427,7 +1434,7 @@ export enum GraphType {
   HORIZONTAL_BAR = 'HORIZONTAL_BAR',
   LINE = 'LINE',
   PIE = 'PIE',
-  VERTICAL_BAR = 'VERTICAL_BAR'
+  VERTICAL_BAR = 'VERTICAL_BAR',
 }
 
 export type GridPosition = {
@@ -1450,7 +1457,7 @@ export enum HttpMethod {
   GET = 'GET',
   PATCH = 'PATCH',
   POST = 'POST',
-  PUT = 'PUT'
+  PUT = 'PUT',
 }
 
 export enum HealthIndicatorId {
@@ -1458,12 +1465,12 @@ export enum HealthIndicatorId {
   connectedAccount = 'connectedAccount',
   database = 'database',
   redis = 'redis',
-  worker = 'worker'
+  worker = 'worker',
 }
 
 export enum IdentityProviderType {
   OIDC = 'OIDC',
-  SAML = 'SAML'
+  SAML = 'SAML',
 }
 
 export type IframeConfiguration = {
@@ -1505,12 +1512,10 @@ export type Index = {
   updatedAt: Scalars['DateTime'];
 };
 
-
 export type IndexIndexFieldMetadatasArgs = {
   filter?: IndexFieldFilter;
   paging?: CursorPaging;
 };
-
 
 export type IndexObjectMetadataArgs = {
   filter?: ObjectFilter;
@@ -1583,7 +1588,7 @@ export type IndexObjectMetadataConnection = {
 /** Type of the index */
 export enum IndexType {
   BTREE = 'BTREE',
-  GIN = 'GIN'
+  GIN = 'GIN',
 }
 
 export type InitiateTwoFactorAuthenticationProvisioningOutput = {
@@ -1612,7 +1617,7 @@ export enum JobState {
   FAILED = 'FAILED',
   PRIORITIZED = 'PRIORITIZED',
   WAITING = 'WAITING',
-  WAITING_CHILDREN = 'WAITING_CHILDREN'
+  WAITING_CHILDREN = 'WAITING_CHILDREN',
 }
 
 export type LineChartConfiguration = {
@@ -1663,7 +1668,7 @@ export type LoginTokenOutput = {
 export enum MessageChannelVisibility {
   METADATA = 'METADATA',
   SHARE_EVERYTHING = 'SHARE_EVERYTHING',
-  SUBJECT = 'SUBJECT'
+  SUBJECT = 'SUBJECT',
 }
 
 export enum ModelProvider {
@@ -1671,7 +1676,7 @@ export enum ModelProvider {
   NONE = 'NONE',
   OPENAI = 'OPENAI',
   OPENAI_COMPATIBLE = 'OPENAI_COMPATIBLE',
-  XAI = 'XAI'
+  XAI = 'XAI',
 }
 
 export type Mutation = {
@@ -1843,6 +1848,7 @@ export type Mutation = {
   uploadFile: SignedFile;
   uploadImage: SignedFile;
   uploadProfilePicture: SignedFile;
+  uploadWorkspaceBackground: SignedFile;
   uploadWorkspaceLogo: SignedFile;
   upsertFieldPermissions: Array<FieldPermission>;
   upsertObjectPermissions: Array<ObjectPermission>;
@@ -1853,28 +1859,23 @@ export type Mutation = {
   verifyTwoFactorAuthenticationMethodForAuthenticatedUser: VerifyTwoFactorAuthenticationMethodOutput;
 };
 
-
 export type MutationActivateWorkflowVersionArgs = {
   workflowVersionId: Scalars['UUID'];
 };
 
-
 export type MutationActivateWorkspaceArgs = {
   data: ActivateWorkspaceInput;
 };
-
 
 export type MutationAssignRoleToAgentArgs = {
   agentId: Scalars['UUID'];
   roleId: Scalars['UUID'];
 };
 
-
 export type MutationAssignRoleToApiKeyArgs = {
   apiKeyId: Scalars['UUID'];
   roleId: Scalars['UUID'];
 };
-
 
 export type MutationAuthorizeAppArgs = {
   clientId: Scalars['String'];
@@ -1882,11 +1883,9 @@ export type MutationAuthorizeAppArgs = {
   redirectUrl: Scalars['String'];
 };
 
-
 export type MutationCheckPublicDomainValidRecordsArgs = {
   domain: Scalars['String'];
 };
-
 
 export type MutationCheckoutSessionArgs = {
   plan?: BillingPlanKey;
@@ -1895,83 +1894,67 @@ export type MutationCheckoutSessionArgs = {
   successUrlPath?: InputMaybe<Scalars['String']>;
 };
 
-
 export type MutationComputeStepOutputSchemaArgs = {
   input: ComputeStepOutputSchemaInput;
 };
-
 
 export type MutationCreateAgentHandoffArgs = {
   input: CreateAgentHandoffInput;
 };
 
-
 export type MutationCreateApiKeyArgs = {
   input: CreateApiKeyInput;
 };
-
 
 export type MutationCreateApprovedAccessDomainArgs = {
   input: CreateApprovedAccessDomainInput;
 };
 
-
 export type MutationCreateCoreViewArgs = {
   input: CreateViewInput;
 };
-
 
 export type MutationCreateCoreViewFieldArgs = {
   input: CreateViewFieldInput;
 };
 
-
 export type MutationCreateCoreViewFilterArgs = {
   input: CreateViewFilterInput;
 };
-
 
 export type MutationCreateCoreViewFilterGroupArgs = {
   input: CreateViewFilterGroupInput;
 };
 
-
 export type MutationCreateCoreViewGroupArgs = {
   input: CreateViewGroupInput;
 };
 
-
 export type MutationCreateCoreViewSortArgs = {
   input: CreateViewSortInput;
 };
-
 
 export type MutationCreateDatabaseConfigVariableArgs = {
   key: Scalars['String'];
   value: Scalars['JSON'];
 };
 
-
 export type MutationCreateDraftFromWorkflowVersionArgs = {
   input: CreateDraftFromWorkflowVersionInput;
 };
-
 
 export type MutationCreateEmailingDomainArgs = {
   domain: Scalars['String'];
   driver: EmailingDomainDriver;
 };
 
-
 export type MutationCreateFileArgs = {
   file: Scalars['Upload'];
 };
 
-
 export type MutationCreateOidcIdentityProviderArgs = {
   input: SetupOidcSsoInput;
 };
-
 
 export type MutationCreateObjectEventArgs = {
   event: Scalars['String'];
@@ -1980,321 +1963,258 @@ export type MutationCreateObjectEventArgs = {
   recordId: Scalars['UUID'];
 };
 
-
 export type MutationCreateOneAgentArgs = {
   input: CreateAgentInput;
 };
-
 
 export type MutationCreateOneCronTriggerArgs = {
   input: CreateCronTriggerInput;
 };
 
-
 export type MutationCreateOneDatabaseEventTriggerArgs = {
   input: CreateDatabaseEventTriggerInput;
 };
-
 
 export type MutationCreateOneFieldArgs = {
   input: CreateOneFieldMetadataInput;
 };
 
-
 export type MutationCreateOneRoleArgs = {
   createRoleInput: CreateRoleInput;
 };
-
 
 export type MutationCreateOneRouteTriggerArgs = {
   input: CreateRouteTriggerInput;
 };
 
-
 export type MutationCreateOneServerlessFunctionArgs = {
   input: CreateServerlessFunctionInput;
 };
-
 
 export type MutationCreateOneServerlessFunctionLayerArgs = {
   packageJson: Scalars['JSON'];
   yarnLock: Scalars['String'];
 };
 
-
 export type MutationCreatePageLayoutArgs = {
   input: CreatePageLayoutInput;
 };
-
 
 export type MutationCreatePageLayoutTabArgs = {
   input: CreatePageLayoutTabInput;
 };
 
-
 export type MutationCreatePageLayoutWidgetArgs = {
   input: CreatePageLayoutWidgetInput;
 };
-
 
 export type MutationCreatePublicDomainArgs = {
   domain: Scalars['String'];
 };
 
-
 export type MutationCreateSamlIdentityProviderArgs = {
   input: SetupSamlSsoInput;
 };
-
 
 export type MutationCreateWebhookArgs = {
   input: CreateWebhookInput;
 };
 
-
 export type MutationCreateWorkflowVersionEdgeArgs = {
   input: CreateWorkflowVersionEdgeInput;
 };
-
 
 export type MutationCreateWorkflowVersionStepArgs = {
   input: CreateWorkflowVersionStepInput;
 };
 
-
 export type MutationDeactivateWorkflowVersionArgs = {
   workflowVersionId: Scalars['UUID'];
 };
-
 
 export type MutationDeleteApplicationArgs = {
   packageJson: Scalars['JSON'];
 };
 
-
 export type MutationDeleteApprovedAccessDomainArgs = {
   input: DeleteApprovedAccessDomainInput;
 };
-
 
 export type MutationDeleteCoreViewArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationDeleteCoreViewFieldArgs = {
   input: DeleteViewFieldInput;
 };
-
 
 export type MutationDeleteCoreViewFilterArgs = {
   input: DeleteViewFilterInput;
 };
 
-
 export type MutationDeleteCoreViewFilterGroupArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationDeleteCoreViewGroupArgs = {
   input: DeleteViewGroupInput;
 };
 
-
 export type MutationDeleteCoreViewSortArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationDeleteDatabaseConfigVariableArgs = {
   key: Scalars['String'];
 };
 
-
 export type MutationDeleteEmailingDomainArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationDeleteFileArgs = {
   fileId: Scalars['UUID'];
 };
-
 
 export type MutationDeleteJobsArgs = {
   jobIds: Array<Scalars['String']>;
   queueName: Scalars['String'];
 };
 
-
 export type MutationDeleteOneAgentArgs = {
   input: AgentIdInput;
 };
-
 
 export type MutationDeleteOneCronTriggerArgs = {
   input: CronTriggerIdInput;
 };
 
-
 export type MutationDeleteOneDatabaseEventTriggerArgs = {
   input: DatabaseEventTriggerIdInput;
 };
-
 
 export type MutationDeleteOneFieldArgs = {
   input: DeleteOneFieldInput;
 };
 
-
 export type MutationDeleteOneObjectArgs = {
   input: DeleteOneObjectInput;
 };
-
 
 export type MutationDeleteOneRoleArgs = {
   roleId: Scalars['UUID'];
 };
 
-
 export type MutationDeleteOneRouteTriggerArgs = {
   input: RouteTriggerIdInput;
 };
-
 
 export type MutationDeleteOneServerlessFunctionArgs = {
   input: ServerlessFunctionIdInput;
 };
 
-
 export type MutationDeletePageLayoutArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationDeletePageLayoutTabArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationDeletePageLayoutWidgetArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationDeletePublicDomainArgs = {
   domain: Scalars['String'];
 };
 
-
 export type MutationDeleteSsoIdentityProviderArgs = {
   input: DeleteSsoInput;
 };
-
 
 export type MutationDeleteTwoFactorAuthenticationMethodArgs = {
   twoFactorAuthenticationMethodId: Scalars['UUID'];
 };
 
-
 export type MutationDeleteWebhookArgs = {
   input: DeleteWebhookInput;
 };
-
 
 export type MutationDeleteWorkflowVersionEdgeArgs = {
   input: CreateWorkflowVersionEdgeInput;
 };
 
-
 export type MutationDeleteWorkflowVersionStepArgs = {
   input: DeleteWorkflowVersionStepInput;
 };
-
 
 export type MutationDeleteWorkspaceInvitationArgs = {
   appTokenId: Scalars['String'];
 };
 
-
 export type MutationDestroyCoreViewArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationDestroyCoreViewFieldArgs = {
   input: DestroyViewFieldInput;
 };
 
-
 export type MutationDestroyCoreViewFilterArgs = {
   input: DestroyViewFilterInput;
 };
-
 
 export type MutationDestroyCoreViewFilterGroupArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationDestroyCoreViewGroupArgs = {
   input: DestroyViewGroupInput;
 };
-
 
 export type MutationDestroyCoreViewSortArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationDestroyPageLayoutArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationDestroyPageLayoutTabArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationDestroyPageLayoutWidgetArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationDuplicateWorkflowVersionStepArgs = {
   input: DuplicateWorkflowVersionStepInput;
 };
 
-
 export type MutationEditSsoIdentityProviderArgs = {
   input: EditSsoInput;
 };
-
 
 export type MutationEmailPasswordResetLinkArgs = {
   email: Scalars['String'];
   workspaceId: Scalars['UUID'];
 };
 
-
 export type MutationExecuteOneServerlessFunctionArgs = {
   input: ExecuteServerlessFunctionInput;
 };
-
 
 export type MutationGenerateApiKeyTokenArgs = {
   apiKeyId: Scalars['UUID'];
   expiresAt: Scalars['String'];
 };
 
-
 export type MutationGetAuthTokensFromLoginTokenArgs = {
   loginToken: Scalars['String'];
   origin: Scalars['String'];
 };
-
 
 export type MutationGetAuthTokensFromOtpArgs = {
   captchaToken?: InputMaybe<Scalars['String']>;
@@ -2303,11 +2223,9 @@ export type MutationGetAuthTokensFromOtpArgs = {
   otp: Scalars['String'];
 };
 
-
 export type MutationGetAuthorizationUrlForSsoArgs = {
   input: GetAuthorizationUrlForSsoInput;
 };
-
 
 export type MutationGetLoginTokenFromCredentialsArgs = {
   captchaToken?: InputMaybe<Scalars['String']>;
@@ -2318,7 +2236,6 @@ export type MutationGetLoginTokenFromCredentialsArgs = {
   verifyEmailRedirectPath?: InputMaybe<Scalars['String']>;
 };
 
-
 export type MutationGetLoginTokenFromEmailVerificationTokenArgs = {
   captchaToken?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
@@ -2326,87 +2243,71 @@ export type MutationGetLoginTokenFromEmailVerificationTokenArgs = {
   origin: Scalars['String'];
 };
 
-
 export type MutationGetWorkspaceAgnosticTokenFromEmailVerificationTokenArgs = {
   captchaToken?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
   emailVerificationToken: Scalars['String'];
 };
 
-
 export type MutationImpersonateArgs = {
   userId: Scalars['UUID'];
   workspaceId: Scalars['UUID'];
 };
-
 
 export type MutationInitiateOtpProvisioningArgs = {
   loginToken: Scalars['String'];
   origin: Scalars['String'];
 };
 
-
 export type MutationPublishServerlessFunctionArgs = {
   input: PublishServerlessFunctionInput;
 };
-
 
 export type MutationRemoveAgentHandoffArgs = {
   input: RemoveAgentHandoffInput;
 };
 
-
 export type MutationRemoveRoleFromAgentArgs = {
   agentId: Scalars['UUID'];
 };
 
-
 export type MutationRenewTokenArgs = {
   appToken: Scalars['String'];
 };
-
 
 export type MutationResendEmailVerificationTokenArgs = {
   email: Scalars['String'];
   origin: Scalars['String'];
 };
 
-
 export type MutationResendWorkspaceInvitationArgs = {
   appTokenId: Scalars['String'];
 };
-
 
 export type MutationRestorePageLayoutArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationRestorePageLayoutTabArgs = {
   id: Scalars['String'];
 };
 
-
 export type MutationRestorePageLayoutWidgetArgs = {
   id: Scalars['String'];
 };
-
 
 export type MutationRetryJobsArgs = {
   jobIds: Array<Scalars['String']>;
   queueName: Scalars['String'];
 };
 
-
 export type MutationRevokeApiKeyArgs = {
   input: RevokeApiKeyInput;
 };
 
-
 export type MutationRunWorkflowVersionArgs = {
   input: RunWorkflowVersionInput;
 };
-
 
 export type MutationSaveImapSmtpCaldavAccountArgs = {
   accountOwnerId: Scalars['UUID'];
@@ -2415,16 +2316,13 @@ export type MutationSaveImapSmtpCaldavAccountArgs = {
   id?: InputMaybe<Scalars['UUID']>;
 };
 
-
 export type MutationSendInvitationsArgs = {
   emails: Array<Scalars['String']>;
 };
 
-
 export type MutationSetMeteredSubscriptionPriceArgs = {
   priceId: Scalars['String'];
 };
-
 
 export type MutationSignInArgs = {
   captchaToken?: InputMaybe<Scalars['String']>;
@@ -2434,7 +2332,6 @@ export type MutationSignInArgs = {
   verifyEmailRedirectPath?: InputMaybe<Scalars['String']>;
 };
 
-
 export type MutationSignUpArgs = {
   captchaToken?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
@@ -2442,7 +2339,6 @@ export type MutationSignUpArgs = {
   password: Scalars['String'];
   verifyEmailRedirectPath?: InputMaybe<Scalars['String']>;
 };
-
 
 export type MutationSignUpInWorkspaceArgs = {
   captchaToken?: InputMaybe<Scalars['String']>;
@@ -2455,28 +2351,23 @@ export type MutationSignUpInWorkspaceArgs = {
   workspacePersonalInviteToken?: InputMaybe<Scalars['String']>;
 };
 
-
 export type MutationStartChannelSyncArgs = {
   connectedAccountId: Scalars['UUID'];
 };
-
 
 export type MutationStopWorkflowRunArgs = {
   workflowRunId: Scalars['UUID'];
 };
 
-
 export type MutationSubmitFormStepArgs = {
   input: SubmitFormStepInput;
 };
-
 
 export type MutationSyncApplicationArgs = {
   manifest: Scalars['JSON'];
   packageJson: Scalars['JSON'];
   yarnLock: Scalars['String'];
 };
-
 
 export type MutationTrackAnalyticsArgs = {
   event?: InputMaybe<Scalars['String']>;
@@ -2485,60 +2376,49 @@ export type MutationTrackAnalyticsArgs = {
   type: AnalyticsType;
 };
 
-
 export type MutationUpdateApiKeyArgs = {
   input: UpdateApiKeyInput;
 };
-
 
 export type MutationUpdateCoreViewArgs = {
   id: Scalars['String'];
   input: UpdateViewInput;
 };
 
-
 export type MutationUpdateCoreViewFieldArgs = {
   input: UpdateViewFieldInput;
 };
 
-
 export type MutationUpdateCoreViewFilterArgs = {
   input: UpdateViewFilterInput;
 };
-
 
 export type MutationUpdateCoreViewFilterGroupArgs = {
   id: Scalars['String'];
   input: UpdateViewFilterGroupInput;
 };
 
-
 export type MutationUpdateCoreViewGroupArgs = {
   input: UpdateViewGroupInput;
 };
-
 
 export type MutationUpdateCoreViewSortArgs = {
   id: Scalars['String'];
   input: UpdateViewSortInput;
 };
 
-
 export type MutationUpdateDatabaseConfigVariableArgs = {
   key: Scalars['String'];
   value: Scalars['JSON'];
 };
 
-
 export type MutationUpdateLabPublicFeatureFlagArgs = {
   input: UpdateLabPublicFeatureFlagInput;
 };
 
-
 export type MutationUpdateOneAgentArgs = {
   input: UpdateAgentInput;
 };
-
 
 export type MutationUpdateOneApplicationVariableArgs = {
   applicationId: Scalars['UUID'];
@@ -2546,96 +2426,78 @@ export type MutationUpdateOneApplicationVariableArgs = {
   value: Scalars['String'];
 };
 
-
 export type MutationUpdateOneCronTriggerArgs = {
   input: UpdateCronTriggerInput;
 };
-
 
 export type MutationUpdateOneDatabaseEventTriggerArgs = {
   input: UpdateDatabaseEventTriggerInput;
 };
 
-
 export type MutationUpdateOneFieldArgs = {
   input: UpdateOneFieldMetadataInput;
 };
-
 
 export type MutationUpdateOneObjectArgs = {
   input: UpdateOneObjectInput;
 };
 
-
 export type MutationUpdateOneRoleArgs = {
   updateRoleInput: UpdateRoleInput;
 };
-
 
 export type MutationUpdateOneRouteTriggerArgs = {
   input: UpdateRouteTriggerInput;
 };
 
-
 export type MutationUpdateOneServerlessFunctionArgs = {
   input: UpdateServerlessFunctionInput;
 };
-
 
 export type MutationUpdatePageLayoutArgs = {
   id: Scalars['String'];
   input: UpdatePageLayoutInput;
 };
 
-
 export type MutationUpdatePageLayoutTabArgs = {
   id: Scalars['String'];
   input: UpdatePageLayoutTabInput;
 };
-
 
 export type MutationUpdatePageLayoutWidgetArgs = {
   id: Scalars['String'];
   input: UpdatePageLayoutWidgetInput;
 };
 
-
 export type MutationUpdatePageLayoutWithTabsAndWidgetsArgs = {
   id: Scalars['String'];
   input: UpdatePageLayoutWithTabsInput;
 };
-
 
 export type MutationUpdatePasswordViaResetTokenArgs = {
   newPassword: Scalars['String'];
   passwordResetToken: Scalars['String'];
 };
 
-
 export type MutationUpdateWebhookArgs = {
   input: UpdateWebhookInput;
 };
-
 
 export type MutationUpdateWorkflowRunStepArgs = {
   input: UpdateWorkflowRunStepInput;
 };
 
-
 export type MutationUpdateWorkflowVersionPositionsArgs = {
   input: UpdateWorkflowVersionPositionsInput;
 };
-
 
 export type MutationUpdateWorkflowVersionStepArgs = {
   input: UpdateWorkflowVersionStepInput;
 };
 
-
 export type MutationUpdateWorkspaceArgs = {
   data: UpdateWorkspaceInput;
 };
-
 
 export type MutationUpdateWorkspaceFeatureFlagArgs = {
   featureFlag: Scalars['String'];
@@ -2643,68 +2505,61 @@ export type MutationUpdateWorkspaceFeatureFlagArgs = {
   workspaceId: Scalars['UUID'];
 };
 
-
 export type MutationUpdateWorkspaceMemberRoleArgs = {
   roleId: Scalars['UUID'];
   workspaceMemberId: Scalars['UUID'];
 };
-
 
 export type MutationUploadFileArgs = {
   file: Scalars['Upload'];
   fileFolder?: InputMaybe<FileFolder>;
 };
 
-
 export type MutationUploadImageArgs = {
   file: Scalars['Upload'];
   fileFolder?: InputMaybe<FileFolder>;
 };
 
-
 export type MutationUploadProfilePictureArgs = {
   file: Scalars['Upload'];
 };
 
+export type MutationUploadWorkspaceBackgroundArgs = {
+  file: Scalars['Upload'];
+};
 
 export type MutationUploadWorkspaceLogoArgs = {
   file: Scalars['Upload'];
 };
 
-
 export type MutationUpsertFieldPermissionsArgs = {
   upsertFieldPermissionsInput: UpsertFieldPermissionsInput;
 };
-
 
 export type MutationUpsertObjectPermissionsArgs = {
   upsertObjectPermissionsInput: UpsertObjectPermissionsInput;
 };
 
-
 export type MutationUpsertPermissionFlagsArgs = {
   upsertPermissionFlagsInput: UpsertPermissionFlagsInput;
 };
-
 
 export type MutationUserLookupAdminPanelArgs = {
   userIdentifier: Scalars['String'];
 };
 
-
 export type MutationValidateApprovedAccessDomainArgs = {
   input: ValidateApprovedAccessDomainInput;
 };
-
 
 export type MutationVerifyEmailingDomainArgs = {
   id: Scalars['String'];
 };
 
-
-export type MutationVerifyTwoFactorAuthenticationMethodForAuthenticatedUserArgs = {
-  otp: Scalars['String'];
-};
+export type MutationVerifyTwoFactorAuthenticationMethodForAuthenticatedUserArgs =
+  {
+    otp: Scalars['String'];
+  };
 
 export type NativeModelCapabilities = {
   __typename?: 'NativeModelCapabilities';
@@ -2742,12 +2597,10 @@ export type Object = {
   updatedAt: Scalars['DateTime'];
 };
 
-
 export type ObjectFieldsArgs = {
   filter?: FieldFilter;
   paging?: CursorPaging;
 };
-
 
 export type ObjectIndexMetadatasArgs = {
   filter?: IndexFilter;
@@ -2858,7 +2711,7 @@ export enum OnboardingStatus {
   PLAN_REQUIRED = 'PLAN_REQUIRED',
   PROFILE_CREATION = 'PROFILE_CREATION',
   SYNC_EMAIL = 'SYNC_EMAIL',
-  WORKSPACE_ACTIVATION = 'WORKSPACE_ACTIVATION'
+  WORKSPACE_ACTIVATION = 'WORKSPACE_ACTIVATION',
 }
 
 export type OnboardingStepSuccess = {
@@ -2906,7 +2759,7 @@ export type PageLayoutTab = {
 export enum PageLayoutType {
   DASHBOARD = 'DASHBOARD',
   RECORD_INDEX = 'RECORD_INDEX',
-  RECORD_PAGE = 'RECORD_PAGE'
+  RECORD_PAGE = 'RECORD_PAGE',
 }
 
 export type PageLayoutWidget = {
@@ -2942,7 +2795,7 @@ export enum PermissionFlagType {
   SEND_EMAIL_TOOL = 'SEND_EMAIL_TOOL',
   WORKFLOWS = 'WORKFLOWS',
   WORKSPACE = 'WORKSPACE',
-  WORKSPACE_MEMBERS = 'WORKSPACE_MEMBERS'
+  WORKSPACE_MEMBERS = 'WORKSPACE_MEMBERS',
 }
 
 export type PieChartConfiguration = {
@@ -3096,88 +2949,71 @@ export type Query = {
   webhooks: Array<Webhook>;
 };
 
-
 export type QueryApiKeyArgs = {
   input: GetApiKeyInput;
 };
-
 
 export type QueryBillingPortalSessionArgs = {
   returnUrlPath?: InputMaybe<Scalars['String']>;
 };
 
-
 export type QueryChatMessagesArgs = {
   threadId: Scalars['UUID'];
 };
 
-
 export type QueryChatThreadArgs = {
   id: Scalars['UUID'];
 };
-
 
 export type QueryCheckUserExistsArgs = {
   captchaToken?: InputMaybe<Scalars['String']>;
   email: Scalars['String'];
 };
 
-
 export type QueryCheckWorkspaceInviteHashIsValidArgs = {
   inviteHash: Scalars['String'];
 };
-
 
 export type QueryFindAgentHandoffTargetsArgs = {
   input: AgentIdInput;
 };
 
-
 export type QueryFindAgentHandoffsArgs = {
   input: AgentIdInput;
 };
-
 
 export type QueryFindOneAgentArgs = {
   input: AgentIdInput;
 };
 
-
 export type QueryFindOneApplicationArgs = {
   id: Scalars['UUID'];
 };
-
 
 export type QueryFindOneCronTriggerArgs = {
   input: CronTriggerIdInput;
 };
 
-
 export type QueryFindOneDatabaseEventTriggerArgs = {
   input: DatabaseEventTriggerIdInput;
 };
-
 
 export type QueryFindOneRouteTriggerArgs = {
   input: RouteTriggerIdInput;
 };
 
-
 export type QueryFindOneServerlessFunctionArgs = {
   input: ServerlessFunctionIdInput;
 };
-
 
 export type QueryFindWorkspaceFromInviteHashArgs = {
   inviteHash: Scalars['String'];
 };
 
-
 export type QueryGetAddressDetailsArgs = {
   placeId: Scalars['String'];
   token: Scalars['String'];
 };
-
 
 export type QueryGetAutoCompleteAddressArgs = {
   address: Scalars['String'];
@@ -3186,121 +3022,97 @@ export type QueryGetAutoCompleteAddressArgs = {
   token: Scalars['String'];
 };
 
-
 export type QueryGetAvailablePackagesArgs = {
   input: ServerlessFunctionIdInput;
 };
-
 
 export type QueryGetConnectedImapSmtpCaldavAccountArgs = {
   id: Scalars['UUID'];
 };
 
-
 export type QueryGetCoreViewArgs = {
   id: Scalars['String'];
 };
-
 
 export type QueryGetCoreViewFieldArgs = {
   id: Scalars['String'];
 };
 
-
 export type QueryGetCoreViewFieldsArgs = {
   viewId: Scalars['String'];
 };
-
 
 export type QueryGetCoreViewFilterArgs = {
   id: Scalars['String'];
 };
 
-
 export type QueryGetCoreViewFilterGroupArgs = {
   id: Scalars['String'];
 };
-
 
 export type QueryGetCoreViewFilterGroupsArgs = {
   viewId?: InputMaybe<Scalars['String']>;
 };
 
-
 export type QueryGetCoreViewFiltersArgs = {
   viewId?: InputMaybe<Scalars['String']>;
 };
-
 
 export type QueryGetCoreViewGroupArgs = {
   id: Scalars['String'];
 };
 
-
 export type QueryGetCoreViewGroupsArgs = {
   viewId?: InputMaybe<Scalars['String']>;
 };
-
 
 export type QueryGetCoreViewSortArgs = {
   id: Scalars['String'];
 };
 
-
 export type QueryGetCoreViewSortsArgs = {
   viewId?: InputMaybe<Scalars['String']>;
 };
-
 
 export type QueryGetCoreViewsArgs = {
   objectMetadataId?: InputMaybe<Scalars['String']>;
 };
 
-
 export type QueryGetDatabaseConfigVariableArgs = {
   key: Scalars['String'];
 };
-
 
 export type QueryGetIndicatorHealthStatusArgs = {
   indicatorId: HealthIndicatorId;
 };
 
-
 export type QueryGetPageLayoutArgs = {
   id: Scalars['String'];
 };
-
 
 export type QueryGetPageLayoutTabArgs = {
   id: Scalars['String'];
 };
 
-
 export type QueryGetPageLayoutTabsArgs = {
   pageLayoutId: Scalars['String'];
 };
-
 
 export type QueryGetPageLayoutWidgetArgs = {
   id: Scalars['String'];
 };
 
-
 export type QueryGetPageLayoutWidgetsArgs = {
   pageLayoutTabId: Scalars['String'];
 };
-
 
 export type QueryGetPageLayoutsArgs = {
   objectMetadataId?: InputMaybe<Scalars['String']>;
 };
 
-
 export type QueryGetPublicWorkspaceDataByDomainArgs = {
   origin?: InputMaybe<Scalars['String']>;
 };
-
 
 export type QueryGetQueueJobsArgs = {
   limit?: InputMaybe<Scalars['Int']>;
@@ -3309,17 +3121,14 @@ export type QueryGetQueueJobsArgs = {
   state: JobState;
 };
 
-
 export type QueryGetQueueMetricsArgs = {
   queueName: Scalars['String'];
   timeRange?: InputMaybe<QueueMetricsTimeRange>;
 };
 
-
 export type QueryGetServerlessFunctionSourceCodeArgs = {
   input: GetServerlessFunctionSourceCodeInput;
 };
-
 
 export type QueryGetTimelineCalendarEventsFromCompanyIdArgs = {
   companyId: Scalars['UUID'];
@@ -3327,13 +3136,11 @@ export type QueryGetTimelineCalendarEventsFromCompanyIdArgs = {
   pageSize: Scalars['Int'];
 };
 
-
 export type QueryGetTimelineCalendarEventsFromOpportunityIdArgs = {
   opportunityId: Scalars['UUID'];
   page: Scalars['Int'];
   pageSize: Scalars['Int'];
 };
-
 
 export type QueryGetTimelineCalendarEventsFromPersonIdArgs = {
   page: Scalars['Int'];
@@ -3341,13 +3148,11 @@ export type QueryGetTimelineCalendarEventsFromPersonIdArgs = {
   personId: Scalars['UUID'];
 };
 
-
 export type QueryGetTimelineThreadsFromCompanyIdArgs = {
   companyId: Scalars['UUID'];
   page: Scalars['Int'];
   pageSize: Scalars['Int'];
 };
-
 
 export type QueryGetTimelineThreadsFromOpportunityIdArgs = {
   opportunityId: Scalars['UUID'];
@@ -3355,13 +3160,11 @@ export type QueryGetTimelineThreadsFromOpportunityIdArgs = {
   pageSize: Scalars['Int'];
 };
 
-
 export type QueryGetTimelineThreadsFromPersonIdArgs = {
   page: Scalars['Int'];
   pageSize: Scalars['Int'];
   personId: Scalars['UUID'];
 };
-
 
 export type QuerySearchArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -3372,11 +3175,9 @@ export type QuerySearchArgs = {
   searchInput: Scalars['String'];
 };
 
-
 export type QueryValidatePasswordResetTokenArgs = {
   passwordResetToken: Scalars['String'];
 };
-
 
 export type QueryWebhookArgs = {
   input: GetWebhookInput;
@@ -3433,7 +3234,7 @@ export enum QueueMetricsTimeRange {
   OneDay = 'OneDay',
   OneHour = 'OneHour',
   SevenDays = 'SevenDays',
-  TwelveHours = 'TwelveHours'
+  TwelveHours = 'TwelveHours',
 }
 
 export type QueueRetentionConfig = {
@@ -3456,7 +3257,7 @@ export type Relation = {
 /** Relation type */
 export enum RelationType {
   MANY_TO_ONE = 'MANY_TO_ONE',
-  ONE_TO_MANY = 'ONE_TO_MANY'
+  ONE_TO_MANY = 'ONE_TO_MANY',
 }
 
 export type RemoteServer = {
@@ -3484,7 +3285,7 @@ export type RemoteTable = {
 /** Status of the table */
 export enum RemoteTableStatus {
   NOT_SYNCED = 'NOT_SYNCED',
-  SYNCED = 'SYNCED'
+  SYNCED = 'SYNCED',
 }
 
 export type RemoveAgentHandoffInput = {
@@ -3581,7 +3382,7 @@ export type SsoIdentityProvider = {
 export enum SsoIdentityProviderStatus {
   Active = 'Active',
   Error = 'Error',
-  Inactive = 'Inactive'
+  Inactive = 'Inactive',
 }
 
 export type SearchRecord = {
@@ -3661,7 +3462,7 @@ export type ServerlessFunctionExecutionResult = {
 export enum ServerlessFunctionExecutionStatus {
   ERROR = 'ERROR',
   IDLE = 'IDLE',
-  SUCCESS = 'SUCCESS'
+  SUCCESS = 'SUCCESS',
 }
 
 export type ServerlessFunctionIdInput = {
@@ -3736,14 +3537,13 @@ export type Subscription = {
   onDbEvent: OnDbEvent;
 };
 
-
 export type SubscriptionOnDbEventArgs = {
   input: OnDbEventInput;
 };
 
 export enum SubscriptionInterval {
   Month = 'Month',
-  Year = 'Year'
+  Year = 'Year',
 }
 
 export enum SubscriptionStatus {
@@ -3754,7 +3554,7 @@ export enum SubscriptionStatus {
   PastDue = 'PastDue',
   Paused = 'Paused',
   Trialing = 'Trialing',
-  Unpaid = 'Unpaid'
+  Unpaid = 'Unpaid',
 }
 
 export type Support = {
@@ -3765,7 +3565,7 @@ export type Support = {
 
 export enum SupportDriver {
   FRONT = 'FRONT',
-  NONE = 'NONE'
+  NONE = 'NONE',
 }
 
 export type SystemHealth = {
@@ -4170,6 +3970,8 @@ export type UpdateWorkflowVersionStepInput = {
 
 export type UpdateWorkspaceInput = {
   allowImpersonation?: InputMaybe<Scalars['Boolean']>;
+  backgroundImage?: InputMaybe<Scalars['String']>;
+  backgroundImageSettings?: InputMaybe<Scalars['JSON']>;
   customDomain?: InputMaybe<Scalars['String']>;
   defaultRoleId?: InputMaybe<Scalars['UUID']>;
   displayName?: InputMaybe<Scalars['String']>;
@@ -4265,7 +4067,9 @@ export type UserWorkspace = {
   objectPermissions?: Maybe<Array<ObjectPermission>>;
   objectsPermissions?: Maybe<Array<ObjectPermission>>;
   permissionFlags?: Maybe<Array<PermissionFlagType>>;
-  twoFactorAuthenticationMethodSummary?: Maybe<Array<TwoFactorAuthenticationMethodDto>>;
+  twoFactorAuthenticationMethodSummary?: Maybe<
+    Array<TwoFactorAuthenticationMethodDto>
+  >;
   updatedAt: Scalars['DateTime'];
   user: User;
   userId: Scalars['UUID'];
@@ -4306,13 +4110,13 @@ export type VersionInfo = {
 export enum ViewCalendarLayout {
   DAY = 'DAY',
   MONTH = 'MONTH',
-  WEEK = 'WEEK'
+  WEEK = 'WEEK',
 }
 
 export enum ViewFilterGroupLogicalOperator {
   AND = 'AND',
   NOT = 'NOT',
-  OR = 'OR'
+  OR = 'OR',
 }
 
 export enum ViewFilterOperand {
@@ -4331,27 +4135,27 @@ export enum ViewFilterOperand {
   IS_RELATIVE = 'IS_RELATIVE',
   IS_TODAY = 'IS_TODAY',
   LESS_THAN_OR_EQUAL = 'LESS_THAN_OR_EQUAL',
-  VECTOR_SEARCH = 'VECTOR_SEARCH'
+  VECTOR_SEARCH = 'VECTOR_SEARCH',
 }
 
 export enum ViewKey {
-  INDEX = 'INDEX'
+  INDEX = 'INDEX',
 }
 
 export enum ViewOpenRecordIn {
   RECORD_PAGE = 'RECORD_PAGE',
-  SIDE_PANEL = 'SIDE_PANEL'
+  SIDE_PANEL = 'SIDE_PANEL',
 }
 
 export enum ViewSortDirection {
   ASC = 'ASC',
-  DESC = 'DESC'
+  DESC = 'DESC',
 }
 
 export enum ViewType {
   CALENDAR = 'CALENDAR',
   KANBAN = 'KANBAN',
-  TABLE = 'TABLE'
+  TABLE = 'TABLE',
 }
 
 export type Webhook = {
@@ -4368,7 +4172,13 @@ export type Webhook = {
   workspaceId: Scalars['UUID'];
 };
 
-export type WidgetConfiguration = AggregateChartConfiguration | BarChartConfiguration | GaugeChartConfiguration | IframeConfiguration | LineChartConfiguration | PieChartConfiguration;
+export type WidgetConfiguration =
+  | AggregateChartConfiguration
+  | BarChartConfiguration
+  | GaugeChartConfiguration
+  | IframeConfiguration
+  | LineChartConfiguration
+  | PieChartConfiguration;
 
 export enum WidgetType {
   CALENDAR = 'CALENDAR',
@@ -4381,7 +4191,7 @@ export enum WidgetType {
   RICH_TEXT = 'RICH_TEXT',
   TASKS = 'TASKS',
   TIMELINE = 'TIMELINE',
-  VIEW = 'VIEW'
+  VIEW = 'VIEW',
 }
 
 export type WorkerQueueMetrics = {
@@ -4421,7 +4231,7 @@ export enum WorkflowActionType {
   ITERATOR = 'ITERATOR',
   SEND_EMAIL = 'SEND_EMAIL',
   UPDATE_RECORD = 'UPDATE_RECORD',
-  UPSERT_RECORD = 'UPSERT_RECORD'
+  UPSERT_RECORD = 'UPSERT_RECORD',
 }
 
 export type WorkflowRun = {
@@ -4438,7 +4248,7 @@ export enum WorkflowRunStatusEnum {
   NOT_STARTED = 'NOT_STARTED',
   RUNNING = 'RUNNING',
   STOPPED = 'STOPPED',
-  STOPPING = 'STOPPING'
+  STOPPING = 'STOPPING',
 }
 
 export type WorkflowStepPosition = {
@@ -4481,6 +4291,8 @@ export type Workspace = {
   __typename?: 'Workspace';
   activationStatus: WorkspaceActivationStatus;
   allowImpersonation: Scalars['Boolean'];
+  backgroundImage?: Maybe<Scalars['String']>;
+  backgroundImageSettings?: Maybe<Scalars['JSON']>;
   billingSubscriptions: Array<BillingSubscription>;
   createdAt: Scalars['DateTime'];
   currentBillingSubscription?: Maybe<BillingSubscription>;
@@ -4522,7 +4334,7 @@ export enum WorkspaceActivationStatus {
   INACTIVE = 'INACTIVE',
   ONGOING_CREATION = 'ONGOING_CREATION',
   PENDING_CREATION = 'PENDING_CREATION',
-  SUSPENDED = 'SUSPENDED'
+  SUSPENDED = 'SUSPENDED',
 }
 
 export type WorkspaceEdge = {
@@ -4579,7 +4391,7 @@ export enum WorkspaceMemberDateFormatEnum {
   DAY_FIRST = 'DAY_FIRST',
   MONTH_FIRST = 'MONTH_FIRST',
   SYSTEM = 'SYSTEM',
-  YEAR_FIRST = 'YEAR_FIRST'
+  YEAR_FIRST = 'YEAR_FIRST',
 }
 
 /** Number format for displaying numbers */
@@ -4588,14 +4400,14 @@ export enum WorkspaceMemberNumberFormatEnum {
   COMMAS_AND_DOT = 'COMMAS_AND_DOT',
   DOTS_AND_COMMA = 'DOTS_AND_COMMA',
   SPACES_AND_COMMA = 'SPACES_AND_COMMA',
-  SYSTEM = 'SYSTEM'
+  SYSTEM = 'SYSTEM',
 }
 
 /** Time time as Military, Standard or system as default */
 export enum WorkspaceMemberTimeFormatEnum {
   HOUR_12 = 'HOUR_12',
   HOUR_24 = 'HOUR_24',
-  SYSTEM = 'SYSTEM'
+  SYSTEM = 'SYSTEM',
 }
 
 export type WorkspaceNameAndId = {
@@ -4620,518 +4432,1579 @@ export type SearchQueryVariables = Exact<{
   searchInput: Scalars['String'];
   limit: Scalars['Int'];
   after?: InputMaybe<Scalars['String']>;
-  excludedObjectNameSingulars?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
-  includedObjectNameSingulars?: InputMaybe<Array<Scalars['String']> | Scalars['String']>;
+  excludedObjectNameSingulars?: InputMaybe<
+    Array<Scalars['String']> | Scalars['String']
+  >;
+  includedObjectNameSingulars?: InputMaybe<
+    Array<Scalars['String']> | Scalars['String']
+  >;
   filter?: InputMaybe<ObjectRecordFilterInput>;
 }>;
 
+export type SearchQuery = {
+  __typename?: 'Query';
+  search: {
+    __typename?: 'SearchResultConnection';
+    edges: Array<{
+      __typename?: 'SearchResultEdge';
+      cursor: string;
+      node: {
+        __typename?: 'SearchRecord';
+        recordId: any;
+        objectNameSingular: string;
+        label: string;
+        imageUrl?: string | null;
+        tsRankCD: number;
+        tsRank: number;
+      };
+    }>;
+    pageInfo: {
+      __typename?: 'SearchResultPageInfo';
+      hasNextPage: boolean;
+      endCursor?: string | null;
+    };
+  };
+};
 
-export type SearchQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultConnection', edges: Array<{ __typename?: 'SearchResultEdge', cursor: string, node: { __typename?: 'SearchRecord', recordId: any, objectNameSingular: string, label: string, imageUrl?: string | null, tsRankCD: number, tsRank: number } }>, pageInfo: { __typename?: 'SearchResultPageInfo', hasNextPage: boolean, endCursor?: string | null } } };
-
-export type PageLayoutWidgetFragmentFragment = { __typename?: 'PageLayoutWidget', id: any, title: string, type: WidgetType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, pageLayoutTabId: any, gridPosition: { __typename?: 'GridPosition', column: number, columnSpan: number, row: number, rowSpan: number }, configuration?: { __typename?: 'AggregateChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, displayDataLabel?: boolean | null, description?: string | null, filter?: any | null } | { __typename?: 'BarChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, groupMode?: BarChartGroupMode | null } | { __typename?: 'GaugeChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null } | { __typename?: 'IframeConfiguration', url: string } | { __typename?: 'LineChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null } | { __typename?: 'PieChartConfiguration', graphType: GraphType, groupByFieldMetadataId: any, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, groupBySubFieldName?: string | null, orderBy?: GraphOrderBy | null, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null } | null };
+export type PageLayoutWidgetFragmentFragment = {
+  __typename?: 'PageLayoutWidget';
+  id: any;
+  title: string;
+  type: WidgetType;
+  objectMetadataId?: any | null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string | null;
+  pageLayoutTabId: any;
+  gridPosition: {
+    __typename?: 'GridPosition';
+    column: number;
+    columnSpan: number;
+    row: number;
+    rowSpan: number;
+  };
+  configuration?:
+    | {
+        __typename?: 'AggregateChartConfiguration';
+        graphType: GraphType;
+        aggregateFieldMetadataId: any;
+        aggregateOperation: AggregateOperations;
+        displayDataLabel?: boolean | null;
+        description?: string | null;
+        filter?: any | null;
+      }
+    | {
+        __typename?: 'BarChartConfiguration';
+        graphType: GraphType;
+        aggregateFieldMetadataId: any;
+        aggregateOperation: AggregateOperations;
+        primaryAxisGroupByFieldMetadataId: any;
+        primaryAxisGroupBySubFieldName?: string | null;
+        primaryAxisOrderBy?: GraphOrderBy | null;
+        secondaryAxisGroupByFieldMetadataId?: any | null;
+        secondaryAxisGroupBySubFieldName?: string | null;
+        secondaryAxisOrderBy?: GraphOrderBy | null;
+        omitNullValues?: boolean | null;
+        axisNameDisplay?: AxisNameDisplay | null;
+        displayDataLabel?: boolean | null;
+        rangeMin?: number | null;
+        rangeMax?: number | null;
+        color?: string | null;
+        description?: string | null;
+        filter?: any | null;
+        groupMode?: BarChartGroupMode | null;
+      }
+    | {
+        __typename?: 'GaugeChartConfiguration';
+        graphType: GraphType;
+        aggregateFieldMetadataId: any;
+        aggregateOperation: AggregateOperations;
+        displayDataLabel?: boolean | null;
+        color?: string | null;
+        description?: string | null;
+        filter?: any | null;
+      }
+    | { __typename?: 'IframeConfiguration'; url: string }
+    | {
+        __typename?: 'LineChartConfiguration';
+        graphType: GraphType;
+        aggregateFieldMetadataId: any;
+        aggregateOperation: AggregateOperations;
+        primaryAxisGroupByFieldMetadataId: any;
+        primaryAxisGroupBySubFieldName?: string | null;
+        primaryAxisOrderBy?: GraphOrderBy | null;
+        secondaryAxisGroupByFieldMetadataId?: any | null;
+        secondaryAxisGroupBySubFieldName?: string | null;
+        secondaryAxisOrderBy?: GraphOrderBy | null;
+        omitNullValues?: boolean | null;
+        axisNameDisplay?: AxisNameDisplay | null;
+        displayDataLabel?: boolean | null;
+        rangeMin?: number | null;
+        rangeMax?: number | null;
+        color?: string | null;
+        description?: string | null;
+        filter?: any | null;
+      }
+    | {
+        __typename?: 'PieChartConfiguration';
+        graphType: GraphType;
+        groupByFieldMetadataId: any;
+        aggregateFieldMetadataId: any;
+        aggregateOperation: AggregateOperations;
+        groupBySubFieldName?: string | null;
+        orderBy?: GraphOrderBy | null;
+        displayDataLabel?: boolean | null;
+        color?: string | null;
+        description?: string | null;
+        filter?: any | null;
+      }
+    | null;
+};
 
 export type UpdatePageLayoutWithTabsAndWidgetsMutationVariables = Exact<{
   id: Scalars['String'];
   input: UpdatePageLayoutWithTabsInput;
 }>;
 
-
-export type UpdatePageLayoutWithTabsAndWidgetsMutation = { __typename?: 'Mutation', updatePageLayoutWithTabsAndWidgets: { __typename?: 'PageLayout', id: any, name: string, type: PageLayoutType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, tabs?: Array<{ __typename?: 'PageLayoutTab', id: any, title: string, position: number, pageLayoutId: any, createdAt: string, updatedAt: string, widgets?: Array<{ __typename?: 'PageLayoutWidget', id: any, title: string, type: WidgetType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, pageLayoutTabId: any, gridPosition: { __typename?: 'GridPosition', column: number, columnSpan: number, row: number, rowSpan: number }, configuration?: { __typename?: 'AggregateChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, displayDataLabel?: boolean | null, description?: string | null, filter?: any | null } | { __typename?: 'BarChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, groupMode?: BarChartGroupMode | null } | { __typename?: 'GaugeChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null } | { __typename?: 'IframeConfiguration', url: string } | { __typename?: 'LineChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null } | { __typename?: 'PieChartConfiguration', graphType: GraphType, groupByFieldMetadataId: any, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, groupBySubFieldName?: string | null, orderBy?: GraphOrderBy | null, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null } | null }> | null }> | null } };
+export type UpdatePageLayoutWithTabsAndWidgetsMutation = {
+  __typename?: 'Mutation';
+  updatePageLayoutWithTabsAndWidgets: {
+    __typename?: 'PageLayout';
+    id: any;
+    name: string;
+    type: PageLayoutType;
+    objectMetadataId?: any | null;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+    tabs?: Array<{
+      __typename?: 'PageLayoutTab';
+      id: any;
+      title: string;
+      position: number;
+      pageLayoutId: any;
+      createdAt: string;
+      updatedAt: string;
+      widgets?: Array<{
+        __typename?: 'PageLayoutWidget';
+        id: any;
+        title: string;
+        type: WidgetType;
+        objectMetadataId?: any | null;
+        createdAt: string;
+        updatedAt: string;
+        deletedAt?: string | null;
+        pageLayoutTabId: any;
+        gridPosition: {
+          __typename?: 'GridPosition';
+          column: number;
+          columnSpan: number;
+          row: number;
+          rowSpan: number;
+        };
+        configuration?:
+          | {
+              __typename?: 'AggregateChartConfiguration';
+              graphType: GraphType;
+              aggregateFieldMetadataId: any;
+              aggregateOperation: AggregateOperations;
+              displayDataLabel?: boolean | null;
+              description?: string | null;
+              filter?: any | null;
+            }
+          | {
+              __typename?: 'BarChartConfiguration';
+              graphType: GraphType;
+              aggregateFieldMetadataId: any;
+              aggregateOperation: AggregateOperations;
+              primaryAxisGroupByFieldMetadataId: any;
+              primaryAxisGroupBySubFieldName?: string | null;
+              primaryAxisOrderBy?: GraphOrderBy | null;
+              secondaryAxisGroupByFieldMetadataId?: any | null;
+              secondaryAxisGroupBySubFieldName?: string | null;
+              secondaryAxisOrderBy?: GraphOrderBy | null;
+              omitNullValues?: boolean | null;
+              axisNameDisplay?: AxisNameDisplay | null;
+              displayDataLabel?: boolean | null;
+              rangeMin?: number | null;
+              rangeMax?: number | null;
+              color?: string | null;
+              description?: string | null;
+              filter?: any | null;
+              groupMode?: BarChartGroupMode | null;
+            }
+          | {
+              __typename?: 'GaugeChartConfiguration';
+              graphType: GraphType;
+              aggregateFieldMetadataId: any;
+              aggregateOperation: AggregateOperations;
+              displayDataLabel?: boolean | null;
+              color?: string | null;
+              description?: string | null;
+              filter?: any | null;
+            }
+          | { __typename?: 'IframeConfiguration'; url: string }
+          | {
+              __typename?: 'LineChartConfiguration';
+              graphType: GraphType;
+              aggregateFieldMetadataId: any;
+              aggregateOperation: AggregateOperations;
+              primaryAxisGroupByFieldMetadataId: any;
+              primaryAxisGroupBySubFieldName?: string | null;
+              primaryAxisOrderBy?: GraphOrderBy | null;
+              secondaryAxisGroupByFieldMetadataId?: any | null;
+              secondaryAxisGroupBySubFieldName?: string | null;
+              secondaryAxisOrderBy?: GraphOrderBy | null;
+              omitNullValues?: boolean | null;
+              axisNameDisplay?: AxisNameDisplay | null;
+              displayDataLabel?: boolean | null;
+              rangeMin?: number | null;
+              rangeMax?: number | null;
+              color?: string | null;
+              description?: string | null;
+              filter?: any | null;
+            }
+          | {
+              __typename?: 'PieChartConfiguration';
+              graphType: GraphType;
+              groupByFieldMetadataId: any;
+              aggregateFieldMetadataId: any;
+              aggregateOperation: AggregateOperations;
+              groupBySubFieldName?: string | null;
+              orderBy?: GraphOrderBy | null;
+              displayDataLabel?: boolean | null;
+              color?: string | null;
+              description?: string | null;
+              filter?: any | null;
+            }
+          | null;
+      }> | null;
+    }> | null;
+  };
+};
 
 export type OnDbEventSubscriptionVariables = Exact<{
   input: OnDbEventInput;
 }>;
 
+export type OnDbEventSubscription = {
+  __typename?: 'Subscription';
+  onDbEvent: {
+    __typename?: 'OnDbEvent';
+    eventDate: string;
+    action: DatabaseEventAction;
+    objectNameSingular: string;
+    updatedFields?: Array<string> | null;
+    record: any;
+  };
+};
 
-export type OnDbEventSubscription = { __typename?: 'Subscription', onDbEvent: { __typename?: 'OnDbEvent', eventDate: string, action: DatabaseEventAction, objectNameSingular: string, updatedFields?: Array<string> | null, record: any } };
+export type ViewFieldFragmentFragment = {
+  __typename?: 'CoreViewField';
+  id: any;
+  fieldMetadataId: any;
+  viewId: any;
+  isVisible: boolean;
+  position: number;
+  size: number;
+  aggregateOperation?: AggregateOperations | null;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string | null;
+};
 
-export type ViewFieldFragmentFragment = { __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null };
+export type ViewFilterFragmentFragment = {
+  __typename?: 'CoreViewFilter';
+  id: any;
+  fieldMetadataId: any;
+  operand: ViewFilterOperand;
+  value: any;
+  viewFilterGroupId?: any | null;
+  positionInViewFilterGroup?: number | null;
+  subFieldName?: string | null;
+  viewId: any;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string | null;
+};
 
-export type ViewFilterFragmentFragment = { __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null };
+export type ViewFilterGroupFragmentFragment = {
+  __typename?: 'CoreViewFilterGroup';
+  id: any;
+  parentViewFilterGroupId?: any | null;
+  logicalOperator: ViewFilterGroupLogicalOperator;
+  positionInViewFilterGroup?: number | null;
+  viewId: any;
+};
 
-export type ViewFilterGroupFragmentFragment = { __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any };
+export type ViewFragmentFragment = {
+  __typename?: 'CoreView';
+  id: any;
+  name: string;
+  objectMetadataId: any;
+  type: ViewType;
+  key?: ViewKey | null;
+  icon: string;
+  position: number;
+  isCompact: boolean;
+  openRecordIn: ViewOpenRecordIn;
+  kanbanAggregateOperation?: AggregateOperations | null;
+  kanbanAggregateOperationFieldMetadataId?: any | null;
+  anyFieldFilterValue?: string | null;
+  calendarFieldMetadataId?: any | null;
+  calendarLayout?: ViewCalendarLayout | null;
+  viewFields: Array<{
+    __typename?: 'CoreViewField';
+    id: any;
+    fieldMetadataId: any;
+    viewId: any;
+    isVisible: boolean;
+    position: number;
+    size: number;
+    aggregateOperation?: AggregateOperations | null;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  }>;
+  viewFilters: Array<{
+    __typename?: 'CoreViewFilter';
+    id: any;
+    fieldMetadataId: any;
+    operand: ViewFilterOperand;
+    value: any;
+    viewFilterGroupId?: any | null;
+    positionInViewFilterGroup?: number | null;
+    subFieldName?: string | null;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  }>;
+  viewFilterGroups: Array<{
+    __typename?: 'CoreViewFilterGroup';
+    id: any;
+    parentViewFilterGroupId?: any | null;
+    logicalOperator: ViewFilterGroupLogicalOperator;
+    positionInViewFilterGroup?: number | null;
+    viewId: any;
+  }>;
+  viewSorts: Array<{
+    __typename?: 'CoreViewSort';
+    id: any;
+    fieldMetadataId: any;
+    direction: ViewSortDirection;
+    viewId: any;
+  }>;
+  viewGroups: Array<{
+    __typename?: 'CoreViewGroup';
+    id: any;
+    fieldMetadataId: any;
+    isVisible: boolean;
+    fieldValue: string;
+    position: number;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  }>;
+};
 
-export type ViewFragmentFragment = { __typename?: 'CoreView', id: any, name: string, objectMetadataId: any, type: ViewType, key?: ViewKey | null, icon: string, position: number, isCompact: boolean, openRecordIn: ViewOpenRecordIn, kanbanAggregateOperation?: AggregateOperations | null, kanbanAggregateOperationFieldMetadataId?: any | null, anyFieldFilterValue?: string | null, calendarFieldMetadataId?: any | null, calendarLayout?: ViewCalendarLayout | null, viewFields: Array<{ __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilters: Array<{ __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilterGroups: Array<{ __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any }>, viewSorts: Array<{ __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any }>, viewGroups: Array<{ __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> };
+export type ViewGroupFragmentFragment = {
+  __typename?: 'CoreViewGroup';
+  id: any;
+  fieldMetadataId: any;
+  isVisible: boolean;
+  fieldValue: string;
+  position: number;
+  viewId: any;
+  createdAt: string;
+  updatedAt: string;
+  deletedAt?: string | null;
+};
 
-export type ViewGroupFragmentFragment = { __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null };
-
-export type ViewSortFragmentFragment = { __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any };
+export type ViewSortFragmentFragment = {
+  __typename?: 'CoreViewSort';
+  id: any;
+  fieldMetadataId: any;
+  direction: ViewSortDirection;
+  viewId: any;
+};
 
 export type CreateCoreViewMutationVariables = Exact<{
   input: CreateViewInput;
 }>;
 
-
-export type CreateCoreViewMutation = { __typename?: 'Mutation', createCoreView: { __typename?: 'CoreView', id: any, name: string, objectMetadataId: any, type: ViewType, key?: ViewKey | null, icon: string, position: number, isCompact: boolean, openRecordIn: ViewOpenRecordIn, kanbanAggregateOperation?: AggregateOperations | null, kanbanAggregateOperationFieldMetadataId?: any | null, anyFieldFilterValue?: string | null, calendarFieldMetadataId?: any | null, calendarLayout?: ViewCalendarLayout | null, viewFields: Array<{ __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilters: Array<{ __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilterGroups: Array<{ __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any }>, viewSorts: Array<{ __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any }>, viewGroups: Array<{ __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> } };
+export type CreateCoreViewMutation = {
+  __typename?: 'Mutation';
+  createCoreView: {
+    __typename?: 'CoreView';
+    id: any;
+    name: string;
+    objectMetadataId: any;
+    type: ViewType;
+    key?: ViewKey | null;
+    icon: string;
+    position: number;
+    isCompact: boolean;
+    openRecordIn: ViewOpenRecordIn;
+    kanbanAggregateOperation?: AggregateOperations | null;
+    kanbanAggregateOperationFieldMetadataId?: any | null;
+    anyFieldFilterValue?: string | null;
+    calendarFieldMetadataId?: any | null;
+    calendarLayout?: ViewCalendarLayout | null;
+    viewFields: Array<{
+      __typename?: 'CoreViewField';
+      id: any;
+      fieldMetadataId: any;
+      viewId: any;
+      isVisible: boolean;
+      position: number;
+      size: number;
+      aggregateOperation?: AggregateOperations | null;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilters: Array<{
+      __typename?: 'CoreViewFilter';
+      id: any;
+      fieldMetadataId: any;
+      operand: ViewFilterOperand;
+      value: any;
+      viewFilterGroupId?: any | null;
+      positionInViewFilterGroup?: number | null;
+      subFieldName?: string | null;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilterGroups: Array<{
+      __typename?: 'CoreViewFilterGroup';
+      id: any;
+      parentViewFilterGroupId?: any | null;
+      logicalOperator: ViewFilterGroupLogicalOperator;
+      positionInViewFilterGroup?: number | null;
+      viewId: any;
+    }>;
+    viewSorts: Array<{
+      __typename?: 'CoreViewSort';
+      id: any;
+      fieldMetadataId: any;
+      direction: ViewSortDirection;
+      viewId: any;
+    }>;
+    viewGroups: Array<{
+      __typename?: 'CoreViewGroup';
+      id: any;
+      fieldMetadataId: any;
+      isVisible: boolean;
+      fieldValue: string;
+      position: number;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+  };
+};
 
 export type CreateCoreViewFieldMutationVariables = Exact<{
   input: CreateViewFieldInput;
 }>;
 
-
-export type CreateCoreViewFieldMutation = { __typename?: 'Mutation', createCoreViewField: { __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type CreateCoreViewFieldMutation = {
+  __typename?: 'Mutation';
+  createCoreViewField: {
+    __typename?: 'CoreViewField';
+    id: any;
+    fieldMetadataId: any;
+    viewId: any;
+    isVisible: boolean;
+    position: number;
+    size: number;
+    aggregateOperation?: AggregateOperations | null;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type CreateCoreViewFilterMutationVariables = Exact<{
   input: CreateViewFilterInput;
 }>;
 
-
-export type CreateCoreViewFilterMutation = { __typename?: 'Mutation', createCoreViewFilter: { __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type CreateCoreViewFilterMutation = {
+  __typename?: 'Mutation';
+  createCoreViewFilter: {
+    __typename?: 'CoreViewFilter';
+    id: any;
+    fieldMetadataId: any;
+    operand: ViewFilterOperand;
+    value: any;
+    viewFilterGroupId?: any | null;
+    positionInViewFilterGroup?: number | null;
+    subFieldName?: string | null;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type CreateCoreViewFilterGroupMutationVariables = Exact<{
   input: CreateViewFilterGroupInput;
 }>;
 
-
-export type CreateCoreViewFilterGroupMutation = { __typename?: 'Mutation', createCoreViewFilterGroup: { __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any } };
+export type CreateCoreViewFilterGroupMutation = {
+  __typename?: 'Mutation';
+  createCoreViewFilterGroup: {
+    __typename?: 'CoreViewFilterGroup';
+    id: any;
+    parentViewFilterGroupId?: any | null;
+    logicalOperator: ViewFilterGroupLogicalOperator;
+    positionInViewFilterGroup?: number | null;
+    viewId: any;
+  };
+};
 
 export type CreateCoreViewGroupMutationVariables = Exact<{
   input: CreateViewGroupInput;
 }>;
 
-
-export type CreateCoreViewGroupMutation = { __typename?: 'Mutation', createCoreViewGroup: { __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type CreateCoreViewGroupMutation = {
+  __typename?: 'Mutation';
+  createCoreViewGroup: {
+    __typename?: 'CoreViewGroup';
+    id: any;
+    fieldMetadataId: any;
+    isVisible: boolean;
+    fieldValue: string;
+    position: number;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type CreateCoreViewSortMutationVariables = Exact<{
   input: CreateViewSortInput;
 }>;
 
-
-export type CreateCoreViewSortMutation = { __typename?: 'Mutation', createCoreViewSort: { __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any } };
+export type CreateCoreViewSortMutation = {
+  __typename?: 'Mutation';
+  createCoreViewSort: {
+    __typename?: 'CoreViewSort';
+    id: any;
+    fieldMetadataId: any;
+    direction: ViewSortDirection;
+    viewId: any;
+  };
+};
 
 export type DeleteCoreViewMutationVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type DeleteCoreViewMutation = { __typename?: 'Mutation', deleteCoreView: boolean };
+export type DeleteCoreViewMutation = {
+  __typename?: 'Mutation';
+  deleteCoreView: boolean;
+};
 
 export type DeleteCoreViewFieldMutationVariables = Exact<{
   input: DeleteViewFieldInput;
 }>;
 
-
-export type DeleteCoreViewFieldMutation = { __typename?: 'Mutation', deleteCoreViewField: { __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type DeleteCoreViewFieldMutation = {
+  __typename?: 'Mutation';
+  deleteCoreViewField: {
+    __typename?: 'CoreViewField';
+    id: any;
+    fieldMetadataId: any;
+    viewId: any;
+    isVisible: boolean;
+    position: number;
+    size: number;
+    aggregateOperation?: AggregateOperations | null;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type DeleteCoreViewFilterMutationVariables = Exact<{
   input: DeleteViewFilterInput;
 }>;
 
-
-export type DeleteCoreViewFilterMutation = { __typename?: 'Mutation', deleteCoreViewFilter: { __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type DeleteCoreViewFilterMutation = {
+  __typename?: 'Mutation';
+  deleteCoreViewFilter: {
+    __typename?: 'CoreViewFilter';
+    id: any;
+    fieldMetadataId: any;
+    operand: ViewFilterOperand;
+    value: any;
+    viewFilterGroupId?: any | null;
+    positionInViewFilterGroup?: number | null;
+    subFieldName?: string | null;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type DeleteCoreViewFilterGroupMutationVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type DeleteCoreViewFilterGroupMutation = { __typename?: 'Mutation', deleteCoreViewFilterGroup: boolean };
+export type DeleteCoreViewFilterGroupMutation = {
+  __typename?: 'Mutation';
+  deleteCoreViewFilterGroup: boolean;
+};
 
 export type DeleteCoreViewGroupMutationVariables = Exact<{
   input: DeleteViewGroupInput;
 }>;
 
-
-export type DeleteCoreViewGroupMutation = { __typename?: 'Mutation', deleteCoreViewGroup: { __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type DeleteCoreViewGroupMutation = {
+  __typename?: 'Mutation';
+  deleteCoreViewGroup: {
+    __typename?: 'CoreViewGroup';
+    id: any;
+    fieldMetadataId: any;
+    isVisible: boolean;
+    fieldValue: string;
+    position: number;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type DeleteCoreViewSortMutationVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type DeleteCoreViewSortMutation = { __typename?: 'Mutation', deleteCoreViewSort: boolean };
+export type DeleteCoreViewSortMutation = {
+  __typename?: 'Mutation';
+  deleteCoreViewSort: boolean;
+};
 
 export type DestroyCoreViewMutationVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type DestroyCoreViewMutation = { __typename?: 'Mutation', destroyCoreView: boolean };
+export type DestroyCoreViewMutation = {
+  __typename?: 'Mutation';
+  destroyCoreView: boolean;
+};
 
 export type DestroyCoreViewFieldMutationVariables = Exact<{
   input: DestroyViewFieldInput;
 }>;
 
-
-export type DestroyCoreViewFieldMutation = { __typename?: 'Mutation', destroyCoreViewField: { __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type DestroyCoreViewFieldMutation = {
+  __typename?: 'Mutation';
+  destroyCoreViewField: {
+    __typename?: 'CoreViewField';
+    id: any;
+    fieldMetadataId: any;
+    viewId: any;
+    isVisible: boolean;
+    position: number;
+    size: number;
+    aggregateOperation?: AggregateOperations | null;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type DestroyCoreViewFilterMutationVariables = Exact<{
   input: DestroyViewFilterInput;
 }>;
 
-
-export type DestroyCoreViewFilterMutation = { __typename?: 'Mutation', destroyCoreViewFilter: { __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type DestroyCoreViewFilterMutation = {
+  __typename?: 'Mutation';
+  destroyCoreViewFilter: {
+    __typename?: 'CoreViewFilter';
+    id: any;
+    fieldMetadataId: any;
+    operand: ViewFilterOperand;
+    value: any;
+    viewFilterGroupId?: any | null;
+    positionInViewFilterGroup?: number | null;
+    subFieldName?: string | null;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type DestroyCoreViewFilterGroupMutationVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type DestroyCoreViewFilterGroupMutation = { __typename?: 'Mutation', destroyCoreViewFilterGroup: boolean };
+export type DestroyCoreViewFilterGroupMutation = {
+  __typename?: 'Mutation';
+  destroyCoreViewFilterGroup: boolean;
+};
 
 export type DestroyCoreViewGroupMutationVariables = Exact<{
   input: DestroyViewGroupInput;
 }>;
 
-
-export type DestroyCoreViewGroupMutation = { __typename?: 'Mutation', destroyCoreViewGroup: { __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type DestroyCoreViewGroupMutation = {
+  __typename?: 'Mutation';
+  destroyCoreViewGroup: {
+    __typename?: 'CoreViewGroup';
+    id: any;
+    fieldMetadataId: any;
+    isVisible: boolean;
+    fieldValue: string;
+    position: number;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type DestroyCoreViewSortMutationVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type DestroyCoreViewSortMutation = { __typename?: 'Mutation', destroyCoreViewSort: boolean };
+export type DestroyCoreViewSortMutation = {
+  __typename?: 'Mutation';
+  destroyCoreViewSort: boolean;
+};
 
 export type UpdateCoreViewMutationVariables = Exact<{
   id: Scalars['String'];
   input: UpdateViewInput;
 }>;
 
-
-export type UpdateCoreViewMutation = { __typename?: 'Mutation', updateCoreView: { __typename?: 'CoreView', id: any, name: string, objectMetadataId: any, type: ViewType, key?: ViewKey | null, icon: string, position: number, isCompact: boolean, openRecordIn: ViewOpenRecordIn, kanbanAggregateOperation?: AggregateOperations | null, kanbanAggregateOperationFieldMetadataId?: any | null, anyFieldFilterValue?: string | null, calendarFieldMetadataId?: any | null, calendarLayout?: ViewCalendarLayout | null, viewFields: Array<{ __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilters: Array<{ __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilterGroups: Array<{ __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any }>, viewSorts: Array<{ __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any }>, viewGroups: Array<{ __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> } };
+export type UpdateCoreViewMutation = {
+  __typename?: 'Mutation';
+  updateCoreView: {
+    __typename?: 'CoreView';
+    id: any;
+    name: string;
+    objectMetadataId: any;
+    type: ViewType;
+    key?: ViewKey | null;
+    icon: string;
+    position: number;
+    isCompact: boolean;
+    openRecordIn: ViewOpenRecordIn;
+    kanbanAggregateOperation?: AggregateOperations | null;
+    kanbanAggregateOperationFieldMetadataId?: any | null;
+    anyFieldFilterValue?: string | null;
+    calendarFieldMetadataId?: any | null;
+    calendarLayout?: ViewCalendarLayout | null;
+    viewFields: Array<{
+      __typename?: 'CoreViewField';
+      id: any;
+      fieldMetadataId: any;
+      viewId: any;
+      isVisible: boolean;
+      position: number;
+      size: number;
+      aggregateOperation?: AggregateOperations | null;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilters: Array<{
+      __typename?: 'CoreViewFilter';
+      id: any;
+      fieldMetadataId: any;
+      operand: ViewFilterOperand;
+      value: any;
+      viewFilterGroupId?: any | null;
+      positionInViewFilterGroup?: number | null;
+      subFieldName?: string | null;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilterGroups: Array<{
+      __typename?: 'CoreViewFilterGroup';
+      id: any;
+      parentViewFilterGroupId?: any | null;
+      logicalOperator: ViewFilterGroupLogicalOperator;
+      positionInViewFilterGroup?: number | null;
+      viewId: any;
+    }>;
+    viewSorts: Array<{
+      __typename?: 'CoreViewSort';
+      id: any;
+      fieldMetadataId: any;
+      direction: ViewSortDirection;
+      viewId: any;
+    }>;
+    viewGroups: Array<{
+      __typename?: 'CoreViewGroup';
+      id: any;
+      fieldMetadataId: any;
+      isVisible: boolean;
+      fieldValue: string;
+      position: number;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+  };
+};
 
 export type UpdateCoreViewFieldMutationVariables = Exact<{
   input: UpdateViewFieldInput;
 }>;
 
-
-export type UpdateCoreViewFieldMutation = { __typename?: 'Mutation', updateCoreViewField: { __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type UpdateCoreViewFieldMutation = {
+  __typename?: 'Mutation';
+  updateCoreViewField: {
+    __typename?: 'CoreViewField';
+    id: any;
+    fieldMetadataId: any;
+    viewId: any;
+    isVisible: boolean;
+    position: number;
+    size: number;
+    aggregateOperation?: AggregateOperations | null;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type UpdateCoreViewFilterMutationVariables = Exact<{
   input: UpdateViewFilterInput;
 }>;
 
-
-export type UpdateCoreViewFilterMutation = { __typename?: 'Mutation', updateCoreViewFilter: { __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type UpdateCoreViewFilterMutation = {
+  __typename?: 'Mutation';
+  updateCoreViewFilter: {
+    __typename?: 'CoreViewFilter';
+    id: any;
+    fieldMetadataId: any;
+    operand: ViewFilterOperand;
+    value: any;
+    viewFilterGroupId?: any | null;
+    positionInViewFilterGroup?: number | null;
+    subFieldName?: string | null;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type UpdateCoreViewFilterGroupMutationVariables = Exact<{
   id: Scalars['String'];
   input: UpdateViewFilterGroupInput;
 }>;
 
-
-export type UpdateCoreViewFilterGroupMutation = { __typename?: 'Mutation', updateCoreViewFilterGroup: { __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any } };
+export type UpdateCoreViewFilterGroupMutation = {
+  __typename?: 'Mutation';
+  updateCoreViewFilterGroup: {
+    __typename?: 'CoreViewFilterGroup';
+    id: any;
+    parentViewFilterGroupId?: any | null;
+    logicalOperator: ViewFilterGroupLogicalOperator;
+    positionInViewFilterGroup?: number | null;
+    viewId: any;
+  };
+};
 
 export type UpdateCoreViewGroupMutationVariables = Exact<{
   input: UpdateViewGroupInput;
 }>;
 
-
-export type UpdateCoreViewGroupMutation = { __typename?: 'Mutation', updateCoreViewGroup: { __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } };
+export type UpdateCoreViewGroupMutation = {
+  __typename?: 'Mutation';
+  updateCoreViewGroup: {
+    __typename?: 'CoreViewGroup';
+    id: any;
+    fieldMetadataId: any;
+    isVisible: boolean;
+    fieldValue: string;
+    position: number;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  };
+};
 
 export type UpdateCoreViewSortMutationVariables = Exact<{
   id: Scalars['String'];
   input: UpdateViewSortInput;
 }>;
 
+export type UpdateCoreViewSortMutation = {
+  __typename?: 'Mutation';
+  updateCoreViewSort: {
+    __typename?: 'CoreViewSort';
+    id: any;
+    fieldMetadataId: any;
+    direction: ViewSortDirection;
+    viewId: any;
+  };
+};
 
-export type UpdateCoreViewSortMutation = { __typename?: 'Mutation', updateCoreViewSort: { __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any } };
+export type FindAllCoreViewsQueryVariables = Exact<{ [key: string]: never }>;
 
-export type FindAllCoreViewsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type FindAllCoreViewsQuery = { __typename?: 'Query', getCoreViews: Array<{ __typename?: 'CoreView', id: any, name: string, objectMetadataId: any, type: ViewType, key?: ViewKey | null, icon: string, position: number, isCompact: boolean, openRecordIn: ViewOpenRecordIn, kanbanAggregateOperation?: AggregateOperations | null, kanbanAggregateOperationFieldMetadataId?: any | null, anyFieldFilterValue?: string | null, calendarFieldMetadataId?: any | null, calendarLayout?: ViewCalendarLayout | null, viewFields: Array<{ __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilters: Array<{ __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilterGroups: Array<{ __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any }>, viewSorts: Array<{ __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any }>, viewGroups: Array<{ __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> }> };
+export type FindAllCoreViewsQuery = {
+  __typename?: 'Query';
+  getCoreViews: Array<{
+    __typename?: 'CoreView';
+    id: any;
+    name: string;
+    objectMetadataId: any;
+    type: ViewType;
+    key?: ViewKey | null;
+    icon: string;
+    position: number;
+    isCompact: boolean;
+    openRecordIn: ViewOpenRecordIn;
+    kanbanAggregateOperation?: AggregateOperations | null;
+    kanbanAggregateOperationFieldMetadataId?: any | null;
+    anyFieldFilterValue?: string | null;
+    calendarFieldMetadataId?: any | null;
+    calendarLayout?: ViewCalendarLayout | null;
+    viewFields: Array<{
+      __typename?: 'CoreViewField';
+      id: any;
+      fieldMetadataId: any;
+      viewId: any;
+      isVisible: boolean;
+      position: number;
+      size: number;
+      aggregateOperation?: AggregateOperations | null;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilters: Array<{
+      __typename?: 'CoreViewFilter';
+      id: any;
+      fieldMetadataId: any;
+      operand: ViewFilterOperand;
+      value: any;
+      viewFilterGroupId?: any | null;
+      positionInViewFilterGroup?: number | null;
+      subFieldName?: string | null;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilterGroups: Array<{
+      __typename?: 'CoreViewFilterGroup';
+      id: any;
+      parentViewFilterGroupId?: any | null;
+      logicalOperator: ViewFilterGroupLogicalOperator;
+      positionInViewFilterGroup?: number | null;
+      viewId: any;
+    }>;
+    viewSorts: Array<{
+      __typename?: 'CoreViewSort';
+      id: any;
+      fieldMetadataId: any;
+      direction: ViewSortDirection;
+      viewId: any;
+    }>;
+    viewGroups: Array<{
+      __typename?: 'CoreViewGroup';
+      id: any;
+      fieldMetadataId: any;
+      isVisible: boolean;
+      fieldValue: string;
+      position: number;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+  }>;
+};
 
 export type FindManyCoreViewFieldsQueryVariables = Exact<{
   viewId: Scalars['String'];
 }>;
 
-
-export type FindManyCoreViewFieldsQuery = { __typename?: 'Query', getCoreViewFields: Array<{ __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null }> };
+export type FindManyCoreViewFieldsQuery = {
+  __typename?: 'Query';
+  getCoreViewFields: Array<{
+    __typename?: 'CoreViewField';
+    id: any;
+    fieldMetadataId: any;
+    viewId: any;
+    isVisible: boolean;
+    position: number;
+    size: number;
+    aggregateOperation?: AggregateOperations | null;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  }>;
+};
 
 export type FindManyCoreViewFilterGroupsQueryVariables = Exact<{
   viewId?: InputMaybe<Scalars['String']>;
 }>;
 
-
-export type FindManyCoreViewFilterGroupsQuery = { __typename?: 'Query', getCoreViewFilterGroups: Array<{ __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any }> };
+export type FindManyCoreViewFilterGroupsQuery = {
+  __typename?: 'Query';
+  getCoreViewFilterGroups: Array<{
+    __typename?: 'CoreViewFilterGroup';
+    id: any;
+    parentViewFilterGroupId?: any | null;
+    logicalOperator: ViewFilterGroupLogicalOperator;
+    positionInViewFilterGroup?: number | null;
+    viewId: any;
+  }>;
+};
 
 export type FindManyCoreViewFiltersQueryVariables = Exact<{
   viewId?: InputMaybe<Scalars['String']>;
 }>;
 
-
-export type FindManyCoreViewFiltersQuery = { __typename?: 'Query', getCoreViewFilters: Array<{ __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> };
+export type FindManyCoreViewFiltersQuery = {
+  __typename?: 'Query';
+  getCoreViewFilters: Array<{
+    __typename?: 'CoreViewFilter';
+    id: any;
+    fieldMetadataId: any;
+    operand: ViewFilterOperand;
+    value: any;
+    viewFilterGroupId?: any | null;
+    positionInViewFilterGroup?: number | null;
+    subFieldName?: string | null;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  }>;
+};
 
 export type FindManyCoreViewGroupsQueryVariables = Exact<{
   viewId?: InputMaybe<Scalars['String']>;
 }>;
 
-
-export type FindManyCoreViewGroupsQuery = { __typename?: 'Query', getCoreViewGroups: Array<{ __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> };
+export type FindManyCoreViewGroupsQuery = {
+  __typename?: 'Query';
+  getCoreViewGroups: Array<{
+    __typename?: 'CoreViewGroup';
+    id: any;
+    fieldMetadataId: any;
+    isVisible: boolean;
+    fieldValue: string;
+    position: number;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  }>;
+};
 
 export type FindManyCoreViewSortsQueryVariables = Exact<{
   viewId?: InputMaybe<Scalars['String']>;
 }>;
 
-
-export type FindManyCoreViewSortsQuery = { __typename?: 'Query', getCoreViewSorts: Array<{ __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any }> };
+export type FindManyCoreViewSortsQuery = {
+  __typename?: 'Query';
+  getCoreViewSorts: Array<{
+    __typename?: 'CoreViewSort';
+    id: any;
+    fieldMetadataId: any;
+    direction: ViewSortDirection;
+    viewId: any;
+  }>;
+};
 
 export type FindManyCoreViewsQueryVariables = Exact<{
   objectMetadataId?: InputMaybe<Scalars['String']>;
 }>;
 
-
-export type FindManyCoreViewsQuery = { __typename?: 'Query', getCoreViews: Array<{ __typename?: 'CoreView', id: any, name: string, objectMetadataId: any, type: ViewType, key?: ViewKey | null, icon: string, position: number, isCompact: boolean, openRecordIn: ViewOpenRecordIn, kanbanAggregateOperation?: AggregateOperations | null, kanbanAggregateOperationFieldMetadataId?: any | null, anyFieldFilterValue?: string | null, calendarFieldMetadataId?: any | null, calendarLayout?: ViewCalendarLayout | null, viewFields: Array<{ __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilters: Array<{ __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilterGroups: Array<{ __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any }>, viewSorts: Array<{ __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any }>, viewGroups: Array<{ __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> }> };
+export type FindManyCoreViewsQuery = {
+  __typename?: 'Query';
+  getCoreViews: Array<{
+    __typename?: 'CoreView';
+    id: any;
+    name: string;
+    objectMetadataId: any;
+    type: ViewType;
+    key?: ViewKey | null;
+    icon: string;
+    position: number;
+    isCompact: boolean;
+    openRecordIn: ViewOpenRecordIn;
+    kanbanAggregateOperation?: AggregateOperations | null;
+    kanbanAggregateOperationFieldMetadataId?: any | null;
+    anyFieldFilterValue?: string | null;
+    calendarFieldMetadataId?: any | null;
+    calendarLayout?: ViewCalendarLayout | null;
+    viewFields: Array<{
+      __typename?: 'CoreViewField';
+      id: any;
+      fieldMetadataId: any;
+      viewId: any;
+      isVisible: boolean;
+      position: number;
+      size: number;
+      aggregateOperation?: AggregateOperations | null;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilters: Array<{
+      __typename?: 'CoreViewFilter';
+      id: any;
+      fieldMetadataId: any;
+      operand: ViewFilterOperand;
+      value: any;
+      viewFilterGroupId?: any | null;
+      positionInViewFilterGroup?: number | null;
+      subFieldName?: string | null;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilterGroups: Array<{
+      __typename?: 'CoreViewFilterGroup';
+      id: any;
+      parentViewFilterGroupId?: any | null;
+      logicalOperator: ViewFilterGroupLogicalOperator;
+      positionInViewFilterGroup?: number | null;
+      viewId: any;
+    }>;
+    viewSorts: Array<{
+      __typename?: 'CoreViewSort';
+      id: any;
+      fieldMetadataId: any;
+      direction: ViewSortDirection;
+      viewId: any;
+    }>;
+    viewGroups: Array<{
+      __typename?: 'CoreViewGroup';
+      id: any;
+      fieldMetadataId: any;
+      isVisible: boolean;
+      fieldValue: string;
+      position: number;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+  }>;
+};
 
 export type FindOneCoreViewQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type FindOneCoreViewQuery = { __typename?: 'Query', getCoreView?: { __typename?: 'CoreView', id: any, name: string, objectMetadataId: any, type: ViewType, key?: ViewKey | null, icon: string, position: number, isCompact: boolean, openRecordIn: ViewOpenRecordIn, kanbanAggregateOperation?: AggregateOperations | null, kanbanAggregateOperationFieldMetadataId?: any | null, anyFieldFilterValue?: string | null, calendarFieldMetadataId?: any | null, calendarLayout?: ViewCalendarLayout | null, viewFields: Array<{ __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilters: Array<{ __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }>, viewFilterGroups: Array<{ __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any }>, viewSorts: Array<{ __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any }>, viewGroups: Array<{ __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> } | null };
+export type FindOneCoreViewQuery = {
+  __typename?: 'Query';
+  getCoreView?: {
+    __typename?: 'CoreView';
+    id: any;
+    name: string;
+    objectMetadataId: any;
+    type: ViewType;
+    key?: ViewKey | null;
+    icon: string;
+    position: number;
+    isCompact: boolean;
+    openRecordIn: ViewOpenRecordIn;
+    kanbanAggregateOperation?: AggregateOperations | null;
+    kanbanAggregateOperationFieldMetadataId?: any | null;
+    anyFieldFilterValue?: string | null;
+    calendarFieldMetadataId?: any | null;
+    calendarLayout?: ViewCalendarLayout | null;
+    viewFields: Array<{
+      __typename?: 'CoreViewField';
+      id: any;
+      fieldMetadataId: any;
+      viewId: any;
+      isVisible: boolean;
+      position: number;
+      size: number;
+      aggregateOperation?: AggregateOperations | null;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilters: Array<{
+      __typename?: 'CoreViewFilter';
+      id: any;
+      fieldMetadataId: any;
+      operand: ViewFilterOperand;
+      value: any;
+      viewFilterGroupId?: any | null;
+      positionInViewFilterGroup?: number | null;
+      subFieldName?: string | null;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+    viewFilterGroups: Array<{
+      __typename?: 'CoreViewFilterGroup';
+      id: any;
+      parentViewFilterGroupId?: any | null;
+      logicalOperator: ViewFilterGroupLogicalOperator;
+      positionInViewFilterGroup?: number | null;
+      viewId: any;
+    }>;
+    viewSorts: Array<{
+      __typename?: 'CoreViewSort';
+      id: any;
+      fieldMetadataId: any;
+      direction: ViewSortDirection;
+      viewId: any;
+    }>;
+    viewGroups: Array<{
+      __typename?: 'CoreViewGroup';
+      id: any;
+      fieldMetadataId: any;
+      isVisible: boolean;
+      fieldValue: string;
+      position: number;
+      viewId: any;
+      createdAt: string;
+      updatedAt: string;
+      deletedAt?: string | null;
+    }>;
+  } | null;
+};
 
 export type FindOneCoreViewFieldQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type FindOneCoreViewFieldQuery = { __typename?: 'Query', getCoreViewField?: { __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null } | null };
+export type FindOneCoreViewFieldQuery = {
+  __typename?: 'Query';
+  getCoreViewField?: {
+    __typename?: 'CoreViewField';
+    id: any;
+    fieldMetadataId: any;
+    viewId: any;
+    isVisible: boolean;
+    position: number;
+    size: number;
+    aggregateOperation?: AggregateOperations | null;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  } | null;
+};
 
 export type FindOneCoreViewFilterQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type FindOneCoreViewFilterQuery = { __typename?: 'Query', getCoreViewFilter?: { __typename?: 'CoreViewFilter', id: any, fieldMetadataId: any, operand: ViewFilterOperand, value: any, viewFilterGroupId?: any | null, positionInViewFilterGroup?: number | null, subFieldName?: string | null, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } | null };
+export type FindOneCoreViewFilterQuery = {
+  __typename?: 'Query';
+  getCoreViewFilter?: {
+    __typename?: 'CoreViewFilter';
+    id: any;
+    fieldMetadataId: any;
+    operand: ViewFilterOperand;
+    value: any;
+    viewFilterGroupId?: any | null;
+    positionInViewFilterGroup?: number | null;
+    subFieldName?: string | null;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  } | null;
+};
 
 export type FindOneCoreViewFilterGroupQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type FindOneCoreViewFilterGroupQuery = { __typename?: 'Query', getCoreViewFilterGroup?: { __typename?: 'CoreViewFilterGroup', id: any, parentViewFilterGroupId?: any | null, logicalOperator: ViewFilterGroupLogicalOperator, positionInViewFilterGroup?: number | null, viewId: any } | null };
+export type FindOneCoreViewFilterGroupQuery = {
+  __typename?: 'Query';
+  getCoreViewFilterGroup?: {
+    __typename?: 'CoreViewFilterGroup';
+    id: any;
+    parentViewFilterGroupId?: any | null;
+    logicalOperator: ViewFilterGroupLogicalOperator;
+    positionInViewFilterGroup?: number | null;
+    viewId: any;
+  } | null;
+};
 
 export type FindOneCoreViewGroupQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type FindOneCoreViewGroupQuery = { __typename?: 'Query', getCoreViewGroup?: { __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null } | null };
+export type FindOneCoreViewGroupQuery = {
+  __typename?: 'Query';
+  getCoreViewGroup?: {
+    __typename?: 'CoreViewGroup';
+    id: any;
+    fieldMetadataId: any;
+    isVisible: boolean;
+    fieldValue: string;
+    position: number;
+    viewId: any;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt?: string | null;
+  } | null;
+};
 
 export type FindOneCoreViewSortQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
-export type FindOneCoreViewSortQuery = { __typename?: 'Query', getCoreViewSort?: { __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any } | null };
+export type FindOneCoreViewSortQuery = {
+  __typename?: 'Query';
+  getCoreViewSort?: {
+    __typename?: 'CoreViewSort';
+    id: any;
+    fieldMetadataId: any;
+    direction: ViewSortDirection;
+    viewId: any;
+  } | null;
+};
 
 export const PageLayoutWidgetFragmentFragmentDoc = gql`
-    fragment PageLayoutWidgetFragment on PageLayoutWidget {
-  id
-  title
-  type
-  objectMetadataId
-  createdAt
-  updatedAt
-  deletedAt
-  gridPosition {
-    column
-    columnSpan
-    row
-    rowSpan
-  }
-  configuration {
-    ... on BarChartConfiguration {
-      graphType
-      aggregateFieldMetadataId
-      aggregateOperation
-      primaryAxisGroupByFieldMetadataId
-      primaryAxisGroupBySubFieldName
-      primaryAxisOrderBy
-      secondaryAxisGroupByFieldMetadataId
-      secondaryAxisGroupBySubFieldName
-      secondaryAxisOrderBy
-      omitNullValues
-      axisNameDisplay
-      displayDataLabel
-      rangeMin
-      rangeMax
-      color
-      description
-      filter
-      groupMode
+  fragment PageLayoutWidgetFragment on PageLayoutWidget {
+    id
+    title
+    type
+    objectMetadataId
+    createdAt
+    updatedAt
+    deletedAt
+    gridPosition {
+      column
+      columnSpan
+      row
+      rowSpan
     }
-    ... on LineChartConfiguration {
-      graphType
-      aggregateFieldMetadataId
-      aggregateOperation
-      primaryAxisGroupByFieldMetadataId
-      primaryAxisGroupBySubFieldName
-      primaryAxisOrderBy
-      secondaryAxisGroupByFieldMetadataId
-      secondaryAxisGroupBySubFieldName
-      secondaryAxisOrderBy
-      omitNullValues
-      axisNameDisplay
-      displayDataLabel
-      rangeMin
-      rangeMax
-      color
-      description
-      filter
-    }
-    ... on PieChartConfiguration {
-      graphType
-      groupByFieldMetadataId
-      aggregateFieldMetadataId
-      aggregateOperation
-      groupBySubFieldName
-      orderBy
-      displayDataLabel
-      color
-      description
-      filter
-    }
-    ... on AggregateChartConfiguration {
-      graphType
-      aggregateFieldMetadataId
-      aggregateOperation
-      displayDataLabel
-      description
-      filter
-    }
-    ... on GaugeChartConfiguration {
-      graphType
-      aggregateFieldMetadataId
-      aggregateOperation
-      displayDataLabel
-      color
-      description
-      filter
-    }
-    ... on IframeConfiguration {
-      url
-    }
-  }
-  pageLayoutTabId
-}
-    `;
-export const ViewFieldFragmentFragmentDoc = gql`
-    fragment ViewFieldFragment on CoreViewField {
-  id
-  fieldMetadataId
-  viewId
-  isVisible
-  position
-  size
-  aggregateOperation
-  createdAt
-  updatedAt
-  deletedAt
-}
-    `;
-export const ViewFilterFragmentFragmentDoc = gql`
-    fragment ViewFilterFragment on CoreViewFilter {
-  id
-  fieldMetadataId
-  operand
-  value
-  viewFilterGroupId
-  positionInViewFilterGroup
-  subFieldName
-  viewId
-  createdAt
-  updatedAt
-  deletedAt
-}
-    `;
-export const ViewFilterGroupFragmentFragmentDoc = gql`
-    fragment ViewFilterGroupFragment on CoreViewFilterGroup {
-  id
-  parentViewFilterGroupId
-  logicalOperator
-  positionInViewFilterGroup
-  viewId
-}
-    `;
-export const ViewSortFragmentFragmentDoc = gql`
-    fragment ViewSortFragment on CoreViewSort {
-  id
-  fieldMetadataId
-  direction
-  viewId
-}
-    `;
-export const ViewGroupFragmentFragmentDoc = gql`
-    fragment ViewGroupFragment on CoreViewGroup {
-  id
-  fieldMetadataId
-  isVisible
-  fieldValue
-  position
-  viewId
-  createdAt
-  updatedAt
-  deletedAt
-}
-    `;
-export const ViewFragmentFragmentDoc = gql`
-    fragment ViewFragment on CoreView {
-  id
-  name
-  objectMetadataId
-  type
-  key
-  icon
-  position
-  isCompact
-  openRecordIn
-  kanbanAggregateOperation
-  kanbanAggregateOperationFieldMetadataId
-  anyFieldFilterValue
-  calendarFieldMetadataId
-  calendarLayout
-  viewFields {
-    ...ViewFieldFragment
-  }
-  viewFilters {
-    ...ViewFilterFragment
-  }
-  viewFilterGroups {
-    ...ViewFilterGroupFragment
-  }
-  viewSorts {
-    ...ViewSortFragment
-  }
-  viewGroups {
-    ...ViewGroupFragment
-  }
-}
-    ${ViewFieldFragmentFragmentDoc}
-${ViewFilterFragmentFragmentDoc}
-${ViewFilterGroupFragmentFragmentDoc}
-${ViewSortFragmentFragmentDoc}
-${ViewGroupFragmentFragmentDoc}`;
-export const SearchDocument = gql`
-    query Search($searchInput: String!, $limit: Int!, $after: String, $excludedObjectNameSingulars: [String!], $includedObjectNameSingulars: [String!], $filter: ObjectRecordFilterInput) {
-  search(
-    searchInput: $searchInput
-    limit: $limit
-    after: $after
-    excludedObjectNameSingulars: $excludedObjectNameSingulars
-    includedObjectNameSingulars: $includedObjectNameSingulars
-    filter: $filter
-  ) {
-    edges {
-      node {
-        recordId
-        objectNameSingular
-        label
-        imageUrl
-        tsRankCD
-        tsRank
+    configuration {
+      ... on BarChartConfiguration {
+        graphType
+        aggregateFieldMetadataId
+        aggregateOperation
+        primaryAxisGroupByFieldMetadataId
+        primaryAxisGroupBySubFieldName
+        primaryAxisOrderBy
+        secondaryAxisGroupByFieldMetadataId
+        secondaryAxisGroupBySubFieldName
+        secondaryAxisOrderBy
+        omitNullValues
+        axisNameDisplay
+        displayDataLabel
+        rangeMin
+        rangeMax
+        color
+        description
+        filter
+        groupMode
       }
-      cursor
+      ... on LineChartConfiguration {
+        graphType
+        aggregateFieldMetadataId
+        aggregateOperation
+        primaryAxisGroupByFieldMetadataId
+        primaryAxisGroupBySubFieldName
+        primaryAxisOrderBy
+        secondaryAxisGroupByFieldMetadataId
+        secondaryAxisGroupBySubFieldName
+        secondaryAxisOrderBy
+        omitNullValues
+        axisNameDisplay
+        displayDataLabel
+        rangeMin
+        rangeMax
+        color
+        description
+        filter
+      }
+      ... on PieChartConfiguration {
+        graphType
+        groupByFieldMetadataId
+        aggregateFieldMetadataId
+        aggregateOperation
+        groupBySubFieldName
+        orderBy
+        displayDataLabel
+        color
+        description
+        filter
+      }
+      ... on AggregateChartConfiguration {
+        graphType
+        aggregateFieldMetadataId
+        aggregateOperation
+        displayDataLabel
+        description
+        filter
+      }
+      ... on GaugeChartConfiguration {
+        graphType
+        aggregateFieldMetadataId
+        aggregateOperation
+        displayDataLabel
+        color
+        description
+        filter
+      }
+      ... on IframeConfiguration {
+        url
+      }
     }
-    pageInfo {
-      hasNextPage
-      endCursor
+    pageLayoutTabId
+  }
+`;
+export const ViewFieldFragmentFragmentDoc = gql`
+  fragment ViewFieldFragment on CoreViewField {
+    id
+    fieldMetadataId
+    viewId
+    isVisible
+    position
+    size
+    aggregateOperation
+    createdAt
+    updatedAt
+    deletedAt
+  }
+`;
+export const ViewFilterFragmentFragmentDoc = gql`
+  fragment ViewFilterFragment on CoreViewFilter {
+    id
+    fieldMetadataId
+    operand
+    value
+    viewFilterGroupId
+    positionInViewFilterGroup
+    subFieldName
+    viewId
+    createdAt
+    updatedAt
+    deletedAt
+  }
+`;
+export const ViewFilterGroupFragmentFragmentDoc = gql`
+  fragment ViewFilterGroupFragment on CoreViewFilterGroup {
+    id
+    parentViewFilterGroupId
+    logicalOperator
+    positionInViewFilterGroup
+    viewId
+  }
+`;
+export const ViewSortFragmentFragmentDoc = gql`
+  fragment ViewSortFragment on CoreViewSort {
+    id
+    fieldMetadataId
+    direction
+    viewId
+  }
+`;
+export const ViewGroupFragmentFragmentDoc = gql`
+  fragment ViewGroupFragment on CoreViewGroup {
+    id
+    fieldMetadataId
+    isVisible
+    fieldValue
+    position
+    viewId
+    createdAt
+    updatedAt
+    deletedAt
+  }
+`;
+export const ViewFragmentFragmentDoc = gql`
+  fragment ViewFragment on CoreView {
+    id
+    name
+    objectMetadataId
+    type
+    key
+    icon
+    position
+    isCompact
+    openRecordIn
+    kanbanAggregateOperation
+    kanbanAggregateOperationFieldMetadataId
+    anyFieldFilterValue
+    calendarFieldMetadataId
+    calendarLayout
+    viewFields {
+      ...ViewFieldFragment
+    }
+    viewFilters {
+      ...ViewFilterFragment
+    }
+    viewFilterGroups {
+      ...ViewFilterGroupFragment
+    }
+    viewSorts {
+      ...ViewSortFragment
+    }
+    viewGroups {
+      ...ViewGroupFragment
     }
   }
-}
-    `;
+  ${ViewFieldFragmentFragmentDoc}
+  ${ViewFilterFragmentFragmentDoc}
+  ${ViewFilterGroupFragmentFragmentDoc}
+  ${ViewSortFragmentFragmentDoc}
+  ${ViewGroupFragmentFragmentDoc}
+`;
+export const SearchDocument = gql`
+  query Search(
+    $searchInput: String!
+    $limit: Int!
+    $after: String
+    $excludedObjectNameSingulars: [String!]
+    $includedObjectNameSingulars: [String!]
+    $filter: ObjectRecordFilterInput
+  ) {
+    search(
+      searchInput: $searchInput
+      limit: $limit
+      after: $after
+      excludedObjectNameSingulars: $excludedObjectNameSingulars
+      includedObjectNameSingulars: $includedObjectNameSingulars
+      filter: $filter
+    ) {
+      edges {
+        node {
+          recordId
+          objectNameSingular
+          label
+          imageUrl
+          tsRankCD
+          tsRank
+        }
+        cursor
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+    }
+  }
+`;
 
 /**
  * __useSearchQuery__
@@ -5154,42 +6027,63 @@ export const SearchDocument = gql`
  *   },
  * });
  */
-export function useSearchQuery(baseOptions: Apollo.QueryHookOptions<SearchQuery, SearchQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<SearchQuery, SearchQueryVariables>(SearchDocument, options);
-      }
-export function useSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SearchQuery, SearchQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<SearchQuery, SearchQueryVariables>(SearchDocument, options);
-        }
+export function useSearchQuery(
+  baseOptions: Apollo.QueryHookOptions<SearchQuery, SearchQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<SearchQuery, SearchQueryVariables>(
+    SearchDocument,
+    options,
+  );
+}
+export function useSearchLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<SearchQuery, SearchQueryVariables>,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<SearchQuery, SearchQueryVariables>(
+    SearchDocument,
+    options,
+  );
+}
 export type SearchQueryHookResult = ReturnType<typeof useSearchQuery>;
 export type SearchLazyQueryHookResult = ReturnType<typeof useSearchLazyQuery>;
-export type SearchQueryResult = Apollo.QueryResult<SearchQuery, SearchQueryVariables>;
+export type SearchQueryResult = Apollo.QueryResult<
+  SearchQuery,
+  SearchQueryVariables
+>;
 export const UpdatePageLayoutWithTabsAndWidgetsDocument = gql`
-    mutation UpdatePageLayoutWithTabsAndWidgets($id: String!, $input: UpdatePageLayoutWithTabsInput!) {
-  updatePageLayoutWithTabsAndWidgets(id: $id, input: $input) {
-    id
-    name
-    type
-    objectMetadataId
-    createdAt
-    updatedAt
-    deletedAt
-    tabs {
+  mutation UpdatePageLayoutWithTabsAndWidgets(
+    $id: String!
+    $input: UpdatePageLayoutWithTabsInput!
+  ) {
+    updatePageLayoutWithTabsAndWidgets(id: $id, input: $input) {
       id
-      title
-      position
-      pageLayoutId
-      widgets {
-        ...PageLayoutWidgetFragment
-      }
+      name
+      type
+      objectMetadataId
       createdAt
       updatedAt
+      deletedAt
+      tabs {
+        id
+        title
+        position
+        pageLayoutId
+        widgets {
+          ...PageLayoutWidgetFragment
+        }
+        createdAt
+        updatedAt
+      }
     }
   }
-}
-    ${PageLayoutWidgetFragmentFragmentDoc}`;
-export type UpdatePageLayoutWithTabsAndWidgetsMutationFn = Apollo.MutationFunction<UpdatePageLayoutWithTabsAndWidgetsMutation, UpdatePageLayoutWithTabsAndWidgetsMutationVariables>;
+  ${PageLayoutWidgetFragmentFragmentDoc}
+`;
+export type UpdatePageLayoutWithTabsAndWidgetsMutationFn =
+  Apollo.MutationFunction<
+    UpdatePageLayoutWithTabsAndWidgetsMutation,
+    UpdatePageLayoutWithTabsAndWidgetsMutationVariables
+  >;
 
 /**
  * __useUpdatePageLayoutWithTabsAndWidgetsMutation__
@@ -5209,24 +6103,39 @@ export type UpdatePageLayoutWithTabsAndWidgetsMutationFn = Apollo.MutationFuncti
  *   },
  * });
  */
-export function useUpdatePageLayoutWithTabsAndWidgetsMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePageLayoutWithTabsAndWidgetsMutation, UpdatePageLayoutWithTabsAndWidgetsMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdatePageLayoutWithTabsAndWidgetsMutation, UpdatePageLayoutWithTabsAndWidgetsMutationVariables>(UpdatePageLayoutWithTabsAndWidgetsDocument, options);
-      }
-export type UpdatePageLayoutWithTabsAndWidgetsMutationHookResult = ReturnType<typeof useUpdatePageLayoutWithTabsAndWidgetsMutation>;
-export type UpdatePageLayoutWithTabsAndWidgetsMutationResult = Apollo.MutationResult<UpdatePageLayoutWithTabsAndWidgetsMutation>;
-export type UpdatePageLayoutWithTabsAndWidgetsMutationOptions = Apollo.BaseMutationOptions<UpdatePageLayoutWithTabsAndWidgetsMutation, UpdatePageLayoutWithTabsAndWidgetsMutationVariables>;
-export const OnDbEventDocument = gql`
-    subscription OnDbEvent($input: OnDbEventInput!) {
-  onDbEvent(input: $input) {
-    eventDate
-    action
-    objectNameSingular
-    updatedFields
-    record
-  }
+export function useUpdatePageLayoutWithTabsAndWidgetsMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdatePageLayoutWithTabsAndWidgetsMutation,
+    UpdatePageLayoutWithTabsAndWidgetsMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdatePageLayoutWithTabsAndWidgetsMutation,
+    UpdatePageLayoutWithTabsAndWidgetsMutationVariables
+  >(UpdatePageLayoutWithTabsAndWidgetsDocument, options);
 }
-    `;
+export type UpdatePageLayoutWithTabsAndWidgetsMutationHookResult = ReturnType<
+  typeof useUpdatePageLayoutWithTabsAndWidgetsMutation
+>;
+export type UpdatePageLayoutWithTabsAndWidgetsMutationResult =
+  Apollo.MutationResult<UpdatePageLayoutWithTabsAndWidgetsMutation>;
+export type UpdatePageLayoutWithTabsAndWidgetsMutationOptions =
+  Apollo.BaseMutationOptions<
+    UpdatePageLayoutWithTabsAndWidgetsMutation,
+    UpdatePageLayoutWithTabsAndWidgetsMutationVariables
+  >;
+export const OnDbEventDocument = gql`
+  subscription OnDbEvent($input: OnDbEventInput!) {
+    onDbEvent(input: $input) {
+      eventDate
+      action
+      objectNameSingular
+      updatedFields
+      record
+    }
+  }
+`;
 
 /**
  * __useOnDbEventSubscription__
@@ -5244,20 +6153,35 @@ export const OnDbEventDocument = gql`
  *   },
  * });
  */
-export function useOnDbEventSubscription(baseOptions: Apollo.SubscriptionHookOptions<OnDbEventSubscription, OnDbEventSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<OnDbEventSubscription, OnDbEventSubscriptionVariables>(OnDbEventDocument, options);
-      }
-export type OnDbEventSubscriptionHookResult = ReturnType<typeof useOnDbEventSubscription>;
-export type OnDbEventSubscriptionResult = Apollo.SubscriptionResult<OnDbEventSubscription>;
-export const CreateCoreViewDocument = gql`
-    mutation CreateCoreView($input: CreateViewInput!) {
-  createCoreView(input: $input) {
-    ...ViewFragment
-  }
+export function useOnDbEventSubscription(
+  baseOptions: Apollo.SubscriptionHookOptions<
+    OnDbEventSubscription,
+    OnDbEventSubscriptionVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useSubscription<
+    OnDbEventSubscription,
+    OnDbEventSubscriptionVariables
+  >(OnDbEventDocument, options);
 }
-    ${ViewFragmentFragmentDoc}`;
-export type CreateCoreViewMutationFn = Apollo.MutationFunction<CreateCoreViewMutation, CreateCoreViewMutationVariables>;
+export type OnDbEventSubscriptionHookResult = ReturnType<
+  typeof useOnDbEventSubscription
+>;
+export type OnDbEventSubscriptionResult =
+  Apollo.SubscriptionResult<OnDbEventSubscription>;
+export const CreateCoreViewDocument = gql`
+  mutation CreateCoreView($input: CreateViewInput!) {
+    createCoreView(input: $input) {
+      ...ViewFragment
+    }
+  }
+  ${ViewFragmentFragmentDoc}
+`;
+export type CreateCoreViewMutationFn = Apollo.MutationFunction<
+  CreateCoreViewMutation,
+  CreateCoreViewMutationVariables
+>;
 
 /**
  * __useCreateCoreViewMutation__
@@ -5276,21 +6200,39 @@ export type CreateCoreViewMutationFn = Apollo.MutationFunction<CreateCoreViewMut
  *   },
  * });
  */
-export function useCreateCoreViewMutation(baseOptions?: Apollo.MutationHookOptions<CreateCoreViewMutation, CreateCoreViewMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateCoreViewMutation, CreateCoreViewMutationVariables>(CreateCoreViewDocument, options);
-      }
-export type CreateCoreViewMutationHookResult = ReturnType<typeof useCreateCoreViewMutation>;
-export type CreateCoreViewMutationResult = Apollo.MutationResult<CreateCoreViewMutation>;
-export type CreateCoreViewMutationOptions = Apollo.BaseMutationOptions<CreateCoreViewMutation, CreateCoreViewMutationVariables>;
-export const CreateCoreViewFieldDocument = gql`
-    mutation CreateCoreViewField($input: CreateViewFieldInput!) {
-  createCoreViewField(input: $input) {
-    ...ViewFieldFragment
-  }
+export function useCreateCoreViewMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateCoreViewMutation,
+    CreateCoreViewMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateCoreViewMutation,
+    CreateCoreViewMutationVariables
+  >(CreateCoreViewDocument, options);
 }
-    ${ViewFieldFragmentFragmentDoc}`;
-export type CreateCoreViewFieldMutationFn = Apollo.MutationFunction<CreateCoreViewFieldMutation, CreateCoreViewFieldMutationVariables>;
+export type CreateCoreViewMutationHookResult = ReturnType<
+  typeof useCreateCoreViewMutation
+>;
+export type CreateCoreViewMutationResult =
+  Apollo.MutationResult<CreateCoreViewMutation>;
+export type CreateCoreViewMutationOptions = Apollo.BaseMutationOptions<
+  CreateCoreViewMutation,
+  CreateCoreViewMutationVariables
+>;
+export const CreateCoreViewFieldDocument = gql`
+  mutation CreateCoreViewField($input: CreateViewFieldInput!) {
+    createCoreViewField(input: $input) {
+      ...ViewFieldFragment
+    }
+  }
+  ${ViewFieldFragmentFragmentDoc}
+`;
+export type CreateCoreViewFieldMutationFn = Apollo.MutationFunction<
+  CreateCoreViewFieldMutation,
+  CreateCoreViewFieldMutationVariables
+>;
 
 /**
  * __useCreateCoreViewFieldMutation__
@@ -5309,21 +6251,39 @@ export type CreateCoreViewFieldMutationFn = Apollo.MutationFunction<CreateCoreVi
  *   },
  * });
  */
-export function useCreateCoreViewFieldMutation(baseOptions?: Apollo.MutationHookOptions<CreateCoreViewFieldMutation, CreateCoreViewFieldMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateCoreViewFieldMutation, CreateCoreViewFieldMutationVariables>(CreateCoreViewFieldDocument, options);
-      }
-export type CreateCoreViewFieldMutationHookResult = ReturnType<typeof useCreateCoreViewFieldMutation>;
-export type CreateCoreViewFieldMutationResult = Apollo.MutationResult<CreateCoreViewFieldMutation>;
-export type CreateCoreViewFieldMutationOptions = Apollo.BaseMutationOptions<CreateCoreViewFieldMutation, CreateCoreViewFieldMutationVariables>;
-export const CreateCoreViewFilterDocument = gql`
-    mutation CreateCoreViewFilter($input: CreateViewFilterInput!) {
-  createCoreViewFilter(input: $input) {
-    ...ViewFilterFragment
-  }
+export function useCreateCoreViewFieldMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateCoreViewFieldMutation,
+    CreateCoreViewFieldMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateCoreViewFieldMutation,
+    CreateCoreViewFieldMutationVariables
+  >(CreateCoreViewFieldDocument, options);
 }
-    ${ViewFilterFragmentFragmentDoc}`;
-export type CreateCoreViewFilterMutationFn = Apollo.MutationFunction<CreateCoreViewFilterMutation, CreateCoreViewFilterMutationVariables>;
+export type CreateCoreViewFieldMutationHookResult = ReturnType<
+  typeof useCreateCoreViewFieldMutation
+>;
+export type CreateCoreViewFieldMutationResult =
+  Apollo.MutationResult<CreateCoreViewFieldMutation>;
+export type CreateCoreViewFieldMutationOptions = Apollo.BaseMutationOptions<
+  CreateCoreViewFieldMutation,
+  CreateCoreViewFieldMutationVariables
+>;
+export const CreateCoreViewFilterDocument = gql`
+  mutation CreateCoreViewFilter($input: CreateViewFilterInput!) {
+    createCoreViewFilter(input: $input) {
+      ...ViewFilterFragment
+    }
+  }
+  ${ViewFilterFragmentFragmentDoc}
+`;
+export type CreateCoreViewFilterMutationFn = Apollo.MutationFunction<
+  CreateCoreViewFilterMutation,
+  CreateCoreViewFilterMutationVariables
+>;
 
 /**
  * __useCreateCoreViewFilterMutation__
@@ -5342,21 +6302,39 @@ export type CreateCoreViewFilterMutationFn = Apollo.MutationFunction<CreateCoreV
  *   },
  * });
  */
-export function useCreateCoreViewFilterMutation(baseOptions?: Apollo.MutationHookOptions<CreateCoreViewFilterMutation, CreateCoreViewFilterMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateCoreViewFilterMutation, CreateCoreViewFilterMutationVariables>(CreateCoreViewFilterDocument, options);
-      }
-export type CreateCoreViewFilterMutationHookResult = ReturnType<typeof useCreateCoreViewFilterMutation>;
-export type CreateCoreViewFilterMutationResult = Apollo.MutationResult<CreateCoreViewFilterMutation>;
-export type CreateCoreViewFilterMutationOptions = Apollo.BaseMutationOptions<CreateCoreViewFilterMutation, CreateCoreViewFilterMutationVariables>;
-export const CreateCoreViewFilterGroupDocument = gql`
-    mutation CreateCoreViewFilterGroup($input: CreateViewFilterGroupInput!) {
-  createCoreViewFilterGroup(input: $input) {
-    ...ViewFilterGroupFragment
-  }
+export function useCreateCoreViewFilterMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateCoreViewFilterMutation,
+    CreateCoreViewFilterMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateCoreViewFilterMutation,
+    CreateCoreViewFilterMutationVariables
+  >(CreateCoreViewFilterDocument, options);
 }
-    ${ViewFilterGroupFragmentFragmentDoc}`;
-export type CreateCoreViewFilterGroupMutationFn = Apollo.MutationFunction<CreateCoreViewFilterGroupMutation, CreateCoreViewFilterGroupMutationVariables>;
+export type CreateCoreViewFilterMutationHookResult = ReturnType<
+  typeof useCreateCoreViewFilterMutation
+>;
+export type CreateCoreViewFilterMutationResult =
+  Apollo.MutationResult<CreateCoreViewFilterMutation>;
+export type CreateCoreViewFilterMutationOptions = Apollo.BaseMutationOptions<
+  CreateCoreViewFilterMutation,
+  CreateCoreViewFilterMutationVariables
+>;
+export const CreateCoreViewFilterGroupDocument = gql`
+  mutation CreateCoreViewFilterGroup($input: CreateViewFilterGroupInput!) {
+    createCoreViewFilterGroup(input: $input) {
+      ...ViewFilterGroupFragment
+    }
+  }
+  ${ViewFilterGroupFragmentFragmentDoc}
+`;
+export type CreateCoreViewFilterGroupMutationFn = Apollo.MutationFunction<
+  CreateCoreViewFilterGroupMutation,
+  CreateCoreViewFilterGroupMutationVariables
+>;
 
 /**
  * __useCreateCoreViewFilterGroupMutation__
@@ -5375,21 +6353,40 @@ export type CreateCoreViewFilterGroupMutationFn = Apollo.MutationFunction<Create
  *   },
  * });
  */
-export function useCreateCoreViewFilterGroupMutation(baseOptions?: Apollo.MutationHookOptions<CreateCoreViewFilterGroupMutation, CreateCoreViewFilterGroupMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateCoreViewFilterGroupMutation, CreateCoreViewFilterGroupMutationVariables>(CreateCoreViewFilterGroupDocument, options);
-      }
-export type CreateCoreViewFilterGroupMutationHookResult = ReturnType<typeof useCreateCoreViewFilterGroupMutation>;
-export type CreateCoreViewFilterGroupMutationResult = Apollo.MutationResult<CreateCoreViewFilterGroupMutation>;
-export type CreateCoreViewFilterGroupMutationOptions = Apollo.BaseMutationOptions<CreateCoreViewFilterGroupMutation, CreateCoreViewFilterGroupMutationVariables>;
-export const CreateCoreViewGroupDocument = gql`
-    mutation CreateCoreViewGroup($input: CreateViewGroupInput!) {
-  createCoreViewGroup(input: $input) {
-    ...ViewGroupFragment
-  }
+export function useCreateCoreViewFilterGroupMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateCoreViewFilterGroupMutation,
+    CreateCoreViewFilterGroupMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateCoreViewFilterGroupMutation,
+    CreateCoreViewFilterGroupMutationVariables
+  >(CreateCoreViewFilterGroupDocument, options);
 }
-    ${ViewGroupFragmentFragmentDoc}`;
-export type CreateCoreViewGroupMutationFn = Apollo.MutationFunction<CreateCoreViewGroupMutation, CreateCoreViewGroupMutationVariables>;
+export type CreateCoreViewFilterGroupMutationHookResult = ReturnType<
+  typeof useCreateCoreViewFilterGroupMutation
+>;
+export type CreateCoreViewFilterGroupMutationResult =
+  Apollo.MutationResult<CreateCoreViewFilterGroupMutation>;
+export type CreateCoreViewFilterGroupMutationOptions =
+  Apollo.BaseMutationOptions<
+    CreateCoreViewFilterGroupMutation,
+    CreateCoreViewFilterGroupMutationVariables
+  >;
+export const CreateCoreViewGroupDocument = gql`
+  mutation CreateCoreViewGroup($input: CreateViewGroupInput!) {
+    createCoreViewGroup(input: $input) {
+      ...ViewGroupFragment
+    }
+  }
+  ${ViewGroupFragmentFragmentDoc}
+`;
+export type CreateCoreViewGroupMutationFn = Apollo.MutationFunction<
+  CreateCoreViewGroupMutation,
+  CreateCoreViewGroupMutationVariables
+>;
 
 /**
  * __useCreateCoreViewGroupMutation__
@@ -5408,21 +6405,39 @@ export type CreateCoreViewGroupMutationFn = Apollo.MutationFunction<CreateCoreVi
  *   },
  * });
  */
-export function useCreateCoreViewGroupMutation(baseOptions?: Apollo.MutationHookOptions<CreateCoreViewGroupMutation, CreateCoreViewGroupMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateCoreViewGroupMutation, CreateCoreViewGroupMutationVariables>(CreateCoreViewGroupDocument, options);
-      }
-export type CreateCoreViewGroupMutationHookResult = ReturnType<typeof useCreateCoreViewGroupMutation>;
-export type CreateCoreViewGroupMutationResult = Apollo.MutationResult<CreateCoreViewGroupMutation>;
-export type CreateCoreViewGroupMutationOptions = Apollo.BaseMutationOptions<CreateCoreViewGroupMutation, CreateCoreViewGroupMutationVariables>;
-export const CreateCoreViewSortDocument = gql`
-    mutation CreateCoreViewSort($input: CreateViewSortInput!) {
-  createCoreViewSort(input: $input) {
-    ...ViewSortFragment
-  }
+export function useCreateCoreViewGroupMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateCoreViewGroupMutation,
+    CreateCoreViewGroupMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateCoreViewGroupMutation,
+    CreateCoreViewGroupMutationVariables
+  >(CreateCoreViewGroupDocument, options);
 }
-    ${ViewSortFragmentFragmentDoc}`;
-export type CreateCoreViewSortMutationFn = Apollo.MutationFunction<CreateCoreViewSortMutation, CreateCoreViewSortMutationVariables>;
+export type CreateCoreViewGroupMutationHookResult = ReturnType<
+  typeof useCreateCoreViewGroupMutation
+>;
+export type CreateCoreViewGroupMutationResult =
+  Apollo.MutationResult<CreateCoreViewGroupMutation>;
+export type CreateCoreViewGroupMutationOptions = Apollo.BaseMutationOptions<
+  CreateCoreViewGroupMutation,
+  CreateCoreViewGroupMutationVariables
+>;
+export const CreateCoreViewSortDocument = gql`
+  mutation CreateCoreViewSort($input: CreateViewSortInput!) {
+    createCoreViewSort(input: $input) {
+      ...ViewSortFragment
+    }
+  }
+  ${ViewSortFragmentFragmentDoc}
+`;
+export type CreateCoreViewSortMutationFn = Apollo.MutationFunction<
+  CreateCoreViewSortMutation,
+  CreateCoreViewSortMutationVariables
+>;
 
 /**
  * __useCreateCoreViewSortMutation__
@@ -5441,19 +6456,36 @@ export type CreateCoreViewSortMutationFn = Apollo.MutationFunction<CreateCoreVie
  *   },
  * });
  */
-export function useCreateCoreViewSortMutation(baseOptions?: Apollo.MutationHookOptions<CreateCoreViewSortMutation, CreateCoreViewSortMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateCoreViewSortMutation, CreateCoreViewSortMutationVariables>(CreateCoreViewSortDocument, options);
-      }
-export type CreateCoreViewSortMutationHookResult = ReturnType<typeof useCreateCoreViewSortMutation>;
-export type CreateCoreViewSortMutationResult = Apollo.MutationResult<CreateCoreViewSortMutation>;
-export type CreateCoreViewSortMutationOptions = Apollo.BaseMutationOptions<CreateCoreViewSortMutation, CreateCoreViewSortMutationVariables>;
-export const DeleteCoreViewDocument = gql`
-    mutation DeleteCoreView($id: String!) {
-  deleteCoreView(id: $id)
+export function useCreateCoreViewSortMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    CreateCoreViewSortMutation,
+    CreateCoreViewSortMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    CreateCoreViewSortMutation,
+    CreateCoreViewSortMutationVariables
+  >(CreateCoreViewSortDocument, options);
 }
-    `;
-export type DeleteCoreViewMutationFn = Apollo.MutationFunction<DeleteCoreViewMutation, DeleteCoreViewMutationVariables>;
+export type CreateCoreViewSortMutationHookResult = ReturnType<
+  typeof useCreateCoreViewSortMutation
+>;
+export type CreateCoreViewSortMutationResult =
+  Apollo.MutationResult<CreateCoreViewSortMutation>;
+export type CreateCoreViewSortMutationOptions = Apollo.BaseMutationOptions<
+  CreateCoreViewSortMutation,
+  CreateCoreViewSortMutationVariables
+>;
+export const DeleteCoreViewDocument = gql`
+  mutation DeleteCoreView($id: String!) {
+    deleteCoreView(id: $id)
+  }
+`;
+export type DeleteCoreViewMutationFn = Apollo.MutationFunction<
+  DeleteCoreViewMutation,
+  DeleteCoreViewMutationVariables
+>;
 
 /**
  * __useDeleteCoreViewMutation__
@@ -5472,21 +6504,39 @@ export type DeleteCoreViewMutationFn = Apollo.MutationFunction<DeleteCoreViewMut
  *   },
  * });
  */
-export function useDeleteCoreViewMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCoreViewMutation, DeleteCoreViewMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteCoreViewMutation, DeleteCoreViewMutationVariables>(DeleteCoreViewDocument, options);
-      }
-export type DeleteCoreViewMutationHookResult = ReturnType<typeof useDeleteCoreViewMutation>;
-export type DeleteCoreViewMutationResult = Apollo.MutationResult<DeleteCoreViewMutation>;
-export type DeleteCoreViewMutationOptions = Apollo.BaseMutationOptions<DeleteCoreViewMutation, DeleteCoreViewMutationVariables>;
-export const DeleteCoreViewFieldDocument = gql`
-    mutation DeleteCoreViewField($input: DeleteViewFieldInput!) {
-  deleteCoreViewField(input: $input) {
-    ...ViewFieldFragment
-  }
+export function useDeleteCoreViewMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteCoreViewMutation,
+    DeleteCoreViewMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteCoreViewMutation,
+    DeleteCoreViewMutationVariables
+  >(DeleteCoreViewDocument, options);
 }
-    ${ViewFieldFragmentFragmentDoc}`;
-export type DeleteCoreViewFieldMutationFn = Apollo.MutationFunction<DeleteCoreViewFieldMutation, DeleteCoreViewFieldMutationVariables>;
+export type DeleteCoreViewMutationHookResult = ReturnType<
+  typeof useDeleteCoreViewMutation
+>;
+export type DeleteCoreViewMutationResult =
+  Apollo.MutationResult<DeleteCoreViewMutation>;
+export type DeleteCoreViewMutationOptions = Apollo.BaseMutationOptions<
+  DeleteCoreViewMutation,
+  DeleteCoreViewMutationVariables
+>;
+export const DeleteCoreViewFieldDocument = gql`
+  mutation DeleteCoreViewField($input: DeleteViewFieldInput!) {
+    deleteCoreViewField(input: $input) {
+      ...ViewFieldFragment
+    }
+  }
+  ${ViewFieldFragmentFragmentDoc}
+`;
+export type DeleteCoreViewFieldMutationFn = Apollo.MutationFunction<
+  DeleteCoreViewFieldMutation,
+  DeleteCoreViewFieldMutationVariables
+>;
 
 /**
  * __useDeleteCoreViewFieldMutation__
@@ -5505,21 +6555,39 @@ export type DeleteCoreViewFieldMutationFn = Apollo.MutationFunction<DeleteCoreVi
  *   },
  * });
  */
-export function useDeleteCoreViewFieldMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCoreViewFieldMutation, DeleteCoreViewFieldMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteCoreViewFieldMutation, DeleteCoreViewFieldMutationVariables>(DeleteCoreViewFieldDocument, options);
-      }
-export type DeleteCoreViewFieldMutationHookResult = ReturnType<typeof useDeleteCoreViewFieldMutation>;
-export type DeleteCoreViewFieldMutationResult = Apollo.MutationResult<DeleteCoreViewFieldMutation>;
-export type DeleteCoreViewFieldMutationOptions = Apollo.BaseMutationOptions<DeleteCoreViewFieldMutation, DeleteCoreViewFieldMutationVariables>;
-export const DeleteCoreViewFilterDocument = gql`
-    mutation DeleteCoreViewFilter($input: DeleteViewFilterInput!) {
-  deleteCoreViewFilter(input: $input) {
-    ...ViewFilterFragment
-  }
+export function useDeleteCoreViewFieldMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteCoreViewFieldMutation,
+    DeleteCoreViewFieldMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteCoreViewFieldMutation,
+    DeleteCoreViewFieldMutationVariables
+  >(DeleteCoreViewFieldDocument, options);
 }
-    ${ViewFilterFragmentFragmentDoc}`;
-export type DeleteCoreViewFilterMutationFn = Apollo.MutationFunction<DeleteCoreViewFilterMutation, DeleteCoreViewFilterMutationVariables>;
+export type DeleteCoreViewFieldMutationHookResult = ReturnType<
+  typeof useDeleteCoreViewFieldMutation
+>;
+export type DeleteCoreViewFieldMutationResult =
+  Apollo.MutationResult<DeleteCoreViewFieldMutation>;
+export type DeleteCoreViewFieldMutationOptions = Apollo.BaseMutationOptions<
+  DeleteCoreViewFieldMutation,
+  DeleteCoreViewFieldMutationVariables
+>;
+export const DeleteCoreViewFilterDocument = gql`
+  mutation DeleteCoreViewFilter($input: DeleteViewFilterInput!) {
+    deleteCoreViewFilter(input: $input) {
+      ...ViewFilterFragment
+    }
+  }
+  ${ViewFilterFragmentFragmentDoc}
+`;
+export type DeleteCoreViewFilterMutationFn = Apollo.MutationFunction<
+  DeleteCoreViewFilterMutation,
+  DeleteCoreViewFilterMutationVariables
+>;
 
 /**
  * __useDeleteCoreViewFilterMutation__
@@ -5538,19 +6606,36 @@ export type DeleteCoreViewFilterMutationFn = Apollo.MutationFunction<DeleteCoreV
  *   },
  * });
  */
-export function useDeleteCoreViewFilterMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCoreViewFilterMutation, DeleteCoreViewFilterMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteCoreViewFilterMutation, DeleteCoreViewFilterMutationVariables>(DeleteCoreViewFilterDocument, options);
-      }
-export type DeleteCoreViewFilterMutationHookResult = ReturnType<typeof useDeleteCoreViewFilterMutation>;
-export type DeleteCoreViewFilterMutationResult = Apollo.MutationResult<DeleteCoreViewFilterMutation>;
-export type DeleteCoreViewFilterMutationOptions = Apollo.BaseMutationOptions<DeleteCoreViewFilterMutation, DeleteCoreViewFilterMutationVariables>;
-export const DeleteCoreViewFilterGroupDocument = gql`
-    mutation DeleteCoreViewFilterGroup($id: String!) {
-  deleteCoreViewFilterGroup(id: $id)
+export function useDeleteCoreViewFilterMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteCoreViewFilterMutation,
+    DeleteCoreViewFilterMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteCoreViewFilterMutation,
+    DeleteCoreViewFilterMutationVariables
+  >(DeleteCoreViewFilterDocument, options);
 }
-    `;
-export type DeleteCoreViewFilterGroupMutationFn = Apollo.MutationFunction<DeleteCoreViewFilterGroupMutation, DeleteCoreViewFilterGroupMutationVariables>;
+export type DeleteCoreViewFilterMutationHookResult = ReturnType<
+  typeof useDeleteCoreViewFilterMutation
+>;
+export type DeleteCoreViewFilterMutationResult =
+  Apollo.MutationResult<DeleteCoreViewFilterMutation>;
+export type DeleteCoreViewFilterMutationOptions = Apollo.BaseMutationOptions<
+  DeleteCoreViewFilterMutation,
+  DeleteCoreViewFilterMutationVariables
+>;
+export const DeleteCoreViewFilterGroupDocument = gql`
+  mutation DeleteCoreViewFilterGroup($id: String!) {
+    deleteCoreViewFilterGroup(id: $id)
+  }
+`;
+export type DeleteCoreViewFilterGroupMutationFn = Apollo.MutationFunction<
+  DeleteCoreViewFilterGroupMutation,
+  DeleteCoreViewFilterGroupMutationVariables
+>;
 
 /**
  * __useDeleteCoreViewFilterGroupMutation__
@@ -5569,21 +6654,40 @@ export type DeleteCoreViewFilterGroupMutationFn = Apollo.MutationFunction<Delete
  *   },
  * });
  */
-export function useDeleteCoreViewFilterGroupMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCoreViewFilterGroupMutation, DeleteCoreViewFilterGroupMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteCoreViewFilterGroupMutation, DeleteCoreViewFilterGroupMutationVariables>(DeleteCoreViewFilterGroupDocument, options);
-      }
-export type DeleteCoreViewFilterGroupMutationHookResult = ReturnType<typeof useDeleteCoreViewFilterGroupMutation>;
-export type DeleteCoreViewFilterGroupMutationResult = Apollo.MutationResult<DeleteCoreViewFilterGroupMutation>;
-export type DeleteCoreViewFilterGroupMutationOptions = Apollo.BaseMutationOptions<DeleteCoreViewFilterGroupMutation, DeleteCoreViewFilterGroupMutationVariables>;
-export const DeleteCoreViewGroupDocument = gql`
-    mutation DeleteCoreViewGroup($input: DeleteViewGroupInput!) {
-  deleteCoreViewGroup(input: $input) {
-    ...ViewGroupFragment
-  }
+export function useDeleteCoreViewFilterGroupMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteCoreViewFilterGroupMutation,
+    DeleteCoreViewFilterGroupMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteCoreViewFilterGroupMutation,
+    DeleteCoreViewFilterGroupMutationVariables
+  >(DeleteCoreViewFilterGroupDocument, options);
 }
-    ${ViewGroupFragmentFragmentDoc}`;
-export type DeleteCoreViewGroupMutationFn = Apollo.MutationFunction<DeleteCoreViewGroupMutation, DeleteCoreViewGroupMutationVariables>;
+export type DeleteCoreViewFilterGroupMutationHookResult = ReturnType<
+  typeof useDeleteCoreViewFilterGroupMutation
+>;
+export type DeleteCoreViewFilterGroupMutationResult =
+  Apollo.MutationResult<DeleteCoreViewFilterGroupMutation>;
+export type DeleteCoreViewFilterGroupMutationOptions =
+  Apollo.BaseMutationOptions<
+    DeleteCoreViewFilterGroupMutation,
+    DeleteCoreViewFilterGroupMutationVariables
+  >;
+export const DeleteCoreViewGroupDocument = gql`
+  mutation DeleteCoreViewGroup($input: DeleteViewGroupInput!) {
+    deleteCoreViewGroup(input: $input) {
+      ...ViewGroupFragment
+    }
+  }
+  ${ViewGroupFragmentFragmentDoc}
+`;
+export type DeleteCoreViewGroupMutationFn = Apollo.MutationFunction<
+  DeleteCoreViewGroupMutation,
+  DeleteCoreViewGroupMutationVariables
+>;
 
 /**
  * __useDeleteCoreViewGroupMutation__
@@ -5602,19 +6706,36 @@ export type DeleteCoreViewGroupMutationFn = Apollo.MutationFunction<DeleteCoreVi
  *   },
  * });
  */
-export function useDeleteCoreViewGroupMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCoreViewGroupMutation, DeleteCoreViewGroupMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteCoreViewGroupMutation, DeleteCoreViewGroupMutationVariables>(DeleteCoreViewGroupDocument, options);
-      }
-export type DeleteCoreViewGroupMutationHookResult = ReturnType<typeof useDeleteCoreViewGroupMutation>;
-export type DeleteCoreViewGroupMutationResult = Apollo.MutationResult<DeleteCoreViewGroupMutation>;
-export type DeleteCoreViewGroupMutationOptions = Apollo.BaseMutationOptions<DeleteCoreViewGroupMutation, DeleteCoreViewGroupMutationVariables>;
-export const DeleteCoreViewSortDocument = gql`
-    mutation DeleteCoreViewSort($id: String!) {
-  deleteCoreViewSort(id: $id)
+export function useDeleteCoreViewGroupMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteCoreViewGroupMutation,
+    DeleteCoreViewGroupMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteCoreViewGroupMutation,
+    DeleteCoreViewGroupMutationVariables
+  >(DeleteCoreViewGroupDocument, options);
 }
-    `;
-export type DeleteCoreViewSortMutationFn = Apollo.MutationFunction<DeleteCoreViewSortMutation, DeleteCoreViewSortMutationVariables>;
+export type DeleteCoreViewGroupMutationHookResult = ReturnType<
+  typeof useDeleteCoreViewGroupMutation
+>;
+export type DeleteCoreViewGroupMutationResult =
+  Apollo.MutationResult<DeleteCoreViewGroupMutation>;
+export type DeleteCoreViewGroupMutationOptions = Apollo.BaseMutationOptions<
+  DeleteCoreViewGroupMutation,
+  DeleteCoreViewGroupMutationVariables
+>;
+export const DeleteCoreViewSortDocument = gql`
+  mutation DeleteCoreViewSort($id: String!) {
+    deleteCoreViewSort(id: $id)
+  }
+`;
+export type DeleteCoreViewSortMutationFn = Apollo.MutationFunction<
+  DeleteCoreViewSortMutation,
+  DeleteCoreViewSortMutationVariables
+>;
 
 /**
  * __useDeleteCoreViewSortMutation__
@@ -5633,19 +6754,36 @@ export type DeleteCoreViewSortMutationFn = Apollo.MutationFunction<DeleteCoreVie
  *   },
  * });
  */
-export function useDeleteCoreViewSortMutation(baseOptions?: Apollo.MutationHookOptions<DeleteCoreViewSortMutation, DeleteCoreViewSortMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DeleteCoreViewSortMutation, DeleteCoreViewSortMutationVariables>(DeleteCoreViewSortDocument, options);
-      }
-export type DeleteCoreViewSortMutationHookResult = ReturnType<typeof useDeleteCoreViewSortMutation>;
-export type DeleteCoreViewSortMutationResult = Apollo.MutationResult<DeleteCoreViewSortMutation>;
-export type DeleteCoreViewSortMutationOptions = Apollo.BaseMutationOptions<DeleteCoreViewSortMutation, DeleteCoreViewSortMutationVariables>;
-export const DestroyCoreViewDocument = gql`
-    mutation DestroyCoreView($id: String!) {
-  destroyCoreView(id: $id)
+export function useDeleteCoreViewSortMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DeleteCoreViewSortMutation,
+    DeleteCoreViewSortMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DeleteCoreViewSortMutation,
+    DeleteCoreViewSortMutationVariables
+  >(DeleteCoreViewSortDocument, options);
 }
-    `;
-export type DestroyCoreViewMutationFn = Apollo.MutationFunction<DestroyCoreViewMutation, DestroyCoreViewMutationVariables>;
+export type DeleteCoreViewSortMutationHookResult = ReturnType<
+  typeof useDeleteCoreViewSortMutation
+>;
+export type DeleteCoreViewSortMutationResult =
+  Apollo.MutationResult<DeleteCoreViewSortMutation>;
+export type DeleteCoreViewSortMutationOptions = Apollo.BaseMutationOptions<
+  DeleteCoreViewSortMutation,
+  DeleteCoreViewSortMutationVariables
+>;
+export const DestroyCoreViewDocument = gql`
+  mutation DestroyCoreView($id: String!) {
+    destroyCoreView(id: $id)
+  }
+`;
+export type DestroyCoreViewMutationFn = Apollo.MutationFunction<
+  DestroyCoreViewMutation,
+  DestroyCoreViewMutationVariables
+>;
 
 /**
  * __useDestroyCoreViewMutation__
@@ -5664,21 +6802,39 @@ export type DestroyCoreViewMutationFn = Apollo.MutationFunction<DestroyCoreViewM
  *   },
  * });
  */
-export function useDestroyCoreViewMutation(baseOptions?: Apollo.MutationHookOptions<DestroyCoreViewMutation, DestroyCoreViewMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyCoreViewMutation, DestroyCoreViewMutationVariables>(DestroyCoreViewDocument, options);
-      }
-export type DestroyCoreViewMutationHookResult = ReturnType<typeof useDestroyCoreViewMutation>;
-export type DestroyCoreViewMutationResult = Apollo.MutationResult<DestroyCoreViewMutation>;
-export type DestroyCoreViewMutationOptions = Apollo.BaseMutationOptions<DestroyCoreViewMutation, DestroyCoreViewMutationVariables>;
-export const DestroyCoreViewFieldDocument = gql`
-    mutation DestroyCoreViewField($input: DestroyViewFieldInput!) {
-  destroyCoreViewField(input: $input) {
-    ...ViewFieldFragment
-  }
+export function useDestroyCoreViewMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DestroyCoreViewMutation,
+    DestroyCoreViewMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DestroyCoreViewMutation,
+    DestroyCoreViewMutationVariables
+  >(DestroyCoreViewDocument, options);
 }
-    ${ViewFieldFragmentFragmentDoc}`;
-export type DestroyCoreViewFieldMutationFn = Apollo.MutationFunction<DestroyCoreViewFieldMutation, DestroyCoreViewFieldMutationVariables>;
+export type DestroyCoreViewMutationHookResult = ReturnType<
+  typeof useDestroyCoreViewMutation
+>;
+export type DestroyCoreViewMutationResult =
+  Apollo.MutationResult<DestroyCoreViewMutation>;
+export type DestroyCoreViewMutationOptions = Apollo.BaseMutationOptions<
+  DestroyCoreViewMutation,
+  DestroyCoreViewMutationVariables
+>;
+export const DestroyCoreViewFieldDocument = gql`
+  mutation DestroyCoreViewField($input: DestroyViewFieldInput!) {
+    destroyCoreViewField(input: $input) {
+      ...ViewFieldFragment
+    }
+  }
+  ${ViewFieldFragmentFragmentDoc}
+`;
+export type DestroyCoreViewFieldMutationFn = Apollo.MutationFunction<
+  DestroyCoreViewFieldMutation,
+  DestroyCoreViewFieldMutationVariables
+>;
 
 /**
  * __useDestroyCoreViewFieldMutation__
@@ -5697,21 +6853,39 @@ export type DestroyCoreViewFieldMutationFn = Apollo.MutationFunction<DestroyCore
  *   },
  * });
  */
-export function useDestroyCoreViewFieldMutation(baseOptions?: Apollo.MutationHookOptions<DestroyCoreViewFieldMutation, DestroyCoreViewFieldMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyCoreViewFieldMutation, DestroyCoreViewFieldMutationVariables>(DestroyCoreViewFieldDocument, options);
-      }
-export type DestroyCoreViewFieldMutationHookResult = ReturnType<typeof useDestroyCoreViewFieldMutation>;
-export type DestroyCoreViewFieldMutationResult = Apollo.MutationResult<DestroyCoreViewFieldMutation>;
-export type DestroyCoreViewFieldMutationOptions = Apollo.BaseMutationOptions<DestroyCoreViewFieldMutation, DestroyCoreViewFieldMutationVariables>;
-export const DestroyCoreViewFilterDocument = gql`
-    mutation DestroyCoreViewFilter($input: DestroyViewFilterInput!) {
-  destroyCoreViewFilter(input: $input) {
-    ...ViewFilterFragment
-  }
+export function useDestroyCoreViewFieldMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DestroyCoreViewFieldMutation,
+    DestroyCoreViewFieldMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DestroyCoreViewFieldMutation,
+    DestroyCoreViewFieldMutationVariables
+  >(DestroyCoreViewFieldDocument, options);
 }
-    ${ViewFilterFragmentFragmentDoc}`;
-export type DestroyCoreViewFilterMutationFn = Apollo.MutationFunction<DestroyCoreViewFilterMutation, DestroyCoreViewFilterMutationVariables>;
+export type DestroyCoreViewFieldMutationHookResult = ReturnType<
+  typeof useDestroyCoreViewFieldMutation
+>;
+export type DestroyCoreViewFieldMutationResult =
+  Apollo.MutationResult<DestroyCoreViewFieldMutation>;
+export type DestroyCoreViewFieldMutationOptions = Apollo.BaseMutationOptions<
+  DestroyCoreViewFieldMutation,
+  DestroyCoreViewFieldMutationVariables
+>;
+export const DestroyCoreViewFilterDocument = gql`
+  mutation DestroyCoreViewFilter($input: DestroyViewFilterInput!) {
+    destroyCoreViewFilter(input: $input) {
+      ...ViewFilterFragment
+    }
+  }
+  ${ViewFilterFragmentFragmentDoc}
+`;
+export type DestroyCoreViewFilterMutationFn = Apollo.MutationFunction<
+  DestroyCoreViewFilterMutation,
+  DestroyCoreViewFilterMutationVariables
+>;
 
 /**
  * __useDestroyCoreViewFilterMutation__
@@ -5730,19 +6904,36 @@ export type DestroyCoreViewFilterMutationFn = Apollo.MutationFunction<DestroyCor
  *   },
  * });
  */
-export function useDestroyCoreViewFilterMutation(baseOptions?: Apollo.MutationHookOptions<DestroyCoreViewFilterMutation, DestroyCoreViewFilterMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyCoreViewFilterMutation, DestroyCoreViewFilterMutationVariables>(DestroyCoreViewFilterDocument, options);
-      }
-export type DestroyCoreViewFilterMutationHookResult = ReturnType<typeof useDestroyCoreViewFilterMutation>;
-export type DestroyCoreViewFilterMutationResult = Apollo.MutationResult<DestroyCoreViewFilterMutation>;
-export type DestroyCoreViewFilterMutationOptions = Apollo.BaseMutationOptions<DestroyCoreViewFilterMutation, DestroyCoreViewFilterMutationVariables>;
-export const DestroyCoreViewFilterGroupDocument = gql`
-    mutation DestroyCoreViewFilterGroup($id: String!) {
-  destroyCoreViewFilterGroup(id: $id)
+export function useDestroyCoreViewFilterMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DestroyCoreViewFilterMutation,
+    DestroyCoreViewFilterMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DestroyCoreViewFilterMutation,
+    DestroyCoreViewFilterMutationVariables
+  >(DestroyCoreViewFilterDocument, options);
 }
-    `;
-export type DestroyCoreViewFilterGroupMutationFn = Apollo.MutationFunction<DestroyCoreViewFilterGroupMutation, DestroyCoreViewFilterGroupMutationVariables>;
+export type DestroyCoreViewFilterMutationHookResult = ReturnType<
+  typeof useDestroyCoreViewFilterMutation
+>;
+export type DestroyCoreViewFilterMutationResult =
+  Apollo.MutationResult<DestroyCoreViewFilterMutation>;
+export type DestroyCoreViewFilterMutationOptions = Apollo.BaseMutationOptions<
+  DestroyCoreViewFilterMutation,
+  DestroyCoreViewFilterMutationVariables
+>;
+export const DestroyCoreViewFilterGroupDocument = gql`
+  mutation DestroyCoreViewFilterGroup($id: String!) {
+    destroyCoreViewFilterGroup(id: $id)
+  }
+`;
+export type DestroyCoreViewFilterGroupMutationFn = Apollo.MutationFunction<
+  DestroyCoreViewFilterGroupMutation,
+  DestroyCoreViewFilterGroupMutationVariables
+>;
 
 /**
  * __useDestroyCoreViewFilterGroupMutation__
@@ -5761,21 +6952,40 @@ export type DestroyCoreViewFilterGroupMutationFn = Apollo.MutationFunction<Destr
  *   },
  * });
  */
-export function useDestroyCoreViewFilterGroupMutation(baseOptions?: Apollo.MutationHookOptions<DestroyCoreViewFilterGroupMutation, DestroyCoreViewFilterGroupMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyCoreViewFilterGroupMutation, DestroyCoreViewFilterGroupMutationVariables>(DestroyCoreViewFilterGroupDocument, options);
-      }
-export type DestroyCoreViewFilterGroupMutationHookResult = ReturnType<typeof useDestroyCoreViewFilterGroupMutation>;
-export type DestroyCoreViewFilterGroupMutationResult = Apollo.MutationResult<DestroyCoreViewFilterGroupMutation>;
-export type DestroyCoreViewFilterGroupMutationOptions = Apollo.BaseMutationOptions<DestroyCoreViewFilterGroupMutation, DestroyCoreViewFilterGroupMutationVariables>;
-export const DestroyCoreViewGroupDocument = gql`
-    mutation DestroyCoreViewGroup($input: DestroyViewGroupInput!) {
-  destroyCoreViewGroup(input: $input) {
-    ...ViewGroupFragment
-  }
+export function useDestroyCoreViewFilterGroupMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DestroyCoreViewFilterGroupMutation,
+    DestroyCoreViewFilterGroupMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DestroyCoreViewFilterGroupMutation,
+    DestroyCoreViewFilterGroupMutationVariables
+  >(DestroyCoreViewFilterGroupDocument, options);
 }
-    ${ViewGroupFragmentFragmentDoc}`;
-export type DestroyCoreViewGroupMutationFn = Apollo.MutationFunction<DestroyCoreViewGroupMutation, DestroyCoreViewGroupMutationVariables>;
+export type DestroyCoreViewFilterGroupMutationHookResult = ReturnType<
+  typeof useDestroyCoreViewFilterGroupMutation
+>;
+export type DestroyCoreViewFilterGroupMutationResult =
+  Apollo.MutationResult<DestroyCoreViewFilterGroupMutation>;
+export type DestroyCoreViewFilterGroupMutationOptions =
+  Apollo.BaseMutationOptions<
+    DestroyCoreViewFilterGroupMutation,
+    DestroyCoreViewFilterGroupMutationVariables
+  >;
+export const DestroyCoreViewGroupDocument = gql`
+  mutation DestroyCoreViewGroup($input: DestroyViewGroupInput!) {
+    destroyCoreViewGroup(input: $input) {
+      ...ViewGroupFragment
+    }
+  }
+  ${ViewGroupFragmentFragmentDoc}
+`;
+export type DestroyCoreViewGroupMutationFn = Apollo.MutationFunction<
+  DestroyCoreViewGroupMutation,
+  DestroyCoreViewGroupMutationVariables
+>;
 
 /**
  * __useDestroyCoreViewGroupMutation__
@@ -5794,19 +7004,36 @@ export type DestroyCoreViewGroupMutationFn = Apollo.MutationFunction<DestroyCore
  *   },
  * });
  */
-export function useDestroyCoreViewGroupMutation(baseOptions?: Apollo.MutationHookOptions<DestroyCoreViewGroupMutation, DestroyCoreViewGroupMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyCoreViewGroupMutation, DestroyCoreViewGroupMutationVariables>(DestroyCoreViewGroupDocument, options);
-      }
-export type DestroyCoreViewGroupMutationHookResult = ReturnType<typeof useDestroyCoreViewGroupMutation>;
-export type DestroyCoreViewGroupMutationResult = Apollo.MutationResult<DestroyCoreViewGroupMutation>;
-export type DestroyCoreViewGroupMutationOptions = Apollo.BaseMutationOptions<DestroyCoreViewGroupMutation, DestroyCoreViewGroupMutationVariables>;
-export const DestroyCoreViewSortDocument = gql`
-    mutation DestroyCoreViewSort($id: String!) {
-  destroyCoreViewSort(id: $id)
+export function useDestroyCoreViewGroupMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DestroyCoreViewGroupMutation,
+    DestroyCoreViewGroupMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DestroyCoreViewGroupMutation,
+    DestroyCoreViewGroupMutationVariables
+  >(DestroyCoreViewGroupDocument, options);
 }
-    `;
-export type DestroyCoreViewSortMutationFn = Apollo.MutationFunction<DestroyCoreViewSortMutation, DestroyCoreViewSortMutationVariables>;
+export type DestroyCoreViewGroupMutationHookResult = ReturnType<
+  typeof useDestroyCoreViewGroupMutation
+>;
+export type DestroyCoreViewGroupMutationResult =
+  Apollo.MutationResult<DestroyCoreViewGroupMutation>;
+export type DestroyCoreViewGroupMutationOptions = Apollo.BaseMutationOptions<
+  DestroyCoreViewGroupMutation,
+  DestroyCoreViewGroupMutationVariables
+>;
+export const DestroyCoreViewSortDocument = gql`
+  mutation DestroyCoreViewSort($id: String!) {
+    destroyCoreViewSort(id: $id)
+  }
+`;
+export type DestroyCoreViewSortMutationFn = Apollo.MutationFunction<
+  DestroyCoreViewSortMutation,
+  DestroyCoreViewSortMutationVariables
+>;
 
 /**
  * __useDestroyCoreViewSortMutation__
@@ -5825,21 +7052,39 @@ export type DestroyCoreViewSortMutationFn = Apollo.MutationFunction<DestroyCoreV
  *   },
  * });
  */
-export function useDestroyCoreViewSortMutation(baseOptions?: Apollo.MutationHookOptions<DestroyCoreViewSortMutation, DestroyCoreViewSortMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyCoreViewSortMutation, DestroyCoreViewSortMutationVariables>(DestroyCoreViewSortDocument, options);
-      }
-export type DestroyCoreViewSortMutationHookResult = ReturnType<typeof useDestroyCoreViewSortMutation>;
-export type DestroyCoreViewSortMutationResult = Apollo.MutationResult<DestroyCoreViewSortMutation>;
-export type DestroyCoreViewSortMutationOptions = Apollo.BaseMutationOptions<DestroyCoreViewSortMutation, DestroyCoreViewSortMutationVariables>;
-export const UpdateCoreViewDocument = gql`
-    mutation UpdateCoreView($id: String!, $input: UpdateViewInput!) {
-  updateCoreView(id: $id, input: $input) {
-    ...ViewFragment
-  }
+export function useDestroyCoreViewSortMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    DestroyCoreViewSortMutation,
+    DestroyCoreViewSortMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    DestroyCoreViewSortMutation,
+    DestroyCoreViewSortMutationVariables
+  >(DestroyCoreViewSortDocument, options);
 }
-    ${ViewFragmentFragmentDoc}`;
-export type UpdateCoreViewMutationFn = Apollo.MutationFunction<UpdateCoreViewMutation, UpdateCoreViewMutationVariables>;
+export type DestroyCoreViewSortMutationHookResult = ReturnType<
+  typeof useDestroyCoreViewSortMutation
+>;
+export type DestroyCoreViewSortMutationResult =
+  Apollo.MutationResult<DestroyCoreViewSortMutation>;
+export type DestroyCoreViewSortMutationOptions = Apollo.BaseMutationOptions<
+  DestroyCoreViewSortMutation,
+  DestroyCoreViewSortMutationVariables
+>;
+export const UpdateCoreViewDocument = gql`
+  mutation UpdateCoreView($id: String!, $input: UpdateViewInput!) {
+    updateCoreView(id: $id, input: $input) {
+      ...ViewFragment
+    }
+  }
+  ${ViewFragmentFragmentDoc}
+`;
+export type UpdateCoreViewMutationFn = Apollo.MutationFunction<
+  UpdateCoreViewMutation,
+  UpdateCoreViewMutationVariables
+>;
 
 /**
  * __useUpdateCoreViewMutation__
@@ -5859,21 +7104,39 @@ export type UpdateCoreViewMutationFn = Apollo.MutationFunction<UpdateCoreViewMut
  *   },
  * });
  */
-export function useUpdateCoreViewMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCoreViewMutation, UpdateCoreViewMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCoreViewMutation, UpdateCoreViewMutationVariables>(UpdateCoreViewDocument, options);
-      }
-export type UpdateCoreViewMutationHookResult = ReturnType<typeof useUpdateCoreViewMutation>;
-export type UpdateCoreViewMutationResult = Apollo.MutationResult<UpdateCoreViewMutation>;
-export type UpdateCoreViewMutationOptions = Apollo.BaseMutationOptions<UpdateCoreViewMutation, UpdateCoreViewMutationVariables>;
-export const UpdateCoreViewFieldDocument = gql`
-    mutation UpdateCoreViewField($input: UpdateViewFieldInput!) {
-  updateCoreViewField(input: $input) {
-    ...ViewFieldFragment
-  }
+export function useUpdateCoreViewMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateCoreViewMutation,
+    UpdateCoreViewMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdateCoreViewMutation,
+    UpdateCoreViewMutationVariables
+  >(UpdateCoreViewDocument, options);
 }
-    ${ViewFieldFragmentFragmentDoc}`;
-export type UpdateCoreViewFieldMutationFn = Apollo.MutationFunction<UpdateCoreViewFieldMutation, UpdateCoreViewFieldMutationVariables>;
+export type UpdateCoreViewMutationHookResult = ReturnType<
+  typeof useUpdateCoreViewMutation
+>;
+export type UpdateCoreViewMutationResult =
+  Apollo.MutationResult<UpdateCoreViewMutation>;
+export type UpdateCoreViewMutationOptions = Apollo.BaseMutationOptions<
+  UpdateCoreViewMutation,
+  UpdateCoreViewMutationVariables
+>;
+export const UpdateCoreViewFieldDocument = gql`
+  mutation UpdateCoreViewField($input: UpdateViewFieldInput!) {
+    updateCoreViewField(input: $input) {
+      ...ViewFieldFragment
+    }
+  }
+  ${ViewFieldFragmentFragmentDoc}
+`;
+export type UpdateCoreViewFieldMutationFn = Apollo.MutationFunction<
+  UpdateCoreViewFieldMutation,
+  UpdateCoreViewFieldMutationVariables
+>;
 
 /**
  * __useUpdateCoreViewFieldMutation__
@@ -5892,21 +7155,39 @@ export type UpdateCoreViewFieldMutationFn = Apollo.MutationFunction<UpdateCoreVi
  *   },
  * });
  */
-export function useUpdateCoreViewFieldMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCoreViewFieldMutation, UpdateCoreViewFieldMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCoreViewFieldMutation, UpdateCoreViewFieldMutationVariables>(UpdateCoreViewFieldDocument, options);
-      }
-export type UpdateCoreViewFieldMutationHookResult = ReturnType<typeof useUpdateCoreViewFieldMutation>;
-export type UpdateCoreViewFieldMutationResult = Apollo.MutationResult<UpdateCoreViewFieldMutation>;
-export type UpdateCoreViewFieldMutationOptions = Apollo.BaseMutationOptions<UpdateCoreViewFieldMutation, UpdateCoreViewFieldMutationVariables>;
-export const UpdateCoreViewFilterDocument = gql`
-    mutation UpdateCoreViewFilter($input: UpdateViewFilterInput!) {
-  updateCoreViewFilter(input: $input) {
-    ...ViewFilterFragment
-  }
+export function useUpdateCoreViewFieldMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateCoreViewFieldMutation,
+    UpdateCoreViewFieldMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdateCoreViewFieldMutation,
+    UpdateCoreViewFieldMutationVariables
+  >(UpdateCoreViewFieldDocument, options);
 }
-    ${ViewFilterFragmentFragmentDoc}`;
-export type UpdateCoreViewFilterMutationFn = Apollo.MutationFunction<UpdateCoreViewFilterMutation, UpdateCoreViewFilterMutationVariables>;
+export type UpdateCoreViewFieldMutationHookResult = ReturnType<
+  typeof useUpdateCoreViewFieldMutation
+>;
+export type UpdateCoreViewFieldMutationResult =
+  Apollo.MutationResult<UpdateCoreViewFieldMutation>;
+export type UpdateCoreViewFieldMutationOptions = Apollo.BaseMutationOptions<
+  UpdateCoreViewFieldMutation,
+  UpdateCoreViewFieldMutationVariables
+>;
+export const UpdateCoreViewFilterDocument = gql`
+  mutation UpdateCoreViewFilter($input: UpdateViewFilterInput!) {
+    updateCoreViewFilter(input: $input) {
+      ...ViewFilterFragment
+    }
+  }
+  ${ViewFilterFragmentFragmentDoc}
+`;
+export type UpdateCoreViewFilterMutationFn = Apollo.MutationFunction<
+  UpdateCoreViewFilterMutation,
+  UpdateCoreViewFilterMutationVariables
+>;
 
 /**
  * __useUpdateCoreViewFilterMutation__
@@ -5925,21 +7206,42 @@ export type UpdateCoreViewFilterMutationFn = Apollo.MutationFunction<UpdateCoreV
  *   },
  * });
  */
-export function useUpdateCoreViewFilterMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCoreViewFilterMutation, UpdateCoreViewFilterMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCoreViewFilterMutation, UpdateCoreViewFilterMutationVariables>(UpdateCoreViewFilterDocument, options);
-      }
-export type UpdateCoreViewFilterMutationHookResult = ReturnType<typeof useUpdateCoreViewFilterMutation>;
-export type UpdateCoreViewFilterMutationResult = Apollo.MutationResult<UpdateCoreViewFilterMutation>;
-export type UpdateCoreViewFilterMutationOptions = Apollo.BaseMutationOptions<UpdateCoreViewFilterMutation, UpdateCoreViewFilterMutationVariables>;
-export const UpdateCoreViewFilterGroupDocument = gql`
-    mutation UpdateCoreViewFilterGroup($id: String!, $input: UpdateViewFilterGroupInput!) {
-  updateCoreViewFilterGroup(id: $id, input: $input) {
-    ...ViewFilterGroupFragment
-  }
+export function useUpdateCoreViewFilterMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateCoreViewFilterMutation,
+    UpdateCoreViewFilterMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdateCoreViewFilterMutation,
+    UpdateCoreViewFilterMutationVariables
+  >(UpdateCoreViewFilterDocument, options);
 }
-    ${ViewFilterGroupFragmentFragmentDoc}`;
-export type UpdateCoreViewFilterGroupMutationFn = Apollo.MutationFunction<UpdateCoreViewFilterGroupMutation, UpdateCoreViewFilterGroupMutationVariables>;
+export type UpdateCoreViewFilterMutationHookResult = ReturnType<
+  typeof useUpdateCoreViewFilterMutation
+>;
+export type UpdateCoreViewFilterMutationResult =
+  Apollo.MutationResult<UpdateCoreViewFilterMutation>;
+export type UpdateCoreViewFilterMutationOptions = Apollo.BaseMutationOptions<
+  UpdateCoreViewFilterMutation,
+  UpdateCoreViewFilterMutationVariables
+>;
+export const UpdateCoreViewFilterGroupDocument = gql`
+  mutation UpdateCoreViewFilterGroup(
+    $id: String!
+    $input: UpdateViewFilterGroupInput!
+  ) {
+    updateCoreViewFilterGroup(id: $id, input: $input) {
+      ...ViewFilterGroupFragment
+    }
+  }
+  ${ViewFilterGroupFragmentFragmentDoc}
+`;
+export type UpdateCoreViewFilterGroupMutationFn = Apollo.MutationFunction<
+  UpdateCoreViewFilterGroupMutation,
+  UpdateCoreViewFilterGroupMutationVariables
+>;
 
 /**
  * __useUpdateCoreViewFilterGroupMutation__
@@ -5959,21 +7261,40 @@ export type UpdateCoreViewFilterGroupMutationFn = Apollo.MutationFunction<Update
  *   },
  * });
  */
-export function useUpdateCoreViewFilterGroupMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCoreViewFilterGroupMutation, UpdateCoreViewFilterGroupMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCoreViewFilterGroupMutation, UpdateCoreViewFilterGroupMutationVariables>(UpdateCoreViewFilterGroupDocument, options);
-      }
-export type UpdateCoreViewFilterGroupMutationHookResult = ReturnType<typeof useUpdateCoreViewFilterGroupMutation>;
-export type UpdateCoreViewFilterGroupMutationResult = Apollo.MutationResult<UpdateCoreViewFilterGroupMutation>;
-export type UpdateCoreViewFilterGroupMutationOptions = Apollo.BaseMutationOptions<UpdateCoreViewFilterGroupMutation, UpdateCoreViewFilterGroupMutationVariables>;
-export const UpdateCoreViewGroupDocument = gql`
-    mutation UpdateCoreViewGroup($input: UpdateViewGroupInput!) {
-  updateCoreViewGroup(input: $input) {
-    ...ViewGroupFragment
-  }
+export function useUpdateCoreViewFilterGroupMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateCoreViewFilterGroupMutation,
+    UpdateCoreViewFilterGroupMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdateCoreViewFilterGroupMutation,
+    UpdateCoreViewFilterGroupMutationVariables
+  >(UpdateCoreViewFilterGroupDocument, options);
 }
-    ${ViewGroupFragmentFragmentDoc}`;
-export type UpdateCoreViewGroupMutationFn = Apollo.MutationFunction<UpdateCoreViewGroupMutation, UpdateCoreViewGroupMutationVariables>;
+export type UpdateCoreViewFilterGroupMutationHookResult = ReturnType<
+  typeof useUpdateCoreViewFilterGroupMutation
+>;
+export type UpdateCoreViewFilterGroupMutationResult =
+  Apollo.MutationResult<UpdateCoreViewFilterGroupMutation>;
+export type UpdateCoreViewFilterGroupMutationOptions =
+  Apollo.BaseMutationOptions<
+    UpdateCoreViewFilterGroupMutation,
+    UpdateCoreViewFilterGroupMutationVariables
+  >;
+export const UpdateCoreViewGroupDocument = gql`
+  mutation UpdateCoreViewGroup($input: UpdateViewGroupInput!) {
+    updateCoreViewGroup(input: $input) {
+      ...ViewGroupFragment
+    }
+  }
+  ${ViewGroupFragmentFragmentDoc}
+`;
+export type UpdateCoreViewGroupMutationFn = Apollo.MutationFunction<
+  UpdateCoreViewGroupMutation,
+  UpdateCoreViewGroupMutationVariables
+>;
 
 /**
  * __useUpdateCoreViewGroupMutation__
@@ -5992,21 +7313,39 @@ export type UpdateCoreViewGroupMutationFn = Apollo.MutationFunction<UpdateCoreVi
  *   },
  * });
  */
-export function useUpdateCoreViewGroupMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCoreViewGroupMutation, UpdateCoreViewGroupMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCoreViewGroupMutation, UpdateCoreViewGroupMutationVariables>(UpdateCoreViewGroupDocument, options);
-      }
-export type UpdateCoreViewGroupMutationHookResult = ReturnType<typeof useUpdateCoreViewGroupMutation>;
-export type UpdateCoreViewGroupMutationResult = Apollo.MutationResult<UpdateCoreViewGroupMutation>;
-export type UpdateCoreViewGroupMutationOptions = Apollo.BaseMutationOptions<UpdateCoreViewGroupMutation, UpdateCoreViewGroupMutationVariables>;
-export const UpdateCoreViewSortDocument = gql`
-    mutation UpdateCoreViewSort($id: String!, $input: UpdateViewSortInput!) {
-  updateCoreViewSort(id: $id, input: $input) {
-    ...ViewSortFragment
-  }
+export function useUpdateCoreViewGroupMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateCoreViewGroupMutation,
+    UpdateCoreViewGroupMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdateCoreViewGroupMutation,
+    UpdateCoreViewGroupMutationVariables
+  >(UpdateCoreViewGroupDocument, options);
 }
-    ${ViewSortFragmentFragmentDoc}`;
-export type UpdateCoreViewSortMutationFn = Apollo.MutationFunction<UpdateCoreViewSortMutation, UpdateCoreViewSortMutationVariables>;
+export type UpdateCoreViewGroupMutationHookResult = ReturnType<
+  typeof useUpdateCoreViewGroupMutation
+>;
+export type UpdateCoreViewGroupMutationResult =
+  Apollo.MutationResult<UpdateCoreViewGroupMutation>;
+export type UpdateCoreViewGroupMutationOptions = Apollo.BaseMutationOptions<
+  UpdateCoreViewGroupMutation,
+  UpdateCoreViewGroupMutationVariables
+>;
+export const UpdateCoreViewSortDocument = gql`
+  mutation UpdateCoreViewSort($id: String!, $input: UpdateViewSortInput!) {
+    updateCoreViewSort(id: $id, input: $input) {
+      ...ViewSortFragment
+    }
+  }
+  ${ViewSortFragmentFragmentDoc}
+`;
+export type UpdateCoreViewSortMutationFn = Apollo.MutationFunction<
+  UpdateCoreViewSortMutation,
+  UpdateCoreViewSortMutationVariables
+>;
 
 /**
  * __useUpdateCoreViewSortMutation__
@@ -6026,20 +7365,35 @@ export type UpdateCoreViewSortMutationFn = Apollo.MutationFunction<UpdateCoreVie
  *   },
  * });
  */
-export function useUpdateCoreViewSortMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCoreViewSortMutation, UpdateCoreViewSortMutationVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateCoreViewSortMutation, UpdateCoreViewSortMutationVariables>(UpdateCoreViewSortDocument, options);
-      }
-export type UpdateCoreViewSortMutationHookResult = ReturnType<typeof useUpdateCoreViewSortMutation>;
-export type UpdateCoreViewSortMutationResult = Apollo.MutationResult<UpdateCoreViewSortMutation>;
-export type UpdateCoreViewSortMutationOptions = Apollo.BaseMutationOptions<UpdateCoreViewSortMutation, UpdateCoreViewSortMutationVariables>;
-export const FindAllCoreViewsDocument = gql`
-    query FindAllCoreViews {
-  getCoreViews {
-    ...ViewFragment
-  }
+export function useUpdateCoreViewSortMutation(
+  baseOptions?: Apollo.MutationHookOptions<
+    UpdateCoreViewSortMutation,
+    UpdateCoreViewSortMutationVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useMutation<
+    UpdateCoreViewSortMutation,
+    UpdateCoreViewSortMutationVariables
+  >(UpdateCoreViewSortDocument, options);
 }
-    ${ViewFragmentFragmentDoc}`;
+export type UpdateCoreViewSortMutationHookResult = ReturnType<
+  typeof useUpdateCoreViewSortMutation
+>;
+export type UpdateCoreViewSortMutationResult =
+  Apollo.MutationResult<UpdateCoreViewSortMutation>;
+export type UpdateCoreViewSortMutationOptions = Apollo.BaseMutationOptions<
+  UpdateCoreViewSortMutation,
+  UpdateCoreViewSortMutationVariables
+>;
+export const FindAllCoreViewsDocument = gql`
+  query FindAllCoreViews {
+    getCoreViews {
+      ...ViewFragment
+    }
+  }
+  ${ViewFragmentFragmentDoc}
+`;
 
 /**
  * __useFindAllCoreViewsQuery__
@@ -6056,24 +7410,48 @@ export const FindAllCoreViewsDocument = gql`
  *   },
  * });
  */
-export function useFindAllCoreViewsQuery(baseOptions?: Apollo.QueryHookOptions<FindAllCoreViewsQuery, FindAllCoreViewsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindAllCoreViewsQuery, FindAllCoreViewsQueryVariables>(FindAllCoreViewsDocument, options);
-      }
-export function useFindAllCoreViewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindAllCoreViewsQuery, FindAllCoreViewsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindAllCoreViewsQuery, FindAllCoreViewsQueryVariables>(FindAllCoreViewsDocument, options);
-        }
-export type FindAllCoreViewsQueryHookResult = ReturnType<typeof useFindAllCoreViewsQuery>;
-export type FindAllCoreViewsLazyQueryHookResult = ReturnType<typeof useFindAllCoreViewsLazyQuery>;
-export type FindAllCoreViewsQueryResult = Apollo.QueryResult<FindAllCoreViewsQuery, FindAllCoreViewsQueryVariables>;
-export const FindManyCoreViewFieldsDocument = gql`
-    query FindManyCoreViewFields($viewId: String!) {
-  getCoreViewFields(viewId: $viewId) {
-    ...ViewFieldFragment
-  }
+export function useFindAllCoreViewsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    FindAllCoreViewsQuery,
+    FindAllCoreViewsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<FindAllCoreViewsQuery, FindAllCoreViewsQueryVariables>(
+    FindAllCoreViewsDocument,
+    options,
+  );
 }
-    ${ViewFieldFragmentFragmentDoc}`;
+export function useFindAllCoreViewsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindAllCoreViewsQuery,
+    FindAllCoreViewsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindAllCoreViewsQuery,
+    FindAllCoreViewsQueryVariables
+  >(FindAllCoreViewsDocument, options);
+}
+export type FindAllCoreViewsQueryHookResult = ReturnType<
+  typeof useFindAllCoreViewsQuery
+>;
+export type FindAllCoreViewsLazyQueryHookResult = ReturnType<
+  typeof useFindAllCoreViewsLazyQuery
+>;
+export type FindAllCoreViewsQueryResult = Apollo.QueryResult<
+  FindAllCoreViewsQuery,
+  FindAllCoreViewsQueryVariables
+>;
+export const FindManyCoreViewFieldsDocument = gql`
+  query FindManyCoreViewFields($viewId: String!) {
+    getCoreViewFields(viewId: $viewId) {
+      ...ViewFieldFragment
+    }
+  }
+  ${ViewFieldFragmentFragmentDoc}
+`;
 
 /**
  * __useFindManyCoreViewFieldsQuery__
@@ -6091,24 +7469,48 @@ export const FindManyCoreViewFieldsDocument = gql`
  *   },
  * });
  */
-export function useFindManyCoreViewFieldsQuery(baseOptions: Apollo.QueryHookOptions<FindManyCoreViewFieldsQuery, FindManyCoreViewFieldsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindManyCoreViewFieldsQuery, FindManyCoreViewFieldsQueryVariables>(FindManyCoreViewFieldsDocument, options);
-      }
-export function useFindManyCoreViewFieldsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindManyCoreViewFieldsQuery, FindManyCoreViewFieldsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindManyCoreViewFieldsQuery, FindManyCoreViewFieldsQueryVariables>(FindManyCoreViewFieldsDocument, options);
-        }
-export type FindManyCoreViewFieldsQueryHookResult = ReturnType<typeof useFindManyCoreViewFieldsQuery>;
-export type FindManyCoreViewFieldsLazyQueryHookResult = ReturnType<typeof useFindManyCoreViewFieldsLazyQuery>;
-export type FindManyCoreViewFieldsQueryResult = Apollo.QueryResult<FindManyCoreViewFieldsQuery, FindManyCoreViewFieldsQueryVariables>;
-export const FindManyCoreViewFilterGroupsDocument = gql`
-    query FindManyCoreViewFilterGroups($viewId: String) {
-  getCoreViewFilterGroups(viewId: $viewId) {
-    ...ViewFilterGroupFragment
-  }
+export function useFindManyCoreViewFieldsQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    FindManyCoreViewFieldsQuery,
+    FindManyCoreViewFieldsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindManyCoreViewFieldsQuery,
+    FindManyCoreViewFieldsQueryVariables
+  >(FindManyCoreViewFieldsDocument, options);
 }
-    ${ViewFilterGroupFragmentFragmentDoc}`;
+export function useFindManyCoreViewFieldsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindManyCoreViewFieldsQuery,
+    FindManyCoreViewFieldsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindManyCoreViewFieldsQuery,
+    FindManyCoreViewFieldsQueryVariables
+  >(FindManyCoreViewFieldsDocument, options);
+}
+export type FindManyCoreViewFieldsQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewFieldsQuery
+>;
+export type FindManyCoreViewFieldsLazyQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewFieldsLazyQuery
+>;
+export type FindManyCoreViewFieldsQueryResult = Apollo.QueryResult<
+  FindManyCoreViewFieldsQuery,
+  FindManyCoreViewFieldsQueryVariables
+>;
+export const FindManyCoreViewFilterGroupsDocument = gql`
+  query FindManyCoreViewFilterGroups($viewId: String) {
+    getCoreViewFilterGroups(viewId: $viewId) {
+      ...ViewFilterGroupFragment
+    }
+  }
+  ${ViewFilterGroupFragmentFragmentDoc}
+`;
 
 /**
  * __useFindManyCoreViewFilterGroupsQuery__
@@ -6126,24 +7528,48 @@ export const FindManyCoreViewFilterGroupsDocument = gql`
  *   },
  * });
  */
-export function useFindManyCoreViewFilterGroupsQuery(baseOptions?: Apollo.QueryHookOptions<FindManyCoreViewFilterGroupsQuery, FindManyCoreViewFilterGroupsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindManyCoreViewFilterGroupsQuery, FindManyCoreViewFilterGroupsQueryVariables>(FindManyCoreViewFilterGroupsDocument, options);
-      }
-export function useFindManyCoreViewFilterGroupsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindManyCoreViewFilterGroupsQuery, FindManyCoreViewFilterGroupsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindManyCoreViewFilterGroupsQuery, FindManyCoreViewFilterGroupsQueryVariables>(FindManyCoreViewFilterGroupsDocument, options);
-        }
-export type FindManyCoreViewFilterGroupsQueryHookResult = ReturnType<typeof useFindManyCoreViewFilterGroupsQuery>;
-export type FindManyCoreViewFilterGroupsLazyQueryHookResult = ReturnType<typeof useFindManyCoreViewFilterGroupsLazyQuery>;
-export type FindManyCoreViewFilterGroupsQueryResult = Apollo.QueryResult<FindManyCoreViewFilterGroupsQuery, FindManyCoreViewFilterGroupsQueryVariables>;
-export const FindManyCoreViewFiltersDocument = gql`
-    query FindManyCoreViewFilters($viewId: String) {
-  getCoreViewFilters(viewId: $viewId) {
-    ...ViewFilterFragment
-  }
+export function useFindManyCoreViewFilterGroupsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    FindManyCoreViewFilterGroupsQuery,
+    FindManyCoreViewFilterGroupsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindManyCoreViewFilterGroupsQuery,
+    FindManyCoreViewFilterGroupsQueryVariables
+  >(FindManyCoreViewFilterGroupsDocument, options);
 }
-    ${ViewFilterFragmentFragmentDoc}`;
+export function useFindManyCoreViewFilterGroupsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindManyCoreViewFilterGroupsQuery,
+    FindManyCoreViewFilterGroupsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindManyCoreViewFilterGroupsQuery,
+    FindManyCoreViewFilterGroupsQueryVariables
+  >(FindManyCoreViewFilterGroupsDocument, options);
+}
+export type FindManyCoreViewFilterGroupsQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewFilterGroupsQuery
+>;
+export type FindManyCoreViewFilterGroupsLazyQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewFilterGroupsLazyQuery
+>;
+export type FindManyCoreViewFilterGroupsQueryResult = Apollo.QueryResult<
+  FindManyCoreViewFilterGroupsQuery,
+  FindManyCoreViewFilterGroupsQueryVariables
+>;
+export const FindManyCoreViewFiltersDocument = gql`
+  query FindManyCoreViewFilters($viewId: String) {
+    getCoreViewFilters(viewId: $viewId) {
+      ...ViewFilterFragment
+    }
+  }
+  ${ViewFilterFragmentFragmentDoc}
+`;
 
 /**
  * __useFindManyCoreViewFiltersQuery__
@@ -6161,24 +7587,48 @@ export const FindManyCoreViewFiltersDocument = gql`
  *   },
  * });
  */
-export function useFindManyCoreViewFiltersQuery(baseOptions?: Apollo.QueryHookOptions<FindManyCoreViewFiltersQuery, FindManyCoreViewFiltersQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindManyCoreViewFiltersQuery, FindManyCoreViewFiltersQueryVariables>(FindManyCoreViewFiltersDocument, options);
-      }
-export function useFindManyCoreViewFiltersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindManyCoreViewFiltersQuery, FindManyCoreViewFiltersQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindManyCoreViewFiltersQuery, FindManyCoreViewFiltersQueryVariables>(FindManyCoreViewFiltersDocument, options);
-        }
-export type FindManyCoreViewFiltersQueryHookResult = ReturnType<typeof useFindManyCoreViewFiltersQuery>;
-export type FindManyCoreViewFiltersLazyQueryHookResult = ReturnType<typeof useFindManyCoreViewFiltersLazyQuery>;
-export type FindManyCoreViewFiltersQueryResult = Apollo.QueryResult<FindManyCoreViewFiltersQuery, FindManyCoreViewFiltersQueryVariables>;
-export const FindManyCoreViewGroupsDocument = gql`
-    query FindManyCoreViewGroups($viewId: String) {
-  getCoreViewGroups(viewId: $viewId) {
-    ...ViewGroupFragment
-  }
+export function useFindManyCoreViewFiltersQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    FindManyCoreViewFiltersQuery,
+    FindManyCoreViewFiltersQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindManyCoreViewFiltersQuery,
+    FindManyCoreViewFiltersQueryVariables
+  >(FindManyCoreViewFiltersDocument, options);
 }
-    ${ViewGroupFragmentFragmentDoc}`;
+export function useFindManyCoreViewFiltersLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindManyCoreViewFiltersQuery,
+    FindManyCoreViewFiltersQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindManyCoreViewFiltersQuery,
+    FindManyCoreViewFiltersQueryVariables
+  >(FindManyCoreViewFiltersDocument, options);
+}
+export type FindManyCoreViewFiltersQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewFiltersQuery
+>;
+export type FindManyCoreViewFiltersLazyQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewFiltersLazyQuery
+>;
+export type FindManyCoreViewFiltersQueryResult = Apollo.QueryResult<
+  FindManyCoreViewFiltersQuery,
+  FindManyCoreViewFiltersQueryVariables
+>;
+export const FindManyCoreViewGroupsDocument = gql`
+  query FindManyCoreViewGroups($viewId: String) {
+    getCoreViewGroups(viewId: $viewId) {
+      ...ViewGroupFragment
+    }
+  }
+  ${ViewGroupFragmentFragmentDoc}
+`;
 
 /**
  * __useFindManyCoreViewGroupsQuery__
@@ -6196,24 +7646,48 @@ export const FindManyCoreViewGroupsDocument = gql`
  *   },
  * });
  */
-export function useFindManyCoreViewGroupsQuery(baseOptions?: Apollo.QueryHookOptions<FindManyCoreViewGroupsQuery, FindManyCoreViewGroupsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindManyCoreViewGroupsQuery, FindManyCoreViewGroupsQueryVariables>(FindManyCoreViewGroupsDocument, options);
-      }
-export function useFindManyCoreViewGroupsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindManyCoreViewGroupsQuery, FindManyCoreViewGroupsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindManyCoreViewGroupsQuery, FindManyCoreViewGroupsQueryVariables>(FindManyCoreViewGroupsDocument, options);
-        }
-export type FindManyCoreViewGroupsQueryHookResult = ReturnType<typeof useFindManyCoreViewGroupsQuery>;
-export type FindManyCoreViewGroupsLazyQueryHookResult = ReturnType<typeof useFindManyCoreViewGroupsLazyQuery>;
-export type FindManyCoreViewGroupsQueryResult = Apollo.QueryResult<FindManyCoreViewGroupsQuery, FindManyCoreViewGroupsQueryVariables>;
-export const FindManyCoreViewSortsDocument = gql`
-    query FindManyCoreViewSorts($viewId: String) {
-  getCoreViewSorts(viewId: $viewId) {
-    ...ViewSortFragment
-  }
+export function useFindManyCoreViewGroupsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    FindManyCoreViewGroupsQuery,
+    FindManyCoreViewGroupsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindManyCoreViewGroupsQuery,
+    FindManyCoreViewGroupsQueryVariables
+  >(FindManyCoreViewGroupsDocument, options);
 }
-    ${ViewSortFragmentFragmentDoc}`;
+export function useFindManyCoreViewGroupsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindManyCoreViewGroupsQuery,
+    FindManyCoreViewGroupsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindManyCoreViewGroupsQuery,
+    FindManyCoreViewGroupsQueryVariables
+  >(FindManyCoreViewGroupsDocument, options);
+}
+export type FindManyCoreViewGroupsQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewGroupsQuery
+>;
+export type FindManyCoreViewGroupsLazyQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewGroupsLazyQuery
+>;
+export type FindManyCoreViewGroupsQueryResult = Apollo.QueryResult<
+  FindManyCoreViewGroupsQuery,
+  FindManyCoreViewGroupsQueryVariables
+>;
+export const FindManyCoreViewSortsDocument = gql`
+  query FindManyCoreViewSorts($viewId: String) {
+    getCoreViewSorts(viewId: $viewId) {
+      ...ViewSortFragment
+    }
+  }
+  ${ViewSortFragmentFragmentDoc}
+`;
 
 /**
  * __useFindManyCoreViewSortsQuery__
@@ -6231,24 +7705,48 @@ export const FindManyCoreViewSortsDocument = gql`
  *   },
  * });
  */
-export function useFindManyCoreViewSortsQuery(baseOptions?: Apollo.QueryHookOptions<FindManyCoreViewSortsQuery, FindManyCoreViewSortsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindManyCoreViewSortsQuery, FindManyCoreViewSortsQueryVariables>(FindManyCoreViewSortsDocument, options);
-      }
-export function useFindManyCoreViewSortsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindManyCoreViewSortsQuery, FindManyCoreViewSortsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindManyCoreViewSortsQuery, FindManyCoreViewSortsQueryVariables>(FindManyCoreViewSortsDocument, options);
-        }
-export type FindManyCoreViewSortsQueryHookResult = ReturnType<typeof useFindManyCoreViewSortsQuery>;
-export type FindManyCoreViewSortsLazyQueryHookResult = ReturnType<typeof useFindManyCoreViewSortsLazyQuery>;
-export type FindManyCoreViewSortsQueryResult = Apollo.QueryResult<FindManyCoreViewSortsQuery, FindManyCoreViewSortsQueryVariables>;
-export const FindManyCoreViewsDocument = gql`
-    query FindManyCoreViews($objectMetadataId: String) {
-  getCoreViews(objectMetadataId: $objectMetadataId) {
-    ...ViewFragment
-  }
+export function useFindManyCoreViewSortsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    FindManyCoreViewSortsQuery,
+    FindManyCoreViewSortsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindManyCoreViewSortsQuery,
+    FindManyCoreViewSortsQueryVariables
+  >(FindManyCoreViewSortsDocument, options);
 }
-    ${ViewFragmentFragmentDoc}`;
+export function useFindManyCoreViewSortsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindManyCoreViewSortsQuery,
+    FindManyCoreViewSortsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindManyCoreViewSortsQuery,
+    FindManyCoreViewSortsQueryVariables
+  >(FindManyCoreViewSortsDocument, options);
+}
+export type FindManyCoreViewSortsQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewSortsQuery
+>;
+export type FindManyCoreViewSortsLazyQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewSortsLazyQuery
+>;
+export type FindManyCoreViewSortsQueryResult = Apollo.QueryResult<
+  FindManyCoreViewSortsQuery,
+  FindManyCoreViewSortsQueryVariables
+>;
+export const FindManyCoreViewsDocument = gql`
+  query FindManyCoreViews($objectMetadataId: String) {
+    getCoreViews(objectMetadataId: $objectMetadataId) {
+      ...ViewFragment
+    }
+  }
+  ${ViewFragmentFragmentDoc}
+`;
 
 /**
  * __useFindManyCoreViewsQuery__
@@ -6266,24 +7764,48 @@ export const FindManyCoreViewsDocument = gql`
  *   },
  * });
  */
-export function useFindManyCoreViewsQuery(baseOptions?: Apollo.QueryHookOptions<FindManyCoreViewsQuery, FindManyCoreViewsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindManyCoreViewsQuery, FindManyCoreViewsQueryVariables>(FindManyCoreViewsDocument, options);
-      }
-export function useFindManyCoreViewsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindManyCoreViewsQuery, FindManyCoreViewsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindManyCoreViewsQuery, FindManyCoreViewsQueryVariables>(FindManyCoreViewsDocument, options);
-        }
-export type FindManyCoreViewsQueryHookResult = ReturnType<typeof useFindManyCoreViewsQuery>;
-export type FindManyCoreViewsLazyQueryHookResult = ReturnType<typeof useFindManyCoreViewsLazyQuery>;
-export type FindManyCoreViewsQueryResult = Apollo.QueryResult<FindManyCoreViewsQuery, FindManyCoreViewsQueryVariables>;
-export const FindOneCoreViewDocument = gql`
-    query FindOneCoreView($id: String!) {
-  getCoreView(id: $id) {
-    ...ViewFragment
-  }
+export function useFindManyCoreViewsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    FindManyCoreViewsQuery,
+    FindManyCoreViewsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindManyCoreViewsQuery,
+    FindManyCoreViewsQueryVariables
+  >(FindManyCoreViewsDocument, options);
 }
-    ${ViewFragmentFragmentDoc}`;
+export function useFindManyCoreViewsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindManyCoreViewsQuery,
+    FindManyCoreViewsQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindManyCoreViewsQuery,
+    FindManyCoreViewsQueryVariables
+  >(FindManyCoreViewsDocument, options);
+}
+export type FindManyCoreViewsQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewsQuery
+>;
+export type FindManyCoreViewsLazyQueryHookResult = ReturnType<
+  typeof useFindManyCoreViewsLazyQuery
+>;
+export type FindManyCoreViewsQueryResult = Apollo.QueryResult<
+  FindManyCoreViewsQuery,
+  FindManyCoreViewsQueryVariables
+>;
+export const FindOneCoreViewDocument = gql`
+  query FindOneCoreView($id: String!) {
+    getCoreView(id: $id) {
+      ...ViewFragment
+    }
+  }
+  ${ViewFragmentFragmentDoc}
+`;
 
 /**
  * __useFindOneCoreViewQuery__
@@ -6301,24 +7823,48 @@ export const FindOneCoreViewDocument = gql`
  *   },
  * });
  */
-export function useFindOneCoreViewQuery(baseOptions: Apollo.QueryHookOptions<FindOneCoreViewQuery, FindOneCoreViewQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindOneCoreViewQuery, FindOneCoreViewQueryVariables>(FindOneCoreViewDocument, options);
-      }
-export function useFindOneCoreViewLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneCoreViewQuery, FindOneCoreViewQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindOneCoreViewQuery, FindOneCoreViewQueryVariables>(FindOneCoreViewDocument, options);
-        }
-export type FindOneCoreViewQueryHookResult = ReturnType<typeof useFindOneCoreViewQuery>;
-export type FindOneCoreViewLazyQueryHookResult = ReturnType<typeof useFindOneCoreViewLazyQuery>;
-export type FindOneCoreViewQueryResult = Apollo.QueryResult<FindOneCoreViewQuery, FindOneCoreViewQueryVariables>;
-export const FindOneCoreViewFieldDocument = gql`
-    query FindOneCoreViewField($id: String!) {
-  getCoreViewField(id: $id) {
-    ...ViewFieldFragment
-  }
+export function useFindOneCoreViewQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    FindOneCoreViewQuery,
+    FindOneCoreViewQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<FindOneCoreViewQuery, FindOneCoreViewQueryVariables>(
+    FindOneCoreViewDocument,
+    options,
+  );
 }
-    ${ViewFieldFragmentFragmentDoc}`;
+export function useFindOneCoreViewLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindOneCoreViewQuery,
+    FindOneCoreViewQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindOneCoreViewQuery,
+    FindOneCoreViewQueryVariables
+  >(FindOneCoreViewDocument, options);
+}
+export type FindOneCoreViewQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewQuery
+>;
+export type FindOneCoreViewLazyQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewLazyQuery
+>;
+export type FindOneCoreViewQueryResult = Apollo.QueryResult<
+  FindOneCoreViewQuery,
+  FindOneCoreViewQueryVariables
+>;
+export const FindOneCoreViewFieldDocument = gql`
+  query FindOneCoreViewField($id: String!) {
+    getCoreViewField(id: $id) {
+      ...ViewFieldFragment
+    }
+  }
+  ${ViewFieldFragmentFragmentDoc}
+`;
 
 /**
  * __useFindOneCoreViewFieldQuery__
@@ -6336,24 +7882,48 @@ export const FindOneCoreViewFieldDocument = gql`
  *   },
  * });
  */
-export function useFindOneCoreViewFieldQuery(baseOptions: Apollo.QueryHookOptions<FindOneCoreViewFieldQuery, FindOneCoreViewFieldQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindOneCoreViewFieldQuery, FindOneCoreViewFieldQueryVariables>(FindOneCoreViewFieldDocument, options);
-      }
-export function useFindOneCoreViewFieldLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneCoreViewFieldQuery, FindOneCoreViewFieldQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindOneCoreViewFieldQuery, FindOneCoreViewFieldQueryVariables>(FindOneCoreViewFieldDocument, options);
-        }
-export type FindOneCoreViewFieldQueryHookResult = ReturnType<typeof useFindOneCoreViewFieldQuery>;
-export type FindOneCoreViewFieldLazyQueryHookResult = ReturnType<typeof useFindOneCoreViewFieldLazyQuery>;
-export type FindOneCoreViewFieldQueryResult = Apollo.QueryResult<FindOneCoreViewFieldQuery, FindOneCoreViewFieldQueryVariables>;
-export const FindOneCoreViewFilterDocument = gql`
-    query FindOneCoreViewFilter($id: String!) {
-  getCoreViewFilter(id: $id) {
-    ...ViewFilterFragment
-  }
+export function useFindOneCoreViewFieldQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    FindOneCoreViewFieldQuery,
+    FindOneCoreViewFieldQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindOneCoreViewFieldQuery,
+    FindOneCoreViewFieldQueryVariables
+  >(FindOneCoreViewFieldDocument, options);
 }
-    ${ViewFilterFragmentFragmentDoc}`;
+export function useFindOneCoreViewFieldLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindOneCoreViewFieldQuery,
+    FindOneCoreViewFieldQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindOneCoreViewFieldQuery,
+    FindOneCoreViewFieldQueryVariables
+  >(FindOneCoreViewFieldDocument, options);
+}
+export type FindOneCoreViewFieldQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewFieldQuery
+>;
+export type FindOneCoreViewFieldLazyQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewFieldLazyQuery
+>;
+export type FindOneCoreViewFieldQueryResult = Apollo.QueryResult<
+  FindOneCoreViewFieldQuery,
+  FindOneCoreViewFieldQueryVariables
+>;
+export const FindOneCoreViewFilterDocument = gql`
+  query FindOneCoreViewFilter($id: String!) {
+    getCoreViewFilter(id: $id) {
+      ...ViewFilterFragment
+    }
+  }
+  ${ViewFilterFragmentFragmentDoc}
+`;
 
 /**
  * __useFindOneCoreViewFilterQuery__
@@ -6371,24 +7941,48 @@ export const FindOneCoreViewFilterDocument = gql`
  *   },
  * });
  */
-export function useFindOneCoreViewFilterQuery(baseOptions: Apollo.QueryHookOptions<FindOneCoreViewFilterQuery, FindOneCoreViewFilterQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindOneCoreViewFilterQuery, FindOneCoreViewFilterQueryVariables>(FindOneCoreViewFilterDocument, options);
-      }
-export function useFindOneCoreViewFilterLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneCoreViewFilterQuery, FindOneCoreViewFilterQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindOneCoreViewFilterQuery, FindOneCoreViewFilterQueryVariables>(FindOneCoreViewFilterDocument, options);
-        }
-export type FindOneCoreViewFilterQueryHookResult = ReturnType<typeof useFindOneCoreViewFilterQuery>;
-export type FindOneCoreViewFilterLazyQueryHookResult = ReturnType<typeof useFindOneCoreViewFilterLazyQuery>;
-export type FindOneCoreViewFilterQueryResult = Apollo.QueryResult<FindOneCoreViewFilterQuery, FindOneCoreViewFilterQueryVariables>;
-export const FindOneCoreViewFilterGroupDocument = gql`
-    query FindOneCoreViewFilterGroup($id: String!) {
-  getCoreViewFilterGroup(id: $id) {
-    ...ViewFilterGroupFragment
-  }
+export function useFindOneCoreViewFilterQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    FindOneCoreViewFilterQuery,
+    FindOneCoreViewFilterQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindOneCoreViewFilterQuery,
+    FindOneCoreViewFilterQueryVariables
+  >(FindOneCoreViewFilterDocument, options);
 }
-    ${ViewFilterGroupFragmentFragmentDoc}`;
+export function useFindOneCoreViewFilterLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindOneCoreViewFilterQuery,
+    FindOneCoreViewFilterQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindOneCoreViewFilterQuery,
+    FindOneCoreViewFilterQueryVariables
+  >(FindOneCoreViewFilterDocument, options);
+}
+export type FindOneCoreViewFilterQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewFilterQuery
+>;
+export type FindOneCoreViewFilterLazyQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewFilterLazyQuery
+>;
+export type FindOneCoreViewFilterQueryResult = Apollo.QueryResult<
+  FindOneCoreViewFilterQuery,
+  FindOneCoreViewFilterQueryVariables
+>;
+export const FindOneCoreViewFilterGroupDocument = gql`
+  query FindOneCoreViewFilterGroup($id: String!) {
+    getCoreViewFilterGroup(id: $id) {
+      ...ViewFilterGroupFragment
+    }
+  }
+  ${ViewFilterGroupFragmentFragmentDoc}
+`;
 
 /**
  * __useFindOneCoreViewFilterGroupQuery__
@@ -6406,24 +8000,48 @@ export const FindOneCoreViewFilterGroupDocument = gql`
  *   },
  * });
  */
-export function useFindOneCoreViewFilterGroupQuery(baseOptions: Apollo.QueryHookOptions<FindOneCoreViewFilterGroupQuery, FindOneCoreViewFilterGroupQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindOneCoreViewFilterGroupQuery, FindOneCoreViewFilterGroupQueryVariables>(FindOneCoreViewFilterGroupDocument, options);
-      }
-export function useFindOneCoreViewFilterGroupLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneCoreViewFilterGroupQuery, FindOneCoreViewFilterGroupQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindOneCoreViewFilterGroupQuery, FindOneCoreViewFilterGroupQueryVariables>(FindOneCoreViewFilterGroupDocument, options);
-        }
-export type FindOneCoreViewFilterGroupQueryHookResult = ReturnType<typeof useFindOneCoreViewFilterGroupQuery>;
-export type FindOneCoreViewFilterGroupLazyQueryHookResult = ReturnType<typeof useFindOneCoreViewFilterGroupLazyQuery>;
-export type FindOneCoreViewFilterGroupQueryResult = Apollo.QueryResult<FindOneCoreViewFilterGroupQuery, FindOneCoreViewFilterGroupQueryVariables>;
-export const FindOneCoreViewGroupDocument = gql`
-    query FindOneCoreViewGroup($id: String!) {
-  getCoreViewGroup(id: $id) {
-    ...ViewGroupFragment
-  }
+export function useFindOneCoreViewFilterGroupQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    FindOneCoreViewFilterGroupQuery,
+    FindOneCoreViewFilterGroupQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindOneCoreViewFilterGroupQuery,
+    FindOneCoreViewFilterGroupQueryVariables
+  >(FindOneCoreViewFilterGroupDocument, options);
 }
-    ${ViewGroupFragmentFragmentDoc}`;
+export function useFindOneCoreViewFilterGroupLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindOneCoreViewFilterGroupQuery,
+    FindOneCoreViewFilterGroupQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindOneCoreViewFilterGroupQuery,
+    FindOneCoreViewFilterGroupQueryVariables
+  >(FindOneCoreViewFilterGroupDocument, options);
+}
+export type FindOneCoreViewFilterGroupQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewFilterGroupQuery
+>;
+export type FindOneCoreViewFilterGroupLazyQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewFilterGroupLazyQuery
+>;
+export type FindOneCoreViewFilterGroupQueryResult = Apollo.QueryResult<
+  FindOneCoreViewFilterGroupQuery,
+  FindOneCoreViewFilterGroupQueryVariables
+>;
+export const FindOneCoreViewGroupDocument = gql`
+  query FindOneCoreViewGroup($id: String!) {
+    getCoreViewGroup(id: $id) {
+      ...ViewGroupFragment
+    }
+  }
+  ${ViewGroupFragmentFragmentDoc}
+`;
 
 /**
  * __useFindOneCoreViewGroupQuery__
@@ -6441,24 +8059,48 @@ export const FindOneCoreViewGroupDocument = gql`
  *   },
  * });
  */
-export function useFindOneCoreViewGroupQuery(baseOptions: Apollo.QueryHookOptions<FindOneCoreViewGroupQuery, FindOneCoreViewGroupQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindOneCoreViewGroupQuery, FindOneCoreViewGroupQueryVariables>(FindOneCoreViewGroupDocument, options);
-      }
-export function useFindOneCoreViewGroupLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneCoreViewGroupQuery, FindOneCoreViewGroupQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindOneCoreViewGroupQuery, FindOneCoreViewGroupQueryVariables>(FindOneCoreViewGroupDocument, options);
-        }
-export type FindOneCoreViewGroupQueryHookResult = ReturnType<typeof useFindOneCoreViewGroupQuery>;
-export type FindOneCoreViewGroupLazyQueryHookResult = ReturnType<typeof useFindOneCoreViewGroupLazyQuery>;
-export type FindOneCoreViewGroupQueryResult = Apollo.QueryResult<FindOneCoreViewGroupQuery, FindOneCoreViewGroupQueryVariables>;
-export const FindOneCoreViewSortDocument = gql`
-    query FindOneCoreViewSort($id: String!) {
-  getCoreViewSort(id: $id) {
-    ...ViewSortFragment
-  }
+export function useFindOneCoreViewGroupQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    FindOneCoreViewGroupQuery,
+    FindOneCoreViewGroupQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindOneCoreViewGroupQuery,
+    FindOneCoreViewGroupQueryVariables
+  >(FindOneCoreViewGroupDocument, options);
 }
-    ${ViewSortFragmentFragmentDoc}`;
+export function useFindOneCoreViewGroupLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindOneCoreViewGroupQuery,
+    FindOneCoreViewGroupQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindOneCoreViewGroupQuery,
+    FindOneCoreViewGroupQueryVariables
+  >(FindOneCoreViewGroupDocument, options);
+}
+export type FindOneCoreViewGroupQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewGroupQuery
+>;
+export type FindOneCoreViewGroupLazyQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewGroupLazyQuery
+>;
+export type FindOneCoreViewGroupQueryResult = Apollo.QueryResult<
+  FindOneCoreViewGroupQuery,
+  FindOneCoreViewGroupQueryVariables
+>;
+export const FindOneCoreViewSortDocument = gql`
+  query FindOneCoreViewSort($id: String!) {
+    getCoreViewSort(id: $id) {
+      ...ViewSortFragment
+    }
+  }
+  ${ViewSortFragmentFragmentDoc}
+`;
 
 /**
  * __useFindOneCoreViewSortQuery__
@@ -6476,14 +8118,37 @@ export const FindOneCoreViewSortDocument = gql`
  *   },
  * });
  */
-export function useFindOneCoreViewSortQuery(baseOptions: Apollo.QueryHookOptions<FindOneCoreViewSortQuery, FindOneCoreViewSortQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<FindOneCoreViewSortQuery, FindOneCoreViewSortQueryVariables>(FindOneCoreViewSortDocument, options);
-      }
-export function useFindOneCoreViewSortLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<FindOneCoreViewSortQuery, FindOneCoreViewSortQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<FindOneCoreViewSortQuery, FindOneCoreViewSortQueryVariables>(FindOneCoreViewSortDocument, options);
-        }
-export type FindOneCoreViewSortQueryHookResult = ReturnType<typeof useFindOneCoreViewSortQuery>;
-export type FindOneCoreViewSortLazyQueryHookResult = ReturnType<typeof useFindOneCoreViewSortLazyQuery>;
-export type FindOneCoreViewSortQueryResult = Apollo.QueryResult<FindOneCoreViewSortQuery, FindOneCoreViewSortQueryVariables>;
+export function useFindOneCoreViewSortQuery(
+  baseOptions: Apollo.QueryHookOptions<
+    FindOneCoreViewSortQuery,
+    FindOneCoreViewSortQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    FindOneCoreViewSortQuery,
+    FindOneCoreViewSortQueryVariables
+  >(FindOneCoreViewSortDocument, options);
+}
+export function useFindOneCoreViewSortLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    FindOneCoreViewSortQuery,
+    FindOneCoreViewSortQueryVariables
+  >,
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    FindOneCoreViewSortQuery,
+    FindOneCoreViewSortQueryVariables
+  >(FindOneCoreViewSortDocument, options);
+}
+export type FindOneCoreViewSortQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewSortQuery
+>;
+export type FindOneCoreViewSortLazyQueryHookResult = ReturnType<
+  typeof useFindOneCoreViewSortLazyQuery
+>;
+export type FindOneCoreViewSortQueryResult = Apollo.QueryResult<
+  FindOneCoreViewSortQuery,
+  FindOneCoreViewSortQueryVariables
+>;

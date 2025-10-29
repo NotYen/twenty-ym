@@ -173,4 +173,3 @@ export const getQuotePdfBlobUrl = async ({
     throw new Error('Failed to generate quote PDF preview');
   }
 };
-
