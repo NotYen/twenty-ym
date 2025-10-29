@@ -1,7 +1,7 @@
 import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/ChartSkeletonLoader';
-import { type PageLayoutWidget } from '~/generated-metadata/graphql';
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import { type PageLayoutWidget } from '~/generated-metadata/graphql';
 
 const StyledContainer = styled.div`
   background: ${({ theme }) => theme.background.transparent.lighter};
@@ -108,7 +108,7 @@ export const IframeWidget = ({ widget }: IframeWidgetProps) => {
         title={title}
         onLoad={handleIframeLoad}
         onError={handleIframeError}
-        sandbox="allow-scripts allow-forms allow-popups"
+        sandbox="allow-scripts allow-forms allow-popups allow-same-origin"
         allow="encrypted-media"
         allowFullScreen
       />
