@@ -24,7 +24,7 @@ export const DeleteSingleRecordAction = () => {
   const { sortedFavorites: favorites } = useFavorites();
   const { deleteFavorite } = useDeleteFavorite();
 
-  const { _ } = useLingui();
+  const { i18n } = useLingui();
 
   const handleDeleteClick = async () => {
     resetTableRowSelection();
@@ -42,10 +42,10 @@ export const DeleteSingleRecordAction = () => {
 
   return (
     <ActionModal
-      title={_(msg`Delete`)}
+      title={i18n._(msg`Delete`)}
       subtitle={t`Are you sure you want to delete this record? It can be recovered from the Command menu.`}
       onConfirmClick={handleDeleteClick}
-      confirmButtonText={_(msg`Confirm Delete`)}
+      confirmButtonText={i18n._(msg`Confirm Delete`)}
     />
   );
 };

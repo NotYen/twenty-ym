@@ -104,7 +104,7 @@ import {
 // 用戶登入時設置 User ID
 const handleLogin = (user) => {
   setAnalyticsUserId(user.id);
-  
+
   setAnalyticsUserProperties({
     plan: user.subscriptionPlan,
     workspace: user.workspaceId,
@@ -168,10 +168,12 @@ trackEvent('api_call', {
 ## 🔍 在 Firebase Console 查看數據
 
 ### 即時數據
+
 1. 前往 Firebase Console > Analytics > 即時
 2. 查看當前活躍用戶和即時事件
 
 ### 歷史數據
+
 1. 前往 Firebase Console > Analytics > 事件
 2. 查看各種事件的統計數據
 3. 使用「報表」功能創建自定義報表
@@ -215,6 +217,7 @@ if (analytics) {
 ### Analytics 未初始化
 
 檢查：
+
 1. 環境變數是否正確設置
 2. 瀏覽器控制台是否有錯誤訊息
 3. Firebase 專案是否已啟用 Analytics
@@ -222,6 +225,7 @@ if (analytics) {
 ### 事件未顯示
 
 注意：
+
 - 即時事件通常會在 1-2 分鐘內顯示
 - 歷史數據可能需要 24-48 小時處理
 - 檢查 Firebase Console 的「DebugView」以查看測試事件
@@ -243,4 +247,3 @@ if (analytics) {
 - [Firebase Analytics 官方文檔](https://firebase.google.com/docs/analytics)
 - [GA4 事件參考](https://developers.google.com/analytics/devguides/collection/ga4/reference/events)
 - [隱私和安全](https://firebase.google.com/support/privacy)
-

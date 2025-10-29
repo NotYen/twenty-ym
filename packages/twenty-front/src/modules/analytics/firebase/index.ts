@@ -15,4 +15,3 @@ export {
   initializeFirebaseAnalytics,
   getFirebaseAnalytics,
 } from './services/firebase-analytics.service';
-

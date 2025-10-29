@@ -2,12 +2,12 @@
 // 不會被實際使用，僅供參考
 
 import {
-    setAnalyticsUserId,
-    setAnalyticsUserProperties,
-    trackButtonClick,
-    trackEvent,
-    trackFormSubmit,
-    trackSearch,
+  setAnalyticsUserId,
+  setAnalyticsUserProperties,
+  trackButtonClick,
+  trackEvent,
+  trackFormSubmit,
+  trackSearch,
 } from '@/analytics/firebase';
 import { useState } from 'react';
 
@@ -170,5 +170,3 @@ const login = async (credentials: any): Promise<any> => {
     createdAt: '2024-01-01',
   });
 };
-
-

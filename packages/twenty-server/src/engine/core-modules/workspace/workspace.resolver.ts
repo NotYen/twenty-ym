@@ -175,6 +175,65 @@ export class WorkspaceResolver {
     return files[0];
   }
 
+  @Mutation(() => SignedFileDTO)
+  @UseGuards(
+    WorkspaceAuthGuard,
+    SettingsPermissionsGuard(PermissionFlagType.WORKSPACE),
+  )
+  async uploadWorkspaceBackground(
+    @AuthWorkspace() workspace: WorkspaceEntity,
+    @Args({ name: 'file', type: () => GraphQLUpload })
+    { createReadStream, filename, mimetype }: FileUpload,
+  ): Promise<SignedFileDTO> {
+    // 刪除舊背景圖片（如果存在）- 防止存儲空間浪費
+    if (workspace.backgroundImage) {
+      try {
+        // 解析舊文件路徑（移除 token）
+        const oldPath = workspace.backgroundImage.split('?')[0];
+        const pathParts = oldPath.split('/');
+
+        // 路徑格式：/workspace-background/original/filename.jpg
+        if (pathParts.length >= 3) {
+          const folderPath = `${pathParts[1]}/${pathParts[2]}`; // workspace-background/original
+          const oldFilename = pathParts[3]; // filename.jpg
+
+          if (oldFilename) {
+            await this.fileService.deleteFile({
+              folderPath,
+              filename: oldFilename,
+              workspaceId: workspace.id,
+            });
+          }
+        }
+      } catch {
+        // 忽略刪除錯誤，繼續上傳（舊文件可能已被手動刪除）
+      }
+    }
+
+    // 上傳新背景圖片
+    const stream = createReadStream();
+    const buffer = await streamToBuffer(stream);
+    const fileFolder = FileFolder.WorkspaceBackground;
+
+    const { files } = await this.fileUploadService.uploadImage({
+      file: buffer,
+      filename,
+      mimeType: mimetype,
+      fileFolder,
+      workspaceId: workspace.id,
+    });
+
+    if (!files.length) {
+      throw new Error('Failed to upload workspace background');
+    }
+
+    await this.workspaceService.updateOne(workspace.id, {
+      backgroundImage: files[0].path,
+    });
+
+    return files[0];
+  }
+
   @ResolveField(() => [FeatureFlagDTO], { nullable: true })
   async featureFlags(
     @Parent() workspace: WorkspaceEntity,
@@ -269,6 +328,24 @@ export class WorkspaceResolver {
     }
 
     return workspace.logo ?? '';
+  }
+
+  @ResolveField(() => String, { nullable: true })
+  async backgroundImage(
+    @Parent() workspace: WorkspaceEntity,
+  ): Promise<string | null> {
+    if (workspace.backgroundImage) {
+      try {
+        return this.fileService.signFileUrl({
+          url: workspace.backgroundImage,
+          workspaceId: workspace.id,
+        });
+      } catch {
+        return workspace.backgroundImage;
+      }
+    }
+
+    return workspace.backgroundImage ?? null;
   }
 
   @ResolveField(() => Boolean)

@@ -13,8 +13,8 @@ import { ACTIVATE_WORKFLOW_VERSION } from '@/workflow/graphql/mutations/activate
 import { type WorkflowVersion } from '@/workflow/types/Workflow';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    type ActivateWorkflowVersionMutation,
-    type ActivateWorkflowVersionMutationVariables,
+  type ActivateWorkflowVersionMutation,
+  type ActivateWorkflowVersionMutationVariables,
 } from '~/generated-metadata/graphql';
 
 export const useActivateWorkflowVersion = () => {

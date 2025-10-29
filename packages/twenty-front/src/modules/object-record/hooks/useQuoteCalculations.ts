@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 /**
  * 报价单计算工具 Hook
- * 
+ *
  * 提供报价单相关的计算函数：
  * - 计算单个项目金额
  * - 计算报价单小计
@@ -13,7 +13,7 @@ export const useQuoteCalculations = () => {
   /**
    * 计算 QuoteLineItem 的金额
    * 公式：amount = quantity × unitPrice × (1 - discount/100)
-   * 
+   *
    * @param quantity - 数量
    * @param unitPriceMicros - 单价（微单位）
    * @param discount - 折扣百分比（0-100）
@@ -46,7 +46,7 @@ export const useQuoteCalculations = () => {
   /**
    * 计算报价单小计
    * 公式：subtotal = SUM(lineItems.amount)
-   * 
+   *
    * @param lineItems - 报价项目列表
    * @returns 小计（微单位）
    */
@@ -71,7 +71,7 @@ export const useQuoteCalculations = () => {
   /**
    * 计算税金
    * 公式：taxAmount = subtotal × (taxRate/100)
-   * 
+   *
    * @param subtotalMicros - 小计（微单位）
    * @param taxRate - 税率百分比（例如：5 表示 5%）
    * @returns 税金（微单位）
@@ -85,9 +85,7 @@ export const useQuoteCalculations = () => {
       // 确保 taxRate 在合理范围内（0-100）
       const validTaxRate = Math.max(0, Math.min(100, taxRate));
 
-      const taxAmountMicros = Math.round(
-        (subtotalMicros * validTaxRate) / 100,
-      );
+      const taxAmountMicros = Math.round((subtotalMicros * validTaxRate) / 100);
 
       return taxAmountMicros;
     },
@@ -97,7 +95,7 @@ export const useQuoteCalculations = () => {
   /**
    * 计算总计
    * 公式：total = subtotal + taxAmount
-   * 
+   *
    * @param subtotalMicros - 小计（微单位）
    * @param taxAmountMicros - 税金（微单位）
    * @returns 总计（微单位）
@@ -111,7 +109,7 @@ export const useQuoteCalculations = () => {
 
   /**
    * 一次性计算报价单的所有金额
-   * 
+   *
    * @param lineItems - 报价项目列表
    * @param taxRate - 税率百分比
    * @returns 包含 subtotal、taxAmount、total 的对象
@@ -142,7 +140,7 @@ export const useQuoteCalculations = () => {
 
   /**
    * 将微单位转换为标准货币单位（用于显示）
-   * 
+   *
    * @param amountMicros - 金额（微单位）
    * @returns 金额（标准单位）
    */
@@ -152,7 +150,7 @@ export const useQuoteCalculations = () => {
 
   /**
    * 将标准货币单位转换为微单位（用于存储）
-   * 
+   *
    * @param amount - 金额（标准单位）
    * @returns 金额（微单位）
    */
@@ -170,4 +168,3 @@ export const useQuoteCalculations = () => {
     amountToMicros,
   };
 };
-

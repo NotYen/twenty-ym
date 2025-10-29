@@ -22,4 +22,3 @@ export const isFirebaseEnabled = (): boolean => {
       firebaseConfig.measurementId,
   );
 };
-

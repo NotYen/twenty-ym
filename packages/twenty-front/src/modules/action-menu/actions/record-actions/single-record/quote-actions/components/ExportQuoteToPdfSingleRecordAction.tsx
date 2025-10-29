@@ -55,7 +55,9 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
   const { enqueueSuccessSnackBar, enqueueErrorSnackBar } = useSnackBar();
 
   // 获取 Quote 记录
-  const selectedQuote = useRecoilValue(recordStoreFamilyState(recordId)) as QuoteRecord;
+  const selectedQuote = useRecoilValue(
+    recordStoreFamilyState(recordId),
+  ) as QuoteRecord;
 
   // 查询 QuoteLineItem 记录
   const { records: lineItems } = useFindManyRecords<QuoteLineItemRecord>({
@@ -144,4 +146,3 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
 
   return <Action onClick={handleClick} />;
 };
-

@@ -46,6 +46,8 @@ export const USER_QUERY_FRAGMENT = gql`
       id
       displayName
       logo
+      backgroundImage
+      backgroundImageSettings
       inviteHash
       allowImpersonation
       activationStatus

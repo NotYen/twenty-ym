@@ -9,6 +9,7 @@ import {
   Matches,
   Min,
 } from 'class-validator';
+import GraphQLJSON from 'graphql-type-json';
 
 import { UUIDScalarType } from 'src/engine/api/graphql/workspace-schema-builder/graphql-types/scalars';
 
@@ -36,6 +37,15 @@ export class UpdateWorkspaceInput {
   @IsString()
   @IsOptional()
   logo?: string;
+
+  @Field({ nullable: true })
+  @IsString()
+  @IsOptional()
+  backgroundImage?: string;
+
+  @Field(() => GraphQLJSON, { nullable: true })
+  @IsOptional()
+  backgroundImageSettings?: Record<string, any>;
 
   @Field({ nullable: true })
   @IsString()

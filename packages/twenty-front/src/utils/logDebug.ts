@@ -1,4 +1,6 @@
 /* eslint-disable no-console */
 export const logDebug = (message: any, ...optionalParams: any[]) => {
-  console.debug(message, optionalParams);
+  if (process.env.IS_DEBUG_MODE === 'true') {
+    console.debug(message, ...optionalParams);
+  }
 };

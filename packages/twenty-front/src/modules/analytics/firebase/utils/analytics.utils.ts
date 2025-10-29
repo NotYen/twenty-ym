@@ -1,5 +1,6 @@
 import { logEvent, setUserId, setUserProperties } from 'firebase/analytics';
 import { logDebug } from '~/utils/logDebug';
+import { logError } from '~/utils/logError';
 import { getFirebaseAnalytics } from '../services/firebase-analytics.service';
 
 // 記錄自定義事件
@@ -14,7 +15,8 @@ export const trackEvent = (
     logEvent(analytics, eventName, params);
     logDebug(`[GA] Event tracked: ${eventName}`, params);
   } catch (error) {
-    console.error('[GA] 追蹤事件失敗:', error);
+    logError('[GA] 追蹤事件失敗:');
+    logError(error);
   }
 };
 
@@ -27,7 +29,8 @@ export const setAnalyticsUserId = (userId: string): void => {
     setUserId(analytics, userId);
     logDebug(`[GA] User ID set: ${userId}`);
   } catch (error) {
-    console.error('[GA] 設置用戶 ID 失敗:', error);
+    logError('[GA] 設置用戶 ID 失敗:');
+    logError(error);
   }
 };
 
@@ -42,7 +45,8 @@ export const setAnalyticsUserProperties = (
     setUserProperties(analytics, properties);
     logDebug('[GA] User properties set:', properties);
   } catch (error) {
-    console.error('[GA] 設置用戶屬性失敗:', error);
+    logError('[GA] 設置用戶屬性失敗:');
+    logError(error);
   }
 };
 
@@ -54,7 +58,10 @@ export const trackPageView = (pagePath: string, pageTitle?: string): void => {
   });
 };
 
-export const trackButtonClick = (buttonName: string, location?: string): void => {
+export const trackButtonClick = (
+  buttonName: string,
+  location?: string,
+): void => {
   trackEvent('button_click', {
     button_name: buttonName,
     location: location,
@@ -74,10 +81,12 @@ export const trackFormSubmit = (formName: string, success: boolean): void => {
   });
 };
 
-export const trackError = (errorMessage: string, errorLocation?: string): void => {
+export const trackError = (
+  errorMessage: string,
+  errorLocation?: string,
+): void => {
   trackEvent('error_occurred', {
     error_message: errorMessage,
     error_location: errorLocation,
   });
 };
-

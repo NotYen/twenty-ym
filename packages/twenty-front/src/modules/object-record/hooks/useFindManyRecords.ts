@@ -60,12 +60,16 @@ export const useFindManyRecords = <T extends ObjectRecord = ObjectRecord>({
     or: [{ deletedAt: { is: 'NULL' } }, { deletedAt: { is: 'NOT_NULL' } }],
   };
 
-  const withSoftDeleteFilter = withSoftDeleted
+  const deletedAtNullFilter: RecordGqlOperationFilter = {
+    deletedAt: { is: 'NULL' },
+  };
+
+  const withSoftDeleteFilter: RecordGqlOperationFilter = withSoftDeleted
     ? {
         and: [...(filter ? [filter] : []), softDeleteFilter],
       }
     : {
-        and: [...(filter ? [filter] : []), { deletedAt: { is: 'NULL' } }],
+        and: [...(filter ? [filter] : []), deletedAtNullFilter],
       };
 
   const queryIdentifier = getQueryIdentifier({
