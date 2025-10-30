@@ -1,5 +1,4 @@
 import { type Favorite } from '@/favorites/types/Favorite';
-import { getObjectMetadataNamePluralFromViewId } from '@/favorites/utils/getObjectMetadataNamePluralFromViewId';
 import { type FieldMetadataItem } from '@/object-metadata/types/FieldMetadataItem';
 import { type ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
@@ -36,10 +35,19 @@ export const sortFavorites = (
           };
         }
 
-        const { namePlural } = getObjectMetadataNamePluralFromViewId(
-          view,
-          objectMetadataItems,
+        const objectMetadataItem = objectMetadataItems.find(
+          (objectMetadataItem) =>
+            objectMetadataItem.id === view.objectMetadataId,
         );
+
+        // 修復：處理找不到 objectMetadataItem 的情況
+        // 這種情況會發生在登出後重新登入時，workspace metadata 尚未完全同步
+        // 返回 null 可以防止崩潰，該 favorite 會被過濾掉
+        if (!isDefined(objectMetadataItem)) {
+          return null;
+        }
+
+        const namePlural = objectMetadataItem.namePlural;
 
         return {
           __typename: 'Favorite',

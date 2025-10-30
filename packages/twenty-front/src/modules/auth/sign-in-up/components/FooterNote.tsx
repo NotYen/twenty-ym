@@ -22,7 +22,7 @@ export const FooterNote = () => (
   <StyledContainer>
     <Trans>By using Twenty, you agree to the</Trans>{' '}
     <a
-      href="https://twenty.com/legal/terms"
+      href="https://www.youngming-mes.com/web/agreement/agreement"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -30,7 +30,7 @@ export const FooterNote = () => (
     </a>{' '}
     <Trans>and</Trans>{' '}
     <a
-      href="https://twenty.com/legal/privacy"
+      href="https://www.youngming-mes.com/web/privacy/privacy"
       target="_blank"
       rel="noopener noreferrer"
     >

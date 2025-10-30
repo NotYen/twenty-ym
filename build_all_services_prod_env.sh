@@ -45,7 +45,7 @@ if ! lsof -Pi :${POSTGRES_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
     echo "   🔄 正在啟動 PostgreSQL..."
     brew services start postgresql@16
     sleep 3
-    
+
     # 驗證啟動成功
     if lsof -Pi :${POSTGRES_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
         echo "   ✅ PostgreSQL 已啟動"
@@ -66,7 +66,7 @@ if ! lsof -Pi :${REDIS_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
     echo "   🔄 正在啟動 Redis..."
     brew services start redis
     sleep 3
-    
+
     # 驗證啟動成功
     if lsof -Pi :${REDIS_PORT} -sTCP:LISTEN -t >/dev/null 2>&1; then
         echo "   ✅ Redis 已啟動"
@@ -180,31 +180,33 @@ fi
 # 根據 NODE_ENV 選擇啟動方式
 if [ "$NODE_ENV" = "production" ]; then
     echo "   🚀 Production 模式：先 build 再啟動"
-    
-    # 1. Build 前端和後端
+
+    # 1. 先編譯語系，再 Build 前後端
+    echo "   🌐 Compiling i18n translations..."
+    npx nx run-many -t lingui:compile -p twenty-front twenty-server
     echo "   📦 Building frontend and backend..."
     npx nx run-many -t build -p twenty-server twenty-front
-    
+
     if [ $? -ne 0 ]; then
         echo "   ❌ Build 失敗！"
         exit 1
     fi
-    
+
     # 2. 啟動後端（production）
     echo "   🔧 啟動後端服務..."
     nohup bash -c "cd packages/twenty-server && node dist/src/main.js" > twenty_backend.log 2>&1 &
-    
+
     # 3. 啟動前端（使用 serve）
     echo "   🌐 啟動前端服務..."
     nohup npx serve packages/twenty-front/build -l ${FRONTEND_PORT} -s > twenty_frontend.log 2>&1 &
-    
+
     echo "   📝 日誌文件：twenty_backend.log, twenty_frontend.log"
 else
     echo "   🔧 Development 模式：使用熱重載"
-    
+
     # Development 模式：使用熱重載
     nohup bash -c "npx nx run-many -t start -p twenty-server twenty-front" > twenty.log 2>&1 &
-    
+
     echo "   📝 日誌文件：twenty.log"
 fi
 
@@ -259,6 +261,67 @@ else
     echo "   ⚠️  後端可能未完全就緒，但繼續啟動..."
 fi
 echo ""
+
+# 在後端就緒後，同步 Workspace Metadata，避免前端取不到物件定義
+echo "   🔄 同步 Workspace Metadata..."
+if npx nx run twenty-server:command workspace:sync-metadata >> twenty.log 2>&1; then
+    echo "   ✅ Metadata 同步完成"
+else
+    echo "   ⚠️  Metadata 同步失敗，但繼續啟動（可稍後手動重試）"
+fi
+echo ""
+
+# 可選：自動清理指向不存在 Object 的 Views 與對應 Favorites（預設關閉）
+# 開啟方式：在執行前導出 AUTO_CLEAN_ORPHAN_VIEWS=true
+if [ "${AUTO_CLEAN_ORPHAN_VIEWS}" = "true" ]; then
+  echo "   🧽 自動清理孤兒 Views 與對應 Favorites（僅刪除 objectMetadataId 不存在的項目）..."
+
+  PORT=${POSTGRES_PORT:-5432}
+  DB=${POSTGRES_DB:-default}
+  USER=${POSTGRES_USER:-postgres}
+  PASS=${POSTGRES_PASSWORD:-postgres}
+  export PGPASSWORD="$PASS"
+
+  # 取得所有 workspace_* schemas
+  WORKSPACE_SCHEMAS=$(psql -h localhost -p "$PORT" -U "$USER" -d "$DB" -At -c "SELECT nspname FROM pg_namespace WHERE nspname LIKE 'workspace_%' ORDER BY nspname;" 2>/dev/null || echo "")
+
+  if [ -z "$WORKSPACE_SCHEMAS" ]; then
+    echo "   ℹ️  未找到任何 workspace_* schema，略過清理"
+  else
+    for WS in $WORKSPACE_SCHEMAS; do
+      echo "   → 檢查 $WS"
+      # Dry-run：統計將被刪除的數量
+      COUNT_VIEWS=$(psql -h localhost -p "$PORT" -U "$USER" -d "$DB" -At -c "SELECT COUNT(*) FROM \"$WS\".\"view\" v LEFT JOIN \"$WS\".\"objectMetadata\" o ON o.id = v.\"objectMetadataId\" WHERE o.id IS NULL;" 2>/dev/null || echo "0")
+      COUNT_FAVS=$(psql -h localhost -p "$PORT" -U "$USER" -d "$DB" -At -c "SELECT COUNT(*) FROM \"$WS\".\"favorite\" f JOIN \"$WS\".\"view\" v ON v.id = f.\"viewId\" LEFT JOIN \"$WS\".\"objectMetadata\" o ON o.id = v.\"objectMetadataId\" WHERE o.id IS NULL;" 2>/dev/null || echo "0")
+      echo "      預計刪除 Views: $COUNT_VIEWS, Favorites: $COUNT_FAVS"
+
+      if [ "${COUNT_VIEWS}" != "0" ] || [ "${COUNT_FAVS}" != "0" ]; then
+        echo "      執行刪除..."
+        psql -h localhost -p "$PORT" -U "$USER" -d "$DB" <<SQL_CLEAN >/dev/null 2>&1 || true
+BEGIN;
+  DELETE FROM "$WS"."favorite"
+  WHERE "viewId" IN (
+    SELECT v.id FROM "$WS"."view" v
+    LEFT JOIN "$WS"."objectMetadata" o ON o.id = v."objectMetadataId"
+    WHERE o.id IS NULL
+  );
+
+  DELETE FROM "$WS"."view"
+  WHERE "objectMetadataId" IN (
+    SELECT v."objectMetadataId" FROM "$WS"."view" v
+    LEFT JOIN "$WS"."objectMetadata" o ON o.id = v."objectMetadataId"
+    WHERE o.id IS NULL
+  );
+COMMIT;
+SQL_CLEAN
+        echo "      ✅ 清理完成"
+      else
+        echo "      無需清理"
+      fi
+    done
+  fi
+  echo ""
+fi
 
 # ==========================================
 # 步驟 9: 等待前端就緒
@@ -345,11 +408,11 @@ CLIENT_CONFIG=$(curl -s "http://localhost:${BACKEND_PORT}/client-config" 2>/dev/
 if [ "$CLIENT_CONFIG" != "{}" ]; then
     FRONT_DOMAIN=$(echo "$CLIENT_CONFIG" | grep -o '"frontDomain":"[^"]*"' | cut -d'"' -f4 || echo "")
     DEFAULT_SUB=$(echo "$CLIENT_CONFIG" | grep -o '"defaultSubdomain":"[^"]*"' | cut -d'"' -f4 || echo "")
-    
+
     echo "   後端配置檢查："
     echo "   - frontDomain: ${FRONT_DOMAIN:-[未設置]}"
     echo "   - defaultSubdomain: ${DEFAULT_SUB:-[未設置]}"
-    
+
     if [ -z "$DEFAULT_SUB" ]; then
         echo ""
         echo "   ⚠️  警告：defaultSubdomain 為空！"
@@ -420,7 +483,7 @@ echo ""
 echo "   🔍 檢查卡住的 Workflow Runs..."
 if command -v psql &> /dev/null; then
     STUCK_WORKFLOWS=$(PGPASSWORD=postgres psql -h localhost -p ${POSTGRES_PORT} -U postgres -d default -t -c "SELECT COUNT(*) FROM workspace_1wgvd1injqtife6y4rvfbu3h5.\"workflowRun\" WHERE status = 'RUNNING' AND \"deletedAt\" IS NULL AND \"startedAt\" < NOW() - INTERVAL '1 hour';" 2>/dev/null | tr -d ' ')
-    
+
     if [ -n "$STUCK_WORKFLOWS" ] && [ "$STUCK_WORKFLOWS" -gt 0 ]; then
         echo "   ⚠️  發現 $STUCK_WORKFLOWS 個可能卡住的 Workflow Runs（超過1小時）"
         echo "   💡 建議：檢查這些 Workflow 是否需要清理"

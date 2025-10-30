@@ -1,3 +1,22 @@
+#. js-lingui-id: sign-in-success-title-fragment
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "successfully signed in, welcome to YMCRM"
+msgstr "成功登入，歡迎使用 洋銘CRM"
+
+#. js-lingui-id: sign-in-success-line1
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "successfully signed in"
+msgstr "成功登入"
+
+#. js-lingui-id: sign-in-success-line2
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "welcome to YMCRM"
+msgstr "歡迎使用 洋銘CRM"
+
+#. js-lingui-id: sign-in-success-continue
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "Continue (login success)"
+msgstr "繼續"
 msgid ""
 msgstr ""
 "Project-Id-Version: cf448e737e0d6d7b78742f963d761c61\n"
@@ -1520,7 +1539,7 @@ msgstr "這個輸出欄位的簡要說明"
 #. js-lingui-id: 8Pfllj
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
 msgid "By using Twenty, you agree to the"
-msgstr "使用 Twenty 即表示您同意"
+msgstr "使用 YMCRM 即表示您同意"
 
 #. js-lingui-id: PmmvzS
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterValue.tsx
@@ -1769,7 +1788,7 @@ msgstr "檢查您的電子郵件"
 #. js-lingui-id: SxwQE8
 #: src/modules/billing/hooks/useHandleCheckoutSession.ts
 msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "結賬會話錯誤。請重試或聯繫 Twenty 團隊"
+msgstr "結賬會話錯誤。請重試或聯繫 YM CRM 團隊"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -2161,7 +2180,7 @@ msgstr "繼續"
 #. js-lingui-id: RvVi9c
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
 msgid "Continue with Email"
-msgstr "繼續使用電子郵件"
+msgstr "繼續使用電子郵件登入"
 
 #. js-lingui-id: oZyG4C
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithGoogle.tsx
@@ -3643,7 +3662,7 @@ msgstr "取消方案切換時出現錯誤。"
 #. js-lingui-id: QmR+2U
 #: src/modules/billing/hooks/useEndSubscriptionTrialPeriod.ts
 msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "結束試用期時發生錯誤。請聯繫Twenty團隊。"
+msgstr "結束試用期時發生錯誤。請聯繫YM CRM團隊。"
 
 #. js-lingui-id: QEee5f
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx

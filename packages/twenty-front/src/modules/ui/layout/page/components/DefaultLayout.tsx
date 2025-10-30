@@ -19,6 +19,7 @@ import styled from '@emotion/styled';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { Outlet } from 'react-router-dom';
 import { useScreenSize } from 'twenty-ui/utilities';
+import { SignInSuccessEffect } from '@/auth/sign-in-up/components/SignInSuccessEffect';
 
 const StyledLayout = styled.div`
   background: ${({ theme }) => theme.background.noisy};
@@ -117,6 +118,7 @@ export const DefaultLayout = () => {
             ) : (
               <StyledMainContainer>
                 <AppErrorBoundary FallbackComponent={AppPageErrorFallback}>
+                  <SignInSuccessEffect />
                   <Outlet />
                 </AppErrorBoundary>
               </StyledMainContainer>

@@ -35,7 +35,8 @@ export REDIS_URL="redis://localhost:${REDIS_PORT}"
 # ==========================================
 export APP_SECRET="replace_me_with_a_random_string"
 export NODE_ENV="production" #development 开发环境 production 生产环境
-export SIGN_IN_PREFILLED="true" # true 预填登入信息 false 不预填登入信息
+export SIGN_IN_PREFILLED="false" # true 预填登入信息 false 不预填登入信息
+export VITE_IS_DEBUG_MODE="true" # 前端除錯開關：true 會在瀏覽器 Console 顯示 debug log
 
 # ==========================================
 # 多租户配置（Multi-Workspace）
