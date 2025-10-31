@@ -20,7 +20,7 @@ const StyledContainer = styled.div`
 
 export const FooterNote = () => (
   <StyledContainer>
-    <Trans>By using Twenty, you agree to the</Trans>{' '}
+    <Trans>By using YM CRM, you agree to the</Trans>{' '}
     <a
       href="https://www.youngming-mes.com/web/agreement/agreement"
       target="_blank"

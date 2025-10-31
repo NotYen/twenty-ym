@@ -157,6 +157,43 @@ echo "      IS_MULTIWORKSPACE_ENABLED: ${IS_MULTIWORKSPACE_ENABLED}"
 echo ""
 
 # ==========================================
+# 步驟 5.5: 運行數據庫遷移（確保數據庫結構最新）
+# ==========================================
+echo "5️⃣.5 運行數據庫遷移..."
+echo "   📊 檢查數據庫結構更新..."
+
+# 運行數據庫遷移
+if npx nx run twenty-server:database:migrate:prod > twenty_migration.log 2>&1; then
+    echo "   ✅ 數據庫遷移完成"
+
+    # 顯示執行了哪些遷移
+    if grep -q "migration" twenty_migration.log 2>/dev/null; then
+        echo "   📋 已執行的遷移："
+        grep -i "migration" twenty_migration.log | tail -5 || echo "      （數據庫已是最新版本）"
+    else
+        echo "   ℹ️  數據庫已是最新版本，無需遷移"
+    fi
+else
+    echo "   ❌ 數據庫遷移失敗！"
+    echo ""
+    echo "📋 錯誤日誌："
+    cat twenty_migration.log
+    echo ""
+    echo "💡 可能原因："
+    echo "   1. 數據庫連接失敗（檢查 PostgreSQL 是否運行）"
+    echo "   2. 遷移文件語法錯誤"
+    echo "   3. 數據庫權限不足"
+    echo "   4. 數據不一致（可能需要手動修復）"
+    echo ""
+    echo "🔧 建議操作："
+    echo "   - 檢查數據庫連接: psql -h localhost -p ${POSTGRES_PORT} -U ${POSTGRES_USER} -d ${POSTGRES_DB}"
+    echo "   - 查看詳細日誌: cat twenty_migration.log"
+    echo ""
+    exit 1
+fi
+echo ""
+
+# ==========================================
 # 步驟 6: 清除 Nx 快取（避免使用舊的 build）
 # ==========================================
 echo "6️⃣  清除 Nx 快取..."

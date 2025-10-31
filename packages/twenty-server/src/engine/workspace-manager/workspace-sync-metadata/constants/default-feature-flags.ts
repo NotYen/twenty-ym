@@ -23,4 +23,4 @@ export const DEFAULT_FEATURE_FLAGS = [
   FeatureFlagKey.IS_PUBLIC_DOMAIN_ENABLED, // 公開域名
   FeatureFlagKey.IS_EMAILING_DOMAIN_ENABLED, // 郵件域名
   FeatureFlagKey.IS_DYNAMIC_SEARCH_FIELDS_ENABLED, // 動態搜索欄位
-];
+] as const satisfies FeatureFlagKey[];

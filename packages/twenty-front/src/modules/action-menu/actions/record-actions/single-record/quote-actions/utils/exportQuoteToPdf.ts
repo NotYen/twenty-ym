@@ -1,3 +1,6 @@
+import { pdf } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
+
 import { logDebug } from '~/utils/logDebug';
 
 type QuoteLineItemData = {
@@ -83,15 +86,11 @@ export const exportQuoteToPdf = async ({
   language = 'zh',
 }: ExportQuoteToPdfOptions): Promise<void> => {
   try {
-    // 懒加载 PDF 相关模块 - 只在实际使用时才加载
-    // 这样可以减少主 bundle 大小，提升初始加载速度
-    const [{ pdf }, { saveAs }, { QuotePDFTemplate }] = await Promise.all([
-      import('@react-pdf/renderer'),
-      import('file-saver'),
-      import('../templates/QuotePDFTemplate'),
-    ]);
+    // 参考 Twenty 的设计：动态导入仅用于 PDF 模板组件
+    // @react-pdf/renderer 和 file-saver 使用静态导入以避免 MIME 类型错误
+    const { QuotePDFTemplate } = await import('../templates/QuotePDFTemplate');
 
-    logDebug('[PDF Export] Modules loaded, generating document...');
+    logDebug('[PDF Export] Template loaded, generating document...');
 
     // 生成 PDF 文档
     const document = QuotePDFTemplate({
@@ -147,13 +146,10 @@ export const getQuotePdfBlobUrl = async ({
   language = 'zh',
 }: ExportQuoteToPdfOptions): Promise<string> => {
   try {
-    // 懒加载 PDF 相关模块
-    const [{ pdf }, { QuotePDFTemplate }] = await Promise.all([
-      import('@react-pdf/renderer'),
-      import('../templates/QuotePDFTemplate'),
-    ]);
+    // 参考 Twenty 的设计：动态导入仅用于 PDF 模板组件
+    const { QuotePDFTemplate } = await import('../templates/QuotePDFTemplate');
 
-    logDebug('[PDF Preview] Modules loaded, generating preview...');
+    logDebug('[PDF Preview] Template loaded, generating preview...');
 
     const document = QuotePDFTemplate({
       quote,
