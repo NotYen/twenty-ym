@@ -62,8 +62,11 @@ export const useWorkspaceBackground = () => {
       }
 
       // 上傳（後端 Sharp 會自動優化）
+      // ⭐ 參考 Twenty 官方 Logo 上傳模式：添加 refetchQueries 確保 Apollo 缓存刷新
       const result = await uploadBackgroundMutation({
         variables: { file },
+        refetchQueries: ['GetCurrentUser'],
+        awaitRefetchQueries: true,
       });
 
       const signedFile = result?.data?.uploadWorkspaceBackground;
@@ -75,32 +78,20 @@ export const useWorkspaceBackground = () => {
         throw new Error('Upload failed');
       }
 
-      // ⭐ 重新查詢 workspace 以獲取後端 resolver 簽名後的 backgroundImage
-      // 這樣可以確保 token 由後端統一管理，且不會手動構建過期的 token
-      const updatedWorkspace = await updateWorkspace({
-        variables: { input: {} },
-      });
-
-      const signedBackgroundImage =
-        updatedWorkspace.data?.updateWorkspace?.backgroundImage;
-
-      if (!signedBackgroundImage) {
-        logError(
-          '[useWorkspaceBackground] Failed to retrieve signed background image',
-        );
-        throw new Error('Failed to retrieve signed background image');
-      }
-
-      // 更新本地狀態（使用後端 resolver 簽名後的路徑）
+      // ⭐ 直接使用上傳返回的簽名路徑，不需要再次調用 updateWorkspace
+      // 這樣可以確保：
+      // 1. 減少不必要的 API 調用
+      // 2. 狀態更新更直接可靠
+      // 3. refetchQueries 確保所有相關查詢的缓存都被刷新
       setCurrentWorkspace({
         ...currentWorkspace,
-        backgroundImage: signedBackgroundImage,
+        backgroundImage: signedFile,
       });
 
       setErrorMessage(null);
       enqueueSuccessSnackBar({ message: '背景圖片上傳成功' });
 
-      return signedBackgroundImage;
+      return signedFile;
     } catch (error) {
       const errorMsg =
         error instanceof Error ? error.message : '上傳背景圖片時發生錯誤';
