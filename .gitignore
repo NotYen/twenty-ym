@@ -48,3 +48,8 @@ dump.rdb
 
 mcp.json
 /.junie/
+
+twenty.log
+twenty_backend.log
+twenty_frontend.log
+twenty_worker.log
