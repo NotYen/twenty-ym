@@ -9,6 +9,7 @@ import {
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { formatToShortNumber } from '~/utils/format/formatToShortNumber';
+import { logDebug } from '~/utils/logDebug';
 
 type FormatDimensionValueParams = {
   value: unknown;
@@ -47,6 +48,16 @@ export const formatDimensionValue = ({
   if (!isDefined(value)) {
     return t`Not Set`;
   }
+
+  // 🔍 調試日誌：用於定位圖表標籤問題
+  logDebug('[formatDimensionValue] 輸入數據', {
+    value,
+    type: fieldMetadata.type,
+    name: fieldMetadata.name,
+    label: fieldMetadata.label,
+    subFieldName,
+    options: fieldMetadata.options,
+  });
 
   switch (fieldMetadata.type) {
     case FieldMetadataType.SELECT: {
@@ -108,7 +119,17 @@ export const formatDimensionValue = ({
       return formatToShortNumber(numericValue);
     }
 
-    default:
-      return String(value);
+    default: {
+      const result = String(value);
+      
+      // 🔍 調試日誌：記錄 default 分支的處理結果
+      logDebug('[formatDimensionValue] default 分支', {
+        input: value,
+        output: result,
+        type: fieldMetadata.type,
+      });
+      
+      return result;
+    }
   }
 };
