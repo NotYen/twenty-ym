@@ -6203,6 +6203,11 @@ msgstr "オブジェクト"
 msgid "Object destination"
 msgstr "オブジェクトの目的地"
 
+#. js-lingui-id: rDycBw
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+msgid "Object unique fields"
+msgstr ""
+
 #. js-lingui-id: YJgmMZ
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevel.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelTableHeader.tsx
@@ -8753,6 +8758,11 @@ msgstr "バックエンドに接続できません"
 msgid "Unique"
 msgstr "一意"
 
+#. js-lingui-id: +WHV0k
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+msgid "Unique fields"
+msgstr ""
+
 #. js-lingui-id: Ef7StM
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 #: src/pages/settings/applications/components/SettingsApplicationVersionContainer.tsx
@@ -9109,6 +9119,11 @@ msgstr "認証中に問題が発生しました"
 #. js-lingui-id: lu/y/p
 #: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
 msgid "We support PNGs, JPEGs and GIFs under 10MB"
+
+#. js-lingui-id: 6d9mjh
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+msgid "We match on these fields. If a {objectLabelSingular} already exists, we update it. Otherwise, we create a new one."
+
 msgstr ""
 
 #. js-lingui-id: id6ein
