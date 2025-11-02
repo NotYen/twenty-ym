@@ -22,6 +22,11 @@ export BACKEND_PORT=8867
 export POSTGRES_PORT=5432
 export REDIS_PORT=6379
 
+# PostgreSQL 憑證
+export POSTGRES_USER="postgres"
+export POSTGRES_PASSWORD="postgres"
+export POSTGRES_DB="default"
+
 # ==========================================
 # 自动生成的 URL（不要手动修改）
 # ==========================================
@@ -45,7 +50,7 @@ export APP_SECRET="replace_me_with_a_random_string"
 # Production 環境設定
 export NODE_ENV="production" #development 开发环境 production 生产环境
 export IS_DEBUG_MODE="false" # Recoil Debug Observer 開關：true 會顯示 recoil state log（會導致卡頓）
-export VITE_IS_DEBUG_MODE="false" # 前端除錯開關：true 會在瀏覽器 Console 顯示 debug log
+export VITE_IS_DEBUG_MODE="true" # 前端除錯開關：true 會在瀏覽器 Console 顯示 debug log
 # ==========================================
 
 export SIGN_IN_PREFILLED="false" # true 预填登入信息 false 不预填登入信息
