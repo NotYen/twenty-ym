@@ -302,9 +302,10 @@ echo ""
 # 在後端就緒後，同步 Workspace Metadata，避免前端取不到物件定義
 echo "   🔄 同步 Workspace Metadata..."
 if npx nx run twenty-server:command workspace:sync-metadata >> twenty.log 2>&1; then
-    echo "   ✅ Metadata 同步完成"
+    echo "   ✅ Metadata 同步完成（包括 Workflow 等標準對象）"
 else
     echo "   ⚠️  Metadata 同步失敗，但繼續啟動（可稍後手動重試）"
+    echo "   💡 手動重試命令: npx nx run twenty-server:command workspace:sync-metadata"
 fi
 echo ""
 
