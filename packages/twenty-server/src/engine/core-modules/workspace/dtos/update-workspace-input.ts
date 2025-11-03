@@ -77,6 +77,21 @@ export class UpdateWorkspaceInput {
   @IsOptional()
   isPasswordAuthEnabled?: boolean;
 
+  @Field({ nullable: true })
+  @IsBoolean()
+  @IsOptional()
+  isGoogleAuthBypassEnabled?: boolean;
+
+  @Field({ nullable: true })
+  @IsBoolean()
+  @IsOptional()
+  isMicrosoftAuthBypassEnabled?: boolean;
+
+  @Field({ nullable: true })
+  @IsBoolean()
+  @IsOptional()
+  isPasswordAuthBypassEnabled?: boolean;
+
   @Field(() => UUIDScalarType, { nullable: true })
   @IsUUID()
   @IsOptional()
