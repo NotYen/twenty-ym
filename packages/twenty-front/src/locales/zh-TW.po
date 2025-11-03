@@ -9471,7 +9471,7 @@ msgstr "自訂工作區的背景圖片"
 #: src/pages/settings/security/SettingsSecurity.tsx
 
 msgid "Delete quote"
-msgstr ""
+msgstr "刪除報價單"
 
 #. js-lingui-id: 4dpwsE
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
@@ -9489,13 +9489,13 @@ msgstr "編輯背景圖片"
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 
 msgid "Export as PDF"
-msgstr ""
+msgstr "導出為 PDF"
 
 #. js-lingui-id: 2KAI4N
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
 
 msgid "Export quote"
-msgstr ""
+msgstr "導出報價單"
 
 #. js-lingui-id: G5DJkP
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
@@ -9588,7 +9588,7 @@ msgstr "原始大小"
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
 #. js-lingui-id: UbRKMZ
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
