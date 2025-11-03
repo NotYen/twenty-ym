@@ -21,29 +21,6 @@ const StyledCopyContainer = styled.div`
   }
 `;
 
-<<<<<<< HEAD
-export const FooterNote = () => (
-  <StyledContainer>
-    <Trans>By using YM CRM, you agree to the</Trans>{' '}
-    <a
-      href="https://www.youngming-mes.com/web/agreement/agreement"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Trans>Terms of Service</Trans>
-    </a>{' '}
-    <Trans>and</Trans>{' '}
-    <a
-      href="https://www.youngming-mes.com/web/privacy/privacy"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Trans>Privacy Policy</Trans>
-    </a>
-    .
-  </StyledContainer>
-);
-=======
 const StyledLinksContainer = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.font.color.tertiary};
@@ -85,9 +62,9 @@ export const FooterNote = () => {
   if (!isOnAWorkspace) {
     return (
       <StyledCopyContainer>
-        <Trans>By using Twenty, you agree to the</Trans>{' '}
+        <Trans>By using YM CRM, you agree to the</Trans>{' '}
         <a
-          href="https://twenty.com/legal/terms"
+          href="https://www.youngming-mes.com/web/agreement/agreement"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -95,7 +72,7 @@ export const FooterNote = () => {
         </a>{' '}
         <Trans>and</Trans>{' '}
         <a
-          href="https://twenty.com/legal/privacy"
+          href="https://www.youngming-mes.com/web/privacy/privacy"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -117,7 +94,7 @@ export const FooterNote = () => {
         </>
       )}
       <a
-        href="https://twenty.com/legal/privacy"
+        href="https://www.youngming-mes.com/web/privacy/privacy"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -125,7 +102,7 @@ export const FooterNote = () => {
       </a>
       <StyledSeparator>•</StyledSeparator>
       <a
-        href="https://twenty.com/legal/terms"
+        href="https://www.youngming-mes.com/web/agreement/agreement"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -134,4 +111,3 @@ export const FooterNote = () => {
     </StyledLinksContainer>
   );
 };
->>>>>>> main
