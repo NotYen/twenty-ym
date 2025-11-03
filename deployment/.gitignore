@@ -1,0 +1,17 @@
+# 敏感配置文件
+.env
+
+# 數據目錄
+data/
+
+# 日誌文件
+logs/
+
+# 備份文件
+*.backup
+*.bak
+*.dump
+*.sql
+
+# Docker volumes
+volumes/
