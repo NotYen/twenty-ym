@@ -1,0 +1,18 @@
+# Twenty CRM ngrok 配置
+# 同時暴露前端和後端服務
+
+version: "2"
+authtoken: YOUR_NGROK_AUTH_TOKEN  # 需要替換為你的 token
+
+tunnels:
+  twenty-frontend:
+    proto: http
+    addr: 8866
+    # 前端服務
+    inspect: true
+    
+  twenty-backend:
+    proto: http
+    addr: 8867
+    # 後端 API 服務
+    inspect: true

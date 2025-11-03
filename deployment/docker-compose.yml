@@ -1,0 +1,216 @@
+version: "3.8"
+
+# Twenty CRM Docker Compose 配置
+# 適用於 AWS Linux 生產環境
+
+services:
+  # ==========================================
+  # PostgreSQL 數據庫
+  # ==========================================
+  db:
+    image: postgres:16
+    container_name: twenty-db
+    restart: always
+    environment:
+      POSTGRES_DB: ${PG_DATABASE_NAME:-default}
+      POSTGRES_USER: ${PG_DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${PG_DATABASE_PASSWORD}
+    volumes:
+      # 數據持久化到本地目錄
+      - ./data/postgres:/var/lib/postgresql/data
+    ports:
+      # PostgreSQL 端口 - 與本地相同
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_DATABASE_USER:-postgres} -d ${PG_DATABASE_NAME:-default}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - twenty-network
+
+  # ==========================================
+  # Redis 快取和消息隊列
+  # ==========================================
+  redis:
+    image: redis:7-alpine
+    container_name: twenty-redis
+    restart: always
+    command: ["redis-server", "--maxmemory-policy", "noeviction", "--appendonly", "yes"]
+    volumes:
+      # Redis 數據持久化（AOF 模式）
+      - ./data/redis:/data
+    ports:
+      # Redis 端口 - 與本地相同
+      - "127.0.0.1:6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - twenty-network
+
+  # ==========================================
+  # Twenty Server (後端 + 前端靜態文件)
+  # ==========================================
+  server:
+    # 使用自定義構建的映像（包含中文翻譯）
+    image: twenty-zh-tw:latest
+    container_name: twenty-server
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      # 基礎配置
+      NODE_ENV: ${NODE_ENV:-production}
+      NODE_PORT: 3000
+
+      # 數據庫連接（使用容器名稱作為主機名）
+      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD}@db:5432/${PG_DATABASE_NAME:-default}
+
+      # Redis 連接
+      REDIS_URL: redis://redis:6379
+
+      # 應用密鑰（必須設置！）
+      APP_SECRET: ${APP_SECRET}
+
+      # 服務 URL（重要！用於多租戶和前後端通信）
+      SERVER_URL: ${SERVER_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
+
+      # 多租戶配置
+      IS_MULTIWORKSPACE_ENABLED: ${IS_MULTIWORKSPACE_ENABLED:-false}
+      IS_WORKSPACE_CREATION_LIMITED_TO_SERVER_ADMINS: ${IS_WORKSPACE_CREATION_LIMITED_TO_SERVER_ADMINS:-true}
+      DEFAULT_SUBDOMAIN: ${DEFAULT_SUBDOMAIN:-app}
+
+      # 登入配置
+      SIGN_IN_PREFILLED: ${SIGN_IN_PREFILLED:-false}
+
+      # 郵件配置
+      EMAIL_DRIVER: ${EMAIL_DRIVER:-smtp}
+      EMAIL_SMTP_HOST: ${EMAIL_SMTP_HOST}
+      EMAIL_SMTP_PORT: ${EMAIL_SMTP_PORT:-587}
+      EMAIL_SMTP_USER: ${EMAIL_SMTP_USER}
+      EMAIL_SMTP_PASSWORD: ${EMAIL_SMTP_PASSWORD}
+      EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS}
+      EMAIL_FROM_NAME: ${EMAIL_FROM_NAME:-Twenty CRM}
+
+      # 計費配置（開發環境可禁用）
+      IS_BILLING_ENABLED: ${IS_BILLING_ENABLED:-false}
+      BILLING_STRIPE_API_KEY: ${BILLING_STRIPE_API_KEY:-sk_test_placeholder}
+      BILLING_STRIPE_BASE_PLAN_PRODUCT_ID: ${BILLING_STRIPE_BASE_PLAN_PRODUCT_ID:-prod_placeholder}
+
+      # 存儲配置
+      STORAGE_TYPE: ${STORAGE_TYPE:-local}
+      STORAGE_LOCAL_PATH: ${STORAGE_LOCAL_PATH:-.local-storage}
+
+      # 日誌級別
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+      # 數據庫遷移（Server 負責執行）
+      DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS:-false}
+
+      # Cron Jobs 註冊（Server 負責）
+      DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION:-false}
+
+      # 除錯模式
+      IS_DEBUG_MODE: ${IS_DEBUG_MODE:-false}
+
+    volumes:
+      # 文件上傳存儲（持久化）
+      - ./data/server-storage:/app/packages/twenty-server/.local-storage
+      # 日誌目錄（可選）
+      - ./logs/server:/app/logs
+    ports:
+      # Server 端口（前端+後端合併）- 使用 8866
+      - "8866:3000"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:3000/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - twenty-network
+
+  # ==========================================
+  # Twenty Worker (背景任務處理)
+  # ==========================================
+  worker:
+    # 使用自定義構建的映像（包含中文翻譯）
+    image: twenty-zh-tw:latest
+    container_name: twenty-worker
+    restart: always
+    command: ["yarn", "worker:prod"]
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      server:
+        condition: service_healthy
+    environment:
+      # 基礎配置
+      NODE_ENV: ${NODE_ENV:-production}
+
+      # 數據庫連接
+      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD}@db:5432/${PG_DATABASE_NAME:-default}
+
+      # Redis 連接
+      REDIS_URL: redis://redis:6379
+
+      # 應用密鑰
+      APP_SECRET: ${APP_SECRET}
+
+      # 服務 URL
+      SERVER_URL: ${SERVER_URL}
+
+      # Worker 不需要執行 migration 和註冊 Cron Jobs（已由 Server 完成）
+      DISABLE_DB_MIGRATIONS: "true"
+      DISABLE_CRON_JOBS_REGISTRATION: "true"
+
+      # 存儲配置（與 Server 共享）
+      STORAGE_TYPE: ${STORAGE_TYPE:-local}
+      STORAGE_LOCAL_PATH: ${STORAGE_LOCAL_PATH:-.local-storage}
+
+      # 日誌級別
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+      # 除錯模式
+      IS_DEBUG_MODE: ${IS_DEBUG_MODE:-false}
+
+    volumes:
+      # 共享文件存儲
+      - ./data/server-storage:/app/packages/twenty-server/.local-storage
+      # Worker 日誌
+      - ./logs/worker:/app/logs
+    networks:
+      - twenty-network
+
+# ==========================================
+# 網絡配置
+# ==========================================
+networks:
+  twenty-network:
+    driver: bridge
+    name: twenty-network
+
+# ==========================================
+# Volume 配置（數據持久化）
+# ==========================================
+volumes:
+  # 注意：我們使用 bind mount (./data/xxx) 而不是 named volumes
+  # 這樣數據存儲位置更明確，便於備份和管理
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  server-storage:
+    driver: local
+

@@ -1,0 +1,11 @@
+# Twenty CRM ngrok 配置（簡單方案）
+# 只暴露前端，後端通過前端代理訪問
+
+version: "2"
+authtoken: YOUR_NGROK_AUTH_TOKEN
+
+tunnels:
+  twenty-frontend:
+    proto: http
+    addr: 8866
+    # 前端會代理所有 API 請求到後端

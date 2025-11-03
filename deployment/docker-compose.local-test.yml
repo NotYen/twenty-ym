@@ -1,0 +1,138 @@
+version: "3.8"
+
+# ==========================================
+# Twenty CRM 本地測試 Docker Compose
+# ==========================================
+# 用於在 Mac 上測試 Docker 環境
+# 使用獨立端口，不影響現有服務
+# ==========================================
+
+services:
+  # ==========================================
+  # PostgreSQL 數據庫（測試用）
+  # ==========================================
+  db-test:
+    image: postgres:16
+    container_name: twenty-db-test
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: default
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: test_password_local
+    volumes:
+      - ./local-test/data/postgres:/var/lib/postgresql/data
+    # ports:
+      # 不對外暴露，僅容器內部使用
+      # - "127.0.0.1:15432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d default"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - twenty-test-network
+
+  # ==========================================
+  # Redis（測試用）
+  # ==========================================
+  redis-test:
+    image: redis:7-alpine
+    container_name: twenty-redis-test
+    restart: unless-stopped
+    command: ["redis-server", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - ./local-test/data/redis:/data
+    ports:
+      - "127.0.0.1:16379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - twenty-test-network
+
+  # ==========================================
+  # Twenty Server（測試用 - 使用本地構建的映像）
+  # ==========================================
+  server-test:
+    # 使用本地構建的映像（9999 端口版本）
+    image: twenty-zh-tw:port9999
+    container_name: twenty-server-test
+    restart: unless-stopped
+    depends_on:
+      db-test:
+        condition: service_healthy
+      redis-test:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      NODE_PORT: 3000
+
+      # 數據庫連接（使用測試數據庫）
+      PG_DATABASE_URL: postgres://postgres:test_password_local@db-test:5432/default
+
+      # Redis 連接
+      REDIS_URL: redis://redis-test:6379
+
+      # 應用密鑰（測試用）
+      APP_SECRET: test_secret_key_for_local_docker_testing_only
+
+      # 服務 URL（不設置，讓前端自動檢測當前網址）
+      # 這樣本地和 ngrok 都能正常工作
+
+      # 單租戶模式
+      IS_MULTIWORKSPACE_ENABLED: false
+      DEFAULT_SUBDOMAIN: app
+
+      # 其他配置
+      IS_BILLING_ENABLED: false
+      STORAGE_TYPE: local
+      LOG_LEVEL: info
+      SIGN_IN_PREFILLED: false
+
+    volumes:
+      - ./local-test/data/server-storage:/app/packages/twenty-server/.local-storage
+    ports:
+      # 映射到 9999 端口
+      - "9999:3000"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:3000/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - twenty-test-network
+
+  # ==========================================
+  # Worker（測試用）
+  # ==========================================
+  worker-test:
+    image: twenty-zh-tw:port9999
+    container_name: twenty-worker-test
+    restart: unless-stopped
+    command: ["yarn", "worker:prod"]
+    depends_on:
+      server-test:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PG_DATABASE_URL: postgres://postgres:test_password_local@db-test:5432/default
+      REDIS_URL: redis://redis-test:6379
+      APP_SECRET: test_secret_key_for_local_docker_testing_only
+      SERVER_URL: http://localhost:9999
+      DISABLE_DB_MIGRATIONS: "true"
+      DISABLE_CRON_JOBS_REGISTRATION: "true"
+      STORAGE_TYPE: local
+      LOG_LEVEL: info
+    volumes:
+      - ./local-test/data/server-storage:/app/packages/twenty-server/.local-storage
+    networks:
+      - twenty-test-network
+
+networks:
+  twenty-test-network:
+    driver: bridge
+    name: twenty-test-network
+

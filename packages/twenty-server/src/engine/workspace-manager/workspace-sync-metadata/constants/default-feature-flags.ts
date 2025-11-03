@@ -17,9 +17,9 @@ export const DEFAULT_FEATURE_FLAGS = [
   FeatureFlagKey.IS_CORE_VIEW_SYNCING_ENABLED, // 核心視圖同步
   FeatureFlagKey.IS_WORKSPACE_MIGRATION_V2_ENABLED, // Workspace 遷移 V2
   FeatureFlagKey.IS_MESSAGE_FOLDER_CONTROL_ENABLED, // 郵件資料夾控制
-  FeatureFlagKey.IS_WORKFLOW_ITERATOR_ENABLED, // Workflow 迭代器
+  // FeatureFlagKey.IS_WORKFLOW_ITERATOR_ENABLED, // Workflow 迭代器 - enum 中不存在，已移除
   FeatureFlagKey.IS_CALENDAR_VIEW_ENABLED, // 日曆視圖
-  FeatureFlagKey.IS_GROUP_BY_ENABLED, // 分組功能
+  // FeatureFlagKey.IS_GROUP_BY_ENABLED, // 分組功能 - enum 中不存在，已移除
   FeatureFlagKey.IS_PUBLIC_DOMAIN_ENABLED, // 公開域名
   FeatureFlagKey.IS_EMAILING_DOMAIN_ENABLED, // 郵件域名
   FeatureFlagKey.IS_DYNAMIC_SEARCH_FIELDS_ENABLED, // 動態搜索欄位
