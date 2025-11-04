@@ -745,6 +745,11 @@ msgstr "地址 2"
 msgid "Adjust the role-related settings"
 msgstr "調整角色相關的設定"
 
+#. js-lingui-id: rTClSE
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Adjust the text size across the entire application"
+msgstr "調整整個應用程式的文字大小"
+
 #. js-lingui-id: g1in8j
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
 #: src/pages/settings/admin-panel/SettingsAdminIndicatorHealthStatus.tsx
@@ -1517,8 +1522,13 @@ msgstr "這個輸出欄位的簡要說明"
 
 #. js-lingui-id: 8Pfllj
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "使用 Twenty 即表示您同意"
+#~ msgid "By using Twenty, you agree to the"
+#~ msgstr "使用 Twenty 即表示您同意"
+
+#. js-lingui-id: uqsfwo
+#: src/modules/auth/sign-in-up/components/FooterNote.tsx
+msgid "By using YM CRM, you agree to the"
+msgstr "使用 YM CRM 即表示您同意"
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -1625,6 +1635,7 @@ msgstr "無法掃描？ 複製"
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 #: src/modules/spreadsheet-import/provider/components/SpreadsheetImport.tsx
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
 #: src/modules/settings/components/SaveAndCancelButtons/CancelButton.tsx
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
@@ -2054,6 +2065,11 @@ msgstr "確認"
 msgid "Confirm changing your current credit plan."
 msgstr "確認更改您目前的信用計劃。"
 
+#. js-lingui-id: N6GBcC
+#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
+msgid "Confirm Delete"
+msgstr "確認刪除"
+
 #. js-lingui-id: FbJ7Si
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModalSubtitle.tsx
 msgid "Confirm deletion of {roleName} role? This cannot be undone. All members will be reassigned to the default role."
@@ -2115,6 +2131,11 @@ msgstr "連接成功更新"
 msgid "Contact auto-creation"
 msgstr "聯繫人自動創建"
 
+#. js-lingui-id: yHAqP5
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Contain"
+msgstr "包含"
+
 #. js-lingui-id: /5mghO
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid "Contains"
@@ -2137,6 +2158,11 @@ msgstr "上下文"
 #: src/modules/auth/sign-in-up/components/SignInUpGlobalScopeForm.tsx
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
 msgid "Continue"
+msgstr "繼續"
+
+#. js-lingui-id: SXReWK
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "Continue (login success)"
 msgstr "繼續"
 
 #. js-lingui-id: RvVi9c
@@ -2277,6 +2303,11 @@ msgstr "計數唯一值"
 #: src/modules/settings/data-model/fields/forms/address/constants/DefaultSelectionAddressWithMessages.ts
 msgid "Country"
 msgstr "國家"
+
+#. js-lingui-id: sW0/Es
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Cover (Recommended)"
+msgstr "覆蓋 (推薦)"
 
 #. js-lingui-id: hYgDIe
 #: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
@@ -2505,6 +2536,11 @@ msgstr "自定義字段設置"
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableHeaderPlusButtonContent.tsx
 msgid "Customize fields"
 msgstr "自定義字段"
+
+#. js-lingui-id: bAyIrf
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Customize the background image for your workspace"
+msgstr "自訂工作區的背景圖片"
 
 #. js-lingui-id: bCJa9l
 #: src/pages/settings/security/SettingsSecurity.tsx
@@ -2810,6 +2846,7 @@ msgstr "刪除"
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutTabSettings.tsx
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
+#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -2860,6 +2897,11 @@ msgstr "刪除欄位"
 #: src/modules/workflow/workflow-steps/components/WorkflowStepFooter.tsx
 msgid "Delete node"
 msgstr "刪除節點"
+
+#. js-lingui-id: pkS9VB
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Delete quote"
+msgstr "刪除報價單"
 
 #. js-lingui-id: 4dpwsE
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
@@ -3214,6 +3256,16 @@ msgstr "編輯帳戶"
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "Edit Agent"
 msgstr "編輯代理"
+
+#. js-lingui-id: 0M4aKb
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Edit Background Image"
+msgstr "編輯背景圖片"
+
+#. js-lingui-id: 97Oz6u
+#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
+msgid "Edit Background Settings"
+msgstr "編輯背景圖片"
 
 #. js-lingui-id: 6vZ75d
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -3857,6 +3909,11 @@ msgstr "在 {dateDiff} 過期"
 msgid "Export"
 msgstr "導出"
 
+#. js-lingui-id: O4wxl8
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Export as PDF"
+msgstr "導出為 PDF"
+
 #. js-lingui-id: 2KAI4N
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
 msgid "Export CSV"
@@ -3866,6 +3923,11 @@ msgstr "導出 CSV"
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Export dashboard"
 msgstr "導出儀表板"
+
+#. js-lingui-id: Kxok5r
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Export quote"
+msgstr "導出報價單"
 
 #. js-lingui-id: G5DJkP
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
@@ -3932,6 +3994,16 @@ msgstr "表達式"
 #: src/modules/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Extra Credits Used"
 msgstr "額外的信用使用情況"
+
+#. js-lingui-id: D7ObY0
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Extra Large (150%)"
+msgstr "極大 (150%)"
+
+#. js-lingui-id: Cul+PP
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Extra Small (87.5%)"
+msgstr "極小 (87.5%)"
 
 #. js-lingui-id: 7Bj3x9
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
@@ -4101,6 +4173,11 @@ msgstr "第五"
 msgid "File \"{fileName}\" exceeds {maxUploadSize}"
 msgstr ""
 
+#. js-lingui-id: M3v2Jr
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Fill Mode"
+msgstr "填充模式"
+
 #. js-lingui-id: o7J4JM
 #: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowEditActionFindRecords.tsx
 #: src/modules/views/components/ViewBarFilterDropdownFieldSelectMenu.tsx
@@ -4179,6 +4256,11 @@ msgstr "流程"
 #: src/modules/settings/accounts/components/message-folders/SettingsAccountsMessageFoldersCard.tsx
 msgid "Folders"
 msgstr "資料夾"
+
+#. js-lingui-id: cGeFup
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Font Size"
+msgstr "字體大小"
 
 #. js-lingui-id: glx6on
 #: src/modules/auth/sign-in-up/components/SignInUpWorkspaceScopeForm.tsx
@@ -4456,6 +4538,11 @@ msgstr "隱藏隱藏的群組"
 #: src/modules/command-menu/pages/page-layout/constants/GraphTypeInformation.ts
 msgid "Horizontal"
 msgstr "水平"
+
+#. js-lingui-id: 8/izrZ
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Horizontal Position"
+msgstr "水平位置"
 
 #. js-lingui-id: yY8wAv
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
@@ -5035,6 +5122,11 @@ msgstr "實驗室"
 msgid "Language"
 msgstr "語言"
 
+#. js-lingui-id: AVfXIW
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Large (125%)"
+msgstr "大 (125%)"
+
 #. js-lingui-id: DU27lO
 #: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
 msgid "Last 1 hour"
@@ -5372,6 +5464,11 @@ msgstr "MCP伺服器"
 msgid "Me"
 msgstr "我"
 
+#. js-lingui-id: 4zsVUY
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Medium (112.5%)"
+msgstr "中等 (112.5%)"
+
 #. js-lingui-id: Sma10A
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/components/WorkspacesForSignIn.tsx
 msgid "Member of"
@@ -5629,6 +5726,11 @@ msgstr "導航欄"
 msgid "Navigate to next dashboard"
 msgstr "導航到下一個儀表板"
 
+#. js-lingui-id: 4SnBtG
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Navigate to next quote"
+msgstr ""
+
 #. js-lingui-id: 2T8KCk
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -5649,6 +5751,11 @@ msgstr "導航至下一個工作流程"
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Navigate to previous dashboard"
 msgstr "導航到上一個儀表板"
+
+#. js-lingui-id: Z7tRf2
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Navigate to previous quote"
+msgstr ""
 
 #. js-lingui-id: 2tw9bo
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
@@ -6008,6 +6115,11 @@ msgstr "不需要記錄即可觸發此工作流程"
 msgid "No records found"
 msgstr "未找到記錄"
 
+#. js-lingui-id: 94lTff
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "No Repeat"
+msgstr "不重複"
+
 #. js-lingui-id: Ev2r9A
 #: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownOptionSelect.tsx
 #: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownCurrencySelect.tsx
@@ -6310,6 +6422,11 @@ msgstr "僅在 {remainingDays} 和 {lastDay}"
 msgid "Only the timestamp & participants will be shared with your team."
 msgstr "僅時間戳和參與者將與您的團隊共享。"
 
+#. js-lingui-id: aoLy25
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Opacity"
+msgstr "透明度"
+
 #. js-lingui-id: 1TNIig
 #: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
 msgid "Open"
@@ -6374,6 +6491,11 @@ msgstr "或"
 #: src/modules/billing/components/internal/PlansTags.tsx
 msgid "Organization"
 msgstr "組織"
+
+#. js-lingui-id: u1xP4y
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Original Size"
+msgstr "原始大小"
 
 #. js-lingui-id: /IX/7x
 #: src/pages/settings/security/SettingsSecurity.tsx
@@ -6447,6 +6569,11 @@ msgstr "在下方貼上代碼"
 msgid "Path"
 msgstr "路徑"
 
+#. js-lingui-id: CcK+Ft
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "PDF"
+msgstr "PDF"
+
 #. js-lingui-id: UbRKMZ
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Pending"
@@ -6499,6 +6626,11 @@ msgstr "永久刪除。輸入天數。"
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Permanently destroy dashboard"
 msgstr "永久銷毀儀表板"
+
+#. js-lingui-id: O4BQ00
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Permanently destroy quote"
+msgstr ""
 
 #. js-lingui-id: Bv3y5w
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
@@ -6958,6 +7090,22 @@ msgstr "續訂日期"
 msgid "Reorder field"
 msgstr "重新排序欄位"
 
+#. js-lingui-id: BwWIp2
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Repeat"
+msgstr "重複"
+
+#. js-lingui-id: nLN+uj
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Repeat Horizontally"
+msgstr "水平重複"
+
+#. js-lingui-id: 4ibkdz
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Repeat Vertically"
+msgstr "垂直重複"
+
 #. js-lingui-id: G42SNI
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
@@ -6976,6 +7124,11 @@ msgstr "重設"
 msgid "Reset 2FA"
 msgstr "重置 2FA"
 
+#. js-lingui-id: eRoMQi
+#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
+msgid "Reset Default Background Image"
+msgstr "重設預設圖片"
+
 #. js-lingui-id: KbS2K9
 #: src/pages/auth/PasswordReset.tsx
 msgid "Reset Password"
@@ -6992,6 +7145,7 @@ msgid "Reset to default"
 msgstr "重置為默認"
 
 #. js-lingui-id: Tj36Dr
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableActionButtons.tsx
 msgid "Reset to Default"
 msgstr "重置為默認"
@@ -7028,6 +7182,11 @@ msgstr "還原"
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Restore dashboard"
 msgstr "恢復儀表板"
+
+#. js-lingui-id: N5lN7G
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Restore quote"
+msgstr ""
 
 #. js-lingui-id: y4Ib1n
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
@@ -7170,6 +7329,11 @@ msgstr "星期六"
 msgid "Save"
 msgstr "保存"
 
+#. js-lingui-id: q6QM8k
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Save and Apply"
+msgstr "儲存並套用"
+
 #. js-lingui-id: apLRCm
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
 msgid "Save as new view"
@@ -7184,6 +7348,11 @@ msgstr "保存儀表板"
 #: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 msgid "Save Layout"
 msgstr "保存佈局"
+
+#. js-lingui-id: bifv6N
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Scale"
+msgstr "縮放"
 
 #. js-lingui-id: gmB6oO
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
@@ -7814,6 +7983,11 @@ msgstr "第六"
 msgid "Skip"
 msgstr "跳過"
 
+#. js-lingui-id: XroFd1
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Small (100%)"
+msgstr "小 (100%)"
+
 #. js-lingui-id: w+rJId
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "SMTP Configuration"
@@ -8074,6 +8248,16 @@ msgstr "訂閱將在 {beautifiedRenewDate} 切換至每月計劃。"
 #: src/modules/object-record/record-merge/hooks/useMergeRecordsActions.ts
 msgid "Successfully merged {recordCount} records"
 msgstr "成功合併了 {recordCount} 條記錄"
+
+#. js-lingui-id: Y97nlA
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "successfully signed in"
+msgstr "成功登入"
+
+#. js-lingui-id: nyQWMb
+#: src/modules/spreadsheet-import/components/MatchColumnSelectFieldSelectDropdownContent.tsx
+#~ msgid "successfully signed in, welcome to Y-CRM"
+#~ msgstr "成功登入，歡迎使用 Y-CRM"
 
 #. js-lingui-id: nyQWMb
 #: src/modules/spreadsheet-import/components/MatchColumnSelectFieldSelectDropdownContent.tsx
@@ -8937,6 +9121,11 @@ msgstr "應用程序版本"
 msgid "Vertical"
 msgstr "垂直"
 
+#. js-lingui-id: nLAH1Z
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Vertical Position"
+msgstr "垂直位置"
+
 #. js-lingui-id: fROFIL
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Vietnamese"
@@ -9046,6 +9235,11 @@ msgstr "我們在驗證時遇到了一個問題"
 msgid "We match on these fields. If a {objectLabelSingular} already exists, we update it. Otherwise, we create a new one."
 msgstr ""
 
+#. js-lingui-id: lu/y/p
+#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
+msgid "We support PNGs, JPEGs and GIFs under 10MB"
+msgstr "我們支援 10MB 以下的 PNG、JPEG 和 GIF 格式"
+
 #. js-lingui-id: id6ein
 #: src/modules/ui/input/components/ImageInput.tsx
 msgid "We support your square PNGs, JPEGs and GIFs under 10MB"
@@ -9121,6 +9315,11 @@ msgstr "週"
 msgid "Welcome to {workspaceName}"
 msgstr "歡迎來到 {workspaceName}"
 
+#. js-lingui-id: dz+d3v
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "welcome to Y-CRM"
+msgstr "歡迎使用 Y-CRM"
+
 #. js-lingui-id: cE4SvC
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -9191,6 +9390,11 @@ msgstr "Workflow"
 #: src/modules/favorites/components/WorkspaceFavorites.tsx
 msgid "Workspace"
 msgstr "工作區"
+
+#. js-lingui-id: ZcJVbJ
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Workspace Background"
+msgstr "工作區背景"
 
 #. js-lingui-id: fQ8teq
 #: src/modules/auth/sign-in-up/hooks/useSignUpInNewWorkspace.ts
@@ -9420,271 +9624,77 @@ msgstr "您的工作區沒有有效的訂閱。請聯絡您的管理員。"
 msgid "Your workspace will be disabled"
 msgstr "您的工作區將被禁用"
 
+#. js-lingui-id: fTYUzb
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "主頁"
+msgstr "主頁"
 
-# ========================================
-# 本地自定义翻译（从本地版本合并）
-# ========================================
+#. js-lingui-id: RohBYr
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "任務"
+msgstr "任務"
 
-msgid "Adjust the text size across the entire application"
-msgstr "調整整個應用程式的文字大小"
+#. js-lingui-id: 6zEzgo
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "備註"
+msgstr "備註"
 
-#. js-lingui-id: g1in8j
-#: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
-#: src/pages/settings/admin-panel/SettingsAdminIndicatorHealthStatus.tsx
-#: src/pages/settings/admin-panel/SettingsAdminConfigVariableDetails.tsx
-#: src/pages/settings/admin-panel/SettingsAdmin.tsx
-#: src/pages/settings/admin-panel/SettingsAdmin.tsx
-#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+#. js-lingui-id: 3TXV2O
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "備註內容"
+msgstr "備註內容"
 
-msgid "By using YM CRM, you agree to the"
-msgstr "使用 YM CRM 即表示您同意"
+#. js-lingui-id: 1FYy0d
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "同步您的郵件和日曆。選擇您的隱私設定。"
+msgstr "同步您的郵件和日曆。選擇您的隱私設定。"
 
-#. js-lingui-id: PmmvzS
-#: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterValue.tsx
+#. js-lingui-id: TuyApS
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "日曆"
+msgstr "日曆"
 
-msgid "Confirm Delete"
-msgstr "確認刪除"
+#. js-lingui-id: PYpj+G
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "時間軸"
+msgstr "時間軸"
 
-#. js-lingui-id: FbJ7Si
-#: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModalSubtitle.tsx
+#. js-lingui-id: NBCCpD
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "欄位"
+msgstr "欄位"
 
-msgid "Contain"
-msgstr "包含"
-
-#. js-lingui-id: /5mghO
-#: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
-
-msgid "Continue (login success)"
+#. js-lingui-id: hL2bvz
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "繼續"
 msgstr "繼續"
 
-#. js-lingui-id: RvVi9c
-#: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
-
-msgid "Cover (Recommended)"
-msgstr "覆蓋 (推薦)"
-
-#. js-lingui-id: hYgDIe
-#: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
-
-msgid "Customize the background image for your workspace"
-msgstr "自訂工作區的背景圖片"
-
-#. js-lingui-id: bCJa9l
-#: src/pages/settings/security/SettingsSecurity.tsx
-
-msgid "Delete quote"
-msgstr "刪除報價單"
-
-#. js-lingui-id: 4dpwsE
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-
-msgid "Edit Background Image"
-msgstr "編輯背景圖片"
-
-#. js-lingui-id: 97Oz6u
-#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
-
-msgid "Edit Background Settings"
-msgstr "編輯背景圖片"
-
-#. js-lingui-id: 6vZ75d
-#: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
-
-msgid "Export as PDF"
-msgstr "導出為 PDF"
-
-#. js-lingui-id: 2KAI4N
-#: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
-
-msgid "Export quote"
-msgstr "導出報價單"
-
-#. js-lingui-id: G5DJkP
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-
-msgid "Extra Large (150%)"
-msgstr "極大 (150%)"
-
-#. js-lingui-id: Cul+PP
-#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
-
-msgid "Extra Small (87.5%)"
-msgstr "極小 (87.5%)"
-
-#. js-lingui-id: 7Bj3x9
-#: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
-#: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
-
-msgid "Fill Mode"
-msgstr "填充模式"
-
-#. js-lingui-id: o7J4JM
-#: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowEditActionFindRecords.tsx
-#: src/modules/views/components/ViewBarFilterDropdownFieldSelectMenu.tsx
-#: src/modules/views/components/ViewBarFilterButton.tsx
-#: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
-#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
-#: src/modules/command-menu/pages/page-layout/components/ChartFiltersSettings.tsx
-
-msgid "Font Size"
-msgstr "字體大小"
-
-#. js-lingui-id: glx6on
-#: src/modules/auth/sign-in-up/components/SignInUpWorkspaceScopeForm.tsx
-
-msgid "Horizontal Position"
-msgstr "水平位置"
-
-#. js-lingui-id: yY8wAv
-#: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
-
-msgid "Large (125%)"
-msgstr "大 (125%)"
-
-#. js-lingui-id: DU27lO
-#: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
-
-msgid "Medium (112.5%)"
-msgstr "中等 (112.5%)"
-
-#. js-lingui-id: Sma10A
-#: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/components/WorkspacesForSignIn.tsx
-
-msgid "Navigate to next quote"
-msgstr ""
-
-#. js-lingui-id: 2T8KCk
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-
-msgid "Navigate to previous quote"
-msgstr ""
-
-#. js-lingui-id: 2tw9bo
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-
-msgid "No Repeat"
-msgstr "不重複"
-
-#. js-lingui-id: Ev2r9A
-#: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownOptionSelect.tsx
-#: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownCurrencySelect.tsx
-#: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownCountrySelect.tsx
-
-msgid "Opacity"
-msgstr "透明度"
-
-#. js-lingui-id: 1TNIig
-#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
-
-msgid "Original Size"
-msgstr "原始大小"
-
-#. js-lingui-id: /IX/7x
-#: src/pages/settings/security/SettingsSecurity.tsx
-#: src/pages/settings/releases/SettingsReleases.tsx
-#: src/pages/settings/admin-panel/SettingsAdminIndicatorHealthStatus.tsx
-#: src/pages/settings/admin-panel/SettingsAdminConfigVariableDetails.tsx
-#: src/pages/settings/admin-panel/SettingsAdmin.tsx
-#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
-
-msgid "PDF"
-msgstr "PDF"
-
-#. js-lingui-id: UbRKMZ
-#: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
-
-msgid "Permanently destroy quote"
-msgstr ""
-
-#. js-lingui-id: Bv3y5w
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-
-msgid "Repeat"
-msgstr "重複"
-
-#. js-lingui-id: nLN+uj
-#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
-
-msgid "Repeat Horizontally"
-msgstr "水平重複"
-
-#. js-lingui-id: 4ibkdz
-#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
-
-msgid "Repeat Vertically"
-msgstr "垂直重複"
-
-#. js-lingui-id: G42SNI
-#: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
-#: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
-
-msgid "Reset Default Background Image"
-msgstr "重設預設圖片"
-
-#. js-lingui-id: KbS2K9
-#: src/pages/auth/PasswordReset.tsx
-
-msgid "Restore quote"
-msgstr ""
-
-#. js-lingui-id: y4Ib1n
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-
-msgid "Save and Apply"
-msgstr "儲存並套用"
-
-#. js-lingui-id: apLRCm
-#: src/modules/views/components/UpdateViewButtonGroup.tsx
-
-msgid "Scale"
-msgstr "縮放"
-
-#. js-lingui-id: gmB6oO
-#: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
-
-msgid "Small (100%)"
-msgstr "小 (100%)"
-
-#. js-lingui-id: w+rJId
-#: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
-
-msgid "Vertical Position"
-msgstr "垂直位置"
-
-#. js-lingui-id: fROFIL
-#: src/pages/settings/profile/appearance/components/LocalePicker.tsx
-
-msgid "We support PNGs, JPEGs and GIFs under 10MB"
-msgstr "我們支援 10MB 以下的 PNG、JPEG 和 GIF 格式"
-
-#. js-lingui-id: 6d9mjh
-#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
-
-msgid "Workspace Background"
-msgstr "工作區背景"
-
-#. js-lingui-id: fQ8teq
-#: src/modules/auth/sign-in-up/hooks/useSignUpInNewWorkspace.ts
-
-msgid "successfully signed in"
-msgstr "成功登入"
-
-#. js-lingui-id: nyQWMb
-#: src/modules/spreadsheet-import/components/MatchColumnSelectFieldSelectDropdownContent.tsx
-
-msgid "successfully signed in, welcome to YMCRM"
-msgstr "成功登入，歡迎使用 洋銘CRM"
-
-#. js-lingui-id: sign-in-success-line1
-#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
-
-msgid "welcome to YMCRM"
-msgstr "歡迎使用 洋銘CRM"
-
-#. js-lingui-id: cE4SvC
-#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx
-#: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
+#. js-lingui-id: lXf9QK
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "與 Google 同步"
+msgstr "與 Google 同步"
+
+#. js-lingui-id: ybr59n
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "與 Outlook 同步"
+msgstr "與 Outlook 同步"
+
+#. js-lingui-id: UajW8q
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "跳過同步並繼續"
+msgstr "跳過同步並繼續"
+
+#. js-lingui-id: NR/ELf
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "郵件和日曆"
+msgstr "郵件和日曆"
+
+#. js-lingui-id: kyRsuU
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "附檔"
+msgstr "附檔"
+
+#. js-lingui-id: bIIRv3
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "電子郵件"
+msgstr "電子郵件"

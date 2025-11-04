@@ -9227,14 +9227,14 @@ msgstr "ανακτήθηκε από"
 msgid "We encountered an issue verifying"
 msgstr "Συναντήσαμε πρόβλημα κατά την επαλήθευση"
 
-#. js-lingui-id: lu/y/p
-#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
-msgid "We support PNGs, JPEGs and GIFs under 10MB"
-
 #. js-lingui-id: 6d9mjh
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
 msgid "We match on these fields. If a {objectLabelSingular} already exists, we update it. Otherwise, we create a new one."
+msgstr ""
 
+#. js-lingui-id: lu/y/p
+#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
+msgid "We support PNGs, JPEGs and GIFs under 10MB"
 msgstr ""
 
 #. js-lingui-id: id6ein
@@ -9312,10 +9312,15 @@ msgstr "Εβδομάδα"
 msgid "Welcome to {workspaceName}"
 msgstr "Καλώς ήρθατε στο {workspaceName}"
 
+#. js-lingui-id: dz+d3v
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "welcome to Y-CRM"
+msgstr ""
+
 #. js-lingui-id: yLf5Hw
 #: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
-msgid "welcome to YMCRM"
-msgstr ""
+#~ msgid "welcome to YMCRM"
+#~ msgstr ""
 
 #. js-lingui-id: cE4SvC
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx
@@ -9620,3 +9625,78 @@ msgstr "Ο χώρος εργασίας σας δεν διαθέτει ενεργ
 #: src/modules/billing/components/SettingsBillingContent.tsx
 msgid "Your workspace will be disabled"
 msgstr "Ο χώρος εργασίας σας θα απενεργοποιηθεί"
+
+#. js-lingui-id: fTYUzb
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "主頁"
+msgstr ""
+
+#. js-lingui-id: RohBYr
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "任務"
+msgstr ""
+
+#. js-lingui-id: 6zEzgo
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "備註"
+msgstr ""
+
+#. js-lingui-id: 3TXV2O
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "備註內容"
+msgstr ""
+
+#. js-lingui-id: 1FYy0d
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "同步您的郵件和日曆。選擇您的隱私設定。"
+msgstr ""
+
+#. js-lingui-id: TuyApS
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "日曆"
+msgstr ""
+
+#. js-lingui-id: PYpj+G
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "時間軸"
+msgstr ""
+
+#. js-lingui-id: NBCCpD
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "欄位"
+msgstr ""
+
+#. js-lingui-id: hL2bvz
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "繼續"
+msgstr ""
+
+#. js-lingui-id: lXf9QK
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "與 Google 同步"
+msgstr ""
+
+#. js-lingui-id: ybr59n
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "與 Outlook 同步"
+msgstr ""
+
+#. js-lingui-id: UajW8q
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "跳過同步並繼續"
+msgstr ""
+
+#. js-lingui-id: NR/ELf
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "郵件和日曆"
+msgstr ""
+
+#. js-lingui-id: kyRsuU
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "附檔"
+msgstr ""
+
+#. js-lingui-id: bIIRv3
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "電子郵件"
+msgstr ""
