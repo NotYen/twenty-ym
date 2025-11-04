@@ -1477,7 +1477,7 @@ export enum IdentityProviderType {
 
 export type IframeConfiguration = {
   __typename?: 'IframeConfiguration';
-  url: Scalars['String'];
+  url?: Maybe<Scalars['String']>;
 };
 
 export type ImapSmtpCaldavConnectionParameters = {
@@ -1715,6 +1715,8 @@ export type Mutation = {
   createDraftFromWorkflowVersion: WorkflowVersionDto;
   createEmailingDomain: EmailingDomain;
   createFile: File;
+  createManyCoreViewFields: Array<CoreViewField>;
+  createManyCoreViewGroups: Array<CoreViewGroup>;
   createOIDCIdentityProvider: SetupSsoOutput;
   createObjectEvent: Analytics;
   createOneAgent: Agent;
@@ -1980,6 +1982,16 @@ export type MutationCreateEmailingDomainArgs = {
 
 export type MutationCreateFileArgs = {
   file: Scalars['Upload'];
+};
+
+
+export type MutationCreateManyCoreViewFieldsArgs = {
+  inputs: Array<CreateViewFieldInput>;
+};
+
+
+export type MutationCreateManyCoreViewGroupsArgs = {
+  inputs: Array<CreateViewGroupInput>;
 };
 
 
@@ -4716,7 +4728,7 @@ export type SearchQueryVariables = Exact<{
 
 export type SearchQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultConnection', edges: Array<{ __typename?: 'SearchResultEdge', cursor: string, node: { __typename?: 'SearchRecord', recordId: any, objectNameSingular: string, label: string, imageUrl?: string | null, tsRankCD: number, tsRank: number } }>, pageInfo: { __typename?: 'SearchResultPageInfo', hasNextPage: boolean, endCursor?: string | null } } };
 
-export type PageLayoutWidgetFragmentFragment = { __typename?: 'PageLayoutWidget', id: any, title: string, type: WidgetType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, pageLayoutTabId: any, gridPosition: { __typename?: 'GridPosition', column: number, columnSpan: number, row: number, rowSpan: number }, configuration?: { __typename?: 'AggregateChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, label?: string | null, displayDataLabel?: boolean | null, format?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'BarChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisDateGranularity?: ObjectRecordGroupByDateGranularity | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisGroupByDateGranularity?: ObjectRecordGroupByDateGranularity | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, groupMode?: BarChartGroupMode | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'GaugeChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'IframeConfiguration', url: string } | { __typename?: 'LineChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisDateGranularity?: ObjectRecordGroupByDateGranularity | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisGroupByDateGranularity?: ObjectRecordGroupByDateGranularity | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'PieChartConfiguration', graphType: GraphType, groupByFieldMetadataId: any, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, groupBySubFieldName?: string | null, dateGranularity?: ObjectRecordGroupByDateGranularity | null, orderBy?: GraphOrderBy | null, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | null };
+export type PageLayoutWidgetFragmentFragment = { __typename?: 'PageLayoutWidget', id: any, title: string, type: WidgetType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, pageLayoutTabId: any, gridPosition: { __typename?: 'GridPosition', column: number, columnSpan: number, row: number, rowSpan: number }, configuration?: { __typename?: 'AggregateChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, label?: string | null, displayDataLabel?: boolean | null, format?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'BarChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisDateGranularity?: ObjectRecordGroupByDateGranularity | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisGroupByDateGranularity?: ObjectRecordGroupByDateGranularity | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, groupMode?: BarChartGroupMode | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'GaugeChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'IframeConfiguration', url?: string | null } | { __typename?: 'LineChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisDateGranularity?: ObjectRecordGroupByDateGranularity | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisGroupByDateGranularity?: ObjectRecordGroupByDateGranularity | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'PieChartConfiguration', graphType: GraphType, groupByFieldMetadataId: any, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, groupBySubFieldName?: string | null, dateGranularity?: ObjectRecordGroupByDateGranularity | null, orderBy?: GraphOrderBy | null, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | null };
 
 export type UpdatePageLayoutWithTabsAndWidgetsMutationVariables = Exact<{
   id: Scalars['String'];
@@ -4724,7 +4736,7 @@ export type UpdatePageLayoutWithTabsAndWidgetsMutationVariables = Exact<{
 }>;
 
 
-export type UpdatePageLayoutWithTabsAndWidgetsMutation = { __typename?: 'Mutation', updatePageLayoutWithTabsAndWidgets: { __typename?: 'PageLayout', id: any, name: string, type: PageLayoutType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, tabs?: Array<{ __typename?: 'PageLayoutTab', id: any, title: string, position: number, pageLayoutId: any, createdAt: string, updatedAt: string, widgets?: Array<{ __typename?: 'PageLayoutWidget', id: any, title: string, type: WidgetType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, pageLayoutTabId: any, gridPosition: { __typename?: 'GridPosition', column: number, columnSpan: number, row: number, rowSpan: number }, configuration?: { __typename?: 'AggregateChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, label?: string | null, displayDataLabel?: boolean | null, format?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'BarChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisDateGranularity?: ObjectRecordGroupByDateGranularity | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisGroupByDateGranularity?: ObjectRecordGroupByDateGranularity | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, groupMode?: BarChartGroupMode | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'GaugeChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'IframeConfiguration', url: string } | { __typename?: 'LineChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisDateGranularity?: ObjectRecordGroupByDateGranularity | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisGroupByDateGranularity?: ObjectRecordGroupByDateGranularity | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'PieChartConfiguration', graphType: GraphType, groupByFieldMetadataId: any, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, groupBySubFieldName?: string | null, dateGranularity?: ObjectRecordGroupByDateGranularity | null, orderBy?: GraphOrderBy | null, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | null }> | null }> | null } };
+export type UpdatePageLayoutWithTabsAndWidgetsMutation = { __typename?: 'Mutation', updatePageLayoutWithTabsAndWidgets: { __typename?: 'PageLayout', id: any, name: string, type: PageLayoutType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, tabs?: Array<{ __typename?: 'PageLayoutTab', id: any, title: string, position: number, pageLayoutId: any, createdAt: string, updatedAt: string, widgets?: Array<{ __typename?: 'PageLayoutWidget', id: any, title: string, type: WidgetType, objectMetadataId?: any | null, createdAt: string, updatedAt: string, deletedAt?: string | null, pageLayoutTabId: any, gridPosition: { __typename?: 'GridPosition', column: number, columnSpan: number, row: number, rowSpan: number }, configuration?: { __typename?: 'AggregateChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, label?: string | null, displayDataLabel?: boolean | null, format?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'BarChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisDateGranularity?: ObjectRecordGroupByDateGranularity | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisGroupByDateGranularity?: ObjectRecordGroupByDateGranularity | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, groupMode?: BarChartGroupMode | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'GaugeChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'IframeConfiguration', url?: string | null } | { __typename?: 'LineChartConfiguration', graphType: GraphType, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, primaryAxisGroupByFieldMetadataId: any, primaryAxisGroupBySubFieldName?: string | null, primaryAxisDateGranularity?: ObjectRecordGroupByDateGranularity | null, primaryAxisOrderBy?: GraphOrderBy | null, secondaryAxisGroupByFieldMetadataId?: any | null, secondaryAxisGroupBySubFieldName?: string | null, secondaryAxisGroupByDateGranularity?: ObjectRecordGroupByDateGranularity | null, secondaryAxisOrderBy?: GraphOrderBy | null, omitNullValues?: boolean | null, axisNameDisplay?: AxisNameDisplay | null, displayDataLabel?: boolean | null, rangeMin?: number | null, rangeMax?: number | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | { __typename?: 'PieChartConfiguration', graphType: GraphType, groupByFieldMetadataId: any, aggregateFieldMetadataId: any, aggregateOperation: AggregateOperations, groupBySubFieldName?: string | null, dateGranularity?: ObjectRecordGroupByDateGranularity | null, orderBy?: GraphOrderBy | null, displayDataLabel?: boolean | null, color?: string | null, description?: string | null, filter?: any | null, timezone?: string | null, firstDayOfTheWeek?: number | null } | null }> | null }> | null } };
 
 export type OnDbEventSubscriptionVariables = Exact<{
   input: OnDbEventInput;
@@ -4786,6 +4798,20 @@ export type CreateCoreViewSortMutationVariables = Exact<{
 
 
 export type CreateCoreViewSortMutation = { __typename?: 'Mutation', createCoreViewSort: { __typename?: 'CoreViewSort', id: any, fieldMetadataId: any, direction: ViewSortDirection, viewId: any } };
+
+export type CreateManyCoreViewFieldsMutationVariables = Exact<{
+  inputs: Array<CreateViewFieldInput> | CreateViewFieldInput;
+}>;
+
+
+export type CreateManyCoreViewFieldsMutation = { __typename?: 'Mutation', createManyCoreViewFields: Array<{ __typename?: 'CoreViewField', id: any, fieldMetadataId: any, viewId: any, isVisible: boolean, position: number, size: number, aggregateOperation?: AggregateOperations | null, createdAt: string, updatedAt: string, deletedAt?: string | null }> };
+
+export type CreateManyCoreViewGroupsMutationVariables = Exact<{
+  inputs: Array<CreateViewGroupInput> | CreateViewGroupInput;
+}>;
+
+
+export type CreateManyCoreViewGroupsMutation = { __typename?: 'Mutation', createManyCoreViewGroups: Array<{ __typename?: 'CoreViewGroup', id: any, fieldMetadataId: any, isVisible: boolean, fieldValue: string, position: number, viewId: any, createdAt: string, updatedAt: string, deletedAt?: string | null }> };
 
 export type DeleteCoreViewMutationVariables = Exact<{
   id: Scalars['String'];
@@ -5553,6 +5579,72 @@ export function useCreateCoreViewSortMutation(baseOptions?: Apollo.MutationHookO
 export type CreateCoreViewSortMutationHookResult = ReturnType<typeof useCreateCoreViewSortMutation>;
 export type CreateCoreViewSortMutationResult = Apollo.MutationResult<CreateCoreViewSortMutation>;
 export type CreateCoreViewSortMutationOptions = Apollo.BaseMutationOptions<CreateCoreViewSortMutation, CreateCoreViewSortMutationVariables>;
+export const CreateManyCoreViewFieldsDocument = gql`
+    mutation CreateManyCoreViewFields($inputs: [CreateViewFieldInput!]!) {
+  createManyCoreViewFields(inputs: $inputs) {
+    ...ViewFieldFragment
+  }
+}
+    ${ViewFieldFragmentFragmentDoc}`;
+export type CreateManyCoreViewFieldsMutationFn = Apollo.MutationFunction<CreateManyCoreViewFieldsMutation, CreateManyCoreViewFieldsMutationVariables>;
+
+/**
+ * __useCreateManyCoreViewFieldsMutation__
+ *
+ * To run a mutation, you first call `useCreateManyCoreViewFieldsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateManyCoreViewFieldsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createManyCoreViewFieldsMutation, { data, loading, error }] = useCreateManyCoreViewFieldsMutation({
+ *   variables: {
+ *      inputs: // value for 'inputs'
+ *   },
+ * });
+ */
+export function useCreateManyCoreViewFieldsMutation(baseOptions?: Apollo.MutationHookOptions<CreateManyCoreViewFieldsMutation, CreateManyCoreViewFieldsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateManyCoreViewFieldsMutation, CreateManyCoreViewFieldsMutationVariables>(CreateManyCoreViewFieldsDocument, options);
+      }
+export type CreateManyCoreViewFieldsMutationHookResult = ReturnType<typeof useCreateManyCoreViewFieldsMutation>;
+export type CreateManyCoreViewFieldsMutationResult = Apollo.MutationResult<CreateManyCoreViewFieldsMutation>;
+export type CreateManyCoreViewFieldsMutationOptions = Apollo.BaseMutationOptions<CreateManyCoreViewFieldsMutation, CreateManyCoreViewFieldsMutationVariables>;
+export const CreateManyCoreViewGroupsDocument = gql`
+    mutation CreateManyCoreViewGroups($inputs: [CreateViewGroupInput!]!) {
+  createManyCoreViewGroups(inputs: $inputs) {
+    ...ViewGroupFragment
+  }
+}
+    ${ViewGroupFragmentFragmentDoc}`;
+export type CreateManyCoreViewGroupsMutationFn = Apollo.MutationFunction<CreateManyCoreViewGroupsMutation, CreateManyCoreViewGroupsMutationVariables>;
+
+/**
+ * __useCreateManyCoreViewGroupsMutation__
+ *
+ * To run a mutation, you first call `useCreateManyCoreViewGroupsMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateManyCoreViewGroupsMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createManyCoreViewGroupsMutation, { data, loading, error }] = useCreateManyCoreViewGroupsMutation({
+ *   variables: {
+ *      inputs: // value for 'inputs'
+ *   },
+ * });
+ */
+export function useCreateManyCoreViewGroupsMutation(baseOptions?: Apollo.MutationHookOptions<CreateManyCoreViewGroupsMutation, CreateManyCoreViewGroupsMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateManyCoreViewGroupsMutation, CreateManyCoreViewGroupsMutationVariables>(CreateManyCoreViewGroupsDocument, options);
+      }
+export type CreateManyCoreViewGroupsMutationHookResult = ReturnType<typeof useCreateManyCoreViewGroupsMutation>;
+export type CreateManyCoreViewGroupsMutationResult = Apollo.MutationResult<CreateManyCoreViewGroupsMutation>;
+export type CreateManyCoreViewGroupsMutationOptions = Apollo.BaseMutationOptions<CreateManyCoreViewGroupsMutation, CreateManyCoreViewGroupsMutationVariables>;
 export const DeleteCoreViewDocument = gql`
     mutation DeleteCoreView($id: String!) {
   deleteCoreView(id: $id)
