@@ -82,16 +82,25 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
     logDebug('5. Title:', selectedQuote.title);
     logDebug('6. Issue Date:', selectedQuote.issuedate);
     logDebug('7. Valid Until:', selectedQuote.validuntil);
+    logDebug('8. Subtotal:', selectedQuote.subtotal);
+    logDebug('9. Total:', selectedQuote.total);
 
-    // 验证必填字段
-    if (
-      !selectedQuote.quotenumber ||
-      !selectedQuote.title ||
-      !selectedQuote.issuedate ||
-      !selectedQuote.validuntil
-    ) {
-      console.error('Error: Missing required fields');
-      enqueueErrorSnackBar({ message: '報價單數據不完整，請檢查必填字段' });
+    // 验证必填字段并收集缺失字段信息
+    const missingFields: string[] = [];
+    
+    if (!selectedQuote.quotenumber) missingFields.push('報價單編號');
+    if (!selectedQuote.title) missingFields.push('標題');
+    if (!selectedQuote.issuedate) missingFields.push('報價日期');
+    if (!selectedQuote.validuntil) missingFields.push('有效期至');
+    if (!selectedQuote.subtotal) missingFields.push('小計');
+    if (!selectedQuote.total) missingFields.push('總計');
+
+    if (missingFields.length > 0) {
+      const missingFieldsList = missingFields.join('、');
+      console.error('Error: Missing required fields:', missingFields);
+      enqueueErrorSnackBar({ 
+        message: `報價單數據不完整，請填寫以下必填欄位：${missingFieldsList}` 
+      });
       return;
     }
 
@@ -99,7 +108,7 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
     enqueueSuccessSnackBar({ message: '正在生成 PDF，請稍候...' });
 
     try {
-      logDebug('8. Preparing PDF data...');
+      logDebug('10. Preparing PDF data...');
       const pdfData = {
         quote: {
           quoteNumber: selectedQuote.quotenumber,
@@ -127,12 +136,12 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
         })),
         language: 'zh' as const,
       };
-      logDebug('9. PDF Data:', pdfData);
+      logDebug('11. PDF Data:', pdfData);
 
-      logDebug('10. Calling exportQuoteToPdf...');
+      logDebug('12. Calling exportQuoteToPdf...');
       await exportQuoteToPdf(pdfData);
 
-      logDebug('11. PDF export successful!');
+      logDebug('13. PDF export successful!');
       enqueueSuccessSnackBar({ message: 'PDF 已成功導出' });
     } catch (error) {
       console.error('PDF Export Error:', error);
