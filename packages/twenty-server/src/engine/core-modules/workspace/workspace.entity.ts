@@ -241,6 +241,10 @@ export class WorkspaceEntity {
 
   @Field()
   @Column({ default: false })
+  isGoogleAuthBypassEnabled: boolean;
+
+  @Field()
+  @Column({ default: false })
   isTwoFactorAuthenticationEnforced: boolean;
 
   @Field()
@@ -248,8 +252,16 @@ export class WorkspaceEntity {
   isPasswordAuthEnabled: boolean;
 
   @Field()
+  @Column({ default: false })
+  isPasswordAuthBypassEnabled: boolean;
+
+  @Field()
   @Column({ default: true })
   isMicrosoftAuthEnabled: boolean;
+
+  @Field()
+  @Column({ default: false })
+  isMicrosoftAuthBypassEnabled: boolean;
 
   @Field()
   @Column({ default: false })

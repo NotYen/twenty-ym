@@ -46,6 +46,7 @@ export default defineConfig(({ command, mode }) => {
   // Please don't increase this limit for main index chunk
   // If it gets too big then find modules in the code base
   // that can be loaded lazily, there are more!
+
   const MAIN_CHUNK_SIZE_LIMIT = 7.5 * 1024 * 1024; // 7.5MB for main index chunk (官方 5.7MB + 增加以支持 PDF 导出功能和 merge 后的新功能)
   const OTHER_CHUNK_SIZE_LIMIT = 5 * 1024 * 1024; // 5MB for other chunks
 
@@ -164,12 +165,13 @@ export default defineConfig(({ command, mode }) => {
         }),
         enforce: 'pre',
       },
-      visualizer({
-        open: true,
-        gzipSize: true,
-        brotliSize: true,
-        filename: 'dist/stats.html',
-      }) as PluginOption, // https://github.com/btd/rollup-plugin-visualizer/issues/162#issuecomment-1538265997,
+      // visualizer 已禁用，避免每次 build 都打開 stats.html
+      // visualizer({
+      //   open: true,
+      //   gzipSize: true,
+      //   brotliSize: true,
+      //   filename: 'dist/stats.html',
+      // }) as PluginOption, // https://github.com/btd/rollup-plugin-visualizer/issues/162#issuecomment-1538265997,
     ],
 
     optimizeDeps: {
