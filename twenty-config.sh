@@ -97,6 +97,32 @@ export EMAIL_FROM_ADDRESS="notyenyu@gmail.com"
 export EMAIL_FROM_NAME="Twenty_CRM"
 
 # ==========================================
+# Google OAuth 配置（Gmail 和 Calendar 整合）
+# ==========================================
+# ⚠️ 重要：請先按照 Google_OAuth_配置指南.md 在 Google Cloud Console 創建 OAuth 憑證
+#
+# 啟用 Gmail 整合（用戶可在 Twenty 中查看 Gmail 郵件）
+export MESSAGING_PROVIDER_GMAIL_ENABLED="true"
+
+# 啟用 Google Calendar 整合（用戶可在 Twenty 中查看 Google Calendar）
+export CALENDAR_PROVIDER_GOOGLE_ENABLED="true"
+
+# Google OAuth 憑證（從 Google Cloud Console 獲取）
+# 1. 訪問 https://console.cloud.google.com/apis/credentials
+# 2. 創建 OAuth 2.0 客戶端 ID
+# 3. 複製 Client ID 和 Client Secret 到下面
+export AUTH_GOOGLE_CLIENT_ID="84795211297-sgo99e598e7vjg8gqhfqfk43fr41obdq.apps.googleusercontent.com"
+export AUTH_GOOGLE_CLIENT_SECRET="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"
+
+# Google OAuth 回調 URL（根據您的 EXTERNAL_HOST 和 BACKEND_PORT 自動生成）
+# ⚠️ 請確保這些 URL 與 Google Cloud Console 中的「授權的重定向 URI」完全一致
+export AUTH_GOOGLE_CALLBACK_URL="${BACKEND_URL}/auth/google/redirect"
+export AUTH_GOOGLE_APIS_CALLBACK_URL="${BACKEND_URL}/auth/google-apis/get-access-token"
+
+# 可選：啟用 Google SSO 登入（如果需要 Google 帳號登入功能）
+# export AUTH_GOOGLE_ENABLED="false"
+
+# ==========================================
 # 显示配置信息
 # ==========================================
 if [ "$1" = "--show" ]; then
