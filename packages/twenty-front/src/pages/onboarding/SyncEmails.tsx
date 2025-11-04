@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Key } from 'ts-key-enum';
+import { useLingui } from '@lingui/react/macro';
 
 import { SubTitle } from '@/auth/components/SubTitle';
 import { Title } from '@/auth/components/Title';
@@ -50,6 +51,7 @@ const StyledProviderContainer = styled.div`
 
 export const SyncEmails = () => {
   const theme = useTheme();
+  const { t } = useLingui();
   const { triggerApisOAuth } = useTriggerApisOAuth();
   const setNextOnboardingStatus = useSetNextOnboardingStatus();
   const [visibility, setVisibility] = useState<MessageChannelVisibility>(
@@ -105,9 +107,9 @@ export const SyncEmails = () => {
 
   return (
     <Modal.Content isVerticalCentered isHorizontalCentered>
-      <Title noMarginTop>Emails and Calendar</Title>
+      <Title noMarginTop>{t`郵件和日曆`}</Title>
       <SubTitle>
-        Sync your Emails and Calendar with Twenty. Choose your privacy settings.
+        {t`同步您的郵件和日曆。選擇您的隱私設定。`}
       </SubTitle>
       <StyledSyncEmailsContainer>
         <OnboardingSyncEmailsSettingsCard
@@ -118,7 +120,7 @@ export const SyncEmails = () => {
       <StyledProviderContainer>
         {isGoogleProviderEnabled && (
           <MainButton
-            title="Sync with Google"
+            title={t`與 Google 同步`}
             onClick={() => handleButtonClick(ConnectedAccountProvider.GOOGLE)}
             width={200}
             Icon={() => <IconGoogle size={theme.icon.size.sm} />}
@@ -126,7 +128,7 @@ export const SyncEmails = () => {
         )}
         {isMicrosoftProviderEnabled && (
           <MainButton
-            title="Sync with Outlook"
+            title={t`與 Outlook 同步`}
             onClick={() =>
               handleButtonClick(ConnectedAccountProvider.MICROSOFT)
             }
@@ -136,7 +138,7 @@ export const SyncEmails = () => {
         )}
         {!isMicrosoftProviderEnabled && !isGoogleProviderEnabled && (
           <MainButton
-            title="Continue"
+            title={t`繼續`}
             onClick={continueWithoutSync}
             width={144}
           />
@@ -144,7 +146,7 @@ export const SyncEmails = () => {
       </StyledProviderContainer>
       <StyledActionLinkContainer>
         <ClickToActionLink onClick={continueWithoutSync}>
-          Continue without sync
+          {t`跳過同步並繼續`}
         </ClickToActionLink>
       </StyledActionLinkContainer>
     </Modal.Content>

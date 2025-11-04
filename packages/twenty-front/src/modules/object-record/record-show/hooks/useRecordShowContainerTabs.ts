@@ -20,6 +20,7 @@ import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
 import { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { IconHome, useIcons } from 'twenty-ui/display';
+import { useLingui } from '@lingui/react/macro';
 
 // Object-specific layouts that override or extend the base layout
 const OBJECT_SPECIFIC_LAYOUTS: Partial<
@@ -42,10 +43,27 @@ export const useRecordShowContainerTabs = (
 ): { layout: RecordLayout; tabs: SingleTabProps[] } => {
   const isMobile = useIsMobile();
   const objectMetadataItems = useRecoilValue(objectMetadataItemsState);
+  const { t } = useLingui();
 
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
   const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
   const { getIcon } = useIcons();
+
+  // Tab title translations
+  const translateTabTitle = (title: string): string => {
+    const translations: Record<string, string> = {
+      'Timeline': t`時間軸`,
+      'Tasks': t`任務`,
+      'Notes': t`備註`,
+      'Note': t`備註內容`,
+      'Files': t`附檔`,
+      'Emails': t`電子郵件`,
+      'Calendar': t`日曆`,
+      'Home': t`主頁`,
+      'Fields': t`欄位`,
+    };
+    return translations[title] || title;
+  };
 
   // Merge base layout with object-specific layout
   const recordLayout: RecordLayout = useMemo(() => {
@@ -69,12 +87,13 @@ export const useRecordShowContainerTabs = (
       .sort(([, a], [, b]) => a.position - b.position)
       .map(([key, { title, icon, hide, cards }]) => {
         const Icon = getIcon(icon);
+        const translatedTitle = translateTabTitle(title);
 
         // Special handling for fields tab
         if (key === 'fields') {
           return {
             id: key,
-            title,
+            title: translatedTitle,
             Icon,
             cards,
             hide:
@@ -95,7 +114,7 @@ export const useRecordShowContainerTabs = (
 
         return {
           id: key,
-          title,
+          title: translatedTitle,
           Icon,
           cards,
           hide: shouldHide,
@@ -109,7 +128,7 @@ export const useRecordShowContainerTabs = (
               ...acc,
               {
                 id: 'home',
-                title: 'Home',
+                title: translateTabTitle('Home'),
                 Icon: IconHome,
                 cards: [
                   ...(tab.hide ? [] : tab.cards),
