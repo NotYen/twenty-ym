@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 
+import { SalesQuoteTaxCalculationEffect } from './SalesQuoteTaxCalculationEffect';
+
 type RecordShowEffectProps = {
   objectNameSingular: string;
   recordId: string;
@@ -53,5 +55,11 @@ export const RecordShowEffect = ({
     }
   }, [record, setRecordStore, loading]);
 
-  return <></>;
+  return (
+    <>
+      {objectNameSingular === 'salesquote' && (
+        <SalesQuoteTaxCalculationEffect recordId={recordId} />
+      )}
+    </>
+  );
 };

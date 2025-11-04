@@ -97,6 +97,23 @@ export EMAIL_FROM_ADDRESS="notyenyu@gmail.com"
 export EMAIL_FROM_NAME="Twenty_CRM"
 
 # ==========================================
+# Google OAuth 配置（Gmail 和 Calendar 整合）
+# ==========================================
+# 啟用 Gmail 整合（用戶可在 Twenty 中查看和發送 Gmail 郵件）
+export MESSAGING_PROVIDER_GMAIL_ENABLED="true"
+
+# 啟用 Google Calendar 整合（用戶可在 Twenty 中查看 Google Calendar）
+export CALENDAR_PROVIDER_GOOGLE_ENABLED="true"
+
+# Google OAuth 憑證（從 Google Cloud Console 獲取）
+export AUTH_GOOGLE_CLIENT_ID="84795211297-sgo99e598e7vjg8gqhfqfk43fr41obdq.apps.googleusercontent.com"
+export AUTH_GOOGLE_CLIENT_SECRET="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"
+
+# Google OAuth 回調 URL
+export AUTH_GOOGLE_CALLBACK_URL="${BACKEND_URL}/auth/google/redirect"
+export AUTH_GOOGLE_APIS_CALLBACK_URL="${BACKEND_URL}/auth/google-apis/get-access-token"
+
+# ==========================================
 # 显示配置信息
 # ==========================================
 if [ "$1" = "--show" ]; then
