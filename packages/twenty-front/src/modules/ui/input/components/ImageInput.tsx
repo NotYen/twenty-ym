@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Trans, useLingui } from '@lingui/react/macro';
 
 import { isNonEmptyString } from '@sniptt/guards';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { getImageAbsoluteURI, isDefined } from 'twenty-shared/utils';
 import { IconPhotoUp, IconTrash, IconUpload, IconX } from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
@@ -115,12 +115,17 @@ export const ImageInput = ({
   };
   const [isPictureURLError, setIsPictureURLError] = useState(false);
 
-  const pictureURI = isNonEmptyString(picture)
-    ? getImageAbsoluteURI({
-        imageUrl: picture,
-        baseUrl: REACT_APP_SERVER_BASE_URL,
-      })
-    : null;
+  // Use useMemo to cache the computed picture URI and trigger re-render when picture changes
+  const pictureURI = useMemo(
+    () =>
+      isNonEmptyString(picture)
+        ? getImageAbsoluteURI({
+            imageUrl: picture,
+            baseUrl: REACT_APP_SERVER_BASE_URL,
+          })
+        : null,
+    [picture],
+  );
 
   return (
     <StyledContainer className={className}>
@@ -131,6 +136,7 @@ export const ImageInput = ({
       >
         {pictureURI && !isPictureURLError ? (
           <img
+            key={pictureURI}
             src={pictureURI}
             alt="profile"
             onError={() => {

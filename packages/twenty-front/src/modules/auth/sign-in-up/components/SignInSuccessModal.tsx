@@ -70,7 +70,7 @@ export const SignInSuccessModal = ({
     return `${displayName} ${t`successfully signed in`},`;
   }, [displayName]);
 
-  const titleLine2 = t`welcome to YMCRM`;
+  const titleLine2 = t`welcome to Y-CRM`;
 
   const handleContinue = () => {
     onClose?.();

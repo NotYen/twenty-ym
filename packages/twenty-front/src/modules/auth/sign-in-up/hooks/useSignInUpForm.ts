@@ -59,10 +59,11 @@ export const useSignInUpForm = () => {
       form.setValue('email', prefilledEmail);
     }
 
-    if (isDeveloperDefaultSignInPrefilled === true) {
-      form.setValue('email', prefilledEmail ?? 'tim@apple.dev');
-      form.setValue('password', 'tim@apple.dev');
-    }
+    // 移除預設填入帳號密碼的功能
+    // if (isDeveloperDefaultSignInPrefilled === true) {
+    //   form.setValue('email', prefilledEmail ?? 'tim@apple.dev');
+    //   form.setValue('password', 'tim@apple.dev');
+    // }
   }, [form, isDeveloperDefaultSignInPrefilled, prefilledEmail]);
   return { form: form };
 };

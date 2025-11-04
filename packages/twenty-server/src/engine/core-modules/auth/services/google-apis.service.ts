@@ -229,11 +229,38 @@ export class GoogleAPIsService {
     }
 
     if (isCalendarEnabled) {
-      const calendarChannels = await calendarChannelRepository.find({
+      let calendarChannels = await calendarChannelRepository.find({
         where: {
           connectedAccountId: newOrExistingConnectedAccountId,
         },
       });
+
+      // If no calendar channel exists and Calendar is enabled, create one
+      if (calendarChannels.length === 0) {
+        const workspaceDataSourceForCreation =
+          await this.twentyORMGlobalManager.getDataSourceForWorkspace({
+            workspaceId,
+          });
+
+        await workspaceDataSourceForCreation.transaction(
+          async (managerForCreation: WorkspaceEntityManager) => {
+            await this.createCalendarChannelService.createCalendarChannel({
+              workspaceId,
+              connectedAccountId: newOrExistingConnectedAccountId,
+              handle,
+              calendarVisibility,
+              manager: managerForCreation,
+            });
+          },
+        );
+
+        // Re-fetch after creation
+        calendarChannels = await calendarChannelRepository.find({
+          where: {
+            connectedAccountId: newOrExistingConnectedAccountId,
+          },
+        });
+      }
 
       for (const calendarChannel of calendarChannels) {
         if (
