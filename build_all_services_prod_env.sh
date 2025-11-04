@@ -157,9 +157,39 @@ echo "      IS_MULTIWORKSPACE_ENABLED: ${IS_MULTIWORKSPACE_ENABLED}"
 echo ""
 
 # ==========================================
-# 步驟 5.5: 運行數據庫遷移（確保數據庫結構最新）
+# 步驟 5.5: 清理孤立數據（確保數據庫乾淨）
 # ==========================================
-echo "5️⃣.5 運行數據庫遷移..."
+echo "5️⃣.5 清理孤立數據..."
+CURRENT_WORKSPACE_ID=$(psql "${POSTGRES_URL}" -t -c "SELECT id FROM core.workspace LIMIT 1;" 2>/dev/null | xargs)
+if [ -n "${CURRENT_WORKSPACE_ID}" ]; then
+    echo "   🧹 清理孤立的 dataSource、metadata、workspaceMigration..."
+    psql "${POSTGRES_URL}" > /dev/null 2>&1 << EOF
+DELETE FROM core."dataSource" WHERE "workspaceId" NOT IN (SELECT id FROM core.workspace);
+DELETE FROM core."objectMetadata" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."fieldMetadata" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."indexMetadata" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core.view WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."viewField" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."viewFilter" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."viewGroup" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."viewSort" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."viewFilterGroup" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."workspaceMigration" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."featureFlag" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core.webhook WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."serverlessFunction" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."pageLayout" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."pageLayoutTab" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+DELETE FROM core."pageLayoutWidget" WHERE "workspaceId" != '${CURRENT_WORKSPACE_ID}';
+EOF
+    echo "   ✅ 孤立數據已清理"
+fi
+echo ""
+
+# ==========================================
+# 步驟 5.6: 運行數據庫遷移（確保數據庫結構最新）
+# ==========================================
+echo "5️⃣.6 運行數據庫遷移..."
 echo "   📊 檢查數據庫結構更新..."
 
 # 運行數據庫遷移

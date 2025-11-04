@@ -6,9 +6,12 @@ import { extractVersionMajorMinorPatch } from 'src/utils/version/extract-version
 
 const tableName = 'workspace';
 
-export const SEED_APPLE_WORKSPACE_ID = '20202020-1c25-4d02-bf25-6aeccf7ea419';
+// ⚠️ 警告：這些 ID 已被用戶的生產環境使用，請勿覆蓋
+// 原 Apple ID: 20202020-1c25-4d02-bf25-6aeccf7ea419（已被洋銘CRM使用）
+// 使用新的測試 ID 避免衝突
+export const SEED_APPLE_WORKSPACE_ID = 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
 export const SEED_YCOMBINATOR_WORKSPACE_ID =
-  '3b8e6458-5fc1-4e63-8563-008ccddaa6db';
+  'bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb';
 
 export type SeedWorkspaceArgs = {
   dataSource: DataSource;

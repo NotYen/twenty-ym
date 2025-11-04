@@ -99,6 +99,7 @@ export EMAIL_FROM_NAME="Twenty_CRM"
 # ==========================================
 # Google OAuth 配置（Gmail 和 Calendar 整合）
 # ==========================================
+
 # ⚠️ 重要：請先按照 Google_OAuth_配置指南.md 在 Google Cloud Console 創建 OAuth 憑證
 #
 # 啟用 Gmail 整合（用戶可在 Twenty 中查看 Gmail 郵件）

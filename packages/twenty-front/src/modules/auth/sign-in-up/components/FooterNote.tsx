@@ -1,7 +1,10 @@
 import styled from '@emotion/styled';
 import { Trans } from '@lingui/react/macro';
 
-const StyledContainer = styled.div`
+import { useWorkspaceBypass } from '@/auth/sign-in-up/hooks/useWorkspaceBypass';
+import { useIsCurrentLocationOnAWorkspace } from '@/domain-manager/hooks/useIsCurrentLocationOnAWorkspace';
+
+const StyledCopyContainer = styled.div`
   align-items: center;
   color: ${({ theme }) => theme.font.color.tertiary};
   font-size: ${({ theme }) => theme.font.size.sm};
@@ -18,9 +21,48 @@ const StyledContainer = styled.div`
   }
 `;
 
-export const FooterNote = () => (
-  <StyledContainer>
-    <Trans>By using YM CRM, you agree to the</Trans>{' '}
+const StyledLinksContainer = styled.div`
+  align-items: center;
+  color: ${({ theme }) => theme.font.color.tertiary};
+  display: flex;
+  flex-wrap: nowrap;
+  font-size: ${({ theme }) => theme.font.size.sm};
+  gap: ${({ theme }) => theme.spacing(2)};
+  justify-content: center;
+  max-width: 100%;
+  text-align: center;
+  white-space: nowrap;
+
+  & > a,
+  & > button {
+    background: none;
+    border: none;
+    color: ${({ theme }) => theme.font.color.tertiary};
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const StyledSeparator = styled.span`
+  color: ${({ theme }) => theme.font.color.tertiary};
+`;
+
+export const FooterNote = () => {
+  const isOnAWorkspace = useIsCurrentLocationOnAWorkspace();
+
+  const { shouldOfferBypass, shouldUseBypass, enableBypass } =
+    useWorkspaceBypass();
+
+  if (!isOnAWorkspace) {
+    return (
+      <StyledCopyContainer>
+        <Trans>By using YM CRM, you agree to the</Trans>{' '}
     <a
       href="https://www.youngming-mes.com/web/agreement/agreement"
       target="_blank"
@@ -37,5 +79,35 @@ export const FooterNote = () => (
       <Trans>Privacy Policy</Trans>
     </a>
     .
-  </StyledContainer>
+      </StyledCopyContainer>
 );
+  }
+
+  return (
+    <StyledLinksContainer>
+      {shouldOfferBypass && !shouldUseBypass && (
+        <>
+          <button type="button" onClick={enableBypass}>
+            <Trans>Bypass SSO</Trans>
+          </button>
+          <StyledSeparator>•</StyledSeparator>
+        </>
+      )}
+      <a
+        href="https://www.youngming-mes.com/web/privacy/privacy"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Trans>Privacy Policy</Trans>
+      </a>
+      <StyledSeparator>•</StyledSeparator>
+      <a
+        href="https://www.youngming-mes.com/web/agreement/agreement"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Trans>Terms of Service</Trans>
+      </a>
+    </StyledLinksContainer>
+  );
+};

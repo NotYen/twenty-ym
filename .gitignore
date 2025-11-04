@@ -3,6 +3,8 @@
 /.idea
 **/**/node_modules/
 .cache
+packages/twenty-front/src/locales/generated/*.ts
+*.log
 
 # yarn is the recommended package manager across the project
 **/**/.package-lock.json
