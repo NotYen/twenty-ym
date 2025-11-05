@@ -22,14 +22,14 @@ export const SalesQuoteTaxCalculationEffect = ({
 
   const { calculateTaxAmount } = useQuoteCalculations();
 
-  // 監聽總計（total）
+  // 監聽總計（zongJi）
   const total = useRecoilValue(
-    recordStoreFamilySelector({ recordId, fieldName: 'total' }),
+    recordStoreFamilySelector({ recordId, fieldName: 'zongJi' }),
   );
 
-  // 監聽稅率（taxrate）
+  // 監聽稅率（shuiLu）
   const taxRate = useRecoilValue(
-    recordStoreFamilySelector({ recordId, fieldName: 'taxrate' }),
+    recordStoreFamilySelector({ recordId, fieldName: 'shuiLu' }),
   );
 
   // 防止無限循環：記錄上次計算的稅金值
@@ -80,7 +80,7 @@ export const SalesQuoteTaxCalculationEffect = ({
     // 記錄這次計算的值
     lastCalculatedTaxRef.current = calculatedTaxAmountMicros;
 
-    console.log('[SalesQuoteTaxCalculation] Updating taxamount field', {
+    console.log('[SalesQuoteTaxCalculation] Updating shuiJin field', {
       amountMicros: calculatedTaxAmountMicros,
       currencyCode: total.currencyCode,
     });
@@ -89,7 +89,7 @@ export const SalesQuoteTaxCalculationEffect = ({
     updateOneRecord?.({
       idToUpdate: recordId,
       updateOneRecordInput: {
-        taxamount: {
+        shuiJin: {
           amountMicros: calculatedTaxAmountMicros,
           currencyCode: total.currencyCode,
         },

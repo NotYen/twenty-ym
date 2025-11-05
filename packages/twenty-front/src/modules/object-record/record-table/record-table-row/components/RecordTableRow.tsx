@@ -11,6 +11,7 @@ import { RecordTableRowArrowKeysEffect } from '@/object-record/record-table/reco
 import { RecordTableRowHotkeyEffect } from '@/object-record/record-table/record-table-row/components/RecordTableRowHotkeyEffect';
 import { isRecordTableRowFocusActiveComponentState } from '@/object-record/record-table/states/isRecordTableRowFocusActiveComponentState';
 import { isRecordTableRowFocusedComponentFamilyState } from '@/object-record/record-table/states/isRecordTableRowFocusedComponentFamilyState';
+import { SalesQuoteTaxCalculationRowEffect } from '@/object-record/record-show/components/SalesQuoteTaxCalculationRowEffect';
 import { ListenRecordUpdatesEffect } from '@/subscription/components/ListenRecordUpdatesEffect';
 import { getDefaultRecordFieldsToListen } from '@/subscription/utils/getDefaultRecordFieldsToListen.util';
 import { useRecoilComponentFamilyValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentFamilyValue';
@@ -63,6 +64,9 @@ export const RecordTableRow = ({
         recordId={recordId}
         listenedFields={listenedFields}
       />
+      {objectNameSingular === 'salesquote' && (
+        <SalesQuoteTaxCalculationRowEffect recordId={recordId} />
+      )}
     </RecordTableDraggableTrFirstRowOfGroup>
   ) : (
     <RecordTableDraggableTr
@@ -86,6 +90,9 @@ export const RecordTableRow = ({
         recordId={recordId}
         listenedFields={listenedFields}
       />
+      {objectNameSingular === 'salesquote' && (
+        <SalesQuoteTaxCalculationRowEffect recordId={recordId} />
+      )}
     </RecordTableDraggableTr>
   );
 };

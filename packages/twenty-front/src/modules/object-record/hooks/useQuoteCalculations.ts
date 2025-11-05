@@ -70,10 +70,11 @@ export const useQuoteCalculations = () => {
 
   /**
    * 计算税金
-   * 公式：taxAmount = subtotal × (taxRate/100)
+   * 公式：taxAmount = subtotal × taxRate
    *
    * @param subtotalMicros - 小计（微单位）
-   * @param taxRate - 税率百分比（例如：5 表示 5%）
+   * @param taxRate - 税率（小数形式，例如：0.05 表示 5%）
+   * 注意：Twenty CRM 的 percentage 类型字段储存为小数（5% = 0.05）
    * @returns 税金（微单位）
    */
   const calculateTaxAmount = useCallback(
@@ -82,10 +83,8 @@ export const useQuoteCalculations = () => {
         return 0;
       }
 
-      // 确保 taxRate 在合理范围内（0-100）
-      const validTaxRate = Math.max(0, Math.min(100, taxRate));
-
-      const taxAmountMicros = Math.round((subtotalMicros * validTaxRate) / 100);
+      // taxRate 已经是小数形式（0.05 = 5%），直接相乘即可
+      const taxAmountMicros = Math.round(subtotalMicros * taxRate);
 
       return taxAmountMicros;
     },
