@@ -9,8 +9,8 @@ import { logDebug } from '~/utils/logDebug';
 import { exportQuoteToPdf } from '../utils/exportQuoteToPdf';
 
 type QuoteRecord = ObjectRecord & {
-  quotenumber: string;
-  title: string;
+  baoJiaDanHao: string;
+  mingCheng: string;
   company?: {
     name: string;
   } | null;
@@ -20,33 +20,38 @@ type QuoteRecord = ObjectRecord & {
       lastName: string;
     };
   } | null;
-  issuedate: string;
-  validuntil: string;
-  subtotal: {
+  baoJiaRiQi: string;
+  jieZhiRiQi: string;
+  xiaoJi: {
     amountMicros: number;
+    currencyCode: string;
   };
-  taxrate?: number | null;
-  taxamount?: {
+  shuiLu?: number | null;
+  shuiJin?: {
     amountMicros: number;
+    currencyCode: string;
   } | null;
-  total: {
+  zongJi: {
     amountMicros: number;
+    currencyCode: string;
   };
-  status: string;
-  terms?: string | null;
-  notes?: string | null;
+  baoJiaDanZhuangTai: string;
+  jiaoYiTiaoJian?: string | null;
+  beiZhu?: string | null;
 };
 
 type QuoteLineItemRecord = ObjectRecord & {
-  productname: string;
-  description?: string | null;
-  quantity: number;
-  unitprice: {
+  chanPinMingCheng: string;
+  baoJiaDanXiXiangMiaoShu?: string | null;
+  shuLiang: number;
+  danJia: {
     amountMicros: number;
+    currencyCode: string;
   };
-  discount?: number | null;
-  amount: {
+  zheKou?: number | null;
+  jinE: {
     amountMicros: number;
+    currencyCode: string;
   };
 };
 
@@ -78,22 +83,22 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
       return;
     }
 
-    logDebug('4. Quote Number:', selectedQuote.quotenumber);
-    logDebug('5. Title:', selectedQuote.title);
-    logDebug('6. Issue Date:', selectedQuote.issuedate);
-    logDebug('7. Valid Until:', selectedQuote.validuntil);
-    logDebug('8. Subtotal:', selectedQuote.subtotal);
-    logDebug('9. Total:', selectedQuote.total);
+    logDebug('4. Quote Number:', selectedQuote.baoJiaDanHao);
+    logDebug('5. Title:', selectedQuote.mingCheng);
+    logDebug('6. Issue Date:', selectedQuote.baoJiaRiQi);
+    logDebug('7. Valid Until:', selectedQuote.jieZhiRiQi);
+    logDebug('8. Subtotal:', selectedQuote.xiaoJi);
+    logDebug('9. Total:', selectedQuote.zongJi);
 
     // 验证必填字段并收集缺失字段信息
     const missingFields: string[] = [];
     
-    if (!selectedQuote.quotenumber) missingFields.push('報價單編號');
-    if (!selectedQuote.title) missingFields.push('標題');
-    if (!selectedQuote.issuedate) missingFields.push('報價日期');
-    if (!selectedQuote.validuntil) missingFields.push('有效期至');
-    if (!selectedQuote.subtotal) missingFields.push('小計');
-    if (!selectedQuote.total) missingFields.push('總計');
+    if (!selectedQuote.baoJiaDanHao) missingFields.push('報價單編號');
+    if (!selectedQuote.mingCheng) missingFields.push('標題');
+    if (!selectedQuote.baoJiaRiQi) missingFields.push('報價日期');
+    if (!selectedQuote.jieZhiRiQi) missingFields.push('有效期至');
+    if (!selectedQuote.xiaoJi) missingFields.push('小計');
+    if (!selectedQuote.zongJi) missingFields.push('總計');
 
     if (missingFields.length > 0) {
       const missingFieldsList = missingFields.join('、');
@@ -111,28 +116,28 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
       logDebug('10. Preparing PDF data...');
       const pdfData = {
         quote: {
-          quoteNumber: selectedQuote.quotenumber,
-          title: selectedQuote.title,
+          quoteNumber: selectedQuote.baoJiaDanHao,
+          title: selectedQuote.mingCheng,
           company: selectedQuote.company,
           contact: selectedQuote.contact,
-          issueDate: selectedQuote.issuedate,
-          validUntil: selectedQuote.validuntil,
-          subtotal: selectedQuote.subtotal,
-          taxRate: selectedQuote.taxrate,
-          taxAmount: selectedQuote.taxamount,
-          total: selectedQuote.total,
-          status: selectedQuote.status,
-          terms: selectedQuote.terms,
-          notes: selectedQuote.notes,
+          issueDate: selectedQuote.baoJiaRiQi,
+          validUntil: selectedQuote.jieZhiRiQi,
+          subtotal: selectedQuote.xiaoJi,
+          taxRate: selectedQuote.shuiLu,
+          taxAmount: selectedQuote.shuiJin,
+          total: selectedQuote.zongJi,
+          status: selectedQuote.baoJiaDanZhuangTai,
+          terms: selectedQuote.jiaoYiTiaoJian,
+          notes: selectedQuote.beiZhu,
         },
         lineItems: (lineItems || []).map((item) => ({
           id: item.id,
-          productName: item.productname,
-          description: item.description,
-          quantity: item.quantity,
-          unitPrice: item.unitprice,
-          discount: item.discount,
-          amount: item.amount,
+          productName: item.chanPinMingCheng,
+          description: item.baoJiaDanXiXiangMiaoShu,
+          quantity: item.shuLiang,
+          unitPrice: item.danJia,
+          discount: item.zheKou,
+          amount: item.jinE,
         })),
         language: 'zh' as const,
       };
