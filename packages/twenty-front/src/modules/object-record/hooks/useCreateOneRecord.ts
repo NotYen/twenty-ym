@@ -85,11 +85,11 @@ export const useCreateOneRecord = <
 
     const idForCreation = recordInput.id ?? v4();
 
-    // 如果是创建 salesquote 记录且没有提供 quotenumber，自动生成
+    // 如果是创建 salesquote 记录且没有提供 baoJiaDanHao（報價單號），自动生成
     const finalRecordInput: Partial<ObjectRecord> = { ...recordInput };
     if (
       objectMetadataItem.nameSingular === 'salesquote' &&
-      !finalRecordInput.quotenumber
+      !finalRecordInput.baoJiaDanHao
     ) {
       const now = new Date();
       const year = now.getFullYear();
@@ -99,7 +99,7 @@ export const useCreateOneRecord = <
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const seconds = String(now.getSeconds()).padStart(2, '0');
 
-      finalRecordInput.quotenumber = `Q-${year}${month}${day}${hours}${minutes}${seconds}`;
+      finalRecordInput.baoJiaDanHao = `Q-${year}${month}${day}${hours}${minutes}${seconds}`;
     }
 
     // 处理可空的关系字段：将 undefined 转换为 null，避免 Apollo Client 缓存写入错误
