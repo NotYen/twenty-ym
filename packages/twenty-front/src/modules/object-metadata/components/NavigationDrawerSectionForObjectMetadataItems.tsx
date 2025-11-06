@@ -12,8 +12,8 @@ import { useRecoilValue } from 'recoil';
 import { logDebug } from '~/utils/logDebug';
 
 const ORDERED_STANDARD_OBJECTS: string[] = [
-  CoreObjectNameSingular.Person,
   CoreObjectNameSingular.Company,
+  CoreObjectNameSingular.Person,
   CoreObjectNameSingular.Opportunity,
   CoreObjectNameSingular.Task,
   CoreObjectNameSingular.Note,
