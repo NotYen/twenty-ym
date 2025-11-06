@@ -1,6 +1,13 @@
 **/**/.env
 .DS_Store
 /.idea
+
+# Twenty CRM 敏感配置文件
+twenty-secrets.sh
+*.dump
+twenty_*.log
+restart.log
+metadata_sync*.log
 **/**/node_modules/
 .cache
 packages/twenty-front/src/locales/generated/*.ts
