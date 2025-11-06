@@ -5,6 +5,7 @@ import { DeleteAccount } from '@/settings/profile/components/DeleteAccount';
 import { EmailField } from '@/settings/profile/components/EmailField';
 import { NameFields } from '@/settings/profile/components/NameFields';
 import { ProfilePictureUploader } from '@/settings/profile/components/ProfilePictureUploader';
+import { VCardSection } from '@/settings/profile/components/vcard/VCardSection';
 import { useCanChangePassword } from '@/settings/profile/hooks/useCanChangePassword';
 import { useCurrentUserWorkspaceTwoFactorAuthentication } from '@/settings/two-factor-authentication/hooks/useCurrentUserWorkspaceTwoFactorAuthentication';
 import { SubMenuTopBarContainer } from '@/ui/layout/page/components/SubMenuTopBarContainer';
@@ -42,6 +43,13 @@ export const SettingsProfile = () => {
         <Section>
           <H2Title title={t`Picture`} />
           <ProfilePictureUploader />
+        </Section>
+        <Section>
+          <H2Title
+            title={t`Business Card (vCard)`}
+            description={t`Generate your digital business card`}
+          />
+          <VCardSection />
         </Section>
         <Section>
           <H2Title

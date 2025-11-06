@@ -95,7 +95,7 @@ export EMAIL_DRIVER="SMTP"
 export EMAIL_SMTP_HOST="smtp.gmail.com"
 export EMAIL_SMTP_PORT="587"
 export EMAIL_SMTP_USER="notyenyu@gmail.com"
-export EMAIL_SMTP_PASSWORD="sjieffbmlhdyoyqk"
+export EMAIL_SMTP_PASSWORD="dkzmbigvgdlbxhof"
 export EMAIL_FROM_ADDRESS="notyenyu@gmail.com"
 export EMAIL_FROM_NAME="Twenty_CRM"
 
