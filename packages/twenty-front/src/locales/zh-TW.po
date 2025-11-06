@@ -6695,6 +6695,62 @@ msgstr "選擇一個{objectLabel}記錄"
 msgid "Picture"
 msgstr "圖片"
 
+#: src/pages/settings/SettingsProfile.tsx
+msgid "Business Card (vCard)"
+msgstr "名片資訊 (vCard)"
+
+#: src/pages/settings/SettingsProfile.tsx
+msgid "Generate your digital business card"
+msgstr "產生您的電子名片"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Company"
+msgstr "公司"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Job Title"
+msgstr "職稱"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Phone"
+msgstr "電話"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Enter company name"
+msgstr "輸入公司名稱"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Your organization name"
+msgstr "您所屬的組織名稱"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Enter job title"
+msgstr "輸入職稱"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Your position in the organization"
+msgstr "您在組織中的職位"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Automatically filled from your profile"
+msgstr "自動從您的個人資料填入"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Enter phone number"
+msgstr "輸入電話號碼"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "International format recommended (e.g., +886-912-345-678)"
+msgstr "建議使用國際格式（例如：+886-912-345-678）"
+
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Automatically filled from your account"
+msgstr "自動從您的帳戶填入"
+
+#: src/modules/settings/profile/components/vcard/VCardPreview.tsx
+msgid "Download vCard"
+msgstr "下載 vCard"
+
 #. js-lingui-id: ZjVniv
 #: src/modules/command-menu/pages/page-layout/constants/GraphTypeInformation.ts
 msgid "Pie"
