@@ -5,6 +5,9 @@
 # ==========================================
 # 只需要修改这个文件，所有配置都会自动更新
 
+# 獲取腳本所在目錄
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # ==========================================
 # 外部访问 IP 或域名（重要！）
 # ==========================================
@@ -122,6 +125,29 @@ export AUTH_GOOGLE_APIS_CALLBACK_URL="${BACKEND_URL}/auth/google-apis/get-access
 
 # 可選：啟用 Google SSO 登入（如果需要 Google 帳號登入功能）
 # export AUTH_GOOGLE_ENABLED="false"
+
+# ==========================================
+# AI 服務配置
+# ==========================================
+# ⚠️ API Keys 已移至 twenty-secrets.sh（不會 commit 到 Git）
+# ⚠️ 如果 twenty-secrets.sh 存在，會自動載入
+
+# 載入敏感資訊（API Keys）
+if [ -f "${SCRIPT_DIR}/twenty-secrets.sh" ]; then
+    source "${SCRIPT_DIR}/twenty-secrets.sh"
+else
+    echo "⚠️  警告：twenty-secrets.sh 不存在"
+    echo "   請創建該文件並配置 API Keys"
+    echo "   參考：twenty-secrets.example.sh"
+fi
+
+# 說明：
+# - GPT-4o Mini：成本低、速度快、品質好
+# - 完整支援 JSON Schema, Function Calling
+# - Twenty CRM 官方推薦
+# - 可用模型：gpt-4o, gpt-4o-mini, gpt-4-turbo
+# - API Keys 配置位置：twenty-secrets.sh
+
 
 # ==========================================
 # 显示配置信息
