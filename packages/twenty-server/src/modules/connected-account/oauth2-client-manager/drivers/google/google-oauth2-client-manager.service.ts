@@ -27,9 +27,10 @@ export class GoogleOAuth2ClientManagerService {
         refresh_token: refreshToken,
       });
 
-      google.options({ auth: oAuth2Client });
+      const googleClient = new GoogleApis();
+      googleClient.options({ auth: oAuth2Client });
 
-      return google;
+      return googleClient;
     } catch (error) {
       this.logger.error(
         `Error in ${GoogleOAuth2ClientManagerService.name}`,

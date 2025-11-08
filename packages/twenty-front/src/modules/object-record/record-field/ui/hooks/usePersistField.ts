@@ -203,8 +203,17 @@ export const usePersistField = ({
             snapshot,
             valueToPersist,
           });
+          const salesQuoteLineItemAmountSyncPayload =
+            getSalesQuoteLineItemAmountSyncPayload({
+              fieldName,
+              objectMetadataItem,
+              recordId,
+              snapshot,
+              valueToPersist,
+            });
 
           const additionalUpdatePayload: Record<string, unknown> = {};
+          const additionalStoreUpdates: Record<string, unknown> = {};
 
           if (isDefined(relationSyncConfig)) {
             additionalUpdatePayload[relationSyncConfig.chartFieldName] =
@@ -218,8 +227,31 @@ export const usePersistField = ({
             );
           }
 
+          if (isDefined(salesQuoteTaxSyncPayload?.storeUpdates)) {
+            Object.assign(
+              additionalStoreUpdates,
+              salesQuoteTaxSyncPayload.storeUpdates,
+            );
+          }
+
+          if (isDefined(salesQuoteLineItemAmountSyncPayload?.updatePayload)) {
+            Object.assign(
+              additionalUpdatePayload,
+              salesQuoteLineItemAmountSyncPayload.updatePayload,
+            );
+          }
+
+          if (isDefined(salesQuoteLineItemAmountSyncPayload?.storeUpdates)) {
+            Object.assign(
+              additionalStoreUpdates,
+              salesQuoteLineItemAmountSyncPayload.storeUpdates,
+            );
+          }
+
           const hasAdditionalUpdatePayload =
             Object.keys(additionalUpdatePayload).length > 0;
+          const hasAdditionalStoreUpdates =
+            Object.keys(additionalStoreUpdates).length > 0;
 
           const currentValue: any = snapshot
             .getLoadable(recordStoreFamilySelector({ recordId, fieldName }))
@@ -258,11 +290,11 @@ export const usePersistField = ({
               set,
               updateOneRecord,
             });
-            if (isDefined(salesQuoteTaxSyncPayload?.storeUpdates)) {
+            if (hasAdditionalStoreUpdates) {
               applyStoreUpdates({
                 recordId,
                 set,
-                storeUpdates: salesQuoteTaxSyncPayload.storeUpdates,
+                storeUpdates: additionalStoreUpdates,
               });
             }
 
@@ -305,11 +337,11 @@ export const usePersistField = ({
             recordStoreFamilySelector({ recordId, fieldName }),
             valueToPersist,
           );
-          if (isDefined(salesQuoteTaxSyncPayload?.storeUpdates)) {
+          if (hasAdditionalStoreUpdates) {
             applyStoreUpdates({
               recordId,
               set,
-              storeUpdates: salesQuoteTaxSyncPayload.storeUpdates,
+              storeUpdates: additionalStoreUpdates,
             });
           }
         } else {
@@ -333,6 +365,10 @@ const CHART_LABEL_KEYWORDS = ['圖表', 'chart'];
 const SALES_QUOTE_TOTAL_FIELD_NAME = 'zongJi';
 const SALES_QUOTE_TAX_RATE_FIELD_NAME = 'shuiLu';
 const SALES_QUOTE_TAX_AMOUNT_FIELD_NAME = 'shuiJin';
+const SALES_QUOTE_LINE_ITEM_UNIT_PRICE_FIELD_NAME = 'danJia';
+const SALES_QUOTE_LINE_ITEM_QUANTITY_FIELD_NAME = 'shuLiang';
+const SALES_QUOTE_LINE_ITEM_DISCOUNT_FIELD_NAME = 'zheKou';
+const SALES_QUOTE_LINE_ITEM_AMOUNT_FIELD_NAME = 'jinE';
 
 type UpdateOneRecordFn = ReturnType<
   typeof useUpdateOneRecord
@@ -343,7 +379,7 @@ type RelationFieldSyncConfig = {
   initialDisplayName: string | null;
 };
 
-type SalesQuoteTaxSyncPayload = {
+type FieldSyncPayload = {
   updatePayload?: Record<string, unknown>;
   storeUpdates?: Record<string, unknown>;
 };
@@ -551,7 +587,7 @@ const getSalesQuoteTaxSyncPayload = ({
   recordId: string;
   snapshot: Snapshot;
   valueToPersist: unknown;
-}): SalesQuoteTaxSyncPayload | undefined => {
+}): FieldSyncPayload | undefined => {
   if (!isDefined(objectMetadataItem)) {
     return undefined;
   }
@@ -640,6 +676,151 @@ const getSalesQuoteTaxSyncPayload = ({
     },
     storeUpdates: {
       [SALES_QUOTE_TAX_AMOUNT_FIELD_NAME]: taxFieldValue,
+    },
+  };
+};
+
+const getSalesQuoteLineItemAmountSyncPayload = ({
+  fieldName,
+  objectMetadataItem,
+  recordId,
+  snapshot,
+  valueToPersist,
+}: {
+  fieldName: string;
+  objectMetadataItem: ObjectMetadataItem | undefined;
+  recordId: string;
+  snapshot: Snapshot;
+  valueToPersist: unknown;
+}): FieldSyncPayload | undefined => {
+  if (!isDefined(objectMetadataItem)) {
+    return undefined;
+  }
+
+  if (
+    objectMetadataItem.nameSingular !==
+    CoreObjectNameSingular.SalesQuoteLineItem
+  ) {
+    return undefined;
+  }
+
+  const isUnitPriceField =
+    fieldName === SALES_QUOTE_LINE_ITEM_UNIT_PRICE_FIELD_NAME;
+  const isQuantityField =
+    fieldName === SALES_QUOTE_LINE_ITEM_QUANTITY_FIELD_NAME;
+  const isDiscountField =
+    fieldName === SALES_QUOTE_LINE_ITEM_DISCOUNT_FIELD_NAME;
+
+  if (!isUnitPriceField && !isQuantityField && !isDiscountField) {
+    return undefined;
+  }
+
+  const unitPriceFromValue =
+    isUnitPriceField && isFieldCurrencyValue(valueToPersist)
+      ? valueToPersist
+      : null;
+  const quantityFromValue =
+    isQuantityField && typeof valueToPersist === 'number'
+      ? valueToPersist
+      : null;
+  const discountFromValue =
+    isDiscountField && typeof valueToPersist === 'number'
+      ? valueToPersist
+      : null;
+
+  const resolvedUnitPrice =
+    unitPriceFromValue ??
+    getRecordFieldValueFromSnapshot<FieldCurrencyValue | null>({
+      snapshot,
+      recordId,
+      fieldName: SALES_QUOTE_LINE_ITEM_UNIT_PRICE_FIELD_NAME,
+    });
+  const resolvedQuantity =
+    quantityFromValue ??
+    getRecordFieldValueFromSnapshot<number | null>({
+      snapshot,
+      recordId,
+      fieldName: SALES_QUOTE_LINE_ITEM_QUANTITY_FIELD_NAME,
+    });
+  const resolvedDiscount =
+    discountFromValue ??
+    getRecordFieldValueFromSnapshot<number | null>({
+      snapshot,
+      recordId,
+      fieldName: SALES_QUOTE_LINE_ITEM_DISCOUNT_FIELD_NAME,
+    });
+
+  const currentAmountValue =
+    getRecordFieldValueFromSnapshot<FieldCurrencyValue | null>({
+      snapshot,
+      recordId,
+      fieldName: SALES_QUOTE_LINE_ITEM_AMOUNT_FIELD_NAME,
+    });
+
+  if (
+    !isFieldCurrencyValue(resolvedUnitPrice) ||
+    !isDefined(resolvedUnitPrice.amountMicros) ||
+    !isDefined(resolvedQuantity)
+  ) {
+    if (currentAmountValue === null) {
+      return undefined;
+    }
+
+    return {
+      updatePayload: {
+        [SALES_QUOTE_LINE_ITEM_AMOUNT_FIELD_NAME]: null,
+      },
+      storeUpdates: {
+        [SALES_QUOTE_LINE_ITEM_AMOUNT_FIELD_NAME]: null,
+      },
+    };
+  }
+
+  const quantity = Number(resolvedQuantity);
+  const safeQuantity = Number.isFinite(quantity) && quantity > 0 ? quantity : 0;
+
+  let discountMultiplier = 1;
+
+  if (isDefined(resolvedDiscount)) {
+    const numericDiscount = Number(resolvedDiscount);
+
+    if (Number.isFinite(numericDiscount) && numericDiscount > 0) {
+      if (numericDiscount <= 1) {
+        discountMultiplier = 1 - Math.min(Math.max(numericDiscount, 0), 1);
+      } else {
+        const clampedPercent = Math.min(Math.max(numericDiscount, 0), 100);
+        discountMultiplier = 1 - clampedPercent / 100;
+      }
+
+      if (discountMultiplier < 0) {
+        discountMultiplier = 0;
+      }
+    }
+  }
+
+  const calculatedAmountMicros = Math.round(
+    resolvedUnitPrice.amountMicros * safeQuantity * discountMultiplier,
+  );
+
+  if (
+    isDefined(currentAmountValue?.amountMicros) &&
+    currentAmountValue.amountMicros === calculatedAmountMicros &&
+    currentAmountValue.currencyCode === resolvedUnitPrice.currencyCode
+  ) {
+    return undefined;
+  }
+
+  const amountFieldValue: FieldCurrencyValue = {
+    amountMicros: calculatedAmountMicros,
+    currencyCode: resolvedUnitPrice.currencyCode,
+  };
+
+  return {
+    updatePayload: {
+      [SALES_QUOTE_LINE_ITEM_AMOUNT_FIELD_NAME]: amountFieldValue,
+    },
+    storeUpdates: {
+      [SALES_QUOTE_LINE_ITEM_AMOUNT_FIELD_NAME]: amountFieldValue,
     },
   };
 };
