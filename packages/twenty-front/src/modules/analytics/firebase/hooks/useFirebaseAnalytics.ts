@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Analytics } from 'firebase/analytics';
+import type { Analytics } from 'firebase/analytics';
 import { initializeFirebaseAnalytics } from '../services/firebase-analytics.service';
 
 export const useFirebaseAnalytics = () => {

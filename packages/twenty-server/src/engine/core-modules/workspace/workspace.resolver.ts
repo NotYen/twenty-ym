@@ -181,7 +181,7 @@ export class WorkspaceResolver {
   @Mutation(() => SignedFileDTO)
   @UseGuards(
     WorkspaceAuthGuard,
-    SettingsPermissionsGuard(PermissionFlagType.WORKSPACE),
+    SettingsPermissionGuard(PermissionFlagType.WORKSPACE),
   )
   async uploadWorkspaceBackground(
     @AuthWorkspace() workspace: WorkspaceEntity,

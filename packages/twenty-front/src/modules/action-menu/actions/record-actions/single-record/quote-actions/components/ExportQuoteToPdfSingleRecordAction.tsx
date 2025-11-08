@@ -2,10 +2,11 @@ import { Action } from '@/action-menu/actions/components/Action';
 import { useSelectedRecordIdOrThrow } from '@/action-menu/actions/record-actions/single-record/hooks/useSelectedRecordIdOrThrow';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { recordStoreFamilyState } from '@/object-record/record-store/states/recordStoreFamilyState';
-import { ObjectRecord } from '@/object-record/types/ObjectRecord';
+import type { ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { useRecoilValue } from 'recoil';
 import { logDebug } from '~/utils/logDebug';
+import { logError } from '~/utils/logError';
 import { exportQuoteToPdf } from '../utils/exportQuoteToPdf';
 
 type QuoteRecord = ObjectRecord & {
@@ -78,7 +79,7 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
     logDebug('3. Record ID:', recordId);
 
     if (!selectedQuote) {
-      console.error('Error: selectedQuote is null or undefined');
+      logError('Error: selectedQuote is null or undefined');
       enqueueErrorSnackBar({ message: '無法找到報價單數據' });
       return;
     }
@@ -92,7 +93,7 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
 
     // 验证必填字段并收集缺失字段信息
     const missingFields: string[] = [];
-    
+
     if (!selectedQuote.baoJiaDanHao) missingFields.push('報價單編號');
     if (!selectedQuote.mingCheng) missingFields.push('標題');
     if (!selectedQuote.baoJiaRiQi) missingFields.push('報價日期');
@@ -102,9 +103,9 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
 
     if (missingFields.length > 0) {
       const missingFieldsList = missingFields.join('、');
-      console.error('Error: Missing required fields:', missingFields);
-      enqueueErrorSnackBar({ 
-        message: `報價單數據不完整，請填寫以下必填欄位：${missingFieldsList}` 
+      logError(`Error: Missing required fields: ${missingFields.join(', ')}`);
+      enqueueErrorSnackBar({
+        message: `報價單數據不完整，請填寫以下必填欄位：${missingFieldsList}`,
       });
       return;
     }
@@ -149,8 +150,8 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
       logDebug('13. PDF export successful!');
       enqueueSuccessSnackBar({ message: 'PDF 已成功導出' });
     } catch (error) {
-      console.error('PDF Export Error:', error);
-      console.error('Error details:', {
+      logError('PDF Export Error');
+      logError({
         message: error instanceof Error ? error.message : 'Unknown error',
         stack: error instanceof Error ? error.stack : undefined,
       });

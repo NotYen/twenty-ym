@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 
 import { type VCardData } from '@/settings/profile/components/vcard/types/VCardData';
+import { logError } from '~/utils/logError';
 
 // vCard 生成器 hook（遵循 Twenty 的 React 架構）
 export const useVCardGenerator = () => {
@@ -49,38 +50,35 @@ export const useVCardGenerator = () => {
   }, []);
 
   // 下載 vCard 檔案
-  const downloadVCard = useCallback(
-    (vcardString: string, fileName: string) => {
-      try {
-        // 創建 Blob（使用 UTF-8 編碼支援中文）
-        const blob = new Blob([vcardString], {
-          type: 'text/vcard;charset=utf-8',
-        });
+  const downloadVCard = useCallback((vcardString: string, fileName: string) => {
+    try {
+      // 創建 Blob（使用 UTF-8 編碼支援中文）
+      const blob = new Blob([vcardString], {
+        type: 'text/vcard;charset=utf-8',
+      });
 
-        // 創建下載連結
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `${fileName}.vcf`;
+      // 創建下載連結
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${fileName}.vcf`;
 
-        // 觸發下載
-        document.body.appendChild(link);
-        link.click();
+      // 觸發下載
+      document.body.appendChild(link);
+      link.click();
 
-        // 清理
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-      } catch (error) {
-        console.error('Failed to download vCard:', error);
-        throw error;
-      }
-    },
-    [],
-  );
+      // 清理
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } catch (error) {
+      logError('Failed to download vCard:');
+      logError(error);
+      throw error;
+    }
+  }, []);
 
   return {
     generateVCard,
     downloadVCard,
   };
 };
-

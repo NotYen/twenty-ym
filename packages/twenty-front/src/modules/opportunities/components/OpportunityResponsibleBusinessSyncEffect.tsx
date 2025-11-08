@@ -9,6 +9,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
+import { logError } from '~/utils/logError';
 
 const RESPONSIBLE_KEYWORDS = ['負責業務', 'responsible business'];
 const CHART_DISPLAY_KEYWORDS = ['圖表', 'chart'];
@@ -280,8 +281,8 @@ export const OpportunityResponsibleBusinessSyncEffect = ({
         [chartDisplayFieldName]: normalizedValue,
       },
     }).catch((error: Error) => {
-      // eslint-disable-next-line no-console
-      console.error('Failed to sync responsible business display field', error);
+      logError('Failed to sync responsible business display field');
+      logError(error);
     });
   }, [
     chartDisplayFieldName,

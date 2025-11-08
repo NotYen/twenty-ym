@@ -2,6 +2,7 @@ import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 
 import { logDebug } from '~/utils/logDebug';
+import { logError } from '~/utils/logError';
 
 type QuoteLineItemData = {
   id: string;
@@ -111,7 +112,8 @@ export const exportQuoteToPdf = async ({
     // 触发浏览器下载
     saveAs(blob, fileName);
   } catch (error) {
-    console.error('Error exporting quote to PDF:', error);
+    logError('Error exporting quote to PDF');
+    logError(error);
     throw new Error('Failed to export quote to PDF');
   }
 };
@@ -165,7 +167,8 @@ export const getQuotePdfBlobUrl = async ({
 
     return blobUrl;
   } catch (error) {
-    console.error('Error generating quote PDF preview:', error);
+    logError('Error generating quote PDF preview');
+    logError(error);
     throw new Error('Failed to generate quote PDF preview');
   }
 };

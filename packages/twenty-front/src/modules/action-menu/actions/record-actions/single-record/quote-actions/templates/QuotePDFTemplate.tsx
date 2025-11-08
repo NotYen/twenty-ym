@@ -7,6 +7,7 @@ import {
   Text,
   View,
 } from '@react-pdf/renderer';
+import { GRAY_SCALE_LIGHT, SECONDARY_COLORS_LIGHT } from 'twenty-ui/theme';
 
 // 注册 Noto Sans SC 字体（支持简体和繁体中文）
 // 使用项目 public 目录中的本地字体文件
@@ -15,18 +16,31 @@ Font.register({
   src: '/fonts/NotoSansSC-Regular.ttf',
 });
 
+const pdfColors = {
+  pageBackground: GRAY_SCALE_LIGHT.gray1,
+  pageText: SECONDARY_COLORS_LIGHT.slate11,
+  headingText: SECONDARY_COLORS_LIGHT.slate10,
+  mutedText: SECONDARY_COLORS_LIGHT.slate8,
+  inverseText: GRAY_SCALE_LIGHT.gray1,
+  borderStrong: SECONDARY_COLORS_LIGHT.slate10,
+  borderSubtle: SECONDARY_COLORS_LIGHT.slate5,
+  tableHeaderBackground: SECONDARY_COLORS_LIGHT.slate10,
+  tableRowAlternate: SECONDARY_COLORS_LIGHT.slate2,
+  footerText: SECONDARY_COLORS_LIGHT.slate7,
+};
+
 // PDF 样式定义
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Noto Sans SC',
     padding: 40,
     fontSize: 10,
-    color: '#333333',
-    backgroundColor: '#ffffff',
+    color: pdfColors.pageText,
+    backgroundColor: pdfColors.pageBackground,
   },
   header: {
     marginBottom: 30,
-    borderBottom: '2 solid #4a5568',
+    borderBottom: `2 solid ${pdfColors.borderStrong}`,
     paddingBottom: 20,
   },
   headerRow: {
@@ -48,12 +62,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: 700,
-    color: '#2d3748',
+    color: pdfColors.headingText,
     marginBottom: 8,
   },
   quoteNumber: {
     fontSize: 12,
-    color: '#718096',
+    color: pdfColors.mutedText,
     marginBottom: 4,
   },
   section: {
@@ -62,9 +76,9 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 14,
     fontWeight: 700,
-    color: '#2d3748',
+    color: pdfColors.headingText,
     marginBottom: 10,
-    borderBottom: '1 solid #e2e8f0',
+    borderBottom: `1 solid ${pdfColors.borderSubtle}`,
     paddingBottom: 5,
   },
   infoRow: {
@@ -74,13 +88,13 @@ const styles = StyleSheet.create({
   infoLabel: {
     width: 100,
     fontSize: 10,
-    color: '#718096',
+    color: pdfColors.mutedText,
     fontWeight: 700,
   },
   infoValue: {
     flex: 1,
     fontSize: 10,
-    color: '#2d3748',
+    color: pdfColors.headingText,
   },
   table: {
     marginTop: 15,
@@ -88,23 +102,23 @@ const styles = StyleSheet.create({
   },
   tableHeader: {
     flexDirection: 'row',
-    backgroundColor: '#4a5568',
+    backgroundColor: pdfColors.tableHeaderBackground,
     padding: 8,
     borderRadius: 4,
   },
   tableHeaderText: {
     fontSize: 10,
     fontWeight: 700,
-    color: '#ffffff',
+    color: pdfColors.inverseText,
   },
   tableRow: {
     flexDirection: 'row',
-    borderBottom: '1 solid #e2e8f0',
+    borderBottom: `1 solid ${pdfColors.borderSubtle}`,
     padding: 8,
     minHeight: 35,
   },
   tableRowEven: {
-    backgroundColor: '#f7fafc',
+    backgroundColor: pdfColors.tableRowAlternate,
   },
   tableCol1: {
     width: '35%',
@@ -131,11 +145,11 @@ const styles = StyleSheet.create({
   },
   tableCellText: {
     fontSize: 9,
-    color: '#2d3748',
+    color: pdfColors.headingText,
   },
   tableCellDescription: {
     fontSize: 8,
-    color: '#718096',
+    color: pdfColors.mutedText,
     marginTop: 2,
   },
   totalsSection: {
@@ -151,42 +165,42 @@ const styles = StyleSheet.create({
   },
   totalLabel: {
     fontSize: 11,
-    color: '#4a5568',
+    color: pdfColors.tableHeaderBackground,
   },
   totalValue: {
     fontSize: 11,
-    color: '#2d3748',
+    color: pdfColors.headingText,
     fontWeight: 700,
   },
   grandTotalRow: {
     flexDirection: 'row',
     width: 250,
     justifyContent: 'space-between',
-    backgroundColor: '#4a5568',
+    backgroundColor: pdfColors.tableHeaderBackground,
     padding: 10,
     borderRadius: 4,
     marginTop: 5,
   },
   grandTotalLabel: {
     fontSize: 12,
-    color: '#ffffff',
+    color: pdfColors.inverseText,
     fontWeight: 700,
   },
   grandTotalValue: {
     fontSize: 12,
-    color: '#ffffff',
+    color: pdfColors.inverseText,
     fontWeight: 700,
   },
   termsSection: {
     marginTop: 30,
     padding: 15,
-    backgroundColor: '#f7fafc',
+    backgroundColor: pdfColors.tableRowAlternate,
     borderRadius: 4,
-    borderLeft: '3 solid #4a5568',
+    borderLeft: `3 solid ${pdfColors.tableHeaderBackground}`,
   },
   termsText: {
     fontSize: 9,
-    color: '#4a5568',
+    color: pdfColors.tableHeaderBackground,
     lineHeight: 1.5,
   },
   footer: {
@@ -195,12 +209,12 @@ const styles = StyleSheet.create({
     left: 40,
     right: 40,
     textAlign: 'center',
-    borderTop: '1 solid #e2e8f0',
+    borderTop: `1 solid ${pdfColors.borderSubtle}`,
     paddingTop: 10,
   },
   footerText: {
     fontSize: 8,
-    color: '#a0aec0',
+    color: pdfColors.footerText,
   },
   statusBadge: {
     paddingHorizontal: 8,
@@ -211,17 +225,23 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 9,
     fontWeight: 700,
-    color: '#ffffff',
+    color: pdfColors.inverseText,
+  },
+  quoteTitle: {
+    fontSize: 13,
+    fontWeight: 700,
+    color: pdfColors.headingText,
+    marginBottom: 5,
   },
 });
 
 // 状态颜色映射
 const STATUS_COLORS: Record<string, string> = {
-  DRAFT: '#718096',
-  SENT: '#3182ce',
-  ACCEPTED: '#38a169',
-  REJECTED: '#e53e3e',
-  EXPIRED: '#dd6b20',
+  DRAFT: pdfColors.mutedText,
+  SENT: SECONDARY_COLORS_LIGHT.blue9,
+  ACCEPTED: SECONDARY_COLORS_LIGHT.green9,
+  REJECTED: SECONDARY_COLORS_LIGHT.red9,
+  EXPIRED: SECONDARY_COLORS_LIGHT.orange9,
 };
 
 // 状态标签映射
@@ -361,7 +381,7 @@ export const QuotePDFTemplate = ({
   };
 
   const labels = t[language];
-  const statusColor = STATUS_COLORS[quote.status] || '#718096';
+  const statusColor = STATUS_COLORS[quote.status] || pdfColors.mutedText;
   const statusLabel = STATUS_LABELS[quote.status]?.[language] || quote.status;
 
   const contactName = quote.contact
@@ -419,16 +439,7 @@ export const QuotePDFTemplate = ({
 
         {/* Quote Title */}
         <View style={styles.section}>
-          <Text
-            style={{
-              fontSize: 13,
-              fontWeight: 700,
-              color: '#2d3748',
-              marginBottom: 5,
-            }}
-          >
-            {quote.title}
-          </Text>
+          <Text style={styles.quoteTitle}>{quote.title}</Text>
         </View>
 
         {/* Line Items Table */}

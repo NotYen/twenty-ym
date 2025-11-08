@@ -12,6 +12,7 @@ import {
   type VCardFormData,
   VCARD_STORAGE_KEY,
 } from '@/settings/profile/components/vcard/types/VCardData';
+import { logError } from '~/utils/logError';
 
 // 主容器（左右分欄佈局，遵循 Twenty 的響應式設計）
 const StyledContainer = styled.div`
@@ -54,7 +55,8 @@ export const VCardSection = () => {
         return JSON.parse(saved);
       }
     } catch (error) {
-      console.error('Failed to load vCard data from localStorage:', error);
+      logError('Failed to load vCard data from localStorage:');
+      logError(error);
     }
     return { company: '', jobTitle: '', phone: '' };
   };

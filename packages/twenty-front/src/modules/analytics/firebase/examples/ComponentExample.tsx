@@ -9,7 +9,9 @@ import {
   trackFormSubmit,
   trackSearch,
 } from '@/analytics/firebase';
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
+import { logDebug } from '~/utils/logDebug';
+import { logError } from '~/utils/logError';
 
 // 範例 1: 按鈕點擊追蹤
 export const ButtonTrackingExample = () => {
@@ -18,7 +20,7 @@ export const ButtonTrackingExample = () => {
     trackButtonClick('create_record', 'main_toolbar');
 
     // 執行實際操作
-    console.log('Creating record...');
+    logDebug('Creating record...');
   };
 
   return <button onClick={handleCreateClick}>創建記錄</button>;
@@ -28,7 +30,7 @@ export const ButtonTrackingExample = () => {
 export const FormTrackingExample = () => {
   const [formData, setFormData] = useState({ name: '', email: '' });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
     try {
@@ -37,7 +39,9 @@ export const FormTrackingExample = () => {
 
       // 追蹤成功提交
       trackFormSubmit('contact_form', true);
+      setFormData({ name: '', email: '' });
     } catch (error) {
+      logError(error);
       // 追蹤失敗提交
       trackFormSubmit('contact_form', false);
     }
@@ -58,7 +62,7 @@ export const SearchTrackingExample = () => {
     trackSearch(searchTerm);
 
     // 執行搜尋邏輯
-    console.log('Searching for:', searchTerm);
+    logDebug('Searching for search term', searchTerm);
   };
 
   return (
@@ -82,7 +86,7 @@ export const CustomEventExample = () => {
     });
 
     // 執行導出邏輯
-    console.log(`Exporting ${recordCount} records as ${format}`);
+    logDebug(`Exporting ${recordCount} records as ${format}`);
   };
 
   return (
@@ -155,12 +159,12 @@ export const FeatureUsageExample = () => {
 };
 
 // 輔助函數（僅為示例）
-const submitForm = async (data: any): Promise<void> => {
+const submitForm = async (_data: any): Promise<void> => {
   // 模擬 API 調用
   return Promise.resolve();
 };
 
-const login = async (credentials: any): Promise<any> => {
+const login = async (_credentials: any): Promise<any> => {
   // 模擬登入
   return Promise.resolve({
     id: 'user123',

@@ -63,24 +63,24 @@ export const FooterNote = () => {
     return (
       <StyledCopyContainer>
         <Trans>By using YM CRM, you agree to the</Trans>{' '}
-    <a
-      href="https://www.youngming-mes.com/web/agreement/agreement"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Trans>Terms of Service</Trans>
-    </a>{' '}
-    <Trans>and</Trans>{' '}
-    <a
-      href="https://www.youngming-mes.com/web/privacy/privacy"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Trans>Privacy Policy</Trans>
-    </a>
-    .
+        <a
+          href="https://www.youngming-mes.com/web/agreement/agreement"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Trans>Terms of Service</Trans>
+        </a>{' '}
+        <Trans>and</Trans>{' '}
+        <a
+          href="https://www.youngming-mes.com/web/privacy/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Trans>Privacy Policy</Trans>
+        </a>
+        .
       </StyledCopyContainer>
-);
+    );
   }
 
   return (

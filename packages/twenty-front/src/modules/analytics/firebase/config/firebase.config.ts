@@ -1,4 +1,4 @@
-import { FirebaseOptions } from 'firebase/app';
+import type { FirebaseOptions } from 'firebase/app';
 
 // Firebase 配置
 // 從環境變數讀取 Firebase 配置
