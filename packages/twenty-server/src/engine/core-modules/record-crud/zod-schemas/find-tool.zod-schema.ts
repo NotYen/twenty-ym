@@ -36,8 +36,11 @@ export const generateFindToolInputSchema = (
       isFieldMetadataEntityOfType(field, FieldMetadataType.RELATION) &&
       field.settings?.relationType === RelationType.MANY_TO_ONE;
 
-    filterShape[isManyToOneRelationField ? `${field.name}Id` : field.name] =
-      filterSchema;
+    filterShape[field.name] = filterSchema;
+
+    if (isManyToOneRelationField) {
+      filterShape[`${field.name}Id`] = filterSchema;
+    }
   });
 
   return z.object({
