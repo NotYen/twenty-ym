@@ -227,3 +227,4 @@ msgstr "Twenty.com, Public Benefit Corporation"
 #: src/components/Footer.tsx
 msgid "San Francisco / Paris"
 msgstr "San Francisco / Paris"
+

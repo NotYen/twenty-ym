@@ -131,7 +131,7 @@ msgstr "Ресетујте вашу шифру 🗝"
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
 msgid "Set your password 🗝"
-msgstr ""
+msgstr "Подесите своју лозинку 🗝"
 
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
@@ -141,7 +141,7 @@ msgstr "Ресетуј"
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
 msgid "Set"
-msgstr ""
+msgstr "Подесити"
 
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
@@ -232,3 +232,4 @@ msgstr "Twenty.com, јавна корпорација"
 #: src/components/Footer.tsx
 msgid "San Francisco / Paris"
 msgstr "Сан Франциско / Париз"
+
