@@ -1,9 +1,9 @@
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import { useLingui } from '@lingui/react/macro';
 import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Key } from 'ts-key-enum';
-import { useLingui } from '@lingui/react/macro';
 
 import { SubTitle } from '@/auth/components/SubTitle';
 import { Title } from '@/auth/components/Title';
@@ -108,9 +108,7 @@ export const SyncEmails = () => {
   return (
     <Modal.Content isVerticalCentered isHorizontalCentered>
       <Title noMarginTop>{t`郵件和日曆`}</Title>
-      <SubTitle>
-        {t`同步您的郵件和日曆。選擇您的隱私設定。`}
-      </SubTitle>
+      <SubTitle>{t`同步您的郵件和日曆。選擇您的隱私設定。`}</SubTitle>
       <StyledSyncEmailsContainer>
         <OnboardingSyncEmailsSettingsCard
           value={visibility}

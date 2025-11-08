@@ -227,3 +227,4 @@ msgstr ""
 #: src/components/Footer.tsx
 msgid "San Francisco / Paris"
 msgstr ""
+

@@ -232,3 +232,4 @@ msgstr "Twenty.com, 公益公司"
 #: src/components/Footer.tsx
 msgid "San Francisco / Paris"
 msgstr "三藩市 / 巴黎"
+

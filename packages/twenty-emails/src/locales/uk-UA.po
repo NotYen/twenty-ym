@@ -131,7 +131,7 @@ msgstr "Скинути ваш пароль 🗝"
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
 msgid "Set your password 🗝"
-msgstr ""
+msgstr "Встановіть свій пароль 🗝"
 
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
@@ -141,7 +141,7 @@ msgstr "Скинути"
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
 msgid "Set"
-msgstr ""
+msgstr "Встановіть"
 
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
@@ -232,3 +232,4 @@ msgstr "Twenty.com, корпорація суспільного блага"
 #: src/components/Footer.tsx
 msgid "San Francisco / Paris"
 msgstr "Сан-Франциско / Париж"
+

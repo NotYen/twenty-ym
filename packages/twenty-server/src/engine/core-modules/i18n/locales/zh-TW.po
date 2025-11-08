@@ -589,10 +589,10 @@ msgstr "無法連接至 {connectFieldName}。未找到符合條件的唯一記�
 msgid "Can't impersonate user via api key"
 msgstr "無法通過API金鑰冒充用戶"
 
-#. js-lingui-id: 874/Xl
+#. js-lingui-id: vxbVwc
 #: src/modules/workflow/workflow-trigger/utils/assert-version-can-be-activated.util.ts
-msgid "Cannot activate non-draft or non-deactivated version"
-msgstr ""
+msgid "Cannot activate non-draft or non-last-published version"
+msgstr "無法激活非草稿或非上次發布的版本"
 
 #. js-lingui-id: LIPsWu
 #: src/modules/workflow/common/workspace-services/workflow-version-validation.workspace-service.ts
@@ -624,6 +624,11 @@ msgstr "無法禁用非活動工作流版本"
 #: src/engine/workspace-manager/workspace-migration-runner/workspace-migration-runner.service.ts
 msgid "Cannot enable uniqueness due to existing duplicate values. Please review and fix your data first (including soft deleted records)."
 msgstr "由於現有的重複值，無法啟用唯一性。請先檢查並修正您的資料（包括已軟刪除的記錄）。"
+
+#. js-lingui-id: IDMgr/
+#: src/modules/workflow/workflow-trigger/workspace-services/workflow-trigger.workspace-service.ts
+msgid "Cannot have more than one active workflow version"
+msgstr "不能有多個活動的工作流版本"
 
 #. js-lingui-id: PjZIyI
 #: src/modules/messaging/message-channel-manager/query-hooks/message-channel-update-one.pre-query.hook.ts
@@ -1422,11 +1427,6 @@ msgstr "找不到要更新的欄位"
 msgid "Field used for full-text search"
 msgstr "用於全文搜索的字段"
 
-#. js-lingui-id: s3HtdT
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "FieldMetadataId is required"
-msgstr "需要 FieldMetadataId"
-
 #. js-lingui-id: Sof2+k
 #: src/engine/metadata-modules/view-field/exceptions/view-field.exception.ts
 msgid "FieldMetadataId is required to create a view field."
@@ -1694,16 +1694,6 @@ msgstr "無效的 UUID {id}"
 #: src/engine/core-modules/two-factor-authentication/two-factor-authentication-exception.filter.ts
 msgid "Invalid verification code. Please try again."
 msgstr "驗證碼無效。請再試一次。"
-
-#. js-lingui-id: 8xkULN
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "Invalid view sort data"
-msgstr "不合法的視圖排序數據"
-
-#. js-lingui-id: I0OzaR
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "Invalid view sort data for view sort id: {id}"
-msgstr "不合法的視圖排序數據，對於視圖排序 ID: {id}"
 
 #. js-lingui-id: grHYXZ
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
@@ -3249,6 +3239,11 @@ msgstr "未找到此工作區的默認角色。請聯繫支持以獲得幫助。
 msgid "The executor of the workflow"
 msgstr "工作流程的執行者"
 
+#. js-lingui-id: o6DGfJ
+#: src/engine/core-modules/workspace/services/workspace.service.ts
+msgid "The field \"{field}\" cannot be updated. Please contact your workspace administrator."
+msgstr "\"{field}\" 欄位無法更新。請聯繫您的工作區管理員。"
+
 #. js-lingui-id: LdhPiK
 #: src/engine/metadata-modules/object-permission/field-permission/field-permission.service.ts
 msgid "The field you are trying to set permissions for could not be found. It may have been deleted."
@@ -3535,11 +3530,6 @@ msgstr "唯一欄位不能設置默認值"
 msgid "Unique index cannot be created for field {fieldName} of type {fieldType}"
 msgstr "無法為類型為{fieldType}的欄位{fieldName}建立唯一索引"
 
-#. js-lingui-id: rtir7c
-#: src/engine/metadata-modules/view-group/exceptions/view-group.exception.ts
-msgid "unknown"
-msgstr ""
-
 #. js-lingui-id: EBZdX5
 #: src/modules/workflow/workflow-trigger/utils/compute-cron-pattern-from-schedule.ts
 msgid "Unsupported cron schedule type"
@@ -3586,6 +3576,12 @@ msgstr "用戶電子郵件"
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "User Id"
 msgstr "用戶 ID"
+
+#. js-lingui-id: pMOjQa
+#: src/engine/core-modules/auth/token/services/access-token.service.ts
+#: src/engine/core-modules/auth/services/auth.service.ts
+msgid "User is not a member of the workspace."
+msgstr "用戶不屬於該工作區。"
 
 #. js-lingui-id: B43Kks
 #: src/engine/core-modules/auth/services/sign-in-up.service.ts
@@ -3823,16 +3819,6 @@ msgstr "視圖看板彙總字段元數據未找到"
 msgid "View not found"
 msgstr "找不到視圖"
 
-#. js-lingui-id: znNExx
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "View sort (id: {id}) not found"
-msgstr "未找到視圖排序（ID: {id}）"
-
-#. js-lingui-id: 3zMs+f
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "View sort not found"
-msgstr "未找到視圖排序"
-
 #. js-lingui-id: toB/08
 #: src/engine/metadata-modules/flat-view/utils/from-delete-view-input-to-flat-view-or-throw.util.ts
 msgid "View to delete not found"
@@ -3858,11 +3844,6 @@ msgstr "具有相同ID的視圖已存在"
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
 msgid "ViewId"
 msgstr "\"檢視編號\""
-
-#. js-lingui-id: kpQRY2
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "ViewId is required"
-msgstr "需要 ViewId"
 
 #. js-lingui-id: l88nXn
 #: src/engine/metadata-modules/view-field/exceptions/view-field.exception.ts
@@ -4141,11 +4122,6 @@ msgstr "工作區成員職位"
 msgid "Workspace Members"
 msgstr "工作區成員"
 
-#. js-lingui-id: bBr+RW
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "WorkspaceId is required"
-msgstr "需要 WorkspaceId"
-
 #. js-lingui-id: kjLpTn
 #: src/engine/metadata-modules/view-field/exceptions/view-field.exception.ts
 msgid "WorkspaceId is required to create a view field."
@@ -4221,24 +4197,34 @@ msgid "You cannot set permissions on system objects as they are managed by the p
 msgstr "您不能在系統物件上設置權限，因為它們由平台管理。"
 
 #. js-lingui-id: EFQeXU
-#: src/engine/guards/settings-permissions.guard.ts
+#: src/engine/guards/settings-permission.guard.ts
 msgid "You do not have permission to access this feature. Please contact your workspace administrator for access."
 msgstr "您無權訪問此功能。請與您的工作區管理員聯繫以獲取訪問權限。"
+
+#. js-lingui-id: P69VwK
+#: src/engine/core-modules/user/user.resolver.ts
+msgid "You do not have permission to delete this user from the workspace. Please contact your workspace administrator for access."
+msgstr "您無權將此用戶從工作區中刪除。請聯繫您的工作區管理員以獲得訪問權限。"
 
 #. js-lingui-id: +2vVRB
 #: src/engine/guards/impersonate-permission.guard.ts
 msgid "You do not have permission to impersonate users. Please contact your workspace administrator for access."
 msgstr "您無權冒充用戶。請與您的工作區管理員聯繫以獲取訪問權限。"
 
-#. js-lingui-id: k7P8yU
+#. js-lingui-id: 1dsy9v
 #: src/engine/core-modules/workspace/services/workspace.service.ts
-msgid "You do not have permission to manage security settings. Please contact your workspace administrator."
-msgstr "您無權管理安全設置。請聯繫您的工作區管理員。"
+msgid "You do not have permission to update these fields: {fieldsList}. Please contact your workspace administrator."
+msgstr "您無權更新這些欄位：{fieldsList}。請聯繫您的工作區管理員。"
 
-#. js-lingui-id: svchJc
-#: src/engine/core-modules/workspace/services/workspace.service.ts
-msgid "You do not have permission to manage workspace settings. Please contact your workspace administrator."
-msgstr "您無權管理工作區設置。請聯繫您的工作區管理員。"
+#. js-lingui-id: M1he8p
+#: src/engine/metadata-modules/view/exceptions/view.exception.ts
+msgid "You don't have permission to create workspace-level views."
+msgstr "您無權創建工作區層次的視圖。"
+
+#. js-lingui-id: QmL9y9
+#: src/engine/metadata-modules/view/exceptions/view.exception.ts
+msgid "You don't have permission to modify this view."
+msgstr "您無權修改此視圖。"
 
 #. js-lingui-id: z+7x/s
 #: src/engine/core-modules/auth/utils/auth-graphql-api-exception-handler.util.ts
@@ -4281,3 +4267,59 @@ msgstr "您的工作區已更新了新數據模型。請刷新頁面。"
 #: src/engine/metadata-modules/user-role/user-role.service.ts
 msgid "Your workspace membership could not be found. You may no longer have access to this workspace."
 msgstr "找不到您的工作區成員資格。您可能不再有權訪問此工作區。"
+
+#. js-lingui-id: 874/Xl
+#: src/modules/workflow/workflow-trigger/utils/assert-version-can-be-activated.util.ts
+msgid "Cannot activate non-draft or non-deactivated version"
+msgstr ""
+
+#. js-lingui-id: s3HtdT
+#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
+msgid "FieldMetadataId is required"
+msgstr "需要 FieldMetadataId"
+
+#. js-lingui-id: 8xkULN
+#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
+msgid "Invalid view sort data"
+msgstr "不合法的視圖排序數據"
+
+#. js-lingui-id: I0OzaR
+#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
+msgid "Invalid view sort data for view sort id: {id}"
+msgstr "不合法的視圖排序數據，對於視圖排序 ID: {id}"
+
+#. js-lingui-id: rtir7c
+#: src/engine/metadata-modules/view-group/exceptions/view-group.exception.ts
+msgid "unknown"
+msgstr ""
+
+#. js-lingui-id: znNExx
+#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
+msgid "View sort (id: {id}) not found"
+msgstr "未找到視圖排序（ID: {id}）"
+
+#. js-lingui-id: 3zMs+f
+#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
+msgid "View sort not found"
+msgstr "未找到視圖排序"
+
+#. js-lingui-id: kpQRY2
+#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
+msgid "ViewId is required"
+msgstr "需要 ViewId"
+
+#. js-lingui-id: bBr+RW
+#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
+msgid "WorkspaceId is required"
+msgstr "需要 WorkspaceId"
+
+#. js-lingui-id: k7P8yU
+#: src/engine/core-modules/workspace/services/workspace.service.ts
+msgid "You do not have permission to manage security settings. Please contact your workspace administrator."
+msgstr "您無權管理安全設置。請聯繫您的工作區管理員。"
+
+#. js-lingui-id: svchJc
+#: src/engine/core-modules/workspace/services/workspace.service.ts
+msgid "You do not have permission to manage workspace settings. Please contact your workspace administrator."
+msgstr "您無權管理工作區設置。請聯繫您的工作區管理員。"
+
