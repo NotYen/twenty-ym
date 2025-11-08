@@ -7,6 +7,7 @@ import { RecordShowEffect } from '@/object-record/record-show/components/RecordS
 import { recordStoreFamilySelector } from '@/object-record/record-store/states/selectors/recordStoreFamilySelector';
 import { PageLayoutRenderer } from '@/page-layout/components/PageLayoutRenderer';
 import { useRecordPageLayoutId } from '@/page-layout/hooks/useRecordPageLayoutId';
+import { OpportunityResponsibleBusinessSyncEffect } from '@/opportunities/components/OpportunityResponsibleBusinessSyncEffect';
 import { LayoutRenderingProvider } from '@/ui/layout/contexts/LayoutRenderingContext';
 import { type TargetRecordIdentifier } from '@/ui/layout/contexts/TargetRecordIdentifier';
 import { RightDrawerFooter } from '@/ui/layout/right-drawer/components/RightDrawerFooter';
@@ -61,6 +62,13 @@ export const PageLayoutRecordPageRenderer = ({
         objectNameSingular={targetRecordIdentifier.targetObjectNameSingular}
         recordId={targetRecordIdentifier.id}
       />
+
+      {targetRecordIdentifier.targetObjectNameSingular ===
+        CoreObjectNameSingular.Opportunity && (
+        <OpportunityResponsibleBusinessSyncEffect
+          recordId={targetRecordIdentifier.id}
+        />
+      )}
 
       <RecordShowContainerContextStoreTargetedRecordsEffect
         recordId={targetRecordIdentifier.id}
