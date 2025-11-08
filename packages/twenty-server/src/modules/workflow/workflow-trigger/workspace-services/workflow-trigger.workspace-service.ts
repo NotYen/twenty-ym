@@ -298,6 +298,10 @@ export class WorkflowTriggerWorkspaceService {
         const settings = workflowVersion.trigger
           .settings as DatabaseEventTriggerSettings;
 
+        await this.automatedTriggerWorkspaceService.deleteAutomatedTrigger({
+          workflowId: workflowVersion.workflowId,
+        });
+
         await this.automatedTriggerWorkspaceService.addAutomatedTrigger({
           workflowId: workflowVersion.workflowId,
           type: AutomatedTriggerType.DATABASE_EVENT,
@@ -308,6 +312,10 @@ export class WorkflowTriggerWorkspaceService {
       }
       case WorkflowTriggerType.CRON: {
         const pattern = computeCronPatternFromSchedule(workflowVersion.trigger);
+
+        await this.automatedTriggerWorkspaceService.deleteAutomatedTrigger({
+          workflowId: workflowVersion.workflowId,
+        });
 
         await this.automatedTriggerWorkspaceService.addAutomatedTrigger({
           workflowId: workflowVersion.workflowId,
