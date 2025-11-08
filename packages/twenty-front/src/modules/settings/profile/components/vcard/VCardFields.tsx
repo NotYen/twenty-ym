@@ -10,6 +10,7 @@ import {
   type VCardFormData,
   VCARD_STORAGE_KEY,
 } from '@/settings/profile/components/vcard/types/VCardData';
+import { logError } from '~/utils/logError';
 
 type VCardFieldsProps = {
   onDataChange: (data: VCardFormData) => void;
@@ -67,7 +68,8 @@ export const VCardFields = ({ onDataChange }: VCardFieldsProps) => {
         return JSON.parse(saved);
       }
     } catch (error) {
-      console.error('Failed to load vCard data from localStorage:', error);
+      logError('Failed to load vCard data from localStorage:');
+      logError(error);
     }
     return { company: '', jobTitle: '', phone: '' };
   };
@@ -81,7 +83,8 @@ export const VCardFields = ({ onDataChange }: VCardFieldsProps) => {
       localStorage.setItem(VCARD_STORAGE_KEY, JSON.stringify(formData));
       onDataChange(formData);
     } catch (error) {
-      console.error('Failed to save vCard data to localStorage:', error);
+      logError('Failed to save vCard data to localStorage:');
+      logError(error);
     }
   }, [formData, onDataChange]);
 
