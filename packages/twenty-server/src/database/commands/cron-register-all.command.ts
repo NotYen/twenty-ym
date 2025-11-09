@@ -20,6 +20,7 @@ import { WorkflowCleanWorkflowRunsCronCommand } from 'src/modules/workflow/workf
 import { WorkflowHandleStaledRunsCronCommand } from 'src/modules/workflow/workflow-runner/workflow-run-queue/cron/command/workflow-handle-staled-runs.cron.command';
 import { WorkflowRunEnqueueCronCommand } from 'src/modules/workflow/workflow-runner/workflow-run-queue/cron/command/workflow-run-enqueue.cron.command';
 import { WorkflowCronTriggerCronCommand } from 'src/modules/workflow/workflow-trigger/automated-trigger/crons/commands/workflow-cron-trigger.cron.command';
+import { TimelineCleanupCronCommand } from 'src/modules/timeline/commands/timeline-cleanup.cron.command';
 
 @Command({
   name: 'cron:register:all',
@@ -48,6 +49,7 @@ export class CronRegisterAllCommand extends CommandRunner {
     private readonly cleanSuspendedWorkspacesCronCommand: CleanSuspendedWorkspacesCronCommand,
     private readonly cleanOnboardingWorkspacesCronCommand: CleanOnboardingWorkspacesCronCommand,
     private readonly trashCleanupCronCommand: TrashCleanupCronCommand,
+    private readonly timelineCleanupCronCommand: TimelineCleanupCronCommand,
   ) {
     super();
   }
@@ -127,6 +129,10 @@ export class CronRegisterAllCommand extends CommandRunner {
       {
         name: 'TrashCleanup',
         command: this.trashCleanupCronCommand,
+      },
+      {
+        name: 'TimelineCleanup',
+        command: this.timelineCleanupCronCommand,
       },
     ];
 

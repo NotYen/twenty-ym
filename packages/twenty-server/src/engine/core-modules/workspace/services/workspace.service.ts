@@ -62,6 +62,8 @@ export class WorkspaceService extends TypeOrmQueryService<WorkspaceEntity> {
     customDomain: PermissionFlagType.WORKSPACE,
     displayName: PermissionFlagType.WORKSPACE,
     logo: PermissionFlagType.WORKSPACE,
+    backgroundImage: PermissionFlagType.WORKSPACE,
+    backgroundImageSettings: PermissionFlagType.WORKSPACE,
     trashRetentionDays: PermissionFlagType.WORKSPACE,
     inviteHash: PermissionFlagType.WORKSPACE_MEMBERS,
     isPublicInviteLinkEnabled: PermissionFlagType.SECURITY,

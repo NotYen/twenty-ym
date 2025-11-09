@@ -21,11 +21,11 @@ export const initializeFirebaseAnalytics = async (): Promise<Analytics | null> =
     const missingKeys = requiredKeys.filter((key) => !firebaseConfig[key]);
     const enabled = isFirebaseEnabled();
 
-    logError(`[Firebase][Config] Enabled: ${String(enabled)}`);
+    logDebug(`[Firebase][Config] Enabled: ${String(enabled)}`);
     if (missingKeys.length > 0) {
       logError(`[Firebase][Config] Missing keys: ${missingKeys.join(', ')}`);
     } else {
-      logError('[Firebase][Config] All required keys are present');
+      logDebug('[Firebase][Config] All required keys are present');
     }
 
     hasLoggedFirebaseConfig = true;
