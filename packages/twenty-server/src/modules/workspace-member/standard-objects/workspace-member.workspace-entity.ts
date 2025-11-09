@@ -135,7 +135,7 @@ export class WorkspaceMemberWorkspaceEntity extends BaseWorkspaceEntity {
     label: msg`Language`,
     description: msg`Preferred language`,
     icon: 'IconLanguage',
-    defaultValue: `'${SOURCE_LOCALE}'`,
+    defaultValue: `'zh-TW'`,
   })
   @WorkspaceIsSystem()
   locale: keyof typeof APP_LOCALES;

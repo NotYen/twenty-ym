@@ -226,10 +226,10 @@ msgstr "訪問Twenty的開發者文檔"
 #. js-lingui-explicit-id
 #: src/components/Footer.tsx
 msgid "Twenty.com, Public Benefit Corporation"
-msgstr "Twenty.com, 公益公司"
+msgstr "洋銘資訊股份有限公司YoungMing | +886 3 3392057"
 
 #. js-lingui-explicit-id
 #: src/components/Footer.tsx
 msgid "San Francisco / Paris"
-msgstr "三藩市 / 巴黎"
+msgstr "桃園市桃園區守法路20號 | info@youngming-mes.com"
 

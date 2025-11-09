@@ -14,7 +14,8 @@ type FooterProps = {
 export const Footer = ({ i18n }: FooterProps) => {
   return (
     <Container style={footerContainerStyle}>
-      <Row>
+      {/* 註解：隱藏四個連結（網站、Github、用戶指南、開發人員） */}
+      {/* <Row>
         <Column>
           <ShadowText>
             <Link
@@ -51,7 +52,7 @@ export const Footer = ({ i18n }: FooterProps) => {
             />
           </ShadowText>
         </Column>
-      </Row>
+      </Row> */}
       <ShadowText>
         <>
           {i18n._('Twenty.com, Public Benefit Corporation')}

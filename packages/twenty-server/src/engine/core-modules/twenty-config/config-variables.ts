@@ -377,6 +377,16 @@ export class ConfigVariables {
   IS_WORKSPACE_CREATION_LIMITED_TO_SERVER_ADMINS = false;
 
   @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.OTHER,
+    description:
+      'Number of days to retain timeline activities before automatic cleanup',
+    type: ConfigVariableType.NUMBER,
+  })
+  @IsOptional()
+  @CastToPositiveNumber()
+  TIMELINE_RETENTION_DAYS = 180;
+
+  @ConfigVariablesMetadata({
     group: ConfigVariablesGroup.STORAGE_CONFIG,
     description: 'Type of storage to use (local or S3)',
     type: ConfigVariableType.ENUM,
