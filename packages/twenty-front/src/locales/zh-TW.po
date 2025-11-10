@@ -3656,7 +3656,7 @@ msgstr "輸入大於 1 的數字"
 #. js-lingui-id: yZMXC2
 #: src/modules/advanced-text-editor/hooks/useAdvancedTextEditor.ts
 msgid "Enter text or Type '/' for commands"
-msgstr ""
+msgstr "輸入文字或輸入「/」使用指令"
 
 #. js-lingui-id: XJU8BD
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
