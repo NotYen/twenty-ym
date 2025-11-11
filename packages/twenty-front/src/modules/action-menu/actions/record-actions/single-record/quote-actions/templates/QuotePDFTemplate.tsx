@@ -7,8 +7,6 @@ import {
   Text,
   View,
 } from '@react-pdf/renderer';
-import { GRAY_SCALE_LIGHT, SECONDARY_COLORS_LIGHT } from 'twenty-ui/theme';
-
 // 注册 Noto Sans SC 字体（支持简体和繁体中文）
 // 使用项目 public 目录中的本地字体文件
 Font.register({
@@ -17,16 +15,16 @@ Font.register({
 });
 
 const pdfColors = {
-  pageBackground: GRAY_SCALE_LIGHT.gray1,
-  pageText: SECONDARY_COLORS_LIGHT.slate11,
-  headingText: SECONDARY_COLORS_LIGHT.slate10,
-  mutedText: SECONDARY_COLORS_LIGHT.slate8,
-  inverseText: GRAY_SCALE_LIGHT.gray1,
-  borderStrong: SECONDARY_COLORS_LIGHT.slate10,
-  borderSubtle: SECONDARY_COLORS_LIGHT.slate5,
-  tableHeaderBackground: SECONDARY_COLORS_LIGHT.slate10,
-  tableRowAlternate: SECONDARY_COLORS_LIGHT.slate2,
-  footerText: SECONDARY_COLORS_LIGHT.slate7,
+  pageBackground: '#FFFFFF',
+  pageText: '#1F2933',
+  headingText: '#111827',
+  mutedText: '#6B7280',
+  inverseText: '#FFFFFF',
+  borderStrong: '#2D3748',
+  borderSubtle: '#E5E7EB',
+  tableHeaderBackground: '#1F2937',
+  tableRowAlternate: '#F3F4F6',
+  footerText: '#9CA3AF',
 };
 
 // PDF 样式定义
@@ -237,11 +235,11 @@ const styles = StyleSheet.create({
 
 // 状态颜色映射
 const STATUS_COLORS: Record<string, string> = {
-  DRAFT: pdfColors.mutedText,
-  SENT: SECONDARY_COLORS_LIGHT.blue9,
-  ACCEPTED: SECONDARY_COLORS_LIGHT.green9,
-  REJECTED: SECONDARY_COLORS_LIGHT.red9,
-  EXPIRED: SECONDARY_COLORS_LIGHT.orange9,
+  DRAFT: '#6B7280',
+  SENT: '#2563EB',
+  ACCEPTED: '#059669',
+  REJECTED: '#DC2626',
+  EXPIRED: '#F97316',
 };
 
 // 状态标签映射
