@@ -10,6 +10,7 @@ import { workflowFormActionSchema } from './form-action-schema';
 import { workflowHttpRequestActionSchema } from './http-request-action-schema';
 import { workflowIteratorActionSchema } from './iterator-action-schema';
 import { workflowSendEmailActionSchema } from './send-email-action-schema';
+import { workflowSendLineMessageActionSchema } from './send-line-message-action-schema';
 import { workflowUpdateRecordActionSchema } from './update-record-action-schema';
 import { workflowUpsertRecordActionSchema } from './upsert-record-action-schema';
 import { workflowDelayActionSchema } from './workflow-delay-action-schema';
@@ -17,6 +18,7 @@ import { workflowDelayActionSchema } from './workflow-delay-action-schema';
 export const workflowActionSchema = z.discriminatedUnion('type', [
   workflowCodeActionSchema,
   workflowSendEmailActionSchema,
+  workflowSendLineMessageActionSchema,
   workflowCreateRecordActionSchema,
   workflowUpdateRecordActionSchema,
   workflowDeleteRecordActionSchema,

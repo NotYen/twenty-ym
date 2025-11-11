@@ -39,6 +39,8 @@ export { workflowManualTriggerSchema } from './schemas/manual-trigger-schema';
 export { objectRecordSchema } from './schemas/object-record-schema';
 export { workflowSendEmailActionSchema } from './schemas/send-email-action-schema';
 export { workflowSendEmailActionSettingsSchema } from './schemas/send-email-action-settings-schema';
+export { workflowSendLineMessageActionSchema } from './schemas/send-line-message-action-schema';
+export { workflowSendLineMessageActionSettingsSchema } from './schemas/send-line-message-action-settings-schema';
 export { workflowUpdateRecordActionSchema } from './schemas/update-record-action-schema';
 export { workflowUpdateRecordActionSettingsSchema } from './schemas/update-record-action-settings-schema';
 export { workflowUpsertRecordActionSchema } from './schemas/upsert-record-action-schema';

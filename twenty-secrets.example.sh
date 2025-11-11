@@ -49,6 +49,10 @@ export XAI_API_KEY=""
 # 如果需要覆蓋應用密鑰
 # export APP_SECRET="your-app-secret"
 
+# LINE 官方帳號 Messaging API Token（如需啟用 LINE 工作流程通知）
+# export LINE_CHANNEL_ACCESS_TOKEN="your-line-channel-access-token"
+# export LINE_CHANNEL_SECRET="your-line-channel-secret"
+
 # ==========================================
 # 使用說明
 # ==========================================

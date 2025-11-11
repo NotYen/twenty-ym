@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 
 import { ToolType } from 'src/engine/core-modules/tool/enums/tool-type.enum';
 import { HttpTool } from 'src/engine/core-modules/tool/tools/http-tool/http-tool';
+import { LineMessagingTool } from 'src/engine/core-modules/tool/tools/line-messaging-tool/line-messaging-tool';
+import { type LineMessagingInput } from 'src/engine/core-modules/tool/tools/line-messaging-tool/types/line-messaging-input.type';
 import { SendEmailTool } from 'src/engine/core-modules/tool/tools/send-email-tool/send-email-tool';
 import { type SendEmailInput } from 'src/engine/core-modules/tool/tools/send-email-tool/types/send-email-input.type';
 import { type Tool } from 'src/engine/core-modules/tool/types/tool.type';
@@ -14,6 +16,7 @@ export class ToolRegistryService {
 
   constructor(
     private readonly sendEmailTool: SendEmailTool,
+    private readonly lineMessagingTool: LineMessagingTool,
     private readonly twentyConfigService: TwentyConfigService,
   ) {
     this.toolFactories = new Map<ToolType, () => Tool>([
@@ -26,6 +29,18 @@ export class ToolRegistryService {
           execute: (params) =>
             this.sendEmailTool.execute(params as SendEmailInput),
           flag: PermissionFlagType.SEND_EMAIL_TOOL,
+        }),
+      ],
+      [
+        ToolType.LINE_MESSAGING,
+        () => ({
+          description: this.lineMessagingTool.description,
+          inputSchema: this.lineMessagingTool.inputSchema,
+          execute: (params) =>
+            this.lineMessagingTool.execute(
+              params as LineMessagingInput,
+            ),
+          flag: PermissionFlagType.WORKFLOWS,
         }),
       ],
     ]);

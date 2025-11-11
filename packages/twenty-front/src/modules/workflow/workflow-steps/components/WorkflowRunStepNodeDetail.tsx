@@ -10,6 +10,7 @@ import { WorkflowEditActionCreateRecord } from '@/workflow/workflow-steps/workfl
 import { WorkflowEditActionDeleteRecord } from '@/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionDeleteRecord';
 import { WorkflowEditActionEmpty } from '@/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionEmpty';
 import { WorkflowEditActionSendEmail } from '@/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionSendEmail';
+import { WorkflowEditActionSendLineMessage } from '@/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionSendLineMessage';
 import { WorkflowEditActionUpdateRecord } from '@/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpdateRecord';
 import { WorkflowEditActionUpsertRecord } from '@/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord';
 import { WorkflowEditActionDelay } from '@/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay';
@@ -117,6 +118,17 @@ export const WorkflowRunStepNodeDetail = ({
         case 'SEND_EMAIL': {
           return (
             <WorkflowEditActionSendEmail
+              key={stepId}
+              action={stepDefinition.definition}
+              actionOptions={{
+                readonly: true,
+              }}
+            />
+          );
+        }
+        case 'SEND_LINE_MESSAGE': {
+          return (
+            <WorkflowEditActionSendLineMessage
               key={stepId}
               action={stepDefinition.definition}
               actionOptions={{

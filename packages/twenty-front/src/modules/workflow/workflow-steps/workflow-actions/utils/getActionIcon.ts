@@ -18,6 +18,7 @@ export const getActionIcon = (actionType: WorkflowActionType) => {
     case 'CODE':
     case 'HTTP_REQUEST':
     case 'SEND_EMAIL':
+    case 'SEND_LINE_MESSAGE':
       return CORE_ACTIONS.find((item) => item.type === actionType)?.icon;
     case 'FORM':
       return HUMAN_INPUT_ACTIONS.find((item) => item.type === actionType)?.icon;

@@ -78,7 +78,8 @@ export class WorkflowSchemaWorkspaceService {
       case WorkflowTriggerType.CRON: {
         return {};
       }
-      case WorkflowActionType.SEND_EMAIL: {
+      case WorkflowActionType.SEND_EMAIL:
+      case WorkflowActionType.SEND_LINE_MESSAGE: {
         return this.computeSendEmailActionOutputSchema();
       }
       case WorkflowActionType.CREATE_RECORD:

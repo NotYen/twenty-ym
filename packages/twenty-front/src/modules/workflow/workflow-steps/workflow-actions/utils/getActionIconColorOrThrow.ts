@@ -13,6 +13,7 @@ export const getActionIconColorOrThrow = ({
     case 'CODE':
     case 'HTTP_REQUEST':
     case 'SEND_EMAIL':
+    case 'SEND_LINE_MESSAGE':
       return theme.color.red;
     case 'CREATE_RECORD':
     case 'UPDATE_RECORD':

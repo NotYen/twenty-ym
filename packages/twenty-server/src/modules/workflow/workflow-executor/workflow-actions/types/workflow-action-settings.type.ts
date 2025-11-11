@@ -6,6 +6,7 @@ import { type WorkflowFilterActionSettings } from 'src/modules/workflow/workflow
 import { type WorkflowFormActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/form/types/workflow-form-action-settings.type';
 import { type WorkflowHttpRequestActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/http-request/types/workflow-http-request-action-settings.type';
 import { type WorkflowIteratorActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/iterator/types/workflow-iterator-action-settings.type';
+import { type WorkflowSendLineMessageActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/line-messaging/types/workflow-send-line-message-action-settings.type';
 import { type WorkflowSendEmailActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/mail-sender/types/workflow-send-email-action-settings.type';
 import {
   type WorkflowCreateRecordActionSettings,
@@ -29,6 +30,7 @@ export type BaseWorkflowActionSettings = {
 
 export type WorkflowActionSettings =
   | WorkflowSendEmailActionSettings
+  | WorkflowSendLineMessageActionSettings
   | WorkflowCodeActionSettings
   | WorkflowCreateRecordActionSettings
   | WorkflowUpdateRecordActionSettings

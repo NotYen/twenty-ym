@@ -20,6 +20,7 @@ import {
   type workflowRunStatusSchema,
   type workflowRunStepStatusSchema,
   type workflowSendEmailActionSchema,
+  type workflowSendLineMessageActionSchema,
   type workflowTriggerSchema,
   type workflowUpdateRecordActionSchema,
   type workflowUpsertRecordActionSchema,
@@ -31,6 +32,9 @@ import { type z } from 'zod';
 export type WorkflowCodeAction = z.infer<typeof workflowCodeActionSchema>;
 export type WorkflowSendEmailAction = z.infer<
   typeof workflowSendEmailActionSchema
+>;
+export type WorkflowSendLineMessageAction = z.infer<
+  typeof workflowSendLineMessageActionSchema
 >;
 export type WorkflowCreateRecordAction = z.infer<
   typeof workflowCreateRecordActionSchema
@@ -62,6 +66,7 @@ export type WorkflowEmptyAction = z.infer<typeof workflowEmptyActionSchema>;
 export type WorkflowAction =
   | WorkflowCodeAction
   | WorkflowSendEmailAction
+  | WorkflowSendLineMessageAction
   | WorkflowCreateRecordAction
   | WorkflowUpdateRecordAction
   | WorkflowDeleteRecordAction

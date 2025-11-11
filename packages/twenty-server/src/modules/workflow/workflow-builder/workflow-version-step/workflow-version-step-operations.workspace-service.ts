@@ -180,6 +180,22 @@ export class WorkflowVersionStepOperationsWorkspaceService {
           },
         };
       }
+      case WorkflowActionType.SEND_LINE_MESSAGE: {
+        return {
+          builtStep: {
+            ...baseStep,
+            name: 'Send LINE Message',
+            type: WorkflowActionType.SEND_LINE_MESSAGE,
+            settings: {
+              ...BASE_STEP_DEFINITION,
+              input: {
+                to: '',
+                message: '',
+              },
+            },
+          },
+        };
+      }
       case WorkflowActionType.CREATE_RECORD: {
         const activeObjectMetadataItem =
           await this.objectMetadataRepository.findOne({

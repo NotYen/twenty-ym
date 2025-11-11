@@ -159,6 +159,26 @@ export class ConfigVariables {
   IS_IMAP_SMTP_CALDAV_ENABLED = false;
 
   @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.OTHER,
+    isSensitive: true,
+    description:
+      'LINE Messaging API channel access token used for workflow notifications',
+    type: ConfigVariableType.STRING,
+  })
+  @IsOptional()
+  LINE_CHANNEL_ACCESS_TOKEN?: string;
+
+  @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.OTHER,
+    isSensitive: true,
+    description:
+      'LINE Messaging API channel secret used for webhook validation or messaging extensions',
+    type: ConfigVariableType.STRING,
+  })
+  @IsOptional()
+  LINE_CHANNEL_SECRET?: string;
+
+  @ConfigVariablesMetadata({
     group: ConfigVariablesGroup.MICROSOFT_AUTH,
     description: 'Enable or disable Microsoft authentication',
     type: ConfigVariableType.BOOLEAN,
