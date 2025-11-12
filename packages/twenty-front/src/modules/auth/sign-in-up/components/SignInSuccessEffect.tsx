@@ -25,8 +25,7 @@ export const SignInSuccessEffect = () => {
   );
 
   // 無條件掛載訊息，便於確認元件是否已被渲染
-  // eslint-disable-next-line no-console
-  console.debug('[SignInSuccessEffect] mounted');
+  logDebug('[SignInSuccessEffect] mounted');
 
   const alreadyShown = useMemo(
     () => typeof window !== 'undefined' && sessionStorage.getItem(SESSION_FLAG) === '1',
@@ -34,8 +33,7 @@ export const SignInSuccessEffect = () => {
   );
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.debug('[SignInSuccessEffect] status', {
+    logDebug('[SignInSuccessEffect] status', {
       isLogged,
       isCurrentUserLoaded,
       hasUser: isDefined(currentUser),
@@ -44,14 +42,12 @@ export const SignInSuccessEffect = () => {
     });
 
     if (isLogged && isCurrentUserLoaded && isDefined(currentUser) && !alreadyShown) {
-      // eslint-disable-next-line no-console
-      console.debug('[SignInSuccessEffect] calling openModal()');
+      logDebug('[SignInSuccessEffect] calling openModal()');
       openModal(MODAL_ID);
 
       // 延遲檢查 modal 是否真的被打開
       setTimeout(() => {
-        // eslint-disable-next-line no-console
-        console.debug('[SignInSuccessEffect] after openModal, DOM check:', {
+        logDebug('[SignInSuccessEffect] after openModal, DOM check:', {
           modalElement: document.querySelector('#sign-in-success-modal'),
           modalBackdrop: document.querySelector('[data-testid="modal-backdrop"]'),
           allModals: document.querySelectorAll('[role="dialog"]'),
@@ -62,16 +58,14 @@ export const SignInSuccessEffect = () => {
 
   // 監聽 isModalOpen 變化
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.debug('[SignInSuccessEffect] isModalOpen changed to:', isModalOpen);
+    logDebug('[SignInSuccessEffect] isModalOpen changed to:', isModalOpen);
   }, [isModalOpen]);
 
   const handleClose = () => {
     try {
       sessionStorage.setItem(SESSION_FLAG, '1');
     } catch {}
-    // eslint-disable-next-line no-console
-    console.debug('[SignInSuccessEffect] close modal');
+    logDebug('[SignInSuccessEffect] close modal');
     closeModal(MODAL_ID);
   };
 

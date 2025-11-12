@@ -64,6 +64,8 @@ services:
     build:
       context: ..
       dockerfile: docker/backend/Dockerfile
+      args:
+        BACKEND_IMAGE_VERSION: ${BACKEND_IMAGE_VERSION:-dev}
     image: twenty-backend:latest
     container_name: Y-CRM-backend
     depends_on:
@@ -75,6 +77,8 @@ services:
         condition: service_started
     env_file:
       - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://118.168.188.27:8867}
     ports:
       - "${BACKEND_PORT:-8867}:8867"
 
@@ -90,6 +94,8 @@ services:
         condition: service_started
     env_file:
       - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://118.168.188.27:8867}
     working_dir: /app/packages/twenty-server
     command: ["node", "dist/src/queue-worker/queue-worker.js"]
 
@@ -98,8 +104,9 @@ services:
       context: ..
       dockerfile: docker/frontend/Dockerfile
       args:
-        BACKEND_URL: ${BACKEND_PUBLIC_URL:-http://localhost:8867}
+        BACKEND_URL: ${BACKEND_PUBLIC_URL:-http://118.168.188.27:8867}
         VITE_IS_DEBUG_MODE: ${VITE_IS_DEBUG_MODE:-true}
+        FRONTEND_IMAGE_VERSION: ${FRONTEND_IMAGE_VERSION:-dev}
     depends_on:
       - backend
     ports:
@@ -107,6 +114,8 @@ services:
     container_name: Y-CRM-frontend
     env_file:
       - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://118.168.188.27:8867}
 
 volumes:
   postgres-data:

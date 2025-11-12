@@ -15,7 +15,6 @@ import { APP_LOCALES } from 'twenty-shared/translations';
 import { isDefined } from 'twenty-shared/utils';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import { dynamicActivate } from '~/utils/i18n/dynamicActivate';
-import { logError } from '~/utils/logError';
 
 const StyledContainer = styled.div`
   display: flex;
@@ -50,7 +49,8 @@ export const LocalePicker = () => {
         updateOneRecordInput: changedFields,
       });
     } catch (error) {
-      logError(error);
+      // eslint-disable-next-line no-console
+      console.error(error);
     }
   };
 

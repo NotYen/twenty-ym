@@ -16,6 +16,7 @@ export default defineConfig(({ command, mode }) => {
 
   const {
     REACT_APP_SERVER_BASE_URL,
+    FRONTEND_IMAGE_VERSION,
     VITE_BUILD_SOURCEMAP,
     VITE_DISABLE_TYPESCRIPT_CHECKER,
     VITE_DISABLE_ESLINT_CHECKER,
@@ -25,6 +26,10 @@ export default defineConfig(({ command, mode }) => {
     REACT_APP_PORT,
     IS_DEBUG_MODE,
   } = env;
+
+  const frontendImageVersion = isNonEmptyString(FRONTEND_IMAGE_VERSION)
+    ? FRONTEND_IMAGE_VERSION
+    : 'dev';
 
   const port = isNonEmptyString(REACT_APP_PORT)
     ? parseInt(REACT_APP_PORT)
@@ -270,9 +275,11 @@ export default defineConfig(({ command, mode }) => {
     define: {
       _env_: {
         REACT_APP_SERVER_BASE_URL,
+        FRONTEND_IMAGE_VERSION: frontendImageVersion,
       },
       'process.env': {
         REACT_APP_SERVER_BASE_URL,
+        FRONTEND_IMAGE_VERSION: frontendImageVersion,
         IS_DEBUG_MODE,
       },
     },

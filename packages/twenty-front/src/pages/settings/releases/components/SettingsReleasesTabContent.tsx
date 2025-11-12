@@ -6,6 +6,7 @@ import {
   SETTINGS_RELEASES_TABS_ID,
 } from '../constants';
 import { SettingsReleasesChangelogContent } from './SettingsReleasesChangelogContent';
+import { SettingsReleasesVersionInfoContent } from './SettingsReleasesVersionInfoContent';
 
 export const SettingsReleasesTabContent = () => {
   const activeTabId = useRecoilComponentValue(
@@ -18,6 +19,8 @@ export const SettingsReleasesTabContent = () => {
       return <SettingsReleasesChangelogContent />;
     case SETTINGS_RELEASES_TABS.LAB:
       return <SettingsLabContent />;
+    case SETTINGS_RELEASES_TABS.VERSIONS:
+      return <SettingsReleasesVersionInfoContent />;
     default:
       return <SettingsReleasesChangelogContent />;
   }

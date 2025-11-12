@@ -39,13 +39,15 @@ COPY packages/twenty-ui ./packages/twenty-ui
 COPY packages/twenty-shared ./packages/twenty-shared
 
 # 接收構建參數（從 docker-compose.yml 傳入）
-ARG BACKEND_URL=http://localhost:8867
+ARG BACKEND_URL_PLACEHOLDER=@@SERVER_BASE_URL@@
+ARG FRONTEND_IMAGE_VERSION=dev
 ARG VITE_IS_DEBUG_MODE=true
-ENV REACT_APP_SERVER_BASE_URL=${BACKEND_URL}
+ENV REACT_APP_SERVER_BASE_URL=${BACKEND_URL_PLACEHOLDER}
+ENV FRONTEND_IMAGE_VERSION=${FRONTEND_IMAGE_VERSION}
 ENV VITE_IS_DEBUG_MODE=${VITE_IS_DEBUG_MODE}
 
 # 構建 twenty-front（production 模式）
-RUN yarn nx build twenty-front --configuration=production
+RUN yarn nx build twenty-front --configuration=production --skip-nx-cache
 
 # =====================================
 # 階段 3: 最終運行鏡像（Nginx）
@@ -58,6 +60,10 @@ COPY docker/frontend/nginx.conf /etc/nginx/conf.d/default.conf
 # 從構建階段複製前端構建產物
 COPY --from=build /app/packages/twenty-front/build /usr/share/nginx/html
 
+# 注入 entrypoint，啟動時替換佔位符
+COPY docker/frontend/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
 EXPOSE 80
 
-CMD ["nginx", "-g", "daemon off;"]
+ENTRYPOINT ["/entrypoint.sh"]

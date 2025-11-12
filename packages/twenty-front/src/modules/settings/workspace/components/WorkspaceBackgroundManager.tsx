@@ -10,6 +10,8 @@ import { getImageAbsoluteURI } from 'twenty-shared/utils';
 import { IconPencil, IconRestore } from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
+import { logDebug } from '~/utils/logDebug';
+import { logError } from '~/utils/logError';
 import { useWorkspaceBackground } from '../hooks/useWorkspaceBackground';
 import { BackgroundImageEditor } from './BackgroundImageEditor';
 
@@ -36,6 +38,10 @@ const StyledDescription = styled.p`
 export const WorkspaceBackgroundManager = () => {
   const { t } = useLingui();
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
+
+  // Debug log
+  logDebug('[🖼️ BackgroundManager] currentWorkspace.backgroundImage:', currentWorkspace?.backgroundImage);
+
   const { openModal, closeModal } = useModal();
   const {
     uploadBackground,
@@ -109,17 +115,30 @@ export const WorkspaceBackgroundManager = () => {
 
   // 處理保存（上傳 + 設定）
   const handleSave = async (settings: any) => {
+    logDebug('[🖼️ BackgroundManager] handleSave 開始', {
+      isEditingExisting,
+      hasSelectedFile: selectedFile !== null,
+      settings,
+    });
+
     try {
       if (isEditingExisting) {
+        logDebug(
+          '[🖼️ BackgroundManager] 模式：只更新設定（不重新上傳）',
+        );
         // 只更新設定，不重新上傳
         await updateBackgroundSettings(settings);
       } else if (selectedFile !== null) {
+        logDebug('[🖼️ BackgroundManager] 模式：上傳新圖片 + 更新設定');
         // 先上傳圖片，再更新設定
         const uploadedUrl = await uploadBackground(selectedFile);
+        logDebug('[🖼️ BackgroundManager] 上傳完成，返回 URL:', uploadedUrl);
 
         // 等待圖片上傳完成後再更新設定
         if (uploadedUrl !== null && uploadedUrl !== undefined) {
+          logDebug('[🖼️ BackgroundManager] 準備更新設定...');
           await updateBackgroundSettings(settings);
+          logDebug('[🖼️ BackgroundManager] 設定更新完成');
         }
 
         // 清理預覽
@@ -130,8 +149,10 @@ export const WorkspaceBackgroundManager = () => {
         setSelectedFile(null);
       }
 
+      logDebug('[🖼️ BackgroundManager] 關閉 Modal');
       closeModal(BACKGROUND_EDITOR_MODAL_ID);
-    } catch {
+    } catch (error) {
+      logError('[🖼️ BackgroundManager] handleSave 錯誤:', error);
       // Error handling is done in the hook
     }
   };

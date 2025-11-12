@@ -1285,6 +1285,15 @@ export class ConfigVariables {
   APP_VERSION?: string;
 
   @ConfigVariablesMetadata({
+    group: ConfigVariablesGroup.SERVER_CONFIG,
+    description: 'Docker image version running on the backend service',
+    type: ConfigVariableType.STRING,
+    isEnvOnly: true,
+  })
+  @IsOptionalOrEmptyString()
+  BACKEND_IMAGE_VERSION?: string;
+
+  @ConfigVariablesMetadata({
     group: ConfigVariablesGroup.OTHER,
     description: 'Enable or disable google map api usage',
     type: ConfigVariableType.BOOLEAN,

@@ -1,10 +1,10 @@
 import { SettingsCard } from '@/settings/components/SettingsCard';
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
-import { SetOrChangePassword } from '@/settings/profile/components/SetOrChangePassword';
 import { DeleteAccount } from '@/settings/profile/components/DeleteAccount';
 import { EmailField } from '@/settings/profile/components/EmailField';
 import { NameFields } from '@/settings/profile/components/NameFields';
 import { ProfilePictureUploader } from '@/settings/profile/components/ProfilePictureUploader';
+import { SetOrChangePassword } from '@/settings/profile/components/SetOrChangePassword';
 import { VCardSection } from '@/settings/profile/components/vcard/VCardSection';
 import { useCanChangePassword } from '@/settings/profile/hooks/useCanChangePassword';
 import { useCurrentUserWorkspaceTwoFactorAuthentication } from '@/settings/two-factor-authentication/hooks/useCurrentUserWorkspaceTwoFactorAuthentication';

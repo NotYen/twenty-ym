@@ -21,3 +21,8 @@ export const REACT_APP_SERVER_BASE_URL =
   window._env_?.REACT_APP_SERVER_BASE_URL ||
   process.env.REACT_APP_SERVER_BASE_URL ||
   getDefaultUrl();
+
+export const FRONTEND_IMAGE_VERSION =
+  window._env_?.FRONTEND_IMAGE_VERSION ||
+  process.env.FRONTEND_IMAGE_VERSION ||
+  'dev';

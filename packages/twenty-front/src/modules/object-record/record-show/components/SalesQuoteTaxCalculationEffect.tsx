@@ -1,11 +1,16 @@
 /* eslint-disable no-console */
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 
-import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
 import { useQuoteCalculations } from '@/object-record/hooks/useQuoteCalculations';
+import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
 import { recordStoreFamilySelector } from '@/object-record/record-store/states/selectors/recordStoreFamilySelector';
 import { isDefined } from 'twenty-shared/utils';
+
+type CurrencyValue = {
+  amountMicros: number | null;
+  currencyCode: string | null;
+};
 
 type SalesQuoteTaxCalculationEffectProps = {
   recordId: string;
@@ -25,15 +30,16 @@ export const SalesQuoteTaxCalculationEffect = ({
   // 監聽總計（zongJi）
   const total = useRecoilValue(
     recordStoreFamilySelector({ recordId, fieldName: 'zongJi' }),
-  );
+  ) as CurrencyValue | null;
 
   // 監聽稅率（shuiLu）
   const taxRate = useRecoilValue(
     recordStoreFamilySelector({ recordId, fieldName: 'shuiLu' }),
-  );
+  ) as number | null;
 
-  // 防止無限循環：記錄上次計算的稅金值
-  const lastCalculatedTaxRef = useRef<number | null>(null);
+  const [lastCalculatedTax, setLastCalculatedTax] = useState<number | null>(
+    null,
+  );
 
   useEffect(() => {
     console.log('[SalesQuoteTaxCalculation] Effect triggered', {
@@ -43,17 +49,27 @@ export const SalesQuoteTaxCalculationEffect = ({
     });
 
     // 檢查：總計和稅率必須都存在
-    if (!isDefined(total?.amountMicros) || !isDefined(taxRate)) {
-      console.log('[SalesQuoteTaxCalculation] Skipped: missing total or taxRate', {
-        hasTotal: isDefined(total?.amountMicros),
-        hasTaxRate: isDefined(taxRate),
-      });
+    if (
+      !isDefined(total?.amountMicros) ||
+      !isDefined(total?.currencyCode) ||
+      !isDefined(taxRate)
+    ) {
+      console.log(
+        '[SalesQuoteTaxCalculation] Skipped: missing total or taxRate',
+        {
+          hasTotal: isDefined(total?.amountMicros),
+          hasTaxRate: isDefined(taxRate),
+          hasCurrencyCode: isDefined(total?.currencyCode),
+        },
+      );
       return;
     }
 
     // 檢查：稅率必須大於 0
     if (taxRate <= 0) {
-      console.log('[SalesQuoteTaxCalculation] Skipped: taxRate <= 0', { taxRate });
+      console.log('[SalesQuoteTaxCalculation] Skipped: taxRate <= 0', {
+        taxRate,
+      });
       return;
     }
 
@@ -68,17 +84,18 @@ export const SalesQuoteTaxCalculationEffect = ({
       totalMicros: total.amountMicros,
       taxRate,
       calculatedTaxMicros: calculatedTaxAmountMicros,
-      lastCalculatedTax: lastCalculatedTaxRef.current,
+      lastCalculatedTax,
     });
 
     // 防止重複更新：如果計算結果與上次相同，跳過
-    if (calculatedTaxAmountMicros === lastCalculatedTaxRef.current) {
-      console.log('[SalesQuoteTaxCalculation] Skipped: same as last calculation');
+    if (calculatedTaxAmountMicros === lastCalculatedTax) {
+      console.log(
+        '[SalesQuoteTaxCalculation] Skipped: same as last calculation',
+      );
       return;
     }
 
-    // 記錄這次計算的值
-    lastCalculatedTaxRef.current = calculatedTaxAmountMicros;
+    setLastCalculatedTax(calculatedTaxAmountMicros);
 
     console.log('[SalesQuoteTaxCalculation] Updating shuiJin field', {
       amountMicros: calculatedTaxAmountMicros,
@@ -95,8 +112,14 @@ export const SalesQuoteTaxCalculationEffect = ({
         },
       },
     });
-  }, [total, taxRate, recordId, updateOneRecord, calculateTaxAmount]);
+  }, [
+    total,
+    taxRate,
+    recordId,
+    updateOneRecord,
+    calculateTaxAmount,
+    lastCalculatedTax,
+  ]);
 
   return null;
 };
-

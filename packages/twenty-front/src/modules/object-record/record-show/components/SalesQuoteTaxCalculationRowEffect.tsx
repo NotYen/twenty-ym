@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';

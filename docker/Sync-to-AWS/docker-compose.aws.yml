@@ -1,0 +1,116 @@
+name: Y-CRM-Company-docker
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: Y-CRM-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./backups/postgres/db-all.sql:/docker-entrypoint-initdb.d/db-all.sql:ro
+
+  postgres-seed-once:
+    image: postgres:16-alpine
+    container_name: Y-CRM-postgres-seed-once
+    depends_on:
+      postgres:
+        condition: service_started
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ./backups/postgres/db-all.sql:/backups/db-all.sql:ro
+      - postgres-seed-temp:/var/lib/postgresql/data
+    command: >
+      sh -c '
+        echo "[seed] Waiting for postgres...";
+        until pg_isready -h postgres -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" >/dev/null 2>&1; do sleep 1; done;
+        echo "[seed] Checking for core schema...";
+        if psql -h postgres -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -tAc "SELECT 1 FROM pg_namespace WHERE nspname = '\''core'\'';" | grep -q 1; then
+          echo "[seed] Core schema already present. Skipping import.";
+        else
+          echo "[seed] Core schema missing. Importing db-all.sql...";
+          psql -h postgres -U "$${POSTGRES_USER}" -d "$${POSTGRES_DB}" -f /backups/db-all.sql;
+          echo "[seed] Import completed.";
+        fi
+      '
+    restart: "no"
+
+  redis:
+    image: redis:7-alpine
+    container_name: Y-CRM-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/data
+      - ./backups/redis/dump.rdb:/seed/dump.rdb:ro
+    command: >
+      sh -c '
+        if [ ! -f /data/dump.rdb ]; then
+          cp /seed/dump.rdb /data/dump.rdb;
+        fi;
+        exec redis-server
+      '
+
+  backend:
+    # 使用 Docker Hub 的映像
+    image: ycrm/y-crm:backend-20251112-amd64
+    container_name: Y-CRM-backend
+    depends_on:
+      postgres:
+        condition: service_started
+      postgres-seed-once:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+    env_file:
+      - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+    ports:
+      - "${BACKEND_PORT:-8867}:8867"
+
+  worker:
+    # Worker 使用和 Backend 相同的映像，只是執行不同的命令
+    image: ycrm/y-crm:backend-20251112-amd64
+    container_name: Y-CRM-worker
+    depends_on:
+      postgres:
+        condition: service_started
+      postgres-seed-once:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+    env_file:
+      - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+    working_dir: /app/packages/twenty-server
+    command: ["node", "dist/src/queue-worker/queue-worker.js"]
+
+  frontend:
+    # 使用 Docker Hub 的映像（working 版本：從本地正確構建產物創建）
+    image: ycrm/y-crm:frontend-20251113-working-amd64
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-8866}:80"
+    container_name: Y-CRM-frontend
+    env_file:
+      - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+
+volumes:
+  postgres-data:
+  redis-data:
+  postgres-seed-temp:
+

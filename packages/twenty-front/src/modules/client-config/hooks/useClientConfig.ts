@@ -24,6 +24,7 @@ import { sentryConfigState } from '@/client-config/states/sentryConfigState';
 import { supportChatState } from '@/client-config/states/supportChatState';
 import { type ClientConfig } from '@/client-config/types/ClientConfig';
 import { domainConfigurationState } from '@/domain-manager/states/domainConfigurationState';
+import { backendImageVersionState } from '@/client-config/states/backendImageVersionState';
 import { useCallback } from 'react';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { clientConfigApiStatusState } from '../states/clientConfigApiStatusState';
@@ -66,6 +67,8 @@ export const useClientConfig = (): UseClientConfigResult => {
   const setChromeExtensionId = useSetRecoilState(chromeExtensionIdState);
 
   const setApiConfig = useSetRecoilState(apiConfigState);
+
+  const setBackendImageVersion = useSetRecoilState(backendImageVersionState);
 
   const setCanManageFeatureFlags = useSetRecoilState(
     canManageFeatureFlagsState,
@@ -141,6 +144,7 @@ export const useClientConfig = (): UseClientConfigResult => {
         magicLink: false,
         sso: clientConfig.authProviders.sso,
       });
+      setBackendImageVersion(clientConfig.backendImageVersion ?? undefined);
       setAiModels(clientConfig.aiModels || []);
       setIsAnalyticsEnabled(clientConfig.analyticsEnabled);
       setIsDeveloperDefaultSignInPrefilled(clientConfig.signInPrefilled);
@@ -194,6 +198,7 @@ export const useClientConfig = (): UseClientConfigResult => {
         isErrored: true,
         error,
       }));
+      setBackendImageVersion(undefined);
     }
   }, [
     setAiModels,
@@ -217,6 +222,7 @@ export const useClientConfig = (): UseClientConfigResult => {
     setIsImapSmtpCaldavEnabled,
     setIsMultiWorkspaceEnabled,
     setIsEmailingDomainsEnabled,
+    setBackendImageVersion,
     setLabPublicFeatureFlags,
     setMicrosoftCalendarEnabled,
     setMicrosoftMessagingEnabled,

@@ -5,6 +5,7 @@ import { useRecoilComponentCallbackState } from '@/ui/utilities/state/component-
 import { useEffect, type RefObject } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
+import { logDebug } from '~/utils/logDebug';
 
 const CLICK_OUTSIDE_DEBUG_MODE = false;
 
@@ -121,8 +122,7 @@ export const useListenClickOutside = <T extends Element>({
           !isClickedOnExcluded;
 
         if (CLICK_OUTSIDE_DEBUG_MODE) {
-          // eslint-disable-next-line no-console
-          console.log('click outside compare ref', {
+          logDebug('click outside compare ref', {
             listenerId,
             shouldTrigger,
             clickedOnAtLeastOneRef,

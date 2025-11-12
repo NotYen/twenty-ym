@@ -18,6 +18,8 @@ import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { getDeleteOneRecordMutationResponseField } from '@/object-record/utils/getDeleteOneRecordMutationResponseField';
 import { isNull } from '@sniptt/guards';
 import { isDefined } from 'twenty-shared/utils';
+import { logDebug } from '~/utils/logDebug';
+import { logError } from '~/utils/logError';
 
 type useDeleteOneRecordProps = {
   objectNameSingular: string;
@@ -53,15 +55,15 @@ export const useDeleteOneRecord = ({
 
   const deleteOneRecord = useCallback(
     async (idToDelete: string) => {
-      console.log('=== useDeleteOneRecord Debug ===');
-      console.log('1. 开始删除记录, ID:', idToDelete);
-      console.log('2. objectNameSingular:', objectNameSingular);
+      logDebug('=== useDeleteOneRecord Debug ===');
+      logDebug('1. 开始删除记录, ID:', idToDelete);
+      logDebug('2. objectNameSingular:', objectNameSingular);
 
       const cachedRecord = getRecordFromCache(
         idToDelete,
         apolloCoreClient.cache,
       );
-      console.log('3. cachedRecord:', cachedRecord);
+      logDebug('3. cachedRecord:', cachedRecord);
 
       const cachedRecordNode = getRecordNodeFromRecord<ObjectRecord>({
         record: cachedRecord,
@@ -69,7 +71,7 @@ export const useDeleteOneRecord = ({
         objectMetadataItems,
         computeReferences: false,
       });
-      console.log('4. cachedRecordNode:', cachedRecordNode);
+      logDebug('4. cachedRecordNode:', cachedRecordNode);
 
       const currentTimestamp = new Date().toISOString();
       const computedOptimisticRecord = {
@@ -114,7 +116,7 @@ export const useDeleteOneRecord = ({
         });
       }
 
-      console.log('5. 发送 GraphQL delete mutation...');
+      logDebug('5. 发送 GraphQL delete mutation...');
       const deletedRecord = await apolloCoreClient
         .mutate({
           mutation: deleteOneRecordMutation,
@@ -122,10 +124,10 @@ export const useDeleteOneRecord = ({
             idToDelete: idToDelete,
           },
           update: (cache, { data }) => {
-            console.log('6. Mutation update callback, data:', data);
+            logDebug('6. Mutation update callback, data:', data);
             const record = data?.[mutationResponseField];
             if (!isDefined(record) || !shouldHandleOptimisticCache) {
-              console.log(
+              logDebug(
                 '7. 跳过 cache 更新, record:',
                 record,
                 'shouldHandle:',
@@ -134,7 +136,7 @@ export const useDeleteOneRecord = ({
               return;
             }
 
-            console.log('8. 触发 optimistic effect...');
+            logDebug('8. 触发 optimistic effect...');
             triggerUpdateRecordOptimisticEffect({
               cache,
               objectMetadataItem,
@@ -147,9 +149,9 @@ export const useDeleteOneRecord = ({
           },
         })
         .catch((error: ApolloError) => {
-          console.error('9. Delete mutation 失败:', error);
-          console.error('   - Message:', error.message);
-          console.error('   - GraphQL Errors:', error.graphQLErrors);
+          logError('9. Delete mutation 失败:', error);
+          logError('   - Message:', error.message);
+          logError('   - GraphQL Errors:', error.graphQLErrors);
           if (!shouldHandleOptimisticCache) {
             throw error;
           }
@@ -182,15 +184,15 @@ export const useDeleteOneRecord = ({
           throw error;
         });
 
-      console.log('10. Refetching aggregate queries...');
+      logDebug('10. Refetching aggregate queries...');
       await refetchAggregateQueries();
 
-      console.log('11. 注册删除操作...');
+      logDebug('11. 注册删除操作...');
       registerObjectOperation(objectNameSingular, {
         type: 'delete-one',
       });
 
-      console.log(
+      logDebug(
         '12. 删除完成！返回结果:',
         deletedRecord.data?.[mutationResponseField],
       );

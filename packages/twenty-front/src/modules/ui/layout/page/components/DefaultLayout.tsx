@@ -23,7 +23,7 @@ import { useScreenSize } from 'twenty-ui/utilities';
 import { SignInSuccessEffect } from '@/auth/sign-in-up/components/SignInSuccessEffect';
 
 const StyledLayout = styled.div`
-  background: ${({ theme }) => theme.background.noisy};
+  background: transparent;
   display: flex;
   flex-direction: column;
   height: 100dvh;
@@ -68,13 +68,7 @@ export const DefaultLayout = () => {
 
   return (
     <>
-      <Global
-        styles={css`
-          body {
-            background: ${theme.background.tertiary};
-          }
-        `}
-      />
+      {/* 移除 body background，改由 BaseThemeProvider 統一管理 workspace 背景 */}
       <StyledLayout>
         <AppErrorBoundary FallbackComponent={AppFullScreenErrorFallback}>
           <InformationBannerIsImpersonating />

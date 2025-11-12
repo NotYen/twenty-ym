@@ -47,6 +47,9 @@ RUN yarn nx build twenty-server --configuration=production
 # =====================================
 FROM node:20-bookworm
 
+ARG BACKEND_IMAGE_VERSION=dev
+ENV BACKEND_IMAGE_VERSION=${BACKEND_IMAGE_VERSION}
+
 WORKDIR /app
 
 # 從構建階段複製所有內容（包含 node_modules、構建產物）

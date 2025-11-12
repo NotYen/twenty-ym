@@ -4,7 +4,7 @@ import { TabList } from '@/ui/layout/tab-list/components/TabList';
 import { t } from '@lingui/core/macro';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
-import { IconFlask, IconRocket } from 'twenty-ui/display';
+import { IconFlask, IconInfoCircle, IconRocket } from 'twenty-ui/display';
 
 import { SettingsReleasesTabContent } from './components';
 import { SETTINGS_RELEASES_TABS, SETTINGS_RELEASES_TABS_ID } from './constants';
@@ -20,6 +20,11 @@ export const SettingsReleases = () => {
       id: SETTINGS_RELEASES_TABS.LAB,
       title: t`Lab`,
       Icon: IconFlask,
+    },
+    {
+      id: SETTINGS_RELEASES_TABS.VERSIONS,
+      title: t`Version info`,
+      Icon: IconInfoCircle,
     },
   ];
 

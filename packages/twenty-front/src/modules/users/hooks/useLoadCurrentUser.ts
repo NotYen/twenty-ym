@@ -22,6 +22,7 @@ import {
 } from '~/generated-metadata/graphql';
 import { getWorkspaceUrl } from '~/utils/getWorkspaceUrl';
 import { dynamicActivate } from '~/utils/i18n/dynamicActivate';
+import { logDebug } from '~/utils/logDebug';
 
 export const useLoadCurrentUser = () => {
   const setCurrentUser = useSetRecoilState(currentUserState);
@@ -108,6 +109,12 @@ export const useLoadCurrentUser = () => {
     }
 
     const workspace = user.currentWorkspace ?? null;
+
+    logDebug('[👤 LoadCurrentUser] 從 GET_CURRENT_USER 取得 workspace:', {
+      workspaceId: workspace?.id,
+      backgroundImage: workspace?.backgroundImage,
+      backgroundImageSettings: workspace?.backgroundImageSettings,
+    });
 
     setCurrentWorkspace(workspace);
 

@@ -2,10 +2,14 @@
 
 echo "Injecting runtime environment variables into index.html..."
 
+: "${REACT_APP_SERVER_BASE_URL:=http://localhost:3000}"
+: "${FRONTEND_IMAGE_VERSION:=dev}"
+
 CONFIG_BLOCK=$(cat << EOF
     <script id="twenty-env-config">
       window._env_ = {
-        REACT_APP_SERVER_BASE_URL: "$REACT_APP_SERVER_BASE_URL"
+        REACT_APP_SERVER_BASE_URL: "$REACT_APP_SERVER_BASE_URL",
+        FRONTEND_IMAGE_VERSION: "$FRONTEND_IMAGE_VERSION"
       };
     </script>
     <!-- END: Twenty Config -->

@@ -13,16 +13,9 @@ const StyledLayout = styled.div`
 `;
 
 export const BlankLayout = () => {
-  const theme = useTheme();
   return (
     <>
-      <Global
-        styles={css`
-          body {
-            background: ${theme.background.tertiary};
-          }
-        `}
-      />
+      {/* 移除 body background，改由 BaseThemeProvider 統一管理 workspace 背景 */}
       <StyledLayout>
         <Outlet />
       </StyledLayout>

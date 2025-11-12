@@ -1506,6 +1506,11 @@ msgstr "返回"
 msgid "Back to content"
 msgstr "返回內容"
 
+#. js-lingui-id: SJqwIZ
+#: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+msgid "Backend image version"
+msgstr "後端映像版本"
+
 #. js-lingui-id: NgFKo1
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
 msgid "between {startMonth} and {endMonth}"
@@ -4372,6 +4377,11 @@ msgstr "法語"
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
 msgid "from {startDay} to {endDay}"
 msgstr "從 {startDay} 到 {endDay} 之間"
+
+#. js-lingui-id: +xSn1O
+#: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+msgid "Frontend image version"
+msgstr "前端映像版本"
 
 #. js-lingui-id: scmRyR
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -9180,6 +9190,11 @@ msgstr "使用 authenticator 應用和瀏覽器擴充功能，如 1Password、Au
 msgid "Use our API or add your first {objectLabel} manually"
 msgstr "使用我們的 API 或手動添加您的第一個 {objectLabel}"
 
+#. js-lingui-id: wb/NPd
+#: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+msgid "Use these values to confirm that your frontend and backend containers are running the expected Docker images."
+msgstr "使用這些數值確認前端與後端容器執行的是預期的 Docker 映像。"
+
 #. js-lingui-id: 7PzzBU
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
 #: src/pages/settings/SettingsProfile.tsx
@@ -9299,6 +9314,11 @@ msgstr "驗證應用上的代碼"
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx
 msgid "Version"
 msgstr "版本"
+
+#. js-lingui-id: 0Pi3Wn
+#: src/pages/settings/releases/SettingsReleases.tsx
+msgid "Version info"
+msgstr "版本資訊"
 
 #. js-lingui-id: IHIWR4
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx

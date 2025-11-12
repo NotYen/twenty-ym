@@ -39,7 +39,7 @@ const StyledLeftContainer = styled.div<LeftContainerProps>`
 `;
 
 export const PageBody = ({ children }: PageBodyProps) => (
-  <StyledMainContainer>
+  <StyledMainContainer data-component="page-body">
     <StyledLeftContainer>
       <PagePanel>{children}</PagePanel>
     </StyledLeftContainer>

@@ -9,6 +9,7 @@ import { getImageAbsoluteURI } from 'twenty-shared/utils';
 import { type ColorScheme } from 'twenty-ui/input';
 import { THEME_DARK, THEME_LIGHT, ThemeContextProvider } from 'twenty-ui/theme';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
+import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
 
 type BaseThemeProviderProps = {
@@ -41,11 +42,18 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
     const backgroundImage = currentWorkspace?.backgroundImage;
     const settings = currentWorkspace?.backgroundImageSettings;
 
+    logDebug('[🎨 BaseThemeProvider] useEffect 觸發', {
+      backgroundImage,
+      settings,
+      currentWorkspaceId: currentWorkspace?.id,
+    });
+
     if (
       backgroundImage !== null &&
       backgroundImage !== undefined &&
       typeof backgroundImage === 'string'
     ) {
+      logDebug('[🎨 BaseThemeProvider] ✅ 背景圖片存在，準備應用...');
       // 將相對路徑轉換為絕對 URL（參考 ImageInput 組件）
       const absoluteBackgroundImageUrl = getImageAbsoluteURI({
         imageUrl: backgroundImage,
@@ -95,35 +103,70 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
         document.head.appendChild(styleElement);
       }
 
+      document.body.dataset.workspaceBackground = 'true';
+      const panelGlassBackground =
+        theme.background.transparent.light ?? 'rgba(255, 255, 255, 0.88)';
+      const panelGlassBorder = theme.border.color.medium;
+
       // 在 body::before 設置背景圖片（最佳實踐）
+      // 同時給 body 設置基礎背景色，確保內容可見
       styleElement.textContent = `
+        body {
+          background-color: ${theme.background.noisy} !important;
+          position: relative;
+        }
+
         body::before {
-          content: '';
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          z-index: -1;
-          pointer-events: none;
-          background-image: url('${absoluteBackgroundImageUrl}');
-          background-size: ${backgroundSize};
-          background-position: ${positionX}% ${positionY}%;
-          background-repeat: ${repeat};
-          background-attachment: fixed;
-          opacity: ${opacity};
-          will-change: opacity, background-position;
+          content: '' !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          bottom: 0 !important;
+          z-index: 0 !important;
+          pointer-events: none !important;
+          background-image: url('${absoluteBackgroundImageUrl}') !important;
+          background-size: ${backgroundSize} !important;
+          background-position: ${positionX}% ${positionY}% !important;
+          background-repeat: ${repeat} !important;
+          background-attachment: fixed !important;
+          opacity: ${opacity} !important;
+          will-change: opacity, background-position !important;
+        }
+
+        /* 確保所有主要內容容器在背景之上 */
+        body > #root {
+          position: relative !important;
+          z-index: 1 !important;
+          background: transparent !important;
+        }
+
+        body[data-workspace-background='true'] [data-component='page-body'] {
+          background: transparent !important;
+        }
+
+        body[data-workspace-background='true'] [data-component='page-panel'] {
+          background: ${panelGlassBackground} !important;
+          border-color: ${panelGlassBorder} !important;
+          backdrop-filter: blur(6px);
         }
       `;
 
-      // 預加載圖片以提升性能
-      const img = new Image();
-      img.src = absoluteBackgroundImageUrl;
-      img.onerror = () =>
-        logError(
-          `[BaseThemeProvider] Failed to preload background image: ${absoluteBackgroundImageUrl}`,
-        );
+      logDebug(
+        '[🎨 BaseThemeProvider] ✅ CSS 已注入，absoluteBackgroundImageUrl:',
+        absoluteBackgroundImageUrl,
+      );
+      logDebug('[🎨 BaseThemeProvider] 📐 背景設置:', {
+        opacity,
+        scale,
+        backgroundSize,
+        position: `${positionX}% ${positionY}%`,
+        repeat,
+      });
     } else {
+      logDebug(
+        '[🎨 BaseThemeProvider] ❌ 背景圖片不存在或格式錯誤，移除 CSS',
+      );
       // 移除全局 CSS 樣式
       const styleElement = document.getElementById(
         'workspace-background-style',
@@ -131,6 +174,7 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
       if (styleElement !== null) {
         styleElement.remove();
       }
+      delete document.body.dataset.workspaceBackground;
     }
 
     // 清理函數
@@ -139,6 +183,7 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
+    currentWorkspace?.id, // 加上 workspace id，確保 workspace 載入時觸發
     currentWorkspace?.backgroundImage,
     currentWorkspace?.backgroundImageSettings,
   ]);

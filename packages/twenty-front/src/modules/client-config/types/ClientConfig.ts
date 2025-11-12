@@ -11,6 +11,7 @@ import {
 
 export type ClientConfig = {
   appVersion?: string;
+  backendImageVersion?: string | null;
   aiModels: Array<ClientAiModelConfig>;
   analyticsEnabled: boolean;
   api: ApiConfig;

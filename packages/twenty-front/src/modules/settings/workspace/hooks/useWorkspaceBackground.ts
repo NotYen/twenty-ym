@@ -5,9 +5,9 @@ import { useRecoilState } from 'recoil';
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { UPLOAD_WORKSPACE_BACKGROUND } from '@/workspace/graphql/mutations/uploadWorkspaceBackground';
+import { buildSignedPath } from 'twenty-shared/utils';
 import { useUpdateWorkspaceMutation } from '~/generated-metadata/graphql';
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
-import { logError } from '~/utils/logError';
 
 export type BackgroundSettings = {
   opacity: number;
@@ -46,14 +46,13 @@ export const useWorkspaceBackground = () => {
     }
 
     try {
-      // 簡單驗證（符合 Twenty 官方模式）
+      // 簡單驗證
       if (!file.type.startsWith('image/')) {
         const errorMsg = '請上傳圖片文件';
         enqueueErrorSnackBar({ message: errorMsg });
         throw new Error(errorMsg);
       }
 
-      // 文件大小限制檢查
       const fileSizeMB = file.size / (1024 * 1024);
       if (fileSizeMB > 10) {
         const errorMsg = `圖片文件過大（${fileSizeMB.toFixed(1)}MB）。請選擇小於 10MB 的圖片。`;
@@ -61,37 +60,44 @@ export const useWorkspaceBackground = () => {
         throw new Error(errorMsg);
       }
 
-      // 上傳（後端 Sharp 會自動優化）
-      // ⭐ 參考 Twenty 官方 Logo 上傳模式：添加 refetchQueries 確保 Apollo 缓存刷新
+      // 上傳圖片
       const result = await uploadBackgroundMutation({
         variables: { file },
-        refetchQueries: ['GetCurrentUser'],
-        awaitRefetchQueries: true,
       });
 
       const signedFile = result?.data?.uploadWorkspaceBackground;
 
-      if (!signedFile) {
-        logError(
-          '[useWorkspaceBackground] Upload failed: no signed file returned',
-        );
+      if (!signedFile || !signedFile.path) {
         throw new Error('Upload failed');
       }
 
-      // ⭐ 直接使用上傳返回的簽名路徑，不需要再次調用 updateWorkspace
-      // 這樣可以確保：
-      // 1. 減少不必要的 API 調用
-      // 2. 狀態更新更直接可靠
-      // 3. refetchQueries 確保所有相關查詢的缓存都被刷新
-      setCurrentWorkspace({
-        ...currentWorkspace,
-        backgroundImage: signedFile,
+      const signedBackgroundUrl = buildSignedPath(signedFile);
+
+      // 更新後端資料庫（儲存 path，不是 signedUrl）
+      await updateWorkspace({
+        variables: {
+          input: {
+            backgroundImage: signedFile.path,
+          } as any,
+        },
+        // ⭐ 確保 Apollo Cache 更新
+        refetchQueries: ['GetCurrentUser'],
+        awaitRefetchQueries: true,
+      });
+
+      // ⭐ 在後端更新完成後，再更新 Recoil 狀態
+      setCurrentWorkspace((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev,
+          backgroundImage: signedBackgroundUrl,
+        };
       });
 
       setErrorMessage(null);
       enqueueSuccessSnackBar({ message: '背景圖片上傳成功' });
 
-      return signedFile;
+      return signedBackgroundUrl;
     } catch (error) {
       const errorMsg =
         error instanceof Error ? error.message : '上傳背景圖片時發生錯誤';
@@ -113,11 +119,16 @@ export const useWorkspaceBackground = () => {
             backgroundImageSettings: settings,
           } as any,
         },
-      });
-
-      setCurrentWorkspace({
-        ...currentWorkspace,
-        backgroundImageSettings: settings,
+        onCompleted: () => {
+          // ⭐ 使用函數式更新，確保基於最新狀態
+          setCurrentWorkspace((prev) => {
+            if (!prev) return prev;
+            return {
+              ...prev,
+              backgroundImageSettings: settings,
+            };
+          });
+        },
       });
 
       setErrorMessage(null);
@@ -143,12 +154,17 @@ export const useWorkspaceBackground = () => {
             backgroundImageSettings: null,
           } as any,
         },
-      });
-
-      setCurrentWorkspace({
-        ...currentWorkspace,
-        backgroundImage: null,
-        backgroundImageSettings: null,
+        onCompleted: () => {
+          // ⭐ 使用函數式更新，確保基於最新狀態
+          setCurrentWorkspace((prev) => {
+            if (!prev) return prev;
+            return {
+              ...prev,
+              backgroundImage: null,
+              backgroundImageSettings: null,
+            };
+          });
+        },
       });
 
       setErrorMessage(null);
@@ -167,7 +183,6 @@ export const useWorkspaceBackground = () => {
     }
 
     try {
-      // 重置設定為預設值，同時刪除背景圖片
       await updateWorkspace({
         variables: {
           input: {
@@ -175,12 +190,17 @@ export const useWorkspaceBackground = () => {
             backgroundImageSettings: DEFAULT_BACKGROUND_SETTINGS,
           } as any,
         },
-      });
-
-      setCurrentWorkspace({
-        ...currentWorkspace,
-        backgroundImage: null,
-        backgroundImageSettings: DEFAULT_BACKGROUND_SETTINGS,
+        onCompleted: () => {
+          // ⭐ 使用函數式更新，確保基於最新狀態
+          setCurrentWorkspace((prev) => {
+            if (!prev) return prev;
+            return {
+              ...prev,
+              backgroundImage: null,
+              backgroundImageSettings: DEFAULT_BACKGROUND_SETTINGS,
+            };
+          });
+        },
       });
 
       setErrorMessage(null);
