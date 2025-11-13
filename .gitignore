@@ -62,3 +62,14 @@ twenty.log
 twenty_backend.log
 twenty_frontend.log
 twenty_worker.log
+
+# Local secret env files (not tracked)
+docker/env.aws
+docker/env.aws.local
+docker/env.local
+docker/env.local.local
+docker/Sync-to-AWS/.env
+docker/Sync-to-AWS/.env.local
+docker/Sync-to-AWS/.env-aws
+docker/Sync-to-AWS/.env-aws.local
+docker/Sync-to-AWS/history/
