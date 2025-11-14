@@ -1,4 +1,3 @@
-import { useLayoutEffect } from 'react';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
@@ -155,18 +154,6 @@ export const useAgentChat = (uiMessages: ExtendedUIMessage[]) => {
     );
     setAgentChatUploadedFiles([]);
   };
-
-  useLayoutEffect(() => {
-    if (messages.length === 0 || !scrollWrapperHTMLElement) {
-      return;
-    }
-
-    const animationFrame = requestAnimationFrame(scrollToBottom);
-
-    return () => {
-      cancelAnimationFrame(animationFrame);
-    };
-  }, [messages.length, scrollWrapperHTMLElement]);
 
   return {
     handleInputChange: (value: string) => setAgentChatInput(value),
