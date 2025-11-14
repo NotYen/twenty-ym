@@ -5,6 +5,7 @@ import fs from 'fs';
 
 import bytes from 'bytes';
 import { useContainer } from 'class-validator';
+import compression from 'compression';
 import session from 'express-session';
 import { graphqlUploadExpress } from 'graphql-upload';
 
@@ -38,6 +39,13 @@ const bootstrap = async () => {
   });
   const logger = app.get(LoggerService);
   const twentyConfigService = app.get(TwentyConfigService);
+
+  // 壓縮 HTTP 回應，加速 API 與 GraphQL 傳輸
+  app.use(
+    compression({
+      threshold: 1024,
+    }),
+  );
 
   app.use(session(getSessionStorageOptions(twentyConfigService)));
 

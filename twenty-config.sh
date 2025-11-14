@@ -97,7 +97,7 @@ export EMAIL_SMTP_PORT="587"
 export EMAIL_SMTP_USER="notyenyu@gmail.com"
 export EMAIL_SMTP_PASSWORD="dkzmbigvgdlbxhof"
 export EMAIL_FROM_ADDRESS="notyenyu@gmail.com"
-export EMAIL_FROM_NAME="Twenty_CRM"
+export EMAIL_FROM_NAME="Y-CRM"
 
 # ==========================================
 # Google OAuth 配置（Gmail 和 Calendar 整合）
