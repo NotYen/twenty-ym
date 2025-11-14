@@ -62,7 +62,7 @@ services:
 
   backend:
     # 使用 Docker Hub 的映像
-    image: ycrm/y-crm:backend-20251112-amd64
+    image: ycrm/y-crm:backend-b_202511150500_v1_aws_image
     container_name: Y-CRM-backend
     depends_on:
       postgres:
@@ -80,7 +80,7 @@ services:
 
   worker:
     # Worker 使用和 Backend 相同的映像，只是執行不同的命令
-    image: ycrm/y-crm:backend-20251112-amd64
+    image: ycrm/y-crm:backend-b_202511150500_v1_aws_image
     container_name: Y-CRM-worker
     depends_on:
       postgres:
@@ -98,12 +98,12 @@ services:
 
   frontend:
     # 使用 Docker Hub 的映像（working 版本：從本地正確構建產物創建）
-    image: ycrm/y-crm:frontend-20251113-working-amd64
+    image: ycrm/y-crm:frontend-f_202511150500_v1_aws_image
+    container_name: Y-CRM-frontend
     depends_on:
       - backend
     ports:
       - "${FRONTEND_PORT:-8866}:80"
-    container_name: Y-CRM-frontend
     env_file:
       - ./.env
     environment:
