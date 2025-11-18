@@ -15,6 +15,7 @@ type QuoteLineItemData = {
   discount?: number | null;
   amount: {
     amountMicros: number;
+    currencyCode?: string;
   };
 };
 
@@ -34,13 +35,16 @@ type QuoteData = {
   validUntil: string;
   subtotal: {
     amountMicros: number;
+    currencyCode?: string;
   };
   taxRate?: number | null;
   taxAmount?: {
     amountMicros: number;
+    currencyCode?: string;
   } | null;
   total: {
     amountMicros: number;
+    currencyCode?: string;
   };
   status: string;
   terms?: string | null;

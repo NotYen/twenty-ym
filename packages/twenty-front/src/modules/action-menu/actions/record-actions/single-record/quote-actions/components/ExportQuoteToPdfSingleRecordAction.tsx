@@ -1,6 +1,7 @@
 import { Action } from '@/action-menu/actions/components/Action';
 import { useSelectedRecordIdOrThrow } from '@/action-menu/actions/record-actions/single-record/hooks/useSelectedRecordIdOrThrow';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
+import { useQuoteCalculations } from '@/object-record/hooks/useQuoteCalculations';
 import { recordStoreFamilyState } from '@/object-record/record-store/states/recordStoreFamilyState';
 import type { ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
@@ -56,9 +57,69 @@ type QuoteLineItemRecord = ObjectRecord & {
   };
 };
 
+
+const normalizeTaxRate = (value?: number | null): number => {
+  if (!value || Number.isNaN(Number(value))) {
+    return 0;
+  }
+
+  const numericValue = Number(value);
+
+  if (numericValue <= 0) {
+    return 0;
+  }
+
+  return numericValue > 1 ? numericValue / 100 : numericValue;
+};
+
+const formatTaxRateForDisplay = (value?: number | null): number => {
+  if (!value || Number.isNaN(Number(value))) {
+    return 0;
+  }
+
+  const numericValue = Number(value);
+
+  if (numericValue <= 0) {
+    return 0;
+  }
+
+  return numericValue > 1 ? numericValue : numericValue * 100;
+};
+
+const resolveCurrencyCode = ({
+  quote,
+  lineItems,
+}: {
+  quote: QuoteRecord;
+  lineItems: QuoteLineItemRecord[] | undefined;
+}): string => {
+  if (quote.xiaoJi?.currencyCode) {
+    return quote.xiaoJi.currencyCode;
+  }
+
+  if (quote.zongJi?.currencyCode) {
+    return quote.zongJi.currencyCode;
+  }
+
+  if (quote.shuiJin?.currencyCode) {
+    return quote.shuiJin.currencyCode;
+  }
+
+  const firstLineItemCurrency = lineItems?.find(
+    (item) => item?.danJia?.currencyCode,
+  )?.danJia?.currencyCode;
+
+  if (firstLineItemCurrency) {
+    return firstLineItemCurrency;
+  }
+
+  return 'USD';
+};
+
 export const ExportQuoteToPdfSingleRecordAction = () => {
   const recordId = useSelectedRecordIdOrThrow();
   const { enqueueSuccessSnackBar, enqueueErrorSnackBar } = useSnackBar();
+  const { calculateLineItemAmount, calculateQuoteAmounts } = useQuoteCalculations();
 
   // 获取 Quote 记录
   const selectedQuote = useRecoilValue(
@@ -115,6 +176,62 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
 
     try {
       logDebug('10. Preparing PDF data...');
+
+      const currencyCode = resolveCurrencyCode({
+        quote: selectedQuote,
+        lineItems,
+      });
+
+      const normalizedLineItems = (lineItems || []).map((item) => {
+        const quantity = Number(item.shuLiang ?? 0);
+        const unitPriceMicros = item.danJia?.amountMicros ?? 0;
+        const discount = Number(item.zheKou ?? 0);
+        const calculatedAmountMicros = calculateLineItemAmount(
+          quantity,
+          unitPriceMicros,
+          discount,
+        );
+
+        return {
+          id: item.id,
+          productName: item.chanPinMingCheng,
+          description: item.baoJiaDanXiXiangMiaoShu,
+          quantity,
+          unitPrice: item.danJia,
+          discount,
+          amount: {
+            amountMicros: calculatedAmountMicros,
+          },
+        };
+      });
+
+      const hasLineItems = normalizedLineItems.length > 0;
+
+      const rawTaxRate = selectedQuote.shuiLu ?? 0;
+      const normalizedTaxRate = normalizeTaxRate(rawTaxRate);
+      const displayTaxRate = formatTaxRateForDisplay(rawTaxRate);
+
+      const recalculatedTotals = calculateQuoteAmounts(
+        normalizedLineItems.map((item) => ({
+          amount: {
+            amountMicros: item.amount.amountMicros,
+          },
+        })),
+        normalizedTaxRate,
+      );
+
+      const subtotalMicros = hasLineItems
+        ? recalculatedTotals.subtotalMicros
+        : selectedQuote.xiaoJi?.amountMicros ?? 0;
+
+      const taxAmountMicros = hasLineItems
+        ? recalculatedTotals.taxAmountMicros
+        : selectedQuote.shuiJin?.amountMicros ?? 0;
+
+      const totalMicros = hasLineItems
+        ? recalculatedTotals.totalMicros
+        : selectedQuote.zongJi?.amountMicros ?? 0;
+
       const pdfData = {
         quote: {
           quoteNumber: selectedQuote.baoJiaDanHao,
@@ -123,23 +240,24 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
           contact: selectedQuote.contact,
           issueDate: selectedQuote.baoJiaRiQi,
           validUntil: selectedQuote.jieZhiRiQi,
-          subtotal: selectedQuote.xiaoJi,
-          taxRate: selectedQuote.shuiLu,
-          taxAmount: selectedQuote.shuiJin,
-          total: selectedQuote.zongJi,
+          subtotal: {
+            amountMicros: subtotalMicros,
+            currencyCode,
+          },
+          taxRate: displayTaxRate,
+          taxAmount: {
+            amountMicros: taxAmountMicros,
+            currencyCode,
+          },
+          total: {
+            amountMicros: totalMicros,
+            currencyCode,
+          },
           status: selectedQuote.baoJiaDanZhuangTai,
           terms: selectedQuote.jiaoYiTiaoJian,
           notes: selectedQuote.beiZhu,
         },
-        lineItems: (lineItems || []).map((item) => ({
-          id: item.id,
-          productName: item.chanPinMingCheng,
-          description: item.baoJiaDanXiXiangMiaoShu,
-          quantity: item.shuLiang,
-          unitPrice: item.danJia,
-          discount: item.zheKou,
-          amount: item.jinE,
-        })),
+        lineItems: normalizedLineItems,
         language: 'zh' as const,
       };
       logDebug('11. PDF Data:', pdfData);
