@@ -30,8 +30,12 @@ export const serializeDefaultValue = (
   }
 
   // Static default values
-  if (typeof defaultValue === 'string' && defaultValue.startsWith("'")) {
-    return defaultValue;
+  if (typeof defaultValue === 'string') {
+    if (defaultValue.startsWith("'")) {
+      return defaultValue;
+    }
+
+    return `'${defaultValue}'`;
   }
 
   if (typeof defaultValue === 'number') {

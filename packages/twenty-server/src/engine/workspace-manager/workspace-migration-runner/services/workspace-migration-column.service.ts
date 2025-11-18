@@ -151,6 +151,17 @@ export class WorkspaceMigrationColumnService {
         continue;
       }
 
+      const columnAlreadyExists = await this.doesColumnExist({
+        queryRunner,
+        schemaName,
+        tableName,
+        columnName: createColumnMigration.columnName,
+      });
+
+      if (columnAlreadyExists) {
+        continue;
+      }
+
       if (isDefined(createColumnMigration.enum)) {
         const enumName = computePostgresEnumName({
           tableName,
@@ -368,5 +379,31 @@ export class WorkspaceMigrationColumnService {
     );
 
     return foreignKeys[0]?.constraint_name;
+  }
+
+  private async doesColumnExist({
+    queryRunner,
+    schemaName,
+    tableName,
+    columnName,
+  }: {
+    queryRunner: QueryRunner;
+    schemaName: string;
+    tableName: string;
+    columnName: string;
+  }): Promise<boolean> {
+    const result = await queryRunner.query(
+      `
+        SELECT 1
+        FROM information_schema.columns
+        WHERE table_schema = $1
+          AND table_name = $2
+          AND lower(column_name) = lower($3)
+        LIMIT 1
+      `,
+      [schemaName, tableName, columnName],
+    );
+
+    return result.length > 0;
   }
 }

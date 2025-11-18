@@ -45,7 +45,11 @@ export class WorkspaceMigrationEnumService {
     }
 
     const columnDefinition = migrationColumn.alteredColumnDefinition;
-    const tempEnumTypeName = `${oldEnumTypeName}_temp`;
+    const shouldRenameExistingEnumType =
+      this.shouldRenameExistingEnumType(oldEnumTypeName);
+    const tempEnumTypeName = shouldRenameExistingEnumType
+      ? `${oldEnumTypeName}_temp`
+      : null;
     const newEnumTypeName = `${tableName}_${columnDefinition.columnName}_enum`;
     const enumValues =
       columnDefinition.enum?.map((enumValue) => {
@@ -70,12 +74,15 @@ export class WorkspaceMigrationEnumService {
       columnDefinition.columnName,
       oldColumnName,
     );
-    await this.renameEnumType(
-      queryRunner,
-      schemaName,
-      oldEnumTypeName,
-      tempEnumTypeName,
-    );
+
+    if (shouldRenameExistingEnumType && tempEnumTypeName) {
+      await this.renameEnumType(
+        queryRunner,
+        schemaName,
+        oldEnumTypeName,
+        tempEnumTypeName,
+      );
+    }
 
     await queryRunner.addColumn(
       `${schemaName}.${tableName}`,
@@ -107,7 +114,9 @@ export class WorkspaceMigrationEnumService {
       DROP COLUMN "${oldColumnName}"
     `);
     // Drop temp enum type
-    await this.dropOldEnumType(queryRunner, schemaName, tempEnumTypeName);
+    if (shouldRenameExistingEnumType && tempEnumTypeName) {
+      await this.dropOldEnumType(queryRunner, schemaName, tempEnumTypeName);
+    }
   }
 
   private async renameColumn(
@@ -255,5 +264,11 @@ export class WorkspaceMigrationEnumService {
         : result.udt_name;
 
     return enumTypeName;
+  }
+
+  private shouldRenameExistingEnumType(typeName: string): boolean {
+    const nativeTypesToSkip = ['text', 'varchar', 'bpchar'];
+
+    return !nativeTypesToSkip.includes(typeName);
   }
 }

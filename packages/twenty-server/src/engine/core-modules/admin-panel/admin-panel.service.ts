@@ -75,36 +75,44 @@ export class AdminPanelService {
         firstName: targetUser.firstName,
         lastName: targetUser.lastName,
       },
-      workspaces: targetUser.userWorkspaces.map((userWorkspace) => ({
-        id: userWorkspace.workspace.id,
-        name: userWorkspace.workspace.displayName ?? '',
-        totalUsers: userWorkspace.workspace.workspaceUsers.length,
-        logo: userWorkspace.workspace.logo
-          ? this.fileService.signFileUrl({
-              url: userWorkspace.workspace.logo,
-              workspaceId: userWorkspace.workspace.id,
-            })
-          : userWorkspace.workspace.logo,
-        allowImpersonation: userWorkspace.workspace.allowImpersonation,
-        workspaceUrls: this.workspaceDomainsService.getWorkspaceUrls({
-          subdomain: userWorkspace.workspace.subdomain,
-          customDomain: userWorkspace.workspace.customDomain,
-          isCustomDomainEnabled: userWorkspace.workspace.isCustomDomainEnabled,
-        }),
-        users: userWorkspace.workspace.workspaceUsers.map((workspaceUser) => ({
-          id: workspaceUser.user.id,
-          email: workspaceUser.user.email,
-          firstName: workspaceUser.user.firstName,
-          lastName: workspaceUser.user.lastName,
-        })),
-        featureFlags: allFeatureFlagKeys.map((key) => ({
-          key,
-          value:
-            userWorkspace.workspace.featureFlags?.find(
-              (flag) => flag.key === key,
-            )?.value ?? false,
-        })) as FeatureFlagEntity[],
-      })),
+      workspaces: targetUser.userWorkspaces.map((userWorkspace) => {
+        const workspaceUsers =
+          userWorkspace.workspace.workspaceUsers.filter(
+            (workspaceUser) => workspaceUser.user !== null,
+          );
+
+        return {
+          id: userWorkspace.workspace.id,
+          name: userWorkspace.workspace.displayName ?? '',
+          totalUsers: workspaceUsers.length,
+          logo: userWorkspace.workspace.logo
+            ? this.fileService.signFileUrl({
+                url: userWorkspace.workspace.logo,
+                workspaceId: userWorkspace.workspace.id,
+              })
+            : userWorkspace.workspace.logo,
+          allowImpersonation: userWorkspace.workspace.allowImpersonation,
+          workspaceUrls: this.workspaceDomainsService.getWorkspaceUrls({
+            subdomain: userWorkspace.workspace.subdomain,
+            customDomain: userWorkspace.workspace.customDomain,
+            isCustomDomainEnabled:
+              userWorkspace.workspace.isCustomDomainEnabled,
+          }),
+          users: workspaceUsers.map((workspaceUser) => ({
+            id: workspaceUser.user.id,
+            email: workspaceUser.user.email,
+            firstName: workspaceUser.user.firstName,
+            lastName: workspaceUser.user.lastName,
+          })),
+          featureFlags: allFeatureFlagKeys.map((key) => ({
+            key,
+            value:
+              userWorkspace.workspace.featureFlags?.find(
+                (flag) => flag.key === key,
+              )?.value ?? false,
+          })) as FeatureFlagEntity[],
+        };
+      }),
     };
   }
 

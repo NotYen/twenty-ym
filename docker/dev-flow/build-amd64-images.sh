@@ -6,6 +6,8 @@ DEV_FLOW_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOCKER_DIR="$(cd "${DEV_FLOW_DIR}/.." && pwd)"
 PROJECT_ROOT="$(cd "${DOCKER_DIR}/.." && pwd)"
 ENV_LOCAL="${DOCKER_DIR}/env.local"
+ENV_AWS="${DOCKER_DIR}/env.aws"
+ENV_AWS_LOCAL="${DOCKER_DIR}/env.aws.local"
 ENV_TARGET="${DOCKER_DIR}/.env"
 
 DEFAULT_DATE="$(date +%Y%m%d)"
@@ -15,6 +17,21 @@ DEFAULT_FRONTEND_VERSION="frontend-${DEFAULT_DATE}-v1-amd64"
 BACKEND_VERSION=""
 FRONTEND_VERSION=""
 PUSH_IMAGES=false
+ENV_SOURCE="aws"
+ENV_SELECTED_FILE=""
+ENV_BACKUP_FILE=""
+cleanup() {
+  if [[ -n "${ENV_BACKUP_FILE}" ]]; then
+    if [[ -f "${ENV_BACKUP_FILE}" ]]; then
+      cp "${ENV_BACKUP_FILE}" "${ENV_TARGET}"
+      rm -f "${ENV_BACKUP_FILE}"
+      echo "🔁 Restored previous .env"
+    fi
+  else
+    rm -f "${ENV_TARGET}"
+  fi
+}
+trap cleanup EXIT
 
 print_usage() {
   cat <<'EOF'
@@ -24,6 +41,7 @@ Options:
   --backend-version <tag>   Set backend image tag (default: backend-YYYYMMDD-v1-amd64)
   --frontend-version <tag>  Set frontend image tag (default: frontend-YYYYMMDD-v1-amd64)
   --push                    Push images to Docker Hub after build
+  --env-source <local|aws>  Which env file to copy to .env before build (default: aws)
   -h, --help                Show this help message
 
 Examples:
@@ -46,6 +64,10 @@ while [[ $# -gt 0 ]]; do
       PUSH_IMAGES=true
       shift
       ;;
+    --env-source)
+      ENV_SOURCE="$2"
+      shift 2
+      ;;
     -h|--help)
       print_usage
       exit 0
@@ -58,15 +80,47 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-if [[ ! -f "${ENV_LOCAL}" ]]; then
-  echo "❌ Missing ${ENV_LOCAL}. Please create it before running this script." >&2
-  exit 1
+select_env_file() {
+  local source="$1"
+  case "${source}" in
+    aws)
+      if [[ -f "${ENV_AWS_LOCAL}" ]]; then
+        ENV_SELECTED_FILE="${ENV_AWS_LOCAL}"
+      elif [[ -f "${ENV_AWS}" ]]; then
+        ENV_SELECTED_FILE="${ENV_AWS}"
+      else
+        echo "❌ Missing ${ENV_AWS_LOCAL} (preferred) and ${ENV_AWS}. Cannot continue." >&2
+        exit 1
+      fi
+      ;;
+    local)
+      if [[ -f "${ENV_LOCAL}" ]]; then
+        ENV_SELECTED_FILE="${ENV_LOCAL}"
+      else
+        echo "❌ Missing ${ENV_LOCAL}. Cannot continue." >&2
+        exit 1
+      fi
+      ;;
+    *)
+      echo "❌ Unknown env source '${source}'. Use 'local' or 'aws'." >&2
+      exit 1
+      ;;
+  esac
+}
+
+select_env_file "${ENV_SOURCE}"
+
+if [[ -f "${ENV_TARGET}" ]]; then
+  ENV_BACKUP_FILE="$(mktemp)"
+  cp "${ENV_TARGET}" "${ENV_BACKUP_FILE}"
+else
+  ENV_BACKUP_FILE=""
 fi
 
 cat <<EOF
-📝 Applying env.local -> .env for build
+📝 Applying $(basename "${ENV_SELECTED_FILE}") -> .env for build (source: ${ENV_SOURCE})
 EOF
-cp "${ENV_LOCAL}" "${ENV_TARGET}"
+cp "${ENV_SELECTED_FILE}" "${ENV_TARGET}"
 
 prompt_for_version() {
   local prompt_message="$1"
@@ -122,6 +176,7 @@ build_frontend() {
       --build-arg BACKEND_URL_PLACEHOLDER="@@SERVER_BASE_URL@@" \
       --build-arg FRONTEND_IMAGE_VERSION="${FRONTEND_VERSION}" \
       --build-arg VITE_IS_DEBUG_MODE=false \
+      --build-arg IS_DEBUG_MODE=false \
       -t "ycrm/y-crm:${FRONTEND_VERSION}" \
       -f docker/frontend/Dockerfile \
       --load \

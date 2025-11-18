@@ -106,6 +106,7 @@ services:
       args:
         BACKEND_URL: ${BACKEND_PUBLIC_URL:-http://118.168.188.27:8867}
         VITE_IS_DEBUG_MODE: ${VITE_IS_DEBUG_MODE:-true}
+        IS_DEBUG_MODE: ${IS_DEBUG_MODE:-true}
         FRONTEND_IMAGE_VERSION: ${FRONTEND_IMAGE_VERSION:-dev}
     depends_on:
       - backend

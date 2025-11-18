@@ -42,9 +42,11 @@ COPY packages/twenty-shared ./packages/twenty-shared
 ARG BACKEND_URL_PLACEHOLDER=@@SERVER_BASE_URL@@
 ARG FRONTEND_IMAGE_VERSION=dev
 ARG VITE_IS_DEBUG_MODE=true
+ARG IS_DEBUG_MODE=true
 ENV REACT_APP_SERVER_BASE_URL=${BACKEND_URL_PLACEHOLDER}
 ENV FRONTEND_IMAGE_VERSION=${FRONTEND_IMAGE_VERSION}
 ENV VITE_IS_DEBUG_MODE=${VITE_IS_DEBUG_MODE}
+ENV IS_DEBUG_MODE=${IS_DEBUG_MODE}
 
 # 構建 twenty-front（production 模式）
 RUN yarn nx build twenty-front --configuration=production --skip-nx-cache
