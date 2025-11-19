@@ -1,0 +1,2 @@
+export const LINE_CHART_MARGIN_RIGHT = 20;
+

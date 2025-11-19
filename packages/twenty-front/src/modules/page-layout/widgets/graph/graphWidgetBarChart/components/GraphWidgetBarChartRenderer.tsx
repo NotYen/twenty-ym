@@ -1,8 +1,9 @@
 import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/ChartSkeletonLoader';
-import { GraphWidgetBarChartHasTooManyGroupsEffect } from '@/page-layout/widgets/graph/graphWidgetBarChart/components/GraphWidgetBarChartHasTooManyGroupsEffect';
+import { GraphWidgetChartHasTooManyGroupsEffect } from '@/page-layout/widgets/graph/components/GraphWidgetChartHasTooManyGroupsEffect';
+import { generateChartAggregateFilterKey } from '@/page-layout/widgets/graph/utils/generateChartAggregateFilterKey';
 import { useGraphBarChartWidgetData } from '@/page-layout/widgets/graph/graphWidgetBarChart/hooks/useGraphBarChartWidgetData';
 import { getEffectiveGroupMode } from '@/page-layout/widgets/graph/graphWidgetBarChart/utils/getEffectiveGroupMode';
-import { lazy, Suspense, useMemo } from 'react';
+import { lazy, Suspense } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import {
   type BarChartConfiguration,
@@ -47,15 +48,10 @@ export const GraphWidgetBarChartRenderer = ({
     configuration.groupMode,
     hasGroupByOnSecondaryAxis,
   );
-
-  const filterStateKey = useMemo(
-    () =>
-      `${configuration.rangeMin ?? ''}-${configuration.rangeMax ?? ''}-${configuration.omitNullValues ?? ''}`,
-    [
-      configuration.rangeMin,
-      configuration.rangeMax,
-      configuration.omitNullValues,
-    ],
+  const chartFilterKey = generateChartAggregateFilterKey(
+    configuration.rangeMin,
+    configuration.rangeMax,
+    configuration.omitNullValues,
   );
 
   if (loading) {
@@ -63,29 +59,27 @@ export const GraphWidgetBarChartRenderer = ({
   }
 
   return (
-    <>
-      <GraphWidgetBarChartHasTooManyGroupsEffect
+    <Suspense fallback={<ChartSkeletonLoader />}>
+      <GraphWidgetChartHasTooManyGroupsEffect
         hasTooManyGroups={hasTooManyGroups}
       />
-      <Suspense fallback={<ChartSkeletonLoader />}>
-        <GraphWidgetBarChart
-          key={filterStateKey}
-          data={data}
-          series={series}
-          indexBy={indexBy}
-          keys={keys}
-          xAxisLabel={xAxisLabel}
-          yAxisLabel={yAxisLabel}
-          showValues={showDataLabels}
-          layout={layout}
-          groupMode={groupMode}
-          id={widget.id}
-          displayType="shortNumber"
-          rangeMin={configuration.rangeMin ?? undefined}
-          rangeMax={configuration.rangeMax ?? undefined}
-          omitNullValues={configuration.omitNullValues ?? false}
-        />
-      </Suspense>
-    </>
+      <GraphWidgetBarChart
+        key={chartFilterKey}
+        data={data}
+        series={series}
+        indexBy={indexBy}
+        keys={keys}
+        xAxisLabel={xAxisLabel}
+        yAxisLabel={yAxisLabel}
+        showValues={showDataLabels}
+        layout={layout}
+        groupMode={groupMode}
+        id={widget.id}
+        displayType="shortNumber"
+        rangeMin={configuration.rangeMin ?? undefined}
+        rangeMax={configuration.rangeMax ?? undefined}
+        omitNullValues={configuration.omitNullValues ?? false}
+      />
+    </Suspense>
   );
 };
