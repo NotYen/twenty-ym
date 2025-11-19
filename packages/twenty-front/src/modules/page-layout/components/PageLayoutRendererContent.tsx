@@ -73,6 +73,7 @@ export const PageLayoutRendererContent = () => {
         setTabSettingsOpenTabId(newTabId);
         navigatePageLayoutCommandMenu({
           commandMenuPage: CommandMenuPages.PageLayoutTabSettings,
+          focusTitleInput: true,
         });
       }
     : undefined;
