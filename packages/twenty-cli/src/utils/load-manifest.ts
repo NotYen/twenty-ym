@@ -34,6 +34,7 @@ import {
   isPropertyDeclaration,
   isNoSubstitutionTemplateLiteral,
   isTemplateExpression,
+  isImportDeclaration,
 } from 'typescript';
 import {
   AppManifest,
@@ -491,12 +492,53 @@ export const extractTwentyAppConfig = (program: Program): Application => {
   throw new Error('Could not find default exported ApplicationConfig');
 };
 
+const GENERATED_FOLDER_NAME = 'generated';
+
+const isGeneratedModuleUsedInProgram = (program: Program): boolean => {
+  for (const sf of program.getSourceFiles()) {
+    if (sf.isDeclarationFile) continue;
+
+    let found = false;
+
+    const visit = (node: Node): void => {
+      if (found) return;
+
+      if (isImportDeclaration(node)) {
+        const moduleSpecifier = node.moduleSpecifier;
+
+        if (isStringLiteralLike(moduleSpecifier)) {
+          const moduleText = moduleSpecifier.text;
+
+          // Match ../../generated, ../generated, ./foo/generated, etc.
+          const isGeneratedModule =
+            moduleText === GENERATED_FOLDER_NAME ||
+            moduleText.endsWith(`/${GENERATED_FOLDER_NAME}`);
+
+          if (isGeneratedModule && node.importClause) {
+            found = true;
+            return;
+          }
+        }
+      }
+
+      forEachChild(node, visit);
+    };
+
+    visit(sf);
+
+    if (found) return true;
+  }
+
+  return false;
+};
+
 export const loadManifest = async (
   path?: string,
 ): Promise<{
   packageJson: PackageJson;
   yarnLock: string;
   manifest: AppManifest;
+  shouldGenerate: boolean;
 }> => {
   const appPath = path ?? process.cwd();
 
@@ -512,13 +554,14 @@ export const loadManifest = async (
 
   validateProgram(program);
 
-  const [objects, serverlessFunctions, application, sources] =
-    await Promise.all([
-      Promise.resolve(collectObjects(program)),
-      Promise.resolve(collectServerlessFunctions(program, appPath)),
-      Promise.resolve(extractTwentyAppConfig(program)),
-      loadFolderContentIntoJson(appPath),
-    ]);
+  const [objects, serverlessFunctions, application, sources] = [
+    collectObjects(program),
+    collectServerlessFunctions(program, appPath),
+    extractTwentyAppConfig(program),
+    await loadFolderContentIntoJson(appPath),
+  ];
+
+  const shouldGenerate = isGeneratedModuleUsedInProgram(program);
 
   return {
     packageJson,
@@ -529,5 +572,6 @@ export const loadManifest = async (
       serverlessFunctions,
       sources,
     },
+    shouldGenerate,
   };
 };

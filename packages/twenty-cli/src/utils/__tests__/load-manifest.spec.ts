@@ -419,4 +419,9 @@ export const format = async (params: any): Promise<any> => {
       /TypeScript validation failed/,
     );
   });
+
+  it('should return shouldGenerate flag', async () => {
+    const { shouldGenerate } = await loadManifest(appDirectory);
+    expect(shouldGenerate).toBe(false);
+  });
 });

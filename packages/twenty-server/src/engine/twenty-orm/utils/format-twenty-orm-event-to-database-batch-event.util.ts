@@ -1,5 +1,6 @@
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 import { isDefined } from 'twenty-shared/utils';
+import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 
 import type { ObjectLiteral } from 'typeorm';
 
