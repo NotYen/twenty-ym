@@ -19,7 +19,6 @@ export default defineConfig(({ command, mode }) => {
     FRONTEND_IMAGE_VERSION,
     VITE_BUILD_SOURCEMAP,
     VITE_DISABLE_TYPESCRIPT_CHECKER,
-    VITE_DISABLE_ESLINT_CHECKER,
     VITE_HOST,
     SSL_CERT_PATH,
     SSL_KEY_PATH,
@@ -58,10 +57,6 @@ export default defineConfig(({ command, mode }) => {
     );
   }
 
-  if (VITE_DISABLE_ESLINT_CHECKER === 'true') {
-    console.log(`VITE_DISABLE_ESLINT_CHECKER: ${VITE_DISABLE_ESLINT_CHECKER}`);
-  }
-
   if (VITE_BUILD_SOURCEMAP === 'true') {
     console.log(`VITE_BUILD_SOURCEMAP: ${VITE_BUILD_SOURCEMAP}`);
   }
@@ -69,13 +64,6 @@ export default defineConfig(({ command, mode }) => {
   if (VITE_DISABLE_TYPESCRIPT_CHECKER !== 'true') {
     checkers['typescript'] = {
       tsconfigPath: tsConfigPath,
-    };
-  }
-
-  if (VITE_DISABLE_ESLINT_CHECKER !== 'true') {
-    checkers['eslint'] = {
-      lintCommand: 'eslint ../../packages/twenty-front --max-warnings 0',
-      useFlatConfig: true,
     };
   }
 
