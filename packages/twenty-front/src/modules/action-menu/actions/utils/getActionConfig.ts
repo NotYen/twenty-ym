@@ -13,10 +13,8 @@ import { isDefined } from 'twenty-shared/utils';
 
 export const getActionConfig = ({
   objectMetadataItem,
-  isRecordPageLayoutEnabled,
 }: {
   objectMetadataItem?: ObjectMetadataItem;
-  isRecordPageLayoutEnabled: boolean;
 }): Record<string, ActionConfig> => {
   if (!isDefined(objectMetadataItem)) {
     return {};
@@ -45,10 +43,6 @@ export const getActionConfig = ({
       };
     }
     case CoreObjectNameSingular.Company: {
-      if (isRecordPageLayoutEnabled) {
-        return RECORD_PAGE_LAYOUT_ACTIONS_CONFIG;
-      }
-
       return DEFAULT_RECORD_ACTIONS_CONFIG;
     }
     default: {
