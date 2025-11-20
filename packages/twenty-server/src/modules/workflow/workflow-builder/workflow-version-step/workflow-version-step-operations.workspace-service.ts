@@ -352,6 +352,32 @@ export class WorkflowVersionStepOperationsWorkspaceService {
         };
       }
       case WorkflowActionType.AI_AGENT: {
+        // Get workflow version to use workflow ID and name in agent name
+        const workflowVersion =
+          await this.workflowCommonWorkspaceService.getWorkflowVersionOrFail({
+            workflowVersionId,
+            workspaceId,
+          });
+
+        const newAgent = await this.agentRepository.save({
+          name: 'workflow-service-agent' + v4(),
+          label: 'Workflow Agent' + workflowVersion.workflowId.substring(0, 4),
+          icon: 'IconRobot',
+          description: '',
+          prompt: '',
+          modelId: 'auto',
+          responseFormat: { type: 'text' },
+          workspaceId,
+          isCustom: true,
+        });
+
+        if (!isDefined(newAgent)) {
+          throw new WorkflowVersionStepException(
+            'Failed to create AI Agent step',
+            WorkflowVersionStepExceptionCode.AI_AGENT_STEP_FAILURE,
+          );
+        }
+
         return {
           builtStep: {
             ...baseStep,
@@ -360,7 +386,7 @@ export class WorkflowVersionStepOperationsWorkspaceService {
             settings: {
               ...BASE_STEP_DEFINITION,
               input: {
-                agentId: '',
+                agentId: newAgent.id,
                 prompt: '',
               },
             },
@@ -523,6 +549,60 @@ export class WorkflowVersionStepOperationsWorkspaceService {
               ...step.settings.input,
               serverlessFunctionId: newServerlessFunction.id,
               serverlessFunctionVersion: 'draft',
+            },
+          },
+        };
+      }
+      case WorkflowActionType.AI_AGENT: {
+        const existingAgent = await this.agentRepository.findOne({
+          where: { id: step.settings.input.agentId, workspaceId },
+        });
+
+        if (!isDefined(existingAgent)) {
+          throw new WorkflowVersionStepException(
+            'Agent not found for cloning',
+            WorkflowVersionStepExceptionCode.AI_AGENT_STEP_FAILURE,
+          );
+        }
+
+        const clonedAgent = await this.agentRepository.save({
+          name: 'workflow-service-agent' + v4(),
+          label: existingAgent.label,
+          icon: existingAgent.icon,
+          description: existingAgent.description,
+          prompt: existingAgent.prompt,
+          modelId: existingAgent.modelId,
+          responseFormat: existingAgent.responseFormat,
+          workspaceId,
+          isCustom: true,
+          modelConfiguration: existingAgent.modelConfiguration,
+        });
+
+        return {
+          ...step,
+          id: v4(),
+          nextStepIds: [],
+          position: duplicatedStepPosition,
+          settings: {
+            ...step.settings,
+            input: {
+              ...step.settings.input,
+              agentId: clonedAgent.id,
+            },
+          },
+        };
+      }
+      case WorkflowActionType.ITERATOR: {
+        return {
+          ...step,
+          id: v4(),
+          nextStepIds: [],
+          position: duplicatedStepPosition,
+          settings: {
+            ...step.settings,
+            input: {
+              ...step.settings.input,
+              initialLoopStepIds: [],
             },
           },
         };

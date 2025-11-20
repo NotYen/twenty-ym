@@ -80,11 +80,12 @@ export class AgentStreamingService {
             },
           });
 
-          const agent = await this.aiRouterService.routeMessage({
+          const routerResult = await this.aiRouterService.routeMessage({
             messages,
             workspaceId: workspace.id,
             routerModel: workspace.routerModel,
           });
+          const agent = routerResult?.agent ?? null;
 
           if (!agent) {
             writer.write({
