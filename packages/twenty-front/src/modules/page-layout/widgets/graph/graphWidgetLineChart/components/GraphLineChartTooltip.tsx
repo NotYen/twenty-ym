@@ -1,60 +1,78 @@
 import { GraphWidgetFloatingTooltip } from '@/page-layout/widgets/graph/components/GraphWidgetFloatingTooltip';
 import { type LineChartEnrichedSeries } from '@/page-layout/widgets/graph/graphWidgetLineChart/types/LineChartEnrichedSeries';
 import { getLineChartTooltipData } from '@/page-layout/widgets/graph/graphWidgetLineChart/utils/getLineChartTooltipData';
-import { type GraphValueFormatOptions } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { getTooltipReferenceFromLineChartPointAnchor } from '@/page-layout/widgets/graph/utils/getTooltipReferenceFromLineChartPointAnchor';
-import { type LineSeries, type SliceTooltipProps } from '@nivo/line';
+import { type GraphValueFormatOptions } from '@/page-layout/widgets/graph/utils/graphFormatters';
+import { graphWidgetLineTooltipComponentState } from '@/page-layout/widgets/graph/graphWidgetLineChart/states/graphWidgetLineTooltipComponentState';
+import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
+import { type LineSeries, type Point } from '@nivo/line';
 import { useMemo } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 
 type GraphLineChartTooltipProps = {
-  slice: SliceTooltipProps<LineSeries>['slice'];
-  offsetLeft: number;
-  offsetTop: number;
   containerId: string;
   enrichedSeries: LineChartEnrichedSeries[];
   formatOptions: GraphValueFormatOptions;
-  highlightedSeriesId?: string;
-  linkTo?: string;
+  onSliceClick?: (point: Point<LineSeries>) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
 };
 
 export const GraphLineChartTooltip = ({
-  slice,
-  offsetLeft,
-  offsetTop,
   containerId,
   enrichedSeries,
   formatOptions,
-  highlightedSeriesId,
-  linkTo,
+  onSliceClick,
   onMouseEnter,
   onMouseLeave,
 }: GraphLineChartTooltipProps) => {
-  const tooltipData = useMemo(
-    () =>
-      getLineChartTooltipData({
-        slice,
-        enrichedSeries,
-        formatOptions,
-      }),
-    [slice, enrichedSeries, formatOptions],
+  const tooltipState = useRecoilComponentValue(
+    graphWidgetLineTooltipComponentState,
   );
 
+  const handleTooltipClick: (() => void) | undefined = isDefined(onSliceClick)
+    ? () => {
+        if (!isDefined(tooltipState)) return;
+
+        const highlightedPoint = tooltipState.slice.points.find(
+          (point) =>
+            String(point.seriesId) === tooltipState.highlightedSeriesId,
+        );
+
+        if (!isDefined(highlightedPoint)) return;
+
+        onSliceClick(highlightedPoint);
+      }
+    : undefined;
+
+  const tooltipData = !isDefined(tooltipState)
+    ? null
+    : getLineChartTooltipData({
+        slice: tooltipState.slice,
+        enrichedSeries,
+        formatOptions,
+      });
+
   const { reference, boundary } = useMemo(() => {
+    if (!isDefined(tooltipState)) {
+      return { reference: null, boundary: null };
+    }
     try {
       return getTooltipReferenceFromLineChartPointAnchor(
         containerId,
-        offsetLeft,
-        offsetTop,
+        tooltipState.offsetLeft,
+        tooltipState.offsetTop,
       );
     } catch {
       return { reference: null, boundary: null };
     }
-  }, [containerId, offsetLeft, offsetTop]);
+  }, [containerId, tooltipState?.offsetLeft, tooltipState?.offsetTop]);
 
-  if (!isDefined(reference) || !isDefined(boundary)) {
+  if (
+    !isDefined(tooltipData) ||
+    !isDefined(reference) ||
+    !isDefined(boundary)
+  ) {
     return null;
   }
 
@@ -64,8 +82,8 @@ export const GraphLineChartTooltip = ({
       boundary={boundary}
       items={tooltipData.items}
       indexLabel={tooltipData.indexLabel}
-      highlightedKey={highlightedSeriesId}
-      linkTo={linkTo}
+      highlightedKey={tooltipState.highlightedSeriesId}
+      onGraphWidgetTooltipClick={handleTooltipClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     />

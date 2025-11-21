@@ -26,7 +26,6 @@ export const Default: Story = {
         dotColor: 'blue',
       },
     ],
-    showClickHint: false,
     indexLabel: 'March 09, 2024',
   },
 };
@@ -42,7 +41,7 @@ export const WithClickHint: Story = {
         dotColor: 'green',
       },
     ],
-    showClickHint: true,
+    onGraphWidgetTooltipClick: () => {},
   },
 };
 
@@ -64,7 +63,6 @@ export const MultipleItems: Story = {
         dotColor: 'purple',
       },
     ],
-    showClickHint: true,
     indexLabel: 'February 2',
   },
 };
@@ -88,7 +86,6 @@ export const SuperLongText: Story = {
         dotColor: 'purple',
       },
     ],
-    showClickHint: true,
     indexLabel:
       'Q4 2024 Financial Year End (October - December) - North America Regional Performance Summary',
   },
@@ -126,7 +123,99 @@ export const WithZeroValues: Story = {
         dotColor: 'orange',
       },
     ],
-    showClickHint: false,
     indexLabel: 'March 09, 2024',
+  },
+};
+
+export const ManyItemsWithScroll: Story = {
+  args: {
+    items: [
+      {
+        key: 'january',
+        label: 'January',
+        formattedValue: '$12,450',
+        value: 12450,
+        dotColor: 'blue',
+      },
+      {
+        key: 'february',
+        label: 'February',
+        formattedValue: '$15,230',
+        value: 15230,
+        dotColor: 'green',
+      },
+      {
+        key: 'march',
+        label: 'March',
+        formattedValue: '$18,920',
+        value: 18920,
+        dotColor: 'purple',
+      },
+      {
+        key: 'april',
+        label: 'April',
+        formattedValue: '$14,560',
+        value: 14560,
+        dotColor: 'orange',
+      },
+      {
+        key: 'may',
+        label: 'May',
+        formattedValue: '$21,340',
+        value: 21340,
+        dotColor: 'red',
+      },
+      {
+        key: 'june',
+        label: 'June',
+        formattedValue: '$19,780',
+        value: 19780,
+        dotColor: 'pink',
+      },
+      {
+        key: 'july',
+        label: 'July',
+        formattedValue: '$23,150',
+        value: 23150,
+        dotColor: 'yellow',
+      },
+      {
+        key: 'august',
+        label: 'August',
+        formattedValue: '$20,890',
+        value: 20890,
+        dotColor: 'cyan',
+      },
+      {
+        key: 'september',
+        label: 'September',
+        formattedValue: '$25,670',
+        value: 25670,
+        dotColor: 'teal',
+      },
+      {
+        key: 'october',
+        label: 'October',
+        formattedValue: '$22,340',
+        value: 22340,
+        dotColor: 'indigo',
+      },
+      {
+        key: 'november',
+        label: 'November',
+        formattedValue: '$27,890',
+        value: 27890,
+        dotColor: 'violet',
+      },
+      {
+        key: 'december',
+        label: 'December',
+        formattedValue: '$31,220',
+        value: 31220,
+        dotColor: 'lime',
+      },
+    ],
+    onGraphWidgetTooltipClick: () => {},
+    indexLabel: 'Annual Report 2024',
   },
 };

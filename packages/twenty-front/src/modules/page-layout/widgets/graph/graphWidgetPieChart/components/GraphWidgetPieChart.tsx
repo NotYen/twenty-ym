@@ -69,9 +69,9 @@ export const GraphWidgetPieChart = ({
 
   const { createTooltipData } = usePieChartTooltip({
     enrichedData,
-    data,
     formatOptions,
     displayType,
+    data,
   });
 
   const renderSliceEndLines = (
@@ -91,11 +91,16 @@ export const GraphWidgetPieChart = ({
     const tooltipData = createTooltipData(datum);
     if (!isDefined(tooltipData)) return null;
 
+    const onGraphWidgetTooltipClick = isDefined(tooltipData.linkTo)
+      ? () => {
+          window.location.href = tooltipData.linkTo!;
+        }
+      : undefined;
+
     return (
       <GraphWidgetTooltip
         items={[tooltipData.tooltipItem]}
-        showClickHint={tooltipData.showClickHint}
-        linkTo={tooltipData.linkTo}
+        onGraphWidgetTooltipClick={onGraphWidgetTooltipClick}
       />
     );
   };

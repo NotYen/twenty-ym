@@ -23,12 +23,15 @@ export type SliceHoverData = {
   svgRect: DOMRect;
 };
 
+import { graphWidgetLineCrosshairXComponentState } from '@/page-layout/widgets/graph/graphWidgetLineChart/states/graphWidgetLineCrosshairXComponentState';
+import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
+
 type CustomCrosshairLayerProps = {
   points: readonly Point<LineSeries>[];
   innerHeight: number;
   innerWidth: number;
   onSliceHover: (data: SliceHoverData) => void;
-  crosshairX: number | null;
+  onSliceClick?: (data: SliceHoverData) => void;
   onRectLeave: (relatedTarget: EventTarget | null) => void;
 };
 
@@ -37,10 +40,13 @@ export const CustomCrosshairLayer = ({
   innerHeight,
   innerWidth,
   onSliceHover,
-  crosshairX,
+  onSliceClick,
   onRectLeave,
 }: CustomCrosshairLayerProps) => {
   const theme = useTheme();
+  const crosshairX = useRecoilComponentValue(
+    graphWidgetLineCrosshairXComponentState,
+  );
 
   const slices = useMemo(() => {
     const sliceMap = new Map<string, Point<LineSeries>[]>();
@@ -62,12 +68,12 @@ export const CustomCrosshairLayer = ({
       .sort((sliceA, sliceB) => sliceA.x - sliceB.x);
   }, [points]);
 
-  const handleMouseMove = useCallback(
+  const buildSliceData = useCallback(
     (event: MouseEvent<SVGRectElement>) => {
       const svgRect =
         event.currentTarget.ownerSVGElement?.getBoundingClientRect();
       if (!isDefined(svgRect)) {
-        return;
+        return null;
       }
 
       const mouseX = event.clientX - svgRect.left - LINE_CHART_MARGIN_LEFT;
@@ -79,10 +85,6 @@ export const CustomCrosshairLayer = ({
         return currentDistance < nearestDistance ? slice : nearest;
       });
 
-      if (nearestSlice.x === crosshairX) {
-        return;
-      }
-
       const closestPoint = nearestSlice.points.reduce(
         (closestPointCandidate, pointCandidate) => {
           const currentDistance = Math.abs(pointCandidate.y - mouseY);
@@ -93,15 +95,44 @@ export const CustomCrosshairLayer = ({
         },
       );
 
-      onSliceHover({
+      return {
         sliceX: nearestSlice.x,
         mouseY,
         nearestSlice,
         closestPoint,
         svgRect,
-      });
+      };
     },
-    [slices, crosshairX, onSliceHover],
+    [slices],
+  );
+
+  const handleMouseMove = (event: MouseEvent<SVGRectElement>) => {
+    const sliceData = buildSliceData(event);
+    if (!isDefined(sliceData)) {
+      return;
+    }
+
+    if (isDefined(crosshairX) && sliceData.sliceX === crosshairX) {
+      return;
+    }
+
+    onSliceHover(sliceData);
+  };
+
+  const handleClick = useCallback(
+    (event: MouseEvent<SVGRectElement>) => {
+      if (!isDefined(onSliceClick)) {
+        return;
+      }
+
+      const sliceData = buildSliceData(event);
+      if (!isDefined(sliceData)) {
+        return;
+      }
+
+      onSliceClick(sliceData);
+    },
+    [buildSliceData, onSliceClick],
   );
 
   const transition = {
@@ -140,6 +171,7 @@ export const CustomCrosshairLayer = ({
         onMouseEnter={handleMouseMove}
         onMouseMove={handleMouseMove}
         onMouseLeave={(event) => onRectLeave(event.relatedTarget)}
+        onClick={handleClick}
       />
     </g>
   );

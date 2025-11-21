@@ -1,61 +1,59 @@
 import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/ChartSkeletonLoader';
 import { GraphWidgetChartHasTooManyGroupsEffect } from '@/page-layout/widgets/graph/components/GraphWidgetChartHasTooManyGroupsEffect';
+import { LINE_CHART_IS_STACKED_DEFAULT } from '@/page-layout/widgets/graph/graphWidgetLineChart/constants/LineChartIsStackedDefault';
+import { useGraphLineChartWidgetData } from '@/page-layout/widgets/graph/graphWidgetLineChart/hooks/useGraphLineChartWidgetData';
 import { generateChartAggregateFilterKey } from '@/page-layout/widgets/graph/utils/generateChartAggregateFilterKey';
-import { useGraphBarChartWidgetData } from '@/page-layout/widgets/graph/graphWidgetBarChart/hooks/useGraphBarChartWidgetData';
-import { type BarChartDataItem } from '@/page-layout/widgets/graph/graphWidgetBarChart/types/BarChartDataItem';
-import { getEffectiveGroupMode } from '@/page-layout/widgets/graph/graphWidgetBarChart/utils/getEffectiveGroupMode';
 import { coreIndexViewIdFromObjectMetadataItemFamilySelector } from '@/views/states/selectors/coreIndexViewIdFromObjectMetadataItemFamilySelector';
-import { type ComputedDatum } from '@nivo/bar';
+import { type LineSeries, type Point } from '@nivo/line';
 import { lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { AppPath } from 'twenty-shared/types';
 import { getAppPath, isDefined } from 'twenty-shared/utils';
 import {
-  type BarChartConfiguration,
+  type LineChartConfiguration,
   type PageLayoutWidget,
 } from '~/generated/graphql';
 
-const GraphWidgetBarChart = lazy(() =>
+const GraphWidgetLineChart = lazy(() =>
   import(
-    '@/page-layout/widgets/graph/graphWidgetBarChart/components/GraphWidgetBarChart'
+    '@/page-layout/widgets/graph/graphWidgetLineChart/components/GraphWidgetLineChart'
   ).then((module) => ({
-    default: module.GraphWidgetBarChart,
+    default: module.GraphWidgetLineChart,
   })),
 );
 
-export const GraphWidgetBarChartRenderer = ({
+export const GraphWidgetLineChartRenderer = ({
   widget,
 }: {
   widget: PageLayoutWidget;
 }) => {
   const {
-    data,
-    indexBy,
-    keys,
     series,
     xAxisLabel,
     yAxisLabel,
     showDataLabels,
-    layout,
-    loading,
     hasTooManyGroups,
+    loading,
     objectMetadataItem,
-  } = useGraphBarChartWidgetData({
+  } = useGraphLineChartWidgetData({
     objectMetadataItemId: widget.objectMetadataId,
-    configuration: widget.configuration as BarChartConfiguration,
+    configuration: widget.configuration as LineChartConfiguration,
   });
 
   const navigate = useNavigate();
-  const configuration = widget.configuration as BarChartConfiguration;
+  const configuration = widget.configuration as LineChartConfiguration;
 
   const hasGroupByOnSecondaryAxis = isDefined(
     configuration.secondaryAxisGroupByFieldMetadataId,
   );
-  const groupMode = getEffectiveGroupMode(
-    configuration.groupMode,
-    hasGroupByOnSecondaryAxis,
-  );
+
+  const groupMode =
+    hasGroupByOnSecondaryAxis &&
+    (configuration.isStacked ?? LINE_CHART_IS_STACKED_DEFAULT)
+      ? 'stacked'
+      : undefined;
+
   const chartFilterKey = generateChartAggregateFilterKey(
     configuration.rangeMin,
     configuration.rangeMax,
@@ -68,13 +66,11 @@ export const GraphWidgetBarChartRenderer = ({
     }),
   );
 
-  const handleBarClick = (_datum: ComputedDatum<BarChartDataItem>) => {
+  const handlePointClick = (_point: Point<LineSeries>) => {
     return navigate(
       getAppPath(
         AppPath.RecordIndexPage,
-        {
-          objectNamePlural: objectMetadataItem.namePlural,
-        },
+        { objectNamePlural: objectMetadataItem.namePlural },
         isDefined(indexViewId) ? { viewId: indexViewId } : undefined,
       ),
     );
@@ -89,23 +85,19 @@ export const GraphWidgetBarChartRenderer = ({
       <GraphWidgetChartHasTooManyGroupsEffect
         hasTooManyGroups={hasTooManyGroups}
       />
-      <GraphWidgetBarChart
+      <GraphWidgetLineChart
         key={chartFilterKey}
-        data={data}
-        series={series}
-        indexBy={indexBy}
-        keys={keys}
+        id={widget.id}
+        data={series}
         xAxisLabel={xAxisLabel}
         yAxisLabel={yAxisLabel}
-        showValues={showDataLabels}
-        layout={layout}
-        groupMode={groupMode}
-        id={widget.id}
-        displayType="shortNumber"
+        enablePointLabel={showDataLabels}
         rangeMin={configuration.rangeMin ?? undefined}
         rangeMax={configuration.rangeMax ?? undefined}
         omitNullValues={configuration.omitNullValues ?? false}
-        onBarClick={handleBarClick}
+        groupMode={groupMode}
+        displayType="shortNumber"
+        onSliceClick={handlePointClick}
       />
     </Suspense>
   );

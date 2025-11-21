@@ -10,16 +10,16 @@ import { isDefined } from 'twenty-shared/utils';
 
 type UsePieChartTooltipProps = {
   enrichedData: PieChartEnrichedData[];
-  data: PieChartDataItem[];
   formatOptions: GraphValueFormatOptions;
   displayType?: string;
+  data?: PieChartDataItem[];
 };
 
 export const usePieChartTooltip = ({
   enrichedData,
-  data,
   formatOptions,
   displayType,
+  data,
 }: UsePieChartTooltipProps) => {
   const createTooltipData = (
     datum: ComputedDatum<{ id: string; value: number; label?: string }>,
@@ -27,7 +27,7 @@ export const usePieChartTooltip = ({
     const item = enrichedData.find((d) => d.id === datum.id);
     if (!isDefined(item)) return null;
 
-    const dataItem = data.find((d) => d.id === datum.id);
+    const dataItem = data?.find((d) => d.id === datum.id);
 
     const formattedValue =
       displayType === 'percentage'
@@ -44,7 +44,6 @@ export const usePieChartTooltip = ({
 
     return {
       tooltipItem,
-      showClickHint: isDefined(dataItem?.to),
       linkTo: dataItem?.to,
     };
   };
