@@ -923,7 +923,7 @@ export class ApplicationSyncService {
     }
   }
 
-  public async deleteApplication({
+  public async uninstallApplication({
     workspaceId,
     applicationUniversalIdentifier,
   }: {
@@ -954,6 +954,13 @@ export class ApplicationSyncService {
       throw new ApplicationException(
         `Application with universalIdentifier ${applicationUniversalIdentifier} not found`,
         ApplicationExceptionCode.ENTITY_NOT_FOUND,
+      );
+    }
+
+    if (!application.canBeUninstalled) {
+      throw new ApplicationException(
+        'This application cannot be uninstalled.',
+        ApplicationExceptionCode.FORBIDDEN,
       );
     }
 
