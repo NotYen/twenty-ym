@@ -8,7 +8,7 @@ import { useQuery } from '@apollo/client';
 import { useMemo } from 'react';
 import { DEFAULT_NUMBER_OF_GROUPS_LIMIT } from 'twenty-shared/constants';
 import { isDefined } from 'twenty-shared/utils';
-import { type BarChartConfiguration } from '~/generated-metadata/graphql';
+import { type GroupByChartConfiguration } from '@/page-layout/widgets/graph/types/GroupByChartConfiguration';
 
 export const useGraphWidgetGroupByQuery = ({
   objectMetadataItemId,
@@ -16,7 +16,7 @@ export const useGraphWidgetGroupByQuery = ({
   limit = DEFAULT_NUMBER_OF_GROUPS_LIMIT,
 }: {
   objectMetadataItemId: string;
-  configuration: BarChartConfiguration;
+  configuration: GroupByChartConfiguration;
   limit?: number;
 }) => {
   const { objectMetadataItem, aggregateField, gqlOperationFilter } =

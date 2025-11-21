@@ -18,6 +18,7 @@ import { shouldHideChartSetting } from '@/command-menu/pages/page-layout/utils/s
 import { CommandMenuPages } from '@/command-menu/types/CommandMenuPages';
 import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
 import { BAR_CHART_MAXIMUM_NUMBER_OF_BARS } from '@/page-layout/widgets/graph/graphWidgetBarChart/constants/BarChartMaximumNumberOfBars.constant';
+import { LINE_CHART_MAXIMUM_NUMBER_OF_DATA_POINTS } from '@/page-layout/widgets/graph/graphWidgetLineChart/constants/LineChartMaximumNumberOfDataPoints.constant';
 import { hasWidgetTooManyGroupsComponentState } from '@/page-layout/widgets/graph/states/hasWidgetTooManyGroupsComponentState';
 import { useOpenDropdown } from '@/ui/layout/dropdown/hooks/useOpenDropdown';
 import { useSelectableList } from '@/ui/layout/selectable-list/hooks/useSelectableList';
@@ -26,7 +27,11 @@ import styled from '@emotion/styled';
 import { t } from '@lingui/core/macro';
 import { SidePanelInformationBanner } from 'twenty-ui/display';
 
-import { GraphType, type PageLayoutWidget } from '~/generated/graphql';
+import {
+  FieldMetadataType,
+  GraphType,
+  type PageLayoutWidget,
+} from '~/generated/graphql';
 
 const StyledSidePanelInformationBanner = styled(SidePanelInformationBanner)`
   margin-top: ${({ theme }) => theme.spacing(2)};
@@ -116,6 +121,20 @@ export const ChartSettings = ({ widget }: { widget: PageLayoutWidget }) => {
       .map((item) => item.id),
   );
 
+  const primaryAxisFieldMetadataId =
+    configuration.__typename === 'BarChartConfiguration' ||
+    configuration.__typename === 'LineChartConfiguration'
+      ? configuration.primaryAxisGroupByFieldMetadataId
+      : null;
+
+  const primaryAxisField = objectMetadataItem?.fields?.find(
+    (field) => field.id === primaryAxisFieldMetadataId,
+  );
+
+  const isPrimaryAxisDate =
+    primaryAxisField?.type === FieldMetadataType.DATE ||
+    primaryAxisField?.type === FieldMetadataType.DATE_TIME;
+
   return (
     <CommandMenuList commandGroups={[]} selectableItemIds={visibleItemIds}>
       <ChartTypeSelectionSection
@@ -124,7 +143,17 @@ export const ChartSettings = ({ widget }: { widget: PageLayoutWidget }) => {
       />
       {hasWidgetTooManyGroups && (
         <StyledSidePanelInformationBanner
-          message={t`Max ${BAR_CHART_MAXIMUM_NUMBER_OF_BARS} bars per chart. Consider adding a filter`}
+          message={
+            currentGraphType === GraphType.LINE
+              ? t`Undisplayed data: max ${LINE_CHART_MAXIMUM_NUMBER_OF_DATA_POINTS} data points per chart.`
+              : t`Undisplayed data: max ${BAR_CHART_MAXIMUM_NUMBER_OF_BARS} bars per chart.`
+          }
+          tooltipMessage={
+            isPrimaryAxisDate
+              ? t`Consider adding a filter or changing the date granularity to display more data.`
+              : t`Consider adding a filter to display more data.`
+          }
+          variant="warning"
         />
       )}
       {chartSettings.map((group) => {
