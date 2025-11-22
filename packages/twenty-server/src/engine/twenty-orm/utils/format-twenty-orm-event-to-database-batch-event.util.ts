@@ -1,3 +1,4 @@
+import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 import { isDefined } from 'twenty-shared/utils';
 
 import type { ObjectLiteral } from 'typeorm';
@@ -17,7 +18,6 @@ import {
   TwentyORMExceptionCode,
 } from 'src/engine/twenty-orm/exceptions/twenty-orm.exception';
 import { type DatabaseBatchEventInput } from 'src/engine/workspace-event-emitter/workspace-event-emitter';
-import { STANDARD_OBJECT_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-ids';
 
 export const formatTwentyOrmEventToDatabaseBatchEvent = <
   T extends ObjectLiteral,
