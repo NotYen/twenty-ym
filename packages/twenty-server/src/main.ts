@@ -7,7 +7,7 @@ import bytes from 'bytes';
 import { useContainer } from 'class-validator';
 import compression from 'compression';
 import session from 'express-session';
-import { graphqlUploadExpress } from 'graphql-upload';
+import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
 
 import { NodeEnvironment } from 'src/engine/core-modules/twenty-config/interfaces/node-environment.interface';
 

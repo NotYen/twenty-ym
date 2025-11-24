@@ -15,7 +15,7 @@ const isWorkflowVersionStepsOrTrigger = (
 };
 
 const isWorkflowAutomatedTriggerSettings = (
-  objectMetadataItem: ObjectMetadataItemWithFieldMaps,
+  objectMetadataItem: Pick<ObjectMetadataItemWithFieldMaps, 'standardId'>,
   key: string,
 ) => {
   return (
