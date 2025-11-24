@@ -33,6 +33,7 @@ import { GraphqlQueryParser } from 'src/engine/api/graphql/graphql-query-runner/
 import { GroupByDefinition } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/types/group-by-definition.types';
 import { formatResultWithGroupByDimensionValues } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util';
 import { getGroupByExpression } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/get-group-by-expression.util';
+import { getGroupLimit } from 'src/engine/api/graphql/graphql-query-runner/group-by/utils/get-group-limit.util';
 import { isGroupByDateField } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/is-group-by-date-field.util';
 import { parseGroupByArgs } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/parse-group-by-args.util';
 import { removeQuotes } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/remove-quote.util';
@@ -175,6 +176,7 @@ export class CommonGroupByQueryRunnerService extends CommonBaseQueryRunnerServic
         selectedFieldsResult: args.selectedFieldsResult,
         queryRunnerContext,
         orderByForRecords: args.orderByForRecords ?? [],
+        groupLimit: args.limit,
       });
     }
 
@@ -182,6 +184,7 @@ export class CommonGroupByQueryRunnerService extends CommonBaseQueryRunnerServic
       queryBuilder,
       groupByDefinitions,
       selectedFieldsResult: args.selectedFieldsResult,
+      groupLimit: args.limit,
     });
   }
 
@@ -320,11 +323,17 @@ export class CommonGroupByQueryRunnerService extends CommonBaseQueryRunnerServic
     queryBuilder,
     groupByDefinitions,
     selectedFieldsResult,
+    groupLimit,
   }: {
     queryBuilder: WorkspaceSelectQueryBuilder<ObjectLiteral>;
     groupByDefinitions: GroupByDefinition[];
     selectedFieldsResult: GraphqlQuerySelectedFieldsResult;
+    groupLimit?: number;
   }): Promise<CommonGroupByOutputItem[]> {
+    const effectiveGroupLimit = getGroupLimit(groupLimit);
+
+    queryBuilder.limit(effectiveGroupLimit);
+
     const result = await queryBuilder.getRawMany();
 
     return formatResultWithGroupByDimensionValues({

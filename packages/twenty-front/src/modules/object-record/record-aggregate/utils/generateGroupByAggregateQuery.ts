@@ -21,12 +21,14 @@ export const generateGroupByAggregateQuery = ({
       $filter: ${capitalizedSingular}FilterInput
       $orderBy: [${capitalizedSingular}OrderByWithGroupByInput!]
       $viewId: UUID
+      $limit: Int
     ) {
       ${queryFieldName}(
         groupBy: $groupBy
         filter: $filter
         orderBy: $orderBy
         viewId: $viewId
+        limit: $limit
       ) {
         groupByDimensionValues${aggregateOperationGqlFields.length > 0 ? `\n        ${aggregateOperationGqlFields.join('\n        ')}` : ''}
       }
