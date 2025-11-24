@@ -81,7 +81,7 @@ const MIGRATED_REST_METHODS = [
 export class AppModule {
   private static getConditionalModules(): DynamicModule[] {
     const modules: DynamicModule[] = [];
-    const frontPath = join(__dirname, '..', 'front');
+    const frontPath = join(__dirname, 'front');
 
     if (existsSync(frontPath)) {
       modules.push(
