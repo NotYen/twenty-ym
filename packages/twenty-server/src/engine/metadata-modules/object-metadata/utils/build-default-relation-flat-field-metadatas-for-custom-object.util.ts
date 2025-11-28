@@ -42,6 +42,18 @@ const generateSourceFlatFieldMetadata = ({
     targetObjectLabelSingular: sourceFlatObjectMetadata.labelSingular,
   });
 
+  const standardId =
+    CUSTOM_OBJECT_STANDARD_FIELD_IDS[
+      targetFlatObjectMetadata.namePlural as keyof typeof CUSTOM_OBJECT_STANDARD_FIELD_IDS
+    ];
+
+  if (!isDefined(standardId)) {
+    throw new ObjectMetadataException(
+      `Standard field ID not found for target object ${targetFlatObjectMetadata.namePlural}`,
+      ObjectMetadataExceptionCode.INTERNAL_SERVER_ERROR,
+    );
+  }
+
   const createdAt = new Date();
   const sourceFieldMetadataId = v4();
   const targetFieldMetadataId = v4();
