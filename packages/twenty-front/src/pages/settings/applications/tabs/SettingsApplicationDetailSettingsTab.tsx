@@ -1,27 +1,27 @@
-import type { Application } from '~/generated/graphql';
+import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
+import { ConfirmationModal } from '@/ui/layout/modal/components/ConfirmationModal';
+import { useModal } from '@/ui/layout/modal/hooks/useModal';
+import { Trans, useLingui } from '@lingui/react/macro';
+import { useState } from 'react';
+import { SettingsPath } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
-import { SettingsApplicationDetailEnvironmentVariablesTable } from '~/pages/settings/applications/tabs/SettingsApplicationDetailEnvironmentVariablesTable';
-import { useUpdateOneApplicationVariable } from '~/pages/settings/applications/hooks/useUpdateOneApplicationVariable';
 import { H2Title, IconTrash } from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import { Trans, useLingui } from '@lingui/react/macro';
-import { useModal } from '@/ui/layout/modal/hooks/useModal';
-import { ConfirmationModal } from '@/ui/layout/modal/components/ConfirmationModal';
-import { useState } from 'react';
-import { SettingsPath } from 'twenty-shared/types';
-import { useNavigateSettings } from '~/hooks/useNavigateSettings';
-import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
+import type { ApplicationFieldsFragment } from '~/generated-metadata/graphql';
 import { useUninstallApplicationMutation } from '~/generated-metadata/graphql';
+import { useNavigateSettings } from '~/hooks/useNavigateSettings';
+import { useUpdateOneApplicationVariable } from '~/pages/settings/applications/hooks/useUpdateOneApplicationVariable';
+import { SettingsApplicationDetailEnvironmentVariablesTable } from '~/pages/settings/applications/tabs/SettingsApplicationDetailEnvironmentVariablesTable';
 
 const UNINSTALL_APPLICATION_MODAL_ID = 'uninstall-application-modal';
+
+type SettingsApplication = ApplicationFieldsFragment;
 
 export const SettingsApplicationDetailSettingsTab = ({
   application,
 }: {
-  application?: Omit<Application, 'objects'> & {
-    objects: { id: string }[];
-  };
+  application?: SettingsApplication;
 }) => {
   const { t } = useLingui();
 

@@ -1,8 +1,8 @@
 import { type Meta, type StoryObj } from '@storybook/react';
 
+import { GraphWidgetLineChart } from '@/page-layout/widgets/graph/graphWidgetLineChart/components/GraphWidgetLineChart';
 import { type ComponentProps } from 'react';
 import { CatalogDecorator, ComponentDecorator } from 'twenty-ui/testing';
-import { GraphWidgetLineChart } from '@/page-layout/widgets/graph/graphWidgetLineChart/components/GraphWidgetLineChart';
 
 const meta: Meta<typeof GraphWidgetLineChart> = {
   title: 'Modules/PageLayout/Widgets/GraphWidgetLineChart',
@@ -34,9 +34,6 @@ const meta: Meta<typeof GraphWidgetLineChart> = {
     showGrid: {
       control: 'boolean',
     },
-    enablePoints: {
-      control: 'boolean',
-    },
     groupMode: {
       control: 'select',
       options: ['stacked', undefined],
@@ -49,27 +46,6 @@ const meta: Meta<typeof GraphWidgetLineChart> = {
     },
     enableArea: {
       control: 'boolean',
-    },
-    stackedArea: {
-      control: 'boolean',
-    },
-    curve: {
-      control: 'select',
-      options: [
-        'linear',
-        'monotoneX',
-        'step',
-        'stepBefore',
-        'stepAfter',
-        'natural',
-      ],
-    },
-    lineWidth: {
-      control: 'number',
-    },
-    enableSlices: {
-      control: 'select',
-      options: ['x', 'y', false],
     },
   },
 };
@@ -89,8 +65,6 @@ const renderChart = (args: ChartArgs) => (
       data={args.data}
       showLegend={args.showLegend}
       showGrid={args.showGrid}
-<<<<<<< HEAD
-      enablePoints={args.enablePoints}
       enablePointLabel={args.enablePointLabel}
       groupMode={args.groupMode}
       xAxisLabel={args.xAxisLabel}
@@ -100,12 +74,6 @@ const renderChart = (args: ChartArgs) => (
       suffix={args.suffix}
       decimals={args.decimals}
       enableArea={args.enableArea}
-      stackedArea={args.stackedArea}
-      curve={args.curve}
-      lineWidth={args.lineWidth}
-      enableSlices={args.enableSlices}
-      xScale={args.xScale}
-      yScale={args.yScale}
     />
   </Container>
 );
@@ -136,7 +104,6 @@ export const Default: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
     xAxisLabel: 'Month',
     yAxisLabel: 'Value',
     displayType: 'shortNumber',
@@ -166,7 +133,6 @@ export const WithArea: Story = {
     enableArea: true,
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
     xAxisLabel: 'Period',
     yAxisLabel: 'Amount',
     displayType: 'currency',
@@ -198,18 +164,10 @@ export const StackedArea: Story = {
       },
     ],
     enableArea: true,
-    stackedArea: true,
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
-    curve: 'monotoneX',
     xAxisLabel: 'Quarter',
     yAxisLabel: 'Revenue',
-    yScale: {
-      type: 'linear',
-      min: 0,
-      max: 'auto',
-    },
     displayType: 'shortNumber',
     prefix: '$',
     groupMode: 'stacked',
@@ -266,8 +224,6 @@ export const WithPoints: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
-    lineWidth: 3,
     xAxisLabel: 'Week',
     yAxisLabel: 'Score',
     displayType: 'percentage',
@@ -286,11 +242,8 @@ export const StepChart: Story = {
         data: generateLinearData(10),
       },
     ],
-    curve: 'step',
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
-    lineWidth: 2,
     xAxisLabel: 'Day',
     yAxisLabel: 'Units',
     displayType: 'number',
@@ -331,15 +284,8 @@ export const LogScaleDemo: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
     xAxisLabel: 'Time',
     yAxisLabel: 'Value (log scale)',
-    yScale: {
-      type: 'log',
-      base: 10,
-      min: 'auto',
-      max: 'auto',
-    },
     displayType: 'shortNumber',
   },
 };
@@ -366,7 +312,6 @@ export const WithNullValues: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
     xAxisLabel: 'Time',
     yAxisLabel: 'Measurement',
     displayType: 'number',
@@ -394,8 +339,6 @@ export const InteractiveWithLinks: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
-    enableSlices: false,
     xAxisLabel: 'Step',
     yAxisLabel: 'Progress',
     displayType: 'percentage',
@@ -432,12 +375,9 @@ export const MultiSeriesMixed: Story = {
     enableArea: false,
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
-    curve: 'monotoneX',
     xAxisLabel: 'Month',
     yAxisLabel: 'Value',
     displayType: 'shortNumber',
-    enableSlices: 'x',
   },
 };
 
@@ -495,8 +435,6 @@ export const OverlappingGradientBlend: Story = {
     enableArea: true,
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
-    curve: 'monotoneX',
     xAxisLabel: 'Time',
     yAxisLabel: 'Value',
     displayType: 'number',
@@ -540,8 +478,6 @@ export const HighContrastOverlap: Story = {
     enableArea: true,
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
-    curve: 'natural',
     xAxisLabel: 'Day',
     yAxisLabel: 'Score',
     displayType: 'number',
@@ -570,8 +506,6 @@ export const CurveComparison: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
-    curve: 'linear',
     xAxisLabel: 'X Axis',
     yAxisLabel: 'Y Axis',
     displayType: 'number',
@@ -625,8 +559,6 @@ export const StepInterpolations: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
-    curve: 'step',
     xAxisLabel: 'Time',
     yAxisLabel: 'Value',
     displayType: 'number',
@@ -670,8 +602,6 @@ export const NaturalVsMonotone: Story = {
     enableArea: true,
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
-    curve: 'natural',
     xAxisLabel: 'Sample',
     yAxisLabel: 'Measurement',
     displayType: 'number',
@@ -725,9 +655,6 @@ export const SliceTooltipDemo: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
-    enableSlices: 'x',
-    xScale: { type: 'point' },
     xAxisLabel: 'Month',
     yAxisLabel: 'Amount ($)',
     displayType: 'shortNumber',
@@ -782,9 +709,6 @@ export const PointTooltipDemo: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: true,
-    enableSlices: false,
-    xScale: { type: 'point' },
     xAxisLabel: 'Month',
     yAxisLabel: 'Amount ($)',
     displayType: 'shortNumber',
@@ -840,8 +764,6 @@ export const IntenseOverlapRGB: Story = {
     enableArea: true,
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
-    curve: 'monotoneX',
     xAxisLabel: 'Position',
     yAxisLabel: 'Intensity',
     displayType: 'percentage',
@@ -868,7 +790,6 @@ export const Catalog: Story = {
     ],
     showLegend: true,
     showGrid: true,
-    enablePoints: false,
     enableArea: true,
   },
   decorators: [CatalogDecorator],

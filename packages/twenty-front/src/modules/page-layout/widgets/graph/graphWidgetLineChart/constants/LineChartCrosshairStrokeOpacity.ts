@@ -1,0 +1,2 @@
+export const LINE_CHART_CROSSHAIR_STROKE_OPACITY = 0.5;
+

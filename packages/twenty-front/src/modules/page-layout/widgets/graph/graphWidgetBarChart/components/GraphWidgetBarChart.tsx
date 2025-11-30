@@ -152,6 +152,7 @@ export const GraphWidgetBarChart = ({
         items={tooltipData.tooltipItems}
         showClickHint={tooltipData.showClickHint}
         indexLabel={tooltipData.indexLabel}
+        linkTo={tooltipData.linkTo}
       />
     );
   };

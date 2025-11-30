@@ -1,3 +1,4 @@
+import { type GraphWidgetTooltipItem } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
 import { type BarChartDataItem } from '@/page-layout/widgets/graph/graphWidgetBarChart/types/BarChartDataItem';
 import { type BarChartEnrichedKey } from '@/page-layout/widgets/graph/graphWidgetBarChart/types/BarChartEnrichedKey';
 import {
@@ -41,20 +42,24 @@ export const useBarChartTooltip = ({
       keysToShow = [enrichedKey];
     }
 
-    const tooltipItems = keysToShow.map((enrichedKey) => {
+    const tooltipItems: GraphWidgetTooltipItem[] = keysToShow.map(
+      (enrichedKey) => {
       const seriesValue = Number(datum.data[enrichedKey.key] ?? 0);
       return {
+          key: enrichedKey.key,
         label: enrichedKey.label,
         formattedValue: formatGraphValue(seriesValue, formatOptions),
         value: seriesValue,
         dotColor: enrichedKey.colorScheme.solid,
       };
-    });
+      },
+    );
 
     return {
       tooltipItems,
       showClickHint: isDefined(dataItem?.to),
       indexLabel: String(datum.indexValue),
+      linkTo: dataItem?.to,
     };
   };
 

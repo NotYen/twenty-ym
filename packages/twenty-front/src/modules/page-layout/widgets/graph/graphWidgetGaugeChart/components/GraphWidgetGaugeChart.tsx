@@ -124,6 +124,7 @@ export const GraphWidgetGaugeChart = ({
       <GraphWidgetTooltip
         items={[tooltipData.tooltipItem]}
         showClickHint={tooltipData.showClickHint}
+        linkTo={tooltipData.linkTo}
       />
     );
   };

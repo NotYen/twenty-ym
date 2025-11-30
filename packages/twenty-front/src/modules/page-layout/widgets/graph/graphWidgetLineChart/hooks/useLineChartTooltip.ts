@@ -1,3 +1,4 @@
+import { type GraphWidgetTooltipItem } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
 import { type LineChartEnrichedSeries } from '@/page-layout/widgets/graph/graphWidgetLineChart/types/LineChartEnrichedSeries';
 import { type LineChartSeries } from '@/page-layout/widgets/graph/graphWidgetLineChart/types/LineChartSeries';
 import {
@@ -35,7 +36,7 @@ export const useLineChartTooltip = ({
       };
     }
 
-    const tooltipItems = slice.points
+    const tooltipItems: GraphWidgetTooltipItem[] = slice.points
       .map((point) => {
         const enrichedSeriesItem = enrichedSeriesMap.get(
           String(point.seriesId),
@@ -44,6 +45,7 @@ export const useLineChartTooltip = ({
 
         const value = Number(point.data.y || 0);
         return {
+          key: enrichedSeriesItem.id,
           label: enrichedSeriesItem.label,
           formattedValue: formatGraphValue(value, formatOptions),
           value,
@@ -78,15 +80,16 @@ export const useLineChartTooltip = ({
     const dataPoint = series?.data[point.indexInSeries];
 
     const value = Number(point.data.y || 0);
+    const tooltipItem: GraphWidgetTooltipItem = {
+      key: enrichedSeriesItem.id,
+      label: enrichedSeriesItem.label,
+      formattedValue: formatGraphValue(value, formatOptions),
+      value,
+      dotColor: enrichedSeriesItem.colorScheme.solid,
+    };
+
     return {
-      items: [
-        {
-          label: enrichedSeriesItem.label,
-          formattedValue: formatGraphValue(value, formatOptions),
-          value,
-          dotColor: enrichedSeriesItem.colorScheme.solid,
-        },
-      ],
+      items: [tooltipItem],
       showClickHint: isDefined(dataPoint?.to),
       indexLabel: isDefined(point.data.x) ? String(point.data.x) : undefined,
     };

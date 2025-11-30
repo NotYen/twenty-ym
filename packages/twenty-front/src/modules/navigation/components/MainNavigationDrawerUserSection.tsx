@@ -119,10 +119,9 @@ export const MainNavigationDrawerUserSection = () => {
           variant="secondary"
           size="small"
           Icon={IconLogout}
+          title={t`Log out`}
           onClick={handleOpenConfirmationModal}
-        >
-          {t`Log out`}
-        </StyledLogoutButton>
+        />
       </StyledWrapper>
 
       <ConfirmationModal

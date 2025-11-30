@@ -108,17 +108,13 @@ export const GraphWidget = ({
             enableArea={data.enableArea}
             showLegend={data.showLegend}
             showGrid={data.showGrid}
-            enablePoints={data.enablePoints}
+            enablePointLabel={data.enablePointLabel}
+            groupMode={data.stackedArea ? 'stacked' : undefined}
             xAxisLabel={data.xAxisLabel}
             yAxisLabel={data.yAxisLabel}
             displayType={data.displayType}
             prefix={data.prefix}
             suffix={data.suffix}
-            xScale={data.xScale}
-            yScale={data.yScale}
-            curve={data.curve}
-            stackedArea={data.stackedArea}
-            enableSlices={data.enableSlices}
           />
         </Suspense>
       );

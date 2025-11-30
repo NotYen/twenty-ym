@@ -1,4 +1,4 @@
 /* eslint-disable no-console */
-export const logError = (message: any) => {
-  console.error(message);
+export const logError = (...messages: any[]) => {
+  console.error(...messages);
 };

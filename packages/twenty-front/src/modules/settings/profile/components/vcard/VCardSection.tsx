@@ -13,6 +13,7 @@ import {
   VCARD_STORAGE_KEY,
 } from '@/settings/profile/components/vcard/types/VCardData';
 import { logError } from '~/utils/logError';
+import { type RecordGqlOperationFilter } from 'twenty-shared/types';
 
 // 主容器（左右分欄佈局，遵循 Twenty 的響應式設計）
 const StyledContainer = styled.div`
@@ -65,15 +66,20 @@ export const VCardSection = () => {
   const [formData, setFormData] = useState<VCardFormData>(getInitialData);
 
   // 使用 Twenty 的標準 hook 查詢當前用戶的 Person 記錄（只查詢一次）
+  const personEmailFilter: RecordGqlOperationFilter | undefined =
+    currentUser?.email
+      ? ({
+          emails: {
+            primaryEmail: {
+              eq: currentUser.email,
+            },
+          },
+        } as RecordGqlOperationFilter)
+      : undefined;
+
   const { records: personRecords, loading } = useFindManyRecords({
     objectNameSingular: 'person',
-    filter: {
-      emails: {
-        primaryEmail: {
-          eq: currentUser?.email ?? '',
-        },
-      },
-    },
+    filter: personEmailFilter,
     limit: 1,
     skip: !currentUser?.email,
   });

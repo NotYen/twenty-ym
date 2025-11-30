@@ -11,6 +11,7 @@ import { PageLayoutTabList } from '@/page-layout/components/PageLayoutTabList';
 import { PAGE_LAYOUT_TAB_LIST_DROPPABLE_IDS } from '@/page-layout/components/PageLayoutTabListDroppableIds';
 import { PageLayoutTabListEffect } from '@/page-layout/components/PageLayoutTabListEffect';
 import { PageLayoutComponentInstanceContext } from '@/page-layout/states/contexts/PageLayoutComponentInstanceContext';
+import { type PageLayoutTab } from '@/page-layout/types/PageLayoutTab';
 import { type SingleTabProps } from '@/ui/layout/tab-list/types/SingleTabProps';
 
 const StyledContainer = styled.div`
@@ -19,14 +20,40 @@ const StyledContainer = styled.div`
   width: 720px;
 `;
 
-type PageLayoutTab = SingleTabProps & {
+type StoryPageLayoutTab = PageLayoutTab & SingleTabProps;
+
+const STORY_PAGE_LAYOUT_ID = 'page-layout-story';
+
+const createStoryTab = ({
+  id,
+  title,
+  position,
+  Icon,
+}: {
+  id: string;
+  title: string;
   position: number;
+  Icon?: SingleTabProps['Icon'];
+}): StoryPageLayoutTab => {
+  const timestamp = new Date().toISOString();
+
+  return {
+    __typename: 'PageLayoutTab',
+    id,
+    title,
+    position,
+    pageLayoutId: STORY_PAGE_LAYOUT_ID,
+    widgets: [],
+    createdAt: timestamp,
+    updatedAt: timestamp,
+    Icon,
+  };
 };
 
-const createInitialTabs = (): PageLayoutTab[] => [
-  { id: 'overview', title: 'Overview', position: 0, Icon: IconPlus },
-  { id: 'revenue', title: 'Revenue', position: 1 },
-  { id: 'forecasts', title: 'Forecasts', position: 2 },
+const createInitialTabs = (): StoryPageLayoutTab[] => [
+  createStoryTab({ id: 'overview', title: 'Overview', position: 0, Icon: IconPlus }),
+  createStoryTab({ id: 'revenue', title: 'Revenue', position: 1 }),
+  createStoryTab({ id: 'forecasts', title: 'Forecasts', position: 2 }),
 ];
 
 const PageLayoutTabListPlayground = ({
@@ -34,7 +61,7 @@ const PageLayoutTabListPlayground = ({
 }: {
   isReorderEnabled: boolean;
 }) => {
-  const [tabs, setTabs] = useState<PageLayoutTab[]>(createInitialTabs());
+  const [tabs, setTabs] = useState<StoryPageLayoutTab[]>(createInitialTabs());
   const [nextIndex, setNextIndex] = useState(tabs.length);
 
   const sortedTabs = useMemo(() => {
@@ -44,11 +71,11 @@ const PageLayoutTabListPlayground = ({
   const handleAddTab = () => {
     setTabs((prev) => [
       ...prev,
-      {
+      createStoryTab({
         id: `new-tab-${nextIndex}`,
         title: `New Tab ${nextIndex}`,
         position: nextIndex,
-      },
+      }),
     ]);
     setNextIndex((value) => value + 1);
   };
@@ -71,7 +98,13 @@ const PageLayoutTabListPlayground = ({
       setTabs((prev) => {
         const maxPosition = Math.max(...prev.map((tab) => tab.position), 0);
         return prev.map((tab) =>
-          tab.id === draggableId ? { ...tab, position: maxPosition + 1 } : tab,
+          tab.id === draggableId
+            ? {
+                ...tab,
+                position: maxPosition + 1,
+                updatedAt: new Date().toISOString(),
+              }
+            : tab,
         );
       });
       return true;
@@ -109,7 +142,9 @@ const PageLayoutTabListPlayground = ({
       });
 
       return prev.map((tab) =>
-        tab.id === draggableId ? { ...tab, position: newPosition } : tab,
+        tab.id === draggableId
+          ? { ...tab, position: newPosition, updatedAt: new Date().toISOString() }
+          : tab,
       );
     });
 

@@ -1,3 +1,4 @@
+import { type GraphWidgetTooltipItem } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
 import { type PieChartDataItem } from '@/page-layout/widgets/graph/graphWidgetPieChart/types/PieChartDataItem';
 import { type PieChartEnrichedData } from '@/page-layout/widgets/graph/graphWidgetPieChart/types/PieChartEnrichedData';
 import {
@@ -33,14 +34,18 @@ export const usePieChartTooltip = ({
         ? formatGraphValue(item.percentage / 100, formatOptions)
         : `${formatGraphValue(item.value, formatOptions)} (${item.percentage.toFixed(1)}%)`;
 
+    const tooltipItem: GraphWidgetTooltipItem = {
+      key: item.id,
+      label: item.label || item.id,
+      formattedValue,
+      value: item.value,
+      dotColor: item.colorScheme.solid,
+    };
+
     return {
-      tooltipItem: {
-        label: item.label || item.id,
-        formattedValue,
-        value: item.value,
-        dotColor: item.colorScheme.solid,
-      },
+      tooltipItem,
       showClickHint: isDefined(dataItem?.to),
+      linkTo: dataItem?.to,
     };
   };
 

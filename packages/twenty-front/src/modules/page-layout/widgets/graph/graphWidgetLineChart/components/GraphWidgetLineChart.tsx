@@ -25,6 +25,7 @@ import {
   type GraphValueFormatOptions,
 } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { NodeDimensionEffect } from '@/ui/utilities/dimensions/components/NodeDimensionEffect';
+import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { useSetRecoilComponentState } from '@/ui/utilities/state/component-state/hooks/useSetRecoilComponentState';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -35,6 +36,7 @@ import {
   type SliceTooltipProps,
 } from '@nivo/line';
 import { useCallback, useId, useRef, useState } from 'react';
+import { isDefined } from 'twenty-shared/utils';
 import { useDebouncedCallback } from 'use-debounce';
 
 type CrosshairLayerProps = LineCustomSvgLayerProps<LineSeries>;
@@ -120,10 +122,15 @@ export const GraphWidgetLineChart = ({
     theme,
   });
 
+  const activeTooltip = useRecoilComponentValue(
+    graphWidgetLineTooltipComponentState,
+  );
+  const crosshairX = useRecoilComponentValue(
+    graphWidgetLineCrosshairXComponentState,
+  );
   const setActiveLineTooltip = useSetRecoilComponentState(
     graphWidgetLineTooltipComponentState,
   );
-
   const setCrosshairX = useSetRecoilComponentState(
     graphWidgetLineCrosshairXComponentState,
   );
@@ -192,6 +199,7 @@ export const GraphWidgetLineChart = ({
       innerHeight={layerProps.innerHeight}
       innerWidth={layerProps.innerWidth}
       onSliceHover={handleSliceHover}
+      crosshairX={crosshairX}
       onRectLeave={() => debouncedHideTooltip()}
     />
   );
@@ -272,13 +280,20 @@ export const GraphWidgetLineChart = ({
           theme={chartTheme}
         />
       </GraphWidgetChartContainer>
-      <GraphLineChartTooltip
-        containerId={id}
-        enrichedSeries={enrichedSeries}
-        formatOptions={formatOptions}
-        onMouseEnter={handleTooltipMouseEnter}
-        onMouseLeave={handleTooltipMouseLeave}
-      />
+      {isDefined(activeTooltip) && (
+        <GraphLineChartTooltip
+          containerId={id}
+          enrichedSeries={enrichedSeries}
+          formatOptions={formatOptions}
+          slice={activeTooltip.slice}
+          offsetLeft={activeTooltip.offsetLeft}
+          offsetTop={activeTooltip.offsetTop}
+          highlightedSeriesId={activeTooltip.highlightedSeriesId}
+          linkTo={activeTooltip.linkTo}
+          onMouseEnter={handleTooltipMouseEnter}
+          onMouseLeave={handleTooltipMouseLeave}
+        />
+      )}
       <GraphWidgetLegend show={shouldShowLegend} items={legendItems} />
     </StyledContainer>
   );

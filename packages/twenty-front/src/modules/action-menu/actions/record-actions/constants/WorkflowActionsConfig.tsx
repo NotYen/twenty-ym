@@ -27,7 +27,6 @@ import { msg } from '@lingui/core/macro';
 import { AppPath } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import {
-  IconCopy,
   IconHistoryToggle,
   IconNoteOff,
   IconPlayerPause,
@@ -35,7 +34,7 @@ import {
   IconPlus,
   IconPower,
   IconReorder,
-  IconVersions,
+  IconVersions
 } from 'twenty-ui/display';
 
 const areWorkflowTriggerAndStepsDefined = (
@@ -229,25 +228,6 @@ export const WORKFLOW_ACTIONS_CONFIG = inheritActionsFromDefaultConfig({
         !isDefined(selectedRecord?.deletedAt),
       availableOn: [ActionViewType.SHOW_PAGE],
       component: <TidyUpWorkflowSingleRecordAction />,
-    },
-    [WorkflowSingleRecordActionKeys.DUPLICATE_WORKFLOW]: {
-      key: WorkflowSingleRecordActionKeys.DUPLICATE_WORKFLOW,
-      label: msg`Duplicate Workflow`,
-      shortLabel: msg`Duplicate`,
-      isPinned: false,
-      position: 12,
-      Icon: IconCopy,
-      type: ActionType.Standard,
-      scope: ActionScope.RecordSelection,
-      shouldBeRegistered: ({ selectedRecord, workflowWithCurrentVersion }) =>
-        isDefined(workflowWithCurrentVersion) &&
-        isDefined(workflowWithCurrentVersion.currentVersion) &&
-        !isDefined(selectedRecord?.deletedAt),
-      availableOn: [
-        ActionViewType.SHOW_PAGE,
-        ActionViewType.INDEX_PAGE_SINGLE_RECORD_SELECTION,
-      ],
-      component: <DuplicateWorkflowSingleRecordAction />,
     },
     [NoSelectionWorkflowRecordActionKeys.GO_TO_RUNS]: {
       type: ActionType.Navigation,

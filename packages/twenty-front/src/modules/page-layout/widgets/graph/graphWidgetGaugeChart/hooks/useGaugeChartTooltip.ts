@@ -1,3 +1,4 @@
+import { type GraphWidgetTooltipItem } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
 import { type GraphColorScheme } from '@/page-layout/widgets/graph/types/GraphColorScheme';
 import {
   formatGraphValue,
@@ -29,14 +30,18 @@ export const useGaugeChartTooltip = ({
         ? formatGraphValue(normalizedValue / 100, formatOptions)
         : `${formatGraphValue(value, formatOptions)} (${normalizedValue.toFixed(1)}%)`;
 
+    const tooltipItem: GraphWidgetTooltipItem = {
+      key: label,
+      label: label,
+      formattedValue,
+      value,
+      dotColor: colorScheme.solid,
+    };
+
     return {
-      tooltipItem: {
-        label: label,
-        formattedValue,
-        value,
-        dotColor: colorScheme.solid,
-      },
+      tooltipItem,
       showClickHint: isDefined(to),
+      linkTo: to,
     };
   };
 

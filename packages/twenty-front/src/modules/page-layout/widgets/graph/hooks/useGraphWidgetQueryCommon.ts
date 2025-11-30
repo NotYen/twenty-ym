@@ -1,19 +1,17 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
+import { type GroupByChartConfiguration } from '@/page-layout/widgets/graph/types/GroupByChartConfiguration';
 import {
   computeRecordGqlOperationFilter,
   isDefined,
 } from 'twenty-shared/utils';
-import {
-  type AggregateChartConfiguration,
-  type BarChartConfiguration,
-} from '~/generated/graphql';
+import { type AggregateChartConfiguration } from '~/generated/graphql';
 
 export const useGraphWidgetQueryCommon = ({
   objectMetadataItemId,
   configuration,
 }: {
   objectMetadataItemId: string;
-  configuration: BarChartConfiguration | AggregateChartConfiguration;
+  configuration: GroupByChartConfiguration | AggregateChartConfiguration;
 }) => {
   const { objectMetadataItem } = useObjectMetadataItemById({
     objectId: objectMetadataItemId,
