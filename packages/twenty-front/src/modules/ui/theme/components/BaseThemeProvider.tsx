@@ -2,6 +2,7 @@ import { ThemeProvider } from '@emotion/react';
 import { createContext, useEffect } from 'react';
 
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
+import { useSystemColorScheme } from '@/ui/theme/hooks/useSystemColorScheme';
 import { persistedColorSchemeState } from '@/ui/theme/states/persistedColorSchemeState';
 import { persistedFontSizeState } from '@/ui/theme/states/persistedFontSizeState';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -10,7 +11,6 @@ import { type ColorScheme } from 'twenty-ui/input';
 import { THEME_DARK, THEME_LIGHT, ThemeContextProvider } from 'twenty-ui/theme';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 import { logDebug } from '~/utils/logDebug';
-import { logError } from '~/utils/logError';
 
 type BaseThemeProviderProps = {
   children: JSX.Element | JSX.Element[];
@@ -26,11 +26,17 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
   );
   const persistedFontSize = useRecoilValue(persistedFontSizeState);
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
+  const systemColorScheme = useSystemColorScheme();
+
+  const effectiveColorScheme =
+    persistedColorScheme === 'System'
+      ? systemColorScheme
+      : persistedColorScheme;
 
   document.documentElement.className =
-    persistedColorScheme === 'Dark' ? 'dark' : 'light';
+    effectiveColorScheme === 'Dark' ? 'dark' : 'light';
 
-  const theme = persistedColorScheme === 'Dark' ? THEME_DARK : THEME_LIGHT;
+  const theme = effectiveColorScheme === 'Dark' ? THEME_DARK : THEME_LIGHT;
 
   // 初始化全局 zoom（縮放所有內容：文字、圖標、間距、佈局）
   useEffect(() => {
