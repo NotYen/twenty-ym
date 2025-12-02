@@ -28,6 +28,7 @@ import { sanitizeRecordInput } from '@/object-record/utils/sanitizeRecordInput';
 import { useRecoilValue } from 'recoil';
 import { CustomError, isDefined } from 'twenty-shared/utils';
 import { FieldMetadataType, RelationType } from '~/generated-metadata/graphql';
+
 type useCreateOneRecordProps = {
   objectNameSingular: string;
   recordGqlFields?: RecordGqlOperationGqlRecordFields;

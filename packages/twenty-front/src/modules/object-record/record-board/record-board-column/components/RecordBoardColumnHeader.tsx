@@ -104,6 +104,13 @@ export const RecordBoardColumnHeader = () => {
 
   const dropdownId = `record-board-column-dropdown-${columnDefinition.id}`;
 
+  const handleCreateNewRecordClick = async () => {
+    await createNewIndexRecord({
+      position: 'first',
+      [selectFieldMetadataItem.name]: columnDefinition.value,
+    });
+  };
+
   return (
     <StyledColumn>
       <StyledHeader
@@ -166,13 +173,7 @@ export const RecordBoardColumnHeader = () => {
                     <LightIconButton
                       accent="tertiary"
                       Icon={IconPlus}
-                      onClick={() => {
-                        createNewIndexRecord({
-                          position: 'first',
-                          [selectFieldMetadataItem.name]:
-                            columnDefinition.value,
-                        });
-                      }}
+                      onClick={handleCreateNewRecordClick}
                     />
                   )}
               </StyledHeaderActions>
