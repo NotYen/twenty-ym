@@ -57,7 +57,7 @@ services:
   # ==========================================
   server-test:
     # 使用本地構建的映像（9999 端口版本）
-    image: twenty-zh-tw:port9999
+    image: twenty-zh-tw:latest
     container_name: twenty-server-test
     restart: unless-stopped
     depends_on:
@@ -74,6 +74,9 @@ services:
 
       # Redis 連接
       REDIS_URL: redis://redis-test:6379
+
+      # 服務 URL
+      SERVER_URL: http://localhost:9999
 
       # 應用密鑰（測試用）
       APP_SECRET: test_secret_key_for_local_docker_testing_only
@@ -109,7 +112,7 @@ services:
   # Worker（測試用）
   # ==========================================
   worker-test:
-    image: twenty-zh-tw:port9999
+    image: twenty-zh-tw:latest
     container_name: twenty-worker-test
     restart: unless-stopped
     command: ["yarn", "worker:prod"]

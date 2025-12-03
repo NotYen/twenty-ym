@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(find:*)",
+      "Bash(mkdir:*)",
+      "Bash(npx nx run:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx eslint:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "postgres",
+    "playwright",
+    "context7"
+  ]
+}

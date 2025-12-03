@@ -302,6 +302,63 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsSystem()
   timelineActivities: Relation<TimelineActivityWorkspaceEntity[]>;
 
+  // LINE Integration fields
+  @WorkspaceField({
+    standardId: PERSON_STANDARD_FIELD_IDS.lineUserId,
+    type: FieldMetadataType.TEXT,
+    label: msg`LINE User ID`,
+    description: msg`LINE Official Account user ID`,
+    icon: 'IconBrandLine',
+  })
+  @WorkspaceIsNullable()
+  lineUserId: string | null;
+
+  @WorkspaceField({
+    standardId: PERSON_STANDARD_FIELD_IDS.lineDisplayName,
+    type: FieldMetadataType.TEXT,
+    label: msg`LINE Display Name`,
+    description: msg`LINE display name`,
+    icon: 'IconUser',
+  })
+  @WorkspaceIsNullable()
+  lineDisplayName: string | null;
+
+  @WorkspaceField({
+    standardId: PERSON_STANDARD_FIELD_IDS.lineProfilePictureUrl,
+    type: FieldMetadataType.TEXT,
+    label: msg`LINE Profile Picture`,
+    description: msg`LINE profile picture URL`,
+    icon: 'IconPhoto',
+  })
+  @WorkspaceIsNullable()
+  lineProfilePictureUrl: string | null;
+
+  @WorkspaceField({
+    standardId: PERSON_STANDARD_FIELD_IDS.lineStatus,
+    type: FieldMetadataType.SELECT,
+    label: msg`LINE Status`,
+    description: msg`LINE friendship status`,
+    icon: 'IconStatusChange',
+    options: [
+      { value: 'active', label: 'Active', color: 'green', position: 0 },
+      { value: 'blocked', label: 'Blocked', color: 'red', position: 1 },
+      { value: 'unlinked', label: 'Unlinked', color: 'gray', position: 2 },
+    ],
+    defaultValue: "'unlinked'",
+  })
+  @WorkspaceIsNullable()
+  lineStatus: string | null;
+
+  @WorkspaceField({
+    standardId: PERSON_STANDARD_FIELD_IDS.lastLineInteractionAt,
+    type: FieldMetadataType.DATE_TIME,
+    label: msg`Last LINE Interaction`,
+    description: msg`Last interaction timestamp with LINE OA`,
+    icon: 'IconClock',
+  })
+  @WorkspaceIsNullable()
+  lastLineInteractionAt: Date | null;
+
   @WorkspaceField({
     standardId: PERSON_STANDARD_FIELD_IDS.searchVector,
     type: FieldMetadataType.TS_VECTOR,

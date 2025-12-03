@@ -367,6 +367,12 @@ export const PERSON_STANDARD_FIELD_IDS = {
   calendarEventParticipants: '20202020-52ee-45e9-a702-b64b3753e3a9',
   timelineActivities: '20202020-a43e-4873-9c23-e522de906ce5',
   searchVector: '57d1d7ad-fa10-44fc-82f3-ad0959ec2534',
+  // LINE Integration fields
+  lineUserId: '20202020-943f-49bb-822b-4c8322a97557',
+  lineDisplayName: '20202020-93a7-49c6-819a-8ce1b9992760',
+  lineProfilePictureUrl: '20202020-9be1-40de-8343-58ad845b6ee4',
+  lineStatus: '20202020-753b-42ba-8c32-a244240b81f0',
+  lastLineInteractionAt: '20202020-e9d0-4cbf-8c8d-d545a8a52a58',
 } as const;
 
 export const TASK_STANDARD_FIELD_IDS = {

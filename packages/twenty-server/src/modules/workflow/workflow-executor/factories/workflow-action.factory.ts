@@ -19,6 +19,7 @@ import { FindRecordsWorkflowAction } from 'src/modules/workflow/workflow-executo
 import { UpdateRecordWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/update-record.workflow-action';
 import { UpsertRecordWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/upsert-record.workflow-action';
 import { ToolExecutorWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/tool-executor-workflow-action';
+import { SendLineMessageWorkflowAction } from 'src/modules/workflow/workflow-executor/workflow-actions/line-message/send-line-message.workflow-action';
 import { WorkflowActionType } from 'src/modules/workflow/workflow-executor/workflow-actions/types/workflow-action.type';
 
 @Injectable()
@@ -37,6 +38,7 @@ export class WorkflowActionFactory {
     private readonly aiAgentWorkflowAction: AiAgentWorkflowAction,
     private readonly emptyWorkflowAction: EmptyWorkflowAction,
     private readonly delayWorkflowAction: DelayWorkflowAction,
+    private readonly sendLineMessageWorkflowAction: SendLineMessageWorkflowAction,
   ) {}
 
   get(stepType: WorkflowActionType): WorkflowAction {
@@ -46,6 +48,8 @@ export class WorkflowActionFactory {
       case WorkflowActionType.SEND_EMAIL:
       case WorkflowActionType.SEND_LINE_MESSAGE:
         return this.toolExecutorWorkflowAction;
+      case WorkflowActionType.SEND_LINE_MESSAGE:
+        return this.sendLineMessageWorkflowAction;
       case WorkflowActionType.CREATE_RECORD:
         return this.createRecordWorkflowAction;
       case WorkflowActionType.UPSERT_RECORD:
