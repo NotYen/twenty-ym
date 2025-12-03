@@ -2,8 +2,8 @@ import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/Char
 import { useGraphWidgetAggregateQuery } from '@/page-layout/widgets/graph/hooks/useGraphWidgetAggregateQuery';
 import { lazy, Suspense } from 'react';
 import {
-  type AggregateChartConfiguration,
-  type PageLayoutWidget,
+    type AggregateChartConfiguration,
+    type PageLayoutWidget,
 } from '~/generated/graphql';
 
 const GraphWidgetAggregateChart = lazy(() =>
@@ -19,18 +19,23 @@ export const GraphWidgetAggregateChartRenderer = ({
 }: {
   widget: PageLayoutWidget;
 }) => {
+  const configuration = widget.configuration as AggregateChartConfiguration;
   const { value, loading } = useGraphWidgetAggregateQuery({
     objectMetadataItemId: widget.objectMetadataId,
-    configuration: widget.configuration as AggregateChartConfiguration,
+    configuration,
   });
 
   if (loading) {
     return <ChartSkeletonLoader />;
   }
 
+  const prefix = configuration.prefix || '';
+  const suffix = configuration.suffix || '';
+  const displayValue = `${prefix}${value ?? '-'}${suffix}`;
+
   return (
     <Suspense fallback={<ChartSkeletonLoader />}>
-      <GraphWidgetAggregateChart value={value ?? '-'} />
+      <GraphWidgetAggregateChart value={displayValue} />
     </Suspense>
   );
 };
