@@ -1,4 +1,4 @@
-import { AI_CHAT_INPUT_ID } from '@/ai/constants/AIChatInputId';
+import { AI_CHAT_INPUT_ID } from '@/ai/constants/AiChatInputId';
 import { useAgentChatContextOrThrow } from '@/ai/hooks/useAgentChatContextOrThrow';
 import { agentChatInputState } from '@/ai/states/agentChatInputState';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
