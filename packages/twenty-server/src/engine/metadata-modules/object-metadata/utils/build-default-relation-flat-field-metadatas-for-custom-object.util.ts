@@ -1,7 +1,7 @@
+import { type STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 import { FieldMetadataType, RelationOnDeleteAction } from 'twenty-shared/types';
 import { capitalize, isDefined } from 'twenty-shared/utils';
 import { v4 } from 'uuid';
-import { type STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 
 import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
 
@@ -11,19 +11,19 @@ import { findFlatEntityByIdInFlatEntityMaps } from 'src/engine/metadata-modules/
 import { type FlatFieldMetadata } from 'src/engine/metadata-modules/flat-field-metadata/types/flat-field-metadata.type';
 import { type FlatObjectMetadata } from 'src/engine/metadata-modules/flat-object-metadata/types/flat-object-metadata.type';
 import {
-  ObjectMetadataException,
-  ObjectMetadataExceptionCode,
+    ObjectMetadataException,
+    ObjectMetadataExceptionCode,
 } from 'src/engine/metadata-modules/object-metadata/object-metadata.exception';
 import { buildDescriptionForRelationFieldMetadataOnFromField } from 'src/engine/metadata-modules/object-metadata/utils/build-description-for-relation-field-on-from-field.util';
 import { buildDescriptionForRelationFieldMetadataOnToField } from 'src/engine/metadata-modules/object-metadata/utils/build-description-for-relation-field-on-to-field.util';
 import {
-  CUSTOM_OBJECT_STANDARD_FIELD_IDS,
-  STANDARD_OBJECT_FIELD_IDS,
+    CUSTOM_OBJECT_STANDARD_FIELD_IDS,
+    STANDARD_OBJECT_FIELD_IDS,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import {
-  createDeterministicUuid,
-  createRelationDeterministicUuid,
+    createDeterministicUuid,
+    createRelationDeterministicUuid,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/create-deterministic-uuid.util';
 
 const generateSourceFlatFieldMetadata = ({
@@ -61,17 +61,6 @@ const generateSourceFlatFieldMetadata = ({
     STANDARD_OBJECT_ICONS[
       targetFlatObjectMetadata.nameSingular as keyof typeof STANDARD_OBJECT_ICONS
     ] || 'IconBuildingSkyscraper';
-  const standardId =
-    CUSTOM_OBJECT_STANDARD_FIELD_IDS[
-      targetFlatObjectMetadata.namePlural as keyof typeof CUSTOM_OBJECT_STANDARD_FIELD_IDS
-    ];
-
-  if (!isDefined(standardId)) {
-    throw new ObjectMetadataException(
-      `Standard field ID not found for target object ${targetFlatObjectMetadata.namePlural}`,
-      ObjectMetadataExceptionCode.INTERNAL_SERVER_ERROR,
-    );
-  }
 
   return {
     calendarViewIds: [],
