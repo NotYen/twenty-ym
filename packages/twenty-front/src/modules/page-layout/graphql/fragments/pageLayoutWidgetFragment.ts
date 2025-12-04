@@ -39,6 +39,7 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         groupMode
         timezone
         firstDayOfTheWeek
+        isCumulative
       }
       ... on LineChartConfiguration {
         graphType
@@ -62,6 +63,7 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         filter
         timezone
         firstDayOfTheWeek
+        isCumulative
       }
       ... on PieChartConfiguration {
         graphType

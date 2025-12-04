@@ -25,6 +25,7 @@ export const LINE_CHART_SETTINGS: ChartSettingsGroup[] = [
     items: [
       DATA_DISPLAY_X_SETTING,
       DATE_GRANULARITY_X_SETTING,
+      CUMULATIVE_SETTING,
       SORT_BY_X_SETTING,
       OMIT_NULL_VALUES_SETTING,
     ],

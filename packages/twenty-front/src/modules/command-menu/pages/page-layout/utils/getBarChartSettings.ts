@@ -29,6 +29,7 @@ export const getBarChartSettings = (
   const primaryAxisItems = [
     { ...DATA_DISPLAY_X_SETTING, Icon: dataDisplayXIcon },
     DATE_GRANULARITY_X_SETTING,
+    CUMULATIVE_SETTING,
     SORT_BY_X_SETTING,
     OMIT_NULL_VALUES_SETTING,
   ];

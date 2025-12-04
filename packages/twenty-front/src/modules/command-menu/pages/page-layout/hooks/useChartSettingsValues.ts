@@ -191,6 +191,19 @@ export const useChartSettingsValues = ({
           isDefined(configuration.dateGranularity)
           ? getDateGranularityLabel(configuration.dateGranularity)
           : undefined;
+      case CHART_CONFIGURATION_SETTING_IDS.FILTER: {
+        const filterRulesCount = getChartFilterRulesCount(configuration.filter);
+        return filterRulesCount > 0
+          ? plural(filterRulesCount, {
+              one: `${filterRulesCount} rule`,
+              other: `${filterRulesCount} rules`,
+            })
+          : undefined;
+      }
+      case CHART_CONFIGURATION_SETTING_IDS.CUMULATIVE:
+        return 'isCumulative' in configuration
+          ? (configuration.isCumulative ?? false)
+          : false;
       default:
         return '';
     }

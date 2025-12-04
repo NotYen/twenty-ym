@@ -144,4 +144,9 @@ export class LineChartConfigurationDTO {
   @Min(0)
   @Max(7)
   firstDayOfTheWeek?: number;
+
+  @Field(() => Boolean, { nullable: true, defaultValue: false })
+  @IsBoolean()
+  @IsOptional()
+  isCumulative?: boolean;
 }
