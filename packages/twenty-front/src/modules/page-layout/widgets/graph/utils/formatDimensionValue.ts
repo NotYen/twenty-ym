@@ -4,8 +4,8 @@ import { formatDateByGranularity } from '@/page-layout/widgets/graph/utils/forma
 import { t } from '@lingui/core/macro';
 import { isNonEmptyString } from '@sniptt/guards';
 import {
-  FieldMetadataType,
-  ObjectRecordGroupByDateGranularity,
+    FieldMetadataType,
+    ObjectRecordGroupByDateGranularity,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { formatToShortNumber } from '~/utils/format/formatToShortNumber';
@@ -42,12 +42,15 @@ const normalizeMultiSelectValue = (value: unknown): unknown[] => {
 export const formatDimensionValue = ({
   value,
   fieldMetadata,
-  dateGranularity = GRAPH_DEFAULT_DATE_GRANULARITY as ObjectRecordGroupByDateGranularity,
+  dateGranularity,
   subFieldName,
 }: FormatDimensionValueParams): string => {
   if (!isDefined(value)) {
     return t`Not Set`;
   }
+
+  const effectiveDateGranularity = (dateGranularity ??
+    GRAPH_DEFAULT_DATE_GRANULARITY) as ObjectRecordGroupByDateGranularity;
 
   // 🔍 調試日誌：用於定位圖表標籤問題
   logDebug('[formatDimensionValue] 輸入數據', {
@@ -86,17 +89,23 @@ export const formatDimensionValue = ({
 
     case FieldMetadataType.DATE:
     case FieldMetadataType.DATE_TIME: {
+      const parsedDate = new Date(String(value));
+
+      if (isNaN(parsedDate.getTime())) {
+        return String(value);
+      }
+
       if (
-        dateGranularity ===
+        effectiveDateGranularity ===
           ObjectRecordGroupByDateGranularity.DAY_OF_THE_WEEK ||
-        dateGranularity ===
+        effectiveDateGranularity ===
           ObjectRecordGroupByDateGranularity.MONTH_OF_THE_YEAR ||
-        dateGranularity ===
+        effectiveDateGranularity ===
           ObjectRecordGroupByDateGranularity.QUARTER_OF_THE_YEAR
       ) {
         return String(value);
       }
-      return formatDateByGranularity(new Date(String(value)), dateGranularity);
+      return formatDateByGranularity(parsedDate, effectiveDateGranularity);
     }
 
     case FieldMetadataType.NUMBER:
@@ -118,16 +127,37 @@ export const formatDimensionValue = ({
       return formatToShortNumber(numericValue);
     }
 
+    case FieldMetadataType.RELATION: {
+      if (isDefined(dateGranularity)) {
+        const parsedDate = new Date(String(value));
+        if (isNaN(parsedDate.getTime())) {
+          return String(value);
+        }
+        if (
+          dateGranularity ===
+            ObjectRecordGroupByDateGranularity.DAY_OF_THE_WEEK ||
+          dateGranularity ===
+            ObjectRecordGroupByDateGranularity.MONTH_OF_THE_YEAR ||
+          dateGranularity ===
+            ObjectRecordGroupByDateGranularity.QUARTER_OF_THE_YEAR
+        ) {
+          return String(value);
+        }
+        return formatDateByGranularity(parsedDate, dateGranularity);
+      }
+      return String(value);
+    }
+
     default: {
       const result = String(value);
-      
+
       // 🔍 調試日誌：記錄 default 分支的處理結果
       logDebug('[formatDimensionValue] default 分支', {
         input: value,
         output: result,
         type: fieldMetadata.type,
       });
-      
+
       return result;
     }
   }
