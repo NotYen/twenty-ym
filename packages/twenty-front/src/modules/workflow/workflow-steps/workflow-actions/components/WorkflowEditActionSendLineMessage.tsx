@@ -1,12 +1,8 @@
-import { SidePanelHeader } from '@/command-menu/components/SidePanelHeader';
-import { WorkflowVariablePicker } from '@/workflow/workflow-variables/components/WorkflowVariablePicker';
+import { FormTextFieldInput } from '@/object-record/record-field/ui/form-types/components/FormTextFieldInput';
 import { type WorkflowSendLineMessageAction } from '@/workflow/types/Workflow';
 import { WorkflowStepBody } from '@/workflow/workflow-steps/components/WorkflowStepBody';
 import { WorkflowStepFooter } from '@/workflow/workflow-steps/components/WorkflowStepFooter';
-import { SEND_LINE_MESSAGE_ACTION } from '@/workflow/workflow-steps/workflow-actions/constants/actions/SendLineMessageAction';
-import { useWorkflowActionHeader } from '@/workflow/workflow-steps/workflow-actions/hooks/useWorkflowActionHeader';
-import { FormTextFieldInput } from '@/object-record/record-field/ui/form-types/components/FormTextFieldInput';
-import { useIcons } from 'twenty-ui/display';
+import { WorkflowVariablePicker } from '@/workflow/workflow-variables/components/WorkflowVariablePicker';
 import { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -31,7 +27,6 @@ export const WorkflowEditActionSendLineMessage = ({
   action,
   actionOptions,
 }: WorkflowEditActionSendLineMessageProps) => {
-  const { getIcon } = useIcons();
   const [formData, setFormData] = useState<SendLineMessageFormData>({
     to: action.settings.input.to,
     message: action.settings.input.message,
@@ -76,33 +71,8 @@ export const WorkflowEditActionSendLineMessage = ({
     saveAction(updatedData);
   };
 
-  const { headerTitle, headerIcon, headerIconColor, headerType } =
-    useWorkflowActionHeader({
-      action,
-      defaultTitle: SEND_LINE_MESSAGE_ACTION.defaultLabel,
-    });
-
   return (
     <>
-      <SidePanelHeader
-        onTitleChange={(newTitle: string) => {
-          if (actionOptions.readonly === true) {
-            return;
-          }
-
-          actionOptions.onActionUpdate({
-            ...action,
-            name: newTitle,
-          });
-        }}
-        Icon={getIcon(headerIcon)}
-        iconColor={headerIconColor}
-        initialTitle={headerTitle}
-        headerType={headerType}
-        disabled={actionOptions.readonly}
-        iconTooltip={SEND_LINE_MESSAGE_ACTION.defaultLabel}
-      />
-
       <WorkflowStepBody>
         <FormTextFieldInput
           label="LINE User ID"
