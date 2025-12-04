@@ -1,6 +1,7 @@
 import { InjectDataSource, InjectRepository } from '@nestjs/typeorm';
 
 import { Command } from 'nest-commander';
+import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 import { isDefined } from 'twenty-shared/utils';
 import { DataSource, In, Repository } from 'typeorm';
 
@@ -15,14 +16,13 @@ import { ViewEntity } from 'src/engine/metadata-modules/view/entities/view.entit
 import { ViewKey } from 'src/engine/metadata-modules/view/enums/view-key.enum';
 import { WorkspaceEntityManager } from 'src/engine/twenty-orm/entity-manager/workspace-entity-manager';
 import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
+import { shouldSeedWorkspaceFavorite } from 'src/engine/utils/should-seed-workspace-favorite';
 import { createCoreViews } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-core-views';
 import { prefillWorkspaceFavorites } from 'src/engine/workspace-manager/standard-objects-prefill-data/prefill-workspace-favorites';
-import { shouldSeedWorkspaceFavorite } from 'src/engine/utils/should-seed-workspace-favorite';
 import { calendarEventsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/calendar-events-all.view';
 import { messageThreadsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/message-threads-all.view';
 import { messagesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/messages-all.view';
 import { workspaceMembersAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/workspace-members-all.view';
-import { STANDARD_OBJECT_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-ids';
 
 @Command({
   name: 'workspace:seed-new-core-views',
@@ -88,6 +88,7 @@ export class SeedNewCoreViewsCommand extends ActiveOrSuspendedWorkspacesMigratio
     const workspaceMemberMetadata = objectMetadataItems.find(
       (om) => om.standardId === STANDARD_OBJECT_IDS.workspaceMember,
     );
+
     if (isDefined(workspaceMemberMetadata)) {
       const existingViews = await this.viewRepository.find({
         where: {
@@ -117,6 +118,7 @@ export class SeedNewCoreViewsCommand extends ActiveOrSuspendedWorkspacesMigratio
     const messageMetadata = objectMetadataItems.find(
       (om) => om.standardId === STANDARD_OBJECT_IDS.message,
     );
+
     if (isDefined(messageMetadata)) {
       const existingViews = await this.viewRepository.find({
         where: {
@@ -143,6 +145,7 @@ export class SeedNewCoreViewsCommand extends ActiveOrSuspendedWorkspacesMigratio
     const messageThreadMetadata = objectMetadataItems.find(
       (om) => om.standardId === STANDARD_OBJECT_IDS.messageThread,
     );
+
     if (isDefined(messageThreadMetadata)) {
       const existingViews = await this.viewRepository.find({
         where: {
@@ -169,6 +172,7 @@ export class SeedNewCoreViewsCommand extends ActiveOrSuspendedWorkspacesMigratio
     const calendarEventMetadata = objectMetadataItems.find(
       (om) => om.standardId === STANDARD_OBJECT_IDS.calendarEvent,
     );
+
     if (isDefined(calendarEventMetadata)) {
       const existingViews = await this.viewRepository.find({
         where: {
@@ -180,10 +184,7 @@ export class SeedNewCoreViewsCommand extends ActiveOrSuspendedWorkspacesMigratio
 
       if (existingViews.length === 0) {
         viewsToCreate.push({
-          viewDefinition: calendarEventsAllView(
-            [calendarEventMetadata],
-            true,
-          ),
+          viewDefinition: calendarEventsAllView([calendarEventMetadata], true),
           objectMetadataId: calendarEventMetadata.id,
           objectName: 'Calendar Events',
         });
@@ -258,4 +259,3 @@ export class SeedNewCoreViewsCommand extends ActiveOrSuspendedWorkspacesMigratio
     }
   }
 }
-
