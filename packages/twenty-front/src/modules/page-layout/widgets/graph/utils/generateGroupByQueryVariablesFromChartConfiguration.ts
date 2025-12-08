@@ -2,10 +2,10 @@ import { type ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataI
 import { type GroupByChartConfiguration } from '@/page-layout/widgets/graph/types/GroupByChartConfiguration';
 import { getGroupByOrderBy } from '@/page-layout/widgets/graph/utils/getGroupByOrderBy';
 import {
-  type AggregateOrderByWithGroupByField,
-  type ObjectRecordOrderByForCompositeField,
-  type ObjectRecordOrderByForScalarField,
-  type ObjectRecordOrderByWithGroupByDateField,
+    type AggregateOrderByWithGroupByField,
+    type ObjectRecordOrderByForCompositeField,
+    type ObjectRecordOrderByForScalarField,
+    type ObjectRecordOrderByWithGroupByDateField,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { buildGroupByFieldObject } from './buildGroupByFieldObject';
@@ -21,16 +21,24 @@ export const generateGroupByQueryVariablesFromChartConfiguration = ({
   aggregateOperation?: string;
   limit?: number;
 }) => {
-  const groupByFieldXId = chartConfiguration.primaryAxisGroupByFieldMetadataId;
+  // Handle PieChartConfiguration which uses different field names
+  const isPieChart = chartConfiguration.__typename === 'PieChartConfiguration';
 
-  const groupByFieldYId =
-    chartConfiguration.secondaryAxisGroupByFieldMetadataId;
+  const groupByFieldXId = isPieChart
+    ? (chartConfiguration as any).groupByFieldMetadataId
+    : chartConfiguration.primaryAxisGroupByFieldMetadataId;
 
-  const groupBySubFieldNameX =
-    chartConfiguration.primaryAxisGroupBySubFieldName ?? undefined;
+  const groupByFieldYId = isPieChart
+    ? undefined
+    : chartConfiguration.secondaryAxisGroupByFieldMetadataId;
 
-  const groupBySubFieldNameY =
-    chartConfiguration.secondaryAxisGroupBySubFieldName ?? undefined;
+  const groupBySubFieldNameX = isPieChart
+    ? ((chartConfiguration as any).groupBySubFieldName ?? undefined)
+    : (chartConfiguration.primaryAxisGroupBySubFieldName ?? undefined);
+
+  const groupBySubFieldNameY = isPieChart
+    ? undefined
+    : (chartConfiguration.secondaryAxisGroupBySubFieldName ?? undefined);
 
   const groupByFieldX = objectMetadataItem.fields.find(
     (field) => field.id === groupByFieldXId,
@@ -50,12 +58,16 @@ export const generateGroupByQueryVariablesFromChartConfiguration = ({
     Record<string, boolean | Record<string, boolean | string>>
   > = [];
 
+  // Get date granularity based on chart type
+  const dateGranularityX = isPieChart
+    ? ((chartConfiguration as any).dateGranularity ?? undefined)
+    : (chartConfiguration.primaryAxisDateGranularity ?? undefined);
+
   groupBy.push(
     buildGroupByFieldObject({
       field: groupByFieldX,
       subFieldName: groupBySubFieldNameX,
-      dateGranularity:
-        chartConfiguration.primaryAxisDateGranularity ?? undefined,
+      dateGranularity: dateGranularityX,
     }),
   );
 
@@ -77,15 +89,19 @@ export const generateGroupByQueryVariablesFromChartConfiguration = ({
     | ObjectRecordOrderByForCompositeField
   > = [];
 
-  if (isDefined(chartConfiguration.primaryAxisOrderBy)) {
+  // Handle orderBy for Pie Chart (uses 'orderBy' instead of 'primaryAxisOrderBy')
+  const primaryOrderBy = isPieChart
+    ? (chartConfiguration as any).orderBy
+    : chartConfiguration.primaryAxisOrderBy;
+
+  if (isDefined(primaryOrderBy)) {
     orderBy.push(
       getGroupByOrderBy({
-        graphOrderBy: chartConfiguration.primaryAxisOrderBy,
+        graphOrderBy: primaryOrderBy,
         groupByField: groupByFieldX,
-        groupBySubFieldName: chartConfiguration.primaryAxisGroupBySubFieldName,
+        groupBySubFieldName: groupBySubFieldNameX,
         aggregateOperation,
-        dateGranularity:
-          chartConfiguration.primaryAxisDateGranularity ?? undefined,
+        dateGranularity: dateGranularityX,
       }),
     );
   }

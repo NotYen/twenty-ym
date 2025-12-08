@@ -6,11 +6,11 @@ import { isDate, isString } from '@sniptt/guards';
 import { parsePhoneNumberWithError } from 'libphonenumber-js';
 import { RATING_VALUES } from 'twenty-shared/constants';
 import {
-  absoluteUrlSchema,
-  getCountryCodesForCallingCode,
-  isDefined,
-  isValidCountryCode,
-  isValidUuid,
+    absoluteUrlSchema,
+    getCountryCodesForCallingCode,
+    isDefined,
+    isValidCountryCode,
+    isValidUuid,
 } from 'twenty-shared/utils';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 
@@ -41,12 +41,25 @@ export const getSpreadSheetFieldValidationDefinitions = (
   type: FieldMetadataType,
   fieldName: string,
   subFieldKey?: string,
+  isRelationConnectField?: boolean,
 ): SpreadsheetImportFieldValidationDefinition[] => {
   switch (type) {
     case FieldMetadataType.NUMBER:
       return [getNumberValidationDefinition(fieldName)];
     case FieldMetadataType.UUID:
+      return [
+        {
+          rule: 'function',
+          isValid: (value: string) => isValidUuid(value),
+          errorMessage: `${fieldName} ${t`is not a valid UUID`}`,
+          level: 'error',
+        },
+      ];
     case FieldMetadataType.RELATION:
+      // For relation connect fields, don't validate as UUID since they use unique constraint fields (e.g., company name)
+      if (isRelationConnectField) {
+        return [];
+      }
       return [
         {
           rule: 'function',

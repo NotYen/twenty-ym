@@ -73,6 +73,44 @@ export const useUpdateGraphTypeConfig = ({
               configToUpdate.aggregateOperation = AggregateOperations.COUNT;
             }
           }
+
+          // Handle field mapping when switching between chart types
+          const isBarOrLineConfig =
+            configuration.__typename === 'BarChartConfiguration' ||
+            configuration.__typename === 'LineChartConfiguration';
+          const isPieConfig =
+            configuration.__typename === 'PieChartConfiguration';
+
+          if (graphType === GraphType.PIE && isBarOrLineConfig) {
+            // Switching from Bar/Line to Pie: map primaryAxisGroupByFieldMetadataId to groupByFieldMetadataId
+            const barOrLineConfig = configuration as {
+              primaryAxisGroupByFieldMetadataId?: string;
+              primaryAxisGroupBySubFieldName?: string;
+            };
+            if (isDefined(barOrLineConfig.primaryAxisGroupByFieldMetadataId)) {
+              configToUpdate.groupByFieldMetadataId =
+                barOrLineConfig.primaryAxisGroupByFieldMetadataId;
+              configToUpdate.groupBySubFieldName =
+                barOrLineConfig.primaryAxisGroupBySubFieldName ?? null;
+            }
+          } else if (
+            (graphType === GraphType.VERTICAL_BAR ||
+              graphType === GraphType.HORIZONTAL_BAR ||
+              graphType === GraphType.LINE) &&
+            isPieConfig
+          ) {
+            // Switching from Pie to Bar/Line: map groupByFieldMetadataId to primaryAxisGroupByFieldMetadataId
+            const pieConfig = configuration as {
+              groupByFieldMetadataId?: string;
+              groupBySubFieldName?: string;
+            };
+            if (isDefined(pieConfig.groupByFieldMetadataId)) {
+              configToUpdate.primaryAxisGroupByFieldMetadataId =
+                pieConfig.groupByFieldMetadataId;
+              configToUpdate.primaryAxisGroupBySubFieldName =
+                pieConfig.groupBySubFieldName ?? null;
+            }
+          }
         }
 
         const activeTabId = snapshot.getLoadable(activeTabIdState).getValue();

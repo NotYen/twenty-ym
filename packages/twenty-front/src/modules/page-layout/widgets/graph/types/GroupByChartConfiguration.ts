@@ -1,9 +1,11 @@
 import {
-  type BarChartConfiguration,
-  type LineChartConfiguration,
+    type BarChartConfiguration,
+    type LineChartConfiguration,
+    type PieChartConfiguration,
 } from '~/generated-metadata/graphql';
 
 export type GroupByChartConfiguration =
   | BarChartConfiguration
-  | LineChartConfiguration;
+  | LineChartConfiguration
+  | PieChartConfiguration;
 

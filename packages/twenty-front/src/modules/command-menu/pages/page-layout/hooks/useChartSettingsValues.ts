@@ -3,11 +3,13 @@ import { useGraphXSortOptionLabels } from '@/command-menu/pages/page-layout/hook
 import { type ChartConfiguration } from '@/command-menu/pages/page-layout/types/ChartConfiguration';
 import { CHART_CONFIGURATION_SETTING_IDS } from '@/command-menu/pages/page-layout/types/ChartConfigurationSettingIds';
 import { getChartAxisNameDisplayOptions } from '@/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions';
+import { getChartFilterRulesCount } from '@/command-menu/pages/page-layout/utils/getChartFilterRulesCount';
 import { getDateGranularityLabel } from '@/command-menu/pages/page-layout/utils/getDateGranularityLabel';
 import { getFieldLabelWithSubField } from '@/command-menu/pages/page-layout/utils/getFieldLabelWithSubField';
 import { objectMetadataItemsState } from '@/object-metadata/states/objectMetadataItemsState';
 import { getAggregateOperationLabel } from '@/object-record/record-board/record-board-column/utils/getAggregateOperationLabel';
 import { convertAggregateOperationToExtendedAggregateOperation } from '@/object-record/utils/convertAggregateOperationToExtendedAggregateOperation';
+import { plural } from '@lingui/core/macro';
 import { useRecoilValue } from 'recoil';
 import { type CompositeFieldSubFieldName } from 'twenty-shared/types';
 import { capitalize, isDefined } from 'twenty-shared/utils';
@@ -113,6 +115,11 @@ export const useChartSettingsValues = ({
   const finalGroupByFieldYId = groupByFieldYId;
   const finalGroupBySubFieldNameY = groupBySubFieldNameY;
 
+  // Re-calculate groupByFieldY for Pie Chart since it's set after the initial calculation
+  const finalGroupByFieldY = isDefined(finalGroupByFieldYId)
+    ? objectMetadataItem?.fields.find((field) => field.id === finalGroupByFieldYId)
+    : groupByFieldY;
+
   const groupByOrderByLabel =
     isDefined(groupByOrderBy) && isDefined(finalGroupByFieldYId)
       ? getGroupBySortOptionLabel({
@@ -135,7 +142,8 @@ export const useChartSettingsValues = ({
           ? capitalize(configuration.color)
           : undefined;
       case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_Y:
-      case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_AGGREGATE: {
+      case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_AGGREGATE:
+      case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_PIE_CHART: {
         const hasAggregateLabel = isDefined(aggregateField?.label);
         const hasAggregateOperation = isDefined(aggregateOperation);
 
@@ -146,14 +154,18 @@ export const useChartSettingsValues = ({
         }`;
       }
       case CHART_CONFIGURATION_SETTING_IDS.GROUP_BY:
-        return groupByFieldY?.label;
+      case CHART_CONFIGURATION_SETTING_IDS.EACH_SLICE_REPRESENTS:
+        return finalGroupByFieldY?.label;
       case CHART_CONFIGURATION_SETTING_IDS.AXIS_NAME:
         return 'axisNameDisplay' in configuration &&
           isDefined(configuration.axisNameDisplay)
           ? getChartAxisNameDisplayOptions(configuration.axisNameDisplay)
           : undefined;
       case CHART_CONFIGURATION_SETTING_IDS.SORT_BY_X:
-        return xAxisOrderByLabel;
+        // For Pie Chart, use groupByOrderByLabel since it uses orderBy instead of primaryAxisOrderBy
+        return configuration.__typename === 'PieChartConfiguration'
+          ? groupByOrderByLabel
+          : xAxisOrderByLabel;
       case CHART_CONFIGURATION_SETTING_IDS.SORT_BY_GROUP_BY_FIELD:
         return groupByOrderByLabel;
       case CHART_CONFIGURATION_SETTING_IDS.DATA_LABELS:

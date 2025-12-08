@@ -30,6 +30,7 @@ type ChartGroupByFieldSelectionDropdownContentBaseProps<
 > = {
   fieldMetadataIdKey: keyof T;
   subFieldNameKey: keyof T;
+  excludedFieldTypes?: string[];
 };
 
 export const ChartGroupByFieldSelectionDropdownContentBase = <
@@ -37,6 +38,7 @@ export const ChartGroupByFieldSelectionDropdownContentBase = <
 >({
   fieldMetadataIdKey,
   subFieldNameKey,
+  excludedFieldTypes = [],
 }: ChartGroupByFieldSelectionDropdownContentBaseProps<T>) => {
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -78,8 +80,13 @@ export const ChartGroupByFieldSelectionDropdownContentBase = <
         searchQuery,
         getSearchableValues: (item) => [item.label, item.name],
         // TODO: remove the relation filter once group by is supported for relation fields
-      }).filter((field) => !isFieldRelation(field) && !field.isSystem),
-    [sourceObjectMetadataItem?.fields, searchQuery],
+      }).filter(
+        (field) =>
+          !isFieldRelation(field) &&
+          !field.isSystem &&
+          !excludedFieldTypes.includes(field.type),
+      ),
+    [sourceObjectMetadataItem?.fields, searchQuery, excludedFieldTypes],
   );
 
   const { updateCurrentWidgetConfig } =

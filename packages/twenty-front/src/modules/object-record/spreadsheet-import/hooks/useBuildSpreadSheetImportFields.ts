@@ -11,14 +11,14 @@ import { getRelationConnectSubFieldLabel } from '@/object-record/spreadsheet-imp
 import { SETTINGS_COMPOSITE_FIELD_TYPE_CONFIGS } from '@/settings/data-model/constants/SettingsCompositeFieldTypeConfigs';
 import { type CompositeFieldType } from '@/settings/data-model/types/CompositeFieldType';
 import {
-  type SpreadsheetImportField,
-  type SpreadsheetImportFields,
+    type SpreadsheetImportField,
+    type SpreadsheetImportFields,
 } from '@/spreadsheet-import/types';
 import { useRecoilValue } from 'recoil';
 import {
-  assertUnreachable,
-  getUniqueConstraintsFields,
-  isDefined,
+    assertUnreachable,
+    getUniqueConstraintsFields,
+    isDefined,
 } from 'twenty-shared/utils';
 import { useIcons } from 'twenty-ui/display';
 import { FieldMetadataType, RelationType } from '~/generated-metadata/graphql';
@@ -112,6 +112,8 @@ export const useBuildSpreadsheetImportFields = () => {
       fieldValidationDefinitions: getSpreadSheetFieldValidationDefinitions(
         fieldMetadataItem.type,
         fieldMetadataItem.label,
+        undefined,
+        overrides.isRelationConnectField,
       ),
       isNestedField: false,
       ...overrides,
@@ -190,6 +192,7 @@ export const useBuildSpreadsheetImportFields = () => {
                 uniqueConstraintField.type,
                 uniqueConstraintField.name,
                 subFieldName,
+                true, // isRelationConnectField
               ),
             isNestedField: true,
             isCompositeSubField: true,

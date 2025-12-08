@@ -4,6 +4,7 @@ import { PageLayoutWidgetNoDataDisplay } from '@/page-layout/widgets/components/
 import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/ChartSkeletonLoader';
 import { GraphWidgetAggregateChartRenderer } from '@/page-layout/widgets/graph/graphWidgetAggregateChart/components/GraphWidgetAggregateChartRenderer';
 import { GraphWidgetBarChartRenderer } from '@/page-layout/widgets/graph/graphWidgetBarChart/components/GraphWidgetBarChartRenderer';
+import { GraphWidgetPieChartRenderer } from '@/page-layout/widgets/graph/graphWidgetPieChart/components/GraphWidgetPieChartRenderer';
 import { areChartConfigurationFieldsValidForQuery } from '@/page-layout/widgets/graph/utils/areChartConfigurationFieldsValidForQuery';
 import { lazy, Suspense } from 'react';
 import { GraphType, type PageLayoutWidget } from '~/generated/graphql';
@@ -13,14 +14,6 @@ const GraphWidgetLineChart = lazy(() =>
     '@/page-layout/widgets/graph/graphWidgetLineChart/components/GraphWidgetLineChart'
   ).then((module) => ({
     default: module.GraphWidgetLineChart,
-  })),
-);
-
-const GraphWidgetPieChart = lazy(() =>
-  import(
-    '@/page-layout/widgets/graph/graphWidgetPieChart/components/GraphWidgetPieChart'
-  ).then((module) => ({
-    default: module.GraphWidgetPieChart,
   })),
 );
 
@@ -84,16 +77,7 @@ export const GraphWidget = ({
       );
 
     case GraphType.PIE:
-      return (
-        <Suspense fallback={<ChartSkeletonLoader />}>
-          <GraphWidgetPieChart
-            data={data.items}
-            showLegend
-            displayType="percentage"
-            id={`pie-chart-${widget.id}`}
-          />
-        </Suspense>
-      );
+      return <GraphWidgetPieChartRenderer widget={widget} />;
 
     case GraphType.VERTICAL_BAR:
     case GraphType.HORIZONTAL_BAR:
