@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { read, type WorkBook } from 'xlsx-ugnis';
+import { read, set_cptable, type WorkBook } from 'xlsx-ugnis';
+import * as cptable from 'xlsx-ugnis/dist/cpexcel.full.mjs';
+
+// Load codepage tables for proper non-ASCII character support (e.g., Chinese)
+set_cptable(cptable);
 
 import { useNumberFormat } from '@/localization/hooks/useNumberFormat';
 import { SPREADSHEET_MAX_RECORD_IMPORT_CAPACITY } from '@/spreadsheet-import/constants/SpreadsheetMaxRecordImportCapacity';
