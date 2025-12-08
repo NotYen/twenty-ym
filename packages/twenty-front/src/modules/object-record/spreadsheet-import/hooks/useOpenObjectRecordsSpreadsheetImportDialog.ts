@@ -2,6 +2,7 @@ import { useApolloCoreClient } from '@/object-metadata/hooks/useApolloCoreClient
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
 import { useGenerateDepthRecordGqlFieldsFromObject } from '@/object-record/graphql/record-gql-fields/hooks/useGenerateDepthRecordGqlFieldsFromObject';
 import { useBatchCreateManyRecords } from '@/object-record/hooks/useBatchCreateManyRecords';
+import { useAutoCreateRelationRecords } from '@/object-record/spreadsheet-import/hooks/useAutoCreateRelationRecords';
 import { useBuildSpreadsheetImportFields } from '@/object-record/spreadsheet-import/hooks/useBuildSpreadSheetImportFields';
 import { buildRecordFromImportedStructuredRow } from '@/object-record/spreadsheet-import/utils/buildRecordFromImportedStructuredRow';
 import { spreadsheetImportFilterAvailableFieldMetadataItems } from '@/object-record/spreadsheet-import/utils/spreadsheetImportFilterAvailableFieldMetadataItems';
@@ -45,6 +46,10 @@ export const useOpenObjectRecordsSpreadsheetImportDialog = (
     abortController,
   });
 
+  const { autoCreateMissingRelationRecords } = useAutoCreateRelationRecords({
+    objectMetadataItem,
+  });
+
   const openObjectRecordsSpreadsheetImportDialog = (
     options?: Omit<
       SpreadsheetImportDialogOptions,
@@ -63,31 +68,50 @@ export const useOpenObjectRecordsSpreadsheetImportDialog = (
     openSpreadsheetImportDialog({
       ...options,
       onSubmit: async (data) => {
-        const createInputs = data.validStructuredRows.map((record) => {
-          const fieldMapping: Record<string, any> =
-            buildRecordFromImportedStructuredRow({
-              importedStructuredRow: record,
-              fieldMetadataItems: availableFieldMetadataItemsToImport,
-              spreadsheetImportFields,
-            });
-
-          return fieldMapping;
-        });
-
         try {
+          // Step 1: Auto-create missing relation records (e.g., Company for Person import)
+          // This allows users to import records with relation fields that reference
+          // non-existent records, which will be automatically created first.
+          await autoCreateMissingRelationRecords(
+            data.validStructuredRows,
+            availableFieldMetadataItemsToImport,
+            spreadsheetImportFields,
+          );
+
+          // Step 2: Build the main records to create
+          const createInputs = data.validStructuredRows.map((record) => {
+            const fieldMapping: Record<string, any> =
+              buildRecordFromImportedStructuredRow({
+                importedStructuredRow: record,
+                fieldMetadataItems: availableFieldMetadataItemsToImport,
+                spreadsheetImportFields,
+              });
+
+            return fieldMapping;
+          });
+
+          // Step 3: Create the main records (with relation connections)
           await batchCreateManyRecords({
             recordsToCreate: createInputs,
             upsert: true,
           });
+
           await apolloCoreClient.refetchQueries({
             updateCache: (cache) => {
               cache.evict({ fieldName: objectMetadataItem.namePlural });
             },
           });
         } catch (error: any) {
-          enqueueErrorSnackBar({
-            apolloError: error,
-          });
+          // Check if it's a custom error with detailed message (from autoCreateMissingRelationRecords)
+          if (error?.message && !error?.graphQLErrors) {
+            enqueueErrorSnackBar({
+              message: error.message,
+            });
+          } else {
+            enqueueErrorSnackBar({
+              apolloError: error,
+            });
+          }
         }
       },
       spreadsheetImportFields,
