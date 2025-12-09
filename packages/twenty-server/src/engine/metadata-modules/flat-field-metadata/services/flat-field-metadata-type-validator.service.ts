@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { msg } from '@lingui/core/macro';
 import { isDefined } from 'class-validator';
+import { FieldMetadataType } from 'twenty-shared/types';
 
 import { FeatureFlagKey } from 'src/engine/core-modules/feature-flag/enums/feature-flag-key.enum';
 import { FeatureFlagService } from 'src/engine/core-modules/feature-flag/services/feature-flag.service';
@@ -22,6 +23,32 @@ export type GenericValidateFlatFieldMetadataTypeSpecificitiesArgs =
     updates?: FlatEntityPropertiesUpdates<'fieldMetadata'>;
   };
 
+const rejectUserCreation = (
+  fieldType: FieldMetadataType,
+  message: string,
+  userFriendlyMessage: ReturnType<typeof msg>,
+) => {
+  return async (
+    args: GenericValidateFlatFieldMetadataTypeSpecificitiesArgs,
+  ): Promise<FlatFieldMetadataValidationError[]> => {
+    const isCreation = !isDefined(args.updates);
+    const isCustomField = args.flatEntityToValidate.isCustom;
+
+    if (isCreation && isCustomField) {
+      return [
+        {
+          code: FieldMetadataExceptionCode.INVALID_FIELD_INPUT,
+          message,
+          value: fieldType,
+          userFriendlyMessage,
+        },
+      ];
+    }
+
+    return [];
+  };
+};
+
 @Injectable()
 export class FlatFieldMetadataTypeValidatorService {
   constructor(private readonly featureFlagService: FeatureFlagService) {}
@@ -39,14 +66,26 @@ export class FlatFieldMetadataTypeValidatorService {
       FULL_NAME: DEFAULT_NO_VALIDATION,
       LINKS: DEFAULT_NO_VALIDATION,
       NUMBER: DEFAULT_NO_VALIDATION,
-      NUMERIC: DEFAULT_NO_VALIDATION,
+      NUMERIC: rejectUserCreation(
+        FieldMetadataType.NUMERIC,
+        'Field type NUMERIC is not supported for field creation. Use NUMBER instead.',
+        msg`Field type NUMERIC is not supported. Use Number instead.`,
+      ),
       PHONES: DEFAULT_NO_VALIDATION,
-      POSITION: DEFAULT_NO_VALIDATION,
+      POSITION: rejectUserCreation(
+        FieldMetadataType.POSITION,
+        'Field type POSITION is a system type and cannot be created manually.',
+        msg`Field type POSITION is a system type and cannot be created manually.`,
+      ),
       RAW_JSON: DEFAULT_NO_VALIDATION,
       RICH_TEXT: DEFAULT_NO_VALIDATION,
       RICH_TEXT_V2: DEFAULT_NO_VALIDATION,
       TEXT: DEFAULT_NO_VALIDATION,
-      TS_VECTOR: DEFAULT_NO_VALIDATION,
+      TS_VECTOR: rejectUserCreation(
+        FieldMetadataType.TS_VECTOR,
+        'Field type TS_VECTOR is a system type and cannot be created manually.',
+        msg`Field type TS_VECTOR is a system type and cannot be created manually.`,
+      ),
       UUID: DEFAULT_NO_VALIDATION,
 
       MORPH_RELATION: async (args) => {
