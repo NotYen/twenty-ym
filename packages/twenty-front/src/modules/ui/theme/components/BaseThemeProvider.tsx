@@ -170,9 +170,7 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
         repeat,
       });
     } else {
-      logDebug(
-        '[🎨 BaseThemeProvider] ❌ 背景圖片不存在或格式錯誤，移除 CSS',
-      );
+      logDebug('[🎨 BaseThemeProvider] ❌ 背景圖片不存在或格式錯誤，移除 CSS');
       // 移除全局 CSS 樣式
       const styleElement = document.getElementById(
         'workspace-background-style',

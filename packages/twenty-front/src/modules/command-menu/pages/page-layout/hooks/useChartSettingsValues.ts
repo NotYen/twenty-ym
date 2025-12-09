@@ -117,7 +117,9 @@ export const useChartSettingsValues = ({
 
   // Re-calculate groupByFieldY for Pie Chart since it's set after the initial calculation
   const finalGroupByFieldY = isDefined(finalGroupByFieldYId)
-    ? objectMetadataItem?.fields.find((field) => field.id === finalGroupByFieldYId)
+    ? objectMetadataItem?.fields.find(
+        (field) => field.id === finalGroupByFieldYId,
+      )
     : groupByFieldY;
 
   const groupByOrderByLabel =

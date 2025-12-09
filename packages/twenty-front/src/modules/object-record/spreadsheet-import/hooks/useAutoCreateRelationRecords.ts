@@ -4,8 +4,8 @@ import { type FieldMetadataItem } from '@/object-metadata/types/FieldMetadataIte
 import { type ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { isCompositeFieldType } from '@/object-record/object-filter-dropdown/utils/isCompositeFieldType';
 import {
-    type ImportedStructuredRow,
-    type SpreadsheetImportFields,
+  type ImportedStructuredRow,
+  type SpreadsheetImportFields,
 } from '@/spreadsheet-import/types';
 import { gql } from '@apollo/client';
 import { isNonEmptyString } from '@sniptt/guards';
@@ -84,7 +84,10 @@ export const useAutoCreateRelationRecords = ({
 
         for (const row of importedRows) {
           // Group fields by uniqueFieldMetadataItem for composite fields
-          const fieldsByUniqueField = new Map<string, typeof relationConnectFields>();
+          const fieldsByUniqueField = new Map<
+            string,
+            typeof relationConnectFields
+          >();
 
           for (const connectField of relationConnectFields) {
             const uniqueFieldId = connectField.uniqueFieldMetadataItem?.id;
@@ -152,7 +155,9 @@ export const useAutoCreateRelationRecords = ({
 
           if (existing) {
             // Merge values, avoiding duplicates
-            const existingKeys = new Set(existing.values.map((v) => v.valueKey));
+            const existingKeys = new Set(
+              existing.values.map((v) => v.valueKey),
+            );
             const newValues = Array.from(uniqueValuesMap.values()).filter(
               (v) => !existingKeys.has(v.valueKey),
             );
@@ -199,7 +204,9 @@ export const useAutoCreateRelationRecords = ({
             } else {
               // Composite field filter
               const filter: Record<string, any> = {};
-              for (const [subKey, subValue] of Object.entries(v.uniqueFieldValue)) {
+              for (const [subKey, subValue] of Object.entries(
+                v.uniqueFieldValue,
+              )) {
                 filter[uniqueFieldName] = {
                   ...filter[uniqueFieldName],
                   [subKey]: { eq: subValue },
@@ -234,7 +241,9 @@ export const useAutoCreateRelationRecords = ({
               existingKeys.add(`${uniqueFieldName}:${fieldValue}`);
             } else if (typeof fieldValue === 'object' && fieldValue !== null) {
               // For composite fields, normalize the key
-              existingKeys.add(`${uniqueFieldName}:${JSON.stringify(fieldValue)}`);
+              existingKeys.add(
+                `${uniqueFieldName}:${JSON.stringify(fieldValue)}`,
+              );
             }
           }
         } catch (error) {
@@ -285,7 +294,9 @@ export const useAutoCreateRelationRecords = ({
         );
       } catch (error: any) {
         // Provide detailed error message for users
-        const objectLabel = targetObjectMetadataItem.labelSingular || targetObjectMetadataItem.nameSingular;
+        const objectLabel =
+          targetObjectMetadataItem.labelSingular ||
+          targetObjectMetadataItem.nameSingular;
         const duplicateValues = missingValues
           .map((v) =>
             typeof v.uniqueFieldValue === 'string'

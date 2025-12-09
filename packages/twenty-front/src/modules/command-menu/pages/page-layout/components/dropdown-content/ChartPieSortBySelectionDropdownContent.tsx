@@ -13,13 +13,18 @@ import { useAvailableComponentInstanceIdOrThrow } from '@/ui/utilities/state/com
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { isDefined } from 'twenty-shared/utils';
 import { MenuItemSelect } from 'twenty-ui/navigation';
-import { type GraphOrderBy, type PieChartConfiguration } from '~/generated/graphql';
+import {
+  type GraphOrderBy,
+  type PieChartConfiguration,
+} from '~/generated/graphql';
 
 export const ChartPieSortBySelectionDropdownContent = () => {
   const { pageLayoutId } = usePageLayoutIdFromContextStoreTargetedRecord();
   const { widgetInEditMode } = useWidgetInEditMode(pageLayoutId);
 
-  const configuration = widgetInEditMode?.configuration as PieChartConfiguration | undefined;
+  const configuration = widgetInEditMode?.configuration as
+    | PieChartConfiguration
+    | undefined;
 
   if (configuration?.__typename !== 'PieChartConfiguration') {
     throw new Error('Invalid configuration type');

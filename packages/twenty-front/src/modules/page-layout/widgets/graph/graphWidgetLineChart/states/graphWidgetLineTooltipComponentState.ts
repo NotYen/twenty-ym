@@ -12,4 +12,3 @@ export const graphWidgetLineTooltipComponentState = createComponentState<{
   defaultValue: null,
   componentInstanceContext: GraphWidgetComponentInstanceContext,
 });
-

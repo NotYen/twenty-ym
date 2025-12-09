@@ -14,4 +14,3 @@ export const computeCategoryTickValues = (
     return index;
   });
 };
-

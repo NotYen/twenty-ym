@@ -41,10 +41,10 @@ export const SalesQuoteTaxCalculationRowEffect = ({
   const lastCalculatedTaxRef = useRef<number | null>(null);
 
   useEffect(() => {
-    console.log(
-      `[SalesQuoteTaxCalculationRowEffect] recordId: ${recordId}`,
-      { total, taxRate },
-    );
+    console.log(`[SalesQuoteTaxCalculationRowEffect] recordId: ${recordId}`, {
+      total,
+      taxRate,
+    });
 
     // 確保 total 和 taxRate 都有值（使用可選鏈避免錯誤）
     if (
@@ -52,23 +52,18 @@ export const SalesQuoteTaxCalculationRowEffect = ({
       !isDefined(total?.currencyCode) ||
       !isDefined(taxRate)
     ) {
-      console.log(
-        `[SalesQuoteTaxCalculationRowEffect] Skipped: missing data`,
-        {
-          hasTotal: isDefined(total),
-          hasTaxRate: isDefined(taxRate),
-          hasAmountMicros: isDefined(total?.amountMicros),
-          hasCurrencyCode: isDefined(total?.currencyCode),
-        },
-      );
+      console.log(`[SalesQuoteTaxCalculationRowEffect] Skipped: missing data`, {
+        hasTotal: isDefined(total),
+        hasTaxRate: isDefined(taxRate),
+        hasAmountMicros: isDefined(total?.amountMicros),
+        hasCurrencyCode: isDefined(total?.currencyCode),
+      });
       return;
     }
 
     // 計算稅金金額（micros）
     // 注意：taxRate 在 Twenty CRM 中儲存為小數（5% = 0.05），不需要再除以 100
-    const calculatedTaxAmountMicros = Math.round(
-      total.amountMicros * taxRate,
-    );
+    const calculatedTaxAmountMicros = Math.round(total.amountMicros * taxRate);
 
     console.log(`[SalesQuoteTaxCalculationRowEffect] Calculated:`, {
       totalMicros: total.amountMicros,
@@ -104,4 +99,3 @@ export const SalesQuoteTaxCalculationRowEffect = ({
 
   return null;
 };
-

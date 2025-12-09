@@ -8,4 +8,3 @@ export const graphWidgetLineCrosshairXComponentState = createComponentState<
   defaultValue: null,
   componentInstanceContext: GraphWidgetComponentInstanceContext,
 });
-

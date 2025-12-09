@@ -6,6 +6,7 @@ import { recordStoreFamilyState } from '@/object-record/record-store/states/reco
 import type { ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { useRecoilValue } from 'recoil';
+import { isDefined } from 'twenty-shared/utils';
 import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
 import { exportQuoteToPdf } from '../utils/exportQuoteToPdf';
@@ -57,7 +58,6 @@ type QuoteLineItemRecord = ObjectRecord & {
   };
 };
 
-
 const normalizeTaxRate = (value?: number | null): number => {
   if (!value || Number.isNaN(Number(value))) {
     return 0;
@@ -93,23 +93,23 @@ const resolveCurrencyCode = ({
   quote: QuoteRecord;
   lineItems: QuoteLineItemRecord[] | undefined;
 }): string => {
-  if (quote.xiaoJi?.currencyCode) {
+  if (isDefined(quote.xiaoJi?.currencyCode)) {
     return quote.xiaoJi.currencyCode;
   }
 
-  if (quote.zongJi?.currencyCode) {
+  if (isDefined(quote.zongJi?.currencyCode)) {
     return quote.zongJi.currencyCode;
   }
 
-  if (quote.shuiJin?.currencyCode) {
+  if (isDefined(quote.shuiJin?.currencyCode)) {
     return quote.shuiJin.currencyCode;
   }
 
-  const firstLineItemCurrency = lineItems?.find(
-    (item) => item?.danJia?.currencyCode,
+  const firstLineItemCurrency = lineItems?.find((item) =>
+    isDefined(item?.danJia?.currencyCode),
   )?.danJia?.currencyCode;
 
-  if (firstLineItemCurrency) {
+  if (isDefined(firstLineItemCurrency)) {
     return firstLineItemCurrency;
   }
 
@@ -119,7 +119,8 @@ const resolveCurrencyCode = ({
 export const ExportQuoteToPdfSingleRecordAction = () => {
   const recordId = useSelectedRecordIdOrThrow();
   const { enqueueSuccessSnackBar, enqueueErrorSnackBar } = useSnackBar();
-  const { calculateLineItemAmount, calculateQuoteAmounts } = useQuoteCalculations();
+  const { calculateLineItemAmount, calculateQuoteAmounts } =
+    useQuoteCalculations();
 
   // 获取 Quote 记录
   const selectedQuote = useRecoilValue(
@@ -222,15 +223,15 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
 
       const subtotalMicros = hasLineItems
         ? recalculatedTotals.subtotalMicros
-        : selectedQuote.xiaoJi?.amountMicros ?? 0;
+        : (selectedQuote.xiaoJi?.amountMicros ?? 0);
 
       const taxAmountMicros = hasLineItems
         ? recalculatedTotals.taxAmountMicros
-        : selectedQuote.shuiJin?.amountMicros ?? 0;
+        : (selectedQuote.shuiJin?.amountMicros ?? 0);
 
       const totalMicros = hasLineItems
         ? recalculatedTotals.totalMicros
-        : selectedQuote.zongJi?.amountMicros ?? 0;
+        : (selectedQuote.zongJi?.amountMicros ?? 0);
 
       const pdfData = {
         quote: {

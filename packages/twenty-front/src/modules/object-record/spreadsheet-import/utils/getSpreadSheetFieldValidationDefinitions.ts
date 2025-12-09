@@ -6,11 +6,11 @@ import { isDate, isString } from '@sniptt/guards';
 import { parsePhoneNumberWithError } from 'libphonenumber-js';
 import { RATING_VALUES } from 'twenty-shared/constants';
 import {
-    absoluteUrlSchema,
-    getCountryCodesForCallingCode,
-    isDefined,
-    isValidCountryCode,
-    isValidUuid,
+  absoluteUrlSchema,
+  getCountryCodesForCallingCode,
+  isDefined,
+  isValidCountryCode,
+  isValidUuid,
 } from 'twenty-shared/utils';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 

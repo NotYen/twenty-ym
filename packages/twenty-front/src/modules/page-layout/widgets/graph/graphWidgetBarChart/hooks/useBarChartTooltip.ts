@@ -44,14 +44,14 @@ export const useBarChartTooltip = ({
 
     const tooltipItems: GraphWidgetTooltipItem[] = keysToShow.map(
       (enrichedKey) => {
-      const seriesValue = Number(datum.data[enrichedKey.key] ?? 0);
-      return {
+        const seriesValue = Number(datum.data[enrichedKey.key] ?? 0);
+        return {
           key: enrichedKey.key,
-        label: enrichedKey.label,
-        formattedValue: formatGraphValue(seriesValue, formatOptions),
-        value: seriesValue,
-        dotColor: enrichedKey.colorScheme.solid,
-      };
+          label: enrichedKey.label,
+          formattedValue: formatGraphValue(seriesValue, formatOptions),
+          value: seriesValue,
+          dotColor: enrichedKey.colorScheme.solid,
+        };
       },
     );
 

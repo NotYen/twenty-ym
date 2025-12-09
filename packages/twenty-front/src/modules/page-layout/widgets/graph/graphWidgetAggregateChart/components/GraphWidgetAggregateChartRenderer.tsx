@@ -2,8 +2,8 @@ import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/Char
 import { useGraphWidgetAggregateQuery } from '@/page-layout/widgets/graph/hooks/useGraphWidgetAggregateQuery';
 import { lazy, Suspense } from 'react';
 import {
-    type AggregateChartConfiguration,
-    type PageLayoutWidget,
+  type AggregateChartConfiguration,
+  type PageLayoutWidget,
 } from '~/generated/graphql';
 
 const GraphWidgetAggregateChart = lazy(() =>

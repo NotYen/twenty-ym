@@ -40,7 +40,10 @@ export const WorkspaceBackgroundManager = () => {
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
 
   // Debug log
-  logDebug('[🖼️ BackgroundManager] currentWorkspace.backgroundImage:', currentWorkspace?.backgroundImage);
+  logDebug(
+    '[🖼️ BackgroundManager] currentWorkspace.backgroundImage:',
+    currentWorkspace?.backgroundImage,
+  );
 
   const { openModal, closeModal } = useModal();
   const {
@@ -123,9 +126,7 @@ export const WorkspaceBackgroundManager = () => {
 
     try {
       if (isEditingExisting) {
-        logDebug(
-          '[🖼️ BackgroundManager] 模式：只更新設定（不重新上傳）',
-        );
+        logDebug('[🖼️ BackgroundManager] 模式：只更新設定（不重新上傳）');
         // 只更新設定，不重新上傳
         await updateBackgroundSettings(settings);
       } else if (selectedFile !== null) {

@@ -20,28 +20,28 @@ const StyledNote = styled.p`
 `;
 
 const StyledCard = styled.div`
+  background-color: ${({ theme }) => theme.background.secondary};
   border: 1px solid ${({ theme }) => theme.border.color.medium};
   border-radius: ${({ theme }) => theme.border.radius.md};
-  background-color: ${({ theme }) => theme.background.secondary};
-  padding: ${({ theme }) => theme.spacing(4)};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(3)};
+  padding: ${({ theme }) => theme.spacing(4)};
 `;
 
 const StyledRow = styled.div`
-  display: grid;
-  grid-template-columns: 40px 1fr;
   align-items: center;
+  display: grid;
   gap: ${({ theme }) => theme.spacing(3)};
+  grid-template-columns: 40px 1fr;
 `;
 
 const StyledLabelWrapper = styled.div`
-  display: flex;
   align-items: center;
-  gap: ${({ theme }) => theme.spacing(2)};
   color: ${({ theme }) => theme.font.color.tertiary};
+  display: flex;
   font-size: ${({ theme }) => theme.font.size.sm};
+  gap: ${({ theme }) => theme.spacing(2)};
 `;
 
 const StyledValue = styled.span`
@@ -53,7 +53,7 @@ const StyledValue = styled.span`
 
 export const SettingsReleasesVersionInfoContent = () => {
   const backendImageVersion = useRecoilValue(backendImageVersionState);
-  const clientConfigStatus = useRecoilValue(clientConfigApiStatusState);
+  const clientConfigApiStatus = useRecoilValue(clientConfigApiStatusState);
 
   const isBackendVersionLoading =
     !clientConfigStatus.isLoadedOnce && clientConfigStatus.isLoading;
@@ -103,4 +103,3 @@ export const SettingsReleasesVersionInfoContent = () => {
     </StyledContainer>
   );
 };
-

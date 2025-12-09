@@ -16,4 +16,3 @@ export const calculateValueRangeFromLineChartSeries = (
 
   return calculateValueRangeFromValues(values);
 };
-

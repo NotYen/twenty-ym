@@ -48,10 +48,10 @@ const StyledRequired = styled.span`
 
 // 提示文字
 const StyledHint = styled.div`
-  font-size: ${({ theme }) => theme.font.size.sm};
   color: ${({ theme }) => theme.font.color.tertiary};
-  margin-top: ${({ theme }) => theme.spacing(1)};
+  font-size: ${({ theme }) => theme.font.size.sm};
   line-height: 1.4;
+  margin-top: ${({ theme }) => theme.spacing(1)};
 `;
 
 // vCard 輸入表單組件（遵循 Twenty 的 React 架構）
@@ -111,9 +111,7 @@ export const VCardFields = ({ onDataChange }: VCardFieldsProps) => {
     <StyledFormContainer>
       {/* 公司名稱 */}
       <StyledFieldGroup>
-        <StyledLabel htmlFor="vcard-company">
-          {t`Company`}
-        </StyledLabel>
+        <StyledLabel htmlFor="vcard-company">{t`Company`}</StyledLabel>
         <SettingsTextInput
           instanceId="vcard-company"
           value={formData.company}
@@ -126,9 +124,7 @@ export const VCardFields = ({ onDataChange }: VCardFieldsProps) => {
 
       {/* 職稱 */}
       <StyledFieldGroup>
-        <StyledLabel htmlFor="vcard-job-title">
-          {t`Job Title`}
-        </StyledLabel>
+        <StyledLabel htmlFor="vcard-job-title">{t`Job Title`}</StyledLabel>
         <SettingsTextInput
           instanceId="vcard-job-title"
           value={formData.jobTitle}
@@ -155,9 +151,7 @@ export const VCardFields = ({ onDataChange }: VCardFieldsProps) => {
 
       {/* 電話 */}
       <StyledFieldGroup>
-        <StyledLabel htmlFor="vcard-phone">
-          {t`Phone`}
-        </StyledLabel>
+        <StyledLabel htmlFor="vcard-phone">{t`Phone`}</StyledLabel>
         <SettingsTextInput
           instanceId="vcard-phone"
           value={formData.phone}

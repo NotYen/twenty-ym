@@ -9,4 +9,3 @@ export const SEND_LINE_MESSAGE_ACTION: {
   type: 'SEND_LINE_MESSAGE',
   icon: 'IconMessage',
 };
-

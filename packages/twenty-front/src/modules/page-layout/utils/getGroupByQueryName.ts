@@ -5,4 +5,3 @@ export const getGroupByQueryName = (
 ): string => {
   return `${objectMetadataItem.namePlural}GroupBy`;
 };
-

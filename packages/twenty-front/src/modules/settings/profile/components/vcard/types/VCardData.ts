@@ -18,4 +18,3 @@ export type VCardFormData = {
 
 // vCard 本地儲存 key
 export const VCARD_STORAGE_KEY = 'twenty-vcard-form-data';
-

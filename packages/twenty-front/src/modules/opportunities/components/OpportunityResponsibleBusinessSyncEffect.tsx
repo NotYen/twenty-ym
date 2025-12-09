@@ -25,10 +25,11 @@ export const OpportunityResponsibleBusinessSyncEffect = ({
     objectNameSingular: CoreObjectNameSingular.Opportunity,
   });
 
-  const { objectMetadataItem: workspaceMemberMetadata } =
-    useObjectMetadataItem({
+  const { objectMetadataItem: workspaceMemberMetadata } = useObjectMetadataItem(
+    {
       objectNameSingular: CoreObjectNameSingular.WorkspaceMember,
-    });
+    },
+  );
 
   const responsibleField = useMemo(() => {
     if (!isDefined(opportunityMetadata)) {
@@ -298,5 +299,3 @@ export const OpportunityResponsibleBusinessSyncEffect = ({
 
   return null;
 };
-
-

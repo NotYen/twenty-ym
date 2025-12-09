@@ -34,7 +34,7 @@ import {
   IconPlus,
   IconPower,
   IconReorder,
-  IconVersions
+  IconVersions,
 } from 'twenty-ui/display';
 
 const areWorkflowTriggerAndStepsDefined = (

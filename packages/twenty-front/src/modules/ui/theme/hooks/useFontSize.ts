@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { persistedFontSizeState } from '@/ui/theme/states/persistedFontSizeState';
 
 export const useFontSize = () => {
-  const [fontSize, setPersistedFontSize] = useRecoilState(
+  const [persistedFontSize, setPersistedFontSize] = useRecoilState(
     persistedFontSizeState,
   );
 

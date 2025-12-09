@@ -20,4 +20,3 @@ export const calculateValueRangeFromValues = (
 
   return { minimum: minimumValue, maximum: maximumValue };
 };
-

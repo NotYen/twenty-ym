@@ -2,10 +2,10 @@ import { type ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataI
 import { type GroupByChartConfiguration } from '@/page-layout/widgets/graph/types/GroupByChartConfiguration';
 import { getGroupByOrderBy } from '@/page-layout/widgets/graph/utils/getGroupByOrderBy';
 import {
-    type AggregateOrderByWithGroupByField,
-    type ObjectRecordOrderByForCompositeField,
-    type ObjectRecordOrderByForScalarField,
-    type ObjectRecordOrderByWithGroupByDateField,
+  type AggregateOrderByWithGroupByField,
+  type ObjectRecordOrderByForCompositeField,
+  type ObjectRecordOrderByForScalarField,
+  type ObjectRecordOrderByWithGroupByDateField,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { buildGroupByFieldObject } from './buildGroupByFieldObject';
@@ -128,4 +128,3 @@ export const generateGroupByQueryVariablesFromChartConfiguration = ({
     ...(isDefined(limit) && { limit }),
   };
 };
-

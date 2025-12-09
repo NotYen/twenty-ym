@@ -13,7 +13,7 @@ import { logDebug } from '~/utils/logDebug';
 const SESSION_FLAG = 'signInSuccessShown';
 const MODAL_ID = 'sign-in-success-modal';
 
-export const SignInSuccessEffect = () => {
+export const SignInSuccess = () => {
   const isLogged = useIsLogged();
   const currentUser = useRecoilValue(currentUserState);
   const isCurrentUserLoaded = useRecoilValue(isCurrentUserLoadedState);
@@ -28,7 +28,9 @@ export const SignInSuccessEffect = () => {
   logDebug('[SignInSuccessEffect] mounted');
 
   const alreadyShown = useMemo(
-    () => typeof window !== 'undefined' && sessionStorage.getItem(SESSION_FLAG) === '1',
+    () =>
+      typeof window !== 'undefined' &&
+      sessionStorage.getItem(SESSION_FLAG) === '1',
     [],
   );
 
@@ -41,7 +43,12 @@ export const SignInSuccessEffect = () => {
       isModalOpen,
     });
 
-    if (isLogged && isCurrentUserLoaded && isDefined(currentUser) && !alreadyShown) {
+    if (
+      isLogged &&
+      isCurrentUserLoaded &&
+      isDefined(currentUser) &&
+      !alreadyShown
+    ) {
       logDebug('[SignInSuccessEffect] calling openModal()');
       openModal(MODAL_ID);
 
@@ -49,7 +56,9 @@ export const SignInSuccessEffect = () => {
       setTimeout(() => {
         logDebug('[SignInSuccessEffect] after openModal, DOM check:', {
           modalElement: document.querySelector('#sign-in-success-modal'),
-          modalBackdrop: document.querySelector('[data-testid="modal-backdrop"]'),
+          modalBackdrop: document.querySelector(
+            '[data-testid="modal-backdrop"]',
+          ),
           allModals: document.querySelectorAll('[role="dialog"]'),
         });
       }, 500);
@@ -77,5 +86,3 @@ export const SignInSuccessEffect = () => {
     />
   );
 };
-
-

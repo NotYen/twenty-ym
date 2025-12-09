@@ -11,4 +11,3 @@ export const graphWidgetBarTooltipComponentState = createComponentState<{
   defaultValue: null,
   componentInstanceContext: GraphWidgetComponentInstanceContext,
 });
-

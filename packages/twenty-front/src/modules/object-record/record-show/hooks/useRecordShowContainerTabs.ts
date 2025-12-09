@@ -52,15 +52,15 @@ export const useRecordShowContainerTabs = (
   // Tab title translations
   const translateTabTitle = (title: string): string => {
     const translations: Record<string, string> = {
-      'Timeline': t`時間軸`,
-      'Tasks': t`任務`,
-      'Notes': t`備註`,
-      'Note': t`備註內容`,
-      'Files': t`附檔`,
-      'Emails': t`電子郵件`,
-      'Calendar': t`日曆`,
-      'Home': t`主頁`,
-      'Fields': t`欄位`,
+      Timeline: t`時間軸`,
+      Tasks: t`任務`,
+      Notes: t`備註`,
+      Note: t`備註內容`,
+      Files: t`附檔`,
+      Emails: t`電子郵件`,
+      Calendar: t`日曆`,
+      Home: t`主頁`,
+      Fields: t`欄位`,
     };
     return translations[title] || title;
   };

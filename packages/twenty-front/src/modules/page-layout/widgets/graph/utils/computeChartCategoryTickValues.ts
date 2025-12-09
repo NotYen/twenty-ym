@@ -18,4 +18,3 @@ export const computeChartCategoryTickValues = ({
 
   return tickIndices.map((index) => values[index]);
 };
-

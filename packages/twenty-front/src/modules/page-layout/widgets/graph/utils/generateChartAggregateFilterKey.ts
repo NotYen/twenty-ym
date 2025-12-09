@@ -5,4 +5,3 @@ export const generateChartAggregateFilterKey = (
 ): string => {
   return `${rangeMin ?? ''}-${rangeMax ?? ''}-${omitNullValues ?? ''}`;
 };
-

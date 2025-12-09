@@ -1,6 +1,6 @@
-import { useCallback } from 'react';
 import styled from '@emotion/styled';
 import { useLingui } from '@lingui/react/macro';
+import { useCallback } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Avatar, IconLogout } from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
@@ -25,7 +25,8 @@ const StyledUserInfo = styled.div<{ isExpanded: boolean }>`
   display: flex;
   flex: 1;
   gap: ${({ theme }) => theme.spacing(2)};
-  justify-content: ${({ isExpanded }) => (isExpanded ? 'flex-start' : 'center')};
+  justify-content: ${({ isExpanded }) =>
+    isExpanded ? 'flex-start' : 'center'};
   min-width: 0;
 `;
 
@@ -72,6 +73,19 @@ export const MainNavigationDrawerUserSection = () => {
     isNavigationDrawerExpandedState,
   );
 
+  const handleSignOut = useCallback(async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      logError('Failed to sign out from navigation drawer user section:');
+      logError(error);
+    }
+  }, [signOut]);
+
+  const handleOpenConfirmationModal = useCallback(() => {
+    openModal('navigation-drawer-sign-out-confirmation');
+  }, [openModal]);
+
   if (!currentUser) {
     return null;
   }
@@ -85,19 +99,6 @@ export const MainNavigationDrawerUserSection = () => {
     .join(' ');
 
   const avatarPlaceholder = fullName.length > 0 ? fullName : currentUser.email;
-
-  const handleSignOut = useCallback(async () => {
-    try {
-      await signOut();
-    } catch (error) {
-      logError('Failed to sign out from navigation drawer user section:');
-      logError(error);
-    }
-  }, [signOut]);
-
-  const handleOpenConfirmationModal = useCallback(() => {
-    openModal('navigation-drawer-sign-out-confirmation');
-  }, [openModal]);
 
   return (
     <>
@@ -135,4 +136,3 @@ export const MainNavigationDrawerUserSection = () => {
     </>
   );
 };
-

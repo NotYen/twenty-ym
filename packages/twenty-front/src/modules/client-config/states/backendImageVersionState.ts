@@ -4,4 +4,3 @@ export const backendImageVersionState = createState<string | undefined>({
   key: 'backendImageVersion',
   defaultValue: undefined,
 });
-

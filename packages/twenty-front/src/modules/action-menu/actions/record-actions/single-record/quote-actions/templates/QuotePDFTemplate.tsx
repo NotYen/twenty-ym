@@ -14,6 +14,8 @@ Font.register({
   src: '/fonts/NotoSansSC-Regular.ttf',
 });
 
+/* eslint-disable @nx/workspace-no-hardcoded-colors */
+// PDF 生成需要硬編碼顏色，因為 @react-pdf/renderer 不支持 theme
 const pdfColors = {
   pageBackground: '#FFFFFF',
   pageText: '#1F2933',
@@ -26,6 +28,7 @@ const pdfColors = {
   tableRowAlternate: '#F3F4F6',
   footerText: '#9CA3AF',
 };
+/* eslint-enable @nx/workspace-no-hardcoded-colors */
 
 // PDF 样式定义
 const styles = StyleSheet.create({
@@ -234,6 +237,7 @@ const styles = StyleSheet.create({
 });
 
 // 状态颜色映射
+/* eslint-disable @nx/workspace-no-hardcoded-colors */
 const STATUS_COLORS: Record<string, string> = {
   DRAFT: '#6B7280',
   SENT: '#2563EB',
@@ -241,6 +245,7 @@ const STATUS_COLORS: Record<string, string> = {
   REJECTED: '#DC2626',
   EXPIRED: '#F97316',
 };
+/* eslint-enable @nx/workspace-no-hardcoded-colors */
 
 // 状态标签映射
 const STATUS_LABELS: Record<string, { zh: string; en: string }> = {

@@ -32,25 +32,22 @@ export const WorkflowEditActionSendLineMessage = ({
     message: action.settings.input.message,
   });
 
-  const saveAction = useDebouncedCallback(
-    (data: SendLineMessageFormData) => {
-      if (actionOptions.readonly === true) {
-        return;
-      }
+  const saveAction = useDebouncedCallback((data: SendLineMessageFormData) => {
+    if (actionOptions.readonly === true) {
+      return;
+    }
 
-      actionOptions.onActionUpdate({
-        ...action,
-        settings: {
-          ...action.settings,
-          input: {
-            to: data.to,
-            message: data.message,
-          },
+    actionOptions.onActionUpdate({
+      ...action,
+      settings: {
+        ...action.settings,
+        input: {
+          to: data.to,
+          message: data.message,
         },
-      });
-    },
-    500,
-  );
+      },
+    });
+  }, 500);
 
   useEffect(() => {
     return () => {
@@ -101,4 +98,3 @@ export const WorkflowEditActionSendLineMessage = ({
     </>
   );
 };
-

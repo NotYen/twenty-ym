@@ -51,7 +51,12 @@ const createStoryTab = ({
 };
 
 const createInitialTabs = (): StoryPageLayoutTab[] => [
-  createStoryTab({ id: 'overview', title: 'Overview', position: 0, Icon: IconPlus }),
+  createStoryTab({
+    id: 'overview',
+    title: 'Overview',
+    position: 0,
+    Icon: IconPlus,
+  }),
   createStoryTab({ id: 'revenue', title: 'Revenue', position: 1 }),
   createStoryTab({ id: 'forecasts', title: 'Forecasts', position: 2 }),
 ];
@@ -143,7 +148,11 @@ const PageLayoutTabListPlayground = ({
 
       return prev.map((tab) =>
         tab.id === draggableId
-          ? { ...tab, position: newPosition, updatedAt: new Date().toISOString() }
+          ? {
+              ...tab,
+              position: newPosition,
+              updatedAt: new Date().toISOString(),
+            }
           : tab,
       );
     });

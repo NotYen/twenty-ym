@@ -1,7 +1,12 @@
 import styled from '@emotion/styled';
 import { useLingui } from '@lingui/react/macro';
-import { IconDownload, IconMail, IconPhone, IconBuildingSkyscraper } from 'twenty-ui/display';
-import { Avatar } from 'twenty-ui/display';
+import {
+  IconDownload,
+  IconMail,
+  IconPhone,
+  IconBuildingSkyscraper,
+  Avatar,
+} from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
 
 import { type VCardData } from '@/settings/profile/components/vcard/types/VCardData';
@@ -50,15 +55,15 @@ const StyledName = styled.h2`
 
 // 職稱（vcard-personal-portfolio 的 .title）
 const StyledTitle = styled.p`
-  color: ${({ theme }) => theme.font.color.tertiary};
   background: ${({ theme }) => theme.background.transparent.medium};
+  border-radius: 8px;
+  color: ${({ theme }) => theme.font.color.tertiary};
   font-size: 13px;
   font-weight: 300;
-  padding: 5px 12px;
-  border-radius: 8px;
   margin: 0 auto 16px;
-  width: fit-content;
+  padding: 5px 12px;
   text-align: center;
+  width: fit-content;
 `;
 
 // 分隔線（vcard-personal-portfolio 的 .separator）
@@ -114,7 +119,7 @@ const StyledIconBox = styled.div`
   flex-shrink: 0;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 1px;
     background: ${({ theme }) => `linear-gradient(
