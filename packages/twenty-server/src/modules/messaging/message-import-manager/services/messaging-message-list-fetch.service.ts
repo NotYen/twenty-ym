@@ -14,6 +14,7 @@ import { type MessageChannelMessageAssociationWorkspaceEntity } from 'src/module
 import {
   MessageChannelSyncStage,
   MessageChannelWorkspaceEntity,
+  MessageFolderImportPolicy,
 } from 'src/modules/messaging/common/standard-objects/message-channel.workspace-entity';
 import { MessageFolderWorkspaceEntity } from 'src/modules/messaging/common/standard-objects/message-folder.workspace-entity';
 import { MessagingMessageCleanerService } from 'src/modules/messaging/message-cleaner/services/messaging-message-cleaner.service';
@@ -97,10 +98,16 @@ export class MessagingMessageListFetchService {
         },
       });
 
+      const messageFoldersToSync =
+        messageChannelWithFreshTokens.messageFolderImportPolicy ===
+        MessageFolderImportPolicy.ALL_FOLDERS
+          ? messageFolders
+          : messageFolders.filter((folder) => folder.isSynced);
+
       const messageLists =
         await this.messagingGetMessageListService.getMessageLists(
           messageChannelWithFreshTokens,
-          messageFolders,
+          messageFoldersToSync,
         );
 
       await this.cacheStorage.del(
