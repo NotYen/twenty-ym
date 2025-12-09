@@ -1,17 +1,19 @@
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { Repository } from 'typeorm';
 import { Command } from 'nest-commander';
+import { Repository } from 'typeorm';
 
-import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
-import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
-import { ApplicationEntity } from 'src/engine/core-modules/application/application.entity';
-import { ApplicationService } from 'src/engine/core-modules/application/application.service';
 import {
   ActiveOrSuspendedWorkspacesMigrationCommandRunner,
   RunOnWorkspaceArgs,
 } from 'src/database/commands/command-runners/active-or-suspended-workspaces-migration.command-runner';
-import { TWENTY_STANDARD_APPLICATION } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/twenty-standard-applications';
+import { ApplicationEntity } from 'src/engine/core-modules/application/application.entity';
+import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
+import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
+
+// 標準應用的 universalIdentifier
+const TWENTY_STANDARD_APPLICATION_UNIVERSAL_IDENTIFIER =
+  '20202020-0000-0000-0000-000000000001';
 
 @Command({
   name: 'upgrade:1-12:set-standard-application-not-uninstallable',
@@ -24,7 +26,6 @@ export class SetStandardApplicationNotUninstallableCommand extends ActiveOrSuspe
     protected readonly twentyORMGlobalManager: TwentyORMGlobalManager,
     @InjectRepository(ApplicationEntity)
     private readonly applicationRepository: Repository<ApplicationEntity>,
-    private readonly applicationService: ApplicationService,
   ) {
     super(workspaceRepository, twentyORMGlobalManager);
   }
@@ -43,7 +44,7 @@ export class SetStandardApplicationNotUninstallableCommand extends ActiveOrSuspe
           {
             workspaceId,
             universalIdentifier:
-              TWENTY_STANDARD_APPLICATION.universalIdentifier,
+              TWENTY_STANDARD_APPLICATION_UNIVERSAL_IDENTIFIER,
           },
           {
             workspaceId,
@@ -58,9 +59,10 @@ export class SetStandardApplicationNotUninstallableCommand extends ActiveOrSuspe
       }
 
       for (const existingApplication of existingApplications) {
-        await this.applicationService.update(existingApplication.id, {
-          canBeUninstalled: false,
-        });
+        await this.applicationRepository.update(
+          { id: existingApplication.id },
+          { canBeUninstalled: false },
+        );
       }
       this.logger.log(`Successfully updated standard applications`);
     } catch (e) {

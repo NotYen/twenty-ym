@@ -15,7 +15,7 @@ import { AI_TELEMETRY_CONFIG } from 'src/engine/core-modules/ai/constants/ai-tel
 import { AiModelRegistryService } from 'src/engine/core-modules/ai/services/ai-model-registry.service';
 import { AgentEntity } from 'src/engine/metadata-modules/agent/agent.entity';
 import { isWorkflowRelatedObject } from 'src/engine/metadata-modules/agent/utils/is-workflow-related-object.util';
-import { ObjectMetadataServiceV2 } from 'src/engine/metadata-modules/object-metadata/object-metadata-v2.service';
+import { ObjectMetadataService } from 'src/engine/metadata-modules/object-metadata/object-metadata.service';
 import { DATA_MANIPULATOR_AGENT } from 'src/engine/workspace-manager/workspace-sync-metadata/standard-agents/agents/data-manipulator-agent';
 import { HELPER_AGENT } from 'src/engine/workspace-manager/workspace-sync-metadata/standard-agents/agents/helper-agent';
 
@@ -47,7 +47,7 @@ export class AiRouterService {
     @InjectRepository(AgentEntity)
     private readonly agentRepository: Repository<AgentEntity>,
     private readonly aiModelRegistryService: AiModelRegistryService,
-    private readonly objectMetadataService: ObjectMetadataServiceV2,
+    private readonly objectMetadataService: ObjectMetadataService,
   ) {}
 
   // Routes a user message to the most appropriate agent
@@ -178,9 +178,17 @@ export class AiRouterService {
         }
       }
 
+      // 轉換 toolHints 格式
+      const toolHints: ToolHints | undefined = result.object.toolHints
+        ? {
+            suggestedTools: result.object.toolHints.operations,
+            objectContext: result.object.toolHints.relevantObjects?.join(', '),
+          }
+        : undefined;
+
       return {
         agent: selectedAgent ?? null,
-        toolHints: result.object.toolHints,
+        toolHints,
         debugInfo,
       };
     } catch (error) {

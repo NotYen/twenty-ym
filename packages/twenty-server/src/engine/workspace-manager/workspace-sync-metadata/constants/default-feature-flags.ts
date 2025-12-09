@@ -12,15 +12,16 @@ export const DEFAULT_FEATURE_FLAGS = [
   FeatureFlagKey.IS_JSON_FILTER_ENABLED, // JSON 篩選
   FeatureFlagKey.IS_IMAP_SMTP_CALDAV_ENABLED, // IMAP/SMTP/CalDAV 郵件
   FeatureFlagKey.IS_MORPH_RELATION_ENABLED, // 多態關聯
-  FeatureFlagKey.IS_RELATION_CONNECT_ENABLED, // 關聯連接
-  FeatureFlagKey.IS_CORE_VIEW_ENABLED, // 核心視圖
-  FeatureFlagKey.IS_CORE_VIEW_SYNCING_ENABLED, // 核心視圖同步
   FeatureFlagKey.IS_WORKSPACE_MIGRATION_V2_ENABLED, // Workspace 遷移 V2
-  FeatureFlagKey.IS_MESSAGE_FOLDER_CONTROL_ENABLED, // 郵件資料夾控制
-  // FeatureFlagKey.IS_WORKFLOW_ITERATOR_ENABLED, // Workflow 迭代器 - enum 中不存在，已移除
-  FeatureFlagKey.IS_CALENDAR_VIEW_ENABLED, // 日曆視圖
-  // FeatureFlagKey.IS_GROUP_BY_ENABLED, // 分組功能 - enum 中不存在，已移除
   FeatureFlagKey.IS_PUBLIC_DOMAIN_ENABLED, // 公開域名
   FeatureFlagKey.IS_EMAILING_DOMAIN_ENABLED, // 郵件域名
-  FeatureFlagKey.IS_DYNAMIC_SEARCH_FIELDS_ENABLED, // 動態搜索欄位
+  FeatureFlagKey.IS_RECORD_PAGE_LAYOUT_ENABLED, // 記錄頁面佈局
+  FeatureFlagKey.IS_DASHBOARD_V2_ENABLED, // Dashboard V2
+  // 以下 feature flags 在當前版本的 enum 中不存在，已移除：
+  // - IS_RELATION_CONNECT_ENABLED
+  // - IS_CORE_VIEW_ENABLED
+  // - IS_CORE_VIEW_SYNCING_ENABLED
+  // - IS_MESSAGE_FOLDER_CONTROL_ENABLED
+  // - IS_CALENDAR_VIEW_ENABLED
+  // - IS_DYNAMIC_SEARCH_FIELDS_ENABLED
 ] as const satisfies FeatureFlagKey[];

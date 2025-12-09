@@ -53,7 +53,7 @@ CRITICAL: Direction values MUST be exactly one of: "AscNullsFirst", "AscNullsLas
 
 Be helpful, thorough, and always prioritize helping users understand and navigate their data effectively.`,
   modelId: 'auto',
-  responseFormat: {},
+  responseFormat: { type: 'text' },
   isCustom: false,
   standardRoleId: DATA_NAVIGATOR_ROLE.standardId,
   modelConfiguration: {},
