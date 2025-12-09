@@ -2,13 +2,13 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import {
-  generateObject,
-  generateText,
-  jsonSchema,
-  stepCountIs,
-  ToolSet,
+    generateObject,
+    generateText,
+    jsonSchema,
+    stepCountIs,
+    ToolSet,
 } from 'ai';
-import { type ActorMetadata } from 'twenty-shared/types';
+import { type ActorMetadata } from 'src/engine/metadata-modules/field-metadata/composite-types/actor.composite-type';
 import { Repository } from 'typeorm';
 
 import { AI_TELEMETRY_CONFIG } from 'src/engine/core-modules/ai/constants/ai-telemetry.const';
@@ -18,8 +18,8 @@ import { ToolService } from 'src/engine/core-modules/ai/services/tool.service';
 import { AgentExecutionResult } from 'src/engine/metadata-modules/agent/agent-execution.service';
 import { AgentEntity } from 'src/engine/metadata-modules/agent/agent.entity';
 import {
-  AgentException,
-  AgentExceptionCode,
+    AgentException,
+    AgentExceptionCode,
 } from 'src/engine/metadata-modules/agent/agent.exception';
 import { AGENT_CONFIG } from 'src/engine/metadata-modules/agent/constants/agent-config.const';
 import { AGENT_SYSTEM_PROMPTS } from 'src/engine/metadata-modules/agent/constants/agent-system-prompts.const';

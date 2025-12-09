@@ -80,7 +80,7 @@ export class FindRecordsWorkflowAction implements WorkflowAction {
         workspaceId,
       );
 
-    const fields = Object.values(objectMetadataItemWithFieldsMaps.fieldsByName)
+    const fields = Object.values(objectMetadataItemWithFieldsMaps.fieldsById)
       .map((field) => {
         if (!field) {
           return null;

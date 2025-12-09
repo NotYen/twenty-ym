@@ -38,9 +38,11 @@ export class TimelineCleanupService {
 
     const cutoffDate = this.calculateCutoffDate(retentionDays);
 
-    const { affected = 0 } = await repository.delete({
+    const result = await repository.delete({
       happensAt: LessThan(cutoffDate),
     });
+
+    const affected = result.affected ?? 0;
 
     if (affected > 0) {
       this.logger.log(

@@ -13,17 +13,17 @@ import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadat
 import { ServerlessFunctionService } from 'src/engine/metadata-modules/serverless-function/serverless-function.service';
 import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
 import {
-  WorkflowVersionStepException,
-  WorkflowVersionStepExceptionCode,
+    WorkflowVersionStepException,
+    WorkflowVersionStepExceptionCode,
 } from 'src/modules/workflow/common/exceptions/workflow-version-step.exception';
 import { type WorkflowVersionWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-version.workspace-entity';
 import { WorkflowCommonWorkspaceService } from 'src/modules/workflow/common/workspace-services/workflow-common.workspace-service';
 import { type BaseWorkflowActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/types/workflow-action-settings.type';
 import {
-  type WorkflowAction,
-  WorkflowActionType,
-  type WorkflowEmptyAction,
-  type WorkflowFormAction,
+    type WorkflowAction,
+    WorkflowActionType,
+    type WorkflowEmptyAction,
+    type WorkflowFormAction,
 } from 'src/modules/workflow/workflow-executor/workflow-actions/types/workflow-action.type';
 
 const BASE_STEP_DEFINITION: BaseWorkflowActionSettings = {
@@ -705,5 +705,123 @@ export class WorkflowVersionStepOperationsWorkspaceService {
         return step;
       }
     }
+  }
+
+  /**
+   * Clone a step without position offset (used for duplication)
+   */
+  async cloneStep({
+    step,
+    workspaceId,
+  }: {
+    step: WorkflowAction;
+    workspaceId: string;
+  }): Promise<WorkflowAction> {
+    const clonedStepPosition = {
+      x: step.position?.x ?? 0,
+      y: step.position?.y ?? 0,
+    };
+
+    switch (step.type) {
+      case WorkflowActionType.CODE: {
+        const newServerlessFunction =
+          await this.serverlessFunctionService.duplicateServerlessFunction({
+            id: step.settings.input.serverlessFunctionId,
+            version: step.settings.input.serverlessFunctionVersion,
+            workspaceId,
+          });
+
+        return {
+          ...step,
+          id: v4(),
+          nextStepIds: [],
+          position: clonedStepPosition,
+          settings: {
+            ...step.settings,
+            input: {
+              ...step.settings.input,
+              serverlessFunctionId: newServerlessFunction.id,
+              serverlessFunctionVersion: 'draft',
+            },
+          },
+        };
+      }
+      case WorkflowActionType.AI_AGENT: {
+        const existingAgent = await this.agentRepository.findOne({
+          where: { id: step.settings.input.agentId, workspaceId },
+        });
+
+        if (!isDefined(existingAgent)) {
+          throw new WorkflowVersionStepException(
+            'Agent not found for cloning',
+            WorkflowVersionStepExceptionCode.AI_AGENT_STEP_FAILURE,
+          );
+        }
+
+        const clonedAgent = await this.agentRepository.save({
+          name: 'workflow-service-agent' + v4(),
+          label: existingAgent.label,
+          icon: existingAgent.icon,
+          description: existingAgent.description,
+          prompt: existingAgent.prompt,
+          modelId: existingAgent.modelId,
+          responseFormat: existingAgent.responseFormat,
+          workspaceId,
+          isCustom: true,
+          modelConfiguration: existingAgent.modelConfiguration,
+        });
+
+        return {
+          ...step,
+          id: v4(),
+          nextStepIds: [],
+          position: clonedStepPosition,
+          settings: {
+            ...step.settings,
+            input: {
+              ...step.settings.input,
+              agentId: clonedAgent.id,
+            },
+          },
+        };
+      }
+      case WorkflowActionType.ITERATOR: {
+        return {
+          ...step,
+          id: v4(),
+          nextStepIds: [],
+          position: clonedStepPosition,
+          settings: {
+            ...step.settings,
+            input: {
+              ...step.settings.input,
+              initialLoopStepIds: [],
+            },
+          },
+        };
+      }
+      default: {
+        return {
+          ...step,
+          id: v4(),
+          nextStepIds: [],
+          position: clonedStepPosition,
+        };
+      }
+    }
+  }
+
+  /**
+   * Mark a step as duplicate by adding "(Duplicate)" suffix and offset position
+   */
+  markStepAsDuplicate({ step }: { step: WorkflowAction }): WorkflowAction {
+    return {
+      ...step,
+      name: `${step.name} (Duplicate)`,
+      position: {
+        x: (step.position?.x ?? 0) + DUPLICATED_STEP_POSITION_OFFSET,
+        y: (step.position?.y ?? 0) + DUPLICATED_STEP_POSITION_OFFSET,
+      },
+    };
   }
 }
