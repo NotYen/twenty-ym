@@ -49,7 +49,6 @@ type FindRecordsFormData = {
 export type FindRecordsActionFilter = {
   recordFilterGroups?: RecordFilterGroup[];
   recordFilters?: RecordFilter[];
-  gqlOperationFilter?: JsonValue;
 };
 
 export type FindRecordsActionOrderBy = {
