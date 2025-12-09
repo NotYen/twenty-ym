@@ -6,7 +6,12 @@ type getImageAbsoluteURIProps = {
 export const getImageAbsoluteURI = ({
   imageUrl,
   baseUrl,
-}: getImageAbsoluteURIProps): string => {
+}: getImageAbsoluteURIProps): string | null => {
+  // Return null for empty or whitespace-only URLs to prevent 500 errors
+  if (!imageUrl || imageUrl.trim() === '') {
+    return null;
+  }
+
   if (imageUrl.startsWith('https:') || imageUrl.startsWith('http:')) {
     return imageUrl;
   }
