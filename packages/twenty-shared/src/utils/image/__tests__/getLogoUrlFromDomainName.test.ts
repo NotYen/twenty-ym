@@ -1,6 +1,6 @@
 import {
-  getLogoUrlFromDomainName,
-  sanitizeURL,
+    getLogoUrlFromDomainName,
+    sanitizeURL,
 } from '@/utils/image/getLogoUrlFromDomainName';
 
 describe('sanitizeURL', () => {
@@ -10,6 +10,19 @@ describe('sanitizeURL', () => {
     expect(sanitizeURL('www.example.com')).toBe('example.com');
     expect(sanitizeURL('example.com')).toBe('example.com');
     expect(sanitizeURL('example.com/')).toBe('example.com');
+  });
+
+  test('should extract domain from full URL with path', () => {
+    // This is the key fix - URLs with paths should only return the domain
+    expect(sanitizeURL('https://twincn.com/item.aspx?no=54225358')).toBe(
+      'twincn.com',
+    );
+    expect(sanitizeURL('http://example.com/page/subpage?query=1')).toBe(
+      'example.com',
+    );
+    expect(sanitizeURL('https://www.google.com/search?q=test')).toBe(
+      'google.com',
+    );
   });
 
   test('should handle undefined input', () => {
