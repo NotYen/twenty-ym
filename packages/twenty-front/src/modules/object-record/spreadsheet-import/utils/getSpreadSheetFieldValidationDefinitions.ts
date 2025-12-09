@@ -57,7 +57,7 @@ export const getSpreadSheetFieldValidationDefinitions = (
       ];
     case FieldMetadataType.RELATION:
       // For relation connect fields, don't validate as UUID since they use unique constraint fields (e.g., company name)
-      if (isRelationConnectField) {
+      if (isRelationConnectField === true) {
         return [];
       }
       return [

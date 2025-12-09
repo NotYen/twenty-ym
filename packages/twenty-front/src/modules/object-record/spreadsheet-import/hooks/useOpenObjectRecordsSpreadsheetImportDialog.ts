@@ -13,6 +13,7 @@ import { spreadsheetImportCreatedRecordsProgressState } from '@/spreadsheet-impo
 import { type SpreadsheetImportDialogOptions } from '@/spreadsheet-import/types';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { useSetRecoilState } from 'recoil';
+import { isDefined } from 'twenty-shared/utils';
 
 export const useOpenObjectRecordsSpreadsheetImportDialog = (
   objectNameSingular: string,
@@ -101,15 +102,16 @@ export const useOpenObjectRecordsSpreadsheetImportDialog = (
               cache.evict({ fieldName: objectMetadataItem.namePlural });
             },
           });
-        } catch (error: any) {
+        } catch (error: unknown) {
+          const err = error as { message?: string; graphQLErrors?: unknown[] };
           // Check if it's a custom error with detailed message (from autoCreateMissingRelationRecords)
-          if (error?.message && !error?.graphQLErrors) {
+          if (isDefined(err?.message) && !isDefined(err?.graphQLErrors)) {
             enqueueErrorSnackBar({
-              message: error.message,
+              message: err.message,
             });
           } else {
             enqueueErrorSnackBar({
-              apolloError: error,
+              apolloError: error as Error,
             });
           }
         }
