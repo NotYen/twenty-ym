@@ -15,10 +15,10 @@ type RecordShowEffectProps = {
   recordId: string;
 };
 
-export const RecordShow = ({
+export const RecordShowEffect = ({
   objectNameSingular,
   recordId,
-}: RecordShowProps) => {
+}: RecordShowEffectProps) => {
   const { objectMetadataItem } = useObjectMetadataItem({ objectNameSingular });
   const { objectMetadataItems } = useObjectMetadataItems();
 
