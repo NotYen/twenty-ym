@@ -11,8 +11,9 @@ import { useRecoilValue } from 'recoil';
 import { FIELD_FOR_TOTAL_COUNT_AGGREGATE_OPERATION } from 'twenty-shared/constants';
 import { findById, isDefined } from 'twenty-shared/utils';
 import {
-  AggregateOperations,
-  type AggregateChartConfiguration,
+    AggregateOperations,
+    type AggregateChartConfiguration,
+    type GaugeChartConfiguration,
 } from '~/generated/graphql';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 
@@ -21,7 +22,7 @@ export const useGraphWidgetAggregateQuery = ({
   configuration,
 }: {
   objectMetadataItemId: string;
-  configuration: AggregateChartConfiguration;
+  configuration: AggregateChartConfiguration | GaugeChartConfiguration;
 }) => {
   const { objectMetadataItem, gqlOperationFilter, aggregateField } =
     useGraphWidgetQueryCommon({
