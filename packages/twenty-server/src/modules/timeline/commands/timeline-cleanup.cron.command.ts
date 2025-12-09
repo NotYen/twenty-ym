@@ -30,4 +30,3 @@ export class TimelineCleanupCronCommand extends CommandRunner {
     });
   }
 }
-

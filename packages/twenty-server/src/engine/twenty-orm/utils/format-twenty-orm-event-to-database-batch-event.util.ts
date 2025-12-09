@@ -14,8 +14,8 @@ import { ObjectRecordUpsertEvent } from 'src/engine/core-modules/event-emitter/t
 import { objectRecordChangedValues } from 'src/engine/core-modules/event-emitter/utils/object-record-changed-values';
 import type { ObjectMetadataItemWithFieldMaps } from 'src/engine/metadata-modules/types/object-metadata-item-with-field-maps';
 import {
-    TwentyORMException,
-    TwentyORMExceptionCode,
+  TwentyORMException,
+  TwentyORMExceptionCode,
 } from 'src/engine/twenty-orm/exceptions/twenty-orm.exception';
 import { type DatabaseBatchEventInput } from 'src/engine/workspace-event-emitter/workspace-event-emitter';
 

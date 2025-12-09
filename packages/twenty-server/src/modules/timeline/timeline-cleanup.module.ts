@@ -18,4 +18,3 @@ import { TimelineCleanupCronCommand } from 'src/modules/timeline/commands/timeli
   exports: [TimelineCleanupCronCommand],
 })
 export class TimelineCleanupModule {}
-

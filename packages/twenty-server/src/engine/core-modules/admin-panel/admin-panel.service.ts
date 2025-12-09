@@ -76,10 +76,9 @@ export class AdminPanelService {
         lastName: targetUser.lastName,
       },
       workspaces: targetUser.userWorkspaces.map((userWorkspace) => {
-        const workspaceUsers =
-          userWorkspace.workspace.workspaceUsers.filter(
-            (workspaceUser) => workspaceUser.user !== null,
-          );
+        const workspaceUsers = userWorkspace.workspace.workspaceUsers.filter(
+          (workspaceUser) => workspaceUser.user !== null,
+        );
 
         return {
           id: userWorkspace.workspace.id,

@@ -37,9 +37,7 @@ export class ToolRegistryService {
           description: this.lineMessagingTool.description,
           inputSchema: this.lineMessagingTool.inputSchema,
           execute: (params) =>
-            this.lineMessagingTool.execute(
-              params as LineMessagingInput,
-            ),
+            this.lineMessagingTool.execute(params as LineMessagingInput),
           flag: PermissionFlagType.WORKFLOWS,
         }),
       ],

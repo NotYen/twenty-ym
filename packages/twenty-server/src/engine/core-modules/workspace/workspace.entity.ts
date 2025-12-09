@@ -75,6 +75,7 @@ export class WorkspaceEntity {
 
   @Field(() => GraphQLJSON, { nullable: true })
   @Column({ type: 'jsonb', nullable: true })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   backgroundImageSettings?: Record<string, any>;
 
   @Field({ nullable: true })

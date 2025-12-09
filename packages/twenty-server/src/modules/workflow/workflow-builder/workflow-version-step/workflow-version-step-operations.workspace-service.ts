@@ -13,17 +13,17 @@ import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadat
 import { ServerlessFunctionService } from 'src/engine/metadata-modules/serverless-function/serverless-function.service';
 import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
 import {
-    WorkflowVersionStepException,
-    WorkflowVersionStepExceptionCode,
+  WorkflowVersionStepException,
+  WorkflowVersionStepExceptionCode,
 } from 'src/modules/workflow/common/exceptions/workflow-version-step.exception';
 import { type WorkflowVersionWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-version.workspace-entity';
 import { WorkflowCommonWorkspaceService } from 'src/modules/workflow/common/workspace-services/workflow-common.workspace-service';
 import { type BaseWorkflowActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/types/workflow-action-settings.type';
 import {
-    type WorkflowAction,
-    WorkflowActionType,
-    type WorkflowEmptyAction,
-    type WorkflowFormAction,
+  type WorkflowAction,
+  WorkflowActionType,
+  type WorkflowEmptyAction,
+  type WorkflowFormAction,
 } from 'src/modules/workflow/workflow-executor/workflow-actions/types/workflow-action.type';
 
 const BASE_STEP_DEFINITION: BaseWorkflowActionSettings = {

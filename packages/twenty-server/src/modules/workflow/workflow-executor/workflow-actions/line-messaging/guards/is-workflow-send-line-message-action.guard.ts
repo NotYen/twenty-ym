@@ -9,4 +9,3 @@ export const isWorkflowSendLineMessageAction = (
 ): action is WorkflowSendLineMessageAction => {
   return action.type === WorkflowActionType.SEND_LINE_MESSAGE;
 };
-

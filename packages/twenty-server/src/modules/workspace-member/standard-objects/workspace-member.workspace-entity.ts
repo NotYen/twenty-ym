@@ -1,7 +1,7 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 import { msg } from '@lingui/core/macro';
-import { type APP_LOCALES, SOURCE_LOCALE } from 'twenty-shared/translations';
+import { type APP_LOCALES } from 'twenty-shared/translations';
 import {
   FieldMetadataType,
   NumberDataType,

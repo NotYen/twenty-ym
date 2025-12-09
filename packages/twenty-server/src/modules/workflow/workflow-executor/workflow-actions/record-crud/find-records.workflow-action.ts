@@ -1,27 +1,27 @@
 import { Injectable } from '@nestjs/common';
 
 import {
-    FieldMetadataComplexOption,
-    FieldMetadataDefaultOption,
+  FieldMetadataComplexOption,
+  FieldMetadataDefaultOption,
 } from 'twenty-shared/types';
 import {
-    computeRecordGqlOperationFilter,
-    isDefined,
-    resolveInput,
+  computeRecordGqlOperationFilter,
+  isDefined,
+  resolveInput,
 } from 'twenty-shared/utils';
 
 import { type WorkflowAction } from 'src/modules/workflow/workflow-executor/interfaces/workflow-action.interface';
 
 import {
-    RecordCrudException,
-    RecordCrudExceptionCode,
+  RecordCrudException,
+  RecordCrudExceptionCode,
 } from 'src/engine/core-modules/record-crud/exceptions/record-crud.exception';
 import { FindRecordsService } from 'src/engine/core-modules/record-crud/services/find-records.service';
 import { ScopedWorkspaceContextFactory } from 'src/engine/twenty-orm/factories/scoped-workspace-context.factory';
 import { WorkflowCommonWorkspaceService } from 'src/modules/workflow/common/workspace-services/workflow-common.workspace-service';
 import {
-    WorkflowStepExecutorException,
-    WorkflowStepExecutorExceptionCode,
+  WorkflowStepExecutorException,
+  WorkflowStepExecutorExceptionCode,
 } from 'src/modules/workflow/workflow-executor/exceptions/workflow-step-executor.exception';
 import { WorkflowExecutionContextService } from 'src/modules/workflow/workflow-executor/services/workflow-execution-context.service';
 import { type WorkflowActionInput } from 'src/modules/workflow/workflow-executor/types/workflow-action-input';

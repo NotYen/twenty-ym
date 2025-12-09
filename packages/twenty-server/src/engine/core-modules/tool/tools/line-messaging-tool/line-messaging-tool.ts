@@ -80,7 +80,7 @@ export class LineMessagingTool implements Tool {
           error:
             typeof error.response?.data === 'string'
               ? error.response.data
-              : error.message ?? 'Failed to send LINE message',
+              : (error.message ?? 'Failed to send LINE message'),
           status: error.response?.status,
           statusText: error.response?.statusText,
         };
@@ -99,4 +99,3 @@ export class LineMessagingTool implements Tool {
     }
   }
 }
-

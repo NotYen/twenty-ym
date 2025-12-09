@@ -36,12 +36,14 @@ export class TimelineCleanupCronJob {
   @Process(TimelineCleanupCronJob.name)
   @SentryCronMonitor(TimelineCleanupCronJob.name, TIMELINE_CLEANUP_CRON_PATTERN)
   async handle(): Promise<void> {
-    const retentionDays =
-      this.twentyConfigService.get('TIMELINE_RETENTION_DAYS');
+    const retentionDays = this.twentyConfigService.get(
+      'TIMELINE_RETENTION_DAYS',
+    );
     const workspaces = await this.getActiveWorkspaces();
 
     if (workspaces.length === 0) {
       this.logger.log('No active workspaces found for timeline cleanup');
+
       return;
     }
 
@@ -88,4 +90,3 @@ export class TimelineCleanupCronJob {
     return workspaces.map((workspace) => ({ id: workspace.id }));
   }
 }
-

@@ -12,4 +12,3 @@ export const getGroupLimit = (limit?: number): number => {
 
   return DEFAULT_NUMBER_OF_GROUPS_LIMIT;
 };
-

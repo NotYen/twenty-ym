@@ -18,13 +18,10 @@ export const isWorkflowRelatedObject = (
       objectMetadata.standardId === STANDARD_OBJECT_IDS.workflow ||
       objectMetadata.standardId === STANDARD_OBJECT_IDS.workflowVersion ||
       objectMetadata.standardId === STANDARD_OBJECT_IDS.workflowRun ||
-      objectMetadata.standardId ===
-        STANDARD_OBJECT_IDS.workflowEventListener ||
-      objectMetadata.standardId ===
-        STANDARD_OBJECT_IDS.workflowAutomatedTrigger
+      objectMetadata.standardId === STANDARD_OBJECT_IDS.workflowEventListener ||
+      objectMetadata.standardId === STANDARD_OBJECT_IDS.workflowAutomatedTrigger
     );
   }
 
   return WORKFLOW_OBJECT_NAMES.includes(objectMetadata.nameSingular);
 };
-

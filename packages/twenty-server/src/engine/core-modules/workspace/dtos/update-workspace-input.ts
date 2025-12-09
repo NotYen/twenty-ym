@@ -45,6 +45,7 @@ export class UpdateWorkspaceInput {
 
   @Field(() => GraphQLJSON, { nullable: true })
   @IsOptional()
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   backgroundImageSettings?: Record<string, any>;
 
   @Field({ nullable: true })
