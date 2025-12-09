@@ -11,16 +11,19 @@ import { type GraphValueFormatOptions } from '@/page-layout/widgets/graph/utils/
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-  ResponsivePie,
-  type PieCustomLayerProps,
-  type PieTooltipProps,
+    ResponsivePie,
+    type PieCustomLayerProps,
+    type PieTooltipProps,
 } from '@nivo/pie';
 import { isDefined } from 'twenty-shared/utils';
+
+import { type GraphColor } from '@/page-layout/widgets/graph/types/GraphColor';
 
 type GraphWidgetPieChartProps = {
   data: PieChartDataItem[];
   showLegend?: boolean;
   id: string;
+  color?: GraphColor;
 } & GraphValueFormatOptions;
 
 const StyledContainer = styled.div`
@@ -36,6 +39,7 @@ export const GraphWidgetPieChart = ({
   data,
   showLegend = true,
   id,
+  color,
   displayType,
   decimals,
   prefix,
@@ -44,6 +48,11 @@ export const GraphWidgetPieChart = ({
 }: GraphWidgetPieChartProps) => {
   const theme = useTheme();
   const colorRegistry = createGraphColorRegistry(theme);
+
+  // If a specific color is selected, apply it to all data items
+  const coloredData = isDefined(color)
+    ? data.map((item) => ({ ...item, color }))
+    : data;
 
   const formatOptions: GraphValueFormatOptions = {
     displayType,
@@ -58,10 +67,10 @@ export const GraphWidgetPieChart = ({
     setHoveredSliceId,
     handleSliceClick,
     hasClickableItems,
-  } = usePieChartHandlers({ data });
+  } = usePieChartHandlers({ data: coloredData });
 
   const { enrichedData, enrichedDataMap, defs, fill } = usePieChartData({
-    data,
+    data: coloredData,
     colorRegistry,
     id,
     hoveredSliceId,

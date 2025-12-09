@@ -2,8 +2,8 @@ import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/Char
 import { useGraphPieChartWidgetData } from '@/page-layout/widgets/graph/graphWidgetPieChart/hooks/useGraphPieChartWidgetData';
 import { lazy, Suspense } from 'react';
 import {
-  type PageLayoutWidget,
-  type PieChartConfiguration,
+    type PageLayoutWidget,
+    type PieChartConfiguration,
 } from '~/generated/graphql';
 
 const GraphWidgetPieChart = lazy(() =>
@@ -47,6 +47,7 @@ export const GraphWidgetPieChartRenderer = ({
         showLegend
         displayType="shortNumber"
         id={`pie-chart-${widget.id}`}
+        color={configuration.color ?? undefined}
       />
     </Suspense>
   );
