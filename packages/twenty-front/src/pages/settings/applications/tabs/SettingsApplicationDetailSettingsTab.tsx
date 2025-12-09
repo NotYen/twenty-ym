@@ -8,8 +8,10 @@ import { isDefined } from 'twenty-shared/utils';
 import { H2Title, IconTrash } from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
-import type { ApplicationFieldsFragment } from '~/generated-metadata/graphql';
-import { useUninstallApplicationMutation } from '~/generated-metadata/graphql';
+import {
+  type ApplicationFieldsFragment,
+  useUninstallApplicationMutation,
+} from '~/generated-metadata/graphql';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 import { useUpdateOneApplicationVariable } from '~/pages/settings/applications/hooks/useUpdateOneApplicationVariable';
 import { SettingsApplicationDetailEnvironmentVariablesTable } from '~/pages/settings/applications/tabs/SettingsApplicationDetailEnvironmentVariablesTable';

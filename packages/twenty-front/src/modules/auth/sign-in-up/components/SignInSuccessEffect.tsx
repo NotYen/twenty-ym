@@ -7,8 +7,8 @@ import { isCurrentUserLoadedState } from '@/auth/states/isCurrentUserLoadedState
 import { useModal } from '@/ui/layout/modal/hooks/useModal';
 import { isModalOpenedComponentState } from '@/ui/layout/modal/states/isModalOpenedComponentState';
 import { isDefined } from 'twenty-shared/utils';
-import { SignInSuccessModal } from './SignInSuccessModal';
 import { logDebug } from '~/utils/logDebug';
+import { SignInSuccessModal } from './SignInSuccessModal';
 
 const SESSION_FLAG = 'signInSuccessShown';
 const MODAL_ID = 'sign-in-success-modal';
@@ -73,7 +73,9 @@ export const SignInSuccess = () => {
   const handleClose = () => {
     try {
       sessionStorage.setItem(SESSION_FLAG, '1');
-    } catch {}
+    } catch {
+      // Ignore sessionStorage errors (e.g., in private browsing mode)
+    }
     logDebug('[SignInSuccessEffect] close modal');
     closeModal(MODAL_ID);
   };
