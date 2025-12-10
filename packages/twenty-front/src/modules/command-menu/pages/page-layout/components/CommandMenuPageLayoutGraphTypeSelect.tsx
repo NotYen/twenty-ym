@@ -20,7 +20,7 @@ export const CommandMenuPageLayoutGraphTypeSelect = () => {
   );
 
   if (!isDefined(pageLayoutEditingWidgetId)) {
-    throw new Error('Widget ID must be present while editing the widget');
+    return null;
   }
 
   const widgetInEditMode = draftPageLayout.tabs
@@ -28,9 +28,7 @@ export const CommandMenuPageLayoutGraphTypeSelect = () => {
     .find((widget) => widget.id === pageLayoutEditingWidgetId);
 
   if (!isDefined(widgetInEditMode)) {
-    throw new Error(
-      `Widget with ID ${pageLayoutEditingWidgetId} not found in page layout`,
-    );
+    return null;
   }
 
   if (

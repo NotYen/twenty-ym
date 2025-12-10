@@ -7,17 +7,18 @@ import { useGaugeChartTooltip } from '@/page-layout/widgets/graph/graphWidgetGau
 import { type GaugeChartData } from '@/page-layout/widgets/graph/graphWidgetGaugeChart/types/GaugeChartData';
 import { createGraphColorRegistry } from '@/page-layout/widgets/graph/utils/createGraphColorRegistry';
 import {
-  formatGraphValue,
-  type GraphValueFormatOptions,
+    formatGraphValue,
+    type GraphValueFormatOptions,
 } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { t } from '@lingui/core/macro';
 import {
-  type RadialBarCustomLayerProps,
-  ResponsiveRadialBar,
+    type RadialBarCustomLayerProps,
+    ResponsiveRadialBar,
 } from '@nivo/radial-bar';
 import { useId } from 'react';
+import { isDefined } from 'twenty-shared/utils';
 import { H1Title, H1TitleFontColor } from 'twenty-ui/display';
 
 type GraphWidgetGaugeChartProps = {

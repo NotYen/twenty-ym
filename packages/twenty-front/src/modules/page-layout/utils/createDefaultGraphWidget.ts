@@ -1,14 +1,14 @@
 import { assertUnreachable, isDefined } from 'twenty-shared/utils';
 import { type ThemeColor } from 'twenty-ui/theme';
 import {
-  AggregateOperations,
-  AxisNameDisplay,
-  GraphOrderBy,
-  GraphType,
-  type GridPosition,
-  type PageLayoutWidget,
-  type WidgetConfiguration,
-  WidgetType,
+    AggregateOperations,
+    AxisNameDisplay,
+    GraphOrderBy,
+    GraphType,
+    type GridPosition,
+    type PageLayoutWidget,
+    type WidgetConfiguration,
+    WidgetType,
 } from '~/generated/graphql';
 
 import { type GraphWidgetFieldSelection } from '@/page-layout/types/GraphWidgetFieldSelection';
