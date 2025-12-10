@@ -65,6 +65,14 @@ twenty_migration.log
 twenty_startup.log
 twenty_worker.log
 
+# 環境變數備份檔案
+*.env.bak
+*.env.tmp
+.env.bak
+.env.*.backup*
+packages/twenty-server/.env.bak
+packages/twenty-server/.env.tmp
+
 # Local secret env files (not tracked)
 docker/env.aws
 docker/env.aws.local
