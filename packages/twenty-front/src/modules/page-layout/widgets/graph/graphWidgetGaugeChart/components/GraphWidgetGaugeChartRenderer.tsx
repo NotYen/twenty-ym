@@ -38,6 +38,12 @@ export const GraphWidgetGaugeChartRenderer = ({
         ? parseFloat(value.replace(/[^0-9.-]/g, '')) || 0
         : 0;
 
+  // If color is 'auto' or undefined, use default color (handled by useGaugeChartData)
+  const chartColor =
+    configuration.color && configuration.color !== 'auto'
+      ? (configuration.color as GraphColor)
+      : undefined;
+
   return (
     <Suspense fallback={<ChartSkeletonLoader />}>
       <GraphWidgetGaugeChart
@@ -46,7 +52,7 @@ export const GraphWidgetGaugeChartRenderer = ({
           min: 0,
           max: 100,
           label: label,
-          color: (configuration.color as GraphColor) ?? undefined,
+          color: chartColor,
         }}
         displayType="shortNumber"
         showValue

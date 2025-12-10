@@ -82,11 +82,17 @@ export const transformOneDimensionalGroupByToBarChartData = ({
     };
   });
 
+  // If color is 'auto' or undefined, use default color
+  const chartColor =
+    configuration.color && configuration.color !== 'auto'
+      ? (configuration.color as GraphColor)
+      : GRAPH_DEFAULT_COLOR;
+
   const series: BarChartSeries[] = [
     {
       key: aggregateValueKey,
       label: aggregateField.label,
-      color: (configuration.color ?? GRAPH_DEFAULT_COLOR) as GraphColor,
+      color: chartColor,
     },
   ];
 

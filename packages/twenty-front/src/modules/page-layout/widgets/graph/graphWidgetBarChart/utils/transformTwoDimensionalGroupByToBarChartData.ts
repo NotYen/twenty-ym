@@ -13,8 +13,8 @@ import { getFieldKey } from '@/page-layout/widgets/graph/utils/getFieldKey';
 import { getSortedKeys } from '@/page-layout/widgets/graph/utils/getSortedKeys';
 import { isDefined } from 'twenty-shared/utils';
 import {
-  BarChartGroupMode,
-  type BarChartConfiguration,
+    BarChartGroupMode,
+    type BarChartConfiguration,
 } from '~/generated/graphql';
 
 type TransformTwoDimensionalGroupByToBarChartDataParams = {
@@ -130,10 +130,16 @@ export const transformTwoDimensionalGroupByToBarChartData = ({
     yValues: Array.from(yValues),
   });
 
+  // If color is 'auto' or undefined, don't set color (let the chart use default palette)
+  const chartColor =
+    configuration.color && configuration.color !== 'auto'
+      ? (configuration.color as GraphColor)
+      : undefined;
+
   const series: BarChartSeries[] = keys.map((key) => ({
     key,
     label: key,
-    color: configuration.color as GraphColor,
+    color: chartColor,
   }));
 
   const unsortedData = Array.from(dataMap.values());
