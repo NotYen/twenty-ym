@@ -21,10 +21,13 @@ export const GraphWidgetGaugeChartRenderer = ({
   widget: PageLayoutWidget;
 }) => {
   const configuration = widget.configuration as GaugeChartConfiguration;
-  const { value, label, loading } = useGraphWidgetAggregateQuery({
+  const { value, label: labelObject, loading } = useGraphWidgetAggregateQuery({
     objectMetadataItemId: widget.objectMetadataId,
     configuration,
   });
+
+  // label is an object { aggregateLabel: string }, extract the string
+  const label = labelObject?.aggregateLabel ?? undefined;
 
   if (loading) {
     return <ChartSkeletonLoader />;
@@ -44,6 +47,12 @@ export const GraphWidgetGaugeChartRenderer = ({
       ? (configuration.color as GraphColor)
       : undefined;
 
+  // label is an object { aggregateLabel }, extract the string
+  const labelText =
+    typeof label === 'object' && label !== null && 'aggregateLabel' in label
+      ? (label as { aggregateLabel: string | null }).aggregateLabel
+      : undefined;
+
   return (
     <Suspense fallback={<ChartSkeletonLoader />}>
       <GraphWidgetGaugeChart
@@ -51,7 +60,7 @@ export const GraphWidgetGaugeChartRenderer = ({
           value: numericValue,
           min: 0,
           max: 100,
-          label: label,
+          label: labelText ?? undefined,
           color: chartColor,
         }}
         displayType="shortNumber"
