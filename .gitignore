@@ -61,6 +61,8 @@ mcp.json
 twenty.log
 twenty_backend.log
 twenty_frontend.log
+twenty_migration.log
+twenty_startup.log
 twenty_worker.log
 
 # Local secret env files (not tracked)
