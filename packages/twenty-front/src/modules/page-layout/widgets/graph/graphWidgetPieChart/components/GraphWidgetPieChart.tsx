@@ -49,10 +49,12 @@ export const GraphWidgetPieChart = ({
   const theme = useTheme();
   const colorRegistry = createGraphColorRegistry(theme);
 
-  // If a specific color is selected, apply it to all data items
-  const coloredData = isDefined(color)
-    ? data.map((item) => ({ ...item, color }))
-    : data;
+  // If a specific color is selected (not 'auto'), apply it to all data items
+  // 'auto' means use the default palette with different colors for each slice
+  const coloredData =
+    isDefined(color) && color !== 'auto'
+      ? data.map((item) => ({ ...item, color }))
+      : data;
 
   const formatOptions: GraphValueFormatOptions = {
     displayType,
@@ -121,7 +123,7 @@ export const GraphWidgetPieChart = ({
         $cursorSelector='svg g path[fill^="url(#"]'
       >
         <ResponsivePie
-          data={data}
+          data={coloredData}
           innerRadius={0.8}
           colors={enrichedData.map((item) => `url(#${item.gradientId})`)}
           borderWidth={0}
