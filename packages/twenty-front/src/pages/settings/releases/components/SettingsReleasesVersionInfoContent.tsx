@@ -56,7 +56,7 @@ export const SettingsReleasesVersionInfoContent = () => {
   const clientConfigApiStatus = useRecoilValue(clientConfigApiStatusState);
 
   const isBackendVersionLoading =
-    !clientConfigStatus.isLoadedOnce && clientConfigStatus.isLoading;
+    !clientConfigApiStatus.isLoadedOnce && clientConfigApiStatus.isLoading;
 
   const renderVersion = ({
     version,

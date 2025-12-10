@@ -1,15 +1,15 @@
-import styled from '@emotion/styled';
-import { useMemo } from 'react';
-import { useRecoilValue } from 'recoil';
-import { useNavigate } from 'react-router-dom';
-
 import { Logo } from '@/auth/components/Logo';
 import { Title } from '@/auth/components/Title';
 import { currentUserState } from '@/auth/states/currentUserState';
+import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 import { useDefaultHomePagePath } from '@/navigation/hooks/useDefaultHomePagePath';
 import { Modal } from '@/ui/layout/modal/components/Modal';
-import { MainButton } from 'twenty-ui/input';
+import styled from '@emotion/styled';
 import { t } from '@lingui/core/macro';
+import { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { MainButton } from 'twenty-ui/input';
 
 const StyledContainer = styled(Modal.Content)`
   align-items: center;
@@ -41,6 +41,7 @@ export const SignInSuccessModal = ({
 }: SignInSuccessModalProps) => {
   const navigate = useNavigate();
   const currentUser = useRecoilValue(currentUserState);
+  const currentWorkspace = useRecoilValue(currentWorkspaceState);
   const { defaultHomePagePath } = useDefaultHomePagePath();
 
   const displayName = useMemo(() => {
@@ -70,7 +71,9 @@ export const SignInSuccessModal = ({
     return `${displayName} ${t`successfully signed in`},`;
   }, [displayName]);
 
-  const titleLine2 = t`welcome to Y-CRM`;
+  const titleLine2 = t`Welcome to ${
+    currentWorkspace?.displayName ?? 'Y-CRM'
+  }`;
 
   const handleContinue = () => {
     onClose?.();

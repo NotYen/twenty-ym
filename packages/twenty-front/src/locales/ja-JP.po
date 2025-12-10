@@ -142,7 +142,7 @@ msgid "{advancedFilterCount, plural, one {{advancedFilterCount} advanced rule} o
 msgstr "{advancedFilterCount, plural, other {{advancedFilterCount} 件の高度なルール}}"
 
 #. js-lingui-id: ROdDR9
-#: src/modules/object-record/record-board/record-board-column/utils/computeAggregateValueAndLabel.ts
+#: src/modules/object-record/record-aggregate/utils/getAggregateLabelWithFieldName.ts
 msgid "{aggregateLabel} of {fieldLabel}"
 msgstr "{fieldLabel}の{aggregateLabel}"
 
@@ -176,6 +176,11 @@ msgstr "{deletedCount, plural, other {正常に削除されたジョブ数: {del
 msgid "{failedCount} file(s) failed to upload"
 msgstr "{failedCount} ファイルのアップロードに失敗しました"
 
+#. js-lingui-id: bv2QCV
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+msgid "{filterRulesCount, plural, one {{filterRulesCount} rule} other {{filterRulesCount} rules}}"
+msgstr ""
+
 #. js-lingui-id: WS/avX
 #: src/modules/spreadsheet-import/steps/components/ImportDataStep.tsx
 msgid "{formattedCreatedRecordsProgress} out of {formattedRecordsToImportCount} records imported."
@@ -187,8 +192,7 @@ msgid "{grantedBy, plural, one {Granted for {grantedBy} object} other {Granted f
 msgstr "{grantedBy, plural, other {'{grantedBy}' オブジェクト用に付与されました}}"
 
 #. js-lingui-id: 2EPGDl
-#: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutGraphTypeSelect.tsx
-#: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutGraphFilter.tsx
+#: src/modules/command-menu/components/hooks/usePageLayoutHeaderInfo.ts
 msgid "{graphTypeLabel} Chart"
 msgstr "{graphTypeLabel} チャート"
 
@@ -481,6 +485,7 @@ msgstr "ACS URLがクリップボードにコピーされました"
 
 #. js-lingui-id: bwRvnp
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
+#: src/modules/command-menu/components/CommandMenuWorkflowStepInfo.tsx
 msgid "Action"
 msgstr "アクション"
 
@@ -518,8 +523,6 @@ msgstr "ワークフローを有効化"
 
 #. js-lingui-id: F6pfE9
 #: src/pages/settings/SettingsProfile.tsx
-#: src/pages/settings/data-model/SettingsObjectTable.tsx
-#: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/modules/settings/domains/components/SettingsWorkspaceDomainCard.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "Active"
@@ -644,6 +647,7 @@ msgstr "オブジェクトを追加"
 
 #. js-lingui-id: mFtRj8
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
+#: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
 msgid "Add object permission"
 msgstr "オブジェクト権限を追加する"
 
@@ -710,8 +714,6 @@ msgstr "お気に入りに追加"
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
-#: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Add to favorites"
 msgstr "お気に入りに追加"
 
@@ -767,6 +769,11 @@ msgstr "住所 2"
 #: src/modules/settings/roles/components/SettingsRolesDefaultRole.tsx
 msgid "Adjust the role-related settings"
 msgstr "役割に関連した設定を調整する"
+
+#. js-lingui-id: rTClSE
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Adjust the text size across the entire application"
+msgstr ""
 
 #. js-lingui-id: g1in8j
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
@@ -830,10 +837,10 @@ msgstr "エージェントのハンドオフ"
 msgid "Agent not found"
 msgstr "エージェントが見つかりません"
 
-#. js-lingui-id: jJT5pC
-#: src/modules/settings/roles/components/SettingsRolesContainer.tsx
-msgid "Agent Roles"
-msgstr "エージェントの役割"
+#. js-lingui-id: 77hGcG
+#: src/modules/settings/roles/components/SettingsRolesList.tsx
+msgid "Agent roles"
+msgstr ""
 
 #. js-lingui-id: 8Uv5e6
 #: src/pages/settings/ai/SettingsAI.tsx
@@ -858,11 +865,13 @@ msgid "Aggregate"
 msgstr "集約"
 
 #. js-lingui-id: jsQZMk
+#: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
+#: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/command-menu/pages/workflow/action/components/CommandMenuWorkflowSelectAction.tsx
 msgid "AI"
@@ -871,6 +880,7 @@ msgstr "AI"
 #. js-lingui-id: kNfr85
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
+#: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
 msgid "AI Model"
 msgstr "AIモデル"
 
@@ -1010,6 +1020,11 @@ msgstr "ファイルと添付ファイルのアップロードを許可する"
 msgid "Allow users to sign in with an email and password."
 msgstr "ユーザーがメールとパスワードでサインインできるようにする。"
 
+#. js-lingui-id: Vw8l6h
+#: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/HttpRequestExecutionResult.tsx
+msgid "An error occurred"
+msgstr ""
+
 #. js-lingui-id: VD5bNu
 #: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
 msgid "An error occurred while checking user existence"
@@ -1021,7 +1036,6 @@ msgid "An error occurred while processing your message"
 msgstr "メッセージの処理中にエラーが発生しました"
 
 #. js-lingui-id: XyOToQ
-#: src/utils/get-error-message-from-apollo-error.util.ts
 #: src/utils/get-error-message-from-apollo-error.util.ts
 #: src/modules/views/hooks/internal/usePersistViewGroup.ts
 #: src/modules/views/hooks/internal/usePersistViewGroup.ts
@@ -1108,10 +1122,10 @@ msgstr "APIキー"
 msgid "API Key copied to clipboard"
 msgstr "APIキーがクリップボードにコピーされました"
 
-#. js-lingui-id: K84VsN
-#: src/modules/settings/roles/components/SettingsRolesContainer.tsx
-msgid "API Key Roles"
-msgstr "APIキー役割"
+#. js-lingui-id: Widx6n
+#: src/modules/settings/roles/components/SettingsRolesList.tsx
+msgid "API key roles"
+msgstr ""
 
 #. js-lingui-id: 5h8ooz
 #: src/pages/settings/developers/api-keys/SettingsApiKeys.tsx
@@ -1207,6 +1221,11 @@ msgstr "アプリケーションオブジェクト"
 msgid "Application serverless functions"
 msgstr "アプリケーションのサーバーレス関数"
 
+#. js-lingui-id: +tE2x9
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
+msgid "Application successfully uninstalled."
+msgstr ""
+
 #. js-lingui-id: fL7WXr
 #: src/pages/settings/serverless-functions/SettingsServerlessFunctionDetail.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
@@ -1232,11 +1251,6 @@ msgstr "承認されたドメイン"
 msgid "Arabic"
 msgstr "アラビア語"
 
-#. js-lingui-id: 2BZAqa
-#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
-msgid "Are you sure you want to delete these records? They can be recovered from the Command menu."
-msgstr "これらのレコードを本当に削除しますか？ コマンドメニューから復元できます。"
-
 #. js-lingui-id: yb2hF4
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 msgid "Are you sure you want to delete this record? It can be recovered from the Command menu."
@@ -1261,6 +1275,11 @@ msgstr "これらのレコードを復元してもよろしいですか？"
 #: src/modules/action-menu/actions/record-actions/single-record/components/RestoreSingleRecordAction.tsx
 msgid "Are you sure you want to restore this record?"
 msgstr "このレコードを復元しますか？"
+
+#. js-lingui-id: apLLSU
+#: src/modules/navigation/components/MainNavigationDrawerUserSection.tsx
+msgid "Are you sure you want to sign out?"
+msgstr ""
 
 #. js-lingui-id: rnCqBK
 #: src/modules/spreadsheet-import/provider/components/SpreadsheetImport.tsx
@@ -1292,21 +1311,10 @@ msgstr "AIに尋ねる"
 msgid "Assign {roleTargetName}?"
 msgstr "{roleTargetName}に割り当てますか？"
 
-#. js-lingui-id: gJL5Xx
+#. js-lingui-id: nerbkq
 #: src/modules/settings/roles/components/SettingsRolesList.tsx
-msgid "Assign roles to specify each agent's access permissions"
-msgstr "各エージェントのアクセス権限を指定するロールを割り当てる"
-
-#. js-lingui-id: j95x1l
-#: src/modules/settings/roles/components/SettingsRolesList.tsx
-msgid "Assign roles to specify each API key's access permissions"
-msgstr "各APIキーのアクセス権限を指定するロールを割り当てる"
-
-#. js-lingui-id: rfYmIr
-#: src/modules/settings/roles/components/SettingsRolesList.tsx
-#: src/modules/settings/roles/components/SettingsRolesList.tsx
-msgid "Assign roles to specify each member's access permissions"
-msgstr "各メンバーのアクセス権限を指定するロールを割り当てる"
+msgid "Assign roles to specify access permissions"
+msgstr ""
 
 #. js-lingui-id: krsgB0
 #: src/modules/settings/roles/role-assignment/constants/RoleTargetConfig.ts
@@ -1473,6 +1481,16 @@ msgstr "人々のために自動的に連絡先を作成する。"
 msgid "Automatically create People records when receiving or sending emails"
 msgstr "メールの受信・送信時に自動的に人物レコードを作成"
 
+#. js-lingui-id: 6fSudf
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Automatically filled from your account"
+msgstr ""
+
+#. js-lingui-id: KsnJCr
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Automatically filled from your profile"
+msgstr ""
+
 #. js-lingui-id: lXkUEV
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerManual.tsx
 msgid "Availability"
@@ -1505,6 +1523,11 @@ msgstr "戻る"
 #: src/pages/not-found/NotFound.tsx
 msgid "Back to content"
 msgstr "コンテンツに戻る"
+
+#. js-lingui-id: SJqwIZ
+#: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+msgid "Backend image version"
+msgstr ""
 
 #. js-lingui-id: NgFKo1
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMonthsDescription.ts
@@ -1574,10 +1597,25 @@ msgstr "両方"
 msgid "Brief explanation of this output field"
 msgstr "この出力フィールドの簡単な説明"
 
-#. js-lingui-id: 8Pfllj
+#. js-lingui-id: VkwIHa
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "bullet"
+msgstr ""
+
+#. js-lingui-id: s1c0ja
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Bullet List"
+msgstr ""
+
+#. js-lingui-id: ljkQTW
+#: src/pages/settings/SettingsProfile.tsx
+msgid "Business Card (vCard)"
+msgstr ""
+
+#. js-lingui-id: uqsfwo
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
-msgid "By using Twenty, you agree to the"
-msgstr "Twentyを利用することにより、以下の事項に同意したものとみなされます。"
+msgid "By using YM CRM, you agree to the"
+msgstr ""
 
 #. js-lingui-id: Yx41df
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -1684,14 +1722,13 @@ msgstr "スキャンできませんか？ コピーしてください"
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 #: src/modules/spreadsheet-import/provider/components/SpreadsheetImport.tsx
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
 #: src/modules/settings/components/SaveAndCancelButtons/CancelButton.tsx
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Cancel"
 msgstr "キャンセル"
 
 #. js-lingui-id: HYLdMN
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Cancel Edition"
 msgstr "編集をキャンセル"
@@ -1735,6 +1772,12 @@ msgstr "プラン切替をキャンセルしますか？"
 #: src/modules/billing/components/SettingsBillingContent.tsx
 msgid "Cancel your subscription"
 msgstr "サブスクリプションをキャンセル"
+
+#. js-lingui-id: 8fbdLj
+#: src/modules/ui/feedback/snack-bar-manager/utils/sanitizeMessageToRenderInSnackbar.ts
+#: src/modules/ui/feedback/snack-bar-manager/utils/sanitizeMessageToRenderInSnackbar.ts
+msgid "Cannot display message"
+msgstr ""
 
 #. js-lingui-id: W3MumH
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
@@ -1813,6 +1856,7 @@ msgstr "変更履歴"
 
 #. js-lingui-id: nuBbBr
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutWidgetTypeSelect.tsx
+#: src/modules/command-menu/components/hooks/usePageLayoutHeaderInfo.ts
 msgid "Chart"
 msgstr "チャート"
 
@@ -2013,6 +2057,12 @@ msgstr "コンパクトビュー"
 msgid "Companies"
 msgstr "会社"
 
+#. js-lingui-id: 7i8j3G
+#: src/modules/settings/profile/components/vcard/VCardPreview.tsx
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Company"
+msgstr ""
+
 #. js-lingui-id: 2PsTzL
 #: src/modules/workflow/workflow-diagram/utils/generateNodesAndEdgesForIteratorNode.ts
 #: src/modules/workflow/workflow-diagram/utils/generateNodesAndEdgesForIteratorNode.ts
@@ -2132,6 +2182,11 @@ msgstr "確認"
 msgid "Confirm changing your current credit plan."
 msgstr "現在のクレジットプラン変更を確認してください。"
 
+#. js-lingui-id: N6GBcC
+#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
+msgid "Confirm Delete"
+msgstr ""
+
 #. js-lingui-id: FbJ7Si
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModalSubtitle.tsx
 msgid "Confirm deletion of {roleName} role? This cannot be undone. All members will be reassigned to the default role."
@@ -2141,6 +2196,12 @@ msgstr "{roleName}のロールを削除しますか？この操作は元に戻�
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 msgid "Confirm downgrade"
 msgstr "ダウングレードを確認"
+
+#. js-lingui-id: hUQAEy
+#: src/modules/navigation/components/MainNavigationDrawerUserSection.tsx
+#: src/modules/navigation/components/MainNavigationDrawerUserSection.tsx
+msgid "Confirm sign out"
+msgstr ""
 
 #. js-lingui-id: DDbn3x
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
@@ -2187,11 +2248,26 @@ msgstr "接続が正常に作成されました"
 msgid "Connection successfully updated"
 msgstr "接続が正常に更新されました"
 
+#. js-lingui-id: JdGr7p
+#: src/modules/command-menu/pages/page-layout/components/ChartSettings.tsx
+msgid "Consider adding a filter or changing the date granularity to display more data."
+msgstr ""
+
+#. js-lingui-id: G++HwN
+#: src/modules/command-menu/pages/page-layout/components/ChartSettings.tsx
+msgid "Consider adding a filter to display more data."
+msgstr ""
+
 #. js-lingui-id: Y2y0mC
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
 msgid "Contact auto-creation"
 msgstr "連絡先自動作成"
+
+#. js-lingui-id: yHAqP5
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Contain"
+msgstr ""
 
 #. js-lingui-id: /5mghO
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
@@ -2205,7 +2281,6 @@ msgid "Context"
 msgstr "コンテキスト"
 
 #. js-lingui-id: xGVfLh
-#: src/pages/onboarding/SyncEmails.tsx
 #: src/pages/onboarding/InviteTeam.tsx
 #: src/pages/onboarding/CreateWorkspace.tsx
 #: src/pages/onboarding/CreateProfile.tsx
@@ -2217,6 +2292,11 @@ msgstr "コンテキスト"
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
 msgid "Continue"
 msgstr "続行"
+
+#. js-lingui-id: SXReWK
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "Continue (login success)"
+msgstr ""
 
 #. js-lingui-id: RvVi9c
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
@@ -2362,6 +2442,11 @@ msgstr "一意の値をカウント"
 msgid "Country"
 msgstr "国"
 
+#. js-lingui-id: sW0/Es
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Cover (Recommended)"
+msgstr ""
+
 #. js-lingui-id: hYgDIe
 #: src/modules/views/view-picker/components/ViewPickerEditButton.tsx
 #: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
@@ -2374,10 +2459,10 @@ msgstr "作成"
 msgid "Create {targetObjectLabelSingular}"
 msgstr "{targetObjectLabelSingular}を作成"
 
-#. js-lingui-id: 7/h1ZC
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-msgid "Create a new AI agent"
-msgstr "新しいAIエージェントを作成する"
+#. js-lingui-id: ZITKtg
+#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
+msgid "Create a role to define permissions for this agent."
+msgstr ""
 
 #. js-lingui-id: zNoOC2
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateSubTitle.ts
@@ -2441,6 +2526,7 @@ msgid "Create Related Record"
 msgstr "関連レコードを作成"
 
 #. js-lingui-id: RoyYUE
+#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
 #: src/modules/settings/roles/components/SettingsRolesList.tsx
 msgid "Create Role"
 msgstr "ロールの作成"
@@ -2493,6 +2579,11 @@ msgstr "ワークスペースの作成"
 msgid "Create, edit, and delete workspace views"
 msgstr "ワークスペースビューの作成、編集、削除"
 
+#. js-lingui-id: 4fBuqE
+#: src/modules/command-menu/components/CommandMenuRecordInfo.tsx
+msgid "Created {beautifiedCreatedAt}"
+msgstr ""
+
 #. js-lingui-id: fR16ki
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Creating your data model..."
@@ -2532,6 +2623,16 @@ msgstr "クロン"
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
 msgid "cron trigger"
 msgstr "cron トリガー"
+
+#. js-lingui-id: zovbHa
+#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
+msgid "Cron will be triggered at UTC time"
+msgstr ""
+
+#. js-lingui-id: J1QT+3
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Cumulative"
+msgstr ""
 
 #. js-lingui-id: R3PLzn
 #: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownCurrencySelect.tsx
@@ -2611,6 +2712,11 @@ msgstr "フィールドをカスタマイズ"
 msgid "Customize page layouts and UI structure"
 msgstr "ページレイアウトとUI構造のカスタマイズ"
 
+#. js-lingui-id: bAyIrf
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Customize the background image for your workspace"
+msgstr ""
+
 #. js-lingui-id: bCJa9l
 #: src/pages/settings/security/SettingsSecurity.tsx
 msgid "Customize your workspace security"
@@ -2624,6 +2730,7 @@ msgstr "チェコ語"
 #. js-lingui-id: Zz6Cxn
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettings.tsx
 #: src/modules/settings/profile/components/DeleteWorkspace.tsx
@@ -2722,7 +2829,6 @@ msgstr "データベーストリガー"
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterDropdownContent.tsx
 #: src/modules/object-record/record-board/record-board-column/components/RecordBoardColumnHeaderAggregateDropdownMenuContent.tsx
 #: src/modules/object-record/record-board/record-board-column/components/RecordBoardColumnHeaderAggregateDropdownContent.tsx
-#: src/modules/ai/constants/OutputFieldTypeOptions.ts
 msgid "Date"
 msgstr "日付"
 
@@ -2825,6 +2931,7 @@ msgstr "ワークフローを無効化"
 
 #. js-lingui-id: yAT3be
 #: src/pages/settings/SettingsProfile.tsx
+#: src/pages/settings/data-model/SettingsObjectTable.tsx
 #: src/modules/settings/data-model/fields/forms/components/text/constants/TextDataModelSelectOptions.ts
 msgid "Deactivated"
 msgstr "無効化済み"
@@ -2922,6 +3029,7 @@ msgstr "削除"
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutTabSettings.tsx
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
+#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -2977,26 +3085,14 @@ msgstr "フィールドを削除"
 msgid "Delete node"
 msgstr "ノードを削除"
 
-#. js-lingui-id: 4dpwsE
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-msgid "Delete record"
-msgstr "レコードを削除"
-
-#. js-lingui-id: LUsa0/
-#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
-#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
-msgid "Delete Record"
-msgstr "レコードを削除"
+#. js-lingui-id: pkS9VB
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Delete quote"
+msgstr ""
 
 #. js-lingui-id: kf0A63
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Delete records"
-msgstr "レコードを削除"
-
-#. js-lingui-id: rMgHjD
-#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
-#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
-msgid "Delete Records"
 msgstr "レコードを削除"
 
 #. js-lingui-id: mcXHCJ
@@ -3272,15 +3368,25 @@ msgstr "ファイルをダウンロード"
 msgid "Download Files"
 msgstr "ファイルをダウンロード"
 
-#. js-lingui-id: wrT4hq
+#. js-lingui-id: BU+6gf
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
-msgid "Download sample file."
-msgstr "サンプルファイルをダウンロード."
+msgid "Download sample"
+msgstr ""
+
+#. js-lingui-id: C4talF
+#: src/modules/settings/profile/components/vcard/VCardPreview.tsx
+msgid "Download vCard"
+msgstr ""
 
 #. js-lingui-id: 6D/BnN
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
 msgid "Drop file here..."
 msgstr "ここにファイルをドロップしてください…"
+
+#. js-lingui-id: euc6Ns
+#: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutTabSettings.tsx
+msgid "Duplicate"
+msgstr ""
 
 #. js-lingui-id: qaE1sk
 #: src/modules/workflow/workflow-steps/components/WorkflowStepFooter.tsx
@@ -3331,7 +3437,6 @@ msgstr "最も早い日付"
 #: src/modules/settings/data-model/object-details/components/SettingsObjectFieldDisabledActionDropdown.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableActionButtons.tsx
 #: src/modules/object-record/record-group/hooks/useRecordGroupActions.ts
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Edit"
 msgstr "編集"
@@ -3347,10 +3452,15 @@ msgstr "{objectLabelPlural}を編集する"
 msgid "Edit Account"
 msgstr "アカウントを編集する"
 
-#. js-lingui-id: CQrc7J
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-msgid "Edit Agent"
-msgstr "エージェントを編集する"
+#. js-lingui-id: 0M4aKb
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Edit Background Image"
+msgstr ""
+
+#. js-lingui-id: 97Oz6u
+#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
+msgid "Edit Background Settings"
+msgstr ""
 
 #. js-lingui-id: GpnfNN
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
@@ -3383,11 +3493,6 @@ msgstr "グラフを編集"
 msgid "Edit iFrame"
 msgstr "iFrameを編集する"
 
-#. js-lingui-id: NZubw3
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-msgid "Edit Layout"
-msgstr "レイアウトを編集"
-
 #. js-lingui-id: h2KoTu
 #: src/modules/billing/components/SettingsBillingContent.tsx
 msgid "Edit payment method, see your invoices and more"
@@ -3415,6 +3520,8 @@ msgstr "第八"
 #: src/pages/auth/PasswordReset.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTableHeader.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
+#: src/modules/settings/profile/components/vcard/VCardPreview.tsx
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
 msgid "Email"
 msgstr "メール"
@@ -3625,10 +3732,20 @@ msgstr "アイテムを入力"
 msgid "Enter array of items or variable expression"
 msgstr "アイテムまたは変数式の配列を入力してください"
 
+#. js-lingui-id: h7XHBV
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Enter company name"
+msgstr ""
+
 #. js-lingui-id: 9/30HU
 #: src/modules/settings/data-model/fields/forms/date/utils/getDisplayFormatSelectDescription.tsx
 msgid "Enter in <0>Unicode</0> format"
 msgstr "<0>Unicode</0>形式で入力"
+
+#. js-lingui-id: 4S9CJu
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Enter job title"
+msgstr ""
 
 #. js-lingui-id: O6t21f
 #: src/modules/advanced-text-editor/components/EditLinkPopover.tsx
@@ -3646,12 +3763,21 @@ msgstr "0 から 23 の間の数字を入力してください"
 msgid "Enter number between 0 and 59"
 msgstr "0 から 59 の間の数字を入力してください"
 
-#. js-lingui-id: ahwn7G
+#. js-lingui-id: uhDeRP
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
+msgid "Enter number between 1 and 60"
+msgstr ""
+
+#. js-lingui-id: ahwn7G
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Enter number greater than 1"
 msgstr "1 より大きい数字を入力してください"
+
+#. js-lingui-id: waLOUb
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Enter phone number"
+msgstr ""
 
 #. js-lingui-id: yZMXC2
 #: src/modules/advanced-text-editor/hooks/useAdvancedTextEditor.ts
@@ -3754,6 +3880,11 @@ msgstr "APIキーの再生成エラー。"
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Error resending invitation"
 msgstr "招待の再送エラー"
+
+#. js-lingui-id: 5Vy8D1
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
+msgid "Error uninstalling application."
+msgstr ""
 
 #. js-lingui-id: lX3Yil
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -4004,6 +4135,11 @@ msgstr "{dateDiff} で期限が切れます"
 msgid "Export"
 msgstr "エクスポート"
 
+#. js-lingui-id: O4wxl8
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Export as PDF"
+msgstr ""
+
 #. js-lingui-id: 2KAI4N
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
 msgid "Export CSV"
@@ -4014,10 +4150,21 @@ msgstr "CSVをエクスポート"
 msgid "Export dashboard"
 msgstr "ダッシュボードをエクスポート"
 
-#. js-lingui-id: G5DJkP
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-msgid "Export record"
-msgstr "レコードをエクスポート"
+#. js-lingui-id: wVUjld
+#: src/modules/action-menu/actions/record-actions/constants/WorkspaceMembersActionsConfig.tsx
+#: src/modules/action-menu/actions/record-actions/constants/WorkspaceMembersActionsConfig.tsx
+msgid "Export member"
+msgstr ""
+
+#. js-lingui-id: D0b3Ip
+#: src/modules/action-menu/actions/record-actions/constants/WorkspaceMembersActionsConfig.tsx
+msgid "Export members"
+msgstr ""
+
+#. js-lingui-id: Kxok5r
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Export quote"
+msgstr ""
 
 #. js-lingui-id: ep2rbf
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -4052,6 +4199,7 @@ msgid "Export versions"
 msgstr "バージョンをエクスポート"
 
 #. js-lingui-id: DaGxE0
+#: src/modules/action-menu/actions/record-actions/constants/WorkspaceMembersActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowRunsActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -4079,6 +4227,16 @@ msgstr "式"
 #: src/modules/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Extra Credits Used"
 msgstr "追加クレジットが使用されました"
+
+#. js-lingui-id: D7ObY0
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Extra Large (150%)"
+msgstr ""
+
+#. js-lingui-id: Cul+PP
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Extra Small (87.5%)"
+msgstr ""
 
 #. js-lingui-id: 7Bj3x9
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
@@ -4130,6 +4288,11 @@ msgstr "オーバーライドを削除できませんでした"
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
 msgid "Failed to retry jobs. Please try again later."
 msgstr "ジョブの再試行に失敗しました。後でもう一度お試しください。"
+
+#. js-lingui-id: y3HIOa
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+msgid "Failed to save role permissions: {errorMessage}"
+msgstr ""
 
 #. js-lingui-id: HnBqPY
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
@@ -4248,10 +4411,19 @@ msgstr "第五"
 msgid "File \"{fileName}\" exceeds {maxUploadSize}"
 msgstr "ファイル \"{fileName}\" が {maxUploadSize} を超えています"
 
+#. js-lingui-id: M3v2Jr
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Fill Mode"
+msgstr ""
+
 #. js-lingui-id: o7J4JM
+#: src/pages/settings/data-model/SettingsObjectTable.tsx
+#: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
+#: src/pages/settings/ai/components/SettingsAIAgentsTable.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowEditActionFindRecords.tsx
 #: src/modules/views/components/ViewBarFilterDropdownFieldSelectMenu.tsx
 #: src/modules/views/components/ViewBarFilterButton.tsx
+#: src/modules/settings/roles/components/SettingsRolesList.tsx
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 #: src/modules/command-menu/pages/page-layout/components/ChartFiltersSettings.tsx
@@ -4327,6 +4499,11 @@ msgstr "フロー"
 msgid "Folders"
 msgstr "フォルダー"
 
+#. js-lingui-id: cGeFup
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Font Size"
+msgstr ""
+
 #. js-lingui-id: glx6on
 #: src/modules/auth/sign-in-up/components/SignInUpWorkspaceScopeForm.tsx
 msgid "Forgot your password?"
@@ -4343,7 +4520,6 @@ msgid "Format e.g. d-MMM-y (qqq''yy)"
 msgstr "例: d-MMM-y (qqq''yy) 形式"
 
 #. js-lingui-id: xMJhWJ
-#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
 msgid "Format: [Minute] [Hour] [Day of Month] [Month] [Day of Week]"
 msgstr "形式：[分] [時] [日] [月] [曜日]"
@@ -4373,6 +4549,11 @@ msgstr "フランス語"
 msgid "from {startDay} to {endDay}"
 msgstr "{startDay} から {endDay} へ"
 
+#. js-lingui-id: +xSn1O
+#: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+msgid "Frontend image version"
+msgstr ""
+
 #. js-lingui-id: scmRyR
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -4401,6 +4582,11 @@ msgstr "一般"
 #: src/utils/title-utils.ts
 msgid "General - Settings"
 msgstr "一般 - 設定"
+
+#. js-lingui-id: 8dBmxf
+#: src/pages/settings/SettingsProfile.tsx
+msgid "Generate your digital business card"
+msgstr ""
 
 #. js-lingui-id: DDcvSo
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -4538,6 +4724,21 @@ msgstr "グループ化"
 msgid "Group sorting"
 msgstr "グループ並べ替え"
 
+#. js-lingui-id: eKiSkN
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "h1"
+msgstr ""
+
+#. js-lingui-id: DM6L2V
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "h2"
+msgstr ""
+
+#. js-lingui-id: aNHeda
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "h3"
+msgstr ""
+
 #. js-lingui-id: /Oqu/V
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 msgid "Handoff created successfully"
@@ -4547,6 +4748,28 @@ msgstr "引き継ぎが正常に作成されました"
 #: src/pages/settings/ai/components/SettingsAgentHandoffTable.tsx
 msgid "Handoff removed successfully"
 msgstr "引き継ぎが正常に削除されました"
+
+#. js-lingui-id: vISdlD
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "heading"
+msgstr ""
+
+#. js-lingui-id: lXKZGw
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Heading 1"
+msgstr ""
+
+#. js-lingui-id: El7NbA
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Heading 2"
+msgstr ""
+
+#. js-lingui-id: SFN6dN
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Heading 3"
+msgstr ""
 
 #. js-lingui-id: I1IOmb
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
@@ -4585,6 +4808,11 @@ msgstr "非表示"
 msgid "Hide deleted"
 msgstr "削除された項目を隠す"
 
+#. js-lingui-id: OTmbll
+#: src/modules/action-menu/actions/record-actions/constants/WorkspaceMembersActionsConfig.tsx
+msgid "Hide deleted members"
+msgstr ""
+
 #. js-lingui-id: FHhlye
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Hide deleted records"
@@ -4614,6 +4842,11 @@ msgstr "隠されたグループを非表示"
 #: src/modules/command-menu/pages/page-layout/constants/GraphTypeInformation.ts
 msgid "Horizontal"
 msgstr "水平"
+
+#. js-lingui-id: 8/izrZ
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Horizontal Position"
+msgstr ""
 
 #. js-lingui-id: yY8wAv
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
@@ -4709,7 +4942,7 @@ msgid "iFrame Settings"
 msgstr "iFrame 設定"
 
 #. js-lingui-id: mO+Bte
-#: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutIframeSettings.tsx
+#: src/modules/command-menu/components/hooks/usePageLayoutHeaderInfo.ts
 msgid "iFrame Widget"
 msgstr "iFrame ウィジェット"
 
@@ -4812,7 +5045,6 @@ msgid "In {dateDiff}"
 msgstr "{dateDiff} で"
 
 #. js-lingui-id: NoNwIX
-#: src/pages/settings/data-model/SettingsObjectTable.tsx
 #: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/modules/settings/domains/components/SettingsWorkspaceDomainCard.tsx
 msgid "Inactive"
@@ -4887,6 +5119,11 @@ msgstr "統合 - 設定"
 msgid "Interact with your workspace data"
 msgstr "ワークスペースデータとのインタラクション"
 
+#. js-lingui-id: NSxDTu
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "International format recommended (e.g., +886-912-345-678)"
+msgstr ""
+
 #. js-lingui-id: jyjroS
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Interval switching has been cancelled."
@@ -4913,7 +5150,7 @@ msgid "Invalid auth provider"
 msgstr "無効な認証プロバイダー"
 
 #. js-lingui-id: ER/0YT
-#: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
+#: src/modules/workflow/workflow-trigger/utils/getTriggerScheduleDescription.ts
 msgid "Invalid cron expression"
 msgstr "無効な cron 表現"
 
@@ -5099,6 +5336,7 @@ msgstr "有効なURLではありません"
 
 #. js-lingui-id: MgIflq
 #: src/modules/object-record/spreadsheet-import/utils/getSpreadSheetFieldValidationDefinitions.ts
+#: src/modules/object-record/spreadsheet-import/utils/getSpreadSheetFieldValidationDefinitions.ts
 msgid "is not a valid UUID"
 msgstr "有効なUUIDではありません"
 
@@ -5152,6 +5390,11 @@ msgstr "ジョブデータ"
 msgid "Job Name"
 msgstr "ジョブ名"
 
+#. js-lingui-id: 27z+FV
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Job Title"
+msgstr ""
+
 #. js-lingui-id: Tof7pX
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
 msgid "Jobs"
@@ -5172,6 +5415,11 @@ msgstr "john.doe@example.com"
 #: src/pages/auth/SignInUp.tsx
 msgid "Join {workspaceName} team"
 msgstr "{workspaceName} チームに参加"
+
+#. js-lingui-id: B2Zb/F
+#: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
+msgid "JSON"
+msgstr ""
 
 #. js-lingui-id: OGXtL8
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
@@ -5198,6 +5446,16 @@ msgstr "ラボ"
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 msgid "Language"
 msgstr "言語"
+
+#. js-lingui-id: AVfXIW
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Large (125%)"
+msgstr ""
+
+#. js-lingui-id: 59o/ag
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Large section heading"
+msgstr ""
 
 #. js-lingui-id: DU27lO
 #: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
@@ -5344,6 +5602,12 @@ msgstr "L字"
 msgid "Link copied to clipboard"
 msgstr "リンクがクリップボードにコピーされました"
 
+#. js-lingui-id: 82kQhK
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "list"
+msgstr ""
+
 #. js-lingui-id: HhVDr2
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm.tsx
 msgid "Listing"
@@ -5380,6 +5644,7 @@ msgid "Loading retention configuration..."
 msgstr "保持設定を読み込み中…"
 
 #. js-lingui-id: Z3FXyt
+#: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminVersionDisplay.tsx
@@ -5390,6 +5655,7 @@ msgstr "ロード中…"
 #. js-lingui-id: FgAxTj
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownDefaultComponents.tsx
+#: src/modules/navigation/components/MainNavigationDrawerUserSection.tsx
 #: src/modules/auth/sign-in-up/components/SignInUpGlobalScopeForm.tsx
 msgid "Log out"
 msgstr "ログアウト"
@@ -5455,10 +5721,20 @@ msgstr "請求情報を管理する"
 msgid "Manage favorite"
 msgstr "お気に入りを管理"
 
+#. js-lingui-id: 8XlVuA
+#: src/modules/action-menu/actions/record-actions/constants/WorkspaceMembersActionsConfig.tsx
+msgid "Manage in settings"
+msgstr ""
+
 #. js-lingui-id: T6YjCk
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Manage Members"
 msgstr "メンバー管理"
+
+#. js-lingui-id: 5hEFxA
+#: src/modules/action-menu/actions/record-actions/constants/WorkspaceMembersActionsConfig.tsx
+msgid "Manage members in settings"
+msgstr ""
 
 #. js-lingui-id: eGGH1l
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -5501,11 +5777,6 @@ msgstr "列の一致"
 #: src/modules/command-menu/pages/page-layout/constants/settings/RangeMaxSetting.ts
 msgid "Max"
 msgstr "最大"
-
-#. js-lingui-id: Zgn/wP
-#: src/modules/command-menu/pages/page-layout/components/ChartSettings.tsx
-msgid "Max {BAR_CHART_MAXIMUM_NUMBER_OF_BARS} bars per chart. Consider adding a filter"
-msgstr "グラフごとに最大{BAR_CHART_MAXIMUM_NUMBER_OF_BARS}本の棒があります。フィルターを追加することを検討してください"
 
 #. js-lingui-id: HFjNu6
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
@@ -5555,6 +5826,16 @@ msgstr "MCP サーバー"
 #. js-lingui-id: upbzgm
 #: src/modules/views/hooks/useComputeRecordRelationFilterLabelValue.tsx
 msgid "Me"
+msgstr ""
+
+#. js-lingui-id: 4zsVUY
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Medium (112.5%)"
+msgstr ""
+
+#. js-lingui-id: IAcjOi
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Medium section heading"
 msgstr ""
 
 #. js-lingui-id: Sma10A
@@ -5652,6 +5933,11 @@ msgstr "最小"
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Min range"
 msgstr "最小範囲"
+
+#. js-lingui-id: G6wJK8
+#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
+msgid "Minute value cannot exceed 60. For intervals greater than 60 minutes, use the \"Hours\" trigger type or a custom cron expression"
+msgstr ""
 
 #. js-lingui-id: agRWc1
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
@@ -5779,6 +6065,7 @@ msgstr "非公開ビュー"
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/roles/components/SettingsRolesTableHeader.tsx
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
 #: src/modules/settings/developers/components/SettingsApiKeysTable.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
@@ -5826,8 +6113,12 @@ msgstr "ナビバー"
 msgid "Navigate to next dashboard"
 msgstr "次のダッシュボードに移動"
 
+#. js-lingui-id: 4SnBtG
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Navigate to next quote"
+msgstr ""
+
 #. js-lingui-id: 2T8KCk
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Navigate to next record"
 msgstr "次のレコードに移動"
@@ -5847,8 +6138,12 @@ msgstr "次のワークフローに移動"
 msgid "Navigate to previous dashboard"
 msgstr "前のダッシュボードに移動"
 
+#. js-lingui-id: Z7tRf2
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Navigate to previous quote"
+msgstr ""
+
 #. js-lingui-id: 2tw9bo
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Navigate to previous record"
 msgstr "前のレコードに移動"
@@ -5897,7 +6192,6 @@ msgid "New Account"
 msgstr "新しいアカウント"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
@@ -6001,11 +6295,6 @@ msgstr "いいえ"
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RelationManyToOneFieldInput.tsx
 msgid "No {fieldLabel}"
 msgstr "{fieldLabel}がありません"
-
-#. js-lingui-id: vhsJG1
-#: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
-msgid "No Agent"
-msgstr "エージェントなし"
 
 #. js-lingui-id: f9b1sj
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
@@ -6222,6 +6511,11 @@ msgstr "このワークフローを起動するために必要なレコードは
 msgid "No records found"
 msgstr "レコードが見つかりません"
 
+#. js-lingui-id: 94lTff
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "No Repeat"
+msgstr ""
+
 #. js-lingui-id: Ev2r9A
 #: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownOptionSelect.tsx
 #: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownCurrencySelect.tsx
@@ -6265,7 +6559,6 @@ msgid "No workflow versions yet"
 msgstr "ワークフローのバージョンはまだありません"
 
 #. js-lingui-id: EdQY6l
-#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsMessageAutoCreationCard.tsx
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterMenuContent.tsx
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterAggregateOperationMenuItems.tsx
@@ -6341,6 +6634,11 @@ msgstr "ノート"
 msgid "now"
 msgstr "現在"
 
+#. js-lingui-id: VVexZo
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "number"
+msgstr ""
+
 #. js-lingui-id: HptUxX
 #: src/modules/settings/data-model/fields/forms/number/constants/NumberDataModelSelectOptions.ts
 #: src/modules/ai/constants/OutputFieldTypeOptions.ts
@@ -6367,6 +6665,16 @@ msgstr "新しいクレジットが毎{recurringInterval}に割り当てられ�
 msgid "Number type"
 msgstr "数値型"
 
+#. js-lingui-id: OC5fb9
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "numbered"
+msgstr ""
+
+#. js-lingui-id: M3G9ZD
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Numbered list"
+msgstr ""
+
 #. js-lingui-id: pNEViR
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
 msgid "object"
@@ -6385,7 +6693,7 @@ msgid "Object destination"
 msgstr "オブジェクトの目的地"
 
 #. js-lingui-id: rDycBw
-#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "Object unique fields"
 msgstr "オブジェクトの一意フィールド"
 
@@ -6425,6 +6733,11 @@ msgstr "の"
 #: src/pages/not-found/NotFound.tsx
 msgid "Off the beaten path"
 msgstr "道を外れた"
+
+#. js-lingui-id: ec0+nM
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "ol"
+msgstr ""
 
 #. js-lingui-id: +rvV4v
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
@@ -6524,8 +6837,12 @@ msgstr "{remainingDays} と {lastDay} のみ"
 msgid "Only the timestamp & participants will be shared with your team."
 msgstr "タイムスタンプと参加者だけがチームと共有されます。"
 
+#. js-lingui-id: aoLy25
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Opacity"
+msgstr ""
+
 #. js-lingui-id: 1TNIig
-#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
 #: src/modules/action-menu/components/RecordShowRightDrawerOpenRecordButton.tsx
 msgid "Open"
 msgstr "開く"
@@ -6587,11 +6904,26 @@ msgstr "または"
 msgid "Or"
 msgstr "または"
 
+#. js-lingui-id: VWupWc
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "ordered"
+msgstr ""
+
+#. js-lingui-id: Uci+Ph
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Ordered List"
+msgstr ""
+
 #. js-lingui-id: ucgZ0o
 #: src/modules/billing/hooks/useBillingWording.ts
 #: src/modules/billing/components/internal/PlansTags.tsx
 msgid "Organization"
 msgstr "組織"
+
+#. js-lingui-id: u1xP4y
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Original Size"
+msgstr ""
 
 #. js-lingui-id: /IX/7x
 #: src/pages/settings/security/SettingsSecurity.tsx
@@ -6629,6 +6961,11 @@ msgstr "出力フィールド {fieldNumber}"
 msgid "Override Draft"
 msgstr "下書きを上書き"
 
+#. js-lingui-id: y3tCDg
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "p"
+msgstr ""
+
 #. js-lingui-id: 6WdDG7
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "Page"
@@ -6638,6 +6975,11 @@ msgstr "ページ"
 #: src/pages/not-found/NotFound.tsx
 msgid "Page Not Found"
 msgstr "ページが見つかりません"
+
+#. js-lingui-id: ijBN4V
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "paragraph"
+msgstr ""
 
 #. js-lingui-id: 8ZsakT
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
@@ -6669,6 +7011,11 @@ msgstr "以下のコードを貼り付けてください"
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
 msgid "Path"
 msgstr "パス"
+
+#. js-lingui-id: CcK+Ft
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "PDF"
+msgstr ""
 
 #. js-lingui-id: UbRKMZ
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
@@ -6724,8 +7071,12 @@ msgstr "永続的な削除。日数を入力してください。"
 msgid "Permanently destroy dashboard"
 msgstr "ダッシュボードを永久に削除"
 
+#. js-lingui-id: O4BQ00
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Permanently destroy quote"
+msgstr ""
+
 #. js-lingui-id: Bv3y5w
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Permanently destroy record"
 msgstr "レコードを永久に削除"
@@ -6763,8 +7114,15 @@ msgstr "権限"
 
 #. js-lingui-id: KiuPPj
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
+#: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
 msgid "Permissions · {objectLabelSingular}"
 msgstr "権限 · {objectLabelSingular}"
+
+#. js-lingui-id: zmwvG2
+#: src/modules/settings/profile/components/vcard/VCardPreview.tsx
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Phone"
+msgstr ""
 
 #. js-lingui-id: qlqT9z
 #: src/modules/object-record/record-field/ui/meta-types/display/components/PhonesFieldDisplay.tsx
@@ -6789,6 +7147,11 @@ msgstr "写真"
 msgid "Pie"
 msgstr "パイチャート"
 
+#. js-lingui-id: fQtTho
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Plain text paragraph"
+msgstr ""
+
 #. js-lingui-id: GdgCoi
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Plan"
@@ -6808,11 +7171,6 @@ msgstr "cron 表現の構文を確認してください。"
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
 msgid "Please check your email for a verification link."
 msgstr "確認リンクのため、メールを確認してください。"
-
-#. js-lingui-id: K/TMbW
-#: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
-msgid "Please create agents in the AI settings to use in workflows."
-msgstr "ワークフローで使用するには、AI設定でエージェントを作成してください。"
 
 #. js-lingui-id: jEw0Mr
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutIframeSettings.tsx
@@ -6844,6 +7202,11 @@ msgstr "まずサブスクリプションを開始してください"
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 msgid "Please type \"{confirmationValue}\" to confirm you want to delete this API Key. Be aware that any script using this key will stop working."
 msgstr "\"{confirmationValue}\"と入力して、このAPIキーを削除することを確認してください。このキーを使用しているスクリプトは動作しなくなりますのでご注意ください。"
+
+#. js-lingui-id: L0SEpC
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
+msgid "Please type \"{confirmationValue}\" to confirm you want to uninstall this application."
+msgstr ""
 
 #. js-lingui-id: GbtYRD
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
@@ -6885,6 +7248,11 @@ msgstr "郵便番号"
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Prefilling your workspace data..."
 msgstr "ワークスペースデータの事前入力..."
+
+#. js-lingui-id: rNqTKZ
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Prefix"
+msgstr ""
 
 #. js-lingui-id: ut1ZY+
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIsUniqueForm.tsx
@@ -7050,6 +7418,11 @@ msgstr "再接続"
 msgid "Record"
 msgstr "記録"
 
+#. js-lingui-id: aGGOPJ
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
+msgid "Record (ID)"
+msgstr ""
+
 #. js-lingui-id: 2CUci6
 #: src/modules/object-record/hooks/useBatchCreateManyRecords.ts
 msgid "Record creation stopped. {formattedCreatedRecordsCount} records created."
@@ -7212,6 +7585,22 @@ msgstr "更新日"
 msgid "Reorder field"
 msgstr "フィールドを並べ替え"
 
+#. js-lingui-id: BwWIp2
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Repeat"
+msgstr ""
+
+#. js-lingui-id: nLN+uj
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Repeat Horizontally"
+msgstr ""
+
+#. js-lingui-id: 4ibkdz
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Repeat Vertically"
+msgstr ""
+
 #. js-lingui-id: ImOQa9
 #: src/modules/command-menu/pages/message-thread/components/CommandMenuMessageThreadPage.tsx
 #: src/modules/activities/emails/components/EmailThreadBottomBar.tsx
@@ -7241,6 +7630,11 @@ msgstr "リセット"
 msgid "Reset 2FA"
 msgstr "2FAをリセット"
 
+#. js-lingui-id: eRoMQi
+#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
+msgid "Reset Default Background Image"
+msgstr ""
+
 #. js-lingui-id: 1IWc1n
 #: src/modules/command-menu/components/ResetContextToSelectionCommandButton.tsx
 msgid "Reset to"
@@ -7252,6 +7646,7 @@ msgid "Reset to default"
 msgstr "デフォルトにリセット"
 
 #. js-lingui-id: Tj36Dr
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableActionButtons.tsx
 msgid "Reset to Default"
 msgstr "デフォルトにリセット"
@@ -7260,6 +7655,11 @@ msgstr "デフォルトにリセット"
 #: src/pages/settings/admin-panel/SettingsAdminConfigVariableDetails.tsx
 msgid "Reset variable"
 msgstr "変数をリセット"
+
+#. js-lingui-id: WMdA7Y
+#: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
+msgid "Response Format"
+msgstr ""
 
 #. js-lingui-id: WHiaOl
 #: src/pages/settings/developers/playground/SettingsRestPlayground.tsx
@@ -7289,8 +7689,12 @@ msgstr "復元"
 msgid "Restore dashboard"
 msgstr "ダッシュボードを復元"
 
+#. js-lingui-id: N5lN7G
+#: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
+msgid "Restore quote"
+msgstr ""
+
 #. js-lingui-id: y4Ib1n
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Restore record"
 msgstr "レコードを復元"
@@ -7353,6 +7757,11 @@ msgstr "このオブジェクトの取り消し"
 msgid "Role"
 msgstr "役割"
 
+#. js-lingui-id: l2yKTq
+#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
+msgid "Role for {agentLabel} agent"
+msgstr ""
+
 #. js-lingui-id: iSfzXo
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettings.tsx
 #: src/modules/settings/roles/role/components/SettingsRoleLabelContainer.tsx
@@ -7363,11 +7772,6 @@ msgstr "役割名"
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
 msgid "Role name cannot be empty"
 msgstr "役割名を空にすることはできません"
-
-#. js-lingui-id: khTver
-#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
-msgid "Role Permissions"
-msgstr "ロール権限"
 
 #. js-lingui-id: M9SCiK
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -7437,10 +7841,14 @@ msgstr "土曜日"
 #. js-lingui-id: tfDRzk
 #: src/modules/settings/components/SaveAndCancelButtons/SaveButton.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableActionButtons.tsx
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Save"
 msgstr "保存"
+
+#. js-lingui-id: q6QM8k
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Save and Apply"
+msgstr ""
 
 #. js-lingui-id: apLRCm
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
@@ -7452,20 +7860,15 @@ msgstr "新しいビューとして保存"
 msgid "Save Dashboard"
 msgstr "ダッシュボードを保存"
 
-#. js-lingui-id: j6v3nO
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-msgid "Save Layout"
-msgstr "レイアウトを保存"
+#. js-lingui-id: bifv6N
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Scale"
+msgstr ""
 
 #. js-lingui-id: gmB6oO
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
 msgid "Schedule"
 msgstr "スケジュール"
-
-#. js-lingui-id: Qp0P63
-#: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
-msgid "Schedule runs in UTC timezone."
-msgstr "スケジュールは UTC タイムゾーンで実行されます。"
 
 #. js-lingui-id: QJ8HBJ
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
@@ -7699,6 +8102,11 @@ msgstr "{objectLabelPlural}を表示"
 msgid "See active version"
 msgstr "アクティブバージョンを見る"
 
+#. js-lingui-id: 8O9AJI
+#: src/modules/action-menu/actions/record-actions/constants/WorkspaceMembersActionsConfig.tsx
+msgid "See deleted members"
+msgstr ""
+
 #. js-lingui-id: BxIUpp
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "See deleted records"
@@ -7792,11 +8200,6 @@ msgstr "アクションを選択"
 msgid "Select Action"
 msgstr "アクションを選択"
 
-#. js-lingui-id: JDdVYO
-#: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
-msgid "Select Agent"
-msgstr "エージェントを選択"
-
 #. js-lingui-id: hVPa4O
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn.tsx
 msgid "Select an option"
@@ -7873,6 +8276,7 @@ msgid "Send an invite email to your team"
 msgstr "チームに招待メールを送信"
 
 #. js-lingui-id: i/TzEU
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionSendEmail.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
 msgid "Send Email"
 msgstr "メールを送信"
@@ -8112,6 +8516,16 @@ msgstr "第六"
 msgid "Skip"
 msgstr "スキップ"
 
+#. js-lingui-id: XroFd1
+#: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
+msgid "Small (100%)"
+msgstr ""
+
+#. js-lingui-id: Ik7fz5
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Small section heading"
+msgstr ""
+
 #. js-lingui-id: w+rJId
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "SMTP Configuration"
@@ -8290,6 +8704,11 @@ msgstr "ユーザー偽装を停止"
 msgid "Stored in database"
 msgstr "データベースに保存されています"
 
+#. js-lingui-id: UJNV7l
+#: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
+msgid "String"
+msgstr ""
+
 #. js-lingui-id: WIUeUf
 #: src/modules/settings/data-model/fields/forms/address/components/SettingsDataModelFieldAddressForm.tsx
 msgid "Sub-Fields"
@@ -8310,6 +8729,11 @@ msgstr "サブドメインは既に使用されています"
 #: src/pages/settings/domains/SettingsDomain.tsx
 msgid "Subdomain updated"
 msgstr "サブドメインが更新されました"
+
+#. js-lingui-id: Rcm+OU
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "subheading"
+msgstr ""
 
 #. js-lingui-id: 97eDN2
 #: src/modules/settings/accounts/components/SettingsAccountsMessageVisibilityCard.tsx
@@ -8374,10 +8798,25 @@ msgstr "サブスクリプションが年払いに切り替わりました。"
 msgid "Subscription will be switch to Monthly the {beautifiedRenewDate}."
 msgstr "サブスクリプションは{beautifiedRenewDate}に月額に切り替わります。"
 
+#. js-lingui-id: pEToQK
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "subtitle"
+msgstr ""
+
 #. js-lingui-id: OjK1bU
 #: src/modules/object-record/record-merge/hooks/useMergeRecordsActions.ts
 msgid "Successfully merged {recordCount} records"
 msgstr "{recordCount} 件のレコードが正常にマージされました"
+
+#. js-lingui-id: Y97nlA
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "successfully signed in"
+msgstr ""
+
+#. js-lingui-id: QJz8/3
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Suffix"
+msgstr ""
 
 #. js-lingui-id: nyQWMb
 #: src/modules/spreadsheet-import/components/MatchColumnSelectFieldSelectDropdownContent.tsx
@@ -8441,16 +8880,6 @@ msgstr "メールとカレンダーアカウントを同期"
 msgid "Sync failed"
 msgstr "同期に失敗しました"
 
-#. js-lingui-id: L4+l7C
-#: src/pages/onboarding/SyncEmails.tsx
-msgid "Sync with Google"
-msgstr "Googleと同期"
-
-#. js-lingui-id: EICVgB
-#: src/pages/onboarding/SyncEmails.tsx
-msgid "Sync with Outlook"
-msgstr "Outlookと同期"
-
 #. js-lingui-id: N2FcBE
 #: src/modules/settings/accounts/components/SettingsAccountsConnectedAccountsRowRightContainer.tsx
 msgid "Synced"
@@ -8470,6 +8899,11 @@ msgstr "\\\\\\\\u30aa\\\\u30d6\\\\u30b8\\\\u30a7\\\\u30af\\\\u30c8\\\\u306e\\\\u
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownThemesComponents.tsx
 msgid "System"
 msgstr "システム"
+
+#. js-lingui-id: 0apULK
+#: src/pages/settings/data-model/SettingsObjectTable.tsx
+msgid "System objects"
+msgstr ""
 
 #. js-lingui-id: FHPe8O
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
@@ -8519,7 +8953,7 @@ msgid "System settings - Sunday"
 msgstr "システム設定 - 日曜日"
 
 #. js-lingui-id: HuA3RU
-#: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutTabSettings.tsx
+#: src/modules/command-menu/components/hooks/usePageLayoutHeaderInfo.ts
 msgid "Tab"
 msgstr "タブ"
 
@@ -8574,8 +9008,14 @@ msgstr "テストワークフロー"
 msgid "Test your function"
 msgstr "関数をテスト"
 
+#. js-lingui-id: F0lHkW
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "text"
+msgstr ""
+
 #. js-lingui-id: xeiujy
 #: src/modules/ai/constants/OutputFieldTypeOptions.ts
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Text"
 msgstr "テキスト"
 
@@ -8588,11 +9028,6 @@ msgstr "テキストがクリップボードにコピーされました"
 #: src/modules/object-record/record-field/ui/form-types/components/FormAdvancedTextFieldInput.tsx
 msgid "Text Editor"
 msgstr "テキストエディタ"
-
-#. js-lingui-id: 5Vj6n9
-#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
-msgid "The agent can perform all actions defined by the following role."
-msgstr "エージェントは、以下のロールで定義されたすべてのアクションを実行できます。"
 
 #. js-lingui-id: 1xQkU9
 #: src/modules/settings/data-model/fields/forms/phones/components/SettingsDataModelFieldPhonesForm.tsx
@@ -8778,6 +9213,11 @@ msgstr "このロールはすべての記録に対して {humanReadableAction} �
 msgid "This role is assigned to these {roleTargetDisplayName}."
 msgstr "この役割はこれらの{roleTargetDisplayName}に割り当てられています。"
 
+#. js-lingui-id: fp6HUI
+#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
+msgid "This role is shared with other users or agents and cannot be edited here."
+msgstr ""
+
 #. js-lingui-id: C/wr0z
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This setting can only be configured through environment variables."
@@ -8851,6 +9291,11 @@ msgstr "タイムスタンプ"
 msgid "Timestamp and participants will be shared with your team."
 msgstr "タイムスタンプと参加者がチームと共有されます。"
 
+#. js-lingui-id: q7F5am
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "title"
+msgstr ""
+
 #. js-lingui-id: ecUA8p
 #: src/utils/date-utils.ts
 #: src/modules/settings/admin-panel/health-status/constants/WorkerQueueMetricsSelectOptions.ts
@@ -8902,6 +9347,7 @@ msgstr "トライアル期間が終了しました。請求先の詳細を更新
 #. js-lingui-id: H2Sfhg
 #: src/modules/workflow/workflow-diagram/workflow-nodes/components/WorkflowDiagramEmptyTriggerReadonly.tsx
 #: src/modules/workflow/workflow-diagram/workflow-nodes/components/WorkflowDiagramEmptyTriggerEditable.tsx
+#: src/modules/command-menu/components/CommandMenuWorkflowStepInfo.tsx
 msgid "Trigger"
 msgstr "トリガー"
 
@@ -9001,20 +9447,51 @@ msgstr "二要素認証のセットアップが正常に完了しました！"
 msgid "Type"
 msgstr "タイプ"
 
-#. js-lingui-id: U83IeL
+#. js-lingui-id: qzD6hf
 #: src/modules/command-menu/components/CommandMenuTopBar.tsx
-msgid "Type anything"
-msgstr "何でも入力"
+msgid "Type anything..."
+msgstr ""
 
 #. js-lingui-id: V9+2pH
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Ukrainian"
 msgstr "ウクライナ語"
 
+#. js-lingui-id: GNgAlk
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "ul"
+msgstr ""
+
 #. js-lingui-id: l+ALBd
 #: src/modules/client-config/components/ClientConfigProvider.tsx
 msgid "Unable to Reach Back-end"
 msgstr "バックエンドに接続できません"
+
+#. js-lingui-id: ZjTKHy
+#: src/modules/command-menu/pages/page-layout/components/ChartSettings.tsx
+msgid "Undisplayed data: max {BAR_CHART_MAXIMUM_NUMBER_OF_BARS} bars per chart."
+msgstr ""
+
+#. js-lingui-id: 29HVk/
+#: src/modules/command-menu/pages/page-layout/components/ChartSettings.tsx
+msgid "Undisplayed data: max {LINE_CHART_MAXIMUM_NUMBER_OF_DATA_POINTS} data points per chart."
+msgstr ""
+
+#. js-lingui-id: fo0VXg
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
+msgid "Uninstall"
+msgstr ""
+
+#. js-lingui-id: Qtg9Qc
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
+msgid "Uninstall Application?"
+msgstr ""
+
+#. js-lingui-id: u+6vfA
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
+msgid "Uninstall this application"
+msgstr ""
 
 #. js-lingui-id: wSXm5S
 #: src/pages/settings/data-model/SettingsObjectIndexTable.tsx
@@ -9024,11 +9501,12 @@ msgid "Unique"
 msgstr "一意"
 
 #. js-lingui-id: +WHV0k
-#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "Unique fields"
 msgstr "一意のフィールド"
 
 #. js-lingui-id: Ef7StM
+#: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 #: src/pages/settings/applications/components/SettingsApplicationVersionContainer.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminVersionContainer.tsx
@@ -9053,6 +9531,16 @@ msgstr "連絡先無制限"
 msgid "Unlisted"
 msgstr "非公開"
 
+#. js-lingui-id: eQMhFX
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "unordered"
+msgstr ""
+
+#. js-lingui-id: 9dX/SD
+#: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
+msgid "Unordered list with bullets"
+msgstr ""
+
 #. js-lingui-id: wja8aL
 #: src/modules/ai/components/AIChatThreadGroup.tsx
 msgid "Untitled"
@@ -9069,10 +9557,10 @@ msgstr "無題の役割"
 msgid "Untitled Workflow"
 msgstr "無題のワークフロー"
 
-#. js-lingui-id: b26MvX
+#. js-lingui-id: hmc//6
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
-msgid "Upcoming execution times ({timeZone})"
-msgstr "間もなく実行される時間 ({timeZone})"
+msgid "Upcoming execution time ({timeZone})"
+msgstr ""
 
 #. js-lingui-id: Y8zko3
 #: src/modules/settings/roles/role-permissions/object-level-permissions/utils/objectPermissionKeyToHumanReadableText.ts
@@ -9085,11 +9573,6 @@ msgstr "更新"
 #: src/modules/information-banner/components/billing/InformationBannerBillingSubscriptionPaused.tsx
 msgid "Update"
 msgstr "更新"
-
-#. js-lingui-id: YT2VWW
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-msgid "Update agent information"
-msgstr "エージェント情報を更新"
 
 #. js-lingui-id: DUqztb
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
@@ -9170,6 +9653,11 @@ msgstr "1Password、Authy、Microsoft Authenticatorなどの認証アプリや�
 msgid "Use our API or add your first {objectLabel} manually"
 msgstr "APIを使用するか、最初の{objectLabel}を手動で追加してください"
 
+#. js-lingui-id: wb/NPd
+#: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+msgid "Use these values to confirm that your frontend and backend containers are running the expected Docker images."
+msgstr ""
+
 #. js-lingui-id: 7PzzBU
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
 #: src/pages/settings/SettingsProfile.tsx
@@ -9201,11 +9689,6 @@ msgstr "ユーザー情報"
 #: src/modules/settings/security/components/SettingsSecurityAuthBypassOptionsList.tsx
 msgid "User is not logged in"
 msgstr "ユーザーがログインしていません"
-
-#. js-lingui-id: LVecP9
-#: src/modules/settings/roles/components/SettingsRolesContainer.tsx
-msgid "User Roles"
-msgstr "ユーザー役割"
 
 #. js-lingui-id: Sxm8rQ
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -9290,6 +9773,11 @@ msgstr "アプリからのコードを確認"
 msgid "Version"
 msgstr "バージョン"
 
+#. js-lingui-id: 0Pi3Wn
+#: src/pages/settings/releases/SettingsReleases.tsx
+msgid "Version info"
+msgstr ""
+
 #. js-lingui-id: IHIWR4
 #: src/pages/settings/applications/tabs/SettingsApplicationDetailAboutTab.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
@@ -9300,6 +9788,11 @@ msgstr "アプリケーションのバージョン"
 #: src/modules/command-menu/pages/page-layout/constants/GraphTypeInformation.ts
 msgid "Vertical"
 msgstr "縦向き"
+
+#. js-lingui-id: nLAH1Z
+#: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
+msgid "Vertical Position"
+msgstr ""
 
 #. js-lingui-id: fROFIL
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -9413,9 +9906,14 @@ msgid "We encountered an issue verifying"
 msgstr "認証中に問題が発生しました"
 
 #. js-lingui-id: 6d9mjh
-#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "We match on these fields. If a {objectLabelSingular} already exists, we update it. Otherwise, we create a new one."
 msgstr "これらのフィールドで一致します。既に{objectLabelSingular}が存在する場合は更新します。そうでなければ、新しいものを作成します。"
+
+#. js-lingui-id: lu/y/p
+#: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
+msgid "We support PNGs, JPEGs and GIFs under 10MB"
+msgstr ""
 
 #. js-lingui-id: id6ein
 #: src/modules/ui/input/components/ImageInput.tsx
@@ -9487,6 +9985,12 @@ msgstr "Webhooks"
 msgid "Week"
 msgstr "週"
 
+#. js-lingui-id: /Qpb88
+#. placeholder {0}: currentWorkspace?.displayName ?? 'Y-CRM'
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "Welcome to {0}"
+msgstr ""
+
 #. js-lingui-id: ke0EDP
 #: src/pages/auth/SignInUp.tsx
 msgid "Welcome to {workspaceName}"
@@ -9518,6 +10022,11 @@ msgstr "ウィジェットタイプ"
 msgid "Worker"
 msgstr "作業者"
 
+#. js-lingui-id: Kqs5vQ
+#: src/pages/settings/ai/components/SettingsAIAgentsTable.tsx
+msgid "Workflow agents"
+msgstr ""
+
 #. js-lingui-id: woYYQq
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 msgid "Workflows"
@@ -9531,6 +10040,7 @@ msgstr "ワークフロー"
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
 #: src/pages/settings/security/SettingsSecurity.tsx
+#: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
 #: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
 #: src/pages/settings/emailing-domains/SettingsEmailingDomainDetail.tsx
@@ -9556,6 +10066,7 @@ msgstr "ワークフロー"
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
+#: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
 #: src/modules/settings/roles/components/SettingsRolesContainer.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 #: src/modules/settings/domains/components/SettingPublicDomain.tsx
@@ -9565,6 +10076,11 @@ msgstr "ワークフロー"
 #: src/modules/favorites/components/WorkspaceFavorites.tsx
 msgid "Workspace"
 msgstr "ワークスペース"
+
+#. js-lingui-id: ZcJVbJ
+#: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
+msgid "Workspace Background"
+msgstr ""
 
 #. js-lingui-id: fQ8teq
 #: src/modules/auth/sign-in-up/hooks/useSignUpInNewWorkspace.ts
@@ -9674,6 +10190,7 @@ msgstr "年"
 
 #. js-lingui-id: 3d1wCB
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
+#: src/pages/settings/applications/tabs/SettingsApplicationDetailSettingsTab.tsx
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 msgid "yes"
@@ -9779,6 +10296,16 @@ msgstr "表示名"
 msgid "Your name as it will be displayed on the app"
 msgstr "アプリ上での表示名"
 
+#. js-lingui-id: vCUZxZ
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Your organization name"
+msgstr ""
+
+#. js-lingui-id: moYF83
+#: src/modules/settings/profile/components/vcard/VCardFields.tsx
+msgid "Your position in the organization"
+msgstr ""
+
 #. js-lingui-id: QOd24n
 #: src/modules/billing/hooks/useBillingWording.ts
 msgid "Your trial period will end, and "
@@ -9809,18 +10336,77 @@ msgstr "お客様のワークスペースにはアクティブなサブスクリ
 msgid "Your workspace will be disabled"
 msgstr "ワークスペースが無効になります"
 
-#. js-lingui-id: qf7N9I
-#: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
-msgid "Allow sending emails using connected accounts"
-msgstr "接続されたアカウントを使用してメールの送信を許可する"
+#. js-lingui-id: fTYUzb
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "主頁"
+msgstr ""
 
-#. js-lingui-id: 6vZ75d
-#: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
-msgid "Edit CRM data structure and fields"
-msgstr "CRMデータ構造とフィールドを編集する"
+#. js-lingui-id: RohBYr
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "任務"
+msgstr ""
 
-#. js-lingui-id: hqCwGc
-#: src/pages/settings/SettingsWorkspaceMembers.tsx
-msgid "This action cannot be undone. This will permanently delete this user and remove them from all their assignments."
-msgstr "この操作は取り消せません。このユーザーは永久に削除され、すべての割り当てから削除されます"
+#. js-lingui-id: 6zEzgo
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "備註"
+msgstr ""
 
+#. js-lingui-id: 3TXV2O
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "備註內容"
+msgstr ""
+
+#. js-lingui-id: 1FYy0d
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "同步您的郵件和日曆。選擇您的隱私設定。"
+msgstr ""
+
+#. js-lingui-id: TuyApS
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "日曆"
+msgstr ""
+
+#. js-lingui-id: PYpj+G
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "時間軸"
+msgstr ""
+
+#. js-lingui-id: NBCCpD
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "欄位"
+msgstr ""
+
+#. js-lingui-id: hL2bvz
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "繼續"
+msgstr ""
+
+#. js-lingui-id: lXf9QK
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "與 Google 同步"
+msgstr ""
+
+#. js-lingui-id: ybr59n
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "與 Outlook 同步"
+msgstr ""
+
+#. js-lingui-id: UajW8q
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "跳過同步並繼續"
+msgstr ""
+
+#. js-lingui-id: NR/ELf
+#: src/pages/onboarding/SyncEmails.tsx
+msgid "郵件和日曆"
+msgstr ""
+
+#. js-lingui-id: kyRsuU
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "附檔"
+msgstr ""
+
+#. js-lingui-id: bIIRv3
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "電子郵件"
+msgstr ""

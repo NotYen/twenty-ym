@@ -842,11 +842,6 @@ msgstr "找不到代理"
 msgid "Agent roles"
 msgstr ""
 
-#. js-lingui-id: jJT5pC
-#: src/modules/settings/roles/components/SettingsRolesContainer.tsx
-#~ msgid "Agent Roles"
-#~ msgstr "代理角色"
-
 #. js-lingui-id: 8Uv5e6
 #: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/components/SettingsAIAgentsTable.tsx
@@ -1005,11 +1000,6 @@ msgstr "允許通過 Microsoft 的單點登錄功能登錄。"
 msgid "Allow Microsoft-based login for users with SSO bypass permissions."
 msgstr "允許具有 SSO 繞過權限的用戶使用 Microsoft 登入。"
 
-#. js-lingui-id: qf7N9I
-#: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
-#~ msgid "Allow sending emails using connected accounts"
-#~ msgstr "允許使用連接的帳戶發送電子郵件"
-
 #. js-lingui-id: U6bnfj
 #: src/modules/settings/workspace/components/ToggleImpersonate.tsx
 msgid "Allow Support Team Access"
@@ -1029,6 +1019,11 @@ msgstr "允許上傳文件和附件"
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
 msgid "Allow users to sign in with an email and password."
 msgstr "允許用戶使用電子郵件和密碼登錄。"
+
+#. js-lingui-id: Vw8l6h
+#: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/HttpRequestExecutionResult.tsx
+msgid "An error occurred"
+msgstr ""
 
 #. js-lingui-id: VD5bNu
 #: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
@@ -1131,11 +1126,6 @@ msgstr "API 密鑰已複製到剪貼板"
 #: src/modules/settings/roles/components/SettingsRolesList.tsx
 msgid "API key roles"
 msgstr ""
-
-#. js-lingui-id: K84VsN
-#: src/modules/settings/roles/components/SettingsRolesContainer.tsx
-#~ msgid "API Key Roles"
-#~ msgstr "API 密鑰角色"
 
 #. js-lingui-id: 5h8ooz
 #: src/pages/settings/developers/api-keys/SettingsApiKeys.tsx
@@ -1261,11 +1251,6 @@ msgstr "已批准的網域"
 msgid "Arabic"
 msgstr "阿拉伯語"
 
-#. js-lingui-id: 2BZAqa
-#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
-#~ msgid "Are you sure you want to delete these records? They can be recovered from the Command menu."
-#~ msgstr "您確定要刪除這些記錄嗎？ 它們可以從命令菜單中恢復。"
-
 #. js-lingui-id: yb2hF4
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 msgid "Are you sure you want to delete this record? It can be recovered from the Command menu."
@@ -1330,22 +1315,6 @@ msgstr "指派 {roleTargetName}？"
 #: src/modules/settings/roles/components/SettingsRolesList.tsx
 msgid "Assign roles to specify access permissions"
 msgstr ""
-
-#. js-lingui-id: gJL5Xx
-#: src/modules/settings/roles/components/SettingsRolesList.tsx
-#~ msgid "Assign roles to specify each agent's access permissions"
-#~ msgstr "分配角色以指定每個代理的訪問權限"
-
-#. js-lingui-id: j95x1l
-#: src/modules/settings/roles/components/SettingsRolesList.tsx
-#~ msgid "Assign roles to specify each API key's access permissions"
-#~ msgstr "分配角色以指定每個 API key 的訪問權限"
-
-#. js-lingui-id: rfYmIr
-#: src/modules/settings/roles/components/SettingsRolesList.tsx
-#: src/modules/settings/roles/components/SettingsRolesList.tsx
-#~ msgid "Assign roles to specify each member's access permissions"
-#~ msgstr "分配角色以指定每個成員的訪問權限"
 
 #. js-lingui-id: krsgB0
 #: src/modules/settings/roles/role-assignment/constants/RoleTargetConfig.ts
@@ -1642,11 +1611,6 @@ msgstr ""
 #: src/pages/settings/SettingsProfile.tsx
 msgid "Business Card (vCard)"
 msgstr "名片資訊 (vCard)"
-
-#. js-lingui-id: 8Pfllj
-#: src/modules/auth/sign-in-up/components/FooterNote.tsx
-#~ msgid "By using Twenty, you agree to the"
-#~ msgstr "使用 Twenty 即表示您同意"
 
 #. js-lingui-id: uqsfwo
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -2495,11 +2459,6 @@ msgstr "創建"
 msgid "Create {targetObjectLabelSingular}"
 msgstr "創建 {targetObjectLabelSingular}"
 
-#. js-lingui-id: 7/h1ZC
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#~ msgid "Create a new AI agent"
-#~ msgstr "創建新的AI代理"
-
 #. js-lingui-id: ZITKtg
 #: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
 msgid "Create a role to define permissions for this agent."
@@ -3131,27 +3090,10 @@ msgstr "刪除節點"
 msgid "Delete quote"
 msgstr "刪除報價單"
 
-#. js-lingui-id: 4dpwsE
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-#~ msgid "Delete record"
-#~ msgstr "刪除記錄"
-
-#. js-lingui-id: LUsa0/
-#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
-#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
-#~ msgid "Delete Record"
-#~ msgstr "刪除記錄"
-
 #. js-lingui-id: kf0A63
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Delete records"
 msgstr "刪除記錄"
-
-#. js-lingui-id: rMgHjD
-#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
-#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
-#~ msgid "Delete Records"
-#~ msgstr "刪除記錄"
 
 #. js-lingui-id: mcXHCJ
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsSection.tsx
@@ -3431,11 +3373,6 @@ msgstr "下載文件"
 msgid "Download sample"
 msgstr ""
 
-#. js-lingui-id: wrT4hq
-#: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
-#~ msgid "Download sample file."
-#~ msgstr "下載範本檔案。"
-
 #. js-lingui-id: C4talF
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
 msgid "Download vCard"
@@ -3515,11 +3452,6 @@ msgstr "編輯 {objectLabelPlural}"
 msgid "Edit Account"
 msgstr "編輯帳戶"
 
-#. js-lingui-id: CQrc7J
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#~ msgid "Edit Agent"
-#~ msgstr "編輯代理"
-
 #. js-lingui-id: 0M4aKb
 #: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
 msgid "Edit Background Image"
@@ -3529,11 +3461,6 @@ msgstr "編輯背景圖片"
 #: src/modules/settings/workspace/components/WorkspaceBackgroundManager.tsx
 msgid "Edit Background Settings"
 msgstr "編輯背景圖片"
-
-#. js-lingui-id: 6vZ75d
-#: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
-#~ msgid "Edit CRM data structure and fields"
-#~ msgstr "編輯 CRM 數據結構和欄位"
 
 #. js-lingui-id: GpnfNN
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
@@ -3565,11 +3492,6 @@ msgstr "編輯圖形"
 #: src/modules/page-layout/hooks/useEditPageLayoutWidget.ts
 msgid "Edit iFrame"
 msgstr "編輯 iFrame"
-
-#. js-lingui-id: NZubw3
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-#~ msgid "Edit Layout"
-#~ msgstr "編輯佈局"
 
 #. js-lingui-id: h2KoTu
 #: src/modules/billing/components/SettingsBillingContent.tsx
@@ -3841,8 +3763,12 @@ msgstr "輸入位於 0 和 23 之間的數字"
 msgid "Enter number between 0 and 59"
 msgstr "輸入位於 0 和 59 之間的數字"
 
-#. js-lingui-id: ahwn7G
+#. js-lingui-id: uhDeRP
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
+msgid "Enter number between 1 and 60"
+msgstr ""
+
+#. js-lingui-id: ahwn7G
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Enter number greater than 1"
@@ -4239,11 +4165,6 @@ msgstr ""
 #: src/modules/action-menu/actions/record-actions/constants/QuoteActionsConfig.tsx
 msgid "Export quote"
 msgstr "導出報價單"
-
-#. js-lingui-id: G5DJkP
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-#~ msgid "Export record"
-#~ msgstr "導出記錄"
 
 #. js-lingui-id: ep2rbf
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -5415,6 +5336,7 @@ msgstr "不是有效的 URL"
 
 #. js-lingui-id: MgIflq
 #: src/modules/object-record/spreadsheet-import/utils/getSpreadSheetFieldValidationDefinitions.ts
+#: src/modules/object-record/spreadsheet-import/utils/getSpreadSheetFieldValidationDefinitions.ts
 msgid "is not a valid UUID"
 msgstr "不是有效的 UUID"
 
@@ -5856,11 +5778,6 @@ msgstr "匹配欄位"
 msgid "Max"
 msgstr "最大"
 
-#. js-lingui-id: Zgn/wP
-#: src/modules/command-menu/pages/page-layout/components/ChartSettings.tsx
-#~ msgid "Max {BAR_CHART_MAXIMUM_NUMBER_OF_BARS} bars per chart. Consider adding a filter"
-#~ msgstr ""
-
 #. js-lingui-id: HFjNu6
 #: src/modules/spreadsheet-import/steps/components/UploadStep/components/DropZone.tsx
 msgid "Max import capacity: {formatSpreadsheetMaxRecordImportCapacity} records. Otherwise, consider splitting your file or using the API."
@@ -6016,6 +5933,11 @@ msgstr "最小"
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Min range"
 msgstr "最小範圍"
+
+#. js-lingui-id: G6wJK8
+#: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
+msgid "Minute value cannot exceed 60. For intervals greater than 60 minutes, use the \"Hours\" trigger type or a custom cron expression"
+msgstr ""
 
 #. js-lingui-id: agRWc1
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
@@ -6373,11 +6295,6 @@ msgstr "否"
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RelationManyToOneFieldInput.tsx
 msgid "No {fieldLabel}"
 msgstr "無 {fieldLabel}"
-
-#. js-lingui-id: vhsJG1
-#: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
-#~ msgid "No Agent"
-#~ msgstr "無代理"
 
 #. js-lingui-id: f9b1sj
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
@@ -6776,7 +6693,7 @@ msgid "Object destination"
 msgstr "對象目標"
 
 #. js-lingui-id: rDycBw
-#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "Object unique fields"
 msgstr ""
 
@@ -7255,11 +7172,6 @@ msgstr "請檢查您的排程語法。"
 msgid "Please check your email for a verification link."
 msgstr "請檢查您的電子郵件以獲取驗證鏈接。"
 
-#. js-lingui-id: K/TMbW
-#: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
-#~ msgid "Please create agents in the AI settings to use in workflows."
-#~ msgstr "請在AI設置中創建代理以在工作流中使用。"
-
 #. js-lingui-id: jEw0Mr
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutIframeSettings.tsx
 msgid "Please enter a valid URL"
@@ -7506,6 +7418,11 @@ msgstr "重新連接"
 msgid "Record"
 msgstr "紀錄"
 
+#. js-lingui-id: aGGOPJ
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
+msgid "Record (ID)"
+msgstr ""
+
 #. js-lingui-id: 2CUci6
 #: src/modules/object-record/hooks/useBatchCreateManyRecords.ts
 msgid "Record creation stopped. {formattedCreatedRecordsCount} records created."
@@ -7718,11 +7635,6 @@ msgstr "重置 2FA"
 msgid "Reset Default Background Image"
 msgstr "重設預設圖片"
 
-#. js-lingui-id: KbS2K9
-#: src/pages/auth/PasswordReset.tsx
-#~ msgid "Reset Password"
-#~ msgstr "重置密碼"
-
 #. js-lingui-id: 1IWc1n
 #: src/modules/command-menu/components/ResetContextToSelectionCommandButton.tsx
 msgid "Reset to"
@@ -7861,11 +7773,6 @@ msgstr "角色名稱"
 msgid "Role name cannot be empty"
 msgstr "角色名稱不能為空"
 
-#. js-lingui-id: khTver
-#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
-#~ msgid "Role Permissions"
-#~ msgstr ""
-
 #. js-lingui-id: M9SCiK
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 msgid "Role updated successfully"
@@ -7953,11 +7860,6 @@ msgstr "另存為新視圖"
 msgid "Save Dashboard"
 msgstr "保存儀表板"
 
-#. js-lingui-id: j6v3nO
-#: src/modules/action-menu/actions/record-actions/constants/RecordPageLayoutActionsConfig.tsx
-#~ msgid "Save Layout"
-#~ msgstr "保存佈局"
-
 #. js-lingui-id: bifv6N
 #: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
 msgid "Scale"
@@ -7967,11 +7869,6 @@ msgstr "縮放"
 #: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
 msgid "Schedule"
 msgstr "排程"
-
-#. js-lingui-id: Qp0P63
-#: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
-#~ msgid "Schedule runs in UTC timezone."
-#~ msgstr "排程在 UTC 時區運行。"
 
 #. js-lingui-id: QJ8HBJ
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
@@ -8302,11 +8199,6 @@ msgstr "選擇操作"
 #: src/modules/command-menu/hooks/__tests__/useWorkflowCommandMenu.test.tsx
 msgid "Select Action"
 msgstr "選擇操作"
-
-#. js-lingui-id: JDdVYO
-#: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowEditActionAiAgent.tsx
-#~ msgid "Select Agent"
-#~ msgstr "選擇代理"
 
 #. js-lingui-id: hVPa4O
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn.tsx
@@ -8988,16 +8880,6 @@ msgstr "同步電子郵件和日曆賬戶"
 msgid "Sync failed"
 msgstr "同步失敗"
 
-#. js-lingui-id: L4+l7C
-#: src/pages/onboarding/SyncEmails.tsx
-#~ msgid "Sync with Google"
-#~ msgstr "與 Google 同步"
-
-#. js-lingui-id: EICVgB
-#: src/pages/onboarding/SyncEmails.tsx
-#~ msgid "Sync with Outlook"
-#~ msgstr "與 Outlook 同步"
-
 #. js-lingui-id: N2FcBE
 #: src/modules/settings/accounts/components/SettingsAccountsConnectedAccountsRowRightContainer.tsx
 msgid "Synced"
@@ -9147,11 +9029,6 @@ msgstr "文本已複製到剪貼板"
 msgid "Text Editor"
 msgstr "文本編輯器"
 
-#. js-lingui-id: 5Vj6n9
-#: src/pages/settings/ai/components/SettingsAgentRoleTab.tsx
-#~ msgid "The agent can perform all actions defined by the following role."
-#~ msgstr ""
-
 #. js-lingui-id: 1xQkU9
 #: src/modules/settings/data-model/fields/forms/phones/components/SettingsDataModelFieldPhonesForm.tsx
 msgid "The default country code for new phone numbers."
@@ -9283,11 +9160,6 @@ msgstr "第三"
 #: src/modules/object-record/record-merge/utils/getPositionWordLabel.ts
 msgid "Third"
 msgstr "第三"
-
-#. js-lingui-id: hqCwGc
-#: src/pages/settings/SettingsWorkspaceMembers.tsx
-#~ msgid "This action cannot be undone. This will permanently delete this user and remove them from all their assignments."
-#~ msgstr "此操作無法撤銷。這將永久刪除此用戶並將其從所有任務中移除。"
 
 #. js-lingui-id: Ox1hE7
 #: src/modules/settings/profile/components/DeleteAccount.tsx
@@ -9575,11 +9447,6 @@ msgstr "雙因素身份驗證設定成功完成！"
 msgid "Type"
 msgstr "類型"
 
-#. js-lingui-id: U83IeL
-#: src/modules/command-menu/components/CommandMenuTopBar.tsx
-#~ msgid "Type anything"
-#~ msgstr "輸入任何內容"
-
 #. js-lingui-id: qzD6hf
 #: src/modules/command-menu/components/CommandMenuTopBar.tsx
 msgid "Type anything..."
@@ -9634,7 +9501,7 @@ msgid "Unique"
 msgstr "唯一"
 
 #. js-lingui-id: +WHV0k
-#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "Unique fields"
 msgstr ""
 
@@ -9695,11 +9562,6 @@ msgstr "無標題工作流程"
 msgid "Upcoming execution time ({timeZone})"
 msgstr ""
 
-#. js-lingui-id: b26MvX
-#: src/modules/workflow/workflow-trigger/components/CronExpressionHelper.tsx
-#~ msgid "Upcoming execution times ({timeZone})"
-#~ msgstr "即將執行的時間 ({timeZone})"
-
 #. js-lingui-id: Y8zko3
 #: src/modules/settings/roles/role-permissions/object-level-permissions/utils/objectPermissionKeyToHumanReadableText.ts
 msgid "update"
@@ -9711,11 +9573,6 @@ msgstr "更新"
 #: src/modules/information-banner/components/billing/InformationBannerBillingSubscriptionPaused.tsx
 msgid "Update"
 msgstr "更新"
-
-#. js-lingui-id: YT2VWW
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#~ msgid "Update agent information"
-#~ msgstr "更新代理信息"
 
 #. js-lingui-id: DUqztb
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
@@ -9832,11 +9689,6 @@ msgstr "用戶信息"
 #: src/modules/settings/security/components/SettingsSecurityAuthBypassOptionsList.tsx
 msgid "User is not logged in"
 msgstr "用戶未登錄"
-
-#. js-lingui-id: LVecP9
-#: src/modules/settings/roles/components/SettingsRolesContainer.tsx
-#~ msgid "User Roles"
-#~ msgstr "用戶角色"
 
 #. js-lingui-id: Sxm8rQ
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -10054,7 +9906,7 @@ msgid "We encountered an issue verifying"
 msgstr "我們在驗證時遇到了一個問題"
 
 #. js-lingui-id: 6d9mjh
-#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowCreateRecordBody.tsx
+#: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "We match on these fields. If a {objectLabelSingular} already exists, we update it. Otherwise, we create a new one."
 msgstr ""
 
@@ -10133,15 +9985,16 @@ msgstr "Webhooks"
 msgid "Week"
 msgstr "週"
 
+#. js-lingui-id: /Qpb88
+#. placeholder {0}: currentWorkspace?.displayName ?? 'Y-CRM'
+#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
+msgid "Welcome to {0}"
+msgstr "歡迎使用 {0}"
+
 #. js-lingui-id: ke0EDP
 #: src/pages/auth/SignInUp.tsx
 msgid "Welcome to {workspaceName}"
 msgstr "歡迎來到 {workspaceName}"
-
-#. js-lingui-id: dz+d3v
-#: src/modules/auth/sign-in-up/components/SignInSuccessModal.tsx
-msgid "welcome to Y-CRM"
-msgstr "歡迎使用 Y-CRM"
 
 #. js-lingui-id: cE4SvC
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeysNew.tsx

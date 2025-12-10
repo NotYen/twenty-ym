@@ -8,6 +8,8 @@ export const useFontSize = () => {
     persistedFontSizeState,
   );
 
+  const fontSize = persistedFontSize;
+
   // 初始化時應用全局 zoom（縮放所有內容：文字、圖標、間距、佈局）
   useEffect(() => {
     document.documentElement.style.zoom = fontSize.toString();
