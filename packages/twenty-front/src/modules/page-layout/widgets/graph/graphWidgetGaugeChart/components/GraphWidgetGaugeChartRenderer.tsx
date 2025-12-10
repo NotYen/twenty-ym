@@ -26,12 +26,12 @@ export const GraphWidgetGaugeChartRenderer = ({
     configuration,
   });
 
-  // label is an object { aggregateLabel: string }, extract the string
-  const label = labelObject?.aggregateLabel ?? undefined;
-
   if (loading) {
     return <ChartSkeletonLoader />;
   }
+
+  // label is an object { aggregateLabel: string }, extract the string
+  const label = labelObject?.aggregateLabel ?? undefined;
 
   // Parse the value - it might be a formatted string, so we need to extract the number
   const numericValue =
@@ -47,12 +47,6 @@ export const GraphWidgetGaugeChartRenderer = ({
       ? (configuration.color as GraphColor)
       : undefined;
 
-  // label is an object { aggregateLabel }, extract the string
-  const labelText =
-    typeof label === 'object' && label !== null && 'aggregateLabel' in label
-      ? (label as { aggregateLabel: string | null }).aggregateLabel
-      : undefined;
-
   return (
     <Suspense fallback={<ChartSkeletonLoader />}>
       <GraphWidgetGaugeChart
@@ -60,7 +54,7 @@ export const GraphWidgetGaugeChartRenderer = ({
           value: numericValue,
           min: 0,
           max: 100,
-          label: labelText ?? undefined,
+          label: label,
           color: chartColor,
         }}
         displayType="shortNumber"
