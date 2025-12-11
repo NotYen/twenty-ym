@@ -8,11 +8,81 @@ import { EmailDriver } from 'src/engine/core-modules/email/enums/email-driver.en
 import { DriverFactoryBase } from 'src/engine/core-modules/twenty-config/dynamic-factory.base';
 import { ConfigVariablesGroup } from 'src/engine/core-modules/twenty-config/enums/config-variables-group.enum';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
+import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
 
 @Injectable()
 export class EmailDriverFactory extends DriverFactoryBase<EmailDriverInterface> {
-  constructor(twentyConfigService: TwentyConfigService) {
+  constructor(
+    twentyConfigService: TwentyConfigService,
+    private readonly workspaceConfigService: WorkspaceConfigService,
+  ) {
     super(twentyConfigService);
+  }
+
+  public async getWorkspaceDriver(
+    workspaceId: string,
+  ): Promise<EmailDriverInterface> {
+    const smtpHost = await this.workspaceConfigService.get(
+      workspaceId,
+      'EMAIL_SMTP_HOST',
+    );
+
+    if (!smtpHost) {
+      return this.getCurrentDriver();
+    }
+
+    const smtpPort = await this.workspaceConfigService.get(
+      workspaceId,
+      'EMAIL_SMTP_PORT',
+    );
+    const smtpUser = await this.workspaceConfigService.get(
+      workspaceId,
+      'EMAIL_SMTP_USER',
+    );
+    const smtpPassword = await this.workspaceConfigService.get(
+      workspaceId,
+      'EMAIL_SMTP_PASSWORD',
+    );
+    const smtpNoTls = await this.workspaceConfigService.get(
+      workspaceId,
+      'EMAIL_SMTP_NO_TLS',
+    );
+
+    if (!smtpPort) {
+      // If host is set but port is missing, maybe fallback or throw?
+      // For now, fallback to global if incomplete, or throw specific error.
+      // Let's rely on standard SMTP defaults if possible or just use what we have.
+      // But SmtpDriver likely needs port.
+      // If user provided Host, they should provide Port.
+      // Let's assume port 587 if missing or strict check.
+      // If configuration is incomplete, we should probably fallback to global to avoid outages,
+      // OR if the user explicitly tried to configure it, we should error.
+      // Implementation Plan decision: "Fallback to global settings if not found".
+      // But partial config is dangerous.
+      // I will assume if HOST is present, we try to use it.
+    }
+
+    const port = smtpPort ? parseInt(smtpPort, 10) : 587;
+
+    const options: {
+      host: string;
+      port: number;
+      auth?: { user: string; pass: string };
+      secure?: boolean;
+      ignoreTLS?: boolean;
+      requireTLS?: boolean;
+    } = { host: smtpHost, port };
+
+    if (smtpUser && smtpPassword) {
+      options.auth = { user: smtpUser, pass: smtpPassword };
+    }
+
+    if (smtpNoTls === 'true') {
+      options.secure = false;
+      options.ignoreTLS = true;
+    }
+
+    return new SmtpDriver(options);
   }
 
   protected buildConfigKey(): string {

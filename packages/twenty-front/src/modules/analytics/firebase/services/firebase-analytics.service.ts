@@ -2,15 +2,19 @@ import { getAnalytics, isSupported, type Analytics } from 'firebase/analytics';
 import { initializeApp, type FirebaseApp } from 'firebase/app';
 import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
-import { firebaseConfig, isFirebaseEnabled } from '../config/firebase.config';
+import { firebaseConfig } from '../config/firebase.config';
 
 let firebaseApp: FirebaseApp | null = null;
 let analytics: Analytics | null = null;
 let isInitialized = false;
 let hasLoggedFirebaseConfig = false;
 
+import type { FirebaseOptions } from 'firebase/app';
+
 export const initializeFirebaseAnalytics =
-  async (): Promise<Analytics | null> => {
+  async (config?: FirebaseOptions): Promise<Analytics | null> => {
+    const finalConfig = config || firebaseConfig;
+
     // 僅在首次初始化時輸出一次當前 Firebase 配置狀態（error 等級，以便 dev/prod 都可見）
     if (!hasLoggedFirebaseConfig) {
       const requiredKeys: Array<keyof typeof firebaseConfig> = [
@@ -19,8 +23,16 @@ export const initializeFirebaseAnalytics =
         'appId',
         'measurementId',
       ];
-      const missingKeys = requiredKeys.filter((key) => !firebaseConfig[key]);
-      const enabled = isFirebaseEnabled();
+      // Use finalConfig for checking
+      const missingKeys = requiredKeys.filter((key) => !finalConfig[key]);
+
+      // Check if enabled based on the config being used
+      const enabled = Boolean(
+        finalConfig.apiKey &&
+        finalConfig.projectId &&
+        finalConfig.appId &&
+        finalConfig.measurementId
+      );
 
       logDebug(`[Firebase][Config] Enabled: ${String(enabled)}`);
       if (missingKeys.length > 0) {
@@ -37,9 +49,17 @@ export const initializeFirebaseAnalytics =
       return analytics;
     }
 
+    // Check if enabled based on the config being used
+    const isEnabled = Boolean(
+      finalConfig.apiKey &&
+      finalConfig.projectId &&
+      finalConfig.appId &&
+      finalConfig.measurementId
+    );
+
     // 檢查是否啟用 Firebase
-    if (!isFirebaseEnabled()) {
-      logError('[Firebase] Firebase Analytics 未啟用：缺少必要的環境變數');
+    if (!isEnabled) {
+      logError('[Firebase] Firebase Analytics 未啟用：缺少必要的配置');
       return null;
     }
 
@@ -53,7 +73,7 @@ export const initializeFirebaseAnalytics =
 
       // 初始化 Firebase App
       if (!firebaseApp) {
-        firebaseApp = initializeApp(firebaseConfig);
+        firebaseApp = initializeApp(finalConfig);
         logDebug('[Firebase] Firebase App 已初始化');
       }
 

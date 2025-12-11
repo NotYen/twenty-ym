@@ -69,6 +69,7 @@ describe('WorkspaceDomainsService', () => {
         });
 
       const result = workspaceDomainsService.getWorkspaceUrls({
+        id: 'workspace-id',
         subdomain: 'subdomain',
         customDomain: 'custom-host.com',
         isCustomDomainEnabled: true,
@@ -94,6 +95,7 @@ describe('WorkspaceDomainsService', () => {
         });
 
       const result = workspaceDomainsService.getWorkspaceUrls({
+        id: 'workspace-id',
         subdomain: 'subdomain',
         customDomain: null,
         isCustomDomainEnabled: false,
@@ -123,6 +125,7 @@ describe('WorkspaceDomainsService', () => {
 
       const result = workspaceDomainsService.buildWorkspaceURL({
         workspace: {
+          id: 'workspace-id',
           subdomain: 'test',
           customDomain: null,
           isCustomDomainEnabled: false,
@@ -146,6 +149,7 @@ describe('WorkspaceDomainsService', () => {
 
       const result = workspaceDomainsService.buildWorkspaceURL({
         workspace: {
+          id: 'workspace-id',
           subdomain: 'test',
           customDomain: null,
           isCustomDomainEnabled: false,
@@ -170,6 +174,7 @@ describe('WorkspaceDomainsService', () => {
 
       const result = workspaceDomainsService.buildWorkspaceURL({
         workspace: {
+          id: 'workspace-id',
           subdomain: 'test',
           customDomain: null,
           isCustomDomainEnabled: false,

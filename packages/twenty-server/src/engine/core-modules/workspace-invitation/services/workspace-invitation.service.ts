@@ -13,12 +13,12 @@ import { getAppPath } from 'twenty-shared/utils';
 import { IsNull, Repository } from 'typeorm';
 
 import {
-  AppTokenEntity,
-  AppTokenType,
+    AppTokenEntity,
+    AppTokenType,
 } from 'src/engine/core-modules/app-token/app-token.entity';
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { WorkspaceDomainsService } from 'src/engine/core-modules/domain/workspace-domains/services/workspace-domains.service';
 import { EmailService } from 'src/engine/core-modules/email/email.service';
@@ -31,8 +31,8 @@ import { UserWorkspaceEntity } from 'src/engine/core-modules/user-workspace/user
 import { type SendInvitationsOutput } from 'src/engine/core-modules/workspace-invitation/dtos/send-invitations.output';
 import { castAppTokenToWorkspaceInvitationUtil } from 'src/engine/core-modules/workspace-invitation/utils/cast-app-token-to-workspace-invitation.util';
 import {
-  WorkspaceInvitationException,
-  WorkspaceInvitationExceptionCode,
+    WorkspaceInvitationException,
+    WorkspaceInvitationExceptionCode,
 } from 'src/engine/core-modules/workspace-invitation/workspace-invitation.exception';
 import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
@@ -328,13 +328,16 @@ export class WorkspaceInvitationService {
         const i18n = this.i18nService.getI18nInstance(sender.locale);
         const subject = i18n._(joinTeamMsg);
 
-        await this.emailService.send({
-          from: `${sender.name.firstName} ${sender.name.lastName} (via Twenty) <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
-          to: invitation.value.email,
-          subject,
-          text,
-          html,
-        });
+        await this.emailService.send(
+          {
+            from: `${sender.name.firstName} ${sender.name.lastName} (via Twenty) <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
+            to: invitation.value.email,
+            subject,
+            text,
+            html,
+          },
+          workspace.id,
+        );
       }
     }
 

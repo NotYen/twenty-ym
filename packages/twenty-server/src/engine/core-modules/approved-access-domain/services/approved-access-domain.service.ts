@@ -10,10 +10,10 @@ import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
 import { Repository } from 'typeorm';
 
-import { ApprovedAccessDomainEntity as ApprovedAccessDomainEntity } from 'src/engine/core-modules/approved-access-domain/approved-access-domain.entity';
+import { ApprovedAccessDomainEntity } from 'src/engine/core-modules/approved-access-domain/approved-access-domain.entity';
 import {
-  ApprovedAccessDomainException,
-  ApprovedAccessDomainExceptionCode,
+    ApprovedAccessDomainException,
+    ApprovedAccessDomainExceptionCode,
 } from 'src/engine/core-modules/approved-access-domain/approved-access-domain.exception';
 import { approvedAccessDomainValidator } from 'src/engine/core-modules/approved-access-domain/approved-access-domain.validate';
 import { WorkspaceDomainsService } from 'src/engine/core-modules/domain/workspace-domains/services/workspace-domains.service';
@@ -95,13 +95,16 @@ export class ApprovedAccessDomainService {
       plainText: true,
     });
 
-    await this.emailService.send({
-      from: `${sender.name.firstName} ${sender.name.lastName} (via Twenty) <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
-      to,
-      subject: 'Approve your access domain',
-      text,
-      html,
-    });
+    await this.emailService.send(
+      {
+        from: `${sender.name.firstName} ${sender.name.lastName} (via Twenty) <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
+        to,
+        subject: 'Approve your access domain',
+        text,
+        html,
+      },
+      workspace.id,
+    );
   }
 
   private generateUniqueHash(

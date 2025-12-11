@@ -5,12 +5,18 @@ import { Process } from 'src/engine/core-modules/message-queue/decorators/proces
 import { Processor } from 'src/engine/core-modules/message-queue/decorators/processor.decorator';
 import { MessageQueue } from 'src/engine/core-modules/message-queue/message-queue.constants';
 
+export interface EmailSenderJobData {
+  mailOptions: SendMailOptions;
+  workspaceId?: string;
+}
+
 @Processor(MessageQueue.emailQueue)
 export class EmailSenderJob {
   constructor(private readonly emailSenderService: EmailSenderService) {}
 
   @Process(EmailSenderJob.name)
-  async handle(data: SendMailOptions): Promise<void> {
-    await this.emailSenderService.send(data);
+  async handle(data: EmailSenderJobData): Promise<void> {
+    const { mailOptions, workspaceId } = data;
+    await this.emailSenderService.send(mailOptions, workspaceId);
   }
 }

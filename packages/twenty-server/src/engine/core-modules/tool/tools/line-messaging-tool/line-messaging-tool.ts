@@ -9,6 +9,9 @@ import { type ToolOutput } from 'src/engine/core-modules/tool/types/tool-output.
 import { type Tool } from 'src/engine/core-modules/tool/types/tool.type';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 
+import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
+import { ScopedWorkspaceContextFactory } from 'src/engine/twenty-orm/factories/scoped-workspace-context.factory';
+
 @Injectable()
 export class LineMessagingTool implements Tool {
   private readonly logger = new Logger(LineMessagingTool.name);
@@ -17,13 +20,23 @@ export class LineMessagingTool implements Tool {
     'Send a text message to a LINE user through the configured channel access token.';
   inputSchema = LineMessagingToolParametersZodSchema;
 
-  constructor(private readonly twentyConfigService: TwentyConfigService) {}
+  constructor(
+    private readonly twentyConfigService: TwentyConfigService,
+    private readonly workspaceConfigService: WorkspaceConfigService,
+    private readonly scopedWorkspaceContextFactory: ScopedWorkspaceContextFactory,
+  ) {}
 
   async execute(parameters: ToolInput): Promise<ToolOutput> {
     const { to, message } = parameters as LineMessagingInput;
-    const channelAccessToken = this.twentyConfigService.get(
-      'LINE_CHANNEL_ACCESS_TOKEN',
-    );
+    const { workspaceId } = this.scopedWorkspaceContextFactory.create();
+
+    const channelAccessToken =
+      (workspaceId
+        ? await this.workspaceConfigService.get(
+            workspaceId,
+            'LINE_CHANNEL_ACCESS_TOKEN',
+          )
+        : null) || this.twentyConfigService.get('LINE_CHANNEL_ACCESS_TOKEN');
 
     if (!channelAccessToken) {
       const errorMessage = 'LINE channel access token is not configured';

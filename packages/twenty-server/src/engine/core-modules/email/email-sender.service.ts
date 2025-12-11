@@ -10,8 +10,13 @@ import { EmailDriverFactory } from 'src/engine/core-modules/email/email-driver.f
 export class EmailSenderService implements EmailDriverInterface {
   constructor(private readonly emailDriverFactory: EmailDriverFactory) {}
 
-  async send(sendMailOptions: SendMailOptions): Promise<void> {
-    const driver = this.emailDriverFactory.getCurrentDriver();
+  async send(
+    sendMailOptions: SendMailOptions,
+    workspaceId?: string,
+  ): Promise<void> {
+    const driver = workspaceId
+      ? await this.emailDriverFactory.getWorkspaceDriver(workspaceId)
+      : this.emailDriverFactory.getCurrentDriver();
 
     await driver.send(sendMailOptions);
   }

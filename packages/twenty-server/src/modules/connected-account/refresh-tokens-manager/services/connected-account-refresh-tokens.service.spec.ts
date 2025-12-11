@@ -6,8 +6,8 @@ import { TwentyORMManager } from 'src/engine/twenty-orm/twenty-orm.manager';
 import { GoogleAPIRefreshAccessTokenService } from 'src/modules/connected-account/refresh-tokens-manager/drivers/google/services/google-api-refresh-tokens.service';
 import { MicrosoftAPIRefreshAccessTokenService } from 'src/modules/connected-account/refresh-tokens-manager/drivers/microsoft/services/microsoft-api-refresh-tokens.service';
 import {
-  ConnectedAccountRefreshAccessTokenException,
-  ConnectedAccountRefreshAccessTokenExceptionCode,
+    ConnectedAccountRefreshAccessTokenException,
+    ConnectedAccountRefreshAccessTokenExceptionCode,
 } from 'src/modules/connected-account/refresh-tokens-manager/exceptions/connected-account-refresh-tokens.exception';
 import { type ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
 
@@ -123,7 +123,7 @@ describe('ConnectedAccountRefreshTokensService', () => {
       expect(result).toEqual(newTokens);
       expect(
         microsoftAPIRefreshAccessTokenService.refreshTokens,
-      ).toHaveBeenCalledWith(mockRefreshToken);
+      ).toHaveBeenCalledWith(mockRefreshToken, mockWorkspaceId);
       expect(mockRepository.update).toHaveBeenCalledWith(
         { id: mockConnectedAccountId },
         expect.objectContaining({
@@ -163,7 +163,7 @@ describe('ConnectedAccountRefreshTokensService', () => {
       expect(result).toEqual(newTokens);
       expect(
         googleAPIRefreshAccessTokenService.refreshTokens,
-      ).toHaveBeenCalledWith(mockRefreshToken);
+      ).toHaveBeenCalledWith(mockRefreshToken, mockWorkspaceId);
       expect(mockRepository.update).toHaveBeenCalledWith(
         { id: mockConnectedAccountId },
         expect.objectContaining({
@@ -203,7 +203,7 @@ describe('ConnectedAccountRefreshTokensService', () => {
       expect(result).toEqual(newTokens);
       expect(
         microsoftAPIRefreshAccessTokenService.refreshTokens,
-      ).toHaveBeenCalledWith(mockRefreshToken);
+      ).toHaveBeenCalledWith(mockRefreshToken, mockWorkspaceId);
       expect(mockRepository.update).toHaveBeenCalledWith(
         { id: mockConnectedAccountId },
         expect.objectContaining({

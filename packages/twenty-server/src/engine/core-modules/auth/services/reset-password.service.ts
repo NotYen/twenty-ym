@@ -11,19 +11,19 @@ import { PasswordResetLinkEmail } from 'twenty-emails';
 import { type APP_LOCALES } from 'twenty-shared/translations';
 import { AppPath } from 'twenty-shared/types';
 import {
-  assertIsDefinedOrThrow,
-  getAppPath,
-  isDefined,
+    assertIsDefinedOrThrow,
+    getAppPath,
+    isDefined,
 } from 'twenty-shared/utils';
 import { IsNull, MoreThan, Repository } from 'typeorm';
 
 import {
-  AppTokenEntity,
-  AppTokenType,
+    AppTokenEntity,
+    AppTokenType,
 } from 'src/engine/core-modules/app-token/app-token.entity';
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { type EmailPasswordResetLinkOutput } from 'src/engine/core-modules/auth/dto/email-password-reset-link.dto';
 import { type InvalidatePasswordOutput } from 'src/engine/core-modules/auth/dto/invalidate-password.dto';
@@ -173,7 +173,9 @@ export class ResetPasswordService {
       subject,
       text,
       html,
-    });
+    },
+    resetToken.workspaceId,
+  );
 
     return { success: true };
   }

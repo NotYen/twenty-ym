@@ -1,16 +1,17 @@
 import { Injectable } from '@nestjs/common';
 
-import { anthropic } from '@ai-sdk/anthropic';
+import { anthropic, createAnthropic } from '@ai-sdk/anthropic';
 import { createOpenAI, openai } from '@ai-sdk/openai';
-import { xai } from '@ai-sdk/xai';
+import { createXai, xai } from '@ai-sdk/xai';
 import { type LanguageModel } from 'ai';
 
 import {
-  AI_MODELS,
-  ModelProvider,
-  type AIModelConfig,
+    AI_MODELS,
+    ModelProvider,
+    type AIModelConfig,
 } from 'src/engine/core-modules/ai/constants/ai-models.const';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
+import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
 
 export interface RegisteredAIModel {
   modelId: string;
@@ -23,9 +24,14 @@ export interface RegisteredAIModel {
 export class AiModelRegistryService {
   private modelRegistry: Map<string, RegisteredAIModel> = new Map();
 
-  constructor(private twentyConfigService: TwentyConfigService) {
+  constructor(
+    private readonly twentyConfigService: TwentyConfigService,
+    private readonly workspaceConfigService: WorkspaceConfigService,
+  ) {
     this.buildModelRegistry();
   }
+
+  // ... (existing buildModelRegistry and other methods)
 
   private buildModelRegistry(): void {
     this.modelRegistry.clear();
@@ -138,6 +144,55 @@ export class AiModelRegistryService {
     return Array.from(this.modelRegistry.values());
   }
 
+  async getWorkspaceModel(
+    workspaceId: string,
+    modelId: string,
+  ): Promise<RegisteredAIModel | undefined> {
+    const effectiveModelConfig = this.getEffectiveModelConfig(modelId);
+    const provider = effectiveModelConfig.provider;
+
+    let apiKey: string | null | undefined;
+
+    switch (provider) {
+       case ModelProvider.OPENAI:
+        apiKey = await this.workspaceConfigService.get(workspaceId, 'OPENAI_API_KEY');
+        break;
+      case ModelProvider.ANTHROPIC:
+        apiKey = await this.workspaceConfigService.get(workspaceId, 'ANTHROPIC_API_KEY');
+        break;
+      case ModelProvider.XAI:
+        apiKey = await this.workspaceConfigService.get(workspaceId, 'XAI_API_KEY');
+        break;
+      // Note: OPENAI_COMPATIBLE dynamic config not supported yet for workspace
+    }
+
+    if (apiKey) {
+      let model: LanguageModel | undefined;
+
+      if (provider === ModelProvider.OPENAI) {
+        const openaiProvider = createOpenAI({ apiKey });
+        model = openaiProvider(effectiveModelConfig.modelId);
+      } else if (provider === ModelProvider.ANTHROPIC) {
+        const anthropicProvider = createAnthropic({ apiKey });
+        model = anthropicProvider(effectiveModelConfig.modelId);
+      } else if (provider === ModelProvider.XAI) {
+        const xaiProvider = createXai({ apiKey });
+        model = xaiProvider(effectiveModelConfig.modelId);
+      }
+
+      if (model) {
+        return {
+          modelId: effectiveModelConfig.modelId,
+          provider,
+          model,
+          doesSupportThinking: effectiveModelConfig.doesSupportThinking,
+        };
+      }
+    }
+
+    return this.getModel(effectiveModelConfig.modelId);
+  }
+
   getDefaultSpeedModel(): RegisteredAIModel {
     const defaultModelId = this.twentyConfigService.get(
       'DEFAULT_AI_SPEED_MODEL_ID',
@@ -226,14 +281,22 @@ export class AiModelRegistryService {
     this.buildModelRegistry();
   }
 
-  async resolveModelForAgent(agent: { modelId: string } | null) {
-    const aiModel = this.getEffectiveModelConfig(agent?.modelId ?? 'auto');
+  async resolveModelForAgent(agent: { modelId: string; workspaceId?: string } | null) {
+    const aiModelConfig = this.getEffectiveModelConfig(agent?.modelId ?? 'auto');
 
-    await this.validateApiKey(aiModel.provider);
-    const registeredModel = this.getModel(aiModel.modelId);
+    // Try to get workspace specific model if workspaceId is present
+    if (agent?.workspaceId) {
+        const workspaceModel = await this.getWorkspaceModel(agent.workspaceId, aiModelConfig.modelId);
+        if (workspaceModel) {
+            return workspaceModel;
+        }
+    }
+
+    await this.validateApiKey(aiModelConfig.provider);
+    const registeredModel = this.getModel(aiModelConfig.modelId);
 
     if (!registeredModel) {
-      throw new Error(`Model ${aiModel.modelId} not found in registry`);
+      throw new Error(`Model ${aiModelConfig.modelId} not found in registry`);
     }
 
     return registeredModel;

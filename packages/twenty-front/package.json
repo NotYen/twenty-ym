@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "NODE_ENV=production VITE_DISABLE_TYPESCRIPT_CHECKER=true NODE_OPTIONS=--max-old-space-size=8192 npx vite build && sh ./scripts/inject-runtime-env.sh",
+    "build": "npx lingui compile && NODE_ENV=production VITE_DISABLE_TYPESCRIPT_CHECKER=true NODE_OPTIONS=--max-old-space-size=8192 npx vite build && sh ./scripts/inject-runtime-env.sh",
     "build:sourcemaps": "NODE_ENV=production VITE_BUILD_SOURCEMAP=true VITE_DISABLE_TYPESCRIPT_CHECKER=true NODE_OPTIONS=--max-old-space-size=8192 npx vite build && sh ./scripts/inject-runtime-env.sh",
     "start:prod": "NODE_ENV=production npx serve -s build",
     "tsup": "npx tsup"

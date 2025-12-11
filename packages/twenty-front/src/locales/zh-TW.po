@@ -10410,3 +10410,84 @@ msgstr "附檔"
 #: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
 msgid "電子郵件"
 msgstr "電子郵件"
+
+msgid "Advanced Settings"
+msgstr "進階設定"
+
+msgid "Email Provider (SMTP)"
+msgstr "郵件服務商 (SMTP)"
+
+msgid "Configure custom SMTP server for sending emails."
+msgstr "設定用於發送郵件的自訂 SMTP 伺服器。"
+
+msgid "SMTP Host"
+msgstr "SMTP 主機 (Host)"
+
+msgid "SMTP Port"
+msgstr "SMTP 連接埠 (Port)"
+
+msgid "SMTP User"
+msgstr "SMTP 使用者"
+
+msgid "SMTP Password"
+msgstr "SMTP 密碼"
+
+msgid "LINE Integration"
+msgstr "LINE 整合"
+
+msgid "Configure LINE Messaging API credentials."
+msgstr "設定 LINE Messaging API 憑證。"
+
+msgid "Channel Access Token"
+msgstr "Channel Access Token"
+
+msgid "Long access token string..."
+msgstr "長存取權杖字串..."
+
+msgid "Channel Secret"
+msgstr "Channel Secret"
+
+msgid "Secret string"
+msgstr "密鑰字串"
+
+msgid "OAuth Providers"
+msgstr "OAuth 登入提供商"
+
+msgid "Client IDs for external authentication."
+msgstr "用於外部驗證的客戶端 ID。"
+
+msgid "Google Client ID"
+msgstr "Google 客戶端 ID"
+
+msgid "Microsoft Client ID"
+msgstr "Microsoft 客戶端 ID"
+
+msgid "Loading..."
+msgstr "載入中..."
+
+msgid "Google Analytics (Firebase)"
+msgstr "Google Analytics (Firebase)"
+
+msgid "Configure Firebase Analytics credentials."
+msgstr "設定 Firebase Analytics 憑證。"
+
+msgid "API Key"
+msgstr "API Key"
+
+msgid "Auth Domain"
+msgstr "Auth Domain"
+
+msgid "Project ID"
+msgstr "專案 ID"
+
+msgid "Storage Bucket"
+msgstr "Storage Bucket"
+
+msgid "Messaging Sender ID"
+msgstr "Messaging Sender ID"
+
+msgid "App ID"
+msgstr "應用程式 ID (App ID)"
+
+msgid "Measurement ID"
+msgstr "測量 ID (Measurement ID)"

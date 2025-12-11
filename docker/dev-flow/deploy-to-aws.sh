@@ -154,14 +154,22 @@ echo "📤 Uploading docker-compose.aws.yml to ${AWS_IP}..."
 scp -i "${SSH_KEY}" "${AWS_COMPOSE_PATH}" "${AWS_USER}@${AWS_IP}:~/docker-compose.aws.yml"
 echo "✅ Uploaded compose file."
 
+echo "📤 Uploading .env to ${AWS_IP}..."
+scp -i "${SSH_KEY}" "${ENV_TARGET}" "${AWS_USER}@${AWS_IP}:~/.env"
+echo "✅ Uploaded .env file."
+
 echo "🚀 Restarting services on AWS..."
 ssh -i "${SSH_KEY}" "${AWS_USER}@${AWS_IP}" <<EOF
 set -e
 cd ~
 docker compose -f docker-compose.aws.yml pull
 docker compose -f docker-compose.aws.yml up -d
+echo "⏳ Waiting for backend to initialize..."
+sleep 10
+echo "🔄 Running database migrations..."
+docker compose -f docker-compose.aws.yml exec backend yarn database:migrate:prod
 EOF
-echo "✅ AWS services updated."
+echo "✅ AWS services updated and migrations applied."
 
 if [[ "${SYNC_DATA}" == true ]]; then
   echo "🔁 Synchronizing local data to AWS..."

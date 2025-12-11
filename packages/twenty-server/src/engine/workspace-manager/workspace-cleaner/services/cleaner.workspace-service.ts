@@ -5,8 +5,8 @@ import { msg } from '@lingui/core/macro';
 import { render } from '@react-email/render';
 import { differenceInDays } from 'date-fns';
 import {
-  CleanSuspendedWorkspaceEmail,
-  WarnSuspendedWorkspaceEmail,
+    CleanSuspendedWorkspaceEmail,
+    WarnSuspendedWorkspaceEmail,
 } from 'twenty-emails';
 import { isDefined } from 'twenty-shared/utils';
 import { WorkspaceActivationStatus } from 'twenty-shared/workspace';
@@ -27,8 +27,8 @@ import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.ent
 import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
 import { USER_WORKSPACE_DELETION_WARNING_SENT_KEY } from 'src/engine/workspace-manager/workspace-cleaner/constants/user-workspace-deletion-warning-sent-key.constant';
 import {
-  WorkspaceCleanerException,
-  WorkspaceCleanerExceptionCode,
+    WorkspaceCleanerException,
+    WorkspaceCleanerExceptionCode,
 } from 'src/engine/workspace-manager/workspace-cleaner/exceptions/workspace-cleaner.exception';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
 
@@ -117,6 +117,7 @@ export class CleanerWorkspaceService {
     workspaceMember: WorkspaceMemberWorkspaceEntity,
     workspaceDisplayName: string | undefined,
     daysSinceInactive: number,
+    workspaceId: string,
   ) {
     const emailData = {
       daysSinceInactive,
@@ -133,15 +134,18 @@ export class CleanerWorkspaceService {
     const i18n = this.i18nService.getI18nInstance(workspaceMember.locale);
     const subject = i18n._(workspaceDeletionMsg);
 
-    this.emailService.send({
-      to: workspaceMember.userEmail,
-      from: `${this.twentyConfigService.get(
-        'EMAIL_FROM_NAME',
-      )} <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
-      subject,
-      html,
-      text,
-    });
+    this.emailService.send(
+      {
+        to: workspaceMember.userEmail,
+        from: `${this.twentyConfigService.get(
+          'EMAIL_FROM_NAME',
+        )} <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
+        subject,
+        html,
+        text,
+      },
+      workspaceId,
+    );
   }
 
   async warnWorkspaceMembers(
@@ -187,6 +191,7 @@ export class CleanerWorkspaceService {
           workspaceMember,
           workspace.displayName,
           daysSinceInactive,
+          workspace.id,
         );
       }
     }
@@ -196,6 +201,7 @@ export class CleanerWorkspaceService {
     workspaceMember: WorkspaceMemberWorkspaceEntity,
     workspaceDisplayName: string,
     daysSinceInactive: number,
+    workspaceId: string,
   ) {
     const emailData = {
       daysSinceInactive: daysSinceInactive,
@@ -207,15 +213,18 @@ export class CleanerWorkspaceService {
     const html = await render(emailTemplate, { pretty: true });
     const text = await render(emailTemplate, { plainText: true });
 
-    this.emailService.send({
-      to: workspaceMember.userEmail,
-      from: `${this.twentyConfigService.get(
-        'EMAIL_FROM_NAME',
-      )} <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
-      subject: 'Your workspace has been deleted',
-      html,
-      text,
-    });
+    this.emailService.send(
+      {
+        to: workspaceMember.userEmail,
+        from: `${this.twentyConfigService.get(
+          'EMAIL_FROM_NAME',
+        )} <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
+        subject: 'Your workspace has been deleted',
+        html,
+        text,
+      },
+      workspaceId,
+    );
   }
 
   async informWorkspaceMembersAndSoftDeleteWorkspace(
@@ -256,6 +265,7 @@ export class CleanerWorkspaceService {
           workspaceMember,
           workspace.displayName || '',
           daysSinceInactive,
+          workspace.id,
         );
       }
 

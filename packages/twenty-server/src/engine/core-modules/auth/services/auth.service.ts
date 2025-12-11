@@ -15,18 +15,18 @@ import { Repository } from 'typeorm';
 import { NodeEnvironment } from 'src/engine/core-modules/twenty-config/interfaces/node-environment.interface';
 
 import {
-  AppTokenEntity,
-  AppTokenType,
+    AppTokenEntity,
+    AppTokenType,
 } from 'src/engine/core-modules/app-token/app-token.entity';
 import { AuditService } from 'src/engine/core-modules/audit/services/audit.service';
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import {
-  PASSWORD_REGEX,
-  compareHash,
-  hashPassword,
+    PASSWORD_REGEX,
+    compareHash,
+    hashPassword,
 } from 'src/engine/core-modules/auth/auth.util';
 import { type AuthTokens } from 'src/engine/core-modules/auth/dto/auth-tokens.dto';
 import { type AuthorizeAppOutput } from 'src/engine/core-modules/auth/dto/authorize-app.dto';
@@ -45,10 +45,10 @@ import { RefreshTokenService } from 'src/engine/core-modules/auth/token/services
 import { WorkspaceAgnosticTokenService } from 'src/engine/core-modules/auth/token/services/workspace-agnostic-token.service';
 import { JwtTokenTypeEnum } from 'src/engine/core-modules/auth/types/auth-context.type';
 import {
-  type AuthProviderWithPasswordType,
-  type ExistingUserOrNewUser,
-  type SignInUpBaseParams,
-  type SignInUpNewUserPayload,
+    type AuthProviderWithPasswordType,
+    type ExistingUserOrNewUser,
+    type SignInUpBaseParams,
+    type SignInUpNewUserPayload,
 } from 'src/engine/core-modules/auth/types/signInUp.type';
 import { DomainServerConfigService } from 'src/engine/core-modules/domain/domain-server-config/services/domain-server-config.service';
 import { WorkspaceDomainsService } from 'src/engine/core-modules/domain/workspace-domains/services/workspace-domains.service';
@@ -634,7 +634,9 @@ export class AuthService {
       subject,
       text,
       html,
-    });
+    },
+    firstUserWorkspace.workspaceId,
+  );
 
     return { success: true };
   }

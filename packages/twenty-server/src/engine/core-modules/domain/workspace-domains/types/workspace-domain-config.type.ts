@@ -2,5 +2,5 @@ import { type WorkspaceEntity } from 'src/engine/core-modules/workspace/workspac
 
 export type WorkspaceDomainConfig = Pick<
   WorkspaceEntity,
-  'subdomain' | 'customDomain' | 'isCustomDomainEnabled'
+  'id' | 'subdomain' | 'customDomain' | 'isCustomDomainEnabled'
 >;

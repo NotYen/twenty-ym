@@ -1,4 +1,4 @@
-import { usePageTracking } from '@/analytics/firebase';
+import { FirebaseAnalyticsEffect } from '@/analytics/firebase/components/FirebaseAnalyticsEffect';
 import { ApolloProvider } from '@/apollo/components/ApolloProvider';
 import { GotoHotkeysEffectsProvider } from '@/app/effect-components/GotoHotkeysEffectsProvider';
 import { PageChangeEffect } from '@/app/effect-components/PageChangeEffect';
@@ -33,11 +33,9 @@ export const AppRouterProviders = () => {
   const { pathname } = useLocation();
   const pageTitle = getPageTitleFromPath(pathname);
 
-  // Firebase Analytics 頁面追蹤
-  usePageTracking();
-
   return (
     <ApolloProvider>
+      <FirebaseAnalyticsEffect />
       <BaseThemeProvider>
         <ClientConfigProviderEffect />
         <UserAndViewsProviderEffect />

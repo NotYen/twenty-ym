@@ -7,8 +7,8 @@ import { TwentyORMManager } from 'src/engine/twenty-orm/twenty-orm.manager';
 import { GoogleAPIRefreshAccessTokenService } from 'src/modules/connected-account/refresh-tokens-manager/drivers/google/services/google-api-refresh-tokens.service';
 import { MicrosoftAPIRefreshAccessTokenService } from 'src/modules/connected-account/refresh-tokens-manager/drivers/microsoft/services/microsoft-api-refresh-tokens.service';
 import {
-  ConnectedAccountRefreshAccessTokenException,
-  ConnectedAccountRefreshAccessTokenExceptionCode,
+    ConnectedAccountRefreshAccessTokenException,
+    ConnectedAccountRefreshAccessTokenExceptionCode,
 } from 'src/modules/connected-account/refresh-tokens-manager/exceptions/connected-account-refresh-tokens.exception';
 import { type ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
 import { isAxiosTemporaryError } from 'src/modules/messaging/message-import-manager/drivers/gmail/utils/is-axios-gaxios-error.util';
@@ -125,10 +125,12 @@ export class ConnectedAccountRefreshTokensService {
         case ConnectedAccountProvider.GOOGLE:
           return await this.googleAPIRefreshAccessTokenService.refreshTokens(
             refreshToken,
+            workspaceId,
           );
         case ConnectedAccountProvider.MICROSOFT:
           return await this.microsoftAPIRefreshAccessTokenService.refreshTokens(
             refreshToken,
+            workspaceId,
           );
         case ConnectedAccountProvider.IMAP_SMTP_CALDAV:
           throw new ConnectedAccountRefreshAccessTokenException(

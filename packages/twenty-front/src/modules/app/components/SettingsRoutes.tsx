@@ -119,6 +119,12 @@ const SettingsWorkspace = lazy(() =>
   })),
 );
 
+const SettingsWorkspaceAdvanced = lazy(() =>
+  import('~/pages/settings/workspace/SettingsWorkspaceAdvanced').then((module) => ({
+    default: module.SettingsWorkspaceAdvanced,
+  })),
+);
+
 const SettingsDomains = lazy(() =>
   import('~/pages/settings/domains/SettingsDomains').then((module) => ({
     default: module.SettingsDomains,
@@ -408,6 +414,7 @@ export const SettingsRoutes = ({ isAdminPageEnabled }: SettingsRoutesProps) => (
         }
       >
         <Route path={SettingsPath.Workspace} element={<SettingsWorkspace />} />
+        <Route path={SettingsPath.WorkspaceAdvanced} element={<SettingsWorkspaceAdvanced />} />
         <Route path={SettingsPath.Domains} element={<SettingsDomains />} />
         <Route
           path={SettingsPath.ApiWebhooks}

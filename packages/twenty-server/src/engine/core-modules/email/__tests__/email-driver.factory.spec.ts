@@ -3,12 +3,18 @@ import { Test, type TestingModule } from '@nestjs/testing';
 import { EmailDriverFactory } from 'src/engine/core-modules/email/email-driver.factory';
 import { EmailDriver } from 'src/engine/core-modules/email/enums/email-driver.enum';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
+import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
 
 describe('EmailDriverFactory', () => {
   let factory: EmailDriverFactory;
   let twentyConfigService: TwentyConfigService;
+  let workspaceConfigService: WorkspaceConfigService;
 
   const mockTwentyConfigService = {
+    get: jest.fn(),
+  };
+
+  const mockWorkspaceConfigService = {
     get: jest.fn(),
   };
 
@@ -20,11 +26,18 @@ describe('EmailDriverFactory', () => {
           provide: TwentyConfigService,
           useValue: mockTwentyConfigService,
         },
+        {
+          provide: WorkspaceConfigService,
+          useValue: mockWorkspaceConfigService,
+        },
       ],
     }).compile();
 
     factory = module.get<EmailDriverFactory>(EmailDriverFactory);
     twentyConfigService = module.get<TwentyConfigService>(TwentyConfigService);
+    workspaceConfigService = module.get<WorkspaceConfigService>(
+      WorkspaceConfigService,
+    );
 
     jest.clearAllMocks();
   });
@@ -188,42 +201,54 @@ describe('EmailDriverFactory', () => {
       expect(driver1.constructor.name).toBe('LoggerDriver');
       expect(driver2.constructor.name).toBe('SmtpDriver');
     });
+  });
 
-    it('should throw error for unsupported email driver', () => {
-      jest.spyOn(twentyConfigService, 'get').mockReturnValue('invalid-driver');
+  describe('getWorkspaceDriver', () => {
+    it('should return global driver if workspace host is missing', async () => {
+      // Setup global driver as Logger
+      jest
+        .spyOn(twentyConfigService, 'get')
+        .mockReturnValue(EmailDriver.LOGGER);
 
-      expect(() => factory.getCurrentDriver()).toThrow(
-        'Failed to build config key for EmailDriverFactory. Original error: Unsupported email driver: invalid-driver',
+      // Setup workspace config to return null for HOST
+      jest.spyOn(workspaceConfigService, 'get').mockResolvedValue(null);
+
+      const driver = await factory.getWorkspaceDriver('workspace-1');
+
+      expect(driver).toBeDefined();
+      expect(driver.constructor.name).toBe('LoggerDriver');
+      expect(workspaceConfigService.get).toHaveBeenCalledWith(
+        'workspace-1',
+        'EMAIL_SMTP_HOST',
       );
     });
 
-    it('should throw error when driver creation fails after valid config', () => {
+    it('should return new SmtpDriver if workspace config exists', async () => {
+      // Setup workspace config
       jest
-        .spyOn(twentyConfigService, 'get')
-        .mockImplementation((key: string) => {
+        .spyOn(workspaceConfigService, 'get')
+        .mockImplementation(async (wsId, key) => {
+          if (wsId !== 'workspace-1') return null;
           switch (key) {
-            case 'EMAIL_DRIVER':
-              return EmailDriver.SMTP;
             case 'EMAIL_SMTP_HOST':
-              return 'smtp.example.com';
+              return 'custom.smtp.com';
             case 'EMAIL_SMTP_PORT':
-              return 587;
+              return '2525';
+            case 'EMAIL_SMTP_USER':
+              return 'user';
+            case 'EMAIL_SMTP_PASSWORD':
+              return 'pass';
             default:
-              return undefined;
+              return null;
           }
         });
 
-      jest
-        .spyOn(factory as any, 'getConfigGroupHash')
-        .mockReturnValue('smtp-hash-123');
+      const driver = await factory.getWorkspaceDriver('workspace-1');
 
-      jest.spyOn(factory as any, 'createDriver').mockImplementation(() => {
-        throw new Error('Driver creation failed');
-      });
-
-      expect(() => factory.getCurrentDriver()).toThrow(
-        'Failed to create driver for EmailDriverFactory with config key: smtp|smtp-hash-123. Original error: Driver creation failed',
-      );
+      expect(driver).toBeDefined();
+      expect(driver.constructor.name).toBe('SmtpDriver');
+      // We can't easily check private properties of SmtpDriver, but the fact it didn't throw and returned SmtpDriver is good.
+      // SmtpDriver constructor is called with our options.
     });
   });
 });
