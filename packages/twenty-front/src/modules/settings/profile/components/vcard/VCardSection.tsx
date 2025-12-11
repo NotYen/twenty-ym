@@ -80,6 +80,13 @@ export const VCardSection = () => {
   const { records: personRecords, loading } = useFindManyRecords({
     objectNameSingular: 'person',
     filter: personEmailFilter,
+    // filter: {
+    //   emails: {
+    //             // primaryEmail: {
+    //     //   eq: currentUser?.email ?? '',
+    //     // },
+    //   },
+    // }, Kant cherry-pick's code 12/19
     limit: 1,
     skip: !currentUser?.email,
   });

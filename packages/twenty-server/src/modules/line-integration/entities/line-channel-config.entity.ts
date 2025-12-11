@@ -51,7 +51,7 @@ export class LineChannelConfigEntity {
    * LINE Bot User ID (destination)
    * 用於從 Webhook 的 destination 欄位查詢對應的 workspace
    */
-  @Field({ nullable: true })
+  @Field(() => String, { nullable: true })
   @Column({ unique: true, nullable: true })
   @Index('IDX_LINE_CHANNEL_CONFIG_BOT_USER_ID', { unique: true })
   botUserId: string | null;

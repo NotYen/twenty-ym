@@ -37,21 +37,6 @@ export class UpdateLineConfigInput {
 }
 
 /**
- * LINE Connection Test Result DTO
- */
-@ObjectType()
-export class LineConnectionResultDTO {
-  @Field()
-  success: boolean;
-
-  @Field(() => LineBotInfoDTO, { nullable: true })
-  botInfo?: LineBotInfoDTO;
-
-  @Field({ nullable: true })
-  error?: string;
-}
-
-/**
  * LINE Bot Info DTO
  */
 @ObjectType()
@@ -64,6 +49,21 @@ export class LineBotInfoDTO {
 
   @Field({ nullable: true })
   pictureUrl?: string;
+}
+
+/**
+ * LINE Connection Test Result DTO
+ */
+@ObjectType()
+export class LineConnectionResultDTO {
+  @Field()
+  success: boolean;
+
+  @Field(() => LineBotInfoDTO, { nullable: true })
+  botInfo?: LineBotInfoDTO;
+
+  @Field({ nullable: true })
+  error?: string;
 }
 
 /**

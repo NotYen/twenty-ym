@@ -16,6 +16,11 @@ type SalesQuoteTaxCalculationEffectProps = {
   recordId: string;
 };
 
+type CurrencyAmount = {
+  amountMicros: number;
+  currencyCode: string;
+};
+
 // 報價單稅金自動計算組件
 // 當用戶修改小計或稅率時，自動計算稅金和總計
 export const SalesQuoteTaxCalculationEffect = ({
@@ -31,11 +36,13 @@ export const SalesQuoteTaxCalculationEffect = ({
   const total = useRecoilValue(
     recordStoreFamilySelector({ recordId, fieldName: 'zongJi' }),
   ) as CurrencyValue | null;
+  // ) as CurrencyAmount | undefined; Kant cherry-pick's code 12/19
 
   // 監聽稅率（shuiLu）
   const taxRate = useRecoilValue(
     recordStoreFamilySelector({ recordId, fieldName: 'shuiLu' }),
   ) as number | null;
+  // ) as number | undefined; Kant cherry-pick's code 12/19
 
   const [lastCalculatedTax, setLastCalculatedTax] = useState<number | null>(
     null,
