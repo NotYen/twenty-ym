@@ -5,13 +5,13 @@ import { CacheStorageService } from 'src/engine/core-modules/cache-storage/servi
 import { CacheStorageNamespace } from 'src/engine/core-modules/cache-storage/types/cache-storage-namespace.enum';
 import { TwentyORMManager } from 'src/engine/twenty-orm/twenty-orm.manager';
 import {
-  CalendarEventImportDriverException,
-  CalendarEventImportDriverExceptionCode,
+    CalendarEventImportDriverException,
+    CalendarEventImportDriverExceptionCode,
 } from 'src/modules/calendar/calendar-event-import-manager/drivers/exceptions/calendar-event-import-driver.exception';
 import { CalendarAccountAuthenticationService } from 'src/modules/calendar/calendar-event-import-manager/services/calendar-account-authentication.service';
 import {
-  CalendarEventImportErrorHandlerService,
-  CalendarEventImportSyncStep,
+    CalendarEventImportErrorHandlerService,
+    CalendarEventImportSyncStep,
 } from 'src/modules/calendar/calendar-event-import-manager/services/calendar-event-import-exception-handler.service';
 import { CalendarEventsImportService } from 'src/modules/calendar/calendar-event-import-manager/services/calendar-events-import.service';
 import { CalendarGetCalendarEventsService } from 'src/modules/calendar/calendar-event-import-manager/services/calendar-get-events.service';
@@ -61,6 +61,7 @@ export class CalendarFetchEventsService {
       const getCalendarEventsResponse =
         await this.getCalendarEventsService.getCalendarEvents(
           connectedAccountWithFreshTokens,
+          workspaceId,
           calendarChannel.syncCursor,
         );
 

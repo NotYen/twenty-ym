@@ -5,16 +5,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { MicrosoftAPIsOauthRequestCodeStrategy } from 'src/engine/core-modules/auth/strategies/microsoft-apis-oauth-request-code.auth.strategy';
 import { TransientTokenService } from 'src/engine/core-modules/auth/token/services/transient-token.service';
 import { setRequestExtraParams } from 'src/engine/core-modules/auth/utils/google-apis-set-request-extra-params.util';
+import { WorkspaceDomainsService } from 'src/engine/core-modules/domain/workspace-domains/services/workspace-domains.service';
 import { GuardRedirectService } from 'src/engine/core-modules/guard-redirect/services/guard-redirect.service';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
+import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
 import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
-import { WorkspaceDomainsService } from 'src/engine/core-modules/domain/workspace-domains/services/workspace-domains.service';
 
 @Injectable()
 export class MicrosoftAPIsOauthRequestCodeGuard extends AuthGuard(
@@ -27,10 +28,20 @@ export class MicrosoftAPIsOauthRequestCodeGuard extends AuthGuard(
     @InjectRepository(WorkspaceEntity)
     private readonly workspaceRepository: Repository<WorkspaceEntity>,
     private readonly workspaceDomainsService: WorkspaceDomainsService,
+    private readonly workspaceConfigService: WorkspaceConfigService,
   ) {
     super({
       prompt: 'select_account',
     });
+  }
+
+  getAuthenticateOptions(context: ExecutionContext) {
+    const request = context.switchToHttp().getRequest();
+
+    return {
+      prompt: 'select_account',
+      ...(request.microsoftConfigOverride || {}),
+    };
   }
 
   async canActivate(context: ExecutionContext) {
@@ -49,7 +60,7 @@ export class MicrosoftAPIsOauthRequestCodeGuard extends AuthGuard(
 
       const request = context.switchToHttp().getRequest();
 
-      const { workspaceId } =
+      const { workspaceId, userId } =
         await this.transientTokenService.verifyTransientToken(
           request.query.transientToken,
         );
@@ -58,6 +69,25 @@ export class MicrosoftAPIsOauthRequestCodeGuard extends AuthGuard(
         id: workspaceId,
       });
 
+      const clientId =
+        (await this.workspaceConfigService.get(
+          workspaceId,
+          'AUTH_MICROSOFT_CLIENT_ID',
+        )) || this.twentyConfigService.get('AUTH_MICROSOFT_CLIENT_ID');
+
+      const clientSecret =
+        (await this.workspaceConfigService.get(
+          workspaceId,
+          'AUTH_MICROSOFT_CLIENT_SECRET',
+        )) || this.twentyConfigService.get('AUTH_MICROSOFT_CLIENT_SECRET');
+
+      if (clientId && clientSecret) {
+        request.microsoftConfigOverride = {
+          clientID: clientId,
+          clientSecret: clientSecret,
+        };
+      }
+
       new MicrosoftAPIsOauthRequestCodeStrategy(this.twentyConfigService);
       setRequestExtraParams(request, {
         transientToken: request.query.transientToken,
@@ -65,6 +95,8 @@ export class MicrosoftAPIsOauthRequestCodeGuard extends AuthGuard(
         calendarVisibility: request.query.calendarVisibility,
         messageVisibility: request.query.messageVisibility,
         loginHint: request.query.loginHint,
+        userId,
+        workspaceId,
       });
 
       return (await super.canActivate(context)) as boolean;
