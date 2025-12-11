@@ -115,6 +115,13 @@ export const SettingsIntegrationComponent = ({
           title={integration.linkText}
           size="small"
         />
+      ) : integration.type === 'Goto' ? (
+        <Button
+          to={integration.link}
+          Icon={IconArrowUpRight}
+          title={integration.linkText}
+          size="small"
+        />
       ) : (
         <Button
           to={integration.link}

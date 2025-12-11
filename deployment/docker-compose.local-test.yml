@@ -1,4 +1,4 @@
-version: "3.8"
+#version: "3.8"
 
 # ==========================================
 # Twenty CRM 本地測試 Docker Compose
@@ -21,9 +21,9 @@ services:
       POSTGRES_PASSWORD: test_password_local
     volumes:
       - ./local-test/data/postgres:/var/lib/postgresql/data
-    # ports:
-      # 不對外暴露，僅容器內部使用
-      # - "127.0.0.1:15432:5432"
+    ports:
+      # 暴露端口供本地開發使用（不影響 Docker 環境）
+      - "127.0.0.1:15432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d default"]
       interval: 10s
@@ -58,6 +58,7 @@ services:
   server-test:
     # 使用本地構建的映像（9999 端口版本）
     image: twenty-zh-tw:latest
+    pull_policy: never
     container_name: twenty-server-test
     restart: unless-stopped
     depends_on:
@@ -80,6 +81,8 @@ services:
 
       # 應用密鑰（測試用）
       APP_SECRET: test_secret_key_for_local_docker_testing_only
+      APP_VERSION: '0.2.1'
+      LINE_CONFIG_ENCRYPTION_KEY: 4530a7c0773e9db17f5b428f58290328e4dc0e8b9fb0239ccf8a6d02035dfa17
 
       # 服務 URL（不設置，讓前端自動檢測當前網址）
       # 這樣本地和 ngrok 都能正常工作
@@ -99,6 +102,9 @@ services:
     ports:
       # 映射到 9999 端口
       - "9999:3000"
+      # 映射偵錯端口
+      - "9229:9229"
+    command: ["yarn", "start:debug"]
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:3000/healthz"]
       interval: 30s
@@ -113,6 +119,7 @@ services:
   # ==========================================
   worker-test:
     image: twenty-zh-tw:latest
+    pull_policy: never
     container_name: twenty-worker-test
     restart: unless-stopped
     command: ["yarn", "worker:prod"]
@@ -124,6 +131,7 @@ services:
       PG_DATABASE_URL: postgres://postgres:test_password_local@db-test:5432/default
       REDIS_URL: redis://redis-test:6379
       APP_SECRET: test_secret_key_for_local_docker_testing_only
+      LINE_CONFIG_ENCRYPTION_KEY: 4530a7c0773e9db17f5b428f58290328e4dc0e8b9fb0239ccf8a6d02035dfa17
       SERVER_URL: http://localhost:9999
       DISABLE_DB_MIGRATIONS: "true"
       DISABLE_CRON_JOBS_REGISTRATION: "true"

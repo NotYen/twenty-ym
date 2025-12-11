@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 
-import { SalesQuoteTaxCalculationEffect } from './SalesQuoteTaxCalculationEffect';
+// import { SalesQuoteTaxCalculationEffect } from './SalesQuoteTaxCalculationEffect';
 
 type RecordShowEffectProps = {
   objectNameSingular: string;
@@ -58,7 +58,7 @@ export const RecordShowEffect = ({
   return (
     <>
       {objectNameSingular === 'salesquote' && (
-        <SalesQuoteTaxCalculationEffect recordId={recordId} />
+        {/* <SalesQuoteTaxCalculationEffect recordId={recordId} /> */}
       )}
     </>
   );

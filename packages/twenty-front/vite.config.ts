@@ -74,6 +74,12 @@ export default defineConfig(({ command, mode }) => {
     server: {
       port: port,
       ...(VITE_HOST ? { host: VITE_HOST } : {}),
+      proxy: {
+        '/api': {
+          target: 'http://localhost:9999',
+          changeOrigin: true,
+        },
+      },
       ...(SSL_KEY_PATH && SSL_CERT_PATH
         ? {
             protocol: 'https',
