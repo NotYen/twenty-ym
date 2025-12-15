@@ -1,0 +1,36 @@
+ ✔ redis Pulled                                                                                                   11.7s 
+✘ worker Error             pull access denied for twenty-backend, repository does not exist or m...               2.1s
+ ✔ postgres-seed-once Pulled                                                                                      50.2s
+[+] Building 894.5s (24/26)                                                                        docker:desktop-linux
+ => [backend build 5/6] COPY packages/twenty-emails ./packages/twenty-emails                                       0.4s
+ => ERROR [backend build 6/6] RUN yarn nx build twenty-server --configuration=production                          44.4s
+35.02 > nx run twenty-shared:build
+35.02 src/types/FieldMetadataOptions.ts:18:3 - error TS2564: Property 'position' has no initializer and is not definitely assigned in the constructor.
+35.02 18   position: number;
+35.02 src/types/FieldMetadataOptions.ts:19:3 - error TS2564: Property 'label' has no initializer and is not definitely assigned in the constructor.
+35.02 19   label: string;
+35.02 src/types/FieldMetadataOptions.ts:20:3 - error TS2564: Property 'value' has no initializer and is not definitely assigned in the constructor.
+35.02 20   value: string;
+35.02 src/types/FieldMetadataOptions.ts:24:3 - error TS2564: Property 'color' has no initializer and is not definitely assigned in the constructor.
+35.02 24   color: TagColor;
+43.18 src/components/BaseEmail.tsx:20:19 - error TS2719: Type 'import("/app/node_modules/@lingui/core/dist/index").I18n' is not assignable to type 'import("/app/node_modules/@lingui/core/dist/index").I18n'. Two different types with this name exist, but they are unrelated.
+43.18   Types have separate declarations of a private property '_locale'.
+43.18 20     <I18nProvider i18n={i18nInstance}>
+43.18   node_modules/@lingui/react/dist/shared/react.34bf68ab.d.ts:41:5
+43.18     41     i18n: I18n;
+43.18     The expected type comes from property 'i18n' which is declared here on type 'IntrinsicAttributes & Omit<I18nContext, "_"> & { children?: ReactNode; }'
+43.18 ✓ 0 modules transformed.
+43.18 ✗ Build failed in 4.28s
+43.18 error during build:
+43.18 [vite:react-swc] plugin
+43.18   x failed to invoke plugin on 'Some("/app/packages/twenty-emails/src/locales/generated/pseudo-en.ts")'
+43.18 file: /app/packages/twenty-emails/src/locales/generated/pseudo-en.ts
+43.18 Error: plugin
+43.18   x failed to invoke plugin on 'Some("/app/packages/twenty-emails/src/locales/generated/pseudo-en.ts")'
+43.27  NX   Running target build for project twenty-server and 3 tasks it depends on failed
+43.27 Failed tasks:
+43.27 - twenty-emails:build
+43.27 Hint: run the command with --verbose for more details.
+failed to solve: process "/bin/sh -c yarn nx build twenty-server --configuration=production" did not complete successfully: exit code: 130
+[ERROR] Docker command failed.
+Please make sure Docker Desktop is running.

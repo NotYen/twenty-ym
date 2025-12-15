@@ -6,7 +6,10 @@
       "Bash(mkdir:*)",
       "Bash(npx nx run:*)",
       "Bash(npx tsc:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(node --version:*)",
+      "Bash(yarn --version:*)",
+      "Bash(yarn install:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
