@@ -25,6 +25,8 @@ import { notesAllView } from 'src/engine/workspace-manager/standard-objects-pref
 import { opportunitiesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunities-all.view';
 import { opportunitiesByStageView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunity-by-stage.view';
 import { peopleAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/people-all.view';
+import { salesQuoteLineItemsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quote-line-items-all.view';
+import { salesQuotesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quotes-all.view';
 import { tasksAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-all.view';
 import { tasksAssignedToMeView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-assigned-to-me';
 import { tasksByStatusView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-by-status.view';
@@ -47,6 +49,7 @@ export const prefillCoreViews = async ({
   objectMetadataItems,
   workspaceSchemaName,
 }: PrefillCoreViewsArgs): Promise<ViewEntity[]> => {
+  // 過濾掉 null 值（當 object metadata 不存在時會返回 null）
   const views = [
     companiesAllView(objectMetadataItems, true),
     peopleAllView(objectMetadataItems, true),
@@ -56,6 +59,8 @@ export const prefillCoreViews = async ({
     tasksAllView(objectMetadataItems, true),
     tasksAssignedToMeView(objectMetadataItems, true),
     tasksByStatusView(objectMetadataItems, true),
+    salesQuotesAllView(objectMetadataItems, true),
+    salesQuoteLineItemsAllView(objectMetadataItems, true),
     workflowsAllView(objectMetadataItems, true),
     workflowVersionsAllView(objectMetadataItems, true),
     workflowRunsAllView(objectMetadataItems, true),
@@ -64,7 +69,7 @@ export const prefillCoreViews = async ({
     messagesAllView(objectMetadataItems, true),
     messageThreadsAllView(objectMetadataItems, true),
     calendarEventsAllView(objectMetadataItems, true),
-  ];
+  ].filter((view): view is NonNullable<typeof view> => view !== null);
 
   const queryRunner = coreDataSource.createQueryRunner();
 

@@ -13,14 +13,14 @@ import { FileModule } from 'src/engine/core-modules/file/file.module';
 import { PublicDomainModule } from 'src/engine/core-modules/public-domain/public-domain.module';
 import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 import { WorkspaceModule } from 'src/engine/core-modules/workspace/workspace.module';
-import { DataSourceEntity } from 'src/engine/metadata-modules/data-source/data-source.entity';
-import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadata/object-metadata.entity';
-import { ViewEntity } from 'src/engine/metadata-modules/view/entities/view.entity';
 import { CronTriggerModule } from 'src/engine/metadata-modules/cron-trigger/cron-trigger.module';
+import { DataSourceEntity } from 'src/engine/metadata-modules/data-source/data-source.entity';
 import { DataSourceModule } from 'src/engine/metadata-modules/data-source/data-source.module';
 import { DatabaseEventTriggerModule } from 'src/engine/metadata-modules/database-event-trigger/database-event-trigger.module';
 import { FieldMetadataModule } from 'src/engine/metadata-modules/field-metadata/field-metadata.module';
+import { ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadata/object-metadata.entity';
 import { ObjectMetadataModule } from 'src/engine/metadata-modules/object-metadata/object-metadata.module';
+import { ViewEntity } from 'src/engine/metadata-modules/view/entities/view.entity';
 import { TrashCleanupModule } from 'src/engine/trash-cleanup/trash-cleanup.module';
 import { WorkspaceCacheStorageModule } from 'src/engine/workspace-cache-storage/workspace-cache-storage.module';
 import { DevSeederModule } from 'src/engine/workspace-manager/dev-seeder/dev-seeder.module';
@@ -70,6 +70,7 @@ import { AutomatedTriggerModule } from 'src/modules/workflow/workflow-trigger/au
     ConfirmationQuestion,
     CronRegisterAllCommand,
     SeedNewCoreViewsCommand,
+    SeedSalesQuoteViewsCommand,
   ],
 })
 export class DatabaseCommandModule {}

@@ -57,7 +57,7 @@ export const RecordShowEffect = ({
 
   return (
     <>
-      {objectNameSingular === 'salesquote' && (
+      {objectNameSingular === 'salesQuote' && (
         <SalesQuoteTaxCalculationEffect recordId={recordId} />
       )}
     </>

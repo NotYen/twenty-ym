@@ -27,14 +27,15 @@ import { WorkspaceRelation } from 'src/engine/twenty-orm/decorators/workspace-re
 import { COMPANY_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import {
-  type FieldTypeAndNameMetadata,
-  getTsVectorColumnExpressionFromFields,
+    type FieldTypeAndNameMetadata,
+    getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
 import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { SalesQuoteWorkspaceEntity } from 'src/modules/sales-quote/standard-objects/sales-quote.workspace-entity';
 import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
@@ -246,21 +247,31 @@ export class CompanyWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: COMPANY_STANDARD_FIELD_IDS.attachments,
     type: RelationType.ONE_TO_MANY,
     label: msg`Attachments`,
-    description: msg`Attachments linked to the company`,
-    icon: 'IconFileImport',
-    inverseSideTarget: () => AttachmentWorkspaceEntity,
     onDelete: RelationOnDeleteAction.CASCADE,
+    inverseSideTarget: () => AttachmentWorkspaceEntity,
   })
   @WorkspaceIsNullable()
   @WorkspaceIsSystem()
   attachments: Relation<AttachmentWorkspaceEntity[]>;
 
   @WorkspaceRelation({
+    standardId: COMPANY_STANDARD_FIELD_IDS.salesQuotes,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Sales Quotes`,
+    description: msg`Sales quotes linked to the company`,
+    icon: 'IconFileInvoice',
+    inverseSideTarget: () => SalesQuoteWorkspaceEntity,
+    inverseSideFieldKey: 'company',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  salesQuotes: Relation<SalesQuoteWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
     standardId: COMPANY_STANDARD_FIELD_IDS.timelineActivities,
     type: RelationType.ONE_TO_MANY,
     label: msg`Timeline Activities`,
     description: msg`Timeline Activities linked to the company`,
-    icon: 'IconIconTimelineEvent',
+    icon: 'IconTimelineEvent',
     inverseSideTarget: () => TimelineActivityWorkspaceEntity,
     onDelete: RelationOnDeleteAction.CASCADE,
   })

@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
-import { useEffect, useRef } from 'react';
-import { useRecoilValue } from 'recoil';
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
 import { recordStoreFamilySelector } from '@/object-record/record-store/states/selectors/recordStoreFamilySelector';
+import { useEffect, useRef } from 'react';
+import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 
 type CurrencyValue = {
@@ -24,7 +24,7 @@ export const SalesQuoteTaxCalculationRowEffect = ({
   );
 
   const { updateOneRecord } = useUpdateOneRecord({
-    objectNameSingular: 'salesquote',
+    objectNameSingular: 'salesQuote',
   });
 
   // 監聽總計（zongJi）

@@ -41,4 +41,6 @@ export const STANDARD_OBJECT_ICONS = {
   workflowVersion: 'IconVersions',
   workflowAutomatedTrigger: 'IconSettingsAutomation',
   workspaceMember: 'IconUserCircle',
+  salesQuote: 'IconFileInvoice',
+  salesQuoteLineItem: 'IconList',
 } as const;

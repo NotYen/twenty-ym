@@ -89,7 +89,7 @@ export const useCreateOneRecord = <
     // 如果是创建 salesquote 记录且没有提供 baoJiaDanHao（報價單號），自动生成
     const finalRecordInput: Partial<ObjectRecord> = { ...recordInput };
     if (
-      objectMetadataItem.nameSingular === 'salesquote' &&
+      objectMetadataItem.nameSingular === 'salesQuote' &&
       !finalRecordInput.baoJiaDanHao
     ) {
       const now = new Date();

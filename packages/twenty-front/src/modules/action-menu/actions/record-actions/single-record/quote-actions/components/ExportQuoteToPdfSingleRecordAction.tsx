@@ -129,8 +129,8 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
 
   // 查询 QuoteLineItem 记录
   const { records: lineItems } = useFindManyRecords<QuoteLineItemRecord>({
-    objectNameSingular: 'salesquotelineitem',
-    filter: { salesquoteId: { eq: recordId } },
+    objectNameSingular: 'salesQuoteLineItem',
+    filter: { salesQuoteId: { eq: recordId } },
     skip: !recordId,
   });
 

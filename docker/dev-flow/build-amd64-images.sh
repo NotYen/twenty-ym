@@ -161,6 +161,7 @@ build_backend() {
       --build-arg BACKEND_IMAGE_VERSION="${BACKEND_VERSION}" \
       -t "ycrm/y-crm:${BACKEND_VERSION}" \
       -f docker/backend/Dockerfile \
+      --no-cache \
       --load \
       .
   )
@@ -179,6 +180,7 @@ build_frontend() {
       --build-arg IS_DEBUG_MODE=false \
       -t "ycrm/y-crm:${FRONTEND_VERSION}" \
       -f docker/frontend/Dockerfile \
+      --no-cache \
       --load \
       .
   )

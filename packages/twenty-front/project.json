@@ -270,7 +270,10 @@
       "options": {
         "cwd": "{projectRoot}",
         "command": "lingui compile --typescript"
-      }
+      },
+      "dependsOn": [
+        "twenty-shared:build"
+      ]
     }
   }
 }

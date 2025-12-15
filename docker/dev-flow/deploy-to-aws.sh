@@ -72,7 +72,19 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     --sync-data)
-      SYNC_DATA=true
+      echo ""
+      echo "⚠️  ════════════════════════════════════════════════════════════════════════"
+      echo "⚠️  警告：--sync-data 會完整覆蓋 AWS 上的所有資料庫資料！"
+      echo "⚠️  如果 AWS 已有正式環境資料，請勿使用此選項！"
+      echo "⚠️  ════════════════════════════════════════════════════════════════════════"
+      echo ""
+      read -r -p "確定要覆蓋 AWS 資料嗎？輸入 'YES' 確認: " sync_confirm
+      if [[ "${sync_confirm}" != "YES" ]]; then
+        echo "已取消 --sync-data 選項"
+        SYNC_DATA=false
+      else
+        SYNC_DATA=true
+      fi
       shift
       ;;
     -h|--help)
@@ -168,8 +180,12 @@ echo "⏳ Waiting for backend to initialize..."
 sleep 10
 echo "🔄 Running database migrations..."
 docker compose -f docker-compose.aws.yml exec backend yarn database:migrate:prod
+echo "🔄 Syncing workspace metadata..."
+docker compose -f docker-compose.aws.yml exec backend yarn command:prod workspace:sync-metadata || true
+echo "🔄 Seeding sales quote views for existing workspaces..."
+docker compose -f docker-compose.aws.yml exec backend yarn command:prod workspace:seed-sales-quote-views || true
 EOF
-echo "✅ AWS services updated and migrations applied."
+echo "✅ AWS services updated, migrations applied, and views seeded."
 
 if [[ "${SYNC_DATA}" == true ]]; then
   echo "🔁 Synchronizing local data to AWS..."

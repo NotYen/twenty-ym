@@ -22,7 +22,7 @@ export const SalesQuoteTaxCalculationEffect = ({
   recordId,
 }: SalesQuoteTaxCalculationEffectProps) => {
   const { updateOneRecord } = useUpdateOneRecord({
-    objectNameSingular: 'salesquote',
+    objectNameSingular: 'salesQuote',
   });
 
   const { calculateTaxAmount } = useQuoteCalculations();
