@@ -19,9 +19,11 @@ export class OAuth2ClientManagerService {
       ConnectedAccountWorkspaceEntity,
       'provider' | 'refreshToken'
     >,
+    workspaceId: string,
   ): Promise<Auth.OAuth2Client> {
     return this.googleOAuth2ClientManagerService.getOAuth2Client(
       connectedAccount.refreshToken,
+      workspaceId,
     );
   }
 

@@ -43,6 +43,19 @@ COPY packages/twenty-emails ./packages/twenty-emails
 RUN yarn nx build twenty-server --configuration=production
 
 # =====================================
+# 階段 2.5: 瘦身 (減少 Image 大小)
+# =====================================
+# 刪除後端不需要的前端源碼、文檔和巨型依賴(Storybook)
+RUN rm -rf packages/twenty-front \
+    packages/twenty-website \
+    packages/twenty-docs \
+    packages/twenty-e2e-testing \
+    packages/twenty-zapier \
+    node_modules/@storybook \
+    node_modules/storybook \
+    node_modules/@chromatic-com
+
+# =====================================
 # 階段 3: 最終運行鏡像
 # =====================================
 FROM node:20-bookworm

@@ -5,8 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { GoogleAPIsOauthExchangeCodeForTokenStrategy } from 'src/engine/core-modules/auth/strategies/google-apis-oauth-exchange-code-for-token.auth.strategy';
 import { TransientTokenService } from 'src/engine/core-modules/auth/token/services/transient-token.service';
@@ -14,6 +14,7 @@ import { setRequestExtraParams } from 'src/engine/core-modules/auth/utils/google
 import { WorkspaceDomainsService } from 'src/engine/core-modules/domain/workspace-domains/services/workspace-domains.service';
 import { GuardRedirectService } from 'src/engine/core-modules/guard-redirect/services/guard-redirect.service';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
+import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
 import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 
 @Injectable()
@@ -27,8 +28,17 @@ export class GoogleAPIsOauthExchangeCodeForTokenGuard extends AuthGuard(
     @InjectRepository(WorkspaceEntity)
     private readonly workspaceRepository: Repository<WorkspaceEntity>,
     private readonly workspaceDomainsService: WorkspaceDomainsService,
+    private readonly workspaceConfigService: WorkspaceConfigService,
   ) {
     super();
+  }
+
+  getAuthenticateOptions(context: ExecutionContext) {
+    const request = context.switchToHttp().getRequest();
+
+    return {
+      ...(request.googleConfigOverride || {}),
+    };
   }
 
   async canActivate(context: ExecutionContext) {
@@ -44,6 +54,30 @@ export class GoogleAPIsOauthExchangeCodeForTokenGuard extends AuthGuard(
           'Google apis auth is not enabled',
           AuthExceptionCode.GOOGLE_API_AUTH_DISABLED,
         );
+      }
+
+      const { workspaceId } =
+        await this.transientTokenService.verifyTransientToken(
+          state.transientToken,
+        );
+
+      const clientId =
+        (await this.workspaceConfigService.get(
+          workspaceId,
+          'AUTH_GOOGLE_CLIENT_ID',
+        )) || this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_ID');
+
+      const clientSecret =
+        (await this.workspaceConfigService.get(
+          workspaceId,
+          'AUTH_GOOGLE_CLIENT_SECRET',
+        )) || this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_SECRET');
+
+      if (clientId && clientSecret) {
+        request.googleConfigOverride = {
+          clientID: clientId,
+          clientSecret: clientSecret,
+        };
       }
 
       new GoogleAPIsOauthExchangeCodeForTokenStrategy(this.twentyConfigService);
@@ -69,6 +103,7 @@ export class GoogleAPIsOauthExchangeCodeForTokenGuard extends AuthGuard(
           this.workspaceDomainsService.computeWorkspaceRedirectErrorUrl(
             'We cannot connect to your Google account, please try again with more permissions, or a valid account',
             {
+              id: workspace.id,
               subdomain: workspace.subdomain,
               customDomain: workspace.customDomain,
               isCustomDomainEnabled: workspace.isCustomDomainEnabled ?? false,

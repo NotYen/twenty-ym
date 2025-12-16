@@ -1,14 +1,20 @@
 import { type ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
+import { InjectRepository } from '@nestjs/typeorm';
+
+import { Repository } from 'typeorm';
 
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { MicrosoftAPIsOauthExchangeCodeForTokenStrategy } from 'src/engine/core-modules/auth/strategies/microsoft-apis-oauth-exchange-code-for-token.auth.strategy';
+import { TransientTokenService } from 'src/engine/core-modules/auth/token/services/transient-token.service';
 import { setRequestExtraParams } from 'src/engine/core-modules/auth/utils/google-apis-set-request-extra-params.util';
 import { GuardRedirectService } from 'src/engine/core-modules/guard-redirect/services/guard-redirect.service';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
+import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
+import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 
 @Injectable()
 export class MicrosoftAPIsOauthExchangeCodeForTokenGuard extends AuthGuard(
@@ -17,8 +23,20 @@ export class MicrosoftAPIsOauthExchangeCodeForTokenGuard extends AuthGuard(
   constructor(
     private readonly guardRedirectService: GuardRedirectService,
     private readonly twentyConfigService: TwentyConfigService,
+    private readonly transientTokenService: TransientTokenService,
+    @InjectRepository(WorkspaceEntity)
+    private readonly workspaceRepository: Repository<WorkspaceEntity>,
+    private readonly workspaceConfigService: WorkspaceConfigService,
   ) {
     super();
+  }
+
+  getAuthenticateOptions(context: ExecutionContext) {
+    const request = context.switchToHttp().getRequest();
+
+    return {
+      ...(request.microsoftConfigOverride || {}),
+    };
   }
 
   async canActivate(context: ExecutionContext) {
@@ -34,6 +52,30 @@ export class MicrosoftAPIsOauthExchangeCodeForTokenGuard extends AuthGuard(
           'Microsoft apis auth is not enabled',
           AuthExceptionCode.MICROSOFT_API_AUTH_DISABLED,
         );
+      }
+
+      const { workspaceId } =
+        await this.transientTokenService.verifyTransientToken(
+          state.transientToken,
+        );
+
+      const clientId =
+        (await this.workspaceConfigService.get(
+          workspaceId,
+          'AUTH_MICROSOFT_CLIENT_ID',
+        )) || this.twentyConfigService.get('AUTH_MICROSOFT_CLIENT_ID');
+
+      const clientSecret =
+        (await this.workspaceConfigService.get(
+          workspaceId,
+          'AUTH_MICROSOFT_CLIENT_SECRET',
+        )) || this.twentyConfigService.get('AUTH_MICROSOFT_CLIENT_SECRET');
+
+      if (clientId && clientSecret) {
+        request.microsoftConfigOverride = {
+          clientID: clientId,
+          clientSecret: clientSecret,
+        };
       }
 
       new MicrosoftAPIsOauthExchangeCodeForTokenStrategy(

@@ -31,13 +31,13 @@ export const useFirebaseAnalytics = () => {
       const getConfig = (key: string) => configs.find((c: any) => c.key === key)?.value;
 
       const workspaceFirebaseConfig: FirebaseOptions = {
-        apiKey: getConfig('FIREBASE_API_KEY'),
-        authDomain: getConfig('FIREBASE_AUTH_DOMAIN'),
-        projectId: getConfig('FIREBASE_PROJECT_ID'),
-        storageBucket: getConfig('FIREBASE_STORAGE_BUCKET'),
-        messagingSenderId: getConfig('FIREBASE_MESSAGING_SENDER_ID'),
-        appId: getConfig('FIREBASE_APP_ID'),
-        measurementId: getConfig('FIREBASE_MEASUREMENT_ID'),
+        apiKey: getConfig('REACT_APP_FIREBASE_API_KEY'),
+        authDomain: getConfig('REACT_APP_FIREBASE_AUTH_DOMAIN'),
+        projectId: getConfig('REACT_APP_FIREBASE_PROJECT_ID'),
+        storageBucket: getConfig('REACT_APP_FIREBASE_STORAGE_BUCKET'),
+        messagingSenderId: getConfig('REACT_APP_FIREBASE_MESSAGING_SENDER_ID'),
+        appId: getConfig('REACT_APP_FIREBASE_APP_ID'),
+        measurementId: getConfig('REACT_APP_FIREBASE_MEASUREMENT_ID'),
       };
 
       // Filter out undefined values to let fallback work if needed,

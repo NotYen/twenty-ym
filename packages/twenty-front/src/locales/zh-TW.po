@@ -785,6 +785,11 @@ msgstr "調整整個應用程式的文字大小"
 msgid "Admin Panel"
 msgstr "管理面板"
 
+#. js-lingui-id: jW/5y8
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Admin Panel (Global Defaults)"
+msgstr "管理面板 (全域預設值)"
+
 #. js-lingui-id: sxkWRg
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerDatabaseEventForm.tsx
 msgid "Advanced"
@@ -805,6 +810,18 @@ msgstr "高級篩選"
 #: src/modules/command-menu/pages/page-layout/components/dropdown-content/ChartDataSourceDropdownContent.tsx
 msgid "Advanced objects"
 msgstr "高級對象"
+
+#. js-lingui-id: JiIKww
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+msgid "Advanced Settings"
+msgstr "進階設定"
+
+#. js-lingui-id: FvSXSq
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Advanced Settings (Workspace Override)"
+msgstr "進階設定 (工作區覆蓋值)"
 
 #. js-lingui-id: WsKDNF
 #: src/modules/navigation/components/SettingsNavigationDrawer.tsx
@@ -876,6 +893,11 @@ msgstr "彙總"
 #: src/modules/command-menu/pages/workflow/action/components/CommandMenuWorkflowSelectAction.tsx
 msgid "AI"
 msgstr "AI"
+
+#. js-lingui-id: QwU/Un
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "AI Integration"
+msgstr "AI 整合"
 
 #. js-lingui-id: kNfr85
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
@@ -1111,11 +1133,12 @@ msgid "API & Webhooks"
 msgstr "API 和 Webhooks"
 
 #. js-lingui-id: yRnk5W
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
 msgid "API Key"
-msgstr "API 密鑰"
+msgstr "API Key"
 
 #. js-lingui-id: r+NRG6
 #: src/modules/settings/developers/components/ApiKeyInput.tsx
@@ -1190,6 +1213,11 @@ msgstr "API 和 Webhooks"
 #: src/modules/settings/experience/components/NumberFormatSelect.tsx
 msgid "Apostrophe and dot - {apostropheAndDotExample}"
 msgstr "撇號和點 - {apostropheAndDotExample}"
+
+#. js-lingui-id: UU5sRu
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "App ID"
+msgstr "應用程式 ID (App ID)"
 
 #. js-lingui-id: aAIQg2
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
@@ -1415,6 +1443,11 @@ msgstr "在分針 {remainingValues} 和 {lastValue}"
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getMinutesDescription.ts
 msgid "at the top of the hour"
 msgstr "在整點"
+
+#. js-lingui-id: K+pc3v
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Auth Domain"
+msgstr "Auth Domain"
 
 #. js-lingui-id: DzqB0O
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
@@ -1854,6 +1887,16 @@ msgstr "更改為年度？"
 msgid "Changelog"
 msgstr "變更日誌"
 
+#. js-lingui-id: uHVuiy
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Channel Access Token"
+msgstr "Channel Access Token"
+
+#. js-lingui-id: 4iLv/J
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Channel Secret"
+msgstr "Channel Secret"
+
 #. js-lingui-id: nuBbBr
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutWidgetTypeSelect.tsx
 #: src/modules/command-menu/components/hooks/usePageLayoutHeaderInfo.ts
@@ -1976,6 +2019,11 @@ msgstr "點擊查看數據"
 msgid "Client ID"
 msgstr "客戶端 ID"
 
+#. js-lingui-id: N7/ZI2
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Client IDs for external authentication."
+msgstr "用於外部驗證的客戶端 ID。"
+
 #. js-lingui-id: Bdj4LI
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Client Secret"
@@ -2097,6 +2145,21 @@ msgstr "配置變量"
 msgid "Configuration"
 msgstr "配置"
 
+#. js-lingui-id: zupKh0
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Configuration Hierarchy Explained"
+msgstr "配置層級說明"
+
+#. js-lingui-id: EaLXL6
+#: src/modules/settings/admin-panel/config-variables/components/SettingsAdminConfigVariables.tsx
+msgid "Configuration Hierarchy Info"
+msgstr ""
+
+#. js-lingui-id: e68R5X
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Configure AI provider keys."
+msgstr "配置 AI 提供商密鑰。"
+
 #. js-lingui-id: +zUMwJ
 #: src/pages/settings/security/SettingsSecurity.tsx
 msgid "Configure an SSO connection"
@@ -2117,6 +2180,11 @@ msgstr "配置並驗證此工作區的域名以發送電子郵件。"
 msgid "Configure CalDAV settings to sync your calendar events."
 msgstr "配置 CalDAV 設定以同步您的日曆事件。"
 
+#. js-lingui-id: lVTG8H
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Configure custom SMTP server for sending emails."
+msgstr "設定用於發送郵件的自訂 SMTP 伺服器。"
+
 #. js-lingui-id: ahqAfe
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 msgid "Configure date, time, number, timezone, and calendar start day"
@@ -2132,6 +2200,11 @@ msgstr "為具有 SSO 繞過權限的用戶配置備用登入方式"
 msgid "Configure filters"
 msgstr "配置過濾器"
 
+#. js-lingui-id: r2E+kS
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Configure Firebase Analytics credentials."
+msgstr "設定 Firebase Analytics 憑證。"
+
 #. js-lingui-id: ghdb7+
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelsGeneral.tsx
 msgid "Configure how we should display your events in your calendar"
@@ -2141,6 +2214,11 @@ msgstr "配置我們應如何在您的日曆中顯示您的事件"
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "Configure IMAP settings to receive and sync your emails."
 msgstr "配置 IMAP 設定以接收和同步您的電子郵件。"
+
+#. js-lingui-id: TaNuxP
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Configure LINE Messaging API credentials."
+msgstr "設定 LINE Messaging API 憑證。"
 
 #. js-lingui-id: gk/8eh
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -3562,6 +3640,11 @@ msgstr "需要電子郵件"
 msgid "Email or domain is already in blocklist"
 msgstr "電子郵件或域名已在阻止列表中"
 
+#. js-lingui-id: gwlTzn
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Email Provider (SMTP)"
+msgstr "郵件服務商 (SMTP)"
+
 #. js-lingui-id: LimKOG
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
 msgid "Email verification"
@@ -4026,6 +4109,11 @@ msgstr "所有人"
 msgid "Everything"
 msgstr "所有內容"
 
+#. js-lingui-id: HmI5oK
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Example"
+msgstr "範例"
+
 #. js-lingui-id: QQlMid
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
 msgid "Exclude group emails"
@@ -4294,6 +4382,11 @@ msgstr "無法重試工作。請稍後重試。"
 msgid "Failed to save role permissions: {errorMessage}"
 msgstr ""
 
+#. js-lingui-id: iQ1BL4
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Failed to save settings"
+msgstr "設定儲存失敗"
+
 #. js-lingui-id: HnBqPY
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 msgid "Failed to update price."
@@ -4415,6 +4508,11 @@ msgstr ""
 #: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
 msgid "Fill Mode"
 msgstr "填充模式"
+
+#. js-lingui-id: OcEfK7
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Filled 'Client-B' in Advanced Settings"
+msgstr "進階設定填入 'Client-B'"
 
 #. js-lingui-id: o7J4JM
 #: src/pages/settings/data-model/SettingsObjectTable.tsx
@@ -4670,6 +4768,16 @@ msgstr ""
 msgid "Google"
 msgstr ""
 
+#. js-lingui-id: EOUHHU
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Google Analytics (Firebase)"
+msgstr "Google Analytics (Firebase)"
+
+#. js-lingui-id: cTS95j
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Google Client ID"
+msgstr "Google 客戶端 ID"
+
 #. js-lingui-id: 6eo66Q
 #: src/modules/settings/workspace/components/ToggleImpersonate.tsx
 msgid "Grant access to your workspace so we can troubleshoot problems."
@@ -4920,6 +5028,11 @@ msgstr "身份提供者"
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 msgid "Identity Provider Metadata XML"
 msgstr "身份提供者元數據 XML"
+
+#. js-lingui-id: UKGs5t
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "If a Workspace has NOT configured its own Advanced Settings, the system will fall back to reading these values."
+msgstr "如果工作區尚未配置自己的進階設定，系統將會讀取這些預設值。"
 
 #. js-lingui-id: ZfP/Ap
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
@@ -5593,6 +5706,11 @@ msgstr "限制可添加到此欄位的值的數量"
 msgid "Line"
 msgstr "線"
 
+#. js-lingui-id: DAfq12
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "LINE Integration"
+msgstr "LINE 整合"
+
 #. js-lingui-id: pQjjYo
 #: src/pages/onboarding/InviteTeam.tsx
 #: src/modules/workspace/components/WorkspaceInviteLink.tsx
@@ -5644,13 +5762,14 @@ msgid "Loading retention configuration..."
 msgstr "正在加載保留配置..."
 
 #. js-lingui-id: Z3FXyt
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminVersionDisplay.tsx
 #: src/modules/activities/timeline-activities/rows/message/components/EventCardMessage.tsx
 msgid "Loading..."
-msgstr "載入中……"
+msgstr "載入中..."
 
 #. js-lingui-id: FgAxTj
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -5679,6 +5798,11 @@ msgstr "登出"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 msgid "Logs"
 msgstr "日誌"
+
+#. js-lingui-id: icY4ek
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Long access token string..."
+msgstr "長存取權杖字串..."
 
 #. js-lingui-id: PTozs8
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
@@ -5828,6 +5952,11 @@ msgstr "MCP伺服器"
 msgid "Me"
 msgstr "我"
 
+#. js-lingui-id: SN4xj5
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Measurement ID"
+msgstr "測量 ID (Measurement ID)"
+
 #. js-lingui-id: 4zsVUY
 #: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
 msgid "Medium (112.5%)"
@@ -5893,6 +6022,11 @@ msgstr "消息同步和日曆同步不可用，因為服務已關閉"
 msgid "Message Sync is not available because the service is down"
 msgstr "消息同步不可用，因為服務已關閉"
 
+#. js-lingui-id: qE17Lk
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Messaging Sender ID"
+msgstr "Messaging Sender ID"
+
 #. js-lingui-id: 6GBt0m
 #: src/modules/settings/playground/constants/SettingsPlaygroundFormSchemaSelectOptions.ts
 #: src/modules/settings/accounts/components/SettingsAccountsMessageVisibilityCard.tsx
@@ -5921,6 +6055,11 @@ msgstr "方法"
 #: src/modules/settings/security/components/SettingsSecurityAuthBypassOptionsList.tsx
 msgid "Microsoft"
 msgstr ""
+
+#. js-lingui-id: TWnerA
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Microsoft Client ID"
+msgstr "Microsoft 客戶端 ID"
 
 #. js-lingui-id: eTUF28
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -6296,6 +6435,11 @@ msgstr "否"
 msgid "No {fieldLabel}"
 msgstr "無 {fieldLabel}"
 
+#. js-lingui-id: L1ZdTZ
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "No advanced settings"
+msgstr "無進階設定"
+
 #. js-lingui-id: f9b1sj
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 msgid "No agents assigned"
@@ -6340,6 +6484,11 @@ msgstr "沒有可選擇的欄位"
 #: src/pages/settings/domains/SettingsDomain.tsx
 msgid "No change detected"
 msgstr "未檢測到變更"
+
+#. js-lingui-id: ddZxFm
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "No changes to save"
+msgstr "沒有變更需要儲存"
 
 #. js-lingui-id: YFLMyY
 #: src/modules/settings/admin-panel/config-variables/components/SettingsAdminConfigVariables.tsx
@@ -6675,6 +6824,11 @@ msgstr ""
 msgid "Numbered list"
 msgstr ""
 
+#. js-lingui-id: ZTIiUU
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "OAuth Providers"
+msgstr "OAuth 登入提供商"
+
 #. js-lingui-id: pNEViR
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
 msgid "object"
@@ -6867,6 +7021,11 @@ msgstr "打開"
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Open Outlook"
 msgstr "打開Outlook"
+
+#. js-lingui-id: 16pk+G
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "OpenAI API Key"
+msgstr "OpenAI API 金鑰"
 
 #. js-lingui-id: OV5wZZ
 #: src/modules/object-metadata/components/NavigationDrawerOpenedSection.tsx
@@ -7325,6 +7484,11 @@ msgstr "個人資料"
 #: src/utils/title-utils.ts
 msgid "Profile - Settings"
 msgstr "檔案 - 設定"
+
+#. js-lingui-id: mSfwLL
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Project ID"
+msgstr "專案 ID"
 
 #. js-lingui-id: GVxbU6
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
@@ -7839,11 +8003,12 @@ msgid "Saturday"
 msgstr "星期六"
 
 #. js-lingui-id: tfDRzk
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/modules/settings/components/SaveAndCancelButtons/SaveButton.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableActionButtons.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Save"
-msgstr "保存"
+msgstr "儲存"
 
 #. js-lingui-id: q6QM8k
 #: src/modules/settings/workspace/components/BackgroundImageEditor.tsx
@@ -7879,6 +8044,12 @@ msgstr "結構"
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
 msgid "Schema name"
 msgstr "架構名稱"
+
+#. js-lingui-id: i192JR
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Scope:"
+msgstr "適用範圍："
 
 #. js-lingui-id: A1taO8
 #: src/modules/views/components/ViewBarFilterDropdownVectorSearchButton.tsx
@@ -8071,6 +8242,11 @@ msgstr "密鑰"
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 msgid "Secret (optional)"
 msgstr "密鑰（可選）"
+
+#. js-lingui-id: 5+k/sc
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Secret string"
+msgstr "密鑰字串"
 
 #. js-lingui-id: a3LDKx
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
@@ -8398,6 +8574,16 @@ msgstr "完全訪問設定"
 msgid "Settings permissions"
 msgstr "設定權限"
 
+#. js-lingui-id: gjNQhe
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Settings saved successfully"
+msgstr "設定儲存成功"
+
+#. js-lingui-id: 4qiLkl
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Settings seen in \"Other / Admin Panel / Config Variables\" serve as the server-wide default values. These typically originate from the 'env.local' or '.env' files configured during deployment."
+msgstr "您在「其他 / 管理面板 / 配置變量」中看到的設定是全伺服器範圍的預設值。這些通常源自部署時配置的 'env.local' 或 '.env' 檔案。"
+
 #. js-lingui-id: J2TlKG
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
 msgid "setup key"
@@ -8536,20 +8722,32 @@ msgstr "SMTP 配置"
 msgid "SMTP Encryption"
 msgstr "SMTP 加密"
 
+#. js-lingui-id: oQw4Jd
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "SMTP Host"
+msgstr "SMTP 主機 (Host)"
+
 #. js-lingui-id: UeDEV/
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "SMTP Password"
 msgstr "SMTP 密碼"
 
 #. js-lingui-id: 4waP7/
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "SMTP Port"
-msgstr "SMTP 埠"
+msgstr "SMTP 連接埠 (Port)"
 
 #. js-lingui-id: oKqFNn
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "SMTP Server"
 msgstr "SMTP 伺服器"
+
+#. js-lingui-id: 7JVIZ+
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "SMTP User"
+msgstr "SMTP 使用者"
 
 #. js-lingui-id: ISDzCY
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -8699,6 +8897,11 @@ msgstr "停止"
 msgid "Stop impersonating"
 msgstr "停止模擬"
 
+#. js-lingui-id: F7yX+c
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Storage Bucket"
+msgstr "Storage Bucket"
+
 #. js-lingui-id: qn1Xxf
 #: src/modules/settings/admin-panel/config-variables/utils/useSourceContent.ts
 msgid "Stored in database"
@@ -8839,6 +9042,11 @@ msgstr "星期日"
 #: src/modules/support/components/SupportButton.tsx
 msgid "Support"
 msgstr "支援"
+
+#. js-lingui-id: M3l7xe
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Suppose Admin Panel GOOGLE_AUTH is 'Client-A' (Default)."
+msgstr "假設管理面板的 GOOGLE_AUTH 是 'Client-A' (預設)。"
 
 #. js-lingui-id: UaISq3
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -9146,6 +9354,11 @@ msgstr "仍有一些行包含錯誤。提交時，包含錯誤的行將被忽略
 msgid "There was an error while updating password."
 msgstr "更新密碼時出現錯誤。"
 
+#. js-lingui-id: AidBuP
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "These settings affect ONLY the current Workspace."
+msgstr "這些設定僅影響當前的工作區。"
+
 #. js-lingui-id: Ed99mE
 #: src/modules/ai/components/ReasoningSummaryDisplay.tsx
 msgid "Thinking..."
@@ -9160,6 +9373,11 @@ msgstr "第三"
 #: src/modules/object-record/record-merge/utils/getPositionWordLabel.ts
 msgid "Third"
 msgstr "第三"
+
+#. js-lingui-id: id1y/0
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "This 'Default vs. Override' relationship ensures flexibility: most use defaults, while specific cases can be customized."
+msgstr "這種「預設 vs. 覆蓋」的關係確保了靈活性：大多數情況使用預設值，特殊情況則可自定義。"
 
 #. js-lingui-id: Ox1hE7
 #: src/modules/settings/profile/components/DeleteAccount.tsx
@@ -9202,6 +9420,11 @@ msgstr "此資料庫值覆蓋環境設置。"
 #: src/modules/object-record/record-index/components/RecordIndexRemoveSortingModal.tsx
 msgid "This is required to enable manual row reordering."
 msgstr "這是啟用手動排序的必要條件。"
+
+#. js-lingui-id: lNZQJS
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "This is the newly implemented feature. Its purpose is to \"override\" the defaults mentioned above."
+msgstr "這是新功能，目的是「覆蓋」上述的預設值。"
 
 #. js-lingui-id: vbLBMd
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -9695,6 +9918,16 @@ msgstr "用戶未登錄"
 msgid "Users"
 msgstr "用戶"
 
+#. js-lingui-id: lil26W
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Uses 'Client-A' for login."
+msgstr "使用 'Client-A' 登入。"
+
+#. js-lingui-id: MnEXbi
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Uses 'Client-B' for login."
+msgstr "使用 'Client-B' 登入。"
+
 #. js-lingui-id: vUr1/5
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Using default application value. Configure via environment variables."
@@ -10036,6 +10269,7 @@ msgstr "Workflow"
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/SettingsWorkspace.tsx
 #: src/pages/settings/SettingsBilling.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
@@ -10076,6 +10310,16 @@ msgstr "Workflow"
 #: src/modules/favorites/components/WorkspaceFavorites.tsx
 msgid "Workspace"
 msgstr "工作區"
+
+#. js-lingui-id: 6xgJ6w
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Workspace 1"
+msgstr "工作區 1"
+
+#. js-lingui-id: Mwj8JI
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Workspace 2"
+msgstr "工作區 2"
 
 #. js-lingui-id: ZcJVbJ
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
@@ -10411,26 +10655,20 @@ msgstr "附檔"
 msgid "電子郵件"
 msgstr "電子郵件"
 
-msgid "Advanced Settings"
-msgstr "進階設定"
+msgid "Anthropic API Key"
+msgstr "Anthropic API 金鑰"
+
+msgid "xAI API Key"
+msgstr "xAI API 金鑰"
+
+msgid "Disable SMTP TLS"
+msgstr "停用 SMTP TLS"
 
 msgid "Email Provider (SMTP)"
-msgstr "郵件服務商 (SMTP)"
+msgstr "郵件服務提供商 (SMTP)"
 
 msgid "Configure custom SMTP server for sending emails."
-msgstr "設定用於發送郵件的自訂 SMTP 伺服器。"
-
-msgid "SMTP Host"
-msgstr "SMTP 主機 (Host)"
-
-msgid "SMTP Port"
-msgstr "SMTP 連接埠 (Port)"
-
-msgid "SMTP User"
-msgstr "SMTP 使用者"
-
-msgid "SMTP Password"
-msgstr "SMTP 密碼"
+msgstr "設定自定義 SMTP 郵件伺服器。"
 
 msgid "LINE Integration"
 msgstr "LINE 整合"
@@ -10438,56 +10676,45 @@ msgstr "LINE 整合"
 msgid "Configure LINE Messaging API credentials."
 msgstr "設定 LINE Messaging API 憑證。"
 
-msgid "Channel Access Token"
-msgstr "Channel Access Token"
-
-msgid "Long access token string..."
-msgstr "長存取權杖字串..."
-
-msgid "Channel Secret"
-msgstr "Channel Secret"
-
-msgid "Secret string"
-msgstr "密鑰字串"
-
 msgid "OAuth Providers"
-msgstr "OAuth 登入提供商"
+msgstr "OAuth 提供商"
 
 msgid "Client IDs for external authentication."
-msgstr "用於外部驗證的客戶端 ID。"
+msgstr "外部身份驗證的客戶端 ID。"
 
-msgid "Google Client ID"
-msgstr "Google 客戶端 ID"
+msgid "AI Integration"
+msgstr "AI 整合"
+
+msgid "Configure AI provider keys."
+msgstr "設定 AI 提供商金鑰。"
+
+msgid "Channel Access Token"
+msgstr "頻道存取權杖 (Channel Access Token)"
+
+msgid "Channel Secret"
+msgstr "頻道密鑰 (Channel Secret)"
 
 msgid "Microsoft Client ID"
-msgstr "Microsoft 客戶端 ID"
+msgstr "微軟 Client ID"
 
-msgid "Loading..."
-msgstr "載入中..."
+msgid "Microsoft Client Secret"
+msgstr "微軟 Client Secret"
 
-msgid "Google Analytics (Firebase)"
-msgstr "Google Analytics (Firebase)"
+msgid "Google Client ID"
+msgstr "Google Client ID"
 
-msgid "Configure Firebase Analytics credentials."
-msgstr "設定 Firebase Analytics 憑證。"
+msgid "Google Client Secret"
+msgstr "Google Client Secret"
 
-msgid "API Key"
-msgstr "API Key"
+msgid "SMTP Host"
+msgstr "SMTP 主機"
 
-msgid "Auth Domain"
-msgstr "Auth Domain"
+msgid "SMTP Port"
+msgstr "SMTP 埠號"
 
-msgid "Project ID"
-msgstr "專案 ID"
+msgid "SMTP User"
+msgstr "SMTP 使用者"
 
-msgid "Storage Bucket"
-msgstr "Storage Bucket"
+msgid "SMTP Password"
+msgstr "SMTP 密碼"
 
-msgid "Messaging Sender ID"
-msgstr "Messaging Sender ID"
-
-msgid "App ID"
-msgstr "應用程式 ID (App ID)"
-
-msgid "Measurement ID"
-msgstr "測量 ID (Measurement ID)"

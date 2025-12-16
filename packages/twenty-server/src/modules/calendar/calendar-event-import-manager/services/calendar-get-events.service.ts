@@ -6,8 +6,8 @@ import { CalDavGetEventsService } from 'src/modules/calendar/calendar-event-impo
 import { GoogleCalendarGetEventsService } from 'src/modules/calendar/calendar-event-import-manager/drivers/google-calendar/services/google-calendar-get-events.service';
 import { MicrosoftCalendarGetEventsService } from 'src/modules/calendar/calendar-event-import-manager/drivers/microsoft-calendar/services/microsoft-calendar-get-events.service';
 import {
-  CalendarEventImportException,
-  CalendarEventImportExceptionCode,
+    CalendarEventImportException,
+    CalendarEventImportExceptionCode,
 } from 'src/modules/calendar/calendar-event-import-manager/exceptions/calendar-event-import.exception';
 import { type FetchedCalendarEvent } from 'src/modules/calendar/common/types/fetched-calendar-event';
 import { type ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
@@ -37,12 +37,14 @@ export class CalendarGetCalendarEventsService {
       | 'connectionParameters'
       | 'handle'
     >,
+    workspaceId: string,
     syncCursor?: string,
   ): Promise<GetCalendarEventsResponse> {
     switch (connectedAccount.provider) {
       case ConnectedAccountProvider.GOOGLE:
         return this.googleCalendarGetEventsService.getCalendarEvents(
           connectedAccount,
+          workspaceId,
           syncCursor,
         );
       case ConnectedAccountProvider.MICROSOFT:

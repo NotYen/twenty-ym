@@ -24,11 +24,13 @@ export class GoogleCalendarGetEventsService {
       ConnectedAccountWorkspaceEntity,
       'provider' | 'refreshToken' | 'id'
     >,
+    workspaceId: string,
     syncCursor?: string,
   ): Promise<GetCalendarEventsResponse> {
     const oAuth2Client =
       await this.oAuth2ClientManagerService.getGoogleOAuth2Client(
         connectedAccount,
+        workspaceId,
       );
 
     const googleCalendarClient = google.calendar({

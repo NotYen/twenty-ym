@@ -17,4 +17,5 @@ export type GetMessageListsArgs = {
     MessageFolderWorkspaceEntity,
     'name' | 'syncCursor' | 'id' | 'isSynced' | 'isSentFolder' | 'externalId'
   >[];
+  workspaceId: string;
 };

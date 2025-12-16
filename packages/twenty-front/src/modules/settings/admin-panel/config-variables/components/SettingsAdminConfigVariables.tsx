@@ -6,18 +6,24 @@ import { CONFIG_VARIABLE_SOURCE_OPTIONS } from '@/settings/admin-panel/config-va
 import { configVariableGroupFilterState } from '@/settings/admin-panel/config-variables/states/configVariableGroupFilterState';
 import { configVariableSourceFilterState } from '@/settings/admin-panel/config-variables/states/configVariableSourceFilterState';
 import { showHiddenGroupVariablesState } from '@/settings/admin-panel/config-variables/states/showHiddenGroupVariablesState';
+import { useModal } from '@/ui/layout/modal/hooks/useModal';
 import styled from '@emotion/styled';
 import { t } from '@lingui/core/macro';
 import { useMemo, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { H2Title } from 'twenty-ui/display';
+import { H2Title, IconInfoCircle } from 'twenty-ui/display';
+import { IconButton } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import {
-  ConfigSource,
-  useGetConfigVariablesGroupedQuery,
+    ConfigSource,
+    useGetConfigVariablesGroupedQuery,
 } from '~/generated-metadata/graphql';
 import { normalizeSearchText } from '~/utils/normalizeSearchText';
 import { ConfigVariableSearchInput } from './ConfigVariableSearchInput';
+import {
+    CONFIG_VARIABLES_INFO_MODAL_ID,
+    ConfigVariablesInfoModal,
+} from './ConfigVariablesInfoModal';
 
 const StyledControlsContainer = styled.div`
   display: flex;
@@ -29,12 +35,23 @@ const StyledTableContainer = styled.div`
   margin-bottom: 24px;
 `;
 
+const StyledHeaderContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(2)};
+  h2 {
+    margin-bottom: 0;
+  }
+`;
+
 export const SettingsAdminConfigVariables = () => {
+
   const { data: configVariables, loading: configVariablesLoading } =
     useGetConfigVariablesGroupedQuery({
       fetchPolicy: 'network-only',
     });
 
+  const { openModal } = useModal();
   const [search, setSearch] = useState('');
   const [showHiddenGroupVariables, setShowHiddenGroupVariables] =
     useRecoilState(showHiddenGroupVariablesState);
@@ -159,7 +176,20 @@ export const SettingsAdminConfigVariables = () => {
   return (
     <>
       <Section>
-        <H2Title title={t`Config Variables`} />
+        <StyledHeaderContainer>
+          <H2Title
+            title={t`Config Variables`}
+            adornment={
+              <IconButton
+                Icon={IconInfoCircle}
+                variant="tertiary"
+                onClick={() => openModal(CONFIG_VARIABLES_INFO_MODAL_ID)}
+                aria-label={t`Configuration Hierarchy Info`}
+              />
+            }
+          />
+        </StyledHeaderContainer>
+        <ConfigVariablesInfoModal />
 
         <ConfigVariableFilterContainer activeChips={activeChips}>
           <StyledControlsContainer>

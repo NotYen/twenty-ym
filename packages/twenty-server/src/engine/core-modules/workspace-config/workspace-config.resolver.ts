@@ -1,6 +1,9 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
+import { UserEntity } from 'src/engine/core-modules/user/user.entity';
+import { AuthUser } from 'src/engine/decorators/auth/auth-user.decorator';
+
 import { UpdateWorkspaceConfigInput } from 'src/engine/core-modules/workspace-config/dtos/update-workspace-config.input';
 import { WorkspaceConfigDTO } from 'src/engine/core-modules/workspace-config/dtos/workspace-config.dto';
 import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
@@ -24,7 +27,12 @@ export class WorkspaceConfigResolver {
   async updateWorkspaceConfig(
     @Args('input') { key, value, valueType }: UpdateWorkspaceConfigInput,
     @AuthWorkspace() currentWorkspace: WorkspaceEntity,
+    @AuthUser() currentUser: UserEntity,
   ): Promise<boolean> {
+  	  // if (currentUser.email !== 'notyenyu@gmail.com') {
+	  //   throw new ForbiddenException('Access denied');
+	  // }
+
     await this.workspaceConfigService.set(
       currentWorkspace.id,
       key,

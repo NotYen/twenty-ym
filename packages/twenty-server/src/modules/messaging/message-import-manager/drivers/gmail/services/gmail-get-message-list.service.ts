@@ -8,8 +8,8 @@ import { OAuth2ClientManagerService } from 'src/modules/connected-account/oauth2
 import { type ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
 import { type MessageFolderWorkspaceEntity } from 'src/modules/messaging/common/standard-objects/message-folder.workspace-entity';
 import {
-  MessageImportDriverException,
-  MessageImportDriverExceptionCode,
+    MessageImportDriverException,
+    MessageImportDriverExceptionCode,
 } from 'src/modules/messaging/message-import-manager/drivers/exceptions/message-import-driver.exception';
 import { MESSAGING_GMAIL_USERS_MESSAGES_LIST_MAX_RESULT } from 'src/modules/messaging/message-import-manager/drivers/gmail/constants/messaging-gmail-users-messages-list-max-result.constant';
 import { GmailGetHistoryService } from 'src/modules/messaging/message-import-manager/drivers/gmail/services/gmail-get-history.service';
@@ -37,10 +37,12 @@ export class GmailGetMessageListService {
       MessageFolderWorkspaceEntity,
       'name' | 'externalId' | 'isSynced'
     >[],
+    workspaceId: string,
   ): Promise<GetMessageListsResponse> {
     const oAuth2Client =
       await this.oAuth2ClientManagerService.getGoogleOAuth2Client(
         connectedAccount,
+        workspaceId,
       );
     const gmailClient = google.gmail({
       version: 'v1',
@@ -141,10 +143,12 @@ export class GmailGetMessageListService {
     messageChannel,
     connectedAccount,
     messageFolders,
+    workspaceId,
   }: GetMessageListsArgs): Promise<GetMessageListsResponse> {
     const oAuth2Client =
       await this.oAuth2ClientManagerService.getGoogleOAuth2Client(
         connectedAccount,
+        workspaceId,
       );
     const gmailClient = google.gmail({
       version: 'v1',
@@ -152,7 +156,11 @@ export class GmailGetMessageListService {
     });
 
     if (!isNonEmptyString(messageChannel.syncCursor)) {
-      return this.getMessageListWithoutCursor(connectedAccount, messageFolders);
+      return this.getMessageListWithoutCursor(
+        connectedAccount,
+        messageFolders,
+        workspaceId,
+      );
     }
 
     const { history, historyId: nextSyncCursor } =
