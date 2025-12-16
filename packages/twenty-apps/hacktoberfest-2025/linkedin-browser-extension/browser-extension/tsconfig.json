@@ -1,5 +1,5 @@
 {
-  "extends": "./.wxt/tsconfig.json",
+  "extends": "../../../../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",

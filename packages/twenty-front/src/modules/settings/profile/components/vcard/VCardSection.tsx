@@ -80,6 +80,15 @@ export const VCardSection = () => {
   const { records: personRecords, loading } = useFindManyRecords({
     objectNameSingular: 'person',
     filter: personEmailFilter,
+    //KantCommit,but conflict [area start]
+    // filter: {
+    //   emails: {
+    //             // primaryEmail: {
+    //     //   eq: currentUser?.email ?? '',
+    //     // },
+    //   },
+    // },
+    //KantCommit,but conflict [area end]
     limit: 1,
     skip: !currentUser?.email,
   });

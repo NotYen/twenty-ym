@@ -17,6 +17,7 @@ import { DataloaderService } from 'src/engine/dataloaders/dataloader.service';
 import { MetadataEngineModule } from 'src/engine/metadata-modules/metadata-engine.module';
 import { WorkspaceMigrationModule } from 'src/engine/metadata-modules/workspace-migration/workspace-migration.module';
 import { WorkspaceMigrationRunnerModule } from 'src/engine/workspace-manager/workspace-migration-runner/workspace-migration-runner.module';
+import { LineIntegrationModule } from 'src/modules/line-integration/line-integration.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { WorkspaceMigrationRunnerModule } from 'src/engine/workspace-manager/wor
     MetadataEngineModule,
     WorkspaceMigrationRunnerModule,
     WorkspaceMigrationModule,
+    LineIntegrationModule,
   ],
 })
 export class MetadataGraphQLApiModule {}
