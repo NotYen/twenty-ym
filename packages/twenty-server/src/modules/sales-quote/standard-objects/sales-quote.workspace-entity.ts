@@ -25,8 +25,13 @@ import {
     type FieldTypeAndNameMetadata,
     getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
+import { AttachmentWorkspaceEntity } from 'src/modules/attachment/standard-objects/attachment.workspace-entity';
 import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/company.workspace-entity';
+import { FavoriteWorkspaceEntity } from 'src/modules/favorite/standard-objects/favorite.workspace-entity';
+import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/task-target.workspace-entity';
+import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { SalesQuoteLineItemWorkspaceEntity } from './sales-quote-line-item.workspace-entity';
 
 const NAME_FIELD_NAME = 'mingCheng';
@@ -235,4 +240,67 @@ export class SalesQuoteWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsSystem()
   @WorkspaceFieldIndex({ indexType: IndexType.GIN })
   searchVector: string;
+
+  @WorkspaceRelation({
+    standardId: SALES_QUOTE_STANDARD_FIELD_IDS.timelineActivities,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Timeline Activities`,
+    description: msg`Timeline Activities linked to the sales quote`,
+    icon: 'IconTimelineEvent',
+    inverseSideTarget: () => TimelineActivityWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  timelineActivities: Relation<TimelineActivityWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: SALES_QUOTE_STANDARD_FIELD_IDS.attachments,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Attachments`,
+    description: msg`Attachments linked to the sales quote`,
+    icon: 'IconFileImport',
+    inverseSideTarget: () => AttachmentWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  attachments: Relation<AttachmentWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: SALES_QUOTE_STANDARD_FIELD_IDS.favorites,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Favorites`,
+    description: msg`Favorites linked to the sales quote`,
+    icon: 'IconHeart',
+    inverseSideTarget: () => FavoriteWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  favorites: Relation<FavoriteWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: SALES_QUOTE_STANDARD_FIELD_IDS.noteTargets,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Notes`,
+    description: msg`Notes tied to the sales quote`,
+    icon: 'IconNotes',
+    inverseSideTarget: () => NoteTargetWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsFieldUIReadOnly()
+  noteTargets: Relation<NoteTargetWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: SALES_QUOTE_STANDARD_FIELD_IDS.taskTargets,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Tasks`,
+    description: msg`Tasks tied to the sales quote`,
+    icon: 'IconCheckbox',
+    inverseSideTarget: () => TaskTargetWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsFieldUIReadOnly()
+  taskTargets: Relation<TaskTargetWorkspaceEntity[]>;
 }

@@ -5,6 +5,7 @@ import { CronRegisterAllCommand } from 'src/database/commands/cron-register-all.
 import { DataSeedWorkspaceCommand } from 'src/database/commands/data-seed-dev-workspace.command';
 import { ConfirmationQuestion } from 'src/database/commands/questions/confirmation.question';
 import { SeedNewCoreViewsCommand } from 'src/database/commands/seed-new-core-views.command';
+import { SeedSalesQuoteViewsCommand } from 'src/database/commands/seed-sales-quote-views.command';
 import { UpgradeVersionCommandModule } from 'src/database/commands/upgrade-version-command/upgrade-version-command.module';
 import { TypeORMModule } from 'src/database/typeorm/typeorm.module';
 import { ApiKeyModule } from 'src/engine/core-modules/api-key/api-key.module';

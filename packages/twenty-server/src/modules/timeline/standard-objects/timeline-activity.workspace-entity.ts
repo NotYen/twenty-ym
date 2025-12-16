@@ -1,6 +1,6 @@
 import { msg } from '@lingui/core/macro';
-import { FieldMetadataType, RelationOnDeleteAction } from 'twenty-shared/types';
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
+import { FieldMetadataType, RelationOnDeleteAction } from 'twenty-shared/types';
 
 import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
 import { Relation } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/relation.interface';
@@ -22,6 +22,8 @@ import { DashboardWorkspaceEntity } from 'src/modules/dashboard/standard-objects
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { SalesQuoteLineItemWorkspaceEntity } from 'src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity';
+import { SalesQuoteWorkspaceEntity } from 'src/modules/sales-quote/standard-objects/sales-quote.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
 import { WorkflowRunWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-run.workspace-entity';
 import { WorkflowVersionWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-version.workspace-entity';
@@ -258,6 +260,38 @@ export class TimelineActivityWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('dashboard')
   dashboardId: string | null;
+
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.salesQuote,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Sales Quote`,
+    description: msg`Event sales quote`,
+    icon: 'IconFileInvoice',
+    inverseSideTarget: () => SalesQuoteWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  salesQuote: Relation<SalesQuoteWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('salesQuote')
+  salesQuoteId: string | null;
+
+  @WorkspaceRelation({
+    standardId: TIMELINE_ACTIVITY_STANDARD_FIELD_IDS.salesQuoteLineItem,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Sales Quote Line Item`,
+    description: msg`Event sales quote line item`,
+    icon: 'IconList',
+    inverseSideTarget: () => SalesQuoteLineItemWorkspaceEntity,
+    inverseSideFieldKey: 'timelineActivities',
+    onDelete: RelationOnDeleteAction.SET_NULL,
+  })
+  @WorkspaceIsNullable()
+  salesQuoteLineItem: Relation<SalesQuoteLineItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('salesQuoteLineItem')
+  salesQuoteLineItemId: string | null;
 
   @WorkspaceDynamicRelation({
     type: RelationType.MANY_TO_ONE,

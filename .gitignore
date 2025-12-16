@@ -74,12 +74,5 @@ packages/twenty-server/.env.bak
 packages/twenty-server/.env.tmp
 
 # Local secret env files (not tracked)
-docker/env.aws
-docker/env.aws.local
-docker/env.local
-docker/env.local.local
-docker/Sync-to-AWS/.env
-docker/Sync-to-AWS/.env.local
-docker/Sync-to-AWS/.env-aws
-docker/Sync-to-AWS/.env-aws.local
-docker/Sync-to-AWS/history/
+docker/dev-flow/local_build_for_docker/env.local
+docker/dev-flow/aws/env.aws

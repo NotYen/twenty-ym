@@ -4,10 +4,13 @@ set -euo pipefail
 
 DEV_FLOW_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-BACKUP_SCRIPT="${DEV_FLOW_DIR}/backup-local-data.sh"
-RUN_LOCAL_SCRIPT="${DEV_FLOW_DIR}/run-local.sh"
-BUILD_SCRIPT="${DEV_FLOW_DIR}/build-amd64-images.sh"
-DEPLOY_SCRIPT="${DEV_FLOW_DIR}/deploy-to-aws.sh"
+# Local Docker scripts
+BACKUP_SCRIPT="${DEV_FLOW_DIR}/local_build_for_docker/backup-local-data.sh"
+RUN_LOCAL_SCRIPT="${DEV_FLOW_DIR}/local_build_for_docker/run-local.sh"
+
+# AWS scripts
+BUILD_SCRIPT="${DEV_FLOW_DIR}/aws/build-amd64-images.sh"
+DEPLOY_SCRIPT="${DEV_FLOW_DIR}/aws/deploy-to-aws.sh"
 
 AWS_IP_DEFAULT="52.195.151.185"
 
@@ -52,7 +55,7 @@ Steps:
   2. Rebuild local stack (docker compose up -d --build)
   3. Build linux/amd64 images (backend & frontend)
   4. Optionally push to Docker Hub
-  5. Deploy to AWS (optionally sync data)
+  5. Deploy to AWS
 EOF
 echo
 
@@ -96,19 +99,12 @@ fi
 read -r -p "AWS IP address [${AWS_IP_DEFAULT}]: " aws_ip_input
 aws_ip_input="${aws_ip_input:-${AWS_IP_DEFAULT}}"
 
-SYNC_FLAG=""
-if read_yes_no "Synchronize local DB to AWS after deployment? (overwrites AWS data!)" "n"; then
-  SYNC_FLAG="--sync-data"
-fi
-
 "${DEPLOY_SCRIPT}" \
   --backend-tag "${BACKEND_TAG}" \
   --frontend-tag "${FRONTEND_TAG}" \
-  --aws-ip "${aws_ip_input}" \
-  ${SYNC_FLAG}
+  --aws-ip "${aws_ip_input}"
 
 cat <<EOF
 
 ✅ Full release flow completed.
 EOF
-

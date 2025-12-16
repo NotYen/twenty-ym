@@ -1,4 +1,4 @@
-import { type ExecutionContext, Injectable } from '@nestjs/common';
+import { type ExecutionContext, Injectable, Logger } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -21,6 +21,8 @@ import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.ent
 export class GoogleAPIsOauthExchangeCodeForTokenGuard extends AuthGuard(
   'google-apis',
 ) {
+  private readonly logger = new Logger(GoogleAPIsOauthExchangeCodeForTokenGuard.name);
+
   constructor(
     private readonly guardRedirectService: GuardRedirectService,
     private readonly twentyConfigService: TwentyConfigService,
@@ -61,22 +63,47 @@ export class GoogleAPIsOauthExchangeCodeForTokenGuard extends AuthGuard(
           state.transientToken,
         );
 
-      const clientId =
-        (await this.workspaceConfigService.get(
-          workspaceId,
-          'AUTH_GOOGLE_CLIENT_ID',
-        )) || this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_ID');
+      // Debug: Log workspace config lookup
+      const wsClientId = await this.workspaceConfigService.get(
+        workspaceId,
+        'AUTH_GOOGLE_CLIENT_ID',
+      );
+      const wsClientSecret = await this.workspaceConfigService.get(
+        workspaceId,
+        'AUTH_GOOGLE_CLIENT_SECRET',
+      );
+      const wsCallbackUrl = await this.workspaceConfigService.get(
+        workspaceId,
+        'AUTH_GOOGLE_APIS_CALLBACK_URL',
+      );
 
-      const clientSecret =
-        (await this.workspaceConfigService.get(
-          workspaceId,
-          'AUTH_GOOGLE_CLIENT_SECRET',
-        )) || this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_SECRET');
+      const envClientId = this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_ID');
+      const envClientSecret = this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_SECRET');
+      const envCallbackUrl = this.twentyConfigService.get('AUTH_GOOGLE_APIS_CALLBACK_URL');
+
+      this.logger.debug('========== OAuth Config Debug (ExchangeCode) ==========');
+      this.logger.debug(`WorkspaceId: ${workspaceId}`);
+      this.logger.debug(`Workspace Config - ClientId: ${wsClientId ? `${wsClientId.substring(0, 20)}...` : 'NULL'}`);
+      this.logger.debug(`Workspace Config - ClientSecret: ${wsClientSecret ? 'SET' : 'NULL'}`);
+      this.logger.debug(`Workspace Config - CallbackUrl: ${wsCallbackUrl || 'NULL'}`);
+      this.logger.debug(`Env Config - ClientId: ${envClientId ? `${envClientId.substring(0, 20)}...` : 'NULL'}`);
+      this.logger.debug(`Env Config - ClientSecret: ${envClientSecret ? 'SET' : 'NULL'}`);
+      this.logger.debug(`Env Config - CallbackUrl: ${envCallbackUrl || 'NULL'}`);
+
+      const clientId = wsClientId || envClientId;
+      const clientSecret = wsClientSecret || envClientSecret;
+      const callbackUrl = wsCallbackUrl || envCallbackUrl;
+
+      this.logger.debug(`Final - ClientId: ${clientId ? `${clientId.substring(0, 20)}...` : 'NULL'}`);
+      this.logger.debug(`Final - ClientSecret: ${clientSecret ? 'SET' : 'NULL'}`);
+      this.logger.debug(`Final - CallbackUrl: ${callbackUrl || 'NULL'}`);
+      this.logger.debug('======================================================');
 
       if (clientId && clientSecret) {
         request.googleConfigOverride = {
           clientID: clientId,
           clientSecret: clientSecret,
+          callbackURL: callbackUrl,
         };
       }
 

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'crypto';
@@ -11,6 +11,7 @@ import { WorkspaceConfigEntity } from 'src/engine/core-modules/workspace-config/
 export class WorkspaceConfigService {
   private readonly algorithm = 'aes-256-cbc';
   private readonly secretKey: Buffer;
+  private readonly logger = new Logger(WorkspaceConfigService.name);
 
   constructor(
     @InjectRepository(WorkspaceConfigEntity)
@@ -26,19 +27,24 @@ export class WorkspaceConfigService {
   }
 
   async get(workspaceId: string, key: string, defaultValue?: string): Promise<string | null> {
+    this.logger.debug(`[GET] Looking up key "${key}" for workspace ${workspaceId.substring(0, 8)}...`);
+
     const config = await this.workspaceConfigRepository.findOne({
       where: { workspaceId, key },
     });
 
     if (!config) {
+      this.logger.debug(`[GET] Key "${key}" not found in workspace config, returning ${defaultValue ? 'defaultValue' : 'null'}`);
       return defaultValue ?? null;
     }
 
     try {
-      return this.decrypt(config.value);
+      const decryptedValue = this.decrypt(config.value);
+      this.logger.debug(`[GET] Key "${key}" found and decrypted successfully (length: ${decryptedValue?.length || 0})`);
+      return decryptedValue;
     } catch (error) {
-        console.error(`Failed to decrypt config value for key ${key} in workspace ${workspaceId}`, error);
-        return null;
+      this.logger.error(`[GET] Failed to decrypt config value for key ${key} in workspace ${workspaceId}`, error);
+      return null;
     }
   }
 

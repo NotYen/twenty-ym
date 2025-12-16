@@ -1,6 +1,6 @@
 import { msg } from '@lingui/core/macro';
-import { FieldMetadataType, RelationOnDeleteAction } from 'twenty-shared/types';
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
+import { FieldMetadataType, RelationOnDeleteAction } from 'twenty-shared/types';
 
 import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
 import { Relation } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/relation.interface';
@@ -22,6 +22,7 @@ import { FavoriteFolderWorkspaceEntity } from 'src/modules/favorite-folder/stand
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { SalesQuoteWorkspaceEntity } from 'src/modules/sales-quote/standard-objects/sales-quote.workspace-entity';
 import { TaskWorkspaceEntity } from 'src/modules/task/standard-objects/task.workspace-entity';
 import { WorkflowRunWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-run.workspace-entity';
 import { WorkflowVersionWorkspaceEntity } from 'src/modules/workflow/common/standard-objects/workflow-version.workspace-entity';
@@ -225,6 +226,22 @@ export class FavoriteWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('dashboard')
   dashboardId: string;
+
+  @WorkspaceRelation({
+    standardId: FAVORITE_STANDARD_FIELD_IDS.salesQuote,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Sales Quote`,
+    description: msg`Favorite sales quote`,
+    icon: 'IconFileInvoice',
+    inverseSideTarget: () => SalesQuoteWorkspaceEntity,
+    inverseSideFieldKey: 'favorites',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  salesQuote: Relation<SalesQuoteWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('salesQuote')
+  salesQuoteId: string;
 
   @WorkspaceField({
     standardId: FAVORITE_STANDARD_FIELD_IDS.view,

@@ -8,6 +8,7 @@ import { ChromeExtensionSidecarEffect } from '@/chrome-extension-sidecar/compone
 import { ChromeExtensionSidecarProvider } from '@/chrome-extension-sidecar/components/ChromeExtensionSidecarProvider';
 import { ClientConfigProvider } from '@/client-config/components/ClientConfigProvider';
 import { ClientConfigProviderEffect } from '@/client-config/components/ClientConfigProviderEffect';
+import { ClientConfigWorkspaceRefreshEffect } from '@/client-config/components/ClientConfigWorkspaceRefreshEffect';
 import { MainContextStoreProvider } from '@/context-store/components/MainContextStoreProvider';
 import { ErrorMessageEffect } from '@/error-handler/components/ErrorMessageEffect';
 import { PromiseRejectionEffect } from '@/error-handler/components/PromiseRejectionEffect';
@@ -40,6 +41,7 @@ export const AppRouterProviders = () => {
         <ClientConfigProviderEffect />
         <UserAndViewsProviderEffect />
         <WorkspaceProviderEffect />
+        <ClientConfigWorkspaceRefreshEffect />
         <ClientConfigProvider>
           <CaptchaProvider>
             <ChromeExtensionSidecarEffect />

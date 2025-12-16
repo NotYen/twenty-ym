@@ -45,6 +45,8 @@ export type GoogleRequest = Omit<
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
+  private readonly logger = new Logger(GoogleStrategy.name);
+
   constructor(
     private readonly twentyConfigService: TwentyConfigService,
     private readonly workspaceConfigService: WorkspaceConfigService,
@@ -62,6 +64,9 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   async authenticate(req: Request, options: any) {
     const workspaceId = req.params.workspaceId || getWorkspaceIdFromState(req);
 
+    this.logger.debug('========== Google SSO Auth Debug ==========');
+    this.logger.debug(`WorkspaceId from request: ${workspaceId || 'NULL'}`);
+
     let clientID: string | null | undefined;
     let clientSecret: string | null | undefined;
 
@@ -74,14 +79,25 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
         workspaceId,
         'AUTH_GOOGLE_CLIENT_SECRET',
       );
+      this.logger.debug(`Workspace Config - ClientID: ${clientID ? `${clientID.substring(0, 20)}...` : 'NULL'}`);
+      this.logger.debug(`Workspace Config - ClientSecret: ${clientSecret ? 'SET' : 'NULL'}`);
     }
 
     if (clientID && clientSecret) {
+      const callbackURL = (await this.workspaceConfigService.get(
+        workspaceId,
+        'AUTH_GOOGLE_CALLBACK_URL',
+      )) || this.twentyConfigService.get('AUTH_GOOGLE_CALLBACK_URL');
+
+      this.logger.debug(`Using workspace-specific OAuth config`);
+      this.logger.debug(`Final CallbackURL: ${callbackURL}`);
+      this.logger.debug('============================================');
+
       const dynamicStrategy = new Strategy(
         {
           clientID,
           clientSecret,
-          callbackURL: this.twentyConfigService.get('AUTH_GOOGLE_CALLBACK_URL'),
+          callbackURL,
           scope: ['email', 'profile'],
           passReqToCallback: true,
         },
@@ -99,6 +115,11 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
         }),
       });
     } else {
+      this.logger.debug(`Using default OAuth config (no workspace override)`);
+      this.logger.debug(`Default ClientID: ${this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_ID')?.substring(0, 20)}...`);
+      this.logger.debug(`Default CallbackURL: ${this.twentyConfigService.get('AUTH_GOOGLE_CALLBACK_URL')}`);
+      this.logger.debug('============================================');
+
       options = {
         ...options,
         state: JSON.stringify({

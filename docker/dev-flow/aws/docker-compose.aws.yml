@@ -1,0 +1,70 @@
+name: Y-CRM-Company-docker
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: Y-CRM-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    container_name: Y-CRM-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/data
+
+  backend:
+    image: ycrm/y-crm:backend-b_20251119_v1_aws_image
+    container_name: Y-CRM-backend
+    depends_on:
+      postgres:
+        condition: service_started
+      redis:
+        condition: service_started
+    env_file:
+      - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+    ports:
+      - "${BACKEND_PORT:-8867}:8867"
+
+  worker:
+    image: ycrm/y-crm:backend-b_20251119_v1_aws_image
+    container_name: Y-CRM-worker
+    depends_on:
+      postgres:
+        condition: service_started
+      redis:
+        condition: service_started
+    env_file:
+      - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+    working_dir: /app/packages/twenty-server
+    command: ["node", "dist/src/queue-worker/queue-worker.js"]
+
+  frontend:
+    image: ycrm/y-crm:frontend-f_20251119_v1_aws_image
+    container_name: Y-CRM-frontend
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT:-8866}:80"
+    env_file:
+      - ./.env
+    environment:
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+
+volumes:
+  postgres-data:
+  redis-data:

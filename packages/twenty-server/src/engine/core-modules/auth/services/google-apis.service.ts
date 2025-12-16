@@ -4,8 +4,8 @@ import { ConnectedAccountProvider } from 'twenty-shared/types';
 import { v4 } from 'uuid';
 
 import {
-  AuthException,
-  AuthExceptionCode,
+    AuthException,
+    AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { CreateCalendarChannelService } from 'src/engine/core-modules/auth/services/create-calendar-channel.service';
 import { CreateConnectedAccountService } from 'src/engine/core-modules/auth/services/create-connected-account.service';
@@ -21,24 +21,24 @@ import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twent
 import { type WorkspaceEntityManager } from 'src/engine/twenty-orm/entity-manager/workspace-entity-manager';
 import { TwentyORMGlobalManager } from 'src/engine/twenty-orm/twenty-orm-global.manager';
 import {
-  CalendarEventListFetchJob,
-  type CalendarEventListFetchJobData,
+    CalendarEventListFetchJob,
+    type CalendarEventListFetchJobData,
 } from 'src/modules/calendar/calendar-event-import-manager/jobs/calendar-event-list-fetch.job';
 import {
-  CalendarChannelSyncStage,
-  type CalendarChannelVisibility,
-  type CalendarChannelWorkspaceEntity,
+    CalendarChannelSyncStage,
+    type CalendarChannelVisibility,
+    type CalendarChannelWorkspaceEntity,
 } from 'src/modules/calendar/common/standard-objects/calendar-channel.workspace-entity';
 import { AccountsToReconnectService } from 'src/modules/connected-account/services/accounts-to-reconnect.service';
 import { type ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
 import {
-  MessageChannelSyncStage,
-  type MessageChannelVisibility,
-  type MessageChannelWorkspaceEntity,
+    MessageChannelSyncStage,
+    type MessageChannelVisibility,
+    type MessageChannelWorkspaceEntity,
 } from 'src/modules/messaging/common/standard-objects/message-channel.workspace-entity';
 import {
-  MessagingMessageListFetchJob,
-  type MessagingMessageListFetchJobData,
+    MessagingMessageListFetchJob,
+    type MessagingMessageListFetchJobData,
 } from 'src/modules/messaging/message-import-manager/jobs/messaging-message-list-fetch.job';
 import { WorkspaceMemberWorkspaceEntity } from 'src/modules/workspace-member/standard-objects/workspace-member.workspace-entity';
 
@@ -118,6 +118,16 @@ export class GoogleAPIsService {
       );
 
     if (!isValid) {
+      console.error('[GoogleAPIsService] Scope validation failed');
+      console.error('[GoogleAPIsService] Received scopes:', scopes);
+      console.error('[GoogleAPIsService] Expected scopes:', [
+        'email',
+        'profile',
+        'https://www.googleapis.com/auth/gmail.readonly',
+        'https://www.googleapis.com/auth/calendar.events',
+        'https://www.googleapis.com/auth/profile.emails.read',
+        'https://www.googleapis.com/auth/gmail.send',
+      ]);
       throw new AuthException(
         'Unable to connect: Please ensure all permissions are granted',
         AuthExceptionCode.INSUFFICIENT_SCOPES,

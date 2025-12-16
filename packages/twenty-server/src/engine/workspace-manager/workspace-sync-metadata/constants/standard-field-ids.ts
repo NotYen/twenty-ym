@@ -44,6 +44,7 @@ export const ATTACHMENT_STANDARD_FIELD_IDS = {
   opportunity: '20202020-7374-499d-bea3-9354890755b5',
   dashboard: '20202020-5324-43f3-9dbf-1a33e7de0ce6',
   workflow: '20202020-f1e8-4c9d-8a7b-3f5e1d2c9a8b',
+  salesQuote: '20202020-3a4b-5c6d-7e8f-9a0b1c2d3e4f',
   custom: '20202020-302d-43b3-9aea-aa4f89282a9f',
 } as const;
 
@@ -200,6 +201,8 @@ export const TIMELINE_ACTIVITY_STANDARD_FIELD_IDS = {
   workflowVersion: '20202020-74f1-4711-a129-e14ca0ecd744',
   workflowRun: '20202020-96f0-401b-9186-a3a0759225ac',
   dashboard: '20202020-7864-48f5-af7c-9e4b60140948',
+  salesQuote: '20202020-8a3b-4c5d-9e1f-2a6b7c8d9e0f',
+  salesQuoteLineItem: '20202020-9b4c-5d6e-0f1a-3b5c7d9e1f2a',
   custom: '20202020-4a71-41b0-9f83-9cdcca3f8b14',
   linkedRecordCachedName: '20202020-cfdb-4bef-bbce-a29f41230934',
   linkedRecordId: '20202020-2e0e-48c0-b445-ee6c1e61687d',
@@ -221,6 +224,7 @@ export const FAVORITE_STANDARD_FIELD_IDS = {
   custom: '20202020-855a-4bc8-9861-79deef37011f',
   favoriteFolder: '20202020-f658-4d12-8b4d-248356aa4bd9',
   dashboard: '20202020-6ef9-45e4-b440-cc986f687c91',
+  salesQuote: '20202020-3333-3333-3333-333333333301',
 } as const;
 
 export const FAVORITE_FOLDER_STANDARD_FIELD_IDS = {
@@ -321,6 +325,7 @@ export const NOTE_TARGET_STANDARD_FIELD_IDS = {
   company: 'c500fbc0-d6f2-4982-a959-5a755431696c',
   opportunity: '20202020-4e42-417a-a705-76581c9ade79',
   custom: '20202020-3d12-4579-94ee-7117c1bad492',
+  salesQuote: '20202020-4444-4444-4444-444444444401',
 } as const;
 
 export const OPPORTUNITY_STANDARD_FIELD_IDS = {
@@ -393,6 +398,7 @@ export const TASK_TARGET_STANDARD_FIELD_IDS = {
   company: '20202020-4703-4a4e-948c-487b0c60a92c',
   opportunity: '20202020-6cb2-4c01-a9a5-aca3dbc11d41',
   custom: '20202020-41c1-4c9a-8c75-be0971ef89af',
+  salesQuote: '20202020-5555-5555-5555-555555555501',
 } as const;
 
 export const VIEW_FIELD_STANDARD_FIELD_IDS = {
@@ -584,6 +590,11 @@ export const SALES_QUOTE_STANDARD_FIELD_IDS = {
   position: '20202020-1111-1111-1111-111111111115',
   salesQuoteLineItems: '20202020-1111-1111-1111-111111111116',
   searchVector: '20202020-1111-1111-1111-111111111117',
+  timelineActivities: '20202020-1111-1111-1111-111111111118',
+  attachments: '20202020-1111-1111-1111-111111111119',
+  favorites: '20202020-1111-1111-1111-111111111120',
+  noteTargets: '20202020-1111-1111-1111-111111111121',
+  taskTargets: '20202020-1111-1111-1111-111111111122',
 } as const;
 
 export const SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS = {
@@ -597,6 +608,7 @@ export const SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS = {
   createdBy: '20202020-2222-2222-2222-222222222208',
   position: '20202020-2222-2222-2222-222222222209',
   searchVector: '20202020-2222-2222-2222-222222222210',
+  timelineActivities: '20202020-2222-2222-2222-222222222211',
 } as const;
 
 export const STANDARD_OBJECT_FIELD_IDS = {

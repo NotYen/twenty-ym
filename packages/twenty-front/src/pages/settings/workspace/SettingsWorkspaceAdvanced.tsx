@@ -165,10 +165,12 @@ export const SettingsWorkspaceAdvanced = () => {
                     </StyledInputContainer>
                 </Section>
                 <Section>
-                    <H2Title title={t`OAuth Providers`} description={t`Client IDs for external authentication.`} />
+                    <H2Title title={t`OAuth Providers`} description={t`Client IDs for external authentication. Leave empty to use system defaults.`} />
                     <StyledInputContainer>
                         <SettingsTextInput instanceId="AUTH_GOOGLE_CLIENT_ID" label={t`Google Client ID`} value={getValue('AUTH_GOOGLE_CLIENT_ID')} onChange={(v) => handleChange('AUTH_GOOGLE_CLIENT_ID', v)} placeholder="...apps.googleusercontent.com" fullWidth />
                         <SettingsTextInput instanceId="AUTH_GOOGLE_CLIENT_SECRET" label={t`Google Client Secret`} value={getValue('AUTH_GOOGLE_CLIENT_SECRET')} onChange={(v) => handleChange('AUTH_GOOGLE_CLIENT_SECRET', v)} placeholder="GOCSPX-..." type="password" fullWidth />
+                        <SettingsTextInput instanceId="AUTH_GOOGLE_CALLBACK_URL" label={t`Google OAuth Callback URL`} value={getValue('AUTH_GOOGLE_CALLBACK_URL')} onChange={(v) => handleChange('AUTH_GOOGLE_CALLBACK_URL', v)} placeholder="https://your-domain/auth/google/redirect" fullWidth />
+                        <SettingsTextInput instanceId="AUTH_GOOGLE_APIS_CALLBACK_URL" label={t`Google APIs Callback URL`} value={getValue('AUTH_GOOGLE_APIS_CALLBACK_URL')} onChange={(v) => handleChange('AUTH_GOOGLE_APIS_CALLBACK_URL', v)} placeholder="https://your-domain/auth/google-apis/get-access-token" fullWidth />
                         <SettingsTextInput instanceId="AUTH_MICROSOFT_CLIENT_ID" label={t`Microsoft Client ID`} value={getValue('AUTH_MICROSOFT_CLIENT_ID')} onChange={(v) => handleChange('AUTH_MICROSOFT_CLIENT_ID', v)} placeholder="UUID" fullWidth />
                         <SettingsTextInput instanceId="AUTH_MICROSOFT_CLIENT_SECRET" label={t`Microsoft Client Secret`} value={getValue('AUTH_MICROSOFT_CLIENT_SECRET')} onChange={(v) => handleChange('AUTH_MICROSOFT_CLIENT_SECRET', v)} placeholder="Secret..." type="password" fullWidth />
                     </StyledInputContainer>

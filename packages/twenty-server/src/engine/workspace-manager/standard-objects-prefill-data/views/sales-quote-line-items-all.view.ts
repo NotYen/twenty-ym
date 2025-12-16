@@ -4,8 +4,7 @@ import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 import { type ObjectMetadataEntity } from 'src/engine/metadata-modules/object-metadata/object-metadata.entity';
 import { DEFAULT_VIEW_FIELD_SIZE } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/constants/DEFAULT_VIEW_FIELD_SIZE';
 import {
-    BASE_OBJECT_STANDARD_FIELD_IDS,
-    SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS,
+    SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS
 } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 
 export const salesQuoteLineItemsAllView = (
@@ -45,7 +44,7 @@ const createView = (
           salesQuoteLineItemObjectMetadata.fields.find(
             (field) =>
               field.standardId ===
-              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.mingCheng,
+              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.chanPinMingCheng,
           )?.id ?? '',
         position: 0,
         isVisible: true,
@@ -56,22 +55,11 @@ const createView = (
           salesQuoteLineItemObjectMetadata.fields.find(
             (field) =>
               field.standardId ===
-              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.salesQuote,
+              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.baoJiaDanXiXiangMiaoShu,
           )?.id ?? '',
         position: 1,
         isVisible: true,
-        size: 150,
-      },
-      {
-        fieldMetadataId:
-          salesQuoteLineItemObjectMetadata.fields.find(
-            (field) =>
-              field.standardId ===
-              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.product,
-          )?.id ?? '',
-        position: 2,
-        isVisible: true,
-        size: 150,
+        size: 200,
       },
       {
         fieldMetadataId:
@@ -80,7 +68,7 @@ const createView = (
               field.standardId ===
               SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.shuLiang,
           )?.id ?? '',
-        position: 3,
+        position: 2,
         isVisible: true,
         size: 100,
       },
@@ -91,7 +79,7 @@ const createView = (
               field.standardId ===
               SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.danJia,
           )?.id ?? '',
-        position: 4,
+        position: 3,
         isVisible: true,
         size: 150,
       },
@@ -100,7 +88,18 @@ const createView = (
           salesQuoteLineItemObjectMetadata.fields.find(
             (field) =>
               field.standardId ===
-              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.xiaoJi,
+              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.zheKou,
+          )?.id ?? '',
+        position: 4,
+        isVisible: true,
+        size: 100,
+      },
+      {
+        fieldMetadataId:
+          salesQuoteLineItemObjectMetadata.fields.find(
+            (field) =>
+              field.standardId ===
+              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.jinE,
           )?.id ?? '',
         position: 5,
         isVisible: true,
@@ -110,7 +109,8 @@ const createView = (
         fieldMetadataId:
           salesQuoteLineItemObjectMetadata.fields.find(
             (field) =>
-              field.standardId === BASE_OBJECT_STANDARD_FIELD_IDS.createdAt,
+              field.standardId ===
+              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.salesQuote,
           )?.id ?? '',
         position: 6,
         isVisible: true,

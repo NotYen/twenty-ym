@@ -65,6 +65,7 @@ export class SalesQuoteLineItemWorkspaceEntity extends BaseWorkspaceEntity {
     type: FieldMetadataType.NUMBER,
     label: msg`Quantity`,
     icon: 'IconNumbers',
+    defaultValue: 1,
   })
   shuLiang: number;
 
@@ -143,4 +144,17 @@ export class SalesQuoteLineItemWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsSystem()
   @WorkspaceFieldIndex({ indexType: IndexType.GIN })
   searchVector: string;
+
+  @WorkspaceRelation({
+    standardId: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.timelineActivities,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Timeline Activities`,
+    description: msg`Timeline Activities linked to the sales quote line item`,
+    icon: 'IconTimelineEvent',
+    inverseSideTarget: () => TimelineActivityWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  @WorkspaceIsSystem()
+  timelineActivities: Relation<TimelineActivityWorkspaceEntity[]>;
 }

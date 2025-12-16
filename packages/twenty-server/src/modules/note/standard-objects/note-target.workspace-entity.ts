@@ -1,6 +1,6 @@
 import { msg } from '@lingui/core/macro';
-import { RelationOnDeleteAction } from 'twenty-shared/types';
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
+import { RelationOnDeleteAction } from 'twenty-shared/types';
 
 import { RelationType } from 'src/engine/metadata-modules/field-metadata/interfaces/relation-type.interface';
 import { Relation } from 'src/engine/workspace-manager/workspace-sync-metadata/interfaces/relation.interface';
@@ -19,6 +19,7 @@ import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/com
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { SalesQuoteWorkspaceEntity } from 'src/modules/sales-quote/standard-objects/sales-quote.workspace-entity';
 
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.noteTarget,
@@ -93,6 +94,22 @@ export class NoteTargetWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('opportunity')
   opportunityId: string | null;
+
+  @WorkspaceRelation({
+    standardId: NOTE_TARGET_STANDARD_FIELD_IDS.salesQuote,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Sales Quote`,
+    description: msg`NoteTarget sales quote`,
+    icon: 'IconFileInvoice',
+    inverseSideTarget: () => SalesQuoteWorkspaceEntity,
+    inverseSideFieldKey: 'noteTargets',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  salesQuote: Relation<SalesQuoteWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('salesQuote')
+  salesQuoteId: string | null;
 
   @WorkspaceDynamicRelation({
     type: RelationType.MANY_TO_ONE,
