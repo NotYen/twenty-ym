@@ -8,6 +8,7 @@ import { type WorkflowHttpRequestActionSettings } from 'src/modules/workflow/wor
 import { type WorkflowIteratorActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/iterator/types/workflow-iterator-action-settings.type';
 import { type WorkflowSendLineMessageActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/line-messaging/types/workflow-send-line-message-action-settings.type';
 import { type WorkflowSendEmailActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/mail-sender/types/workflow-send-email-action-settings.type';
+import { type WorkflowSendLineMessageActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/line-message/types/workflow-send-line-message-action-settings.type';
 import {
   type WorkflowCreateRecordActionSettings,
   type WorkflowDeleteRecordActionSettings,

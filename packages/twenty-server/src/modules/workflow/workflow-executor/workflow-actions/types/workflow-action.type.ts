@@ -15,6 +15,7 @@ import {
 } from 'src/modules/workflow/workflow-executor/workflow-actions/record-crud/types/workflow-record-crud-action-settings.type';
 import { type WorkflowActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/types/workflow-action-settings.type';
 import { type WorkflowDelayActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/delay/types/workflow-delay-action-settings.type';
+import { type WorkflowSendLineMessageActionSettings } from 'src/modules/workflow/workflow-executor/workflow-actions/line-message/types/workflow-send-line-message-action-settings.type';
 
 export enum WorkflowActionType {
   CODE = 'CODE',
@@ -119,6 +120,11 @@ export type WorkflowEmptyAction = BaseWorkflowAction & {
 export type WorkflowDelayAction = BaseWorkflowAction & {
   type: WorkflowActionType.DELAY;
   settings: WorkflowDelayActionSettings;
+};
+
+export type WorkflowSendLineMessageAction = BaseWorkflowAction & {
+  type: WorkflowActionType.SEND_LINE_MESSAGE;
+  settings: WorkflowSendLineMessageActionSettings;
 };
 
 export type WorkflowAction =

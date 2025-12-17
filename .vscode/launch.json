@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "resolveSourceMapLocations": ["${workspaceFolder}/**", "!**/node_modules/**"],
   "configurations": [
-    {
+        {
       "name": "twenty-server - start debug",
       "type": "node",
       "runtimeVersion": "24.5",
@@ -95,7 +95,41 @@
       "internalConsoleOptions": "neverOpen",
       "env": {
         "NODE_ENV": "test"
-      }
+	  }
+	  },
+    {
+      "name": "Attach to Docker (Old Mapping)",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app",
+      "protocol": "inspector",
+      "restart": true,
+      "sourceMapPathOverrides": {
+        "/app/packages/twenty-server/dist/src/*": "${workspaceFolder}/packages/twenty-server/src/*"
+      },
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "name": "Attach to Docker (Recommended)",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/app",
+      "protocol": "inspector",
+      "restart": true,
+      "sourceMapPathOverrides": {
+        "/app/packages/*": "${workspaceFolder}/packages/*"
+      },
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
     }
   ]
 }

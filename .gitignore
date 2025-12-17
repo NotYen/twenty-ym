@@ -76,3 +76,7 @@ packages/twenty-server/.env.tmp
 # Local secret env files (not tracked)
 docker/dev-flow/local_build_for_docker/env.local
 docker/dev-flow/aws/env.aws
+
+
+#AI
+.kiro/*
