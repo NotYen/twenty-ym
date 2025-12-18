@@ -22,7 +22,6 @@ export const useRecordIndexTableQuery = (objectNameSingular: string) => {
       ...params,
       recordGqlFields,
       skip: showAuthModal,
-      fetchPolicy: 'cache-and-network',
     });
 
   return {

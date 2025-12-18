@@ -67,7 +67,6 @@ export const useRecordCalendarGroupByRecords = (selectedDate: Date) => {
       !isDefined(calendarFieldMetadataItem) ||
       groupBy.length === 0 ||
       Object.keys(dateRangeFilter).length === 0,
-    fetchPolicy: 'cache-and-network',
     variables: {
       groupBy,
       filter: dateRangeFilter,

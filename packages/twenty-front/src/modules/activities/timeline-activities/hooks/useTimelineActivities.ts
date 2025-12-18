@@ -38,7 +38,6 @@ export const useTimelineActivities = (
       },
     ],
     recordGqlFields: depthOneRecordGqlFields,
-    fetchPolicy: 'cache-and-network',
   });
 
   const activityIds = timelineActivities
