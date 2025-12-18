@@ -13,7 +13,8 @@ export const ObjectMetadataItemsLoadEffect = () => {
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const { refreshObjectMetadataItems } = useRefreshObjectMetadataItems();
+  const { refreshObjectMetadataItems } =
+    useRefreshObjectMetadataItems('cache-first');
   const { loadMockedObjectMetadataItems } = useLoadMockedObjectMetadataItems();
 
   useEffect(() => {

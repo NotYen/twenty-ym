@@ -14,6 +14,7 @@ import { useScrollToPosition } from '@/ui/utilities/scroll/hooks/useScrollToPosi
 import { useSetRecoilComponentFamilyState } from '@/ui/utilities/state/component-state/hooks/useSetRecoilComponentFamilyState';
 import { useSetRecoilComponentState } from '@/ui/utilities/state/component-state/hooks/useSetRecoilComponentState';
 import { isNonEmptyString } from '@sniptt/guards';
+import { isDefined } from 'twenty-shared/utils';
 
 export const RecordTableRecordGroupBodyEffect = () => {
   const { objectNameSingular } = useRecordTableContextOrThrow();
@@ -43,12 +44,15 @@ export const RecordTableRecordGroupBodyEffect = () => {
   const { scrollToPosition } = useScrollToPosition();
 
   useEffect(() => {
-    if (!loading) {
+    if (!loading || (isDefined(records) && records.length > 0)) {
       setRecordTableData({
-        records,
+        records: records ?? [],
         currentRecordGroupId: recordGroupId,
       });
       setIsRecordTableInitialLoading(false);
+    }
+
+    if (!loading) {
       setHasRecordFetchedAllRecordsComponents(!hasNextPage);
     }
   }, [
