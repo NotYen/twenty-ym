@@ -51,14 +51,7 @@ services:
       - "${REDIS_PORT:-6379}:6379"
     volumes:
       - redis-data:/data
-      - ./backups/redis/dump.rdb:/seed/dump.rdb:ro
-    command: >
-      sh -c '
-        if [ ! -f /data/dump.rdb ]; then
-          cp /seed/dump.rdb /data/dump.rdb;
-        fi;
-        exec redis-server
-      '
+    command: redis-server
 
   backend:
     build:
