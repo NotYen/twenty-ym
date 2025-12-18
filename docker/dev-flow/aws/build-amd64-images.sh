@@ -10,6 +10,19 @@ ENV_LOCAL="${DEV_FLOW_DIR}/local_build_for_docker/env.local"
 ENV_AWS="${SCRIPT_DIR}/env.aws"
 ENV_AWS_LOCAL="${SCRIPT_DIR}/env.aws.local"
 ENV_TARGET="${DOCKER_DIR}/.env"
+VERSIONS_FILE="${DOCKER_DIR}/versions.env"
+
+# 載入統一版本設定
+if [[ -f "${VERSIONS_FILE}" ]]; then
+  source "${VERSIONS_FILE}"
+  echo "📝 Loaded base image versions from versions.env"
+  echo "   NODE_VERSION=${NODE_VERSION}"
+  echo "   NGINX_VERSION=${NGINX_VERSION}"
+else
+  echo "❌ versions.env not found, using defaults"
+  NODE_VERSION="24-alpine"
+  NGINX_VERSION="1.27-alpine"
+fi
 
 DEFAULT_DATE="$(date +%Y%m%d)"
 DEFAULT_BACKEND_VERSION="backend-${DEFAULT_DATE}-v1-amd64"
@@ -159,6 +172,7 @@ build_backend() {
     cd "${PROJECT_ROOT}"
     docker buildx build \
       --platform linux/amd64 \
+      --build-arg NODE_VERSION="${NODE_VERSION}" \
       --build-arg BACKEND_IMAGE_VERSION="${BACKEND_VERSION}" \
       -t "ycrm/y-crm:${BACKEND_VERSION}" \
       -f docker/backend/Dockerfile \
@@ -175,6 +189,8 @@ build_frontend() {
     cd "${PROJECT_ROOT}"
     docker buildx build \
       --platform linux/amd64 \
+      --build-arg NODE_VERSION="${NODE_VERSION}" \
+      --build-arg NGINX_VERSION="${NGINX_VERSION}" \
       --build-arg BACKEND_URL_PLACEHOLDER="@@SERVER_BASE_URL@@" \
       --build-arg FRONTEND_IMAGE_VERSION="${FRONTEND_VERSION}" \
       --build-arg VITE_IS_DEBUG_MODE=false \

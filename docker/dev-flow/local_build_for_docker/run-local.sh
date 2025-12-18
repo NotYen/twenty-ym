@@ -8,6 +8,19 @@ DOCKER_DIR="$(cd "${DEV_FLOW_DIR}/.." && pwd)"
 
 ENV_LOCAL="${DEV_FLOW_DIR}/local_build_for_docker/env.local"
 ENV_TARGET="${DOCKER_DIR}/.env"
+VERSIONS_FILE="${DOCKER_DIR}/versions.env"
+
+# 載入統一版本設定
+if [[ -f "${VERSIONS_FILE}" ]]; then
+  source "${VERSIONS_FILE}"
+  echo "📝 Loaded base image versions from versions.env"
+  echo "   NODE_VERSION=${NODE_VERSION}"
+  echo "   NGINX_VERSION=${NGINX_VERSION}"
+else
+  echo "❌ versions.env not found, using defaults"
+  NODE_VERSION="24-alpine"
+  NGINX_VERSION="1.27-alpine"
+fi
 LOCAL_FRONTEND_PORT=8866
 LOG_DIR="${DOCKER_DIR}/../logs"
 mkdir -p "${LOG_DIR}"
@@ -75,6 +88,17 @@ EOF
 
   info "Applying env.local -> .env"
   cp "${ENV_LOCAL}" "${ENV_TARGET}"
+
+  # 確保版本變數也被加入到 .env 中
+  info "Adding base image versions to .env"
+  {
+    echo ""
+    echo "# Base image versions (from versions.env)"
+    echo "NODE_VERSION=${NODE_VERSION}"
+    echo "NGINX_VERSION=${NGINX_VERSION}"
+    echo "POSTGRES_VERSION=${POSTGRES_VERSION}"
+    echo "REDIS_VERSION=${REDIS_VERSION}"
+  } >> "${ENV_TARGET}"
 
   cd "${DOCKER_DIR}"
 

@@ -65,6 +65,7 @@ services:
       context: ..
       dockerfile: docker/backend/Dockerfile
       args:
+        NODE_VERSION: ${NODE_VERSION:-24-alpine}
         BACKEND_IMAGE_VERSION: ${BACKEND_IMAGE_VERSION:-dev}
     image: twenty-backend:latest
     container_name: Y-CRM-backend
@@ -104,6 +105,8 @@ services:
       context: ..
       dockerfile: docker/frontend/Dockerfile
       args:
+        NODE_VERSION: ${NODE_VERSION:-24-alpine}
+        NGINX_VERSION: ${NGINX_VERSION:-1.27-alpine}
         BACKEND_URL: ${BACKEND_PUBLIC_URL:-http://118.168.188.27:8867}
         VITE_IS_DEBUG_MODE: ${VITE_IS_DEBUG_MODE:-true}
         IS_DEBUG_MODE: ${IS_DEBUG_MODE:-true}

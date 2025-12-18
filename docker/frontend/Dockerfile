@@ -3,7 +3,9 @@
 # =====================================
 # 階段 1: 安裝依賴（可緩存層）
 # =====================================
-FROM node:20-bookworm AS deps
+ARG NODE_VERSION=24-alpine
+ARG NGINX_VERSION=1.27-alpine
+FROM node:${NODE_VERSION} AS deps
 
 WORKDIR /app
 
@@ -48,13 +50,13 @@ ENV FRONTEND_IMAGE_VERSION=${FRONTEND_IMAGE_VERSION}
 ENV VITE_IS_DEBUG_MODE=${VITE_IS_DEBUG_MODE}
 ENV IS_DEBUG_MODE=${IS_DEBUG_MODE}
 
-# 構建 twenty-front（production 模式）
 RUN yarn nx build twenty-front --configuration=production --skip-nx-cache
 
 # =====================================
 # 階段 3: 最終運行鏡像（Nginx）
 # =====================================
-FROM nginx:1.27-alpine
+
+FROM nginx:${NGINX_VERSION}
 
 # 複製 Nginx 配置
 COPY docker/frontend/nginx.conf /etc/nginx/conf.d/default.conf

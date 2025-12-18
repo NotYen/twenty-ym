@@ -3,13 +3,16 @@
 # =====================================
 # 階段 1: 安裝依賴（可緩存層）
 # =====================================
-FROM node:20-bookworm AS deps
+ARG NODE_VERSION=24-alpine
+FROM node:${NODE_VERSION} AS deps
 
 WORKDIR /app
 
 ENV YARN_ENABLE_GLOBAL_CACHE=false
 ENV YARN_ENABLE_IMMUTABLE_INSTALLS=false
 RUN corepack enable
+# 確保 yarn 在 PATH 中
+ENV PATH="/usr/local/bin:$PATH"
 
 # 只複製依賴相關文件（package.json + patches），利用 Docker 緩存
 COPY package.json yarn.lock .yarnrc.yml ./
@@ -58,7 +61,8 @@ RUN rm -rf packages/twenty-front \
 # =====================================
 # 階段 3: 最終運行鏡像
 # =====================================
-FROM node:20-bookworm
+ARG NODE_VERSION=24-alpine
+FROM node:${NODE_VERSION}
 
 ARG BACKEND_IMAGE_VERSION=dev
 ENV BACKEND_IMAGE_VERSION=${BACKEND_IMAGE_VERSION}
