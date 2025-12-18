@@ -3,10 +3,10 @@ import process from 'process';
 import opentelemetry from '@opentelemetry/api';
 import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http';
 import {
-  AggregationTemporality,
-  ConsoleMetricExporter,
-  MeterProvider,
-  PeriodicExportingMetricReader,
+    AggregationTemporality,
+    ConsoleMetricExporter,
+    MeterProvider,
+    PeriodicExportingMetricReader,
 } from '@opentelemetry/sdk-metrics';
 import * as Sentry from '@sentry/node';
 import { nodeProfilingIntegration } from '@sentry/profiling-node';
@@ -40,8 +40,15 @@ if (process.env.EXCEPTION_HANDLER_DRIVER === ExceptionHandlerDriver.SENTRY) {
       }),
       nodeProfilingIntegration(),
     ],
-    tracesSampleRate: 0.1,
-    profilesSampleRate: 0.3,
+    sampleRate: process.env.SENTRY_ERROR_SAMPLE_RATE
+      ? parseFloat(process.env.SENTRY_ERROR_SAMPLE_RATE)
+      : 1.0,
+    tracesSampleRate: process.env.SENTRY_TRACES_SAMPLE_RATE
+      ? parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE)
+      : 0,
+    profilesSampleRate: process.env.SENTRY_PROFILES_SAMPLE_RATE
+      ? parseFloat(process.env.SENTRY_PROFILES_SAMPLE_RATE)
+      : 0,
     sendDefaultPii: true,
     debug: process.env.NODE_ENV === NodeEnvironment.DEVELOPMENT,
   });

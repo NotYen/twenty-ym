@@ -1,24 +1,23 @@
 import { useFieldFocus } from '@/object-record/record-field/ui/hooks/useFieldFocus';
 import { usePhonesFieldDisplay } from '@/object-record/record-field/ui/meta-types/hooks/usePhonesFieldDisplay';
-import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { PhonesDisplay } from '@/ui/field/display/components/PhonesDisplay';
 import { useLingui } from '@lingui/react/macro';
 import React from 'react';
 import { useIcons } from 'twenty-ui/display';
+import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 export const PhonesFieldDisplay = () => {
   const { fieldValue } = usePhonesFieldDisplay();
 
   const { isFocused } = useFieldFocus();
 
-  const { enqueueSuccessSnackBar, enqueueErrorSnackBar } = useSnackBar();
+  const { copyToClipboard } = useCopyToClipboard();
 
   const { getIcon } = useIcons();
 
   const { t } = useLingui();
 
   const IconCircleCheck = getIcon('IconCircleCheck');
-  const IconExclamationCircle = getIcon('IconExclamationCircle');
 
   const handleClick = async (
     phoneNumber: string,
@@ -26,24 +25,9 @@ export const PhonesFieldDisplay = () => {
   ) => {
     event.preventDefault();
 
-    try {
-      await navigator.clipboard.writeText(phoneNumber);
-      enqueueSuccessSnackBar({
-        message: t`Phone number copied to clipboard`,
-        options: {
-          icon: <IconCircleCheck size={16} color="green" />,
-          duration: 2000,
-        },
-      });
-    } catch {
-      enqueueErrorSnackBar({
-        message: t`Error copying to clipboard`,
-        options: {
-          icon: <IconExclamationCircle size={16} color="red" />,
-          duration: 2000,
-        },
-      });
-    }
+    await copyToClipboard(phoneNumber, t`Phone number copied to clipboard`, {
+      icon: <IconCircleCheck size={16} color="green" />,
+    });
   };
 
   return (

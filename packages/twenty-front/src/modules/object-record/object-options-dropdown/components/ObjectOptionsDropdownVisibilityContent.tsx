@@ -1,7 +1,6 @@
 import { OBJECT_OPTIONS_DROPDOWN_ID } from '@/object-record/object-options-dropdown/constants/ObjectOptionsDropdownId';
 import { useObjectOptionsDropdown } from '@/object-record/object-options-dropdown/hooks/useObjectOptionsDropdown';
 import { useHasPermissionFlag } from '@/settings/roles/hooks/useHasPermissionFlag';
-import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
 import { DropdownMenuHeader } from '@/ui/layout/dropdown/components/DropdownMenuHeader/DropdownMenuHeader';
 import { DropdownMenuHeaderLeftComponent } from '@/ui/layout/dropdown/components/DropdownMenuHeader/internal/DropdownMenuHeaderLeftComponent';
@@ -19,15 +18,16 @@ import { useTheme } from '@emotion/react';
 import { useLingui } from '@lingui/react/macro';
 import { createPortal } from 'react-dom';
 import {
-  AppTooltip,
-  IconChevronLeft,
-  IconCircle,
-  IconCircleDashed,
-  IconCopy,
+    AppTooltip,
+    IconChevronLeft,
+    IconCircle,
+    IconCircleDashed,
+    IconCopy,
 } from 'twenty-ui/display';
 import { MenuItem, MenuItemSelect } from 'twenty-ui/navigation';
 import { ViewVisibility } from '~/generated-metadata/graphql';
 import { PermissionFlagType } from '~/generated/graphql';
+import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 export const ObjectOptionsDropdownVisibilityContent = () => {
   const { t } = useLingui();
@@ -35,7 +35,7 @@ export const ObjectOptionsDropdownVisibilityContent = () => {
   const { resetContent } = useObjectOptionsDropdown();
   const { currentView } = useGetCurrentViewOnly();
   const { updateCurrentView } = useUpdateCurrentView();
-  const { enqueueSuccessSnackBar } = useSnackBar();
+  const { copyToClipboard } = useCopyToClipboard();
   const hasViewsPermission = useHasPermissionFlag(PermissionFlagType.VIEWS);
   const { canPersistChanges } = useCanPersistViewChanges();
 
@@ -59,13 +59,8 @@ export const ObjectOptionsDropdownVisibilityContent = () => {
 
   const handleCopyLink = () => {
     const currentUrl = window.location.href;
-    navigator.clipboard.writeText(currentUrl);
-    enqueueSuccessSnackBar({
-      message: t`Link copied to clipboard`,
-      options: {
-        icon: <IconCopy size={theme.icon.size.md} />,
-        duration: 2000,
-      },
+    copyToClipboard(currentUrl, t`Link copied to clipboard`, {
+      icon: <IconCopy size={theme.icon.size.md} />,
     });
   };
 

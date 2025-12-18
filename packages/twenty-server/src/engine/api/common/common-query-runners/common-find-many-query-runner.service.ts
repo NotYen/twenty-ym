@@ -7,23 +7,23 @@ import { FindOptionsRelations, ObjectLiteral } from 'typeorm';
 
 import { WorkspaceAuthContext } from 'src/engine/api/common/interfaces/workspace-auth-context.interface';
 import {
-  ObjectRecordFilter,
-  ObjectRecordOrderBy,
+    ObjectRecordFilter,
+    ObjectRecordOrderBy,
 } from 'src/engine/api/graphql/workspace-query-builder/interfaces/object-record.interface';
 
 import { CommonBaseQueryRunnerService } from 'src/engine/api/common/common-query-runners/common-base-query-runner.service';
 import {
-  CommonQueryRunnerException,
-  CommonQueryRunnerExceptionCode,
+    CommonQueryRunnerException,
+    CommonQueryRunnerExceptionCode,
 } from 'src/engine/api/common/common-query-runners/errors/common-query-runner.exception';
 import { CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common-base-query-runner-context.type';
 import { CommonExtendedQueryRunnerContext } from 'src/engine/api/common/types/common-extended-query-runner-context.type';
 import { CommonFindManyOutput } from 'src/engine/api/common/types/common-find-many-output.type';
 import {
-  CommonExtendedInput,
-  CommonInput,
-  CommonQueryNames,
-  FindManyQueryArgs,
+    CommonExtendedInput,
+    CommonInput,
+    CommonQueryNames,
+    FindManyQueryArgs,
 } from 'src/engine/api/common/types/common-query-args.type';
 import { getPageInfo } from 'src/engine/api/common/utils/get-page-info.util';
 import { ProcessAggregateHelper } from 'src/engine/api/graphql/graphql-query-runner/helpers/process-aggregate.helper';
@@ -70,6 +70,7 @@ export class CommonFindManyQueryRunnerService extends CommonBaseQueryRunnerServi
     commonQueryParser.applyDeletedAtToBuilder(
       aggregateQueryBuilder,
       appliedFilters,
+      objectMetadataItemWithFieldMaps.nameSingular,
     );
 
     const orderByWithIdCondition = [
@@ -109,7 +110,11 @@ export class CommonFindManyQueryRunnerService extends CommonBaseQueryRunnerServi
       isForwardPagination,
     );
 
-    commonQueryParser.applyDeletedAtToBuilder(queryBuilder, appliedFilters);
+    commonQueryParser.applyDeletedAtToBuilder(
+      queryBuilder,
+      appliedFilters,
+      objectMetadataItemWithFieldMaps.nameSingular,
+    );
 
     ProcessAggregateHelper.addSelectedAggregatedFieldsQueriesToQueryBuilder({
       selectedAggregatedFields: args.selectedFieldsResult.aggregate,

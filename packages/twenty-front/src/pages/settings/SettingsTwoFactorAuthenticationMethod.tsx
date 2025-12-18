@@ -13,7 +13,6 @@ import { TwoFactorAuthenticationVerificationForSettings } from '@/settings/two-f
 import { useCurrentUserWorkspaceTwoFactorAuthentication } from '@/settings/two-factor-authentication/hooks/useCurrentUserWorkspaceTwoFactorAuthentication';
 import { useTwoFactorVerificationForSettings } from '@/settings/two-factor-authentication/hooks/useTwoFactorVerificationForSettings';
 import { extractSecretFromOtpUri } from '@/settings/two-factor-authentication/utils/extractSecretFromOtpUri';
-import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { SubMenuTopBarContainer } from '@/ui/layout/page/components/SubMenuTopBarContainer';
 import { useTheme } from '@emotion/react';
 import { SettingsPath } from 'twenty-shared/types';
@@ -21,6 +20,7 @@ import { getSettingsPath } from 'twenty-shared/utils';
 import { H2Title, IconCopy } from 'twenty-ui/display';
 import { Loader } from 'twenty-ui/feedback';
 import { Section } from 'twenty-ui/layout';
+import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 const StyledQRCodeContainer = styled.div`
   margin: ${({ theme }) => theme.spacing(4)} 0;
@@ -80,7 +80,7 @@ const StyledDivider = styled.div`
 export const SettingsTwoFactorAuthenticationMethod = () => {
   const { t } = useLingui();
   const theme = useTheme();
-  const { enqueueSuccessSnackBar } = useSnackBar();
+  const { copyToClipboard } = useCopyToClipboard();
   const qrCode = useRecoilValue(qrCodeState);
 
   const { currentUserWorkspaceTwoFactorAuthenticationMethods } =
@@ -99,13 +99,8 @@ export const SettingsTwoFactorAuthenticationMethod = () => {
 
     const secret = extractSecretFromOtpUri(qrCode);
     if (secret !== null) {
-      await navigator.clipboard.writeText(secret);
-      enqueueSuccessSnackBar({
-        message: t`Setup key copied to clipboard`,
-        options: {
-          icon: <IconCopy size={theme.icon.size.md} />,
-          duration: 2000,
-        },
+      await copyToClipboard(secret, t`Setup key copied to clipboard`, {
+        icon: <IconCopy size={theme.icon.size.md} />,
       });
     }
   };

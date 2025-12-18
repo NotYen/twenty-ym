@@ -10,16 +10,16 @@ import { ObjectRecordFilter } from 'src/engine/api/graphql/workspace-query-build
 
 import { CommonBaseQueryRunnerService } from 'src/engine/api/common/common-query-runners/common-base-query-runner.service';
 import {
-  CommonQueryRunnerException,
-  CommonQueryRunnerExceptionCode,
+    CommonQueryRunnerException,
+    CommonQueryRunnerExceptionCode,
 } from 'src/engine/api/common/common-query-runners/errors/common-query-runner.exception';
 import { CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common-base-query-runner-context.type';
 import { CommonExtendedQueryRunnerContext } from 'src/engine/api/common/types/common-extended-query-runner-context.type';
 import {
-  CommonExtendedInput,
-  CommonInput,
-  CommonQueryNames,
-  FindOneQueryArgs,
+    CommonExtendedInput,
+    CommonInput,
+    CommonQueryNames,
+    FindOneQueryArgs,
 } from 'src/engine/api/common/types/common-query-args.type';
 import { buildColumnsToSelect } from 'src/engine/api/graphql/graphql-query-runner/utils/build-columns-to-select';
 import { ObjectMetadataMaps } from 'src/engine/metadata-modules/types/object-metadata-maps';
@@ -58,6 +58,7 @@ export class CommonFindOneQueryRunnerService extends CommonBaseQueryRunnerServic
     commonQueryParser.applyDeletedAtToBuilder(
       queryBuilder,
       args.filter ?? ({} as ObjectRecordFilter),
+      objectMetadataItemWithFieldMaps.nameSingular,
     );
 
     const columnsToSelect = buildColumnsToSelect({

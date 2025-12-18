@@ -6,8 +6,8 @@ import { OrderByDirection } from 'twenty-shared/types';
 import { type ObjectLiteral } from 'typeorm';
 
 import {
-  type ObjectRecordFilter,
-  type ObjectRecordOrderBy,
+    type ObjectRecordFilter,
+    type ObjectRecordOrderBy,
 } from 'src/engine/api/graphql/workspace-query-builder/interfaces/object-record.interface';
 
 import { GraphqlQueryParser } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query.parser';
@@ -180,8 +180,14 @@ export class FindRecordsService {
       true,
     );
 
-    const queryBuilderWithSelect = this.applyRestrictedFieldsToQueryBuilder(
+    const withDeletedQueryBuilder = graphqlQueryParser.applyDeletedAtToBuilder(
       withOrderByQueryBuilder,
+      filter ?? {},
+      objectName,
+    );
+
+    const queryBuilderWithSelect = this.applyRestrictedFieldsToQueryBuilder(
+      withDeletedQueryBuilder,
       repository,
       objectMetadataItemWithFieldsMaps,
     );
@@ -220,6 +226,7 @@ export class FindRecordsService {
       graphqlQueryParser.applyDeletedAtToBuilder(
         withFilterCountQueryBuilder,
         filter ?? {},
+        objectName,
       );
 
     const queryBuilderWithSelect = this.applyRestrictedFieldsToQueryBuilder(

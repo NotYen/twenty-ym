@@ -8,14 +8,40 @@ export const useCopyToClipboard = () => {
   const { enqueueSuccessSnackBar, enqueueErrorSnackBar } = useSnackBar();
   const { t } = useLingui();
 
-  const copyToClipboard = async (valueAsString: string, message?: string) => {
+  const unsecuredCopyToClipboard = (value: string) => {
+    const textArea = document.createElement('textarea');
+    textArea.value = value;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
     try {
-      await navigator.clipboard.writeText(valueAsString);
+      document.execCommand('copy');
+    } catch (err) {
+      console.error('Unable to copy to clipboard', err);
+      throw err;
+    }
+    document.body.removeChild(textArea);
+  };
+
+  const copyToClipboard = async (
+    valueAsString: string,
+    message?: string,
+    options?: { icon?: React.ReactNode },
+  ) => {
+    try {
+      if (
+        navigator.clipboard &&
+        typeof navigator.clipboard.writeText === 'function'
+      ) {
+        await navigator.clipboard.writeText(valueAsString);
+      } else {
+        unsecuredCopyToClipboard(valueAsString);
+      }
 
       enqueueSuccessSnackBar({
         message: message || t`Copied to clipboard`,
         options: {
-          icon: <IconCopy size={theme.icon.size.md} />,
+          icon: options?.icon ?? <IconCopy size={theme.icon.size.md} />,
           duration: 2000,
         },
       });

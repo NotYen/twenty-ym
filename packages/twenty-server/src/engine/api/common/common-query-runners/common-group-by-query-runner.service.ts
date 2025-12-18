@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
 
 import {
-  CompositeFieldSubFieldName,
-  PartialFieldMetadataItemOption,
-  RecordFilterGroupLogicalOperator,
+    CompositeFieldSubFieldName,
+    PartialFieldMetadataItemOption,
+    RecordFilterGroupLogicalOperator,
 } from 'twenty-shared/types';
 import {
-  assertIsDefinedOrThrow,
-  combineFilters,
-  computeRecordGqlOperationFilter,
-  convertViewFilterValueToString,
-  getFilterTypeFromFieldType,
-  turnAnyFieldFilterIntoRecordGqlFilter,
+    assertIsDefinedOrThrow,
+    combineFilters,
+    computeRecordGqlOperationFilter,
+    convertViewFilterValueToString,
+    getFilterTypeFromFieldType,
+    turnAnyFieldFilterIntoRecordGqlFilter,
 } from 'twenty-shared/utils';
 import { ObjectLiteral } from 'typeorm';
 
@@ -23,21 +23,21 @@ import { CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common
 import { CommonExtendedQueryRunnerContext } from 'src/engine/api/common/types/common-extended-query-runner-context.type';
 import { CommonGroupByOutputItem } from 'src/engine/api/common/types/common-group-by-output-item.type';
 import {
-  CommonExtendedInput,
-  CommonInput,
-  CommonQueryNames,
-  GroupByQueryArgs,
+    CommonExtendedInput,
+    CommonInput,
+    CommonQueryNames,
+    GroupByQueryArgs,
 } from 'src/engine/api/common/types/common-query-args.type';
 import { GraphqlQuerySelectedFieldsResult } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query-selected-fields/graphql-selected-fields.parser';
 import { GraphqlQueryParser } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query.parser';
 import { GroupByDefinition } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/types/group-by-definition.types';
 import { formatResultWithGroupByDimensionValues } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util';
 import { getGroupByExpression } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/get-group-by-expression.util';
-import { getGroupLimit } from 'src/engine/api/graphql/graphql-query-runner/group-by/utils/get-group-limit.util';
 import { isGroupByDateField } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/is-group-by-date-field.util';
 import { parseGroupByArgs } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/parse-group-by-args.util';
 import { removeQuotes } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/remove-quote.util';
 import { GroupByWithRecordsService } from 'src/engine/api/graphql/graphql-query-runner/group-by/services/group-by-with-records.service';
+import { getGroupLimit } from 'src/engine/api/graphql/graphql-query-runner/group-by/utils/get-group-limit.util';
 import { ProcessAggregateHelper } from 'src/engine/api/graphql/graphql-query-runner/helpers/process-aggregate.helper';
 import { isFieldMetadataRelationOrMorphRelation } from 'src/engine/api/graphql/workspace-schema-builder/utils/is-field-metadata-relation-or-morph-relation.utils';
 import { ObjectMetadataItemWithFieldMaps } from 'src/engine/metadata-modules/types/object-metadata-item-with-field-maps';
@@ -316,7 +316,11 @@ export class CommonGroupByQueryRunnerService extends CommonBaseQueryRunnerServic
       appliedFilters,
     );
 
-    commonQueryParser.applyDeletedAtToBuilder(queryBuilder, appliedFilters);
+    commonQueryParser.applyDeletedAtToBuilder(
+      queryBuilder,
+      appliedFilters,
+      objectMetadataNameSingular,
+    );
   }
 
   private async resolveWithoutRecords({
