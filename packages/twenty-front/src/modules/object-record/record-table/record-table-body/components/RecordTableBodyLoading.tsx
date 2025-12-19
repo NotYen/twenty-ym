@@ -9,12 +9,16 @@ import { RecordTableLastEmptyCell } from '@/object-record/record-table/record-ta
 import { RecordTablePlusButtonCellPlaceholder } from '@/object-record/record-table/record-table-cell/components/RecordTablePlusButtonCellPlaceholder';
 import { RecordTableTr } from '@/object-record/record-table/record-table-row/components/RecordTableTr';
 
+// 30 rows is sufficient to cover most screen heights (30 × 33px = 990px)
+// while reducing initial render cost compared to the previous 80 rows
+const SKELETON_ROWS_COUNT = 30;
+
 export const RecordTableBodyLoading = () => {
   const { visibleRecordFields } = useRecordTableContextOrThrow();
 
   return (
     <RecordTableBody>
-      {Array.from({ length: 80 }).map((_, rowIndex) => (
+      {Array.from({ length: SKELETON_ROWS_COUNT }).map((_, rowIndex) => (
         <RecordTableRowContextProvider
           key={rowIndex}
           value={{

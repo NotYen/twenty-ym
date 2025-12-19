@@ -5,6 +5,7 @@ import { ObjectOptionsDropdown } from '@/object-record/object-options-dropdown/c
 import { RecordIndexBoardContainer } from '@/object-record/record-index/components/RecordIndexBoardContainer';
 import { RecordIndexBoardDataLoader } from '@/object-record/record-index/components/RecordIndexBoardDataLoader';
 import { RecordIndexBoardDataLoaderEffect } from '@/object-record/record-index/components/RecordIndexBoardDataLoaderEffect';
+import { RecordIndexLoadingBar } from '@/object-record/record-index/components/RecordIndexLoadingBar';
 import { RecordIndexTableContainer } from '@/object-record/record-index/components/RecordIndexTableContainer';
 import { RecordIndexViewBarEffect } from '@/object-record/record-index/components/RecordIndexViewBarEffect';
 import { recordIndexViewTypeState } from '@/object-record/record-index/states/recordIndexViewTypeState';
@@ -65,6 +66,9 @@ export const RecordIndexContainer = () => {
           />
         </SpreadsheetImportProvider>
         <RecordIndexFiltersToContextStoreEffect />
+        {recordIndexViewType === ViewType.Table && (
+          <RecordIndexLoadingBar recordTableId={recordIndexId} />
+        )}
         {recordIndexViewType === ViewType.Table && (
           <>
             <RecordIndexTableContainer recordTableId={recordIndexId} />
