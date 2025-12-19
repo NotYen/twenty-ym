@@ -12,8 +12,6 @@ import { RecordTableRowArrowKeysEffect } from '@/object-record/record-table/reco
 import { RecordTableRowHotkeyEffect } from '@/object-record/record-table/record-table-row/components/RecordTableRowHotkeyEffect';
 import { isRecordTableRowFocusActiveComponentState } from '@/object-record/record-table/states/isRecordTableRowFocusActiveComponentState';
 import { isRecordTableRowFocusedComponentFamilyState } from '@/object-record/record-table/states/isRecordTableRowFocusedComponentFamilyState';
-import { ListenRecordUpdatesEffect } from '@/subscription/components/ListenRecordUpdatesEffect';
-import { getDefaultRecordFieldsToListen } from '@/subscription/utils/getDefaultRecordFieldsToListen.util';
 import { useRecoilComponentFamilyValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentFamilyValue';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 
@@ -31,9 +29,6 @@ export const RecordTableRow = ({
   isFirstRowOfGroup,
 }: RecordTableRowProps) => {
   const { objectNameSingular } = useRecordIndexContextOrThrow();
-  const listenedFields = getDefaultRecordFieldsToListen({
-    objectNameSingular,
-  });
   const isFocused = useRecoilComponentFamilyValue(
     isRecordTableRowFocusedComponentFamilyState,
     rowIndexForFocus,
@@ -59,11 +54,6 @@ export const RecordTableRow = ({
       <RecordTableFieldsCells />
       <RecordTablePlusButtonCellPlaceholder />
       <RecordTableLastEmptyCell />
-      <ListenRecordUpdatesEffect
-        objectNameSingular={objectNameSingular}
-        recordId={recordId}
-        listenedFields={listenedFields}
-      />
       {objectNameSingular === 'salesQuote' && (
         <SalesQuoteTaxCalculationRowEffect recordId={recordId} />
       )}
@@ -85,11 +75,6 @@ export const RecordTableRow = ({
       <RecordTableFieldsCells />
       <RecordTablePlusButtonCellPlaceholder />
       <RecordTableLastEmptyCell />
-      <ListenRecordUpdatesEffect
-        objectNameSingular={objectNameSingular}
-        recordId={recordId}
-        listenedFields={listenedFields}
-      />
       {objectNameSingular === 'salesQuote' && (
         <SalesQuoteTaxCalculationRowEffect recordId={recordId} />
       )}
