@@ -214,18 +214,10 @@ function evaluateDateFilter(filter: ResolvedFilter): boolean {
       );
 
     case ViewFilterOperand.IS_EMPTY:
-      return (
-        filter.leftOperand === null ||
-        filter.leftOperand === undefined ||
-        filter.leftOperand === ''
-      );
+      return !isDefined(filter.leftOperand) || filter.leftOperand === '';
 
     case ViewFilterOperand.IS_NOT_EMPTY:
-      return (
-        filter.leftOperand !== null &&
-        filter.leftOperand !== undefined &&
-        filter.leftOperand !== ''
-      );
+      return isDefined(filter.leftOperand) && filter.leftOperand !== '';
 
     case ViewFilterOperand.IS_RELATIVE:
       return parseAndEvaluateRelativeDateFilter({
@@ -314,10 +306,10 @@ function evaluateNumberFilter(filter: ResolvedFilter): boolean {
       return Number(leftValue) <= Number(rightValue);
 
     case ViewFilterOperand.IS_EMPTY:
-      return !isNonEmptyString(leftValue);
+      return !isDefined(filter.leftOperand) || filter.leftOperand === '';
 
     case ViewFilterOperand.IS_NOT_EMPTY:
-      return isNonEmptyString(leftValue);
+      return isDefined(filter.leftOperand) && filter.leftOperand !== '';
 
     default:
       throw new Error(
