@@ -1,4 +1,4 @@
-# 頁面切換效能優化分析報告
+# 頁面切換效能優化分析報告（修正版）
 
 > 分析日期：2025-12-20
 >
@@ -6,253 +6,230 @@
 
 ---
 
-## 📊 目前架構分析
+## ⚠️ 重要更正
 
-### 1. Object Metadata 載入機制
+之前的分析有誤！Twenty 是一個成熟的開源專案，他們的架構選擇是經過深思熟慮的：
 
-```
-objectMetadataItemsState (Recoil State)
-    ↓
-objectMetadataItemFamilySelector (Selector Family)
-    ↓
-useObjectMetadataItem (Hook)
-```
-
-**現況**：
-- `objectMetadataItemsState` 是一個全域 Recoil state，儲存所有 object metadata
-- `objectMetadataItemFamilySelector` 使用 `selectorFamily` 根據 objectName 查找對應的 metadata
-- 每次查找都會遍歷整個 `objectMetadataItems` 陣列 (O(n) 複雜度)
-
-**問題**：
-- 當有多個 object 時，每次切換頁面都需要遍歷陣列查找
-- 沒有使用 Map 結構進行 O(1) 查找
+1. **Recoil selectorFamily 已有快取機制** - 不是每次都執行 O(n) 查找
+2. **React.memo 不是萬能藥** - 過度使用反而會降低效能
+3. **Twenty 團隊的設計是合理的** - 不應該輕易質疑
 
 ---
 
-### 2. Navigation Drawer 渲染流程
+## 📊 真正的效能瓶頸分析
+
+### 1. 頁面切換的完整流程
 
 ```
-NavigationDrawerSectionForObjectMetadataItems
+點擊 Navigation Item (公司 → 人員)
     ↓
-NavigationDrawerItemForObjectMetadataItem (每個 object 一個)
+React Router 導航到新 URL
     ↓
-NavigationDrawerItem
+RecordIndexPage 重新渲染
+    ↓
+RecordIndexContainerGater 初始化
+    ↓
+useRecordIndexTableQuery 執行
+    ↓
+useFindManyRecords 發起 GraphQL 查詢
+    ↓
+Apollo Client 檢查 cache
+    ↓
+[cache-first] 如果有 cache → 直接返回
+[cache-first] 如果沒有 cache → 發起網路請求
+    ↓
+RecordTableVirtualizedInitialDataLoadEffect 觸發
+    ↓
+triggerInitialRecordTableDataLoad 執行
+    ↓
+Table 虛擬化渲染
 ```
 
-**現況**：
-- `NavigationDrawerSectionForObjectMetadataItems` 使用 `useMemo` 對 objectMetadataItems 進行排序
-- `NavigationDrawerItemForObjectMetadataItem` **沒有使用 `React.memo`**
-- 每次 state 變更都會重新渲染所有 navigation items
+### 2. 可能的效能瓶頸點
 
----
-
-### 3. 頁面切換流程
-
-```
-點擊 Navigation Item
-    ↓
-React Router 導航
-    ↓
-RecordIndexPage 渲染
-    ↓
-RecordIndexContainerGater 渲染
-    ↓
-RecordIndexContainer 渲染
-    ↓
-RecordTableWithWrappers 渲染
-```
-
-**現況**：
-- `RecordIndexContainerGater` 每次都會重新計算 `fieldDefinitionByFieldMetadataItemId` 等衍生狀態
-- `RecordTableWithWrappers` 沒有使用 `useCallback` 包裝 handler 函數
-- 沒有使用 `useMemo` 或 `React.memo` 優化渲染
-
----
-
-## 🔧 優化建議
-
-### 優化 1：預載入常用 Object 的 Metadata
-
-**現況問題**：
-- 目前 metadata 是在 app 初始化時一次性載入
-- 但 selector 查找是 O(n) 複雜度
-
-**建議方案**：
+#### 2.1 網路請求 (最可能的瓶頸)
 
 ```typescript
-// 新增 objectMetadataItemByNameSingularState
-export const objectMetadataItemByNameSingularState = selector<
-  Map<string, ObjectMetadataItem>
->({
-  key: 'objectMetadataItemByNameSingularState',
-  get: ({ get }) => {
-    const objectMetadataItems = get(objectMetadataItemsState);
-    return new Map(
-      objectMetadataItems.map((item) => [item.nameSingular, item])
-    );
-  },
-});
+// useFindManyRecords.ts
+const { data, loading, error, fetchMore, refetch } =
+  useQuery<RecordGqlOperationFindManyResult>(findManyRecordsQuery, {
+    fetchPolicy: fetchPolicy,  // 預設是 cache-first
+    // ...
+  });
 ```
 
-**效益**：
-- 查找複雜度從 O(n) 降為 O(1)
-- 只在 objectMetadataItems 變更時重新計算 Map
+**分析**：
+- 你已經將 `fetchPolicy` 改為 `cache-first`
+- 但首次載入某個 object 時，cache 是空的，仍需要網路請求
+- 切換到不同 object 時，如果該 object 的資料不在 cache 中，會有延遲
 
-**風險**：低
-**影響範圍**：需要修改 `useObjectMetadataItem` hook
+**驗證方式**：
+- 開啟 Chrome DevTools → Network tab
+- 切換頁面時觀察是否有 GraphQL 請求
+- 檢查請求時間
 
----
-
-### 優化 2：使用 React.memo 優化組件渲染
-
-**現況問題**：
-- `NavigationDrawerItemForObjectMetadataItem` 沒有使用 memo
-- 任何 parent state 變更都會導致所有 navigation items 重新渲染
-
-**建議方案**：
+#### 2.2 虛擬化初始化 (可能的瓶頸)
 
 ```typescript
-// NavigationDrawerItemForObjectMetadataItem.tsx
-import { memo } from 'react';
+// useTriggerInitialRecordTableDataLoad.ts
+const triggerInitialRecordTableDataLoad = useRecoilCallback(
+  ({ snapshot, set }) =>
+    async ({ shouldScrollToStart = true } = {}) => {
+      // 重置很多狀態
+      resetTableFocuses();
+      resetVirtualizedRowTreadmill();
 
-export const NavigationDrawerItemForObjectMetadataItem = memo(
-  ({ objectMetadataItem }: NavigationDrawerItemForObjectMetadataItemProps) => {
-    // ... 現有邏輯
-  }
+      // 清除舊的 index mapping
+      for (const [index] of currentRecordIds.entries()) {
+        set(dataLoadingStatusByRealIndexCallbackState({ realIndex: index }), null);
+        set(recordIdByRealIndexCallbackState({ realIndex: index }), null);
+      }
+
+      // 發起查詢
+      const { records, totalCount } = await findManyRecordsLazy();
+
+      // 更新 store
+      upsertRecordsInStore(records);
+      loadRecordsToVirtualRows({ records, startingRealIndex: 0 });
+      // ...
+    }
 );
 ```
 
-**需要 memo 的組件清單**：
-| 組件 | 優先級 | 原因 |
-|------|--------|------|
-| `NavigationDrawerItemForObjectMetadataItem` | 高 | 每個 object 一個，數量多 |
-| `NavigationDrawerItem` | 高 | 基礎組件，使用頻繁 |
-| `RecordIndexContainer` | 中 | 頁面主容器 |
-| `RecordTableWithWrappers` | 中 | Table 容器 |
+**分析**：
+- 每次切換 object 都會重置整個虛擬化狀態
+- 清除舊的 index mapping 是 O(n) 操作
+- `findManyRecordsLazy()` 是 async 操作，會有等待時間
 
-**效益**：
-- 減少不必要的重新渲染
-- 提升 Navigation Drawer 的響應速度
+#### 2.3 View 切換檢測 (可能的瓶頸)
 
-**風險**：低
-**影響範圍**：需要確保 props 是穩定的引用
-
----
-
-### 優化 3：減少不必要的 Re-render
-
-#### 3.1 使用 useCallback 包裝 Handler
-
-**現況問題**：
 ```typescript
-// RecordTableWithWrappers.tsx
-const handleSelectAllRows = () => {
-  selectAllRows();
-};
-// 每次渲染都會創建新的函數引用
-```
-
-**建議方案**：
-```typescript
-const handleSelectAllRows = useCallback(() => {
-  selectAllRows();
-}, [selectAllRows]);
-```
-
-#### 3.2 使用 useMemo 緩存衍生狀態
-
-**現況問題**：
-```typescript
-// RecordIndexContainerGater.tsx
-const {
-  fieldDefinitionByFieldMetadataItemId,
-  fieldMetadataItemByFieldMetadataItemId,
+// RecordTableVirtualizedInitialDataLoadEffect.tsx
+useEffect(() => {
+  if ((currentView?.id ?? null) !== lastContextStoreVirtualizedViewId) {
+    // View 變更 → 觸發重新載入
+    await triggerInitialRecordTableDataLoad();
+  } else if (queryIdentifier !== lastRecordTableQueryIdentifier) {
+    // Query 變更 → 觸發重新載入
+    await triggerInitialRecordTableDataLoad();
+  }
   // ...
-} = useRecordIndexFieldMetadataDerivedStates(objectMetadataItem, recordIndexId);
-// 每次渲染都會重新計算
+}, [/* 很多依賴 */]);
 ```
 
-**建議方案**：
-確保 `useRecordIndexFieldMetadataDerivedStates` 內部使用 `useMemo`
+**分析**：
+- 切換 object 時，`currentView` 和 `queryIdentifier` 都會變更
+- 這會觸發 `triggerInitialRecordTableDataLoad`
+- 即使資料在 cache 中，仍會執行重置和重新載入流程
 
-#### 3.3 避免在 render 中創建新物件
+---
 
-**現況問題**：
+## 🔍 建議的診斷步驟
+
+### 步驟 1：確認是否是網路請求造成的延遲
+
+1. 開啟 Chrome DevTools → Network tab
+2. 篩選 `graphql` 請求
+3. 切換「公司」→「人員」
+4. 觀察：
+   - 是否有新的 GraphQL 請求？
+   - 請求時間是多少？
+   - 如果再次切換回「公司」，是否還有請求？（應該沒有，因為 cache-first）
+
+### 步驟 2：確認是否是 React 渲染造成的延遲
+
+1. 開啟 React DevTools → Profiler tab
+2. 點擊 Record
+3. 切換頁面
+4. 停止 Record
+5. 觀察：
+   - 哪些組件渲染時間最長？
+   - 是否有不必要的重新渲染？
+
+### 步驟 3：確認是否是虛擬化重置造成的延遲
+
+在 `useTriggerInitialRecordTableDataLoad.ts` 中添加 console.time：
+
 ```typescript
-// RecordIndexContainerGater.tsx
-<RecordIndexContextProvider
-  value={{
-    objectPermissionsByObjectMetadataId,
-    recordIndexId,
-    // ... 每次渲染都創建新物件
-  }}
->
+const triggerInitialRecordTableDataLoad = useRecoilCallback(
+  ({ snapshot, set }) =>
+    async ({ shouldScrollToStart = true } = {}) => {
+      console.time('triggerInitialRecordTableDataLoad');
+
+      console.time('resetTableFocuses');
+      resetTableFocuses();
+      console.timeEnd('resetTableFocuses');
+
+      console.time('findManyRecordsLazy');
+      const { records, totalCount } = await findManyRecordsLazy();
+      console.timeEnd('findManyRecordsLazy');
+
+      console.time('upsertRecordsInStore');
+      upsertRecordsInStore(records);
+      console.timeEnd('upsertRecordsInStore');
+
+      console.timeEnd('triggerInitialRecordTableDataLoad');
+      // ...
+    }
+);
 ```
 
-**建議方案**：
-```typescript
-const contextValue = useMemo(() => ({
-  objectPermissionsByObjectMetadataId,
-  recordIndexId,
-  // ...
-}), [objectPermissionsByObjectMetadataId, recordIndexId, /* ... */]);
+---
 
-<RecordIndexContextProvider value={contextValue}>
-```
+## 📋 可能的優化方向（需要先診斷確認）
+
+### 如果是網路請求造成的延遲
+
+1. **預載入常用 object 的資料**
+   - 在 app 初始化時，預先載入 Company、Person 等常用 object 的資料
+   - 這樣切換時就能直接從 cache 讀取
+
+2. **使用 Apollo Client 的 `prefetch`**
+   - 在 hover Navigation Item 時預先載入資料
+
+### 如果是虛擬化重置造成的延遲
+
+1. **優化 index mapping 清除邏輯**
+   - 使用 batch update 而不是逐個清除
+
+2. **保留部分虛擬化狀態**
+   - 如果只是切換 object，不需要完全重置所有狀態
+
+### 如果是 React 渲染造成的延遲
+
+1. **使用 React.memo**（但要謹慎）
+2. **使用 useMemo/useCallback**（但要謹慎）
 
 ---
 
-## 📋 實施優先級
+## 🔍 Twenty 開源相關 Issues
 
-| 優化項目 | 優先級 | 預估效益 | 實施難度 | 風險 |
-|----------|--------|----------|----------|------|
-| Metadata Map 查找優化 | 🔴 高 | 高 | 低 | 低 |
-| NavigationDrawerItem memo | 🔴 高 | 高 | 低 | 低 |
-| Context value useMemo | 🟡 中 | 中 | 低 | 低 |
-| Handler useCallback | 🟡 中 | 中 | 低 | 低 |
-| RecordIndexContainer memo | 🟢 低 | 低 | 中 | 中 |
+由於我無法直接訪問 GitHub，建議你搜尋以下關鍵字：
 
----
+- `performance`
+- `slow`
+- `lag`
+- `navigation`
+- `table loading`
+- `virtualization`
 
-## ⚠️ 注意事項
-
-1. **React.memo 的正確使用**：
-   - 確保 props 是穩定的引用
-   - 對於 object/array props，需要在 parent 使用 useMemo
-   - 對於 function props，需要在 parent 使用 useCallback
-
-2. **useMemo/useCallback 的依賴陣列**：
-   - 確保依賴陣列完整
-   - 避免過度優化（簡單計算不需要 useMemo）
-
-3. **測試驗證**：
-   - 使用 React DevTools Profiler 驗證優化效果
-   - 確保功能正常運作
+可能相關的 PR：
+- `#16419` - Improved table flash on reload（已 cherry-pick）
+- `#16322` - Fix Timeline blinking（已存在）
+- `#15655` - Fix scroll to start when resize columns（已存在）
 
 ---
 
-## 🔍 開源參考
+## 📝 結論
 
-Twenty 開源專案中已有的效能優化：
+頁面切換的 lag 最可能的原因是：
 
-| Commit | PR | 說明 | 狀態 |
-|--------|-----|------|------|
-| `cee63c6eb5` | #16419 | Improved table flash on reload | ✅ 已 cherry-pick |
-| `ac89b5aff6` | #16398 | fastDeepEqual 效能優化 | ✅ 已 cherry-pick |
-| `61a469cff8` | #16322 | Fix Timeline blinking | ✅ 已存在 |
-| `1607aebcc6` | #16080 | Deprecate object metadata maps | ❌ 風險太高 |
+1. **網路請求** - 首次載入某個 object 時需要 API call
+2. **虛擬化重置** - 每次切換都會重置整個虛擬化狀態
+3. **View 初始化** - 需要重新計算 filter、sort 等
 
----
+**不太可能是**：
+- Recoil selector 查找效率（已有快取）
+- React 組件渲染效率（Twenty 的架構是合理的）
 
-## 📝 下一步行動
-
-1. **立即可做**（風險低）：
-   - 為 `NavigationDrawerItemForObjectMetadataItem` 添加 `React.memo`
-   - 為 `NavigationDrawerItem` 添加 `React.memo`
-
-2. **需要評估**（需要更多測試）：
-   - 新增 `objectMetadataItemByNameSingularState` Map selector
-   - 優化 `RecordIndexContainerGater` 的 context value
-
-3. **長期考慮**：
-   - 等待 Twenty 開源的 flat entity 重構完成後再整體升級
+建議先進行診斷步驟，確認真正的瓶頸點後再進行優化。
