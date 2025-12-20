@@ -18,10 +18,10 @@ import { useUpdateViewFromCurrentState } from '@/views/view-picker/hooks/useUpda
 import { useViewPickerMode } from '@/views/view-picker/hooks/useViewPickerMode';
 import { isDefined } from 'twenty-shared/utils';
 import {
-  IconChevronDown,
-  IconList,
-  OverflowingTextWithTooltip,
-  useIcons,
+    IconChevronDown,
+    IconList,
+    OverflowingTextWithTooltip,
+    useIcons,
 } from 'twenty-ui/display';
 import { MOBILE_VIEWPORT } from 'twenty-ui/theme';
 
@@ -50,6 +50,7 @@ const StyledViewName = styled.span`
   @media (min-width: 376px) and (max-width: ${MOBILE_VIEWPORT}px) {
     max-width: 110px;
   }
+  vertical-align: middle;
 `;
 
 export const ViewPickerDropdown = () => {
