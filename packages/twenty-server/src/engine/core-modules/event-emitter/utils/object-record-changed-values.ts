@@ -1,27 +1,27 @@
 import deepEqual from 'deep-equal';
 import { STANDARD_OBJECT_IDS } from 'twenty-shared/metadata';
 import { FieldMetadataType, type ObjectRecord } from 'twenty-shared/types';
+import { fastDeepEqual } from 'twenty-shared/utils';
 
 import { type ObjectMetadataItemWithFieldMaps } from 'src/engine/metadata-modules/types/object-metadata-item-with-field-maps';
 
-const isWorkflowVersionStepsOrTrigger = (
-  objectMetadataItem: ObjectMetadataItemWithFieldMaps,
-  key: string,
-) => {
-  return (
-    objectMetadataItem.standardId === STANDARD_OBJECT_IDS.workflowVersion &&
-    (key === 'steps' || key === 'trigger')
-  );
+const LARGE_JSON_FIELDS: Record<string, Set<string>> = {
+  [STANDARD_OBJECT_IDS.workflowVersion]: new Set(['steps', 'trigger']),
+  [STANDARD_OBJECT_IDS.workflowAutomatedTrigger]: new Set(['settings']),
+  [STANDARD_OBJECT_IDS.workflowRun]: new Set(['state']),
 };
 
-const isWorkflowAutomatedTriggerSettings = (
+const isLargeJsonField = (
   objectMetadataItem: Pick<ObjectMetadataItemWithFieldMaps, 'standardId'>,
   key: string,
-) => {
-  return (
-    objectMetadataItem.standardId ===
-      STANDARD_OBJECT_IDS.workflowAutomatedTrigger && key === 'settings'
-  );
+): boolean => {
+  const standardId = objectMetadataItem.standardId;
+
+  if (!standardId) {
+    return false;
+  }
+
+  return LARGE_JSON_FIELDS[standardId]?.has(key) ?? false;
 };
 
 export const objectRecordChangedValues = (
@@ -37,20 +37,19 @@ export const objectRecordChangedValues = (
       const oldRecordValue = oldRecord[key];
       const newRecordValue = newRecord[key];
 
-      // Temporary ignore workflow json fields changes
       if (
-        isWorkflowAutomatedTriggerSettings(objectMetadataItem, key) ||
-        isWorkflowVersionStepsOrTrigger(objectMetadataItem, key)
+        key === 'updatedAt' ||
+        key === 'searchVector' ||
+        field?.type === FieldMetadataType.RELATION
       ) {
         return acc;
       }
 
-      if (
-        key === 'updatedAt' ||
-        key === 'searchVector' ||
-        field?.type === FieldMetadataType.RELATION ||
-        deepEqual(oldRecordValue, newRecordValue)
-      ) {
+      if (isLargeJsonField(objectMetadataItem, key)) {
+        if (fastDeepEqual(oldRecordValue, newRecordValue)) {
+          return acc;
+        }
+      } else if (deepEqual(oldRecordValue, newRecordValue)) {
         return acc;
       }
 
