@@ -25,6 +25,7 @@ import {
     type FieldTypeAndNameMetadata,
     getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
+import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { SalesQuoteWorkspaceEntity } from './sales-quote.workspace-entity';
 
 const PRODUCT_NAME_FIELD_NAME = 'chanPinMingCheng';

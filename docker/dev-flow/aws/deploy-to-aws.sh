@@ -137,8 +137,10 @@ echo "🔄 Updating docker-compose.aws.yml with new tags..."
 tmp_file="$(mktemp)"
 cp "${AWS_COMPOSE_PATH}" "${tmp_file}"
 
-perl -0pi -e "s|image:\s*ycrm/y-crm:backend-[^\s]+|image: ycrm/y-crm:backend-${BACKEND_TAG}|g" "${tmp_file}"
-perl -0pi -e "s|image:\s*ycrm/y-crm:frontend-[^\s]+|image: ycrm/y-crm:frontend-${FRONTEND_TAG}|g" "${tmp_file}"
+# Replace backend image tag (matches any tag starting with ycrm/y-crm: for backend/worker services)
+perl -0pi -e "s|(backend:\s+image:\s*ycrm/y-crm:)[^\s]+|\${1}${BACKEND_TAG}|g" "${tmp_file}"
+perl -0pi -e "s|(worker:\s+image:\s*ycrm/y-crm:)[^\s]+|\${1}${BACKEND_TAG}|g" "${tmp_file}"
+perl -0pi -e "s|(frontend:\s+image:\s*ycrm/y-crm:)[^\s]+|\${1}${FRONTEND_TAG}|g" "${tmp_file}"
 
 mv "${tmp_file}" "${AWS_COMPOSE_PATH}"
 echo "✅ Updated ${AWS_COMPOSE_PATH}"
