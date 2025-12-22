@@ -1,16 +1,19 @@
 import {
-  isNonEmptyArray,
-  isNonEmptyString,
-  isObject,
-  isString,
+    isNonEmptyArray,
+    isNonEmptyString,
+    isObject,
+    isString,
 } from '@sniptt/guards';
 import {
-  type StepFilter,
-  type StepFilterGroup,
-  ViewFilterOperand,
-  type ViewFilterOperandDeprecated,
+    type StepFilter,
+    type StepFilterGroup,
+    ViewFilterOperand,
+    type ViewFilterOperandDeprecated,
 } from 'twenty-shared/types';
-import { convertViewFilterOperandToCoreOperand as convertViewFilterOperandDeprecated } from 'twenty-shared/utils';
+import {
+    convertViewFilterOperandToCoreOperand as convertViewFilterOperandDeprecated,
+    isDefined,
+} from 'twenty-shared/utils';
 import { parseBooleanFromStringValue } from 'twenty-shared/workflow';
 
 import { parseAndEvaluateRelativeDateFilter } from 'src/modules/workflow/workflow-executor/workflow-actions/filter/utils/parse-and-evaluate-relative-date-filter.util';
