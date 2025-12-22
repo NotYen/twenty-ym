@@ -238,11 +238,10 @@ export const useUpdateOneRecordV2 = () => {
         throw error;
       });
 
-    registerObjectOperation(objectMetadataItem, {
+    registerObjectOperation(objectMetadataItem.nameSingular, {
       type: 'update-one',
-      result: { updateInput: updateOneRecordInput },
+      result: { updatedRecord, updateInput: updateOneRecordInput },
     });
-
     return updatedRecord?.data?.[mutationResponseField] ?? null;
   };
 

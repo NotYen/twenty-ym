@@ -230,9 +230,9 @@ export const useUpdateOneRecord = <
 
     const udpatedRecord = updatedRecord?.data?.[mutationResponseField] ?? null;
 
-    registerObjectOperation(objectMetadataItem, {
+    registerObjectOperation(objectNameSingular, {
       type: 'update-one',
-      result: { updateInput: updateOneRecordInput },
+      result: { updatedRecord, updateInput: updateOneRecordInput },
     });
 
     return udpatedRecord;

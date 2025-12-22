@@ -200,7 +200,7 @@ export const useRestoreManyRecords = ({
 
       restoredRecords.push(...restoredRecordsForThisBatch);
 
-      registerObjectOperation(objectMetadataItem, {
+      registerObjectOperation(objectMetadataItem.nameSingular, {
         type: 'restore-many',
       });
 

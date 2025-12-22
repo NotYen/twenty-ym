@@ -2,8 +2,8 @@ import { useNumberFormat } from '@/localization/hooks/useNumberFormat';
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
 import { DEFAULT_MUTATION_BATCH_SIZE } from '@/object-record/constants/DefaultMutationBatchSize';
 import {
-  useCreateManyRecords,
-  type useCreateManyRecordsProps,
+    useCreateManyRecords,
+    type useCreateManyRecordsProps,
 } from '@/object-record/hooks/useCreateManyRecords';
 import { useRefetchAggregateQueries } from '@/object-record/hooks/useRefetchAggregateQueries';
 import { useRegisterObjectOperation } from '@/object-record/hooks/useRegisterObjectOperation';
@@ -100,7 +100,7 @@ export const useBatchCreateManyRecords = <
 
     await refetchAggregateQueries();
 
-    registerObjectOperation(objectMetadataItem, { type: 'create-many' });
+    registerObjectOperation(objectNameSingular, { type: 'create-many' });
 
     return allCreatedRecords;
   };

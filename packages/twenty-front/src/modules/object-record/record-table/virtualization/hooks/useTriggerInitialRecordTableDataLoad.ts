@@ -11,7 +11,6 @@ import { isRecordTableScrolledVerticallyComponentState } from '@/object-record/r
 import { updateRecordTableCSSVariable } from '@/object-record/record-table/utils/updateRecordTableCSSVariable';
 import { useLoadRecordsToVirtualRows } from '@/object-record/record-table/virtualization/hooks/useLoadRecordsToVirtualRows';
 import { useReapplyRowSelection } from '@/object-record/record-table/virtualization/hooks/useReapplyRowSelection';
-
 import { useResetTableFocuses } from '@/object-record/record-table/virtualization/hooks/useResetTableFocuses';
 import { useResetVirtualizedRowTreadmill } from '@/object-record/record-table/virtualization/hooks/useResetVirtualizedRowTreadmill';
 import { dataLoadingStatusByRealIndexComponentFamilyState } from '@/object-record/record-table/virtualization/states/dataLoadingStatusByRealIndexComponentFamilyState';
@@ -119,7 +118,6 @@ export const useTriggerInitialRecordTableDataLoad = () => {
         set(isInitializingVirtualTableDataLoadingCallbackState, true);
 
         resetTableFocuses();
-
         resetVirtualizedRowTreadmill();
 
         updateRecordTableCSSVariable(

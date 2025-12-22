@@ -223,7 +223,7 @@ export const useCreateOneRecord = <
 
     await refetchAggregateQueries();
 
-    registerObjectOperation(objectMetadataItem, { type: 'create-one' });
+    registerObjectOperation(objectNameSingular, { type: 'create-one' });
 
     if (!isDefined(createdObject.data?.[mutationResponseField])) {
       throw new CustomError('Failed to create record');

@@ -15,6 +15,7 @@ import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/ho
 import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
 import isEmpty from 'lodash.isempty';
 import { useEffect } from 'react';
+import { logDebug } from '~/utils/logDebug';
 
 // TODO: see if we can merge the initial and load more processes, to have only one load at scroll index effect
 export const RecordTableVirtualizedInitialDataLoadEffect = () => {
@@ -55,11 +56,16 @@ export const RecordTableVirtualizedInitialDataLoadEffect = () => {
 
   useEffect(() => {
     if (isInitializingVirtualTableDataLoading) {
+      logDebug(`[📊 InitialDataLoadEffect] ⏭️ 跳過：已在初始化中`);
       return;
     }
 
     (async () => {
       if ((currentView?.id ?? null) !== lastContextStoreVirtualizedViewId) {
+        logDebug(`[📊 InitialDataLoadEffect] 🔄 觸發原因: View 變更`, {
+          currentViewId: currentView?.id ?? null,
+          lastViewId: lastContextStoreVirtualizedViewId,
+        });
         setLastContextStoreVirtualizedViewId(currentView?.id ?? null);
 
         await triggerInitialRecordTableDataLoad();
@@ -67,6 +73,10 @@ export const RecordTableVirtualizedInitialDataLoadEffect = () => {
         queryIdentifier !== lastRecordTableQueryIdentifier &&
         !isFetchingMoreRecords
       ) {
+        logDebug(`[📊 InitialDataLoadEffect] 🔄 觸發原因: Query 變更`, {
+          currentQuery: queryIdentifier,
+          lastQuery: lastRecordTableQueryIdentifier,
+        });
         setLastRecordTableQueryIdentifier(queryIdentifier);
 
         await triggerInitialRecordTableDataLoad();
@@ -80,6 +90,12 @@ export const RecordTableVirtualizedInitialDataLoadEffect = () => {
         const currentFields = visibleRecordFields || [];
 
         const shouldRefetchData = currentFields.length > lastFields.length;
+
+        logDebug(`[📊 InitialDataLoadEffect] 🔄 觸發原因: 可見欄位變更`, {
+          lastFieldsCount: lastFields.length,
+          currentFieldsCount: currentFields.length,
+          shouldRefetchData,
+        });
 
         if (shouldRefetchData) {
           await triggerInitialRecordTableDataLoad({

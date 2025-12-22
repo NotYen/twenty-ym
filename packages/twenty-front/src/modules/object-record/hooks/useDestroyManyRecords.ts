@@ -145,7 +145,7 @@ export const useDestroyManyRecords = ({
 
     await refetchAggregateQueries();
 
-    registerObjectOperation(objectMetadataItem, {
+    registerObjectOperation(objectNameSingular, {
       type: 'destroy-many',
     });
 

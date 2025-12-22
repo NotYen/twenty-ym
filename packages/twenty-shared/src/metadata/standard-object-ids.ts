@@ -49,6 +49,6 @@ export const STANDARD_OBJECT_IDS = {
   workflowVersion: '20202020-d65d-4ab9-9344-d77bfb376a3d',
   workspaceMember: '20202020-3319-4234-a34c-82d5c0e881a6',
   workflowAutomatedTrigger: '20202020-3319-4234-a34c-7f3b9d2e4d1f',
-  salesQuote: '20202020-5249-6086-5666-487692d54557',
-  salesQuoteLineItem: '20202020-3361-5456-4354-474c81512292',
+  salesQuote: '52496086-5666-4876-92d5-455792272895',
+  salesQuoteLineItem: '33615456-4354-474c-8151-22927e1f486d',
 } as const;

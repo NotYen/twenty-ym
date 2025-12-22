@@ -224,7 +224,7 @@ export const useDeleteManyRecords = ({
     }
     await refetchAggregateQueries();
 
-    registerObjectOperation(objectMetadataItem, {
+    registerObjectOperation(objectNameSingular, {
       type: 'delete-many',
     });
 
