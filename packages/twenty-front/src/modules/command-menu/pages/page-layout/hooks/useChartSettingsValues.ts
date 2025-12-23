@@ -158,8 +158,7 @@ export const useChartSettingsValues = ({
           ? capitalize(configuration.color)
           : undefined;
       case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_Y:
-      case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_AGGREGATE:
-      case CHART_CONFIGURATION_SETTING_IDS.EACH_SLICE_REPRESENTS: {
+      case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_AGGREGATE: {
         const hasAggregateLabel = isDefined(aggregateField?.label);
         const hasAggregateOperation = isDefined(aggregateOperation);
 
@@ -169,7 +168,19 @@ export const useChartSettingsValues = ({
             : ''
         }`;
       }
+      // Pie Chart: "顯示的數據" = aggregateField（聚合欄位，如 COUNT、SUM）
       case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_PIE_CHART: {
+        const hasAggregateLabel = isDefined(aggregateField?.label);
+        const hasAggregateOperation = isDefined(aggregateOperation);
+
+        return `${aggregateField?.label ?? ''}${
+          hasAggregateLabel && hasAggregateOperation
+            ? ` (${getAggregateOperationLabel(aggregateOperation)})`
+            : ''
+        }`;
+      }
+      // Pie Chart: "每個切片代表" = groupByField（分組欄位）
+      case CHART_CONFIGURATION_SETTING_IDS.EACH_SLICE_REPRESENTS: {
         const pieChartGroupByField = isDefined(finalGroupByFieldYId)
           ? objectMetadataItem?.fields.find(
               (field) => field.id === finalGroupByFieldYId,

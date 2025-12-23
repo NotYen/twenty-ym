@@ -136,6 +136,13 @@ cat <<EOF
 EOF
 cp "${ENV_SELECTED_FILE}" "${ENV_TARGET}"
 
+# Source env file to load variables for build args
+set -a
+source "${ENV_SELECTED_FILE}"
+set +a
+echo "   IS_DEBUG_MODE=${IS_DEBUG_MODE:-false}"
+echo "   VITE_IS_DEBUG_MODE=${VITE_IS_DEBUG_MODE:-false}"
+
 prompt_for_version() {
   local prompt_message="$1"
   local default_value="$2"
@@ -193,8 +200,8 @@ build_frontend() {
       --build-arg NGINX_VERSION="${NGINX_VERSION}" \
       --build-arg BACKEND_URL_PLACEHOLDER="@@SERVER_BASE_URL@@" \
       --build-arg FRONTEND_IMAGE_VERSION="${FRONTEND_VERSION}" \
-      --build-arg VITE_IS_DEBUG_MODE=false \
-      --build-arg IS_DEBUG_MODE=false \
+      --build-arg VITE_IS_DEBUG_MODE="${VITE_IS_DEBUG_MODE:-false}" \
+      --build-arg IS_DEBUG_MODE="${IS_DEBUG_MODE:-false}" \
       -t "ycrm/y-crm:${FRONTEND_VERSION}" \
       -f docker/frontend/Dockerfile \
       --no-cache \

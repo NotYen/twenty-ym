@@ -38,6 +38,19 @@ export class LineMessagingTool implements Tool {
           )
         : null) || this.twentyConfigService.get('LINE_CHANNEL_ACCESS_TOKEN');
 
+    // LINE_CHANNEL_SECRET: workspace config fallback to global config
+    const channelSecret =
+      (workspaceId
+        ? await this.workspaceConfigService.get(
+            workspaceId,
+            'LINE_CHANNEL_SECRET',
+          )
+        : null) || this.twentyConfigService.get('LINE_CHANNEL_SECRET');
+
+    this.logger.debug(
+      `LINE config - workspaceId: ${workspaceId?.substring(0, 8)}..., hasToken: ${!!channelAccessToken}, hasSecret: ${!!channelSecret}`,
+    );
+
     if (!channelAccessToken) {
       const errorMessage = 'LINE channel access token is not configured';
 
