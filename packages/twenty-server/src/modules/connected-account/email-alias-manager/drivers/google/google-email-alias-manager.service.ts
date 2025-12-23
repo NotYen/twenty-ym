@@ -13,10 +13,12 @@ export class GoogleEmailAliasManagerService {
 
   public async getHandleAliases(
     connectedAccount: ConnectedAccountWorkspaceEntity,
+    workspaceId?: string,
   ) {
     const oAuth2Client =
       await this.oAuth2ClientManagerService.getGoogleOAuth2Client(
         connectedAccount,
+        workspaceId ?? '',
       );
 
     const peopleClient = google.people({

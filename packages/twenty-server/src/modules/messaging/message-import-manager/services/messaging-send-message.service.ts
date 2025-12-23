@@ -9,8 +9,8 @@ import { z } from 'zod';
 import { OAuth2ClientManagerService } from 'src/modules/connected-account/oauth2-client-manager/services/oauth2-client-manager.service';
 import { type ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
 import {
-  MessageImportDriverException,
-  MessageImportDriverExceptionCode,
+    MessageImportDriverException,
+    MessageImportDriverExceptionCode,
 } from 'src/modules/messaging/message-import-manager/drivers/exceptions/message-import-driver.exception';
 import { ImapClientProvider } from 'src/modules/messaging/message-import-manager/drivers/imap/providers/imap-client.provider';
 import { isAccessTokenRefreshingError } from 'src/modules/messaging/message-import-manager/drivers/microsoft/utils/is-access-token-refreshing-error.utils';
@@ -40,12 +40,14 @@ export class MessagingSendMessageService {
   public async sendMessage(
     sendMessageInput: SendMessageInput,
     connectedAccount: ConnectedAccountWorkspaceEntity,
+    workspaceId?: string,
   ): Promise<void> {
     switch (connectedAccount.provider) {
       case ConnectedAccountProvider.GOOGLE: {
         const oAuth2Client =
           await this.oAuth2ClientManagerService.getGoogleOAuth2Client(
             connectedAccount,
+            workspaceId ?? '',
           );
 
         const gmailClient = google.gmail({

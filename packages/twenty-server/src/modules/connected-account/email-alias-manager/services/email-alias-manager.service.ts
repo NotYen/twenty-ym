@@ -18,6 +18,7 @@ export class EmailAliasManagerService {
 
   public async refreshHandleAliases(
     connectedAccount: ConnectedAccountWorkspaceEntity,
+    workspaceId?: string,
   ) {
     let handleAliases: string[];
 
@@ -32,6 +33,7 @@ export class EmailAliasManagerService {
         handleAliases =
           await this.googleEmailAliasManagerService.getHandleAliases(
             connectedAccount,
+            workspaceId,
           );
         break;
       case ConnectedAccountProvider.IMAP_SMTP_CALDAV:

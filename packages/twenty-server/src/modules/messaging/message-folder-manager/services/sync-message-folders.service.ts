@@ -56,7 +56,7 @@ export class SyncMessageFoldersService {
   async syncMessageFolders(input: SyncMessageFoldersInput): Promise<void> {
     const { workspaceId, messageChannelId, connectedAccount, manager } = input;
 
-    const folders = await this.discoverAllFolders(connectedAccount);
+    const folders = await this.discoverAllFolders(connectedAccount, workspaceId);
 
     await this.upsertDiscoveredFolders({
       workspaceId,
@@ -171,11 +171,13 @@ export class SyncMessageFoldersService {
 
   async discoverAllFolders(
     connectedAccount: MessageChannelWorkspaceEntity['connectedAccount'],
+    workspaceId?: string,
   ): Promise<MessageFolder[]> {
     switch (connectedAccount.provider) {
       case ConnectedAccountProvider.GOOGLE:
         return await this.gmailGetAllFoldersService.getAllMessageFolders(
           connectedAccount,
+          workspaceId,
         );
       case ConnectedAccountProvider.MICROSOFT:
         return await this.microsoftGetAllFoldersService.getAllMessageFolders(

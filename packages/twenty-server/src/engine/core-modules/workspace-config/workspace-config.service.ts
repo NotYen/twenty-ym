@@ -27,6 +27,12 @@ export class WorkspaceConfigService {
   }
 
   async get(workspaceId: string, key: string, defaultValue?: string): Promise<string | null> {
+    // Guard against undefined/empty workspaceId to prevent substring error
+    if (!workspaceId) {
+      this.logger.debug(`[GET] No workspaceId provided for key "${key}", returning ${defaultValue ? 'defaultValue' : 'null'}`);
+      return defaultValue ?? null;
+    }
+
     this.logger.debug(`[GET] Looking up key "${key}" for workspace ${workspaceId.substring(0, 8)}...`);
 
     const config = await this.workspaceConfigRepository.findOne({

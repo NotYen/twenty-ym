@@ -6,8 +6,8 @@ import { EXPORT_TABLE_DATA_DEFAULT_PAGE_SIZE } from '@/object-record/object-opti
 import { useExportProcessRecordsForCSV } from '@/object-record/object-options-dropdown/hooks/useExportProcessRecordsForCSV';
 import { type FieldMetadata } from '@/object-record/record-field/ui/types/FieldMetadata';
 import {
-  useRecordIndexLazyFetchRecords,
-  type UseRecordDataOptions,
+    useRecordIndexLazyFetchRecords,
+    type UseRecordDataOptions,
 } from '@/object-record/record-index/export/hooks/useRecordIndexLazyFetchRecords';
 import { type ColumnDefinition } from '@/object-record/record-table/types/ColumnDefinition';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
@@ -141,9 +141,16 @@ export const displayedExportProgress = (progress?: ExportProgress): string => {
   return `Export (${progress.exportedRecordCount})`;
 };
 
+// UTF-8 BOM (Byte Order Mark) - 讓 Excel 正確識別 UTF-8 編碼
+const UTF8_BOM = '\uFEFF';
+
 const downloader = (mimeType: string, generator: GenerateExport) => {
   return (filename: string, data: GenerateExportOptions) => {
-    const blob = new Blob([generator(data)], { type: mimeType });
+    const csvContent = generator(data);
+    // 加上 UTF-8 BOM 讓 Excel 正確識別編碼，避免中文亂碼
+    const blob = new Blob([UTF8_BOM + csvContent], {
+      type: `${mimeType};charset=utf-8`,
+    });
     saveAs(blob, filename);
   };
 };

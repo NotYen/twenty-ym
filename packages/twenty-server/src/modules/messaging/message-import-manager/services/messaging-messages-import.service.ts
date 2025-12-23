@@ -11,15 +11,15 @@ import { EmailAliasManagerService } from 'src/modules/connected-account/email-al
 import { type ConnectedAccountWorkspaceEntity } from 'src/modules/connected-account/standard-objects/connected-account.workspace-entity';
 import { MessageChannelSyncStatusService } from 'src/modules/messaging/common/services/message-channel-sync-status.service';
 import {
-  MessageChannelSyncStage,
-  type MessageChannelWorkspaceEntity,
+    MessageChannelSyncStage,
+    type MessageChannelWorkspaceEntity,
 } from 'src/modules/messaging/common/standard-objects/message-channel.workspace-entity';
 import { MESSAGING_GMAIL_USERS_MESSAGES_GET_BATCH_SIZE } from 'src/modules/messaging/message-import-manager/drivers/gmail/constants/messaging-gmail-users-messages-get-batch-size.constant';
 import { MessagingAccountAuthenticationService } from 'src/modules/messaging/message-import-manager/services/messaging-account-authentication.service';
 import { MessagingGetMessagesService } from 'src/modules/messaging/message-import-manager/services/messaging-get-messages.service';
 import {
-  MessageImportExceptionHandlerService,
-  MessageImportSyncStep,
+    MessageImportExceptionHandlerService,
+    MessageImportSyncStep,
 } from 'src/modules/messaging/message-import-manager/services/messaging-import-exception-handler.service';
 import { MessagingSaveMessagesAndEnqueueContactCreationService } from 'src/modules/messaging/message-import-manager/services/messaging-save-messages-and-enqueue-contact-creation.service';
 import { filterEmails } from 'src/modules/messaging/message-import-manager/utils/filter-emails.util';
@@ -86,6 +86,7 @@ export class MessagingMessagesImportService {
 
       await this.emailAliasManagerService.refreshHandleAliases(
         connectedAccountWithFreshTokens,
+        workspaceId,
       );
 
       messageIdsToFetch = await this.cacheStorage.setPop(

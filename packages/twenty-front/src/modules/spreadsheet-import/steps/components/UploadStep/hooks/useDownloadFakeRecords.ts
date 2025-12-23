@@ -131,13 +131,14 @@ export const useDownloadFakeRecords = () => {
     });
 
     const csvContent = escapedRows.map((row) => row.join(',')).join('\n');
-    return [csvContent];
+    // 加上 UTF-8 BOM 讓 Excel 正確識別編碼
+    return ['\uFEFF' + csvContent];
   };
 
   const downloadSample = () => {
     const { headerRow, bodyRows } = buildTableWithFakeRecords();
     const csvContent = formatToCsvContent([headerRow, ...bodyRows]);
-    const blob = new Blob(csvContent, { type: 'text/csv' });
+    const blob = new Blob(csvContent, { type: 'text/csv;charset=utf-8' });
     saveAs(blob, `${objectMetadataItem.labelPlural.toLowerCase()}-sample.csv`);
   };
 

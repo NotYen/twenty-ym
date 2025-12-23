@@ -64,7 +64,7 @@ export const ConfirmationModal = ({
   subtitle,
   onConfirmClick,
   onClose,
-  confirmButtonText = 'Confirm',
+  confirmButtonText,
   confirmationValue,
   confirmationPlaceholder,
   confirmButtonAccent = 'danger',
@@ -72,6 +72,7 @@ export const ConfirmationModal = ({
   modalVariant = 'primary',
 }: ConfirmationModalProps) => {
   const { t } = useLingui();
+  const actualConfirmButtonText = confirmButtonText ?? t`Confirm`;
   const [inputConfirmationValue, setInputConfirmationValue] =
     useState<string>('');
   const [isValidValue, setIsValidValue] = useState(!confirmationValue);
@@ -156,7 +157,7 @@ export const ConfirmationModal = ({
         onClick={handleConfirmClick}
         variant="secondary"
         accent={confirmButtonAccent}
-        title={confirmButtonText}
+        title={actualConfirmButtonText}
         disabled={!isValidValue || loading}
         fullWidth
         dataTestId="confirmation-modal-confirm-button"

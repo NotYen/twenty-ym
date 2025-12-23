@@ -354,12 +354,477 @@ docker compose -f docker-compose.aws.yml up -d
 
 ---
 
+## 10. 2025-12-22/23 部署問題總結（v1~v5）
+
+本節記錄從 v1 到 v5 部署過程中遇到的所有問題及解決方案。
+
+### 10.1 v1 問題：TimelineActivityWorkspaceEntity 未 import
+
+**錯誤訊息：**
+```
+Cannot find name 'TimelineActivityWorkspaceEntity'
+```
+
+**問題檔案：**
+`packages/twenty-server/src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts`
+
+**解決方案：**
+```typescript
+// 新增 import
+import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
+```
+
+**Commit：** `0029b4dd14`
+
+---
+
+### 10.2 v2 問題：Sales Quote View 檔案被意外刪除
+
+**錯誤訊息：**
+```
+Cannot find module '@/views/sales-quotes-all.view'
+```
+
+**問題原因：**
+Cherry-pick 過程中意外刪除了以下檔案：
+- `packages/twenty-front/src/modules/views/sales-quotes-all.view.ts`
+- `packages/twenty-front/src/modules/views/sales-quote-line-items-all.view.ts`
+
+**解決方案：**
+重新建立這兩個 view 檔案。
+
+**Commit：** `737e48373b`
+
+---
+
+### 10.3 v3 問題：Google OAuth Strategies 缺少 Logger import
+
+**錯誤訊息：**
+```
+Cannot find name 'Logger'
+```
+
+**問題檔案：**
+- `packages/twenty-server/src/engine/core-modules/auth/strategies/google.auth.strategy.ts`
+- `packages/twenty-server/src/engine/core-modules/auth/strategies/microsoft.auth.strategy.ts`
+
+**解決方案：**
+```typescript
+// 新增 import
+import { Logger } from '@nestjs/common';
+```
+
+**Commit：** `680f12a7e8`
+
+---
+
+### 10.4 v3 問題：isDefined 未 import
+
+**錯誤訊息：**
+```
+Cannot find name 'isDefined'
+```
+
+**問題檔案：**
+`packages/twenty-server/src/modules/workflow/workflow-executor/workflow-actions/filter/utils/evaluate-filter-conditions.util.ts`
+
+**解決方案：**
+```typescript
+// 新增 import
+import { isDefined } from 'twenty-shared/utils';
+```
+
+**Commit：** `42a7b4d285`
+
+---
+
+### 10.5 儀表板 Widget 資料庫問題
+
+#### 10.5.1 configurationType 缺失
+
+**問題：**
+舊的 GRAPH widget 沒有 `configurationType` 欄位，導致前端無法正確渲染。
+
+**診斷 SQL：**
+```sql
+SELECT id, "graphType", "configurationType"
+FROM core."pageLayoutWidget"
+WHERE type = 'GRAPH' AND "configurationType" IS NULL;
+```
+
+**修復 SQL：**
+```sql
+UPDATE core."pageLayoutWidget"
+SET "configurationType" = 'CHART_CONFIG'
+WHERE type = 'GRAPH' AND "configurationType" IS NULL;
+```
+
+#### 10.5.2 graphType 值不正確
+
+**問題：**
+舊資料使用了已棄用的 graphType 值。
+
+**修復 SQL：**
+```sql
+-- NUMBER → AGGREGATE
+UPDATE core."pageLayoutWidget"
+SET "graphType" = 'AGGREGATE'
+WHERE "graphType" = 'NUMBER';
+
+-- BAR → VERTICAL_BAR
+UPDATE core."pageLayoutWidget"
+SET "graphType" = 'VERTICAL_BAR'
+WHERE "graphType" = 'BAR';
+```
+
+---
+
+### 10.6 GraphQL GroupBy Query 缺少 limit 參數
+
+**錯誤訊息：**
+```json
+{"errors": [{"message": "Unknown argument \"limit\" on field \"Query.salesquotesGroupBy\"."}]}
+```
+
+**問題原因：**
+前端程式碼使用了 `limit` 參數，但後端 GraphQL schema 沒有這個參數。
+
+**解決方案：**
+需要重新 build image 並部署，讓後端 schema 與前端程式碼同步。
+
+**關鍵：** 確保 `metadataVersion` 增加以強制重新生成 GraphQL schema：
+```sql
+UPDATE core.workspace SET "metadataVersion" = "metadataVersion" + 1;
+```
+
+---
+
+### 10.7 Feature Flags 問題
+
+#### 10.7.1 IS_DASHBOARD_V2_ENABLED 未生效
+
+**問題：**
+資料庫中有 `IS_DASHBOARD_V2_ENABLED = true`，但前端 API response 沒有返回這個 flag，導致 Pie/Line/Gauge 圖表類型反灰。
+
+**診斷方法：**
+
+1. 檢查資料庫：
+```sql
+SELECT key, value FROM core."featureFlag"
+WHERE "workspaceId" = '3be9d202-5461-4881-a6de-4c1f96e4b02d'
+AND key = 'IS_DASHBOARD_V2_ENABLED';
+```
+
+2. 檢查前端 API response（瀏覽器 DevTools > Network > 搜尋 `GetCurrentUser`）
+
+3. 檢查 localStorage（Console）：
+```javascript
+JSON.parse(localStorage.getItem('recoil-persist'))?.currentWorkspaceState?.featureFlags?.find(f => f.key === 'IS_DASHBOARD_V2_ENABLED')
+```
+
+**解決方案：**
+重啟 backend 和 worker 容器以清除 Redis cache：
+```bash
+ssh -i ~/.ssh/y-crm-aws-key.pem ubuntu@52.195.151.185 "docker restart Y-CRM-backend Y-CRM-worker"
+```
+
+#### 10.7.2 新增缺少的 Feature Flags
+
+**需要的 Feature Flags：**
+```sql
+INSERT INTO core."featureFlag" (id, key, value, "workspaceId", "createdAt", "updatedAt")
+VALUES
+  (gen_random_uuid(), 'IS_DASHBOARD_V2_ENABLED', true, 'WORKSPACE_ID', NOW(), NOW()),
+  (gen_random_uuid(), 'IS_APPLICATION_ENABLED', true, 'WORKSPACE_ID', NOW(), NOW()),
+  (gen_random_uuid(), 'IS_WORKFLOW_RUN_STOPPAGE_ENABLED', true, 'WORKSPACE_ID', NOW(), NOW()),
+  (gen_random_uuid(), 'IS_RECORD_PAGE_LAYOUT_ENABLED', true, 'WORKSPACE_ID', NOW(), NOW());
+```
+
+---
+
+### 10.8 Pie Chart 設定顯示值顛倒
+
+**問題：**
+Pie Chart 設定頁面的「顯示的數據」和「每個切片代表」選中後顯示的值是顛倒的。
+
+**問題檔案：**
+`packages/twenty-front/src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts`
+
+**問題原因：**
+```typescript
+// 錯誤：EACH_SLICE_REPRESENTS 返回 aggregateField
+case CHART_CONFIGURATION_SETTING_IDS.EACH_SLICE_REPRESENTS:
+  return aggregateField?.label;  // ❌ 應該返回 groupByField
+
+// 錯誤：DATA_ON_DISPLAY_PIE_CHART 返回 groupByField
+case CHART_CONFIGURATION_SETTING_IDS.DATA_ON_DISPLAY_PIE_CHART:
+  return groupByField?.label;  // ❌ 應該返回 aggregateField
+```
+
+**解決方案：**
+交換這兩個 case 的返回值：
+- `DATA_ON_DISPLAY_PIE_CHART` → 返回 `aggregateField`（聚合欄位）
+- `EACH_SLICE_REPRESENTS` → 返回 `groupByField`（分組欄位）
+
+---
+
+### 10.9 Apollo Cache Warning
+
+**警告訊息：**
+```
+Cache data may be lost when replacing the dashboards field of a Query object.
+```
+
+**問題原因：**
+Apollo Client cache 配置問題，當 `DashboardConnection` 物件被替換時會觸發警告。
+
+**影響：**
+不影響功能，只是警告訊息。
+
+**解決方案（可選）：**
+在 Apollo Client 配置中為 `Query.dashboards` 定義 custom merge function。
+
+---
+
+### 10.10 Build Script 環境變數問題
+
+**問題：**
+`build-amd64-images.sh` 沒有正確讀取 `env.aws` 中的 `VITE_IS_DEBUG_MODE`。
+
+**問題原因：**
+Build script 中 `VITE_IS_DEBUG_MODE` 是 hardcoded 為 `false`。
+
+**解決方案：**
+修改 `build-amd64-images.sh`，從 `env.aws` 讀取環境變數：
+```bash
+# 在 build 前 source env 檔案
+source "${ENV_SELECTED_FILE}"
+
+# 使用環境變數
+--build-arg VITE_IS_DEBUG_MODE="${VITE_IS_DEBUG_MODE:-false}"
+```
+
+---
+
+### 10.11 workspace_config 進階設定參數
+
+**可設定的參數（共 20 個）：**
+
+| 分類 | 參數 Key | 用途 |
+|------|----------|------|
+| **Email (SMTP)** | `EMAIL_SMTP_HOST` | SMTP 伺服器 |
+| | `EMAIL_SMTP_PORT` | SMTP 埠號 |
+| | `EMAIL_SMTP_USER` | SMTP 使用者 |
+| | `EMAIL_SMTP_PASSWORD` | SMTP 密碼 |
+| | `EMAIL_SMTP_NO_TLS` | 停用 TLS |
+| **LINE** | `LINE_CHANNEL_ACCESS_TOKEN` | LINE 存取權杖 |
+| | `LINE_CHANNEL_SECRET` | LINE 頻道密鑰 |
+| **Google OAuth** | `AUTH_GOOGLE_CLIENT_ID` | Google Client ID |
+| | `AUTH_GOOGLE_CLIENT_SECRET` | Google Client Secret |
+| | `AUTH_GOOGLE_CALLBACK_URL` | Google OAuth Callback |
+| | `AUTH_GOOGLE_APIS_CALLBACK_URL` | Google APIs Callback |
+| **Microsoft OAuth** | `AUTH_MICROSOFT_CLIENT_ID` | Microsoft Client ID |
+| | `AUTH_MICROSOFT_CLIENT_SECRET` | Microsoft Client Secret |
+| **AI** | `OPENAI_API_KEY` | OpenAI API Key |
+| | `ANTHROPIC_API_KEY` | Anthropic API Key |
+| | `XAI_API_KEY` | xAI API Key |
+| **Firebase** | `REACT_APP_FIREBASE_*` | Firebase Analytics 設定 |
+
+**Fallback 邏輯：**
+1. 先從 `workspace_config` 表讀取（workspace 專屬設定）
+2. 如果沒有設定，fallback 到全域環境變數
+
+---
+
 ## 版本歷史
 
 | 日期 | 版本 | 說明 |
 |------|------|------|
 | 2025-12-22 | v1 | 單租戶轉多租戶部署，新增 workspace_config 資料表 |
+| 2025-12-22 | v2 | 修復 Sales Quote View 檔案缺失 |
+| 2025-12-22 | v3 | 修復 Logger import、isDefined import |
+| 2025-12-23 | v5 | 修復 GraphQL limit 參數、Feature Flags、Pie Chart 設定顯示 |
+| 2025-12-23 | v6 | 修復 Google Account Sync workspaceId 參數缺失問題 |
+| 2025-12-23 | v7 | 修復 prefill-core-views 缺少報價單 views、CSV 匯出中文亂碼 |
 
 ---
 
-*最後更新：2025-12-22*
+### 10.12 v6 問題：Google Account Sync workspaceId 參數缺失
+
+**錯誤訊息：**
+```
+TypeError: Cannot read properties of undefined (reading 'substring')
+at WorkspaceConfigService.get
+at GoogleOAuth2ClientManagerService.getOAuth2Client
+```
+
+**問題原因：**
+在 commit `ea4250e0bc` 中，修改了 `getGoogleOAuth2Client` 需要 `workspaceId` 參數，但沒有修改所有調用者來傳遞這個參數。
+
+**調用鏈分析：**
+```
+GmailGetAllFoldersService.getAllMessageFolders(connectedAccount)  // ❌ 缺少 workspaceId
+  → OAuth2ClientManagerService.getGoogleOAuth2Client(connectedAccount, workspaceId)
+    → GoogleOAuth2ClientManagerService.getOAuth2Client(refreshToken, workspaceId)
+      → WorkspaceConfigService.get(workspaceId, key)  // workspaceId 是 undefined
+        → workspaceId.substring(0, 8)  // 💥 報錯！
+```
+
+**受影響的檔案（需要修復）：**
+
+| 檔案 | 問題 |
+|------|------|
+| `gmail-get-all-folders.service.ts` | `getAllMessageFolders` 缺少 `workspaceId` 參數 |
+| `sync-message-folders.service.ts` | `discoverAllFolders` 缺少 `workspaceId` 參數 |
+| `messaging-send-message.service.ts` | `sendMessage` 缺少 `workspaceId` 參數 |
+| `send-email-tool.ts` | 調用 `sendMessage` 時沒有傳遞 `workspaceId` |
+| `google-email-alias-manager.service.ts` | `getHandleAliases` 缺少 `workspaceId` 參數 |
+| `email-alias-manager.service.ts` | `refreshHandleAliases` 缺少 `workspaceId` 參數 |
+| `messaging-messages-import.service.ts` | 調用 `refreshHandleAliases` 時沒有傳遞 `workspaceId` |
+| `workspace-config.service.ts` | `get` 方法沒有防護 undefined workspaceId |
+
+**解決方案：**
+
+1. 為所有缺少 `workspaceId` 的方法添加可選參數
+2. 在調用鏈中傳遞 `workspaceId`
+3. 在 `WorkspaceConfigService.get` 中添加 undefined 防護
+
+**修復範例：**
+
+```typescript
+// gmail-get-all-folders.service.ts
+async getAllMessageFolders(
+  connectedAccount: Pick<...>,
+  workspaceId?: string,  // 新增參數
+): Promise<MessageFolder[]> {
+  const oAuth2Client = await this.oAuth2ClientManagerService.getGoogleOAuth2Client(
+    connectedAccount,
+    workspaceId ?? '',  // 傳遞 workspaceId
+  );
+  // ...
+}
+
+// workspace-config.service.ts
+async get(workspaceId: string, key: string, defaultValue?: string): Promise<string | null> {
+  // 防護 undefined workspaceId
+  if (!workspaceId) {
+    this.logger.debug(`[GET] No workspaceId provided for key "${key}", returning null`);
+    return defaultValue ?? null;
+  }
+  // ...
+}
+```
+
+**為什麼本機沒有報錯？**
+- 本機沒有連接 Google Account，或沒有觸發 Gmail folder sync 操作
+- AWS 上有 5 個 Google connected accounts，當系統嘗試同步時就會觸發這個 bug
+
+**教訓：**
+修改底層函數的參數時，必須同時修改所有調用者，否則會導致運行時錯誤。
+
+---
+
+### 10.13 v7 問題：新建 Workspace 沒有報價單 Views
+
+**問題現象：**
+新建立的 workspace 左側選單沒有「報價單列表」和「報價單細項列表」。
+
+**問題原因：**
+`prefill-core-views.ts` 中的 `views` 陣列**沒有包含** `salesQuotesAllView` 和 `salesQuoteLineItemsAllView`！
+
+```typescript
+// packages/twenty-server/src/engine/workspace-manager/standard-objects-prefill-data/prefill-core-views.ts
+// 修改前：views 陣列沒有報價單 views
+const views = [
+  companiesAllView(objectMetadataItems, true),
+  // ... 其他 views
+  calendarEventsAllView(objectMetadataItems, true),
+  // ❌ 沒有 salesQuotesAllView
+  // ❌ 沒有 salesQuoteLineItemsAllView
+];
+```
+
+**為什麼本機轉多租戶時沒發現？**
+- 本機的舊 workspace 是從單租戶遷移過來的，資料庫中已經有這些 views
+- 只有**新建立的 workspace** 才會呼叫 `prefillCoreViews()`，才會發現缺少
+
+**解決方案：**
+在 `prefill-core-views.ts` 中加入 import 和 views：
+
+```typescript
+// 新增 import
+import { salesQuoteLineItemsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quote-line-items-all.view';
+import { salesQuotesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quotes-all.view';
+
+// 在 views 陣列中加入
+const views = [
+  // ... 其他 views
+  calendarEventsAllView(objectMetadataItems, true),
+  salesQuotesAllView(objectMetadataItems, true),        // ✅ 新增
+  salesQuoteLineItemsAllView(objectMetadataItems, true), // ✅ 新增
+];
+```
+
+**修復後效果：**
+- ✅ 新建的 workspace 會自動包含報價單和報價單細項的 views
+- ✅ 不需要再手動執行 `yarn command:prod workspace:seed-sales-quote-views`
+
+**⚠️ 注意：現有 workspace 的補救**
+對於已經存在但缺少報價單 views 的 workspace，仍需執行一次補救命令：
+```bash
+yarn command:prod workspace:seed-sales-quote-views
+```
+
+**📌 重要提醒：**
+v7 之後部署到新機器，新建的 workspace 會自動有報價單 views，**不需要再執行** `workspace:seed-sales-quote-views` 補救命令了！
+
+---
+
+### 10.14 v7 問題：CSV 匯出中文亂碼
+
+**問題現象：**
+從系統匯出 CSV 檔案後，用 Excel 開啟中文顯示亂碼。
+
+**問題原因：**
+CSV 匯出時沒有加上 UTF-8 BOM（Byte Order Mark），Excel 預設用系統編碼（如 Big5）解析導致亂碼。
+
+**受影響的檔案：**
+- `packages/twenty-front/src/modules/object-record/record-index/export/hooks/useRecordIndexExportRecords.ts`
+- `packages/twenty-front/src/modules/spreadsheet-import/steps/components/UploadStep/hooks/useDownloadFakeRecords.ts`
+
+**解決方案：**
+在 CSV 內容前加上 UTF-8 BOM (`\uFEFF`) 並設定正確的 charset：
+
+```typescript
+// 修改前
+const blob = new Blob([csvContent], { type: 'text/csv' });
+
+// 修改後
+const BOM = '\uFEFF';  // UTF-8 BOM
+const blob = new Blob([BOM + csvContent], { type: 'text/csv;charset=utf-8' });
+```
+
+**為什麼需要 BOM？**
+- UTF-8 BOM 是一個特殊的字元序列 (EF BB BF)
+- Excel 看到這個序列就知道要用 UTF-8 編碼解析
+- 沒有 BOM 的話，Excel 會用系統預設編碼（Windows 繁體中文是 Big5）
+
+---
+
+### 10.15 部署後必要的補救命令
+
+**⚠️ 僅適用於 v7 之前建立的 workspace：**
+
+```bash
+# 1. 同步 Feature Flags（確保所有功能開關正確）
+yarn command:prod workspace:sync-feature-flags
+
+# 2. 為現有 workspace 補上報價單 views（僅 v7 之前建立的 workspace 需要）
+yarn command:prod workspace:seed-sales-quote-views
+```
+
+**📌 v7 之後新建的 workspace 不需要執行這些補救命令！**
+
+---
+
+*最後更新：2025-12-23*

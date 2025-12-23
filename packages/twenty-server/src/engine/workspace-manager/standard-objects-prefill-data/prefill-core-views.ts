@@ -25,6 +25,8 @@ import { notesAllView } from 'src/engine/workspace-manager/standard-objects-pref
 import { opportunitiesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunities-all.view';
 import { opportunitiesByStageView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/opportunity-by-stage.view';
 import { peopleAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/people-all.view';
+import { salesQuoteLineItemsAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quote-line-items-all.view';
+import { salesQuotesAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quotes-all.view';
 import { tasksAllView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-all.view';
 import { tasksAssignedToMeView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-assigned-to-me';
 import { tasksByStatusView } from 'src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-by-status.view';
@@ -64,6 +66,8 @@ export const prefillCoreViews = async ({
     messagesAllView(objectMetadataItems, true),
     messageThreadsAllView(objectMetadataItems, true),
     calendarEventsAllView(objectMetadataItems, true),
+    salesQuotesAllView(objectMetadataItems, true),
+    salesQuoteLineItemsAllView(objectMetadataItems, true),
   ];
 
   const queryRunner = coreDataSource.createQueryRunner();
