@@ -35,7 +35,7 @@ export const getActionConfig = ({
     case CoreObjectNameSingular.WorkspaceMember: {
       return WORKSPACE_MEMBERS_ACTIONS_CONFIG;
     }
-    case 'salesQuote': {
+    case CoreObjectNameSingular.SalesQuote: {
       return {
         ...DEFAULT_RECORD_ACTIONS_CONFIG,
         ...QUOTE_ACTIONS_CONFIG,
