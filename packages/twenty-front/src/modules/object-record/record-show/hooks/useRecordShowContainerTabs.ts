@@ -17,10 +17,10 @@ import { evaluateTabVisibility } from '@/object-record/record-show/utils/evaluat
 import { type RecordLayoutTab } from '@/ui/layout/tab-list/types/RecordLayoutTab';
 import { type SingleTabProps } from '@/ui/layout/tab-list/types/SingleTabProps';
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
+import { useLingui } from '@lingui/react/macro';
 import { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { IconHome, useIcons } from 'twenty-ui/display';
-import { useLingui } from '@lingui/react/macro';
 
 // Object-specific layouts that override or extend the base layout
 const OBJECT_SPECIFIC_LAYOUTS: Partial<
@@ -61,6 +61,7 @@ export const useRecordShowContainerTabs = (
       Calendar: t`日曆`,
       Home: t`主頁`,
       Fields: t`欄位`,
+      Relations: t`關聯`,
     };
     return translations[title] || title;
   };

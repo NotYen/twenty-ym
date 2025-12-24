@@ -167,8 +167,13 @@ echo "🔄 Syncing workspace metadata..."
 docker compose -f docker-compose.aws.yml exec backend yarn command:prod workspace:sync-metadata || true
 echo "🔄 Seeding sales quote views for existing workspaces..."
 docker compose -f docker-compose.aws.yml exec backend yarn command:prod workspace:seed-sales-quote-views || true
+echo "🧹 Clearing Redis cache (feature flags, metadata)..."
+docker compose -f docker-compose.aws.yml exec redis redis-cli FLUSHALL || true
+echo "🔄 Restarting backend to rebuild cache..."
+docker compose -f docker-compose.aws.yml restart backend worker
+sleep 10
 EOF
-echo "✅ AWS services updated, migrations applied, and views seeded."
+echo "✅ AWS services updated, migrations applied, cache cleared, and views seeded."
 
 cat <<EOF
 

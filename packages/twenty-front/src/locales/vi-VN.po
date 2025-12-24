@@ -75,7 +75,6 @@ msgid ". The change will be applied the {beautifiedRenewDate}."
 msgstr "Thay đổi sẽ được áp dụng vào {beautifiedRenewDate}."
 
 #. js-lingui-id: 4tCM3o
-#: src/modules/views/components/ViewBarFilterDropdownVectorSearchButton.tsx
 #: src/modules/views/components/ViewBarFilterDropdownAnyFieldSearchButtonMenuItem.tsx
 msgid "· {objectFilterDropdownSearchInput}"
 msgstr "· {objectFilterDropdownSearchInput}"
@@ -87,6 +86,7 @@ msgstr "· {objectFilterDropdownSearchInput}"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
+#: src/modules/object-record/record-field/ui/meta-types/display/components/JsonFieldDisplay.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "[empty string]"
 msgstr ""
@@ -137,7 +137,7 @@ msgid "{0, plural, one {You do not have permission to access the {fieldsList} fi
 msgstr "{0, plural, other {Bạn không có quyền truy cập vào trường {fieldsList}}}"
 
 #. js-lingui-id: qdQhzv
-#: src/modules/views/components/AdvancedFilterChip.tsx
+#: src/modules/views/advanced-filter-chip/components/AdvancedFilterChip.tsx
 msgid "{advancedFilterCount, plural, one {{advancedFilterCount} advanced rule} other {{advancedFilterCount} advanced rules}}"
 msgstr "{advancedFilterCount, plural, other {{advancedFilterCount} quy tắc nâng cao}}"
 
@@ -175,11 +175,6 @@ msgstr "{deletedCount, plural, other {Đã xóa thành công {deletedCount} côn
 #: src/modules/ai/hooks/useAIChatFileUpload.ts
 msgid "{failedCount} file(s) failed to upload"
 msgstr "{failedCount} tệp không tải lên được"
-
-#. js-lingui-id: bv2QCV
-#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
-msgid "{filterRulesCount, plural, one {{filterRulesCount} rule} other {{filterRulesCount} rules}}"
-msgstr ""
 
 #. js-lingui-id: WS/avX
 #: src/modules/spreadsheet-import/steps/components/ImportDataStep.tsx
@@ -785,6 +780,11 @@ msgstr ""
 msgid "Admin Panel"
 msgstr "Bảng Điều Khiển Admin"
 
+#. js-lingui-id: jW/5y8
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Admin Panel (Global Defaults)"
+msgstr ""
+
 #. js-lingui-id: sxkWRg
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerDatabaseEventForm.tsx
 msgid "Advanced"
@@ -805,6 +805,18 @@ msgstr "Bộ lọc nâng cao"
 #: src/modules/command-menu/pages/page-layout/components/dropdown-content/ChartDataSourceDropdownContent.tsx
 msgid "Advanced objects"
 msgstr "Các đối tượng nâng cao"
+
+#. js-lingui-id: JiIKww
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+msgid "Advanced Settings"
+msgstr ""
+
+#. js-lingui-id: FvSXSq
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Advanced Settings (Workspace Override)"
+msgstr ""
 
 #. js-lingui-id: WsKDNF
 #: src/modules/navigation/components/SettingsNavigationDrawer.tsx
@@ -877,6 +889,11 @@ msgstr "Tổng hợp"
 msgid "AI"
 msgstr "AI"
 
+#. js-lingui-id: QwU/Un
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "AI Integration"
+msgstr ""
+
 #. js-lingui-id: kNfr85
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
@@ -890,6 +907,7 @@ msgid "AI Response Schema"
 msgstr "Schema phản hồi AI"
 
 #. js-lingui-id: N40H+G
+#: src/modules/views/view-picker/components/ViewPickerDropdown.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/field-permissions/components/SettingsRolePermissionsObjectLevelObjectFieldPermissionTableAllHeaderRow.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelUpdateFieldsValueForObject.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelSeeFieldsValueForObject.tsx
@@ -1038,10 +1056,6 @@ msgstr "Đã xảy ra lỗi khi xử lý tin nhắn của bạn"
 #. js-lingui-id: XyOToQ
 #: src/utils/get-error-message-from-apollo-error.util.ts
 #: src/modules/views/hooks/internal/usePersistViewGroup.ts
-#: src/modules/views/hooks/internal/usePersistViewGroup.ts
-#: src/modules/views/hooks/internal/usePersistViewGroup.ts
-#: src/modules/views/hooks/internal/usePersistViewGroup.ts
-#: src/modules/views/hooks/internal/usePersistViewGroup.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
@@ -1089,6 +1103,11 @@ msgstr "Đã xảy ra lỗi không mong muốn"
 msgid "and"
 msgstr "và"
 
+#. js-lingui-id: OpAwo5
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Anthropic API Key"
+msgstr ""
+
 #. js-lingui-id: I8f+hC
 #: src/modules/views/components/AnyFieldSearchChip.tsx
 msgid "Any field"
@@ -1111,6 +1130,7 @@ msgid "API & Webhooks"
 msgstr "API & Webhooks"
 
 #. js-lingui-id: yRnk5W
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
@@ -1190,6 +1210,11 @@ msgstr "API và Webhooks"
 #: src/modules/settings/experience/components/NumberFormatSelect.tsx
 msgid "Apostrophe and dot - {apostropheAndDotExample}"
 msgstr "Dấu nháy và dấu chấm - {apostropheAndDotExample}"
+
+#. js-lingui-id: UU5sRu
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "App ID"
+msgstr ""
 
 #. js-lingui-id: aAIQg2
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
@@ -1416,6 +1441,11 @@ msgstr "vào phút {remainingValues} và {lastValue}"
 msgid "at the top of the hour"
 msgstr "vào đầu giờ"
 
+#. js-lingui-id: K+pc3v
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Auth Domain"
+msgstr ""
+
 #. js-lingui-id: DzqB0O
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
 msgid "Auth Required"
@@ -1566,6 +1596,11 @@ msgstr "Khoảng thời gian thanh toán"
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistSection.tsx
 msgid "Blocklist"
 msgstr "Danh sách chặn"
+
+#. js-lingui-id: 2GJCsE
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Blocklist (Disabled Features)"
+msgstr ""
 
 #. js-lingui-id: 2yl5lQ
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -1854,6 +1889,16 @@ msgstr "Chuyển sang hàng năm?"
 msgid "Changelog"
 msgstr "Nhật ký thay đổi"
 
+#. js-lingui-id: uHVuiy
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Channel Access Token"
+msgstr ""
+
+#. js-lingui-id: 4iLv/J
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Channel Secret"
+msgstr ""
+
 #. js-lingui-id: nuBbBr
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutWidgetTypeSelect.tsx
 #: src/modules/command-menu/components/hooks/usePageLayoutHeaderInfo.ts
@@ -1976,6 +2021,11 @@ msgstr "Nhấp để xem dữ liệu"
 msgid "Client ID"
 msgstr "ID khách hàng"
 
+#. js-lingui-id: g9imeC
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Client IDs for external authentication. Leave empty to use system defaults."
+msgstr ""
+
 #. js-lingui-id: Bdj4LI
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Client Secret"
@@ -2013,6 +2063,7 @@ msgstr "Mã hóa chức năng của bạn"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
+#: src/modules/object-record/record-field/ui/meta-types/display/components/JsonFieldDisplay.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Collapse"
 msgstr "Thu gọn"
@@ -2097,6 +2148,21 @@ msgstr "Biến cấu hình"
 msgid "Configuration"
 msgstr "Cấu Hình"
 
+#. js-lingui-id: zupKh0
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Configuration Hierarchy Explained"
+msgstr ""
+
+#. js-lingui-id: EaLXL6
+#: src/modules/settings/admin-panel/config-variables/components/SettingsAdminConfigVariables.tsx
+msgid "Configuration Hierarchy Info"
+msgstr ""
+
+#. js-lingui-id: e68R5X
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Configure AI provider keys."
+msgstr ""
+
 #. js-lingui-id: +zUMwJ
 #: src/pages/settings/security/SettingsSecurity.tsx
 msgid "Configure an SSO connection"
@@ -2117,6 +2183,11 @@ msgstr "Cấu hình và xác minh tên miền để gửi email từ không gian
 msgid "Configure CalDAV settings to sync your calendar events."
 msgstr "Cấu hình cài đặt CalDAV để đồng bộ sự kiện lịch của bạn."
 
+#. js-lingui-id: lVTG8H
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Configure custom SMTP server for sending emails."
+msgstr ""
+
 #. js-lingui-id: ahqAfe
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
 msgid "Configure date, time, number, timezone, and calendar start day"
@@ -2132,6 +2203,11 @@ msgstr "Cấu hình phương pháp đăng nhập dự phòng cho người dùng 
 msgid "Configure filters"
 msgstr "Cấu hình bộ lọc"
 
+#. js-lingui-id: r2E+kS
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Configure Firebase Analytics credentials."
+msgstr ""
+
 #. js-lingui-id: ghdb7+
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelsGeneral.tsx
 msgid "Configure how we should display your events in your calendar"
@@ -2141,6 +2217,11 @@ msgstr "Định cấu hình cách chúng tôi nên hiển thị sự kiện củ
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "Configure IMAP settings to receive and sync your emails."
 msgstr "Cấu hình cài đặt IMAP để nhận và đồng bộ email của bạn."
+
+#. js-lingui-id: TaNuxP
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Configure LINE Messaging API credentials."
+msgstr ""
 
 #. js-lingui-id: gk/8eh
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -2163,6 +2244,7 @@ msgid "Configure your emails and calendar settings."
 msgstr "Cấu hình cài đặt email và lịch của bạn."
 
 #. js-lingui-id: 7VpPHA
+#: src/modules/ui/layout/modal/components/ConfirmationModal.tsx
 #: src/modules/spreadsheet-import/steps/components/ValidationStep/ValidationStep.tsx
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModal.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentConfirmationModal.tsx
@@ -2227,6 +2309,11 @@ msgstr "Kết nối với Google"
 #: src/modules/settings/accounts/components/SettingsAccountsListEmptyStateCard.tsx
 msgid "Connect with Microsoft"
 msgstr "Kết nối với Microsoft"
+
+#. js-lingui-id: QHcLEN
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Connected"
+msgstr ""
 
 #. js-lingui-id: 9TzudL
 #: src/pages/settings/accounts/SettingsAccounts.tsx
@@ -3245,6 +3332,17 @@ msgstr "Hủy bản ghi"
 msgid "Destroy Records on All Objects"
 msgstr "Hủy bản ghi trên tất cả các đối tượng"
 
+#. js-lingui-id: 8q/qbz
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Disable SMTP TLS"
+msgstr ""
+
+#. js-lingui-id: E/QGRL
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Disabled"
+msgstr ""
+
 #. js-lingui-id: zAg2B9
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
@@ -3562,6 +3660,11 @@ msgstr "Email là bắt buộc"
 msgid "Email or domain is already in blocklist"
 msgstr "Email hoặc tên miền đã nằm trong danh sách chặn"
 
+#. js-lingui-id: gwlTzn
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Email Provider (SMTP)"
+msgstr ""
+
 #. js-lingui-id: LimKOG
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
 msgid "Email verification"
@@ -3651,6 +3754,7 @@ msgstr "Trống"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
+#: src/modules/object-record/record-field/ui/meta-types/display/components/JsonFieldDisplay.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Empty Array"
 msgstr "Mảng trống"
@@ -3667,6 +3771,7 @@ msgstr "Hộp thư rỗng"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
+#: src/modules/object-record/record-field/ui/meta-types/display/components/JsonFieldDisplay.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Empty Object"
 msgstr "Đối tượng trống"
@@ -3680,6 +3785,11 @@ msgstr "Kích hoạt tùy chọn bỏ qua"
 #: src/pages/settings/ai/components/SettingsAgentModelCapabilities.tsx
 msgid "Enable model-specific features"
 msgstr "Kích hoạt các tính năng cụ thể của mô hình"
+
+#. js-lingui-id: RxzN1M
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Enabled"
+msgstr ""
 
 #. js-lingui-id: T3juzf
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
@@ -3835,11 +3945,6 @@ msgstr "Biến môi trường"
 #: src/pages/settings/security/SettingsSecurity.tsx
 msgid "Erasure of soft-deleted records"
 msgstr "Xóa vĩnh viễn các bản ghi đã xóa mềm"
-
-#. js-lingui-id: XOEl9R
-#: src/modules/object-record/record-field/ui/meta-types/display/components/PhonesFieldDisplay.tsx
-msgid "Error copying to clipboard"
-msgstr "Lỗi khi sao chép vào bảng tạm"
 
 #. js-lingui-id: GHKxvg
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -4026,6 +4131,11 @@ msgstr "Mọi người"
 msgid "Everything"
 msgstr "Mọi thứ"
 
+#. js-lingui-id: HmI5oK
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Example"
+msgstr ""
+
 #. js-lingui-id: QQlMid
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
 msgid "Exclude group emails"
@@ -4068,6 +4178,7 @@ msgstr "\"Thoát Cài đặt\""
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput.tsx
+#: src/modules/object-record/record-field/ui/meta-types/display/components/JsonFieldDisplay.tsx
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Expand"
 msgstr "Mở rộng"
@@ -4294,6 +4405,11 @@ msgstr "Không thể thử lại các công việc. Vui lòng thử lại sau."
 msgid "Failed to save role permissions: {errorMessage}"
 msgstr ""
 
+#. js-lingui-id: iQ1BL4
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Failed to save settings"
+msgstr ""
+
 #. js-lingui-id: HnBqPY
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 msgid "Failed to update price."
@@ -4344,6 +4460,11 @@ msgstr "Dấu hiệu đặc trưng"
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
 msgid "Feature Flags & Impersonation"
 msgstr "Dấu hiệu đặc trưng & Mạo danh"
+
+#. js-lingui-id: uAsRtk
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Feature Status (for this workspace)"
+msgstr ""
 
 #. js-lingui-id: 2lOBKV
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
@@ -4416,6 +4537,11 @@ msgstr "Tệp tin \"{fileName}\" vượt quá {maxUploadSize}"
 msgid "Fill Mode"
 msgstr ""
 
+#. js-lingui-id: OcEfK7
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Filled 'Client-B' in Advanced Settings"
+msgstr ""
+
 #. js-lingui-id: o7J4JM
 #: src/pages/settings/data-model/SettingsObjectTable.tsx
 #: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
@@ -4456,6 +4582,16 @@ msgstr "Hoàn thành suy nghĩ"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Finnish"
 msgstr "Tiếng Phần Lan"
+
+#. js-lingui-id: EdFt18
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Firebase is not configured. Remote Config is disabled."
+msgstr ""
+
+#. js-lingui-id: bKLvTv
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Firebase Remote Config feature flags status. These flags control feature availability globally."
+msgstr ""
 
 #. js-lingui-id: hy+Mfg
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfWeekDescription.ts
@@ -4604,6 +4740,7 @@ msgid "Get your subscription"
 msgstr "\\"
 
 #. js-lingui-id: 2GT3Hf
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
 #: src/modules/command-menu/components/CommandMenu.tsx
 msgid "Global"
 msgstr "\\"
@@ -4669,6 +4806,31 @@ msgstr "Đi đến quy trình công việc"
 #: src/modules/settings/security/components/SettingsSecurityAuthBypassOptionsList.tsx
 msgid "Google"
 msgstr "Google"
+
+#. js-lingui-id: EOUHHU
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Google Analytics (Firebase)"
+msgstr ""
+
+#. js-lingui-id: KsWy6l
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Google APIs Callback URL"
+msgstr ""
+
+#. js-lingui-id: cTS95j
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Google Client ID"
+msgstr ""
+
+#. js-lingui-id: sL5rfX
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Google Client Secret"
+msgstr ""
+
+#. js-lingui-id: bcRhqt
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Google OAuth Callback URL"
+msgstr ""
 
 #. js-lingui-id: 6eo66Q
 #: src/modules/settings/workspace/components/ToggleImpersonate.tsx
@@ -4921,6 +5083,11 @@ msgstr "Nhà Cung Cấp Định Danh"
 msgid "Identity Provider Metadata XML"
 msgstr "XML Metadata Nhà Cung Cấp Định Danh"
 
+#. js-lingui-id: UKGs5t
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "If a Workspace has NOT configured its own Advanced Settings, the system will fall back to reading these values."
+msgstr ""
+
 #. js-lingui-id: ZfP/Ap
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
 msgid "If this is unexpected, please verify your settings."
@@ -5065,6 +5232,11 @@ msgstr "chỉ mục"
 #: src/modules/settings/data-model/object-details/components/tabs/ObjectIndexes.tsx
 msgid "Indexes"
 msgstr "Chỉ mục"
+
+#. js-lingui-id: m6I25b
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Initializing..."
+msgstr ""
 
 #. js-lingui-id: XU5AOg
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTestTab.tsx
@@ -5518,6 +5690,11 @@ msgstr "Thanh toán gần nhất đã thất bại. Vui lòng liên hệ quản 
 msgid "Last payment failed. Please update your billing details."
 msgstr "Thanh toán gần nhất đã thất bại. Vui lòng cập nhật chi tiết thanh toán của bạn."
 
+#. js-lingui-id: M7xtjk
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Last refresh"
+msgstr ""
+
 #. js-lingui-id: wL3cK8
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
 msgid "Latest"
@@ -5593,6 +5770,11 @@ msgstr "Giới hạn số lượng giá trị có thể được thêm vào trư
 msgid "Line"
 msgstr "Đường"
 
+#. js-lingui-id: DAfq12
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "LINE Integration"
+msgstr ""
+
 #. js-lingui-id: pQjjYo
 #: src/pages/onboarding/InviteTeam.tsx
 #: src/modules/workspace/components/WorkspaceInviteLink.tsx
@@ -5644,6 +5826,7 @@ msgid "Loading retention configuration..."
 msgstr "Đang tải cấu hình lưu trữ..."
 
 #. js-lingui-id: Z3FXyt
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
@@ -5679,6 +5862,11 @@ msgstr "Đăng xuất"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 msgid "Logs"
 msgstr "Nhật ký"
+
+#. js-lingui-id: icY4ek
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Long access token string..."
+msgstr ""
 
 #. js-lingui-id: PTozs8
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
@@ -5828,6 +6016,11 @@ msgstr "Máy chủ MCP"
 msgid "Me"
 msgstr "Tôi"
 
+#. js-lingui-id: SN4xj5
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Measurement ID"
+msgstr ""
+
 #. js-lingui-id: 4zsVUY
 #: src/pages/settings/profile/appearance/components/FontSizePicker.tsx
 msgid "Medium (112.5%)"
@@ -5893,6 +6086,11 @@ msgstr "Đồng bộ tin nhắn và đồng bộ lịch không khả dụng vì 
 msgid "Message Sync is not available because the service is down"
 msgstr "Đồng bộ tin nhắn không khả dụng vì dịch vụ bị gián đoạn"
 
+#. js-lingui-id: qE17Lk
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Messaging Sender ID"
+msgstr ""
+
 #. js-lingui-id: 6GBt0m
 #: src/modules/settings/playground/constants/SettingsPlaygroundFormSchemaSelectOptions.ts
 #: src/modules/settings/accounts/components/SettingsAccountsMessageVisibilityCard.tsx
@@ -5921,6 +6119,16 @@ msgstr "Phương pháp"
 #: src/modules/settings/security/components/SettingsSecurityAuthBypassOptionsList.tsx
 msgid "Microsoft"
 msgstr "Microsoft"
+
+#. js-lingui-id: TWnerA
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Microsoft Client ID"
+msgstr ""
+
+#. js-lingui-id: mvXpcw
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Microsoft Client Secret"
+msgstr ""
 
 #. js-lingui-id: eTUF28
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
@@ -6296,6 +6504,11 @@ msgstr "Không"
 msgid "No {fieldLabel}"
 msgstr "Không có {fieldLabel}"
 
+#. js-lingui-id: L1ZdTZ
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "No advanced settings"
+msgstr ""
+
 #. js-lingui-id: f9b1sj
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 msgid "No agents assigned"
@@ -6340,6 +6553,11 @@ msgstr "Không có trường nào khả dụng để chọn"
 #: src/pages/settings/domains/SettingsDomain.tsx
 msgid "No change detected"
 msgstr "Không phát hiện thay đổi"
+
+#. js-lingui-id: ddZxFm
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "No changes to save"
+msgstr ""
 
 #. js-lingui-id: YFLMyY
 #: src/modules/settings/admin-panel/config-variables/components/SettingsAdminConfigVariables.tsx
@@ -6421,6 +6639,11 @@ msgstr "Hết lượt thực thi quy trình miễn phí. Kết thúc giai đoạ
 #: src/modules/information-banner/components/billing/InformationBannerEndTrialPeriod.tsx
 msgid "No free workflow executions left. Please contact your admin."
 msgstr "Không còn lượt chạy quy trình nào miễn phí. Vui lòng liên hệ quản trị viên của bạn."
+
+#. js-lingui-id: BQxkda
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "No globally disabled features"
+msgstr ""
 
 #. js-lingui-id: S81IYy
 #: src/pages/settings/ai/components/SettingsAgentHandoffTable.tsx
@@ -6558,6 +6781,11 @@ msgstr "Chưa có lần chạy workflows nào"
 msgid "No workflow versions yet"
 msgstr "Chưa có phiên bản workflows nào"
 
+#. js-lingui-id: SV9HVW
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "No workspace-specific disabled features"
+msgstr ""
+
 #. js-lingui-id: EdQY6l
 #: src/modules/settings/accounts/components/SettingsAccountsMessageAutoCreationCard.tsx
 #: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterMenuContent.tsx
@@ -6673,6 +6901,11 @@ msgstr ""
 #. js-lingui-id: M3G9ZD
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "Numbered list"
+msgstr ""
+
+#. js-lingui-id: ZTIiUU
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "OAuth Providers"
 msgstr ""
 
 #. js-lingui-id: pNEViR
@@ -6867,6 +7100,11 @@ msgstr "Mở trong"
 #: src/modules/auth/sign-in-up/components/EmailVerificationSent.tsx
 msgid "Open Outlook"
 msgstr "Mở Outlook"
+
+#. js-lingui-id: 16pk+G
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "OpenAI API Key"
+msgstr ""
 
 #. js-lingui-id: OV5wZZ
 #: src/modules/object-metadata/components/NavigationDrawerOpenedSection.tsx
@@ -7326,6 +7564,11 @@ msgstr "Hồ sơ"
 msgid "Profile - Settings"
 msgstr "Cài đặt - Hồ sơ"
 
+#. js-lingui-id: mSfwLL
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Project ID"
+msgstr ""
+
 #. js-lingui-id: GVxbU6
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Provide your OIDC provider details"
@@ -7466,6 +7709,11 @@ msgstr "Đã sao chép URL chuyển hướng vào bảng tạm"
 msgid "Redirection URI"
 msgstr "URI Chuyển Hướng"
 
+#. js-lingui-id: lCF0wC
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Refresh"
+msgstr ""
+
 #. js-lingui-id: vpZcGd
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -7510,6 +7758,17 @@ msgstr "Tải lại"
 #: src/modules/object-metadata/components/RemoteNavigationDrawerSection.tsx
 msgid "Remote"
 msgstr "Từ xa"
+
+#. js-lingui-id: T+yI/d
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "Remote Config"
+msgstr ""
+
+#. js-lingui-id: YV5bKM
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Remote Config Status"
+msgstr ""
 
 #. js-lingui-id: t/YqKh
 #: src/modules/ui/input/components/ImageInput.tsx
@@ -7839,6 +8098,7 @@ msgid "Saturday"
 msgstr "Thứ Bảy"
 
 #. js-lingui-id: tfDRzk
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/modules/settings/components/SaveAndCancelButtons/SaveButton.tsx
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableActionButtons.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
@@ -7880,16 +8140,17 @@ msgstr "Schema"
 msgid "Schema name"
 msgstr "Tên lược đồ"
 
+#. js-lingui-id: i192JR
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Scope:"
+msgstr ""
+
 #. js-lingui-id: A1taO8
-#: src/modules/views/components/ViewBarFilterDropdownVectorSearchButton.tsx
-#: src/modules/views/components/ViewBarFilterDropdownFilterInputMenuHeader.tsx
-#: src/modules/views/components/EditableFilterChipDropdownMenuHeader.tsx
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownWorkspacesListComponents.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentWorkspaceMemberPickerDropdown.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
-#: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownVectorSearchInput.tsx
-#: src/modules/object-record/object-filter-dropdown/components/ObjectFilterDropdownFilterInputHeader.tsx
 #: src/modules/navigation/components/MainNavigationDrawerFixedItems.tsx
 #: src/modules/command-menu/hooks/useOpenRecordsSearchPageInCommandMenu.ts
 #: src/modules/action-menu/actions/record-agnostic-actions/constants/RecordAgnosticActionsConfig.tsx
@@ -8071,6 +8332,11 @@ msgstr "Bí mật"
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 msgid "Secret (optional)"
 msgstr "Bí mật (tùy chọn)"
+
+#. js-lingui-id: 5+k/sc
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Secret string"
+msgstr ""
 
 #. js-lingui-id: a3LDKx
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
@@ -8398,6 +8664,16 @@ msgstr "Quyền truy cập cài đặt"
 msgid "Settings permissions"
 msgstr "Cài đặt quyền"
 
+#. js-lingui-id: gjNQhe
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Settings saved successfully"
+msgstr ""
+
+#. js-lingui-id: 4qiLkl
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Settings seen in \"Other / Admin Panel / Config Variables\" serve as the server-wide default values. These typically originate from the 'env.local' or '.env' files configured during deployment."
+msgstr ""
+
 #. js-lingui-id: J2TlKG
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
 msgid "setup key"
@@ -8536,12 +8812,19 @@ msgstr "Cấu hình SMTP"
 msgid "SMTP Encryption"
 msgstr "Mã hóa SMTP"
 
+#. js-lingui-id: oQw4Jd
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "SMTP Host"
+msgstr ""
+
 #. js-lingui-id: UeDEV/
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "SMTP Password"
 msgstr "Mật khẩu SMTP"
 
 #. js-lingui-id: 4waP7/
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "SMTP Port"
 msgstr "Cổng SMTP"
@@ -8550,6 +8833,11 @@ msgstr "Cổng SMTP"
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
 msgid "SMTP Server"
 msgstr "Máy chủ SMTP"
+
+#. js-lingui-id: 7JVIZ+
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "SMTP User"
+msgstr ""
 
 #. js-lingui-id: ISDzCY
 #: src/modules/settings/accounts/components/SettingsAccountsConnectionForm.tsx
@@ -8699,6 +8987,11 @@ msgstr "Dừng lại"
 msgid "Stop impersonating"
 msgstr "Ngừng mạo danh"
 
+#. js-lingui-id: F7yX+c
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Storage Bucket"
+msgstr ""
+
 #. js-lingui-id: qn1Xxf
 #: src/modules/settings/admin-panel/config-variables/utils/useSourceContent.ts
 msgid "Stored in database"
@@ -8839,6 +9132,11 @@ msgstr "Chủ Nhật"
 #: src/modules/support/components/SupportButton.tsx
 msgid "Support"
 msgstr "Hỗ trợ"
+
+#. js-lingui-id: M3l7xe
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Suppose Admin Panel GOOGLE_AUTH is 'Client-A' (Default)."
+msgstr ""
 
 #. js-lingui-id: UaISq3
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -9146,6 +9444,11 @@ msgstr "Vẫn còn một số hàng chứa lỗi. Các hàng chứa lỗi sẽ b
 msgid "There was an error while updating password."
 msgstr "Đã có lỗi xảy ra trong quá trình cập nhật mật khẩu."
 
+#. js-lingui-id: AidBuP
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "These settings affect ONLY the current Workspace."
+msgstr ""
+
 #. js-lingui-id: Ed99mE
 #: src/modules/ai/components/ReasoningSummaryDisplay.tsx
 msgid "Thinking..."
@@ -9160,6 +9463,11 @@ msgstr "thứ ba"
 #: src/modules/object-record/record-merge/utils/getPositionWordLabel.ts
 msgid "Third"
 msgstr "Thứ ba"
+
+#. js-lingui-id: id1y/0
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "This 'Default vs. Override' relationship ensures flexibility: most use defaults, while specific cases can be customized."
+msgstr ""
 
 #. js-lingui-id: Ox1hE7
 #: src/modules/settings/profile/components/DeleteAccount.tsx
@@ -9202,6 +9510,11 @@ msgstr "Giá trị cơ sở dữ liệu này ghi đè các thiết lập môi tr
 #: src/modules/object-record/record-index/components/RecordIndexRemoveSortingModal.tsx
 msgid "This is required to enable manual row reordering."
 msgstr "Điều này cần thiết để cho phép sắp xếp các hàng thủ công."
+
+#. js-lingui-id: lNZQJS
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "This is the newly implemented feature. Its purpose is to \"override\" the defaults mentioned above."
+msgstr ""
 
 #. js-lingui-id: vbLBMd
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -9252,6 +9565,11 @@ msgstr "Thao tác này sẽ hủy thay đổi kế hoạch đã đặt lịch v�
 #: src/pages/settings/admin-panel/SettingsAdminConfigVariableDetails.tsx
 msgid "This will revert the database value to environment/default value. The database override will be removed and the system will use the environment settings."
 msgstr "Điều này sẽ khôi phục giá trị cơ sở dữ liệu về giá trị mặc định của môi trường. Ghi đè cơ sở dữ liệu sẽ bị loại bỏ và hệ thống sẽ sử dụng các cài đặt môi trường."
+
+#. js-lingui-id: k4vH4W
+#: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
+msgid "This Workspace"
+msgstr ""
 
 #. js-lingui-id: 5g/sE8
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
@@ -9695,6 +10013,16 @@ msgstr "Người dùng không đăng nhập"
 msgid "Users"
 msgstr "Người dùng"
 
+#. js-lingui-id: lil26W
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Uses 'Client-A' for login."
+msgstr ""
+
+#. js-lingui-id: MnEXbi
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Uses 'Client-B' for login."
+msgstr ""
+
 #. js-lingui-id: vUr1/5
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Using default application value. Configure via environment variables."
@@ -10036,6 +10364,7 @@ msgstr "Quy Trình Làm Việc"
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/SettingsWorkspace.tsx
 #: src/pages/settings/SettingsBilling.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
 #: src/pages/settings/security/SettingsSecurityApprovedAccessDomain.tsx
@@ -10076,6 +10405,16 @@ msgstr "Quy Trình Làm Việc"
 #: src/modules/favorites/components/WorkspaceFavorites.tsx
 msgid "Workspace"
 msgstr "Workspace"
+
+#. js-lingui-id: 6xgJ6w
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Workspace 1"
+msgstr ""
+
+#. js-lingui-id: Mwj8JI
+#: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
+msgid "Workspace 2"
+msgstr ""
 
 #. js-lingui-id: ZcJVbJ
 #: src/pages/settings/profile/appearance/components/SettingsExperience.tsx
@@ -10161,6 +10500,11 @@ msgstr "Trục X"
 #: src/modules/command-menu/pages/page-layout/utils/__tests__/shouldHideChartSetting.test.ts
 msgid "X Axis Data"
 msgstr "Dữ liệu trục X"
+
+#. js-lingui-id: mfoNTp
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "xAI API Key"
+msgstr ""
 
 #. js-lingui-id: fplGg6
 #: src/modules/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
@@ -10399,6 +10743,11 @@ msgstr ""
 #. js-lingui-id: NR/ELf
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "郵件和日曆"
+msgstr ""
+
+#. js-lingui-id: BkY+ws
+#: src/modules/object-record/record-show/hooks/useRecordShowContainerTabs.ts
+msgid "關聯"
 msgstr ""
 
 #. js-lingui-id: kyRsuU

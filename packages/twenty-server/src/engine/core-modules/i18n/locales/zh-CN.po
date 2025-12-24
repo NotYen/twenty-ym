@@ -74,6 +74,11 @@ msgstr "收藏夹"
 msgid "A group of related messages (e.g. email thread, chat thread)"
 msgstr "一组相关消息（如电子邮件线程、聊天线程）"
 
+#. js-lingui-id: 1Pylbk
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-join-column-name.util.ts
+msgid "A many to one relation field should always declare a join column"
+msgstr ""
+
 #. js-lingui-id: vZj1Xc
 #: src/modules/messaging/common/standard-objects/message.workspace-entity.ts
 msgid "A message sent or received through a messaging channel (email, chat, etc.)"
@@ -89,6 +94,11 @@ msgstr "笔记"
 msgid "A note target"
 msgstr "笔记目标"
 
+#. js-lingui-id: MtcxLV
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-join-column-name.util.ts
+msgid "A one to many relation field should never declare a join column"
+msgstr ""
+
 #. js-lingui-id: Io42ej
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 msgid "A person"
@@ -98,6 +108,11 @@ msgstr "个人"
 #: src/engine/metadata-modules/role/role.service.ts
 msgid "A role with this label already exists."
 msgstr "带有此标签的角色已存在。"
+
+#. js-lingui-id: 75KBNs
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "A sales quote"
+msgstr ""
 
 #. js-lingui-id: mkFXEH
 #: src/modules/task/standard-objects/task.workspace-entity.ts
@@ -208,20 +223,27 @@ msgid "Aggregated / filtered event to be displayed on the timeline"
 msgstr "时间轴上显示的汇总/筛选事件"
 
 #. js-lingui-id: pdOYzu
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/workspace-members-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/workflows-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/workflow-versions-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/workflow-runs-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quotes-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quote-line-items-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/people-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/opportunities-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/notes-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/messages-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/message-threads-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/dashboards-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/custom-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/companies-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/calendar-events-all.view.ts
 msgid "All {objectLabelPlural}"
 msgstr "全部{objectLabelPlural}"
 
 #. js-lingui-id: hehnjM
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Amount"
 msgstr "金额"
@@ -246,6 +268,11 @@ msgstr "发生错误。"
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
 msgid "An index must contain at least one field"
 msgstr "索引中必须至少包含一个字段"
+
+#. js-lingui-id: ikmN/B
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "An item in a sales quote"
+msgstr ""
 
 #. js-lingui-id: bZq8rL
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
@@ -358,6 +385,11 @@ msgstr "附件机会"
 msgid "Attachment person"
 msgstr "附件联系人"
 
+#. js-lingui-id: 6inmg3
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Attachment sales quote"
+msgstr ""
+
 #. js-lingui-id: Tx1DxS
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "Attachment task"
@@ -376,6 +408,7 @@ msgstr "附件工作流程"
 #. js-lingui-id: w/Sphq
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -391,11 +424,6 @@ msgstr "附件"
 msgid "Attachments created by the workspace member"
 msgstr "工作区成员创建的附件"
 
-#. js-lingui-id: iVnA89
-#: src/modules/company/standard-objects/company.workspace-entity.ts
-msgid "Attachments linked to the company"
-msgstr "与公司关联的附件"
-
 #. js-lingui-id: MuTXtT
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 msgid "Attachments linked to the contact."
@@ -410,6 +438,11 @@ msgstr "与仪表板关联的附件"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Attachments linked to the opportunity"
 msgstr "与机会关联的附件"
+
+#. js-lingui-id: fBGxnm
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Attachments linked to the sales quote"
+msgstr ""
 
 #. js-lingui-id: 83l3Yd
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
@@ -674,6 +707,7 @@ msgstr "公司"
 #. js-lingui-id: 7i8j3G
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
@@ -718,6 +752,11 @@ msgstr "连接账户"
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
 msgid "Connected Accounts"
 msgstr "连接账户"
+
+#. js-lingui-id: jfC/xh
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Contact"
+msgstr ""
 
 #. js-lingui-id: bA6O5B
 #: src/modules/messaging/common/standard-objects/message-channel.workspace-entity.ts
@@ -795,9 +834,16 @@ msgstr "找不到与索引字段相关的字段元数据"
 msgid "Could not find index related object metadata"
 msgstr "找不到与索引相关的对象元数据"
 
+#. js-lingui-id: YzCaIm
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-join-column-name.util.ts
+msgid "Could not find relation field parent flat object"
+msgstr ""
+
 #. js-lingui-id: NCIYDF
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -922,6 +968,11 @@ msgstr "十二月"
 msgid "Default value \"{defaultValue}\" must be one of the option values"
 msgstr "默认值 \"{defaultValue}\" 必须是选项值之一"
 
+#. js-lingui-id: XeWfi3
+#: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-field-metadata-validator.service.ts
+msgid "Default value cannot be null."
+msgstr ""
+
 #. js-lingui-id: FdUbPo
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
 msgid "Default value must be a string"
@@ -945,6 +996,7 @@ msgid "Deleted at"
 msgstr "删除于"
 
 #. js-lingui-id: Nu4oKW
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Description"
@@ -954,6 +1006,16 @@ msgstr "描述"
 #: src/modules/messaging/common/standard-objects/message-channel-message-association.workspace-entity.ts
 msgid "Direction"
 msgstr "方向"
+
+#. js-lingui-id: H6Ma8Z
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Discount"
+msgstr ""
+
+#. js-lingui-id: DF4eYx
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Discount percentage"
+msgstr ""
 
 #. js-lingui-id: 0gS7M5
 #: src/modules/messaging/common/standard-objects/message-participant.workspace-entity.ts
@@ -1093,6 +1155,16 @@ msgstr "事件参与者"
 msgid "Event person"
 msgstr "事件联系人"
 
+#. js-lingui-id: IWGcxA
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Event sales quote"
+msgstr ""
+
+#. js-lingui-id: wDAg/u
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Event sales quote line item"
+msgstr ""
+
 #. js-lingui-id: mMq0Wy
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 msgid "Event task"
@@ -1228,6 +1300,11 @@ msgstr "收藏联系人"
 msgid "Favorite position"
 msgstr "收藏位置"
 
+#. js-lingui-id: rsjw7a
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+msgid "Favorite sales quote"
+msgstr ""
+
 #. js-lingui-id: OaQVQH
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
 msgid "Favorite task"
@@ -1259,6 +1336,7 @@ msgstr "收藏工作区成员"
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -1299,6 +1377,11 @@ msgstr "与备注相关的收藏"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Favorites linked to the opportunity"
 msgstr "与机会相关的收藏"
+
+#. js-lingui-id: /sA1mR
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Favorites linked to the sales quote"
+msgstr ""
 
 #. js-lingui-id: L5ccWD
 #: src/modules/task/standard-objects/task.workspace-entity.ts
@@ -1421,6 +1504,21 @@ msgstr "未找到要创建的相关对象字段"
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-field-metadata-validator.service.ts
 msgid "Field to update not found"
 msgstr "未找到要更新的字段"
+
+#. js-lingui-id: stY5BO
+#: src/engine/metadata-modules/flat-field-metadata/services/flat-field-metadata-type-validator.service.ts
+msgid "Field type NUMERIC is not supported. Use Number instead."
+msgstr ""
+
+#. js-lingui-id: q2XPsD
+#: src/engine/metadata-modules/flat-field-metadata/services/flat-field-metadata-type-validator.service.ts
+msgid "Field type POSITION is a system type and cannot be created manually."
+msgstr ""
+
+#. js-lingui-id: FDPb27
+#: src/engine/metadata-modules/flat-field-metadata/services/flat-field-metadata-type-validator.service.ts
+msgid "Field type TS_VECTOR is a system type and cannot be created manually."
+msgstr ""
 
 #. js-lingui-id: J4hC2m
 #: src/engine/metadata-modules/constants/search-vector-field.constants.ts
@@ -1675,6 +1773,11 @@ msgstr "对象元数据输入无效"
 msgid "Invalid relation creation payload"
 msgstr "无效的关系创建请求负载"
 
+#. js-lingui-id: iWv3nK
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-metadata.util.ts
+msgid "Invalid relation field target"
+msgstr ""
+
 #. js-lingui-id: ApP70c
 #: src/modules/workflow/workflow-trigger/utils/assert-version-can-be-activated.util.ts
 msgid "Invalid setting type provided in cron trigger"
@@ -1740,6 +1843,11 @@ msgstr "是否启用同步"
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 msgid "Is Synced"
 msgstr "已同步"
+
+#. js-lingui-id: M1cChr
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Issue Date"
+msgstr ""
 
 #. js-lingui-id: rjyWPb
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -1873,6 +1981,21 @@ msgstr "记录上次更改时间"
 #: src/engine/twenty-orm/base.workspace-entity.ts
 msgid "Last update"
 msgstr "最后更新"
+
+#. js-lingui-id: SgduFH
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Line Items"
+msgstr ""
+
+#. js-lingui-id: 9Pz2fl
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Linked company"
+msgstr ""
+
+#. js-lingui-id: 6UpmPG
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Linked contact person"
+msgstr ""
 
 #. js-lingui-id: wR9USP
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -2087,6 +2210,11 @@ msgstr "消息提供商访问令牌"
 msgid "Messaging provider refresh token"
 msgstr "消息提供商刷新令牌"
 
+#. js-lingui-id: G6wJK8
+#: src/modules/workflow/workflow-trigger/utils/assert-version-can-be-activated.util.ts
+msgid "Minute value cannot exceed 60. For intervals greater than 60 minutes, use the \"Hours\" trigger type or a custom cron expression"
+msgstr ""
+
 #. js-lingui-id: SzCMUQ
 #: src/engine/twenty-orm/utils/compute-relation-connect-query-configs.util.ts
 msgid "Missing required fields: at least one unique constraint have to be fully populated for '{connectFieldName}'."
@@ -2132,6 +2260,8 @@ msgstr "找到了多个记录，它们具有相同的唯一字段值 {conflictin
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
@@ -2148,15 +2278,20 @@ msgstr "名称"
 msgid "Name \"{computedMetadataNameFromLabel}\" cannot be the same on both side of the relation"
 msgstr "名称 \"{computedMetadataNameFromLabel}\" 不能在关系的两边相同"
 
-#. js-lingui-id: Ge9TXE
+#. js-lingui-id: 2m6Fru
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-flat-field-metadata-name-availability.util.ts
-msgid "Name \"{flatFieldMetadataName}\" is not available"
-msgstr "名称 \"{flatFieldMetadataName}\" 不可用"
+msgid "Name \"{name}\" is not available"
+msgstr ""
 
-#. js-lingui-id: h8ic2G
+#. js-lingui-id: U8mbyw
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-flat-field-metadata-name-availability.util.ts
-msgid "Name \"{flatFieldMetadataName}\" is not available as it is already used by another field"
-msgstr "名称 \"{flatFieldMetadataName}\" 不可用，因为它已被另一个字段使用"
+msgid "Name \"{name}\" is not available as it is already used by another field"
+msgstr ""
+
+#. js-lingui-id: dBDpp2
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-flat-field-metadata-name-availability.util.ts
+msgid "Name \"{name}\" is not available as it is already used by join column name"
+msgstr ""
 
 #. js-lingui-id: Q2loDF
 #: src/engine/metadata-modules/object-metadata/services/object-metadata-field-relation.service.ts
@@ -2299,6 +2434,8 @@ msgid "Note title"
 msgstr "备注标题"
 
 #. js-lingui-id: 1DBGsz
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -2327,6 +2464,11 @@ msgstr "与联系人相关的备注"
 msgid "Notes tied to the opportunity"
 msgstr "与机会相关的备注"
 
+#. js-lingui-id: TRv0fr
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Notes tied to the sales quote"
+msgstr ""
+
 #. js-lingui-id: B2Y6QU
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget company"
@@ -2346,6 +2488,11 @@ msgstr "备注目标机会"
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget person"
 msgstr "备注目标联系人"
+
+#. js-lingui-id: leVlyc
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget sales quote"
+msgstr ""
 
 #. js-lingui-id: t9QlBd
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -2677,6 +2824,8 @@ msgstr "联系人"
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -2703,6 +2852,11 @@ msgstr "首选语言"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Probability"
 msgstr "概率"
+
+#. js-lingui-id: Q033BY
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Product Name"
+msgstr ""
 
 #. js-lingui-id: dtGxRz
 #: src/engine/core-modules/record-transformer/utils/transform-phones-value.util.ts
@@ -2738,6 +2892,16 @@ msgstr "公共域名已注册"
 #: src/engine/core-modules/dns-manager/services/dns-manager.service.ts
 msgid "Public domain URL is not defined. Please set the PUBLIC_DOMAIN_URL environment variable"
 msgstr "未定义公共域名 URL。请设置 PUBLIC_DOMAIN_URL 环境变量。"
+
+#. js-lingui-id: VbWX2u
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Quantity"
+msgstr ""
+
+#. js-lingui-id: S1VNuo
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Quote Number"
+msgstr ""
 
 #. js-lingui-id: YfbwOB
 #: src/modules/messaging/common/standard-objects/message.workspace-entity.ts
@@ -2852,6 +3016,37 @@ msgstr "具有相同路径的路径已存在"
 msgid "Runs"
 msgstr "运行"
 
+#. js-lingui-id: Q1a1cW
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/task/standard-objects/task-target.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Sales Quote"
+msgstr ""
+
+#. js-lingui-id: EA564t
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Sales Quote Line Item"
+msgstr ""
+
+#. js-lingui-id: sLghnL
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+#: src/modules/company/standard-objects/company.workspace-entity.ts
+msgid "Sales Quotes"
+msgstr ""
+
+#. js-lingui-id: zNVxoT
+#: src/modules/company/standard-objects/company.workspace-entity.ts
+msgid "Sales quotes linked to the company"
+msgstr ""
+
+#. js-lingui-id: vzgUjD
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "Sales quotes linked to the person"
+msgstr ""
+
 #. js-lingui-id: +5kO8P
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
 msgid "Saturday"
@@ -2962,6 +3157,7 @@ msgstr "工作流程运行的状态"
 
 #. js-lingui-id: uAQUqI
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 msgid "Status"
 msgstr "状态"
 
@@ -2990,6 +3186,11 @@ msgstr "字符串 \"{name}\" 无效：必须以小写字母开头且仅包含字
 #: src/modules/messaging/common/standard-objects/message.workspace-entity.ts
 msgid "Subject"
 msgstr "主题"
+
+#. js-lingui-id: X2rrlw
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Subtotal"
+msgstr ""
 
 #. js-lingui-id: DBC3t5
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -3108,6 +3309,7 @@ msgstr "任务标题"
 
 #. js-lingui-id: GtycJ/
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
@@ -3140,6 +3342,11 @@ msgstr "与联系人相关的任务"
 msgid "Tasks tied to the opportunity"
 msgstr "与机会相关的任务"
 
+#. js-lingui-id: nbe+Yr
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Tasks tied to the sales quote"
+msgstr ""
+
 #. js-lingui-id: pP0Dt9
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
 msgid "TaskTarget company"
@@ -3155,10 +3362,35 @@ msgstr "任务目标机会"
 msgid "TaskTarget person"
 msgstr "任务目标人员"
 
+#. js-lingui-id: bETOza
+#: src/modules/task/standard-objects/task-target.workspace-entity.ts
+msgid "TaskTarget sales quote"
+msgstr ""
+
 #. js-lingui-id: pciKLT
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
 msgid "TaskTarget task"
 msgstr "任务目标任务"
+
+#. js-lingui-id: hwTkXl
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Tax Amount"
+msgstr ""
+
+#. js-lingui-id: EsKQ1d
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Tax Rate"
+msgstr ""
+
+#. js-lingui-id: 2+SMrw
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Tax rate as a decimal (e.g. 0.05 for 5%)"
+msgstr ""
+
+#. js-lingui-id: 4Y5H+g
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Terms"
+msgstr ""
 
 #. js-lingui-id: xeiujy
 #: src/modules/messaging/common/standard-objects/message.workspace-entity.ts
@@ -3204,6 +3436,8 @@ msgstr "公司网站 URL。我们使用该网址获取公司图标"
 #. js-lingui-id: zGBDEH
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -3259,6 +3493,11 @@ msgstr "此收藏夹所属文件夹"
 msgid "The initial version of a workflow can not be deleted"
 msgstr "工作流程的初始版本不能被删除"
 
+#. js-lingui-id: 2FaSbx
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "The line item name"
+msgstr ""
+
 #. js-lingui-id: YTftFF
 #: src/engine/metadata-modules/utils/constants/metadata-name-flat-metadata-validators.constants.ts
 msgid "The name is not available"
@@ -3274,6 +3513,21 @@ msgstr "您尝试设置权限的对象未找到。它可能已被删除。"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "The opportunity name"
 msgstr "机会名称"
+
+#. js-lingui-id: K4N1QC
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "The quote name"
+msgstr ""
+
+#. js-lingui-id: gW1qY6
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "The quote number"
+msgstr ""
+
+#. js-lingui-id: a3QSZJ
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "The quote title"
+msgstr ""
 
 #. js-lingui-id: Zi9X+u
 #: src/engine/metadata-modules/role/role.service.ts
@@ -3436,6 +3690,8 @@ msgstr "时区"
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
@@ -3469,6 +3725,16 @@ msgstr "与机会相关的时间线活动。"
 msgid "Timeline activities linked to the run"
 msgstr "与运行相关的时间线活动"
 
+#. js-lingui-id: RxWkVf
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Timeline Activities linked to the sales quote"
+msgstr ""
+
+#. js-lingui-id: KhsgfV
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Timeline Activities linked to the sales quote line item"
+msgstr ""
+
 #. js-lingui-id: q96UvB
 #: src/modules/task/standard-objects/task.workspace-entity.ts
 msgid "Timeline Activities linked to the task."
@@ -3496,12 +3762,23 @@ msgstr "时间线活动"
 
 #. js-lingui-id: MHrjPM
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Title"
 msgstr "标题"
+
+#. js-lingui-id: mfqtz7
+#: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
+msgid "Too many workspace invitations sent. Please try again later."
+msgstr ""
+
+#. js-lingui-id: 72c5Qo
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Total"
+msgstr ""
 
 #. js-lingui-id: G3myU+
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -3529,6 +3806,11 @@ msgstr "唯一字段不能设定默认值"
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
 msgid "Unique index cannot be created for field {fieldName} of type {fieldType}"
 msgstr "无法为类型为 {fieldType} 的字段 {fieldName} 创建唯一索引"
+
+#. js-lingui-id: vWelsN
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Unit Price"
+msgstr ""
 
 #. js-lingui-id: EBZdX5
 #: src/modules/workflow/workflow-trigger/utils/compute-cron-pattern-from-schedule.ts
@@ -3622,6 +3904,11 @@ msgstr "用户首选的一周开始日"
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "User's preferred time format"
 msgstr "用户首选时间格式"
+
+#. js-lingui-id: 0tttqe
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Valid Until"
+msgstr ""
 
 #. js-lingui-id: xInMK/
 #: src/engine/workspace-manager/workspace-migration-v2/interceptors/workspace-migration-builder-exception-v2-formatter.ts
@@ -4170,6 +4457,11 @@ msgstr "密码错误"
 msgid "X"
 msgstr "X"
 
+#. js-lingui-id: 4ysDL0
+#: src/engine/twenty-orm/repository/workspace-update-query-builder.ts
+msgid "You can only update up to {QUERY_MAX_RECORDS} records at once."
+msgstr ""
+
 #. js-lingui-id: 1SQnFB
 #: src/engine/metadata-modules/role/role.resolver.ts
 msgid "You cannot change your own role. Please ask another administrator to update your role."
@@ -4268,58 +4560,22 @@ msgstr "您的工作空间已更新为新的数据模型。请刷新页面。"
 msgid "Your workspace membership could not be found. You may no longer have access to this workspace."
 msgstr "找不到您的工作区成员资格。您可能无法再访问此工作区。"
 
-#. js-lingui-id: 874/Xl
-#: src/modules/workflow/workflow-trigger/utils/assert-version-can-be-activated.util.ts
-msgid "Cannot activate non-draft or non-deactivated version"
+#. js-lingui-id: RiJXfW
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "報價單"
 msgstr ""
 
-#. js-lingui-id: s3HtdT
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "FieldMetadataId is required"
-msgstr "FieldMetadataId 是必需的"
-
-#. js-lingui-id: 8xkULN
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "Invalid view sort data"
-msgstr "无效的视图排序数据"
-
-#. js-lingui-id: I0OzaR
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "Invalid view sort data for view sort id: {id}"
-msgstr "视图排序数据无效，视图排序 ID：{id}"
-
-#. js-lingui-id: rtir7c
-#: src/engine/metadata-modules/view-group/exceptions/view-group.exception.ts
-msgid "unknown"
+#. js-lingui-id: 89hjWZ
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "報價單列表"
 msgstr ""
 
-#. js-lingui-id: znNExx
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "View sort (id: {id}) not found"
-msgstr "未找到视图排序（ID：{id}）"
+#. js-lingui-id: TYRRsr
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "報價單細項"
+msgstr ""
 
-#. js-lingui-id: 3zMs+f
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "View sort not found"
-msgstr "未找到视图排序"
-
-#. js-lingui-id: kpQRY2
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "ViewId is required"
-msgstr "必须提供 ViewId"
-
-#. js-lingui-id: bBr+RW
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "WorkspaceId is required"
-msgstr "必须提供 WorkspaceId"
-
-#. js-lingui-id: k7P8yU
-#: src/engine/core-modules/workspace/services/workspace.service.ts
-msgid "You do not have permission to manage security settings. Please contact your workspace administrator."
-msgstr "您无权管理安全设置。请联系您的工作区管理员。"
-
-#. js-lingui-id: svchJc
-#: src/engine/core-modules/workspace/services/workspace.service.ts
-msgid "You do not have permission to manage workspace settings. Please contact your workspace administrator."
-msgstr "您无权管理工作区设置。请联系您的工作区管理员。"
-
+#. js-lingui-id: fJQiB8
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "報價單細項列表"
+msgstr ""

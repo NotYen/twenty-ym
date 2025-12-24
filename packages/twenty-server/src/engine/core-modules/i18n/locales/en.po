@@ -69,6 +69,11 @@ msgstr "A Folder of favorites"
 msgid "A group of related messages (e.g. email thread, chat thread)"
 msgstr "A group of related messages (e.g. email thread, chat thread)"
 
+#. js-lingui-id: 1Pylbk
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-join-column-name.util.ts
+msgid "A many to one relation field should always declare a join column"
+msgstr "A many to one relation field should always declare a join column"
+
 #. js-lingui-id: vZj1Xc
 #: src/modules/messaging/common/standard-objects/message.workspace-entity.ts
 msgid "A message sent or received through a messaging channel (email, chat, etc.)"
@@ -84,6 +89,11 @@ msgstr "A note"
 msgid "A note target"
 msgstr "A note target"
 
+#. js-lingui-id: MtcxLV
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-join-column-name.util.ts
+msgid "A one to many relation field should never declare a join column"
+msgstr "A one to many relation field should never declare a join column"
+
 #. js-lingui-id: Io42ej
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 msgid "A person"
@@ -93,6 +103,11 @@ msgstr "A person"
 #: src/engine/metadata-modules/role/role.service.ts
 msgid "A role with this label already exists."
 msgstr "A role with this label already exists."
+
+#. js-lingui-id: 75KBNs
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "A sales quote"
+msgstr "A sales quote"
 
 #. js-lingui-id: mkFXEH
 #: src/modules/task/standard-objects/task.workspace-entity.ts
@@ -203,20 +218,27 @@ msgid "Aggregated / filtered event to be displayed on the timeline"
 msgstr "Aggregated / filtered event to be displayed on the timeline"
 
 #. js-lingui-id: pdOYzu
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/workspace-members-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/workflows-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/workflow-versions-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/workflow-runs-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/tasks-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quotes-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/sales-quote-line-items-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/people-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/opportunities-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/notes-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/messages-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/message-threads-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/dashboards-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/custom-all.view.ts
 #: src/engine/workspace-manager/standard-objects-prefill-data/views/companies-all.view.ts
+#: src/engine/workspace-manager/standard-objects-prefill-data/views/calendar-events-all.view.ts
 msgid "All {objectLabelPlural}"
 msgstr "All {objectLabelPlural}"
 
 #. js-lingui-id: hehnjM
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Amount"
 msgstr "Amount"
@@ -241,6 +263,11 @@ msgstr "An error occurred."
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
 msgid "An index must contain at least one field"
 msgstr "An index must contain at least one field"
+
+#. js-lingui-id: ikmN/B
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "An item in a sales quote"
+msgstr "An item in a sales quote"
 
 #. js-lingui-id: bZq8rL
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
@@ -353,6 +380,11 @@ msgstr "Attachment opportunity"
 msgid "Attachment person"
 msgstr "Attachment person"
 
+#. js-lingui-id: 6inmg3
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Attachment sales quote"
+msgstr "Attachment sales quote"
+
 #. js-lingui-id: Tx1DxS
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
 msgid "Attachment task"
@@ -371,6 +403,7 @@ msgstr "Attachment workflow"
 #. js-lingui-id: w/Sphq
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -386,11 +419,6 @@ msgstr "Attachments"
 msgid "Attachments created by the workspace member"
 msgstr "Attachments created by the workspace member"
 
-#. js-lingui-id: iVnA89
-#: src/modules/company/standard-objects/company.workspace-entity.ts
-msgid "Attachments linked to the company"
-msgstr "Attachments linked to the company"
-
 #. js-lingui-id: MuTXtT
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 msgid "Attachments linked to the contact."
@@ -405,6 +433,11 @@ msgstr "Attachments linked to the dashboard"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Attachments linked to the opportunity"
 msgstr "Attachments linked to the opportunity"
+
+#. js-lingui-id: fBGxnm
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Attachments linked to the sales quote"
+msgstr "Attachments linked to the sales quote"
 
 #. js-lingui-id: 83l3Yd
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
@@ -669,6 +702,7 @@ msgstr "Companies"
 #. js-lingui-id: 7i8j3G
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
@@ -713,6 +747,11 @@ msgstr "Connected accounts"
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
 msgid "Connected Accounts"
 msgstr "Connected Accounts"
+
+#. js-lingui-id: jfC/xh
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Contact"
+msgstr "Contact"
 
 #. js-lingui-id: bA6O5B
 #: src/modules/messaging/common/standard-objects/message-channel.workspace-entity.ts
@@ -790,9 +829,16 @@ msgstr "Could not find index field related field metadata"
 msgid "Could not find index related object metadata"
 msgstr "Could not find index related object metadata"
 
+#. js-lingui-id: YzCaIm
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-join-column-name.util.ts
+msgid "Could not find relation field parent flat object"
+msgstr "Could not find relation field parent flat object"
+
 #. js-lingui-id: NCIYDF
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -917,6 +963,11 @@ msgstr "December"
 msgid "Default value \"{defaultValue}\" must be one of the option values"
 msgstr "Default value \"{defaultValue}\" must be one of the option values"
 
+#. js-lingui-id: XeWfi3
+#: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-field-metadata-validator.service.ts
+msgid "Default value cannot be null."
+msgstr "Default value cannot be null."
+
 #. js-lingui-id: FdUbPo
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
 msgid "Default value must be a string"
@@ -940,6 +991,7 @@ msgid "Deleted at"
 msgstr "Deleted at"
 
 #. js-lingui-id: Nu4oKW
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Description"
@@ -949,6 +1001,16 @@ msgstr "Description"
 #: src/modules/messaging/common/standard-objects/message-channel-message-association.workspace-entity.ts
 msgid "Direction"
 msgstr "Direction"
+
+#. js-lingui-id: H6Ma8Z
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Discount"
+msgstr "Discount"
+
+#. js-lingui-id: DF4eYx
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Discount percentage"
+msgstr "Discount percentage"
 
 #. js-lingui-id: 0gS7M5
 #: src/modules/messaging/common/standard-objects/message-participant.workspace-entity.ts
@@ -1088,6 +1150,16 @@ msgstr "Event Participants"
 msgid "Event person"
 msgstr "Event person"
 
+#. js-lingui-id: IWGcxA
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Event sales quote"
+msgstr "Event sales quote"
+
+#. js-lingui-id: wDAg/u
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Event sales quote line item"
+msgstr "Event sales quote line item"
+
 #. js-lingui-id: mMq0Wy
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 msgid "Event task"
@@ -1223,6 +1295,11 @@ msgstr "Favorite person"
 msgid "Favorite position"
 msgstr "Favorite position"
 
+#. js-lingui-id: rsjw7a
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+msgid "Favorite sales quote"
+msgstr "Favorite sales quote"
+
 #. js-lingui-id: OaQVQH
 #: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
 msgid "Favorite task"
@@ -1254,6 +1331,7 @@ msgstr "Favorite workspace member"
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -1294,6 +1372,11 @@ msgstr "Favorites linked to the note"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Favorites linked to the opportunity"
 msgstr "Favorites linked to the opportunity"
+
+#. js-lingui-id: /sA1mR
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Favorites linked to the sales quote"
+msgstr "Favorites linked to the sales quote"
 
 #. js-lingui-id: L5ccWD
 #: src/modules/task/standard-objects/task.workspace-entity.ts
@@ -1416,6 +1499,21 @@ msgstr "Field to create related object not found"
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-field-metadata-validator.service.ts
 msgid "Field to update not found"
 msgstr "Field to update not found"
+
+#. js-lingui-id: stY5BO
+#: src/engine/metadata-modules/flat-field-metadata/services/flat-field-metadata-type-validator.service.ts
+msgid "Field type NUMERIC is not supported. Use Number instead."
+msgstr "Field type NUMERIC is not supported. Use Number instead."
+
+#. js-lingui-id: q2XPsD
+#: src/engine/metadata-modules/flat-field-metadata/services/flat-field-metadata-type-validator.service.ts
+msgid "Field type POSITION is a system type and cannot be created manually."
+msgstr "Field type POSITION is a system type and cannot be created manually."
+
+#. js-lingui-id: FDPb27
+#: src/engine/metadata-modules/flat-field-metadata/services/flat-field-metadata-type-validator.service.ts
+msgid "Field type TS_VECTOR is a system type and cannot be created manually."
+msgstr "Field type TS_VECTOR is a system type and cannot be created manually."
 
 #. js-lingui-id: J4hC2m
 #: src/engine/metadata-modules/constants/search-vector-field.constants.ts
@@ -1670,6 +1768,11 @@ msgstr "Invalid object metadata input"
 msgid "Invalid relation creation payload"
 msgstr "Invalid relation creation payload"
 
+#. js-lingui-id: iWv3nK
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-morph-or-relation-flat-field-metadata.util.ts
+msgid "Invalid relation field target"
+msgstr "Invalid relation field target"
+
 #. js-lingui-id: ApP70c
 #: src/modules/workflow/workflow-trigger/utils/assert-version-can-be-activated.util.ts
 msgid "Invalid setting type provided in cron trigger"
@@ -1735,6 +1838,11 @@ msgstr "Is Sync Enabled"
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 msgid "Is Synced"
 msgstr "Is Synced"
+
+#. js-lingui-id: M1cChr
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Issue Date"
+msgstr "Issue Date"
 
 #. js-lingui-id: rjyWPb
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -1868,6 +1976,21 @@ msgstr "Last time the record was changed"
 #: src/engine/twenty-orm/base.workspace-entity.ts
 msgid "Last update"
 msgstr "Last update"
+
+#. js-lingui-id: SgduFH
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Line Items"
+msgstr "Line Items"
+
+#. js-lingui-id: 9Pz2fl
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Linked company"
+msgstr "Linked company"
+
+#. js-lingui-id: 6UpmPG
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Linked contact person"
+msgstr "Linked contact person"
 
 #. js-lingui-id: wR9USP
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
@@ -2082,6 +2205,11 @@ msgstr "Messaging provider access token"
 msgid "Messaging provider refresh token"
 msgstr "Messaging provider refresh token"
 
+#. js-lingui-id: G6wJK8
+#: src/modules/workflow/workflow-trigger/utils/assert-version-can-be-activated.util.ts
+msgid "Minute value cannot exceed 60. For intervals greater than 60 minutes, use the \"Hours\" trigger type or a custom cron expression"
+msgstr "Minute value cannot exceed 60. For intervals greater than 60 minutes, use the \"Hours\" trigger type or a custom cron expression"
+
 #. js-lingui-id: SzCMUQ
 #: src/engine/twenty-orm/utils/compute-relation-connect-query-configs.util.ts
 msgid "Missing required fields: at least one unique constraint have to be fully populated for '{connectFieldName}'."
@@ -2127,6 +2255,8 @@ msgstr "Multiple records found with the same unique field values for {conflictin
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
@@ -2143,15 +2273,20 @@ msgstr "Name"
 msgid "Name \"{computedMetadataNameFromLabel}\" cannot be the same on both side of the relation"
 msgstr "Name \"{computedMetadataNameFromLabel}\" cannot be the same on both side of the relation"
 
-#. js-lingui-id: Ge9TXE
+#. js-lingui-id: 2m6Fru
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-flat-field-metadata-name-availability.util.ts
-msgid "Name \"{flatFieldMetadataName}\" is not available"
-msgstr "Name \"{flatFieldMetadataName}\" is not available"
+msgid "Name \"{name}\" is not available"
+msgstr "Name \"{name}\" is not available"
 
-#. js-lingui-id: h8ic2G
+#. js-lingui-id: U8mbyw
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-flat-field-metadata-name-availability.util.ts
-msgid "Name \"{flatFieldMetadataName}\" is not available as it is already used by another field"
-msgstr "Name \"{flatFieldMetadataName}\" is not available as it is already used by another field"
+msgid "Name \"{name}\" is not available as it is already used by another field"
+msgstr "Name \"{name}\" is not available as it is already used by another field"
+
+#. js-lingui-id: dBDpp2
+#: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-flat-field-metadata-name-availability.util.ts
+msgid "Name \"{name}\" is not available as it is already used by join column name"
+msgstr "Name \"{name}\" is not available as it is already used by join column name"
 
 #. js-lingui-id: Q2loDF
 #: src/engine/metadata-modules/object-metadata/services/object-metadata-field-relation.service.ts
@@ -2294,6 +2429,8 @@ msgid "Note title"
 msgstr "Note title"
 
 #. js-lingui-id: 1DBGsz
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -2322,6 +2459,11 @@ msgstr "Notes tied to the contact"
 msgid "Notes tied to the opportunity"
 msgstr "Notes tied to the opportunity"
 
+#. js-lingui-id: TRv0fr
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Notes tied to the sales quote"
+msgstr "Notes tied to the sales quote"
+
 #. js-lingui-id: B2Y6QU
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget company"
@@ -2341,6 +2483,11 @@ msgstr "NoteTarget opportunity"
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget person"
 msgstr "NoteTarget person"
+
+#. js-lingui-id: leVlyc
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget sales quote"
+msgstr "NoteTarget sales quote"
 
 #. js-lingui-id: t9QlBd
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -2672,6 +2819,8 @@ msgstr "Point of Contact"
 #: src/modules/workflow/common/standard-objects/workflow-version.workspace-entity.ts
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -2698,6 +2847,11 @@ msgstr "Preferred language"
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "Probability"
 msgstr "Probability"
+
+#. js-lingui-id: Q033BY
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Product Name"
+msgstr "Product Name"
 
 #. js-lingui-id: dtGxRz
 #: src/engine/core-modules/record-transformer/utils/transform-phones-value.util.ts
@@ -2733,6 +2887,16 @@ msgstr "Public domain already registered"
 #: src/engine/core-modules/dns-manager/services/dns-manager.service.ts
 msgid "Public domain URL is not defined. Please set the PUBLIC_DOMAIN_URL environment variable"
 msgstr "Public domain URL is not defined. Please set the PUBLIC_DOMAIN_URL environment variable"
+
+#. js-lingui-id: VbWX2u
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Quantity"
+msgstr "Quantity"
+
+#. js-lingui-id: S1VNuo
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Quote Number"
+msgstr "Quote Number"
 
 #. js-lingui-id: YfbwOB
 #: src/modules/messaging/common/standard-objects/message.workspace-entity.ts
@@ -2847,6 +3011,37 @@ msgstr "Route with same path already exists"
 msgid "Runs"
 msgstr "Runs"
 
+#. js-lingui-id: Q1a1cW
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/task/standard-objects/task-target.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+#: src/modules/favorite/standard-objects/favorite.workspace-entity.ts
+#: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
+msgid "Sales Quote"
+msgstr "Sales Quote"
+
+#. js-lingui-id: EA564t
+#: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+msgid "Sales Quote Line Item"
+msgstr "Sales Quote Line Item"
+
+#. js-lingui-id: sLghnL
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+#: src/modules/company/standard-objects/company.workspace-entity.ts
+msgid "Sales Quotes"
+msgstr "Sales Quotes"
+
+#. js-lingui-id: zNVxoT
+#: src/modules/company/standard-objects/company.workspace-entity.ts
+msgid "Sales quotes linked to the company"
+msgstr "Sales quotes linked to the company"
+
+#. js-lingui-id: vzgUjD
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "Sales quotes linked to the person"
+msgstr "Sales quotes linked to the person"
+
 #. js-lingui-id: +5kO8P
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
 msgid "Saturday"
@@ -2957,6 +3152,7 @@ msgstr "State of the workflow run"
 
 #. js-lingui-id: uAQUqI
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 msgid "Status"
 msgstr "Status"
 
@@ -2985,6 +3181,11 @@ msgstr "String \"{name}\" is not valid: must start with lowercase letter and con
 #: src/modules/messaging/common/standard-objects/message.workspace-entity.ts
 msgid "Subject"
 msgstr "Subject"
+
+#. js-lingui-id: X2rrlw
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Subtotal"
+msgstr "Subtotal"
 
 #. js-lingui-id: DBC3t5
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -3103,6 +3304,7 @@ msgstr "Task title"
 
 #. js-lingui-id: GtycJ/
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/company/standard-objects/company.workspace-entity.ts
@@ -3135,6 +3337,11 @@ msgstr "Tasks tied to the contact"
 msgid "Tasks tied to the opportunity"
 msgstr "Tasks tied to the opportunity"
 
+#. js-lingui-id: nbe+Yr
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Tasks tied to the sales quote"
+msgstr "Tasks tied to the sales quote"
+
 #. js-lingui-id: pP0Dt9
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
 msgid "TaskTarget company"
@@ -3150,10 +3357,35 @@ msgstr "TaskTarget opportunity"
 msgid "TaskTarget person"
 msgstr "TaskTarget person"
 
+#. js-lingui-id: bETOza
+#: src/modules/task/standard-objects/task-target.workspace-entity.ts
+msgid "TaskTarget sales quote"
+msgstr "TaskTarget sales quote"
+
 #. js-lingui-id: pciKLT
 #: src/modules/task/standard-objects/task-target.workspace-entity.ts
 msgid "TaskTarget task"
 msgstr "TaskTarget task"
+
+#. js-lingui-id: hwTkXl
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Tax Amount"
+msgstr "Tax Amount"
+
+#. js-lingui-id: EsKQ1d
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Tax Rate"
+msgstr "Tax Rate"
+
+#. js-lingui-id: 2+SMrw
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Tax rate as a decimal (e.g. 0.05 for 5%)"
+msgstr "Tax rate as a decimal (e.g. 0.05 for 5%)"
+
+#. js-lingui-id: 4Y5H+g
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Terms"
+msgstr "Terms"
 
 #. js-lingui-id: xeiujy
 #: src/modules/messaging/common/standard-objects/message.workspace-entity.ts
@@ -3199,6 +3431,8 @@ msgstr "The company website URL. We use this url to fetch the company icon"
 #. js-lingui-id: zGBDEH
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -3254,6 +3488,11 @@ msgstr "The folder this favorite belongs to"
 msgid "The initial version of a workflow can not be deleted"
 msgstr "The initial version of a workflow can not be deleted"
 
+#. js-lingui-id: 2FaSbx
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "The line item name"
+msgstr "The line item name"
+
 #. js-lingui-id: YTftFF
 #: src/engine/metadata-modules/utils/constants/metadata-name-flat-metadata-validators.constants.ts
 msgid "The name is not available"
@@ -3269,6 +3508,21 @@ msgstr "The object you are trying to set permissions for could not be found. It 
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 msgid "The opportunity name"
 msgstr "The opportunity name"
+
+#. js-lingui-id: K4N1QC
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "The quote name"
+msgstr "The quote name"
+
+#. js-lingui-id: gW1qY6
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "The quote number"
+msgstr "The quote number"
+
+#. js-lingui-id: a3QSZJ
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "The quote title"
+msgstr "The quote title"
 
 #. js-lingui-id: Zi9X+u
 #: src/engine/metadata-modules/role/role.service.ts
@@ -3431,6 +3685,8 @@ msgstr "Time zone"
 #: src/modules/workflow/common/standard-objects/workflow-run.workspace-entity.ts
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
@@ -3464,6 +3720,16 @@ msgstr "Timeline Activities linked to the opportunity."
 msgid "Timeline activities linked to the run"
 msgstr "Timeline activities linked to the run"
 
+#. js-lingui-id: RxWkVf
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Timeline Activities linked to the sales quote"
+msgstr "Timeline Activities linked to the sales quote"
+
+#. js-lingui-id: KhsgfV
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Timeline Activities linked to the sales quote line item"
+msgstr "Timeline Activities linked to the sales quote line item"
+
 #. js-lingui-id: q96UvB
 #: src/modules/task/standard-objects/task.workspace-entity.ts
 msgid "Timeline Activities linked to the task."
@@ -3491,12 +3757,23 @@ msgstr "Timeline Activity"
 
 #. js-lingui-id: MHrjPM
 #: src/modules/task/standard-objects/task.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
 #: src/modules/dashboard/standard-objects/dashboard.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 msgid "Title"
 msgstr "Title"
+
+#. js-lingui-id: mfqtz7
+#: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
+msgid "Too many workspace invitations sent. Please try again later."
+msgstr "Too many workspace invitations sent. Please try again later."
+
+#. js-lingui-id: 72c5Qo
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Total"
+msgstr "Total"
 
 #. js-lingui-id: G3myU+
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -3524,6 +3801,11 @@ msgstr "Unique field cannot have a default value"
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
 msgid "Unique index cannot be created for field {fieldName} of type {fieldType}"
 msgstr "Unique index cannot be created for field {fieldName} of type {fieldType}"
+
+#. js-lingui-id: vWelsN
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Unit Price"
+msgstr "Unit Price"
 
 #. js-lingui-id: EBZdX5
 #: src/modules/workflow/workflow-trigger/utils/compute-cron-pattern-from-schedule.ts
@@ -3617,6 +3899,11 @@ msgstr "User's preferred start day of the week"
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "User's preferred time format"
 msgstr "User's preferred time format"
+
+#. js-lingui-id: 0tttqe
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "Valid Until"
+msgstr "Valid Until"
 
 #. js-lingui-id: xInMK/
 #: src/engine/workspace-manager/workspace-migration-v2/interceptors/workspace-migration-builder-exception-v2-formatter.ts
@@ -4165,6 +4452,11 @@ msgstr "Wrong password"
 msgid "X"
 msgstr "X"
 
+#. js-lingui-id: 4ysDL0
+#: src/engine/twenty-orm/repository/workspace-update-query-builder.ts
+msgid "You can only update up to {QUERY_MAX_RECORDS} records at once."
+msgstr "You can only update up to {QUERY_MAX_RECORDS} records at once."
+
 #. js-lingui-id: 1SQnFB
 #: src/engine/metadata-modules/role/role.resolver.ts
 msgid "You cannot change your own role. Please ask another administrator to update your role."
@@ -4263,58 +4555,22 @@ msgstr "Your workspace has been updated with a new data model. Please refresh th
 msgid "Your workspace membership could not be found. You may no longer have access to this workspace."
 msgstr "Your workspace membership could not be found. You may no longer have access to this workspace."
 
-#. js-lingui-id: 874/Xl
-#: src/modules/workflow/workflow-trigger/utils/assert-version-can-be-activated.util.ts
-msgid "Cannot activate non-draft or non-deactivated version"
-msgstr "Cannot activate non-draft or non-deactivated version"
+#. js-lingui-id: RiJXfW
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "報價單"
+msgstr "報價單"
 
-#. js-lingui-id: s3HtdT
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "FieldMetadataId is required"
-msgstr "FieldMetadataId is required"
+#. js-lingui-id: 89hjWZ
+#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+msgid "報價單列表"
+msgstr "報價單列表"
 
-#. js-lingui-id: 8xkULN
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "Invalid view sort data"
-msgstr "Invalid view sort data"
+#. js-lingui-id: TYRRsr
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "報價單細項"
+msgstr "報價單細項"
 
-#. js-lingui-id: I0OzaR
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "Invalid view sort data for view sort id: {id}"
-msgstr "Invalid view sort data for view sort id: {id}"
-
-#. js-lingui-id: rtir7c
-#: src/engine/metadata-modules/view-group/exceptions/view-group.exception.ts
-msgid "unknown"
-msgstr "unknown"
-
-#. js-lingui-id: znNExx
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "View sort (id: {id}) not found"
-msgstr "View sort (id: {id}) not found"
-
-#. js-lingui-id: 3zMs+f
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "View sort not found"
-msgstr "View sort not found"
-
-#. js-lingui-id: kpQRY2
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "ViewId is required"
-msgstr "ViewId is required"
-
-#. js-lingui-id: bBr+RW
-#: src/engine/metadata-modules/view-sort/exceptions/view-sort.exception.ts
-msgid "WorkspaceId is required"
-msgstr "WorkspaceId is required"
-
-#. js-lingui-id: k7P8yU
-#: src/engine/core-modules/workspace/services/workspace.service.ts
-msgid "You do not have permission to manage security settings. Please contact your workspace administrator."
-msgstr "You do not have permission to manage security settings. Please contact your workspace administrator."
-
-#. js-lingui-id: svchJc
-#: src/engine/core-modules/workspace/services/workspace.service.ts
-msgid "You do not have permission to manage workspace settings. Please contact your workspace administrator."
-msgstr "You do not have permission to manage workspace settings. Please contact your workspace administrator."
-
+#. js-lingui-id: fJQiB8
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "報價單細項列表"
+msgstr "報價單細項列表"
