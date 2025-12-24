@@ -828,3 +828,281 @@ yarn command:prod workspace:seed-sales-quote-views
 ---
 
 *最後更新：2025-12-23*
+
+
+---
+
+### 10.16 v8 問題：新建 Workspace 的 databaseSchema 和中文 Label
+
+**問題現象：**
+1. Calleen公司 和 Ryan公司 的 `workspace.databaseSchema` 欄位為空
+2. 新建的 workspace 左側選單顯示英文 "Sales Quote" 而不是中文 "報價單"
+3. 查詢 favorites 時報錯：`column favorite.salesquoteId does not exist`
+
+**問題分析：**
+
+#### 10.16.1 databaseSchema 欄位問題
+
+**診斷 SQL：**
+```sql
+SELECT id, "displayName", "databaseSchema"
+FROM core.workspace
+WHERE "displayName" IN ('Y-CRM', 'Calleen公司', 'Ryan公司');
+```
+
+**發現：**
+- Y-CRM 有 `databaseSchema`：`workspace_3joxkr9ofo5hlxjan164egffx`
+- Calleen公司 和 Ryan公司 的 `databaseSchema` 為空
+
+**原因分析：**
+- Twenty ORM 實際使用 `core.dataSource.schema` 來取得 workspace schema
+- `workspace.databaseSchema` 是冗餘欄位（舊版本遺留）
+- 但某些查詢可能仍依賴這個欄位
+
+**修復 SQL：**
+```sql
+-- 先確認 dataSource 表中的 schema 對應
+SELECT
+    w."displayName",
+    ds.schema,
+    ds."workspaceId"
+FROM core."dataSource" ds
+JOIN core.workspace w ON ds."workspaceId" = w.id
+ORDER BY w."displayName";
+
+-- 更新 Calleen公司 的 databaseSchema
+UPDATE core.workspace
+SET "databaseSchema" = 'workspace_qboo9ppaeg4cydsnxf46dws0'
+WHERE id = '0c59fbf1-a4aa-4ef4-af68-420780fd6d30';
+
+-- 更新 Ryan公司 的 databaseSchema
+UPDATE core.workspace
+SET "databaseSchema" = 'workspace_ajgo83c7a59te56ig55ofd7zo'
+WHERE id = 'b20b4b4d-397d-468a-a5fc-5bd79353c8b4';
+```
+
+#### 10.16.2 中文 Label 問題
+
+**診斷 SQL：**
+```sql
+SELECT
+    w."displayName",
+    om."nameSingular",
+    om."labelSingular",
+    om."labelPlural"
+FROM core."objectMetadata" om
+JOIN core.workspace w ON om."workspaceId" = w.id
+WHERE om."nameSingular" IN ('salesQuote', 'salesQuoteLineItem')
+ORDER BY w."displayName", om."nameSingular";
+```
+
+**發現：**
+- Y-CRM 顯示中文：`報價單`、`報價單列表`
+- Calleen公司/Ryan公司 顯示英文：`Sales Quote`、`Sales Quotes`
+
+**原因：**
+- Y-CRM 是舊 workspace，之前手動修改過 label
+- Calleen公司/Ryan公司 是新建的，使用程式碼中的預設值（英文）
+
+**修復方案：**
+
+**方案 A：修改程式碼（推薦）**
+
+修改 `packages/twenty-server/src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts`：
+```typescript
+@WorkspaceEntity({
+  standardId: STANDARD_OBJECT_IDS.salesQuote,
+  namePlural: 'salesQuotes',
+  labelSingular: msg`報價單`,      // 改為中文
+  labelPlural: msg`報價單列表`,    // 改為中文
+  // ...
+})
+```
+
+修改 `packages/twenty-server/src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts`：
+```typescript
+@WorkspaceEntity({
+  standardId: STANDARD_OBJECT_IDS.salesQuoteLineItem,
+  namePlural: 'salesQuoteLineItems',
+  labelSingular: msg`報價單細項`,      // 改為中文
+  labelPlural: msg`報價單細項列表`,    // 改為中文
+  // ...
+})
+```
+
+**方案 B：手動更新資料庫（現有 workspace）**
+
+```sql
+-- 更新 Calleen公司 的 salesQuote label
+UPDATE core."objectMetadata"
+SET "labelSingular" = '報價單', "labelPlural" = '報價單列表'
+WHERE "workspaceId" = '0c59fbf1-a4aa-4ef4-af68-420780fd6d30'
+AND "nameSingular" = 'salesQuote';
+
+-- 更新 Calleen公司 的 salesQuoteLineItem label
+UPDATE core."objectMetadata"
+SET "labelSingular" = '報價單細項', "labelPlural" = '報價單細項列表'
+WHERE "workspaceId" = '0c59fbf1-a4aa-4ef4-af68-420780fd6d30'
+AND "nameSingular" = 'salesQuoteLineItem';
+
+-- 更新 Ryan公司 的 salesQuote label
+UPDATE core."objectMetadata"
+SET "labelSingular" = '報價單', "labelPlural" = '報價單列表'
+WHERE "workspaceId" = 'b20b4b4d-397d-468a-a5fc-5bd79353c8b4'
+AND "nameSingular" = 'salesQuote';
+
+-- 更新 Ryan公司 的 salesQuoteLineItem label
+UPDATE core."objectMetadata"
+SET "labelSingular" = '報價單細項', "labelPlural" = '報價單細項列表'
+WHERE "workspaceId" = 'b20b4b4d-397d-468a-a5fc-5bd79353c8b4'
+AND "nameSingular" = 'salesQuoteLineItem';
+```
+
+#### 10.16.3 sync-metadata 補齊缺失的 fieldMetadata
+
+**問題：**
+Calleen公司 和 Ryan公司 缺少 `favorite.salesQuote` 的 fieldMetadata。
+
+**解決方案：**
+```bash
+# 為 Calleen公司 同步 metadata
+docker exec Y-CRM-backend npx nx run twenty-server:command workspace:sync-metadata -w 0c59fbf1-a4aa-4ef4-af68-420780fd6d30
+
+# 為 Ryan公司 同步 metadata
+docker exec Y-CRM-backend npx nx run twenty-server:command workspace:sync-metadata -w b20b4b4d-397d-468a-a5fc-5bd79353c8b4
+```
+
+#### 10.16.4 清除 Redis Cache
+
+**重要：** 修改資料庫後必須清除 Redis cache 並重啟服務！
+
+```bash
+# 清除 Redis cache
+docker exec Y-CRM-redis redis-cli FLUSHALL
+
+# 重啟 backend 和 worker
+docker restart Y-CRM-backend Y-CRM-worker
+```
+
+---
+
+### 10.17 Twenty 多租戶架構說明
+
+#### 10.17.1 資料隔離機制
+
+| 層級 | 說明 |
+|------|------|
+| **Schema 隔離** | 每個 workspace 有獨立的 PostgreSQL schema（如 `workspace_xxx`） |
+| **Metadata 隔離** | 每個 workspace 有獨立的 objectMetadata 和 fieldMetadata |
+| **資料隔離** | 不同 workspace 的資料完全隔離，不會互通 |
+
+#### 10.17.2 關鍵資料表關係
+
+```
+core.workspace
+  ├── id (workspace UUID)
+  ├── displayName (顯示名稱)
+  ├── databaseSchema (冗餘欄位，實際不使用)
+  └── metadataVersion (metadata 版本號)
+
+core.dataSource
+  ├── workspaceId (關聯 workspace)
+  └── schema (實際的 schema 名稱，ORM 使用這個)
+
+core.objectMetadata
+  ├── workspaceId (關聯 workspace)
+  ├── nameSingular (物件名稱，如 salesQuote)
+  ├── labelSingular (顯示名稱，如 報價單)
+  ├── labelPlural (複數顯示名稱，如 報價單列表)
+  ├── standardId (標準物件 ID，用於識別)
+  └── isCustom (是否為自訂物件)
+
+core.fieldMetadata
+  ├── workspaceId (關聯 workspace)
+  ├── objectMetadataId (關聯 objectMetadata)
+  ├── name (欄位名稱)
+  └── settings (包含 joinColumnName 等設定)
+```
+
+#### 10.17.3 新建 Workspace 流程
+
+```
+用戶建立 workspace
+    ↓
+WorkspaceManagerService.init()
+    ↓
+1. createWorkspaceDBSchema() - 建立 PostgreSQL schema
+    ↓
+2. createDataSourceMetadata() - 在 core.dataSource 建立記錄
+    ↓
+3. workspaceSyncMetadataService.synchronize() - 同步 metadata
+    ↓
+4. prefillWorkspaceWithStandardObjectsRecords() - 建立預設資料和 views
+```
+
+#### 10.17.4 什麼時候需要手動 sync-metadata？
+
+| 情況 | 需要手動操作？ |
+|-----|--------------|
+| 新建 workspace | ❌ 自動同步 |
+| 修改程式碼後（新增欄位/物件） | ✅ 需要 `workspace:sync-metadata` |
+| 資料庫 metadata 被手動修改 | ✅ 需要修復或 sync |
+| 升級 Twenty 版本 | ✅ 通常需要 migration + sync |
+
+---
+
+### 10.18 v8 部署後必要的補救命令
+
+**⚠️ 僅適用於 v8 之前建立的 workspace：**
+
+```bash
+# 1. 更新 databaseSchema（如果為空）
+docker exec Y-CRM-postgres psql -U postgres -d default -c "
+UPDATE core.workspace w
+SET \"databaseSchema\" = ds.schema
+FROM core.\"dataSource\" ds
+WHERE w.id = ds.\"workspaceId\"
+AND (w.\"databaseSchema\" IS NULL OR w.\"databaseSchema\" = '');
+"
+
+# 2. 更新中文 Label
+docker exec Y-CRM-postgres psql -U postgres -d default -c "
+UPDATE core.\"objectMetadata\"
+SET \"labelSingular\" = '報價單', \"labelPlural\" = '報價單列表'
+WHERE \"nameSingular\" = 'salesQuote';
+
+UPDATE core.\"objectMetadata\"
+SET \"labelSingular\" = '報價單細項', \"labelPlural\" = '報價單細項列表'
+WHERE \"nameSingular\" = 'salesQuoteLineItem';
+"
+
+# 3. 為所有 workspace 同步 metadata
+docker exec Y-CRM-backend npx nx run twenty-server:command workspace:sync-metadata
+
+# 4. 清除 Redis cache 並重啟服務
+docker exec Y-CRM-redis redis-cli FLUSHALL
+docker restart Y-CRM-backend Y-CRM-worker
+```
+
+**📌 v8 之後新建的 workspace 會自動：**
+- ✅ 有正確的 databaseSchema
+- ✅ 顯示中文 Label（報價單、報價單細項）
+- ✅ 有完整的 metadata
+
+---
+
+## 版本歷史（更新）
+
+| 日期 | 版本 | 說明 |
+|------|------|------|
+| 2025-12-22 | v1 | 單租戶轉多租戶部署，新增 workspace_config 資料表 |
+| 2025-12-22 | v2 | 修復 Sales Quote View 檔案缺失 |
+| 2025-12-22 | v3 | 修復 Logger import、isDefined import |
+| 2025-12-23 | v5 | 修復 GraphQL limit 參數、Feature Flags、Pie Chart 設定顯示 |
+| 2025-12-23 | v6 | 修復 Google Account Sync workspaceId 參數缺失問題 |
+| 2025-12-23 | v7 | 修復 prefill-core-views 缺少報價單 views、CSV 匯出中文亂碼 |
+| 2025-12-24 | v8 | 修復新建 workspace 的 databaseSchema 和中文 Label 問題 |
+
+---
+
+*最後更新：2025-12-24*

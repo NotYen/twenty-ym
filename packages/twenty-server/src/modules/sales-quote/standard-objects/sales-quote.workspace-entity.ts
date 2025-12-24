@@ -45,8 +45,8 @@ export const SEARCH_FIELDS_FOR_SALES_QUOTE: FieldTypeAndNameMetadata[] = [
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.salesQuote,
   namePlural: 'salesQuotes',
-  labelSingular: msg`Sales Quote`,
-  labelPlural: msg`Sales Quotes`,
+  labelSingular: msg`報價單`,
+  labelPlural: msg`報價單列表`,
   description: msg`A sales quote`,
   icon: STANDARD_OBJECT_ICONS.salesQuote,
   labelIdentifierStandardId: SALES_QUOTE_STANDARD_FIELD_IDS.mingCheng,

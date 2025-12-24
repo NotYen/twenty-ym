@@ -36,8 +36,8 @@ export const SEARCH_FIELDS_FOR_SALES_QUOTE_LINE_ITEM: FieldTypeAndNameMetadata[]
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.salesQuoteLineItem,
   namePlural: 'salesQuoteLineItems',
-  labelSingular: msg`Sales Quote Line Item`,
-  labelPlural: msg`Sales Quote Line Items`,
+  labelSingular: msg`報價單細項`,
+  labelPlural: msg`報價單細項列表`,
   description: msg`An item in a sales quote`,
   icon: STANDARD_OBJECT_ICONS.salesQuoteLineItem,
   labelIdentifierStandardId: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.chanPinMingCheng,
