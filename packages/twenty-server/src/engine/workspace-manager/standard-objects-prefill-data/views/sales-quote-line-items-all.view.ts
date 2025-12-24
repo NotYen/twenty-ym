@@ -28,12 +28,13 @@ export const salesQuoteLineItemsAllView = (
     kanbanFieldMetadataId: '',
     filters: [],
     fields: [
+      // name 必須在 position 0，因為它是 labelIdentifierField
       {
         fieldMetadataId:
           salesQuoteLineItemObjectMetadata.fields.find(
             (field) =>
               field.standardId ===
-              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.chanPinMingCheng,
+              SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.name,
           )?.id ?? '',
         position: 0,
         isVisible: true,

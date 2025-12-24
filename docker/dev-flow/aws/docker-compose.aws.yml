@@ -24,7 +24,7 @@ services:
       - redis-data:/data
 
   backend:
-    image: ycrm/y-crm:b_20251223_v8_aws_image
+    image: ycrm/y-crm:b_20251223_v11_aws_image
     container_name: Y-CRM-backend
     depends_on:
       postgres:
@@ -39,7 +39,7 @@ services:
       - "${BACKEND_PORT:-8867}:8867"
 
   worker:
-    image: ycrm/y-crm:b_20251223_v8_aws_image
+    image: ycrm/y-crm:b_20251223_v11_aws_image
     container_name: Y-CRM-worker
     depends_on:
       postgres:
@@ -54,7 +54,7 @@ services:
     command: ["node", "dist/src/queue-worker/queue-worker.js"]
 
   frontend:
-    image: ycrm/y-crm:f_20251223_v8_aws_image
+    image: ycrm/y-crm:f_20251223_v11_aws_image
     container_name: Y-CRM-frontend
     depends_on:
       - backend

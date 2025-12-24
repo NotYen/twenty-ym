@@ -26,11 +26,13 @@ export const salesQuotesAllView = (
     kanbanFieldMetadataId: '',
     filters: [],
     fields: [
+      // name 必須在 position 0，因為它是 labelIdentifierField
+      // 這樣可以避免重複顯示的問題
       {
         fieldMetadataId:
           salesQuoteObjectMetadata.fields.find(
             (field) =>
-              field.standardId === SALES_QUOTE_STANDARD_FIELD_IDS.baoJiaDanHao,
+              field.standardId === SALES_QUOTE_STANDARD_FIELD_IDS.name,
           )?.id ?? '',
         position: 0,
         isVisible: true,
@@ -40,7 +42,7 @@ export const salesQuotesAllView = (
         fieldMetadataId:
           salesQuoteObjectMetadata.fields.find(
             (field) =>
-              field.standardId === SALES_QUOTE_STANDARD_FIELD_IDS.mingCheng,
+              field.standardId === SALES_QUOTE_STANDARD_FIELD_IDS.baoJiaDanHao,
           )?.id ?? '',
         position: 1,
         isVisible: true,

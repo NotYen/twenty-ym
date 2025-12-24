@@ -28,10 +28,10 @@ import {
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { SalesQuoteWorkspaceEntity } from './sales-quote.workspace-entity';
 
-const PRODUCT_NAME_FIELD_NAME = 'chanPinMingCheng';
+const NAME_FIELD_NAME = 'name';
 
 export const SEARCH_FIELDS_FOR_SALES_QUOTE_LINE_ITEM: FieldTypeAndNameMetadata[] =
-  [{ name: PRODUCT_NAME_FIELD_NAME, type: FieldMetadataType.TEXT }];
+  [{ name: NAME_FIELD_NAME, type: FieldMetadataType.TEXT }];
 
 @WorkspaceEntity({
   standardId: STANDARD_OBJECT_IDS.salesQuoteLineItem,
@@ -40,10 +40,19 @@ export const SEARCH_FIELDS_FOR_SALES_QUOTE_LINE_ITEM: FieldTypeAndNameMetadata[]
   labelPlural: msg`報價單細項列表`,
   description: msg`An item in a sales quote`,
   icon: STANDARD_OBJECT_ICONS.salesQuoteLineItem,
-  labelIdentifierStandardId: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.chanPinMingCheng,
+  labelIdentifierStandardId: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.name,
 })
 @WorkspaceIsSearchable()
 export class SalesQuoteLineItemWorkspaceEntity extends BaseWorkspaceEntity {
+  @WorkspaceField({
+    standardId: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.name,
+    type: FieldMetadataType.TEXT,
+    label: msg`Name`,
+    description: msg`The line item name`,
+    icon: 'IconFileDescription',
+  })
+  name: string;
+
   @WorkspaceField({
     standardId: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.chanPinMingCheng,
     type: FieldMetadataType.TEXT,

@@ -34,7 +34,7 @@ import { TaskTargetWorkspaceEntity } from 'src/modules/task/standard-objects/tas
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { SalesQuoteLineItemWorkspaceEntity } from './sales-quote-line-item.workspace-entity';
 
-const NAME_FIELD_NAME = 'mingCheng';
+const NAME_FIELD_NAME = 'name';
 const NUMBER_FIELD_NAME = 'baoJiaDanHao';
 
 export const SEARCH_FIELDS_FOR_SALES_QUOTE: FieldTypeAndNameMetadata[] = [
@@ -49,10 +49,19 @@ export const SEARCH_FIELDS_FOR_SALES_QUOTE: FieldTypeAndNameMetadata[] = [
   labelPlural: msg`報價單列表`,
   description: msg`A sales quote`,
   icon: STANDARD_OBJECT_ICONS.salesQuote,
-  labelIdentifierStandardId: SALES_QUOTE_STANDARD_FIELD_IDS.mingCheng,
+  labelIdentifierStandardId: SALES_QUOTE_STANDARD_FIELD_IDS.name,
 })
 @WorkspaceIsSearchable()
 export class SalesQuoteWorkspaceEntity extends BaseWorkspaceEntity {
+  @WorkspaceField({
+    standardId: SALES_QUOTE_STANDARD_FIELD_IDS.name,
+    type: FieldMetadataType.TEXT,
+    label: msg`Name`,
+    description: msg`The quote name`,
+    icon: 'IconFileDescription',
+  })
+  name: string;
+
   @WorkspaceField({
     standardId: SALES_QUOTE_STANDARD_FIELD_IDS.baoJiaDanHao,
     type: FieldMetadataType.TEXT,

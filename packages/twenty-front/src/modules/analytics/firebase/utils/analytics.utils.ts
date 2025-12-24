@@ -1,17 +1,33 @@
-import { logEvent, setUserId, setUserProperties } from 'firebase/analytics';
+/**
+ * Firebase Analytics 工具函數
+ *
+ * 使用動態 import 載入 Firebase SDK，避免在沒配置時影響整個 app
+ */
+
 import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
 import { getFirebaseAnalytics } from '../services/firebase-analytics.service';
 
+// 快取動態載入的 Firebase Analytics 模組
+let analyticsModule: typeof import('firebase/analytics') | null = null;
+
+const getAnalyticsModule = async () => {
+  if (analyticsModule === null) {
+    analyticsModule = await import('firebase/analytics');
+  }
+  return analyticsModule;
+};
+
 // 記錄自定義事件
-export const trackEvent = (
+export const trackEvent = async (
   eventName: string,
-  params?: Record<string, any>,
-): void => {
+  params?: Record<string, unknown>,
+): Promise<void> => {
   const analytics = getFirebaseAnalytics();
-  if (!analytics) return;
+  if (analytics === null) return;
 
   try {
+    const { logEvent } = await getAnalyticsModule();
     logEvent(analytics, eventName, params);
     logDebug(`[GA] Event tracked: ${eventName}`, params);
   } catch (error) {
@@ -21,11 +37,12 @@ export const trackEvent = (
 };
 
 // 設置用戶 ID
-export const setAnalyticsUserId = (userId: string): void => {
+export const setAnalyticsUserId = async (userId: string): Promise<void> => {
   const analytics = getFirebaseAnalytics();
-  if (!analytics) return;
+  if (analytics === null) return;
 
   try {
+    const { setUserId } = await getAnalyticsModule();
     setUserId(analytics, userId);
     logDebug(`[GA] User ID set: ${userId}`);
   } catch (error) {
@@ -35,13 +52,14 @@ export const setAnalyticsUserId = (userId: string): void => {
 };
 
 // 設置用戶屬性
-export const setAnalyticsUserProperties = (
-  properties: Record<string, any>,
-): void => {
+export const setAnalyticsUserProperties = async (
+  properties: Record<string, unknown>,
+): Promise<void> => {
   const analytics = getFirebaseAnalytics();
-  if (!analytics) return;
+  if (analytics === null) return;
 
   try {
+    const { setUserProperties } = await getAnalyticsModule();
     setUserProperties(analytics, properties);
     logDebug('[GA] User properties set:', properties);
   } catch (error) {
@@ -51,41 +69,47 @@ export const setAnalyticsUserProperties = (
 };
 
 // 常用事件快捷方法
-export const trackPageView = (pagePath: string, pageTitle?: string): void => {
-  trackEvent('page_view', {
+export const trackPageView = async (
+  pagePath: string,
+  pageTitle?: string,
+): Promise<void> => {
+  await trackEvent('page_view', {
     page_path: pagePath,
     page_title: pageTitle,
   });
 };
 
-export const trackButtonClick = (
+export const trackButtonClick = async (
   buttonName: string,
   location?: string,
-): void => {
-  trackEvent('button_click', {
+): Promise<void> => {
+  await trackEvent('button_click', {
     button_name: buttonName,
     location: location,
   });
 };
 
-export const trackSearch = (searchTerm: string): void => {
-  trackEvent('search', {
+export const trackSearch = async (searchTerm: string): Promise<void> => {
+  await trackEvent('search', {
     search_term: searchTerm,
   });
 };
 
-export const trackFormSubmit = (formName: string, success: boolean): void => {
-  trackEvent('form_submit', {
+export const trackFormSubmit = async (
+  formName: string,
+  success: boolean,
+): Promise<void> => {
+  await trackEvent('form_submit', {
     form_name: formName,
     success: success,
   });
 };
 
-export const trackError = (
+export const trackError = async (
   errorMessage: string,
   errorLocation?: string,
-): void => {
-  trackEvent('error_occurred', {
+): Promise<void> => {
+  await trackEvent('error_occurred', {
     error_message: errorMessage,
     error_location: errorLocation,
   });

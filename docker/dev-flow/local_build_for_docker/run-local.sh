@@ -43,11 +43,12 @@ build_service() {
   local service="$1"
   local start_time=$(date +%s)
 
-  echo "⏳ Building ${service}..."
+  echo "⏳ Building ${service} (--no-cache)..."
   echo ""
 
   # 直接執行並輸出到終端（同時保存到 log）
-  if docker compose build "$service" 2>&1 | tee "$BUILD_LOG"; then
+  # 使用 --no-cache 確保每次都重新 build，避免使用舊的 cache
+  if docker compose build --no-cache "$service" 2>&1 | tee "$BUILD_LOG"; then
     local end_time=$(date +%s)
     local duration=$((end_time - start_time))
     echo ""

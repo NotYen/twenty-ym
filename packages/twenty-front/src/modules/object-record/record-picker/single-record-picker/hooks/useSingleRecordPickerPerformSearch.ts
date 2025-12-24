@@ -88,6 +88,7 @@ export const useSingleRecordPickerPerformSearch = ({
       filter: notFilter,
       limit: limit ?? DEFAULT_SEARCH_REQUEST_LIMIT,
       searchInput: searchFilter,
+      fetchPolicy: 'cache-and-network',
       onCompleted: onSearchRecordsCompleted,
     });
 

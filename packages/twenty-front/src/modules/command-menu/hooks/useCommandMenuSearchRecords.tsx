@@ -2,6 +2,8 @@ import { Action } from '@/action-menu/actions/components/Action';
 import { ActionLink } from '@/action-menu/actions/components/ActionLink';
 import { ActionScope } from '@/action-menu/actions/types/ActionScope';
 import { ActionType } from '@/action-menu/actions/types/ActionType';
+import { getRemoteFeatureFlag } from '@/analytics/firebase';
+import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 import { MAX_SEARCH_RESULTS } from '@/command-menu/constants/MaxSearchResults';
 import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { commandMenuSearchState } from '@/command-menu/states/commandMenuSearchState';
@@ -18,13 +20,26 @@ import { Avatar } from 'twenty-ui/display';
 import { useDebounce } from 'use-debounce';
 import { useSearchQuery } from '~/generated/graphql';
 
+// 報價單相關的 objects（受 IS_SALES_QUOTE_ENABLED 控制）
+const SALES_QUOTE_OBJECTS: string[] = [
+  CoreObjectNameSingular.SalesQuote,
+  CoreObjectNameSingular.SalesQuoteLineItem,
+];
+
 export const useCommandMenuSearchRecords = () => {
   const commandMenuSearch = useRecoilValue(commandMenuSearchState);
   const coreClient = useApolloCoreClient();
+  const currentWorkspace = useRecoilValue(currentWorkspaceState);
 
   const [deferredCommandMenuSearch] = useDebounce(commandMenuSearch, 300);
   const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
   const { objectMetadataItems } = useObjectMetadataItems();
+
+  // 檢查報價單功能是否啟用（使用 Remote Config）
+  const isSalesQuoteEnabled = getRemoteFeatureFlag(
+    'IS_SALES_QUOTE_ENABLED',
+    currentWorkspace?.id,
+  );
 
   const nonReadableObjectMetadataItemsNameSingular = useMemo(() => {
     return Object.values(objectMetadataItems)
@@ -39,15 +54,27 @@ export const useCommandMenuSearchRecords = () => {
       .map((objectMetadataItem) => objectMetadataItem.nameSingular);
   }, [objectMetadataItems, objectPermissionsByObjectMetadataId]);
 
+  // 根據 Feature Flag 決定要排除的 objects
+  const excludedObjectNameSingulars = useMemo(() => {
+    const baseExclusions = [
+      'workspaceMember',
+      ...nonReadableObjectMetadataItemsNameSingular,
+    ];
+
+    // 如果報價單功能被關閉，排除報價單相關 objects
+    if (!isSalesQuoteEnabled) {
+      return [...baseExclusions, ...SALES_QUOTE_OBJECTS];
+    }
+
+    return baseExclusions;
+  }, [nonReadableObjectMetadataItemsNameSingular, isSalesQuoteEnabled]);
+
   const { data: searchData, loading } = useSearchQuery({
     client: coreClient,
     variables: {
       searchInput: deferredCommandMenuSearch ?? '',
       limit: MAX_SEARCH_RESULTS,
-      excludedObjectNameSingulars: [
-        'workspaceMember',
-        ...nonReadableObjectMetadataItemsNameSingular,
-      ],
+      excludedObjectNameSingulars,
     },
   });
 

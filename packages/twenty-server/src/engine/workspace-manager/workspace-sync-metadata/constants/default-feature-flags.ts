@@ -15,6 +15,7 @@ export const DEFAULT_FEATURE_FLAGS = [
   FeatureFlagKey.IS_RECORD_PAGE_LAYOUT_ENABLED, // 記錄頁面佈局
   FeatureFlagKey.IS_AI_ENABLED, // AI 功能
   FeatureFlagKey.IS_APPLICATION_ENABLED, // 應用程式功能
+  FeatureFlagKey.IS_SALES_QUOTE_ENABLED, // 報價單功能
 
   // === 整合功能 ===
   FeatureFlagKey.IS_AIRTABLE_INTEGRATION_ENABLED, // Airtable 整合

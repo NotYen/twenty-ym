@@ -1,7 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import styled from '@emotion/styled';
 import { useLingui } from '@lingui/react/macro';
-import { useMemo, useState } from 'react';
+import { lazy, Suspense, useMemo, useState } from 'react';
 
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
@@ -12,6 +12,13 @@ import { getSettingsPath } from 'twenty-shared/utils';
 import { H2Title } from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
+
+// Lazy load SettingsRemoteConfigStatus to avoid Firebase module loading issues
+const SettingsRemoteConfigStatus = lazy(() =>
+  import('@/settings/components/SettingsRemoteConfigStatus').then((module) => ({
+    default: module.SettingsRemoteConfigStatus,
+  }))
+);
 
 const StyledInputContainer = styled.div`
   display: flex;
@@ -194,6 +201,12 @@ export const SettingsWorkspaceAdvanced = () => {
                         <SettingsTextInput instanceId="REACT_APP_FIREBASE_APP_ID" label={t`App ID`} value={getValue('REACT_APP_FIREBASE_APP_ID')} onChange={(v) => handleChange('REACT_APP_FIREBASE_APP_ID', v)} placeholder="1:123456...:web:..." fullWidth />
                         <SettingsTextInput instanceId="REACT_APP_FIREBASE_MEASUREMENT_ID" label={t`Measurement ID`} value={getValue('REACT_APP_FIREBASE_MEASUREMENT_ID')} onChange={(v) => handleChange('REACT_APP_FIREBASE_MEASUREMENT_ID', v)} placeholder="G-XXXXXXXXXX" fullWidth />
                     </StyledInputContainer>
+                </Section>
+                <Section>
+                    <H2Title title={t`Remote Config Status`} description={t`Firebase Remote Config feature flags status. These flags control feature availability globally.`} />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <SettingsRemoteConfigStatus />
+                    </Suspense>
                 </Section>
             </SettingsPageContainer>
         </SubMenuTopBarContainer>
