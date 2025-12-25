@@ -172,6 +172,14 @@ docker compose -f docker-compose.aws.yml exec redis redis-cli FLUSHALL || true
 echo "🔄 Restarting backend to rebuild cache..."
 docker compose -f docker-compose.aws.yml restart backend worker
 sleep 10
+echo "🔄 Registering CRON jobs (workflow triggers, background sync)..."
+docker compose -f docker-compose.aws.yml exec backend yarn command:prod cron:register:all || true
+CRON_COUNT=\$(docker compose -f docker-compose.aws.yml exec redis redis-cli KEYS 'bull:cron-queue:repeat:*' 2>/dev/null | wc -l | tr -d ' ')
+if [[ "\${CRON_COUNT}" -gt 0 ]]; then
+  echo "✅ CRON jobs registered successfully (\${CRON_COUNT} jobs)"
+else
+  echo "⚠️ Warning: No CRON jobs found in Redis. Please check backend logs."
+fi
 EOF
 echo "✅ AWS services updated, migrations applied, cache cleared, and views seeded."
 

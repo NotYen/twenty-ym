@@ -129,6 +129,31 @@ EOF
   docker compose up -d
 
   echo ""
+  info "Waiting for backend to initialize..."
+  sleep 10
+
+  echo ""
+  info "Clearing Redis cache (feature flags, metadata)..."
+  docker compose exec redis redis-cli FLUSHALL || true
+
+  echo ""
+  info "Restarting backend to rebuild cache..."
+  docker compose restart backend worker
+  sleep 10
+
+  echo ""
+  info "Registering CRON jobs (workflow triggers, background sync)..."
+  docker compose exec backend yarn command:prod cron:register:all || true
+
+  # 驗證 CRON jobs 註冊成功
+  CRON_COUNT=$(docker compose exec redis redis-cli KEYS 'bull:cron-queue:repeat:*' 2>/dev/null | wc -l | tr -d ' ')
+  if [[ "${CRON_COUNT}" -gt 0 ]]; then
+    success "CRON jobs registered successfully (${CRON_COUNT} jobs)"
+  else
+    error "Warning: No CRON jobs found in Redis. Please check backend logs."
+  fi
+
+  echo ""
   success "All services started!"
 
   cat <<EOF
