@@ -42,6 +42,9 @@ COPY packages/twenty-server ./packages/twenty-server
 COPY packages/twenty-shared ./packages/twenty-shared
 COPY packages/twenty-emails ./packages/twenty-emails
 
+# 編譯 i18n 翻譯（確保後端翻譯生效）
+RUN cd packages/twenty-server && npx lingui compile
+
 # 構建 twenty-server（production 模式）
 RUN yarn nx build twenty-server --configuration=production
 

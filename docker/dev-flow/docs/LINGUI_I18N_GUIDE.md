@@ -453,8 +453,38 @@ packages/twenty-server/
 
 1. **不要手動編輯 .js 檔案** - 它們是自動生成的
 2. **commit 時要包含 .po 和 .js 檔案** - 確保其他人拉取後翻譯能正常工作
-3. **Docker build 會自動 compile** - 但本地開發需要手動執行
-4. **翻譯檔案是編譯進 Docker image 的** - 修改翻譯後需要重新 build frontend image 才會生效
+3. **Docker build 會自動 compile** - Dockerfile 已包含 `lingui compile` 步驟
+4. **翻譯檔案是編譯進 Docker image 的** - 修改翻譯後需要重新 build image 才會生效
+
+## Docker Build 自動編譯翻譯
+
+### 2025-12-26 修復：後端翻譯在 Docker 中不生效
+
+**問題**：左側選單的 "Workflows" 在 AWS 環境顯示英文，但本地正常顯示 "自動化工作流"。
+
+**根本原因**：
+- 左側選單的文字來自 `objectMetadataItem.labelPlural`，這是**後端 API** 返回的資料
+- 後端翻譯在 `packages/twenty-server/src/engine/core-modules/i18n/locales/zh-TW.po`
+- 後端 Dockerfile 原本**沒有執行 `lingui compile`**，導致翻譯沒有編譯進 image
+
+**解決方案**：在 `docker/backend/Dockerfile` 中加入 lingui compile 步驟：
+
+```dockerfile
+# 編譯 i18n 翻譯（確保後端翻譯生效）
+RUN cd packages/twenty-server && npx lingui compile
+
+# 構建 twenty-server（production 模式）
+RUN yarn nx build twenty-server --configuration=production
+```
+
+### Dockerfile 翻譯編譯位置
+
+| Dockerfile | lingui compile 位置 |
+|------------|---------------------|
+| `docker/frontend/Dockerfile` | 在 `yarn nx build twenty-front` 之前 |
+| `docker/backend/Dockerfile` | 在 `yarn nx build twenty-server` 之前 |
+
+這樣不管是本地 build (`run-local.sh`) 還是 AWS build (`build-amd64-images.sh`)，都會自動編譯翻譯。
 
 ## 本地驗證翻譯修改
 
