@@ -49,19 +49,19 @@ export const useRecordShowContainerTabs = (
   const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
   const { getIcon } = useIcons();
 
-  // Tab title translations
+  // Tab title translations - using lingui t function with English source
   const translateTabTitle = (title: string): string => {
     const translations: Record<string, string> = {
-      Timeline: t`時間軸`,
-      Tasks: t`任務`,
-      Notes: t`備註`,
-      Note: t`備註內容`,
-      Files: t`附檔`,
-      Emails: t`電子郵件`,
-      Calendar: t`日曆`,
-      Home: t`主頁`,
-      Fields: t`欄位`,
-      Relations: t`關聯`,
+      Timeline: t`Timeline`,
+      Tasks: t`Tasks`,
+      Notes: t`Notes`,
+      Note: t`Note`,
+      Files: t`Files`,
+      Emails: t`Emails`,
+      Calendar: t`Calendar`,
+      Home: t`Home`,
+      Fields: t`Fields`,
+      Relations: t`Relations`,
     };
     return translations[title] || title;
   };
