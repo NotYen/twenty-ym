@@ -497,3 +497,83 @@ RUN yarn nx build twenty-server --configuration=production
 # 方法 2: 只 build frontend（較快）
 cd docker && docker compose build --no-cache frontend && docker compose up -d frontend
 ```
+
+## 🚨 Redis Cache 問題（2025-12-26 踩坑記錄）
+
+### 問題描述
+
+**症狀**：
+- 後端 API 直接打（curl）返回正確的中文翻譯「自動化工作流」
+- 但前端 UI 仍然顯示英文「Workflows」
+- 清除瀏覽器 cache、用無痕模式都沒用
+
+**根本原因**：
+後端會將 `objectMetadata` 資料 cache 到 Redis，包含 `labelPlural` 等欄位。如果 cache 是在翻譯生效之前建立的，就會一直返回舊的英文值。
+
+### 需要清除 Redis Cache 的情境
+
+| 情境 | 需要清除 |
+|------|---------|
+| 修改了 i18n 翻譯（labelPlural、labelSingular 等） | ✅ 是 |
+| 修改了 object metadata 結構 | ✅ 是 |
+| 修改了 GraphQL schema | ✅ 是 |
+| 部署後發現舊資料還在顯示 | ✅ 是 |
+| 一般程式碼修改 | ❌ 否 |
+| 只修改前端 UI | ❌ 否 |
+
+### 清除 Redis Cache 指令
+
+**AWS 環境**：
+```bash
+# 連線到 AWS
+ssh -i ~/.ssh/y-crm-aws-key.pem ubuntu@52.195.151.185
+
+# 清除所有 metadata 相關 cache
+docker exec Y-CRM-redis redis-cli KEYS '*flat*' | xargs -r docker exec -i Y-CRM-redis redis-cli DEL
+docker exec Y-CRM-redis redis-cli KEYS '*ObjectMetadataItems*' | xargs -r docker exec -i Y-CRM-redis redis-cli DEL
+docker exec Y-CRM-redis redis-cli KEYS '*object-metadata-maps*' | xargs -r docker exec -i Y-CRM-redis redis-cli DEL
+docker exec Y-CRM-redis redis-cli KEYS '*type-defs*' | xargs -r docker exec -i Y-CRM-redis redis-cli DEL
+```
+
+**本地環境**：
+```bash
+# 清除所有 metadata 相關 cache
+docker exec Y-CRM-redis redis-cli KEYS '*flat*' | xargs -r docker exec -i Y-CRM-redis redis-cli DEL
+docker exec Y-CRM-redis redis-cli KEYS '*ObjectMetadataItems*' | xargs -r docker exec -i Y-CRM-redis redis-cli DEL
+docker exec Y-CRM-redis redis-cli KEYS '*object-metadata-maps*' | xargs -r docker exec -i Y-CRM-redis redis-cli DEL
+docker exec Y-CRM-redis redis-cli KEYS '*type-defs*' | xargs -r docker exec -i Y-CRM-redis redis-cli DEL
+```
+
+**一鍵清除所有 cache（謹慎使用）**：
+```bash
+docker exec Y-CRM-redis redis-cli FLUSHALL
+```
+
+### 為什麼不自動加到 build script？
+
+1. Build script 是在本機執行，但 Redis 在 Docker 環境（本地或 AWS）
+2. 不是每次 build 都需要清 cache，只有特定情況才需要
+3. 清除 cache 會影響效能（需要重新建立 cache）
+
+### 調試技巧
+
+**檢查 Redis 中的 cache 內容**：
+```bash
+# 列出所有 metadata 相關的 key
+docker exec Y-CRM-redis redis-cli KEYS '*metadata*'
+
+# 查看特定 key 的內容（找 labelPlural）
+docker exec Y-CRM-redis redis-cli GET 'engine:workspace:metadata:object-metadata-maps:YOUR_WORKSPACE_ID:VERSION' | grep -o '"labelPlural":"[^"]*"' | grep -i workflow
+```
+
+**直接打 API 確認後端返回值**：
+```bash
+# 取得 access token 後
+curl -s -X POST "http://YOUR_SUBDOMAIN.52.195.151.185.nip.io:8867/metadata" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" \
+  -H "x-locale: zh-TW" \
+  -d '{"query": "{ objects(paging: {first: 100}) { edges { node { namePlural labelPlural } } } }"}' | python3 -c "import sys, json; data = json.load(sys.stdin); edges = data['data']['objects']['edges']; workflow = [e for e in edges if 'workflow' in e['node']['namePlural'].lower()]; print(json.dumps(workflow, ensure_ascii=False, indent=2))"
+```
+
+如果 API 返回中文但 UI 顯示英文，就是 Redis cache 問題。
