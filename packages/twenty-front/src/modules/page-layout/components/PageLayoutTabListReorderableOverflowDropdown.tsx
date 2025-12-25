@@ -1,11 +1,11 @@
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-  Draggable,
-  type DraggableProvided,
-  type DraggableRubric,
-  type DraggableStateSnapshot,
-  Droppable,
+    Draggable,
+    type DraggableProvided,
+    type DraggableRubric,
+    type DraggableStateSnapshot,
+    Droppable,
 } from '@hello-pangea/dnd';
 
 import { useNavigatePageLayoutCommandMenu } from '@/command-menu/pages/page-layout/hooks/useNavigatePageLayoutCommandMenu';
@@ -14,6 +14,7 @@ import { PAGE_LAYOUT_TAB_LIST_DROPPABLE_IDS } from '@/page-layout/components/Pag
 import { PageLayoutTabListDroppableMoreButton } from '@/page-layout/components/PageLayoutTabListDroppableMoreButton';
 import { PageLayoutTabMenuItemSelectAvatar } from '@/page-layout/components/PageLayoutTabMenuItemSelectAvatar';
 import { PageLayoutTabRenderClone } from '@/page-layout/components/PageLayoutTabRenderClone';
+import { useTranslateTabTitle } from '@/page-layout/hooks/useTranslateTabTitle';
 import { PageLayoutComponentInstanceContext } from '@/page-layout/states/contexts/PageLayoutComponentInstanceContext';
 import { isPageLayoutInEditModeComponentState } from '@/page-layout/states/isPageLayoutInEditModeComponentState';
 import { isPageLayoutTabDraggingComponentState } from '@/page-layout/states/isPageLayoutTabDraggingComponentState';
@@ -64,6 +65,7 @@ export const PageLayoutTabListReorderableOverflowDropdown = ({
   const theme = useTheme();
   const context = useContext(TabListComponentInstanceContext);
   const instanceId = context?.instanceId;
+  const { translateTabTitle } = useTranslateTabTitle();
 
   const pageLayoutId = useAvailableComponentInstanceIdOrThrow(
     PageLayoutComponentInstanceContext,
@@ -139,7 +141,7 @@ export const PageLayoutTabListReorderableOverflowDropdown = ({
               return (
                 <PageLayoutTabRenderClone
                   provided={provided}
-                  tab={tab}
+                  tab={{ ...tab, title: translateTabTitle(tab.title) }}
                   activeTabId={activeTabId}
                 />
               );
@@ -193,7 +195,7 @@ export const PageLayoutTabListReorderableOverflowDropdown = ({
                               }}
                             >
                               <PageLayoutTabMenuItemSelectAvatar
-                                tab={tab}
+                                tab={{ ...tab, title: translateTabTitle(tab.title) }}
                                 selected={tab.id === activeTabId}
                                 onClick={
                                   draggableSnapshot.isDragging

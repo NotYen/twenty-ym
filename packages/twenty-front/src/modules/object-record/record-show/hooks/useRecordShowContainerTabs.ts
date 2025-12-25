@@ -17,7 +17,6 @@ import { evaluateTabVisibility } from '@/object-record/record-show/utils/evaluat
 import { type RecordLayoutTab } from '@/ui/layout/tab-list/types/RecordLayoutTab';
 import { type SingleTabProps } from '@/ui/layout/tab-list/types/SingleTabProps';
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';
-import { useLingui } from '@lingui/react/macro';
 import { useMemo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { IconHome, useIcons } from 'twenty-ui/display';
@@ -43,28 +42,11 @@ export const useRecordShowContainerTabs = (
 ): { layout: RecordLayout; tabs: SingleTabProps[] } => {
   const isMobile = useIsMobile();
   const objectMetadataItems = useRecoilValue(objectMetadataItemsState);
-  const { t } = useLingui();
+  const { translateTabTitle } = useTranslateTabTitle();
 
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
   const { objectPermissionsByObjectMetadataId } = useObjectPermissions();
   const { getIcon } = useIcons();
-
-  // Tab title translations - using lingui t function with English source
-  const translateTabTitle = (title: string): string => {
-    const translations: Record<string, string> = {
-      Timeline: t`Timeline`,
-      Tasks: t`Tasks`,
-      Notes: t`Notes`,
-      Note: t`Note`,
-      Files: t`Files`,
-      Emails: t`Emails`,
-      Calendar: t`Calendar`,
-      Home: t`Home`,
-      Fields: t`Fields`,
-      Relations: t`Relations`,
-    };
-    return translations[title] || title;
-  };
 
   // Merge base layout with object-specific layout
   const recordLayout: RecordLayout = useMemo(() => {

@@ -17,8 +17,8 @@ import { type ObjectPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { type ColorScheme } from 'twenty-ui/input';
 import {
-  useFindAllCoreViewsLazyQuery,
-  useGetCurrentUserLazyQuery,
+    useFindAllCoreViewsLazyQuery,
+    useGetCurrentUserLazyQuery,
 } from '~/generated-metadata/graphql';
 import { getWorkspaceUrl } from '~/utils/getWorkspaceUrl';
 import { dynamicActivate } from '~/utils/i18n/dynamicActivate';
@@ -103,9 +103,18 @@ export const useLoadCurrentUser = () => {
 
       // Initialize unified format preferences state
       initializeFormatPreferences(workspaceMember);
-      dynamicActivate(
-        (workspaceMember.locale as keyof typeof APP_LOCALES) ?? SOURCE_LOCALE,
-      );
+
+      const userLocale =
+        (workspaceMember.locale as keyof typeof APP_LOCALES) ?? SOURCE_LOCALE;
+      dynamicActivate(userLocale);
+
+      // Sync locale to localStorage so initialI18nActivate can use it on next page load
+      try {
+        localStorage.setItem('locale', userLocale);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log('Failed to save locale to localStorage:', error);
+      }
     }
 
     const workspace = user.currentWorkspace ?? null;

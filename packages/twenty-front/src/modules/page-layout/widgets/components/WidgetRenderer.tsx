@@ -2,6 +2,7 @@ import { usePageLayoutContentContext } from '@/page-layout/contexts/PageLayoutCo
 import { useCurrentPageLayoutOrThrow } from '@/page-layout/hooks/useCurrentPageLayoutOrThrow';
 import { useDeletePageLayoutWidget } from '@/page-layout/hooks/useDeletePageLayoutWidget';
 import { useEditPageLayoutWidget } from '@/page-layout/hooks/useEditPageLayoutWidget';
+import { useTranslateTabTitle } from '@/page-layout/hooks/useTranslateTabTitle';
 import { isPageLayoutInEditModeComponentState } from '@/page-layout/states/isPageLayoutInEditModeComponentState';
 import { pageLayoutDraggingWidgetIdComponentState } from '@/page-layout/states/pageLayoutDraggingWidgetIdComponentState';
 import { pageLayoutEditingWidgetIdComponentState } from '@/page-layout/states/pageLayoutEditingWidgetIdComponentState';
@@ -27,6 +28,7 @@ export const WidgetRenderer = ({ widget }: WidgetRendererProps) => {
   const theme = useTheme();
   const { deletePageLayoutWidget } = useDeletePageLayoutWidget();
   const { handleEditWidget } = useEditPageLayoutWidget();
+  const { translateTabTitle } = useTranslateTabTitle();
 
   const isPageLayoutInEditMode = useRecoilComponentValue(
     isPageLayoutInEditModeComponentState,
@@ -98,7 +100,7 @@ export const WidgetRenderer = ({ widget }: WidgetRendererProps) => {
           isWidgetCardHovered={isHovered}
           isInEditMode={isPageLayoutInEditMode}
           isResizing={isResizing}
-          title={widget.title}
+          title={translateTabTitle(widget.title)}
           onRemove={handleRemove}
           forbiddenDisplay={
             !hasAccess && (

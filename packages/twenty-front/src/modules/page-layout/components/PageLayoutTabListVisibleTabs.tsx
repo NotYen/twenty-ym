@@ -1,18 +1,18 @@
 import styled from '@emotion/styled';
 import {
-  type DraggableProvided,
-  type DraggableRubric,
-  type DraggableStateSnapshot,
-  Droppable,
+    type DraggableProvided,
+    type DraggableRubric,
+    type DraggableStateSnapshot,
+    Droppable,
 } from '@hello-pangea/dnd';
 import { TabButton } from 'twenty-ui/input';
-
-import { TAB_LIST_GAP } from '@/ui/layout/tab-list/constants/TabListGap';
-import { type SingleTabProps } from '@/ui/layout/tab-list/types/SingleTabProps';
 
 import { PAGE_LAYOUT_TAB_LIST_DROPPABLE_IDS } from '@/page-layout/components/PageLayoutTabListDroppableIds';
 import { PageLayoutTabListReorderableTab } from '@/page-layout/components/PageLayoutTabListReorderableTab';
 import { PageLayoutTabRenderClone } from '@/page-layout/components/PageLayoutTabRenderClone';
+import { useTranslateTabTitle } from '@/page-layout/hooks/useTranslateTabTitle';
+import { TAB_LIST_GAP } from '@/ui/layout/tab-list/constants/TabListGap';
+import { type SingleTabProps } from '@/ui/layout/tab-list/types/SingleTabProps';
 
 type PageLayoutTabListVisibleTabsProps = {
   visibleTabs: SingleTabProps[];
@@ -46,6 +46,8 @@ export const PageLayoutTabListVisibleTabs = ({
   onSelectTab,
   canReorder,
 }: PageLayoutTabListVisibleTabsProps) => {
+  const { translateTabTitle } = useTranslateTabTitle();
+
   if (canReorder) {
     return (
       <Droppable
@@ -61,7 +63,7 @@ export const PageLayoutTabListVisibleTabs = ({
           return (
             <PageLayoutTabRenderClone
               provided={provided}
-              tab={tab}
+              tab={{ ...tab, title: translateTabTitle(tab.title) }}
               activeTabId={activeTabId}
             />
           );
@@ -76,7 +78,7 @@ export const PageLayoutTabListVisibleTabs = ({
             {visibleTabs.slice(0, visibleTabCount).map((tab, index) => (
               <PageLayoutTabListReorderableTab
                 key={tab.id}
-                tab={tab}
+                tab={{ ...tab, title: translateTabTitle(tab.title) }}
                 index={index}
                 isActive={tab.id === activeTabId}
                 disabled={tab.disabled ?? loading}
@@ -96,7 +98,7 @@ export const PageLayoutTabListVisibleTabs = ({
         <TabButton
           key={tab.id}
           id={tab.id}
-          title={tab.title}
+          title={translateTabTitle(tab.title)}
           LeftIcon={tab.Icon}
           logo={tab.logo}
           active={tab.id === activeTabId}

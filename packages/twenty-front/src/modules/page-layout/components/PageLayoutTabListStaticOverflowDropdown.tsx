@@ -1,3 +1,4 @@
+import { useTranslateTabTitle } from '@/page-layout/hooks/useTranslateTabTitle';
 import { Dropdown } from '@/ui/layout/dropdown/components/Dropdown';
 import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
 import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/DropdownMenuItemsContainer';
@@ -27,6 +28,8 @@ export const PageLayoutTabListStaticOverflowDropdown = ({
   onSelect,
   onClose,
 }: PageLayoutTabListStaticOverflowDropdownProps) => {
+  const { translateTabTitle } = useTranslateTabTitle();
+
   return (
     <Dropdown
       dropdownId={dropdownId}
@@ -48,7 +51,7 @@ export const PageLayoutTabListStaticOverflowDropdown = ({
               return (
                 <MenuItemSelectAvatar
                   key={tab.id}
-                  text={tab.title}
+                  text={translateTabTitle(tab.title)}
                   avatar={<TabAvatar tab={tab} />}
                   selected={tab.id === activeTabId}
                   onClick={

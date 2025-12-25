@@ -21,9 +21,9 @@ import { type APP_LOCALES, SOURCE_LOCALE } from 'twenty-shared/translations';
 import { AppPath, type ObjectPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import {
-  type WorkspaceMember,
-  useFindAllCoreViewsQuery,
-  useGetCurrentUserQuery,
+    type WorkspaceMember,
+    useFindAllCoreViewsQuery,
+    useGetCurrentUserQuery,
 } from '~/generated-metadata/graphql';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import { dynamicActivate } from '~/utils/i18n/dynamicActivate';
@@ -164,9 +164,17 @@ export const UserAndViewsProviderEffect = () => {
       // Initialize format preferences from workspace member
       initializeFormatPreferences(updatedWorkspaceMember);
 
-      dynamicActivate(
-        (workspaceMember.locale as keyof typeof APP_LOCALES) ?? SOURCE_LOCALE,
-      );
+      const userLocale =
+        (workspaceMember.locale as keyof typeof APP_LOCALES) ?? SOURCE_LOCALE;
+      dynamicActivate(userLocale);
+
+      // Sync locale to localStorage so initialI18nActivate can use it on next page load
+      try {
+        localStorage.setItem('locale', userLocale);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log('Failed to save locale to localStorage:', error);
+      }
     }
 
     if (isDefined(workspaceMembers)) {
