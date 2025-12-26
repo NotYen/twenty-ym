@@ -1,6 +1,6 @@
 import { OBJECT_OPTIONS_DROPDOWN_ID } from '@/object-record/object-options-dropdown/constants/ObjectOptionsDropdownId';
 import { useObjectOptionsDropdown } from '@/object-record/object-options-dropdown/hooks/useObjectOptionsDropdown';
-import { useObjectOptionsForBoard } from '@/object-record/object-options-dropdown/hooks/useObjectOptionsForBoard';
+import { visibleRecordFieldsComponentSelector } from '@/object-record/record-field/states/visibleRecordFieldsComponentSelector';
 import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
 import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/DropdownMenuItemsContainer';
 import { DropdownMenuSeparator } from '@/ui/layout/dropdown/components/DropdownMenuSeparator';
@@ -13,27 +13,27 @@ import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
 import { useOpenCreateViewDropdown } from '@/views/hooks/useOpenCreateViewDropown';
 import { useLingui } from '@lingui/react/macro';
 import {
-  IconCopy,
-  IconLayout,
-  IconListDetails,
-  IconLock,
-  useIcons,
+    IconCopy,
+    IconLayout,
+    IconListDetails,
+    IconLock,
+    useIcons,
 } from 'twenty-ui/display';
 import { MenuItem } from 'twenty-ui/navigation';
 import { useCopyToClipboard } from '~/hooks/useCopyToClipboard';
 
 export const ObjectOptionsDropdownDefaultView = () => {
   const { t } = useLingui();
-  const { recordIndexId, objectMetadataItem, onContentChange } =
-    useObjectOptionsDropdown();
+  const { recordIndexId, onContentChange } = useObjectOptionsDropdown();
 
   const { currentView } = useGetCurrentViewOnly();
 
-  const { visibleBoardFields } = useObjectOptionsForBoard({
-    objectNameSingular: objectMetadataItem.nameSingular,
-    recordBoardId: recordIndexId,
-    viewBarId: recordIndexId,
-  });
+  const visibleRecordFields = useRecoilComponentValue(
+    visibleRecordFieldsComponentSelector,
+    recordIndexId,
+  );
+
+  const visibleFieldsCount = visibleRecordFields.length;
 
   const selectableItemIdArray = [
     'Fields',
@@ -86,7 +86,7 @@ export const ObjectOptionsDropdownDefaultView = () => {
               onClick={() => onContentChange('fields')}
               LeftIcon={IconListDetails}
               text={t`Fields`}
-              contextualText={`${visibleBoardFields.length} shown`}
+              contextualText={`${visibleFieldsCount} shown`}
               contextualTextPosition="right"
               hasSubMenu
             />
