@@ -107,7 +107,7 @@ export const DeleteMultipleRecordsAction = () => {
       <ConfirmationModal
         modalId={DELETE_RECORDS_CONFIRMATION_MODAL_ID}
         title={t`Confirm delete`}
-        subtitle={t`Are you sure you want to delete the selected records? They can be recovered from the Command menu.`}
+        subtitle={t`Are you sure you want to delete the selected records?`}
         onConfirmClick={handleConfirmDelete}
         confirmButtonText={t`Confirm`}
         confirmButtonAccent="danger"

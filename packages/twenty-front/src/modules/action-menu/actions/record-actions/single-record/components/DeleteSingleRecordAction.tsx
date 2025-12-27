@@ -64,8 +64,8 @@ export const DeleteSingleRecordAction = () => {
   };
 
   const subtitle = recordName
-    ? t`Are you sure you want to delete "${recordName}"? It can be recovered from the Command menu.`
-    : t`Are you sure you want to delete this record? It can be recovered from the Command menu.`;
+    ? t`Are you sure you want to delete "${recordName}"?`
+    : t`Are you sure you want to delete this record?`;
 
   return (
     <ActionModal

@@ -1281,20 +1281,20 @@ msgstr "Genehmigte Domänen"
 msgid "Arabic"
 msgstr "Arabisch"
 
-#. js-lingui-id: mM/oW1
+#. js-lingui-id: UYX7KQ
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
-msgid "Are you sure you want to delete \"{recordName}\"? It can be recovered from the Command menu."
+msgid "Are you sure you want to delete \"{recordName}\"?"
 msgstr ""
 
-#. js-lingui-id: sKIXUt
+#. js-lingui-id: 3H+5DU
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
-msgid "Are you sure you want to delete the selected records? They can be recovered from the Command menu."
+msgid "Are you sure you want to delete the selected records?"
 msgstr ""
 
-#. js-lingui-id: yb2hF4
+#. js-lingui-id: hsYW0C
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
-msgid "Are you sure you want to delete this record? It can be recovered from the Command menu."
-msgstr "Sind Sie sicher, dass Sie diesen Datensatz löschen möchten? Er kann aus dem Befehlsmenü wiederhergestellt werden."
+msgid "Are you sure you want to delete this record?"
+msgstr ""
 
 #. js-lingui-id: OJOR8q
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DestroyMultipleRecordsAction.tsx
