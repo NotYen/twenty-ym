@@ -12,6 +12,7 @@ import { AggregateOperations } from '@/object-record/record-table/constants/Aggr
 import { useRecordTableContextOrThrow } from '@/object-record/record-table/contexts/RecordTableContext';
 import { RecordTableColumnAggregateFooterCellContext } from '@/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterCellContext';
 import { viewFieldAggregateOperationState } from '@/object-record/record-table/record-table-footer/states/viewFieldAggregateOperationState';
+import { selectedRowIdsComponentSelector } from '@/object-record/record-table/states/selectors/selectedRowIdsComponentSelector';
 import { type ExtendedAggregateOperations } from '@/object-record/record-table/types/ExtendedAggregateOperations';
 import { convertAggregateOperationToExtendedAggregateOperation } from '@/object-record/utils/convertAggregateOperationToExtendedAggregateOperation';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
@@ -20,19 +21,28 @@ import { useContext } from 'react';
 import { useRecoilValue } from 'recoil';
 import { FIELD_FOR_TOTAL_COUNT_AGGREGATE_OPERATION } from 'twenty-shared/constants';
 import {
-  computeRecordGqlOperationFilter,
-  findById,
-  isDefined,
-  isFieldMetadataDateKind,
-  turnAnyFieldFilterIntoRecordGqlFilter,
+    computeRecordGqlOperationFilter,
+    findById,
+    isDefined,
+    isFieldMetadataDateKind,
+    turnAnyFieldFilterIntoRecordGqlFilter,
 } from 'twenty-shared/utils';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 
 export const useAggregateRecordsForRecordTableColumnFooter = (
   aggregateFieldMetadataId: string,
 ) => {
-  const { objectMetadataItem } = useRecordTableContextOrThrow();
+  const { objectMetadataItem, recordTableId } = useRecordTableContextOrThrow();
   const { recordGroupFilter } = useRecordGroupFilter(objectMetadataItem.fields);
+
+  // Get selected row IDs for selected records aggregate calculation
+  const selectedRowIds = useRecoilComponentValue(
+    selectedRowIdsComponentSelector,
+    recordTableId,
+  );
+
+  const hasSelectedRecords = selectedRowIds.length > 0;
+  const selectedRecordsCount = selectedRowIds.length;
 
   const currentRecordFilterGroups = useRecoilComponentValue(
     currentRecordFilterGroupsComponentState,
@@ -105,10 +115,20 @@ export const useAggregateRecordsForRecordTableColumnFooter = (
       filterValue: anyFieldFilterValue,
     });
 
+  // Build selected records filter if any records are selected
+  const selectedRecordsFilter = hasSelectedRecords
+    ? { id: { in: selectedRowIds } }
+    : {};
+
   const { data, loading } = useAggregateRecords({
     objectNameSingular: objectMetadataItem.nameSingular,
     recordGqlFieldsAggregate,
-    filter: { ...requestFilters, ...recordGroupFilter, ...anyFieldFilter },
+    filter: {
+      ...requestFilters,
+      ...recordGroupFilter,
+      ...anyFieldFilter,
+      ...selectedRecordsFilter,
+    },
     skip: !isDefined(aggregateOperationForViewField),
   });
 
@@ -126,6 +146,8 @@ export const useAggregateRecordsForRecordTableColumnFooter = (
         ],
       aggregateLabel: getAggregateOperationLabel(AggregateOperations.COUNT),
       isLoading: loading,
+      hasSelectedRecords,
+      selectedRecordsCount,
     };
   }
 
@@ -134,6 +156,8 @@ export const useAggregateRecordsForRecordTableColumnFooter = (
       aggregateValue: null,
       aggregateLabel: null,
       isLoading: loading,
+      hasSelectedRecords,
+      selectedRecordsCount,
     };
   }
 
@@ -162,5 +186,7 @@ export const useAggregateRecordsForRecordTableColumnFooter = (
       ? aggregateLabel
       : undefined,
     isLoading: loading,
+    hasSelectedRecords,
+    selectedRecordsCount,
   };
 };

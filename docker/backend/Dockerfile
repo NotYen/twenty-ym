@@ -10,7 +10,14 @@ WORKDIR /app
 
 ENV YARN_ENABLE_GLOBAL_CACHE=false
 ENV YARN_ENABLE_IMMUTABLE_INSTALLS=false
-RUN corepack enable
+# 設定 corepack 網路超時和重試
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+ENV COREPACK_INTEGRITY_KEYS=0
+# 預先下載 yarn，增加超時時間
+RUN corepack enable && \
+    corepack prepare yarn@4.9.2 --activate || \
+    (sleep 5 && corepack prepare yarn@4.9.2 --activate) || \
+    (sleep 10 && corepack prepare yarn@4.9.2 --activate)
 # 確保 yarn 在 PATH 中
 ENV PATH="/usr/local/bin:$PATH"
 
@@ -28,7 +35,8 @@ COPY packages/twenty-ui/package.json ./packages/twenty-ui/package.json
 # 註：monorepo 的依賴交叉引用複雜，需要安裝所有 packages 的依賴
 # - twenty-shared 使用 class-validator（來自 twenty-server）
 # - twenty-emails 使用 @react-email/components（來自 twenty-front）
-RUN yarn install
+RUN --mount=type=cache,target=/root/.yarn/berry/cache \
+    yarn install --network-timeout 600000
 
 # =====================================
 # 階段 2: 構建應用（只有代碼變動才重新執行）

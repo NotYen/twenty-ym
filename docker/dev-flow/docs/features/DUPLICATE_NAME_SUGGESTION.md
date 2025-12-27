@@ -82,6 +82,7 @@ const { suggestions, isOpen, closeSuggestions, hasSuggestions } =
 | Possible duplicate detected | 偵測到可能重複的資料 |
 | Similar records were found. Are you sure you want to create a new record? | 發現相似的記錄。確定要建立新記錄嗎？ |
 | Create anyway | 仍要建立 |
+| Untitled | 無標題 |
 
 ## 效能考量
 
@@ -94,3 +95,33 @@ const { suggestions, isOpen, closeSuggestions, hasSuggestions } =
 - 此功能只在標題欄位（labelIdentifier）啟用
 - 不會阻擋用戶建立記錄，只是提供建議
 - 搜尋是模糊匹配，可能會有誤報
+
+---
+
+## 2024-12-28 修復記錄
+
+### 問題 1: `useState is not defined` Runtime 錯誤
+
+**原因：**
+- `RecordTitleCellTextFieldInput.tsx` 和 `RecordTitleFullNameFieldInput.tsx` 使用了 `useState` 但忘記 import
+
+**修復：**
+- 在兩個檔案的 import 中加入 `useState`
+
+### 問題 2: twenty-ui 中使用 lingui 導致 Runtime 錯誤
+
+**原因：**
+- `Chip.tsx` 中使用了 `{t\`Untitled\`}`，但 `twenty-ui` 是獨立的 UI 庫，沒有 lingui 配置
+
+**修復：**
+- 在 `Chip.tsx` 新增 `untitledLabel` prop，預設值為 `'Untitled'`
+- 在 `LinkChip.tsx` 和 `MultipleAvatarChip.tsx` 傳遞此 prop
+- 在 `RecordChip.tsx` 中使用 `t\`Untitled\`` 傳入翻譯後的文字
+
+### 問題 3: 人員（FullName）點擊重複提示後仍儲存
+
+**原因：**
+- `RecordTitleFullNameFieldInput.tsx` 的 `handleClickOutside` 沒有排除 dropdown 的點擊
+
+**修復：**
+- 在 `handleClickOutside` 中檢查 `data-globally-prevent-click-outside` 屬性，如果點擊的是 dropdown 則不觸發儲存

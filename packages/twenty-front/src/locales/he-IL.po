@@ -257,6 +257,11 @@ msgstr "{selectedCount, plural, one {מחק {selectedCount} עבודה} two {מ�
 msgid "{selectedCount, plural, one {Retry {selectedCount} Job} other {Retry {selectedCount} Jobs}}"
 msgstr "{selectedCount, plural, one {הפעל מחדש {selectedCount} עבודה} two {הפעל מחדש {selectedCount} עבודות} many {הפעל מחדש {selectedCount} עבודות} other {הפעל מחדש {selectedCount} עבודות}}"
 
+#. js-lingui-id: 4bNn+q
+#: src/modules/object-record/record-table/record-table-footer/components/RecordTableColumnAggregateFooterValue.tsx
+msgid "{selectedRecordsCount} selected"
+msgstr ""
+
 #. js-lingui-id: Bzjg0/
 #: src/pages/settings/accounts/SettingsAccountsConfigurationStepCalendar.tsx
 msgid "{stepNumber}. Calendar"

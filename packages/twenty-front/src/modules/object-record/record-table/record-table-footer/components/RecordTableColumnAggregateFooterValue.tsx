@@ -1,7 +1,7 @@
 import { RECORD_TABLE_ROW_HEIGHT } from '@/object-record/record-table/constants/RecordTableRowHeight';
 import { useAggregateRecordsForRecordTableColumnFooter } from '@/object-record/record-table/record-table-footer/hooks/useAggregateRecordsForRecordTableColumnFooter';
 import styled from '@emotion/styled';
-import { Trans } from '@lingui/react/macro';
+import { Trans, useLingui } from '@lingui/react/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { OverflowingTextWithTooltip } from 'twenty-ui/display';
 
@@ -44,6 +44,13 @@ const StyledValue = styled.div`
   max-width: 100%;
 `;
 
+const StyledSelectedIndicator = styled.span`
+  color: ${({ theme }) => theme.color.blue};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  white-space: nowrap;
+`;
+
 export const RecordTableColumnAggregateFooterValue = ({
   dropdownId,
   fieldMetadataId,
@@ -52,9 +59,15 @@ export const RecordTableColumnAggregateFooterValue = ({
   fieldMetadataId: string;
 }) => {
   const sanitizedId = `tooltip-${dropdownId.replace(/[^a-zA-Z0-9-_]/g, '-')}`;
+  const { t } = useLingui();
 
-  const { aggregateValue, aggregateLabel, isLoading } =
-    useAggregateRecordsForRecordTableColumnFooter(fieldMetadataId);
+  const {
+    aggregateValue,
+    aggregateLabel,
+    isLoading,
+    hasSelectedRecords,
+    selectedRecordsCount,
+  } = useAggregateRecordsForRecordTableColumnFooter(fieldMetadataId);
 
   return (
     <>
@@ -64,6 +77,11 @@ export const RecordTableColumnAggregateFooterValue = ({
             <></>
           ) : (
             <>
+              {hasSelectedRecords && (
+                <StyledSelectedIndicator>
+                  {t`${selectedRecordsCount} selected`}
+                </StyledSelectedIndicator>
+              )}
               <OverflowingTextWithTooltip text={aggregateLabel} />
               <StyledValue>{aggregateValue}</StyledValue>
             </>

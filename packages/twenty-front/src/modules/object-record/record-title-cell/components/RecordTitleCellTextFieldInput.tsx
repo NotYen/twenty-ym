@@ -7,7 +7,7 @@ import { useRegisterInputEvents } from '@/object-record/record-field/ui/meta-typ
 
 import { TextInput } from '@/ui/input/components/TextInput';
 import styled from '@emotion/styled';
-import { useCallback, useContext, useRef } from 'react';
+import { useCallback, useContext, useRef, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { turnIntoUndefinedIfWhitespacesOnly } from '~/utils/string/turnIntoUndefinedIfWhitespacesOnly';
 

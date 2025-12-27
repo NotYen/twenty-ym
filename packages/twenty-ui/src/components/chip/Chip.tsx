@@ -35,6 +35,7 @@ export type ChipProps = {
   rightComponent?: (() => ReactNode) | ReactNode | null;
   className?: string;
   forceEmptyText?: boolean;
+  untitledLabel?: string;
 };
 
 const StyledDiv = withTheme(styled.div<{ theme: Theme }>`
@@ -152,6 +153,7 @@ export const Chip = ({
   className,
   maxWidth,
   forceEmptyText = false,
+  untitledLabel = 'Untitled',
 }: ChipProps) => {
   return (
     <StyledContainer
@@ -168,7 +170,7 @@ export const Chip = ({
       {!isLabelHidden && label && label.trim() ? (
         <OverflowingTextWithTooltip size={size} text={label} />
       ) : !forceEmptyText && !isLabelHidden ? (
-        <StyledDiv>{t`Untitled`}</StyledDiv>
+        <StyledDiv>{untitledLabel}</StyledDiv>
       ) : (
         ''
       )}

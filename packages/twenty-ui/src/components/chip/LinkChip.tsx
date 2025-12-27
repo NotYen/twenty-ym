@@ -1,10 +1,10 @@
 import { styled } from '@linaria/react';
 import {
-  Chip,
-  ChipAccent,
-  type ChipProps,
-  ChipSize,
-  ChipVariant,
+    Chip,
+    ChipAccent,
+    type ChipProps,
+    ChipSize,
+    ChipVariant,
 } from '@ui/components/chip/Chip';
 import { LINK_CHIP_CLICK_OUTSIDE_ID } from '@ui/components/chip/constants/LinkChipClickOutsideId';
 import { type TriggerEventType, useMouseDownNavigation } from '@ui/utilities';
@@ -40,6 +40,7 @@ export const LinkChip = ({
   maxWidth,
   onClick,
   triggerEvent,
+  untitledLabel,
 }: LinkChipProps) => {
   const { onClick: onClickHandler, onMouseDown: onMouseDownHandler } =
     useMouseDownNavigation({
@@ -69,6 +70,7 @@ export const LinkChip = ({
         accent={accent}
         className={className}
         maxWidth={maxWidth}
+        untitledLabel={untitledLabel}
       />
     </StyledLink>
   );

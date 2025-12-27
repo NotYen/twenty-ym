@@ -9,7 +9,7 @@ import { isDoubleTextFieldEmpty } from '@/object-record/record-field/ui/meta-typ
 import { type FieldDoubleText } from '@/object-record/record-field/ui/types/FieldDoubleText';
 
 import styled from '@emotion/styled';
-import { useCallback, useContext, useRef } from 'react';
+import { useCallback, useContext, useRef, useState } from 'react';
 import { RecordTitleDoubleTextInput } from './RecordTitleDoubleTextInput';
 
 const StyledInputWrapper = styled.div`
@@ -83,6 +83,11 @@ export const RecordTitleFullNameFieldInput = ({
     event: MouseEvent | TouchEvent,
     newDoubleText: FieldDoubleText,
   ) => {
+    // 檢查是否點擊了 dropdown（有 data-globally-prevent-click-outside 屬性）
+    const target = event.target as HTMLElement;
+    if (target.closest('[data-globally-prevent-click-outside="true"]')) {
+      return;
+    }
     closeSuggestions();
     onClickOutside?.({ newValue: convertToFullName(newDoubleText), event });
   };
