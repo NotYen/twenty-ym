@@ -4,11 +4,13 @@ import { AddressFieldInput } from '@/object-record/record-field/ui/meta-types/in
 import { DateFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/DateFieldInput';
 import { EmailsFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/EmailsFieldInput';
 import { FullNameFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/FullNameFieldInput';
+import { FullNameFieldInputWithDuplicateSuggestion } from '@/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion';
 import { LinksFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/LinksFieldInput';
 import { MultiSelectFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/MultiSelectFieldInput';
 import { PhonesFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/PhonesFieldInput';
 import { RawJsonFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/RawJsonFieldInput';
 import { SelectFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/SelectFieldInput';
+import { TextFieldInputWithDuplicateSuggestion } from '@/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion';
 import { isFieldPhones } from '@/object-record/record-field/ui/types/guards/isFieldPhones';
 
 import { ArrayFieldInput } from '@/object-record/record-field/ui/meta-types/input/components/ArrayFieldInput';
@@ -46,7 +48,7 @@ import { TextFieldInput } from '../meta-types/input/components/TextFieldInput';
 import { isFieldText } from '../types/guards/isFieldText';
 
 export const FieldInput = () => {
-  const { fieldDefinition } = useContext(FieldContext);
+  const { fieldDefinition, isLabelIdentifier } = useContext(FieldContext);
 
   return (
     <>
@@ -61,11 +63,19 @@ export const FieldInput = () => {
       ) : isFieldPhones(fieldDefinition) ? (
         <PhonesFieldInput />
       ) : isFieldText(fieldDefinition) ? (
-        <TextFieldInput />
+        isLabelIdentifier ? (
+          <TextFieldInputWithDuplicateSuggestion />
+        ) : (
+          <TextFieldInput />
+        )
       ) : isFieldEmails(fieldDefinition) ? (
         <EmailsFieldInput />
       ) : isFieldFullName(fieldDefinition) ? (
-        <FullNameFieldInput />
+        isLabelIdentifier ? (
+          <FullNameFieldInputWithDuplicateSuggestion />
+        ) : (
+          <FullNameFieldInput />
+        )
       ) : isFieldDateTime(fieldDefinition) ? (
         <DateTimeFieldInput />
       ) : isFieldDate(fieldDefinition) ? (

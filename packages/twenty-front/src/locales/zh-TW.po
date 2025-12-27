@@ -2017,6 +2017,11 @@ msgstr "點擊以新增您的第一個小工具"
 msgid "Click to see data"
 msgstr "點擊查看數據"
 
+#. js-lingui-id: jlS/3U
+#: src/modules/object-record/record-field/ui/meta-types/input/components/DuplicateNameSuggestionDropdown.tsx
+msgid "Click to view"
+msgstr "點擊查看"
+
 #. js-lingui-id: b9Y4up
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Client ID"
@@ -2566,6 +2571,12 @@ msgstr "建立工作區"
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 msgid "Create and configure AI agents"
 msgstr "創建和配置 AI 代理"
+
+#. js-lingui-id: v0pVW+
+#: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
+#: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
+msgid "Create anyway"
+msgstr "仍要建立"
 
 #. js-lingui-id: uXGLuq
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
@@ -7496,6 +7507,17 @@ msgstr "葡萄牙語 - 巴西"
 msgid "Portuguese — Portugal"
 msgstr "葡萄牙語 - 葡萄牙"
 
+#. js-lingui-id: r6uUPy
+#: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
+#: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
+msgid "Possible duplicate detected"
+msgstr "偵測到可能重複的資料"
+
+#. js-lingui-id: rqOKjy
+#: src/modules/object-record/record-field/ui/meta-types/input/components/DuplicateNameSuggestionDropdown.tsx
+msgid "Possible duplicate records"
+msgstr "可能重複的記錄"
+
 #. js-lingui-id: OKJUcC
 #: src/modules/settings/data-model/fields/forms/address/constants/DefaultSelectionAddressWithMessages.ts
 msgid "Postcode"
@@ -8785,6 +8807,12 @@ msgstr "註冊"
 msgid "Sign Up"
 msgstr "註冊"
 
+#. js-lingui-id: oT020d
+#: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
+#: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
+msgid "Similar records were found. Are you sure you want to create a new record?"
+msgstr "發現相似的記錄。確定要建立新記錄嗎？"
+
 #. js-lingui-id: 5v3IHX
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithSSO.tsx
 msgid "Single sign-on (SSO)"
@@ -9886,9 +9914,25 @@ msgid "Unordered list with bullets"
 msgstr ""
 
 #. js-lingui-id: wja8aL
+#: src/modules/page-layout/components/PageLayoutRendererContent.tsx
+#: src/modules/object-record/record-title-cell/components/RecordTitleFullNameFieldDisplay.tsx
+#: src/modules/object-record/record-title-cell/components/RecordTitleCellTextFieldDisplay.tsx
+#: src/modules/object-record/record-picker/multiple-record-picker/components/MultipleRecordPickerMenuItemContent.tsx
+#: src/modules/command-menu/components/CommandMenuContextChip.tsx
 #: src/modules/ai/components/AIChatThreadGroup.tsx
+#: src/modules/activities/timeline-activities/rows/activity/components/EventRowActivity.tsx
 msgid "Untitled"
 msgstr "無標題"
+
+#. js-lingui-id: RBz20h
+#: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutWidgetTypeSelect.tsx
+msgid "Untitled iFrame"
+msgstr "無標題 iFrame"
+
+#. js-lingui-id: NbOWt/
+#: src/modules/action-menu/actions/record-actions/single-record/components/ExportNoteActionSingleRecordAction.tsx
+msgid "Untitled Note"
+msgstr "無標題筆記"
 
 #. js-lingui-id: xzOKup
 #: src/modules/settings/roles/role/components/SettingsRoleCreateEffect.tsx

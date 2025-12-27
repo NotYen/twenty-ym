@@ -3,3 +3,5 @@
 node_modules
 .nx/cache
 packages/twenty-server/.env
+# 只排除 twenty-server 的 dist（避免複製錯誤的本地 build）
+packages/twenty-server/dist

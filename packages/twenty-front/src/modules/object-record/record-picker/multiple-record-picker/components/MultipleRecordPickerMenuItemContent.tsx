@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { t } from '@lingui/core/macro';
 
 import { type ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
 import { getAvatarType } from '@/object-metadata/utils/getAvatarType';
@@ -64,7 +65,7 @@ export const MultipleRecordPickerMenuItemContent = ({
 
   const displayText =
     searchRecord.label?.trim() ||
-    `Untitled ${objectMetadataItem.labelSingular}`;
+    `${t`Untitled`} ${objectMetadataItem.labelSingular}`;
 
   const searchableObjectMetadataItems = useRecoilComponentValue(
     multipleRecordPickerSearchableObjectMetadataItemsComponentState,

@@ -85,7 +85,7 @@ export const SummaryCard = ({
         <FieldContext.Provider
           value={{
             recordId: objectRecordId,
-            isLabelIdentifier: false,
+            isLabelIdentifier: true,
             fieldDefinition: {
               type:
                 labelIdentifierFieldMetadataItem?.type ||

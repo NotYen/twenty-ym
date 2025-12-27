@@ -1,6 +1,7 @@
 import { Action } from '@/action-menu/actions/components/Action';
 import { useSelectedRecordIdOrThrow } from '@/action-menu/actions/record-actions/single-record/hooks/useSelectedRecordIdOrThrow';
 import { recordStoreFamilyState } from '@/object-record/record-store/states/recordStoreFamilyState';
+import { t } from '@lingui/core/macro';
 import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 
@@ -9,7 +10,7 @@ export const ExportNoteActionSingleRecordAction = () => {
 
   const selectedRecord = useRecoilValue(recordStoreFamilyState(recordId));
 
-  const filename = `${(selectedRecord?.title || 'Untitled Note').replace(/[<>:"/\\|?*]/g, '-')}`;
+  const filename = `${(selectedRecord?.title || t`Untitled Note`).replace(/[<>:"/\\|?*]/g, '-')}`;
 
   const handleClick = async () => {
     if (!isDefined(selectedRecord)) {

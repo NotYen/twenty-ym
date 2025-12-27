@@ -2017,6 +2017,11 @@ msgstr "اضغط لإضافة أول عنصر واجهة مستخدم لك"
 msgid "Click to see data"
 msgstr "انقر لعرض البيانات"
 
+#. js-lingui-id: jlS/3U
+#: src/modules/object-record/record-field/ui/meta-types/input/components/DuplicateNameSuggestionDropdown.tsx
+msgid "Click to view"
+msgstr ""
+
 #. js-lingui-id: b9Y4up
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
 msgid "Client ID"
@@ -2566,6 +2571,12 @@ msgstr "إنشاء مساحة العمل"
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 msgid "Create and configure AI agents"
 msgstr "إنشاء وتكوين وكلاء الذكاء الاصطناعي"
+
+#. js-lingui-id: v0pVW+
+#: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
+#: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
+msgid "Create anyway"
+msgstr ""
 
 #. js-lingui-id: uXGLuq
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
@@ -7496,6 +7507,17 @@ msgstr "البرتغالية — البرازيل"
 msgid "Portuguese — Portugal"
 msgstr "البرتغالية — البرتغال"
 
+#. js-lingui-id: r6uUPy
+#: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
+#: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
+msgid "Possible duplicate detected"
+msgstr ""
+
+#. js-lingui-id: rqOKjy
+#: src/modules/object-record/record-field/ui/meta-types/input/components/DuplicateNameSuggestionDropdown.tsx
+msgid "Possible duplicate records"
+msgstr ""
+
 #. js-lingui-id: OKJUcC
 #: src/modules/settings/data-model/fields/forms/address/constants/DefaultSelectionAddressWithMessages.ts
 msgid "Postcode"
@@ -8785,6 +8807,12 @@ msgstr "إنشاء حساب"
 msgid "Sign Up"
 msgstr "إنشاء حساب"
 
+#. js-lingui-id: oT020d
+#: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
+#: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
+msgid "Similar records were found. Are you sure you want to create a new record?"
+msgstr ""
+
 #. js-lingui-id: 5v3IHX
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithSSO.tsx
 msgid "Single sign-on (SSO)"
@@ -9886,9 +9914,25 @@ msgid "Unordered list with bullets"
 msgstr ""
 
 #. js-lingui-id: wja8aL
+#: src/modules/page-layout/components/PageLayoutRendererContent.tsx
+#: src/modules/object-record/record-title-cell/components/RecordTitleFullNameFieldDisplay.tsx
+#: src/modules/object-record/record-title-cell/components/RecordTitleCellTextFieldDisplay.tsx
+#: src/modules/object-record/record-picker/multiple-record-picker/components/MultipleRecordPickerMenuItemContent.tsx
+#: src/modules/command-menu/components/CommandMenuContextChip.tsx
 #: src/modules/ai/components/AIChatThreadGroup.tsx
+#: src/modules/activities/timeline-activities/rows/activity/components/EventRowActivity.tsx
 msgid "Untitled"
 msgstr "بدون عنوان"
+
+#. js-lingui-id: RBz20h
+#: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutWidgetTypeSelect.tsx
+msgid "Untitled iFrame"
+msgstr ""
+
+#. js-lingui-id: NbOWt/
+#: src/modules/action-menu/actions/record-actions/single-record/components/ExportNoteActionSingleRecordAction.tsx
+msgid "Untitled Note"
+msgstr ""
 
 #. js-lingui-id: xzOKup
 #: src/modules/settings/roles/role/components/SettingsRoleCreateEffect.tsx

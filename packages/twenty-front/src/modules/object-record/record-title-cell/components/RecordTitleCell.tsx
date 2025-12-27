@@ -5,16 +5,16 @@ import { FieldFocusContextProvider } from '@/object-record/record-field/ui/conte
 import { useIsFieldInputOnly } from '@/object-record/record-field/ui/hooks/useIsFieldInputOnly';
 
 import {
-  FieldInputEventContext,
-  type FieldInputClickOutsideEvent,
-  type FieldInputEvent,
+    FieldInputEventContext,
+    type FieldInputClickOutsideEvent,
+    type FieldInputEvent,
 } from '@/object-record/record-field/ui/contexts/FieldInputEventContext';
 import { usePersistFieldFromFieldInputContext } from '@/object-record/record-field/ui/hooks/usePersistFieldFromFieldInputContext';
 import { RecordFieldComponentInstanceContext } from '@/object-record/record-field/ui/states/contexts/RecordFieldComponentInstanceContext';
 import { RecordTitleCellContainer } from '@/object-record/record-title-cell/components/RecordTitleCellContainer';
 import {
-  RecordTitleCellContext,
-  type RecordTitleCellContextProps,
+    RecordTitleCellContext,
+    type RecordTitleCellContextProps,
 } from '@/object-record/record-title-cell/components/RecordTitleCellContext';
 import { RecordTitleCellFieldDisplay } from '@/object-record/record-title-cell/components/RecordTitleCellFieldDisplay';
 import { RecordTitleCellFieldInput } from '@/object-record/record-title-cell/components/RecordTitleCellFieldInput';
@@ -84,6 +84,10 @@ export const RecordTitleCell = ({
     closeCell();
   };
 
+  const handleCancel = () => {
+    closeCell();
+  };
+
   const handleTab: FieldInputEvent = ({ newValue, skipPersist }) => {
     if (skipPersist !== true) {
       persistFieldFromFieldInputContext(newValue);
@@ -107,6 +111,7 @@ export const RecordTitleCell = ({
           onClickOutside: handleClickOutside,
           onEnter: handleEnter,
           onEscape: handleEscape,
+          onCancel: handleCancel,
           onShiftTab: handleShiftTab,
           onTab: handleTab,
         }}

@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
+import { t } from '@lingui/core/macro';
 
 import {
-  type EventRowDynamicComponentProps,
-  StyledEventRowItemAction,
-  StyledEventRowItemColumn,
+    type EventRowDynamicComponentProps,
+    StyledEventRowItemAction,
+    StyledEventRowItemColumn,
 } from '@/activities/timeline-activities/rows/components/EventRowDynamicComponent';
 import { isTimelineActivityWithLinkedRecord } from '@/activities/timeline-activities/types/TimelineActivity';
 import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
@@ -91,7 +92,7 @@ export const EventRowActivity = ({
       return event.linkedRecordCachedName;
     }
 
-    return 'Untitled';
+    return t`Untitled`;
   };
   const activityTitle = computeActivityTitle();
 

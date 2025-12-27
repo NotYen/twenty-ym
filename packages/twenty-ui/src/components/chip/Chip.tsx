@@ -168,7 +168,7 @@ export const Chip = ({
       {!isLabelHidden && label && label.trim() ? (
         <OverflowingTextWithTooltip size={size} text={label} />
       ) : !forceEmptyText && !isLabelHidden ? (
-        <StyledDiv>Untitled</StyledDiv>
+        <StyledDiv>{t`Untitled`}</StyledDiv>
       ) : (
         ''
       )}
