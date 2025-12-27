@@ -13,9 +13,15 @@ import { useIncrementalDeleteManyRecords } from '@/object-record/hooks/useIncrem
 import { useFilterValueDependencies } from '@/object-record/record-filter/hooks/useFilterValueDependencies';
 import { useRecordIndexIdFromCurrentContextStore } from '@/object-record/record-index/hooks/useRecordIndexIdFromCurrentContextStore';
 import { useResetTableRowSelection } from '@/object-record/record-table/hooks/internal/useResetTableRowSelection';
+import { ConfirmationModal } from '@/ui/layout/modal/components/ConfirmationModal';
+import { useModal } from '@/ui/layout/modal/hooks/useModal';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
+import { t } from '@lingui/core/macro';
 import { useContext } from 'react';
 import { isDefined } from 'twenty-shared/utils';
+
+const DELETE_RECORDS_CONFIRMATION_MODAL_ID =
+  'delete-records-confirmation-modal';
 
 export const DeleteMultipleRecordsAction = () => {
   const { recordIndexId, objectMetadataItem } =
@@ -28,6 +34,8 @@ export const DeleteMultipleRecordsAction = () => {
   if (!contextStoreCurrentViewId) {
     throw new Error('Current view ID is not defined');
   }
+
+  const { openModal } = useModal();
 
   const { resetTableRowSelection } = useResetTableRowSelection(recordIndexId);
 
@@ -84,7 +92,11 @@ export const DeleteMultipleRecordsAction = () => {
     shortLabel: `${originalShortLabel}${progressText}`,
   };
 
-  const handleDeleteClick = async () => {
+  const handleDeleteClick = () => {
+    openModal(DELETE_RECORDS_CONFIRMATION_MODAL_ID);
+  };
+
+  const handleConfirmDelete = async () => {
     resetTableRowSelection();
     await incrementalDeleteManyRecords();
   };
@@ -92,6 +104,14 @@ export const DeleteMultipleRecordsAction = () => {
   return (
     <ActionConfigContext.Provider value={actionConfigWithProgress}>
       <Action onClick={handleDeleteClick} />
+      <ConfirmationModal
+        modalId={DELETE_RECORDS_CONFIRMATION_MODAL_ID}
+        title={t`Confirm delete`}
+        subtitle={t`Are you sure you want to delete the selected records? They can be recovered from the Command menu.`}
+        onConfirmClick={handleConfirmDelete}
+        confirmButtonText={t`Confirm`}
+        confirmButtonAccent="danger"
+      />
     </ActionConfigContext.Provider>
   );
 };

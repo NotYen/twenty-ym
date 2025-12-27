@@ -1281,6 +1281,16 @@ msgstr "Onaylanmış Alan Adları"
 msgid "Arabic"
 msgstr "Arapça"
 
+#. js-lingui-id: mM/oW1
+#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
+msgid "Are you sure you want to delete \"{recordName}\"? It can be recovered from the Command menu."
+msgstr ""
+
+#. js-lingui-id: sKIXUt
+#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
+msgid "Are you sure you want to delete the selected records? They can be recovered from the Command menu."
+msgstr ""
+
 #. js-lingui-id: yb2hF4
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 msgid "Are you sure you want to delete this record? It can be recovered from the Command menu."
@@ -2267,6 +2277,7 @@ msgstr "E-posta ve takvim ayarlarınızı yapılandırın."
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
+#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
 msgid "Confirm"
 msgstr "Onayla"
 
@@ -2274,6 +2285,11 @@ msgstr "Onayla"
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 msgid "Confirm changing your current credit plan."
 msgstr "Mevcut kredi planınızı değiştirmeyi onaylayın."
+
+#. js-lingui-id: mgJ1oe
+#: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
+msgid "Confirm delete"
+msgstr ""
 
 #. js-lingui-id: N6GBcC
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
@@ -9923,9 +9939,11 @@ msgstr ""
 #: src/modules/object-record/record-title-cell/components/RecordTitleFullNameFieldDisplay.tsx
 #: src/modules/object-record/record-title-cell/components/RecordTitleCellTextFieldDisplay.tsx
 #: src/modules/object-record/record-picker/multiple-record-picker/components/MultipleRecordPickerMenuItemContent.tsx
+#: src/modules/object-record/components/RecordChip.tsx
 #: src/modules/command-menu/components/CommandMenuContextChip.tsx
 #: src/modules/ai/components/AIChatThreadGroup.tsx
 #: src/modules/activities/timeline-activities/rows/activity/components/EventRowActivity.tsx
+#: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 msgid "Untitled"
 msgstr "İsimsiz"
 
