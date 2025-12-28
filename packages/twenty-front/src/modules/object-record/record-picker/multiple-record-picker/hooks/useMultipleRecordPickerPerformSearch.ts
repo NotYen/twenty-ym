@@ -417,6 +417,7 @@ const performSearchQueries = async ({
         limit,
         after,
       },
+      fetchPolicy: 'network-only',
     });
     return {
       records: data.search.edges.map((edge: SearchResultEdge) => edge.node),
