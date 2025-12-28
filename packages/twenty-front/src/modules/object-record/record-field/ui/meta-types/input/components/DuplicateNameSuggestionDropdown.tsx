@@ -123,6 +123,11 @@ export const DuplicateNameSuggestionDropdown = ({
     const handleKeyDown = (event: KeyboardEvent) => {
       if (suggestions.length === 0) return;
 
+      // Skip when IME is composing
+      if (isIMEComposing(event)) {
+        return;
+      }
+
       switch (event.key) {
         case 'ArrowDown':
           event.preventDefault();

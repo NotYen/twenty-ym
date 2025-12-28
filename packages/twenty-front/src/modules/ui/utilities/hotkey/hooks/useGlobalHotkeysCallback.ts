@@ -1,8 +1,9 @@
 import { DEBUG_FOCUS_STACK } from '@/ui/utilities/focus/constants/DebugFocusStack';
 import { currentGlobalHotkeysConfigSelector } from '@/ui/utilities/focus/states/currentGlobalHotkeysConfigSelector';
+import { isIMEComposing } from '@/ui/utilities/hotkey/utils/isIMEComposing';
 import {
-  type Hotkey,
-  type OptionsOrDependencyArray,
+    type Hotkey,
+    type OptionsOrDependencyArray,
 } from 'react-hotkeys-hook/dist/types';
 import { useRecoilCallback } from 'recoil';
 import { logDebug } from '~/utils/logDebug';
@@ -27,6 +28,11 @@ export const useGlobalHotkeysCallback = (
         callback: (keyboardEvent: KeyboardEvent, hotkeysEvent: Hotkey) => void;
         preventDefault?: boolean;
       }) => {
+        // Skip hotkey handling when IME is composing
+        if (isIMEComposing(keyboardEvent)) {
+          return;
+        }
+
         const currentGlobalHotkeysConfig = snapshot
           .getLoadable(currentGlobalHotkeysConfigSelector)
           .getValue();

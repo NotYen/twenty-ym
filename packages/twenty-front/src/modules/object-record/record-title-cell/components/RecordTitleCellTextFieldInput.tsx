@@ -1,3 +1,4 @@
+import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { FieldContext } from '@/object-record/record-field/ui/contexts/FieldContext';
 import { FieldInputEventContext } from '@/object-record/record-field/ui/contexts/FieldInputEventContext';
 import { useTextField } from '@/object-record/record-field/ui/meta-types/hooks/useTextField';
@@ -43,8 +44,12 @@ export const RecordTitleCellTextFieldInput = ({
     enabled: isLabelIdentifier && !!objectNameSingular,
   });
 
+  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+
   const handleChange = (newText: string) => {
     setDraftValue(turnIntoUndefinedIfWhitespacesOnly(newText));
+    // 重置選中索引
+    setSelectedIndex(0);
   };
 
   const { onEnter, onEscape, onClickOutside, onTab, onShiftTab, onCancel } =
@@ -58,11 +63,30 @@ export const RecordTitleCellTextFieldInput = ({
     onCancel?.();
   }, [setDraftValue, fieldValue, onCancel]);
 
+  // 選中項目後跳轉（和 TextFieldInputWithDuplicateSuggestion 行為一致）
+  const handleSelectSuggestion = useCallback(
+    (suggestion: (typeof suggestions)[0]) => {
+      closeSuggestions();
+      handleNavigateToRecord();
+      openRecordInCommandMenu({
+        recordId: suggestion.recordId,
+        objectNameSingular: suggestion.objectNameSingular,
+      });
+    },
+    [closeSuggestions, handleNavigateToRecord, openRecordInCommandMenu],
+  );
+
   useRegisterInputEvents<string>({
     focusId: instanceId,
     inputRef: wrapperRef,
     inputValue: draftValue ?? '',
     onEnter: (inputValue) => {
+      // 如果有選中的建議項目，跳轉到該記錄（和資料表中的行為一致）
+      if (isOpen && suggestions.length > 0 && selectedIndex >= 0) {
+        handleSelectSuggestion(suggestions[selectedIndex]);
+        return;
+      }
+      // 沒有選中項目，直接儲存
       closeSuggestions();
       onEnter?.({ newValue: inputValue });
     },

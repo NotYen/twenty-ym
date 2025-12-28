@@ -4,6 +4,7 @@ import { useGetRelationMetadata } from '@/object-metadata/hooks/useGetRelationMe
 import { useUpdateOneObjectMetadataItem } from '@/object-metadata/hooks/useUpdateOneObjectMetadataItem';
 import { type FieldMetadataItem } from '@/object-metadata/types/FieldMetadataItem';
 import { isLabelIdentifierField } from '@/object-metadata/utils/isLabelIdentifierField';
+import { isObjectMetadataSettingsReadOnly } from '@/object-record/read-only/utils/isObjectMetadataSettingsReadOnly';
 import { SettingsObjectFieldActiveActionDropdown } from '@/settings/data-model/object-details/components/SettingsObjectFieldActiveActionDropdown';
 import { SettingsObjectFieldInactiveActionDropdown } from '@/settings/data-model/object-details/components/SettingsObjectFieldDisabledActionDropdown';
 import { settingsObjectFieldsFamilyState } from '@/settings/data-model/object-details/states/settingsObjectFieldsFamilyState';
@@ -13,13 +14,14 @@ import { TableRow } from '@/ui/layout/table/components/TableRow';
 import { navigationMemorizedUrlState } from '@/ui/navigation/states/navigationMemorizedUrlState';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
+import { t } from '@lingui/core/macro';
 import { useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import { FieldMetadataType, SettingsPath } from 'twenty-shared/types';
 import {
-  getSettingsPath,
-  isDefined,
-  isLabelIdentifierFieldMetadataTypes,
+    getSettingsPath,
+    isDefined,
+    isLabelIdentifierFieldMetadataTypes,
 } from 'twenty-shared/utils';
 import { IconMinus, IconPlus, useIcons } from 'twenty-ui/display';
 import { LightIconButton } from 'twenty-ui/input';
@@ -30,7 +32,6 @@ import { type SettingsObjectDetailTableItem } from '~/pages/settings/data-model/
 
 import { RELATION_TYPES } from '../../constants/RelationTypes';
 import { SettingsObjectFieldDataType } from './SettingsObjectFieldDataType';
-import { isObjectMetadataSettingsReadOnly } from '@/object-record/read-only/utils/isObjectMetadataSettingsReadOnly';
 
 type SettingsObjectFieldItemTableRowProps = {
   settingsObjectDetailTableItem: SettingsObjectDetailTableItem;
@@ -51,6 +52,17 @@ const StyledNameLabel = styled.div`
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+`;
+
+const StyledInactiveTag = styled.span`
+  color: ${({ theme }) => theme.color.red};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  background-color: ${({ theme }) => theme.background.transparent.light};
+  padding: 2px 6px;
+  border-radius: ${({ theme }) => theme.border.radius.sm};
+  margin-left: ${({ theme }) => theme.spacing(2)};
+  flex-shrink: 0;
+  border: 1px solid ${({ theme }) => theme.color.red};
 `;
 
 const StyledIconTableCell = styled(TableCell)`
@@ -248,6 +260,9 @@ export const SettingsObjectFieldItemTableRow = ({
           <StyledNameLabel title={fieldMetadataItem.label}>
             {fieldMetadataItem.label}
           </StyledNameLabel>
+          {status === 'disabled' && (
+            <StyledInactiveTag>{t`Inactive`}</StyledInactiveTag>
+          )}
         </StyledNameTableCell>
       </UndecoratedLink>
 

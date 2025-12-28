@@ -1,10 +1,11 @@
 import { useGlobalHotkeysCallback } from '@/ui/utilities/hotkey/hooks/useGlobalHotkeysCallback';
 import { pendingHotkeyState } from '@/ui/utilities/hotkey/states/internal/pendingHotkeysState';
+import { isIMEComposing } from '@/ui/utilities/hotkey/utils/isIMEComposing';
 import { useHotkeys } from 'react-hotkeys-hook';
 import {
-  type HotkeyCallback,
-  type Keys,
-  type Options,
+    type HotkeyCallback,
+    type Keys,
+    type Options,
 } from 'react-hotkeys-hook/dist/types';
 import { useRecoilCallback } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
@@ -61,6 +62,11 @@ export const useGlobalHotkeys = ({
   return useHotkeys(
     keys,
     (keyboardEvent, hotkeysEvent) => {
+      // Skip hotkey handling when IME is composing
+      if (isIMEComposing(keyboardEvent)) {
+        return;
+      }
+
       callGlobalHotkeysCallback({
         keyboardEvent,
         hotkeysEvent,
