@@ -2,7 +2,7 @@ import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMeta
 import { RecordGqlOperationFilter } from '@/object-record/graphql/types/RecordGqlOperationFilter';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { useEffect, useMemo, useRef } from 'react';
-import { isDefined } from 'twenty-shared/utils';
+import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
 import { type PieChartConfiguration } from '~/generated/graphql';
 
 const PIE_CHART_TOOLTIP_RECORDS_LIMIT = 5;
@@ -108,14 +108,37 @@ export const usePieChartSliceRecords = ({
       return undefined;
     }
 
-    if (isDefined(configuration?.filter)) {
-      return {
-        and: [sliceFilter, configuration.filter as RecordGqlOperationFilter],
-      };
+    // Convert recordFilters/recordFilterGroups format to RecordGqlOperationFilter
+    const configFilter = configuration?.filter;
+    if (isDefined(configFilter) && isDefined(objectMetadataItem)) {
+      const hasRecordFilters =
+        Array.isArray(configFilter.recordFilters) ||
+        Array.isArray(configFilter.recordFilterGroups);
+
+      if (hasRecordFilters) {
+        // Convert new format (recordFilters/recordFilterGroups) to GQL filter
+        const convertedFilter = computeRecordGqlOperationFilter({
+          fields: objectMetadataItem.fields,
+          filterValueDependencies: {},
+          recordFilters: configFilter.recordFilters ?? [],
+          recordFilterGroups: configFilter.recordFilterGroups ?? [],
+        });
+
+        if (isDefined(convertedFilter)) {
+          return {
+            and: [sliceFilter, convertedFilter],
+          };
+        }
+      } else {
+        // Already in RecordGqlOperationFilter format
+        return {
+          and: [sliceFilter, configFilter as RecordGqlOperationFilter],
+        };
+      }
     }
 
     return sliceFilter;
-  }, [sliceFilter, configuration?.filter]);
+  }, [sliceFilter, configuration?.filter, objectMetadataItem]);
 
   const { records, loading, totalCount } = useFindManyRecords({
     objectNameSingular: objectMetadataItem?.nameSingular ?? 'skip',
