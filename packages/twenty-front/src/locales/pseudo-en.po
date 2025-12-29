@@ -1056,6 +1056,9 @@ msgstr ""
 #. js-lingui-id: XyOToQ
 #: src/utils/get-error-message-from-apollo-error.util.ts
 #: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
@@ -1101,6 +1104,11 @@ msgstr ""
 #: src/utils/date-utils.ts
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
 msgid "and"
+msgstr ""
+
+#. js-lingui-id: 91gtiF
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
+msgid "and {remainingCount} more..."
 msgstr ""
 
 #. js-lingui-id: OpAwo5
@@ -2754,6 +2762,11 @@ msgstr ""
 msgid "currencies"
 msgstr ""
 
+#. js-lingui-id: 3+GXsk
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Currency ($1,000,000)"
+msgstr ""
+
 #. js-lingui-id: Hp1l6f
 #: src/modules/billing/components/internal/SubscriptionInfoRowContainer.tsx
 msgid "Current"
@@ -3059,6 +3072,13 @@ msgstr ""
 #. js-lingui-id: ovBPCi
 #: src/modules/settings/data-model/fields/forms/date/utils/getDisplayFormatLabel.ts
 msgid "Default"
+msgstr ""
+
+#. js-lingui-id: CXnAkR
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+#: src/modules/command-menu/pages/page-layout/components/dropdown-content/ChartTooltipDisplayFieldSelectionDropdownContent.tsx
+msgid "Default (Name)"
 msgstr ""
 
 #. js-lingui-id: mC21D6
@@ -4725,6 +4745,11 @@ msgstr ""
 msgid "Frontend image version"
 msgstr ""
 
+#. js-lingui-id: +9IKTt
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Full (1,000,000)"
+msgstr ""
+
 #. js-lingui-id: scmRyR
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -5254,6 +5279,7 @@ msgstr ""
 #. js-lingui-id: NoNwIX
 #: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/modules/settings/domains/components/SettingsWorkspaceDomainCard.tsx
+#: src/modules/settings/data-model/object-details/components/SettingsObjectFieldItemTableRow.tsx
 msgid "Inactive"
 msgstr ""
 
@@ -5858,6 +5884,11 @@ msgstr ""
 #. js-lingui-id: tVSmFT
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "Loading more..."
+msgstr ""
+
+#. js-lingui-id: htDcCP
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
+msgid "Loading records..."
 msgstr ""
 
 #. js-lingui-id: nDnbEe
@@ -7753,6 +7784,7 @@ msgstr ""
 
 #. js-lingui-id: PWlTvh
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelTableHeader.tsx
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
 msgid "Records"
 msgstr ""
 
@@ -8772,6 +8804,12 @@ msgstr ""
 msgid "Short"
 msgstr ""
 
+#. js-lingui-id: NpJZsQ
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Short (1m, 1k)"
+msgstr ""
+
 #. js-lingui-id: gWk8gY
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIconLabelForm.tsx
 msgid "Should changing a field's label also change the API name?"
@@ -9712,6 +9750,11 @@ msgstr ""
 msgid "Tomorrow"
 msgstr ""
 
+#. js-lingui-id: tMpLy9
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Tooltip display field"
+msgstr ""
+
 #. js-lingui-id: YT/cKI
 #: src/modules/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Track your {intervalLabel} workflow credit consumption."
@@ -10136,6 +10179,11 @@ msgstr ""
 #: src/modules/page-layout/widgets/graph/graphWidgetGaugeChart/components/GraphWidgetGaugeChart.tsx
 #: src/modules/command-menu/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 msgid "Value"
+msgstr ""
+
+#. js-lingui-id: aiGdMI
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Value format"
 msgstr ""
 
 #. js-lingui-id: UZHvVi

@@ -1,16 +1,16 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 import {
-  IsBoolean,
-  IsEnum,
-  IsNotEmpty,
-  IsObject,
-  IsOptional,
-  IsString,
-  IsTimeZone,
-  IsUUID,
-  Max,
-  Min,
+    IsBoolean,
+    IsEnum,
+    IsNotEmpty,
+    IsObject,
+    IsOptional,
+    IsString,
+    IsTimeZone,
+    IsUUID,
+    Max,
+    Min,
 } from 'class-validator';
 import { GraphQLJSON } from 'graphql-type-json';
 import { CalendarStartDay } from 'twenty-shared/constants';
@@ -96,4 +96,14 @@ export class PieChartConfigurationDTO {
   @Min(0)
   @Max(7)
   firstDayOfTheWeek?: number;
+
+  @Field(() => UUIDScalarType, { nullable: true })
+  @IsUUID()
+  @IsOptional()
+  tooltipDisplayFieldMetadataId?: string;
+
+  @Field(() => String, { nullable: true, defaultValue: 'shortNumber' })
+  @IsString()
+  @IsOptional()
+  valueDisplayType?: 'shortNumber' | 'number' | 'currency';
 }

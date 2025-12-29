@@ -79,6 +79,8 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         filter
         timezone
         firstDayOfTheWeek
+        tooltipDisplayFieldMetadataId
+        valueDisplayType
       }
       ... on AggregateChartConfiguration {
         graphType

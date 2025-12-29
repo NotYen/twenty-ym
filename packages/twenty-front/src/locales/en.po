@@ -1056,6 +1056,9 @@ msgstr "An error occurred while processing your message"
 #. js-lingui-id: XyOToQ
 #: src/utils/get-error-message-from-apollo-error.util.ts
 #: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
@@ -1102,6 +1105,11 @@ msgstr "An unexpected error occurred"
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
 msgid "and"
 msgstr "and"
+
+#. js-lingui-id: 91gtiF
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
+msgid "and {remainingCount} more..."
+msgstr "and {remainingCount} more..."
 
 #. js-lingui-id: OpAwo5
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
@@ -2754,6 +2762,11 @@ msgstr "Cumulative"
 msgid "currencies"
 msgstr "currencies"
 
+#. js-lingui-id: 3+GXsk
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Currency ($1,000,000)"
+msgstr "Currency ($1,000,000)"
+
 #. js-lingui-id: Hp1l6f
 #: src/modules/billing/components/internal/SubscriptionInfoRowContainer.tsx
 msgid "Current"
@@ -3060,6 +3073,13 @@ msgstr "Decide which Sub-address fields you want to display"
 #: src/modules/settings/data-model/fields/forms/date/utils/getDisplayFormatLabel.ts
 msgid "Default"
 msgstr "Default"
+
+#. js-lingui-id: CXnAkR
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+#: src/modules/command-menu/pages/page-layout/components/dropdown-content/ChartTooltipDisplayFieldSelectionDropdownContent.tsx
+msgid "Default (Name)"
+msgstr "Default (Name)"
 
 #. js-lingui-id: mC21D6
 #: src/modules/settings/data-model/fields/forms/address/components/SettingsDataModelFieldAddressForm.tsx
@@ -4725,6 +4745,11 @@ msgstr "from {startDay} to {endDay}"
 msgid "Frontend image version"
 msgstr "Frontend image version"
 
+#. js-lingui-id: +9IKTt
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Full (1,000,000)"
+msgstr "Full (1,000,000)"
+
 #. js-lingui-id: scmRyR
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -5254,6 +5279,7 @@ msgstr "In {dateDiff}"
 #. js-lingui-id: NoNwIX
 #: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/modules/settings/domains/components/SettingsWorkspaceDomainCard.tsx
+#: src/modules/settings/data-model/object-details/components/SettingsObjectFieldItemTableRow.tsx
 msgid "Inactive"
 msgstr "Inactive"
 
@@ -5859,6 +5885,11 @@ msgstr "Loading metrics data..."
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "Loading more..."
 msgstr "Loading more..."
+
+#. js-lingui-id: htDcCP
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
+msgid "Loading records..."
+msgstr "Loading records..."
 
 #. js-lingui-id: nDnbEe
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
@@ -7753,6 +7784,7 @@ msgstr "Record Selection"
 
 #. js-lingui-id: PWlTvh
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelTableHeader.tsx
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
 msgid "Records"
 msgstr "Records"
 
@@ -8772,6 +8804,12 @@ msgstr "Share this link to invite users to join your workspace"
 msgid "Short"
 msgstr "Short"
 
+#. js-lingui-id: NpJZsQ
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Short (1m, 1k)"
+msgstr "Short (1m, 1k)"
+
 #. js-lingui-id: gWk8gY
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIconLabelForm.tsx
 msgid "Should changing a field's label also change the API name?"
@@ -9714,6 +9752,11 @@ msgstr "Toggle all settings permissions"
 msgid "Tomorrow"
 msgstr "Tomorrow"
 
+#. js-lingui-id: tMpLy9
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Tooltip display field"
+msgstr "Tooltip display field"
+
 #. js-lingui-id: YT/cKI
 #: src/modules/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Track your {intervalLabel} workflow credit consumption."
@@ -10139,6 +10182,11 @@ msgstr "Validate Data"
 #: src/modules/command-menu/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 msgid "Value"
 msgstr "Value"
+
+#. js-lingui-id: aiGdMI
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Value format"
+msgstr "Value format"
 
 #. js-lingui-id: UZHvVi
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx

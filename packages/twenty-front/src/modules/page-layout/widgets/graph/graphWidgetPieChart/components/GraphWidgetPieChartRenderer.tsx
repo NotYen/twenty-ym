@@ -45,9 +45,11 @@ export const GraphWidgetPieChartRenderer = ({
       <GraphWidgetPieChart
         data={data}
         showLegend
-        displayType="shortNumber"
+        displayType={configuration.valueDisplayType ?? 'shortNumber'}
         id={`pie-chart-${widget.id}`}
         color={configuration.color ?? undefined}
+        objectMetadataItemId={widget.objectMetadataId}
+        configuration={configuration}
       />
     </Suspense>
   );

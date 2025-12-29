@@ -1061,6 +1061,9 @@ msgstr "處理您的消息時發生錯誤"
 #. js-lingui-id: XyOToQ
 #: src/utils/get-error-message-from-apollo-error.util.ts
 #: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
@@ -1107,6 +1110,11 @@ msgstr "發生意外錯誤"
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
 msgid "and"
 msgstr "和"
+
+#. js-lingui-id: 91gtiF
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
+msgid "and {remainingCount} more..."
+msgstr "還有 {remainingCount} 筆..."
 
 #. js-lingui-id: OpAwo5
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
@@ -2759,6 +2767,11 @@ msgstr "累積"
 msgid "currencies"
 msgstr "貨幣"
 
+#. js-lingui-id: 3+GXsk
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Currency ($1,000,000)"
+msgstr "貨幣 ($1,000,000)"
+
 #. js-lingui-id: Hp1l6f
 #: src/modules/billing/components/internal/SubscriptionInfoRowContainer.tsx
 msgid "Current"
@@ -3065,6 +3078,13 @@ msgstr "決定您希望顯示哪些子地址欄位"
 #: src/modules/settings/data-model/fields/forms/date/utils/getDisplayFormatLabel.ts
 msgid "Default"
 msgstr "預設值"
+
+#. js-lingui-id: CXnAkR
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+#: src/modules/command-menu/pages/page-layout/components/dropdown-content/ChartTooltipDisplayFieldSelectionDropdownContent.tsx
+msgid "Default (Name)"
+msgstr "預設（名稱）"
 
 #. js-lingui-id: mC21D6
 #: src/modules/settings/data-model/fields/forms/address/components/SettingsDataModelFieldAddressForm.tsx
@@ -4730,6 +4750,11 @@ msgstr "從 {startDay} 到 {endDay} 之間"
 msgid "Frontend image version"
 msgstr "前端映像版本"
 
+#. js-lingui-id: +9IKTt
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Full (1,000,000)"
+msgstr "完整 (1,000,000)"
+
 #. js-lingui-id: scmRyR
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -5259,6 +5284,7 @@ msgstr "在 {dateDiff}"
 #. js-lingui-id: NoNwIX
 #: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/modules/settings/domains/components/SettingsWorkspaceDomainCard.tsx
+#: src/modules/settings/data-model/object-details/components/SettingsObjectFieldItemTableRow.tsx
 msgid "Inactive"
 msgstr "未啟用"
 
@@ -5864,6 +5890,11 @@ msgstr "正在加載數據指標……"
 #: src/modules/ui/input/components/IconPicker.tsx
 msgid "Loading more..."
 msgstr "載入更多..."
+
+#. js-lingui-id: htDcCP
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
+msgid "Loading records..."
+msgstr "載入記錄中..."
 
 #. js-lingui-id: nDnbEe
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
@@ -7758,6 +7789,7 @@ msgstr "記錄選擇"
 
 #. js-lingui-id: PWlTvh
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelTableHeader.tsx
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
 msgid "Records"
 msgstr "紀錄"
 
@@ -8777,6 +8809,12 @@ msgstr "分享此鏈接以邀請用戶加入您的工作區"
 msgid "Short"
 msgstr "短"
 
+#. js-lingui-id: NpJZsQ
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Short (1m, 1k)"
+msgstr "簡短 (1m, 1k)"
+
 #. js-lingui-id: gWk8gY
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIconLabelForm.tsx
 msgid "Should changing a field's label also change the API name?"
@@ -9717,6 +9755,11 @@ msgstr "切換所有設置權限"
 msgid "Tomorrow"
 msgstr "明天"
 
+#. js-lingui-id: tMpLy9
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Tooltip display field"
+msgstr "提示框顯示欄位"
+
 #. js-lingui-id: YT/cKI
 #: src/modules/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Track your {intervalLabel} workflow credit consumption."
@@ -10142,6 +10185,11 @@ msgstr "驗證數據"
 #: src/modules/command-menu/pages/page-layout/hooks/useGraphXSortOptionLabels.ts
 msgid "Value"
 msgstr "值"
+
+#. js-lingui-id: aiGdMI
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Value format"
+msgstr "數值格式"
 
 #. js-lingui-id: UZHvVi
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx

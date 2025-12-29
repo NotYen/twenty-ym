@@ -6,6 +6,8 @@ import { DATE_GRANULARITY_SETTING } from '@/command-menu/pages/page-layout/const
 import { EACH_SLICE_REPRESENTS_SETTING } from '@/command-menu/pages/page-layout/constants/settings/EachSliceRepresentsSetting';
 import { FILTER_SETTING } from '@/command-menu/pages/page-layout/constants/settings/FilterSetting';
 import { SORT_BY_PIE_CHART_SETTING } from '@/command-menu/pages/page-layout/constants/settings/SortByPieChartSetting';
+import { TOOLTIP_DISPLAY_FIELD_SETTING } from '@/command-menu/pages/page-layout/constants/settings/TooltipDisplayFieldSetting';
+import { VALUE_FORMAT_SETTING } from '@/command-menu/pages/page-layout/constants/settings/ValueFormatSetting';
 import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/ChartSettingsGroup';
 
 export const PIE_CHART_SETTINGS: ChartSettingsGroup[] = [
@@ -18,10 +20,11 @@ export const PIE_CHART_SETTINGS: ChartSettingsGroup[] = [
       DATE_GRANULARITY_SETTING,
       EACH_SLICE_REPRESENTS_SETTING,
       SORT_BY_PIE_CHART_SETTING,
+      TOOLTIP_DISPLAY_FIELD_SETTING,
     ],
   },
   {
     heading: 'Style',
-    items: [COLORS_SETTING, DATA_LABELS_SETTING],
+    items: [COLORS_SETTING, DATA_LABELS_SETTING, VALUE_FORMAT_SETTING],
   },
 ];

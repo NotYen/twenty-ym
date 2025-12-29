@@ -3036,6 +3036,8 @@ export type PieChartConfiguration = {
   groupBySubFieldName?: Maybe<Scalars['String']>;
   orderBy?: Maybe<GraphOrderBy>;
   timezone?: Maybe<Scalars['String']>;
+  tooltipDisplayFieldMetadataId?: Maybe<Scalars['UUID']>;
+  valueDisplayType?: Maybe<Scalars['String']>;
 };
 
 export type PlaceDetailsResult = {

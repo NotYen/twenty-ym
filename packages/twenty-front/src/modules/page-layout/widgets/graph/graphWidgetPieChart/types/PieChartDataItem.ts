@@ -6,4 +6,6 @@ export type PieChartDataItem = {
   label?: string;
   color?: GraphColor;
   to?: string;
+  // Raw dimension value for filtering (before formatting)
+  rawDimensionValue?: string | number | null;
 };
