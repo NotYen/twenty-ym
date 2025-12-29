@@ -26,7 +26,6 @@ export const notesAllView = (
     key: 'INDEX',
     position: 0,
     icon: 'IconNotes',
-    kanbanFieldMetadataId: '',
     filters: [],
     fields: [
       {

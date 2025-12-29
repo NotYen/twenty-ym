@@ -12,7 +12,7 @@ import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 
 export const useSaveCurrentViewGroups = () => {
   const { canPersistChanges } = useCanPersistViewChanges();
-  const { updateViewGroups } = usePersistViewGroupRecords();
+  const { createViewGroups, updateViewGroups } = usePersistViewGroupRecords();
 
   const { getViewFromPrefetchState } = useGetViewFromPrefetchState();
 
@@ -45,7 +45,9 @@ export const useSaveCurrentViewGroups = () => {
 
         const existingField = currentViewGroups.find(
           (currentViewGroup) =>
-            currentViewGroup.fieldValue === viewGroupToSave.fieldValue,
+            currentViewGroup.fieldValue === viewGroupToSave.fieldValue &&
+            currentViewGroup.fieldMetadataId ===
+              viewGroupToSave.fieldMetadataId,
         );
 
         if (isUndefinedOrNull(existingField)) {
@@ -115,7 +117,9 @@ export const useSaveCurrentViewGroups = () => {
           .map((viewGroupToSave) => {
             const existingField = currentViewGroups.find(
               (currentViewGroup) =>
-                currentViewGroup.fieldValue === viewGroupToSave.fieldValue,
+                currentViewGroup.fieldValue === viewGroupToSave.fieldValue &&
+                currentViewGroup.fieldMetadataId ===
+                  viewGroupToSave.fieldMetadataId,
             );
 
             if (isUndefinedOrNull(existingField)) {
@@ -143,6 +147,7 @@ export const useSaveCurrentViewGroups = () => {
                 update: {
                   isVisible: viewGroupToSave.isVisible,
                   position: viewGroupToSave.position,
+                  fieldMetadataId: viewGroupToSave.fieldMetadataId,
                   fieldValue: viewGroupToSave.fieldValue,
                 },
               },
@@ -150,14 +155,29 @@ export const useSaveCurrentViewGroups = () => {
           })
           .filter(isDefined);
 
-        if (!isDefined(view.mainGroupByFieldMetadataId)) {
-          throw new Error('mainGroupByFieldMetadataId is required');
-        }
+        const viewGroupsToCreate = viewGroupsToSave.filter(
+          (viewFieldToSave) =>
+            !currentViewGroups.some(
+              (currentViewGroup) =>
+                currentViewGroup.fieldValue === viewFieldToSave.fieldValue &&
+                currentViewGroup.fieldMetadataId ===
+                  viewFieldToSave.fieldMetadataId,
+            ),
+        );
 
-        await updateViewGroups(viewGroupsToUpdate);
+        await Promise.all([
+          createViewGroups({
+            inputs: viewGroupsToCreate.map(({ __typename, ...viewGroup }) => ({
+              ...viewGroup,
+              viewId: view.id,
+            })),
+          }),
+          updateViewGroups(viewGroupsToUpdate),
+        ]);
       },
     [
       canPersistChanges,
+      createViewGroups,
       currentViewIdCallbackState,
       getViewFromPrefetchState,
       updateViewGroups,

@@ -28,7 +28,6 @@ export const workflowsAllView = (
     position: 0,
     icon: 'IconSettingsAutomation',
     openRecordIn: ViewOpenRecordInType.RECORD_PAGE,
-    kanbanFieldMetadataId: '',
     filters: [],
     fields: [
       {

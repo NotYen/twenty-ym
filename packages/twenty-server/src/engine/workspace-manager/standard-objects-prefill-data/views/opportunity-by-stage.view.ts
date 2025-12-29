@@ -17,6 +17,11 @@ export const opportunitiesByStageView = (
     throw new Error('Opportunity object metadata not found');
   }
 
+  const stageFieldMetadataId =
+    opportunityObjectMetadata.fields.find(
+      (field) => field.standardId === OPPORTUNITY_STANDARD_FIELD_IDS.stage,
+    )?.id ?? '';
+
   return {
     name: useCoreNaming ? msg`By Stage` : 'By Stage',
     objectMetadataId: opportunityObjectMetadata.id,
@@ -24,16 +29,13 @@ export const opportunitiesByStageView = (
     key: null,
     position: 2,
     icon: 'IconLayoutKanban',
-    kanbanFieldMetadataId:
-      opportunityObjectMetadata.fields.find(
-        (field) => field.standardId === OPPORTUNITY_STANDARD_FIELD_IDS.stage,
-      )?.id ?? '',
     kanbanAggregateOperation: AggregateOperations.MIN,
     kanbanAggregateOperationFieldMetadataId:
       opportunityObjectMetadata.fields.find(
         (field) => field.standardId === OPPORTUNITY_STANDARD_FIELD_IDS.amount,
       )?.id ?? '',
     filters: [],
+    mainGroupByFieldMetadataId: stageFieldMetadataId,
     fields: [
       {
         fieldMetadataId:
@@ -98,51 +100,31 @@ export const opportunitiesByStageView = (
     ],
     groups: [
       {
-        fieldMetadataId:
-          opportunityObjectMetadata.fields.find(
-            (field) =>
-              field.standardId === OPPORTUNITY_STANDARD_FIELD_IDS.stage,
-          )?.id ?? '',
+        fieldMetadataId: stageFieldMetadataId,
         isVisible: true,
         fieldValue: 'NEW',
         position: 0,
       },
       {
-        fieldMetadataId:
-          opportunityObjectMetadata.fields.find(
-            (field) =>
-              field.standardId === OPPORTUNITY_STANDARD_FIELD_IDS.stage,
-          )?.id ?? '',
+        fieldMetadataId: stageFieldMetadataId,
         isVisible: true,
         fieldValue: 'SCREENING',
         position: 1,
       },
       {
-        fieldMetadataId:
-          opportunityObjectMetadata.fields.find(
-            (field) =>
-              field.standardId === OPPORTUNITY_STANDARD_FIELD_IDS.stage,
-          )?.id ?? '',
+        fieldMetadataId: stageFieldMetadataId,
         isVisible: true,
         fieldValue: 'MEETING',
         position: 2,
       },
       {
-        fieldMetadataId:
-          opportunityObjectMetadata.fields.find(
-            (field) =>
-              field.standardId === OPPORTUNITY_STANDARD_FIELD_IDS.stage,
-          )?.id ?? '',
+        fieldMetadataId: stageFieldMetadataId,
         isVisible: true,
         fieldValue: 'PROPOSAL',
         position: 3,
       },
       {
-        fieldMetadataId:
-          opportunityObjectMetadata.fields.find(
-            (field) =>
-              field.standardId === OPPORTUNITY_STANDARD_FIELD_IDS.stage,
-          )?.id ?? '',
+        fieldMetadataId: stageFieldMetadataId,
         isVisible: true,
         fieldValue: 'CUSTOMER',
         position: 4,

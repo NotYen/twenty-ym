@@ -28,7 +28,6 @@ export const companiesAllView = (
     key: 'INDEX',
     position: 0,
     icon: 'IconList',
-    kanbanFieldMetadataId: '',
     filters: [],
     fields: [
       {
