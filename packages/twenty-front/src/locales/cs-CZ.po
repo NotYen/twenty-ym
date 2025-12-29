@@ -687,6 +687,13 @@ msgstr "Přidat třídění"
 msgid "Add SSO Identity Provider"
 msgstr "Přidat poskytovatele identity SSO"
 
+#. js-lingui-id: Nog5wG
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Add Super Admin"
+msgstr ""
+
 #. js-lingui-id: hWkQMS
 #: src/modules/activities/tasks/components/AddTaskButton.tsx
 msgid "Add task"
@@ -1313,6 +1320,16 @@ msgstr "Jste si jistí, že chcete zničit tyto záznamy? Nebude možné je obno
 #: src/modules/action-menu/actions/record-actions/single-record/components/DestroySingleRecordAction.tsx
 msgid "Are you sure you want to destroy this record? It cannot be recovered anymore."
 msgstr "Opravdu chcete zničit tento záznam? Nebude možné jej obnovit."
+
+#. js-lingui-id: HdIOwP
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Are you sure you want to grant Super Admin privileges to <0>{selectedMemberName} ({selectedMemberEmail})</0>? They will be able to access Advanced Settings across all workspaces."
+msgstr ""
+
+#. js-lingui-id: ULnPt8
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Are you sure you want to remove Super Admin privileges from <0>{superAdminToRemoveEmail}</0>? They will no longer be able to access Advanced Settings."
+msgstr ""
 
 #. js-lingui-id: mcHVC1
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/RestoreMultipleRecordsAction.tsx
@@ -3669,6 +3686,7 @@ msgstr "Osmý"
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/SettingsProfile.tsx
 #: src/pages/auth/PasswordReset.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTableHeader.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
@@ -4409,6 +4427,11 @@ msgstr ""
 msgid "Failed"
 msgstr "Selhalo"
 
+#. js-lingui-id: e6IHER
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Failed to add Super Admin"
+msgstr ""
+
 #. js-lingui-id: fsNGMi
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
 msgid "Failed to create {translatedMetadataName}. Please try again."
@@ -4448,6 +4471,11 @@ msgstr "Nepodařilo se odstranit převod"
 #: src/modules/settings/admin-panel/config-variables/hooks/useConfigVariableActions.ts
 msgid "Failed to remove override"
 msgstr "Nepodařilo se odstranit přepsání"
+
+#. js-lingui-id: LY3AQ3
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Failed to remove Super Admin"
+msgstr ""
 
 #. js-lingui-id: SJEIIJ
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
@@ -4901,6 +4929,16 @@ msgstr ""
 #: src/modules/settings/workspace/components/ToggleImpersonate.tsx
 msgid "Grant access to your workspace so we can troubleshoot problems."
 msgstr "Poskytněte přístup k vašemu pracovnímu prostoru, abychom mohli řešit problémy."
+
+#. js-lingui-id: LJ+Is6
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Granted At"
+msgstr ""
+
+#. js-lingui-id: k5S8+2
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Granted By"
+msgstr ""
 
 #. js-lingui-id: WUgtid
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -5891,11 +5929,6 @@ msgstr "Načítání dat metrik..."
 msgid "Loading more..."
 msgstr "Načítám více..."
 
-#. js-lingui-id: htDcCP
-#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
-msgid "Loading records..."
-msgstr ""
-
 #. js-lingui-id: nDnbEe
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
 msgid "Loading retention configuration..."
@@ -5905,6 +5938,7 @@ msgstr "Načítám konfiguraci uložení..."
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminVersionDisplay.tsx
 #: src/modules/activities/timeline-activities/rows/message/components/EventCardMessage.tsx
@@ -6014,6 +6048,11 @@ msgstr "Spravujte nastavení přístupu podpory"
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Manage the members of your workspace here"
 msgstr "Zde můžete spravovat členy vašeho pracovního prostoru"
+
+#. js-lingui-id: OcGM1y
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Manage users who can access Advanced Settings."
+msgstr ""
 
 #. js-lingui-id: /berfj
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
@@ -6625,6 +6664,11 @@ msgstr "Žádné API klíče neodpovídají vašemu vyhledávání"
 msgid "No available fields to select"
 msgstr "Žádná dostupná pole k výběru"
 
+#. js-lingui-id: ixHR8T
+#: src/modules/settings/super-admin/components/SuperAdminMemberPickerDropdown.tsx
+msgid "No available members"
+msgstr ""
+
 #. js-lingui-id: OTe3RI
 #: src/pages/settings/domains/SettingsDomain.tsx
 msgid "No change detected"
@@ -6823,6 +6867,7 @@ msgid "No results"
 msgstr "Žádný výsledek"
 
 #. js-lingui-id: MA3x23
+#: src/modules/settings/super-admin/components/SuperAdminMemberPickerDropdown.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentWorkspaceMemberPickerDropdownContent.tsx
 msgid "No Results"
 msgstr "Žádné výsledky"
@@ -6841,6 +6886,11 @@ msgstr "Žádné řádky s chybami"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "No Select field"
 msgstr "Žádné výběrové pole"
+
+#. js-lingui-id: tL2EUu
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "No Super Admins found"
+msgstr ""
 
 #. js-lingui-id: A5XQ/A
 #: src/modules/settings/admin-panel/config-variables/components/SettingsAdminConfigVariables.tsx
@@ -7611,6 +7661,11 @@ msgstr "Předchozí AI diskuse"
 msgid "Price updated."
 msgstr "Cena byla aktualizována."
 
+#. js-lingui-id: T/R+Qz
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Primary"
+msgstr ""
+
 #. js-lingui-id: 0Ni6nR
 #: src/modules/object-record/record-field/ui/form-types/components/FormEmailsFieldInput.tsx
 #: src/modules/object-record/record-field/ui/form-types/components/FormEmailsFieldInput.tsx
@@ -7932,6 +7987,12 @@ msgstr "Odebrat třídění"
 #: src/modules/object-record/record-index/components/RecordIndexRemoveSortingModal.tsx
 msgid "Remove sorting?"
 msgstr "Odebrat třídění?"
+
+#. js-lingui-id: 5ABwxp
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Remove Super Admin"
+msgstr ""
 
 #. js-lingui-id: oQjB9l
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
@@ -8277,6 +8338,7 @@ msgstr "Vyhledat roli..."
 
 #. js-lingui-id: xdl79x
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
+#: src/modules/settings/super-admin/components/SuperAdminMemberPickerDropdown.tsx
 msgid "Search a team member..."
 msgstr "Vyhledávejte člena týmu..."
 
@@ -9237,6 +9299,21 @@ msgstr "Součet"
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 msgid "Sunday"
 msgstr "Neděle"
+
+#. js-lingui-id: tjSkBZ
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Super Admin added successfully"
+msgstr ""
+
+#. js-lingui-id: VlpgUd
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Super Admin Management"
+msgstr ""
+
+#. js-lingui-id: sW2OjT
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Super Admin removed successfully"
+msgstr ""
 
 #. js-lingui-id: XYLcNv
 #: src/pages/settings/security/SettingsSecurity.tsx
@@ -10314,6 +10391,11 @@ msgstr "Zobrazit předchozí AI diskuse"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "View type"
 msgstr "Typ pohledu"
+
+#. js-lingui-id: GheqyX
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "View users who can access Advanced Settings. Only the Primary Super Admin can make changes."
+msgstr ""
 
 #. js-lingui-id: 2q/Q7x
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx

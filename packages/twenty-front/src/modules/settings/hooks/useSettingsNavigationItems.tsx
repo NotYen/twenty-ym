@@ -4,31 +4,32 @@ import { useAuth } from '@/auth/hooks/useAuth';
 import { currentUserState } from '@/auth/states/currentUserState';
 import { billingState } from '@/client-config/states/billingState';
 import { usePermissionFlagMap } from '@/settings/roles/hooks/usePermissionFlagMap';
+import { useCheckIsSuperAdmin } from '@/settings/super-admin/hooks/useCheckIsSuperAdmin';
 import { type NavigationDrawerItemIndentationLevel } from '@/ui/navigation/navigation-drawer/components/NavigationDrawerItem';
 import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
 import { t } from '@lingui/core/macro';
 import { useRecoilValue } from 'recoil';
 import {
-  IconApi,
-  IconApps,
-  IconAt,
-  IconCalendarEvent,
-  IconColorSwatch,
-  type IconComponent,
-  IconCurrencyDollar,
-  IconDoorEnter,
-  IconHierarchy2,
-  IconKey,
-  IconLock,
-  IconMail,
-  IconPuzzle2,
-  IconRocket,
-  IconServer,
-  IconSettings,
-  IconSparkles,
-  IconUserCircle,
-  IconUsers,
-  IconWorld,
+    IconApi,
+    IconApps,
+    IconAt,
+    IconCalendarEvent,
+    IconColorSwatch,
+    type IconComponent,
+    IconCurrencyDollar,
+    IconDoorEnter,
+    IconHierarchy2,
+    IconKey,
+    IconLock,
+    IconMail,
+    IconPuzzle2,
+    IconRocket,
+    IconServer,
+    IconSettings,
+    IconSparkles,
+    IconUserCircle,
+    IconUsers,
+    IconWorld,
 } from 'twenty-ui/display';
 import { FeatureFlagKey, PermissionFlagType } from '~/generated/graphql';
 
@@ -67,6 +68,9 @@ const useSettingsNavigationItems = (): SettingsNavigationSection[] => {
   );
 
   const permissionMap = usePermissionFlagMap();
+
+  // Check if current user is a Super Admin (includes Primary Super Admin)
+  const { isSuperAdmin } = useCheckIsSuperAdmin();
 
   return [
     {
@@ -118,7 +122,7 @@ const useSettingsNavigationItems = (): SettingsNavigationSection[] => {
           Icon: IconSettings,
           isHidden:
             !permissionMap[PermissionFlagType.WORKSPACE] ||
-            currentUser?.email !== 'notyenyu@gmail.com',
+            !isSuperAdmin,
           isAdvanced: true,
         },
         {
