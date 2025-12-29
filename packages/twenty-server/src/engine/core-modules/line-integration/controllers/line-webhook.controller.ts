@@ -2,10 +2,10 @@ import { Controller, Post, Body, Headers, UseGuards, Logger } from '@nestjs/comm
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { LineWebhookService } from 'src/modules/line-integration/services/line-webhook.service';
-import { LineSignatureGuard } from 'src/modules/line-integration/guards/line-signature.guard';
-import { type LineWebhookBody } from 'src/modules/line-integration/types/line-webhook-event.type';
-import { LineChannelConfigEntity } from 'src/modules/line-integration/entities/line-channel-config.entity';
+import { LineWebhookService } from 'src/engine/core-modules/line-integration/services/line-webhook.service';
+import { LineSignatureGuard } from 'src/engine/core-modules/line-integration/guards/line-signature.guard';
+import { type LineWebhookBody } from 'src/engine/core-modules/line-integration/types/line-webhook-event.type';
+import { LineChannelConfigEntity } from 'src/engine/core-modules/line-integration/entities/line-channel-config.entity';
 
 /**
  * LINE Webhook Controller
@@ -56,9 +56,23 @@ export class LineWebhookController {
     const workspaceId = await this.getWorkspaceId(body.destination);
 
     if (!workspaceId) {
-      this.logger.warn(
-        `Cannot determine workspaceId for destination: ${body.destination}`,
+      // CRITICAL ALERT: Webhook routing failure
+      // 這表示收到了 LINE webhook，但無法找到對應的 workspace
+      // 可能原因：
+      // 1. botUserId 尚未儲存到資料庫
+      // 2. LINE Channel 設定已被刪除
+      // 3. Bot User ID 不匹配
+      this.logger.error(
+        `[WEBHOOK_ROUTING_FAILURE] Cannot determine workspaceId for Bot User ID: ${body.destination}. ` +
+          `Events will be lost! Event count: ${body.events.length}, ` +
+          `Event types: ${body.events.map((e) => e.type).join(', ')}`,
       );
+
+      // 記錄事件詳情以便後續調查
+      this.logger.debug(
+        `[WEBHOOK_ROUTING_FAILURE] Full webhook body: ${JSON.stringify(body)}`,
+      );
+
       // 仍然返回 200 OK 避免 LINE 重送
       return { status: 'ok' };
     }
@@ -69,9 +83,16 @@ export class LineWebhookController {
       this.lineWebhookService
         .handleEvents(workspaceId, body.events)
         .catch((error) => {
+          // CRITICAL ALERT: Event processing failure
           this.logger.error(
-            `Failed to process webhook events: ${error.message}`,
+            `[WEBHOOK_PROCESSING_FAILURE] Failed to process webhook events for workspace ${workspaceId}: ${error.message}. ` +
+              `Bot User ID: ${body.destination}, Event count: ${body.events.length}`,
             error.stack,
+          );
+
+          // 記錄失敗的事件以便後續重試
+          this.logger.debug(
+            `[WEBHOOK_PROCESSING_FAILURE] Failed events: ${JSON.stringify(body.events)}`,
           );
         });
     });

@@ -4,12 +4,15 @@ import {
   CreateDateColumn,
   Entity,
   Index,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { IDField } from '@ptc-org/nestjs-query-graphql';
 
 import { UUIDScalarType } from 'src/engine/api/graphql/workspace-schema-builder/graphql-types/scalars';
+import { WorkspaceEntity } from 'src/engine/core-modules/workspace/workspace.entity';
 
 /**
  * LINE Channel Config Entity
@@ -52,7 +55,7 @@ export class LineChannelConfigEntity {
    * 用於從 Webhook 的 destination 欄位查詢對應的 workspace
    */
   @Field(() => String, { nullable: true })
-  @Column({ unique: true, nullable: true })
+  @Column({ type: 'varchar', unique: true, nullable: true })
   @Index('IDX_LINE_CHANNEL_CONFIG_BOT_USER_ID', { unique: true })
   botUserId: string | null;
 
@@ -60,6 +63,10 @@ export class LineChannelConfigEntity {
   @Column({ type: 'uuid', unique: true })
   @Index('IDX_LINE_CHANNEL_CONFIG_WORKSPACE_ID_UNIQUE', { unique: true })
   workspaceId: string;
+
+  @ManyToOne(() => WorkspaceEntity, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'workspaceId' })
+  workspace: WorkspaceEntity;
 
   @Field(() => Date)
   @CreateDateColumn({ type: 'timestamptz' })

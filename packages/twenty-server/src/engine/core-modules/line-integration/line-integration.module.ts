@@ -7,16 +7,16 @@ import {
 import { HttpModule } from '@nestjs/axios';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { LineConfigService } from 'src/modules/line-integration/services/line-config.service';
-import { LineApiService } from 'src/modules/line-integration/services/line-api.service';
-import { LineWebhookService } from 'src/modules/line-integration/services/line-webhook.service';
-import { LinePersonService } from 'src/modules/line-integration/services/line-person.service';
-import { LineEncryptionService } from 'src/modules/line-integration/services/line-encryption.service';
-import { LineWebhookController } from 'src/modules/line-integration/controllers/line-webhook.controller';
-import { LineSignatureGuard } from 'src/modules/line-integration/guards/line-signature.guard';
-import { LineConfigResolver } from 'src/modules/line-integration/resolvers/line-config.resolver';
-import { LineChannelConfigEntity } from 'src/modules/line-integration/entities/line-channel-config.entity';
-import { LineRawBodyMiddleware } from 'src/modules/line-integration/middleware/line-raw-body.middleware';
+import { LineConfigService } from 'src/engine/core-modules/line-integration/services/line-config.service';
+import { LineApiService } from 'src/engine/core-modules/line-integration/services/line-api.service';
+import { LineWebhookService } from 'src/engine/core-modules/line-integration/services/line-webhook.service';
+import { LinePersonService } from 'src/engine/core-modules/line-integration/services/line-person.service';
+import { LineEncryptionService } from 'src/engine/core-modules/line-integration/services/line-encryption.service';
+import { LineWebhookController } from 'src/engine/core-modules/line-integration/controllers/line-webhook.controller';
+import { LineSignatureGuard } from 'src/engine/core-modules/line-integration/guards/line-signature.guard';
+import { LineConfigResolver } from 'src/engine/core-modules/line-integration/resolvers/line-config.resolver';
+import { LineChannelConfigEntity } from 'src/engine/core-modules/line-integration/entities/line-channel-config.entity';
+import { LineRawBodyMiddleware } from 'src/engine/core-modules/line-integration/middleware/line-raw-body.middleware';
 
 /**
  * LINE Integration Module

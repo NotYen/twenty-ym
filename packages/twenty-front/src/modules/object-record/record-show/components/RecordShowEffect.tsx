@@ -1,6 +1,7 @@
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
 import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadataItems';
 import { useFindOneRecord } from '@/object-record/hooks/useFindOneRecord';
+import { SalesQuoteTaxCalculationEffect } from '@/object-record/record-show/components/SalesQuoteTaxCalculationEffect';
 import { buildFindOneRecordForShowPageOperationSignature } from '@/object-record/record-show/graphql/operations/factories/findOneRecordForShowPageOperationSignatureFactory';
 import { recordStoreFamilyState } from '@/object-record/record-store/states/recordStoreFamilyState';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
@@ -59,9 +60,7 @@ export const RecordShowEffect = ({
     <>
       {objectNameSingular === 'salesQuote' && (
         <SalesQuoteTaxCalculationEffect recordId={recordId} />
-      // {objectNameSingular === 'salesquote' && (
-      //   {/* <SalesQuoteTaxCalculationEffect recordId={recordId} /> */}
-      // )} 
+      )}
     </>
   );
 };

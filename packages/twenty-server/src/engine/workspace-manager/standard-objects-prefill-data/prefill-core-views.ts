@@ -163,19 +163,23 @@ export const createCoreViews = async (
   for (const viewDefinition of viewDefinitionsWithId) {
     if (viewDefinition.fields && viewDefinition.fields.length > 0) {
       const coreViewFields: Partial<ViewFieldEntity>[] =
-        viewDefinition.fields.map((field) => ({
-          fieldMetadataId: field.fieldMetadataId,
-          position: field.position,
-          isVisible: field.isVisible,
-          size: field.size,
-          viewId: viewDefinition.id,
-          workspaceId,
-        }));
+        viewDefinition.fields
+          .filter((field) => field.fieldMetadataId && field.fieldMetadataId !== '')
+          .map((field) => ({
+            fieldMetadataId: field.fieldMetadataId,
+            position: field.position,
+            isVisible: field.isVisible,
+            size: field.size,
+            viewId: viewDefinition.id,
+            workspaceId,
+          }));
 
       const viewFieldRepository =
         queryRunner.manager.getRepository(ViewFieldEntity);
 
-      await viewFieldRepository.save(coreViewFields);
+      if (coreViewFields.length > 0) {
+        await viewFieldRepository.save(coreViewFields);
+      }
     }
 
     if (viewDefinition.filters && viewDefinition.filters.length > 0) {

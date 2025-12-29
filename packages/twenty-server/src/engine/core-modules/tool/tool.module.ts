@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { FileEntity } from 'src/engine/core-modules/file/entities/file.entity';
 import { FileModule } from 'src/engine/core-modules/file/file.module';
+import { LineIntegrationModule } from 'src/engine/core-modules/line-integration/line-integration.module';
 import { ToolRegistryService } from 'src/engine/core-modules/tool/services/tool-registry.service';
 import { HttpTool } from 'src/engine/core-modules/tool/tools/http-tool/http-tool';
 import { LineMessagingTool } from 'src/engine/core-modules/tool/tools/line-messaging-tool/line-messaging-tool';
@@ -15,6 +16,7 @@ import { MessagingImportManagerModule } from 'src/modules/messaging/message-impo
     MessagingImportManagerModule,
     TypeOrmModule.forFeature([FileEntity]),
     FileModule,
+    LineIntegrationModule,
   ],
   providers: [
     HttpTool,

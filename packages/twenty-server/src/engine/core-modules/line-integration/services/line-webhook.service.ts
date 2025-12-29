@@ -1,12 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 
-import { LineApiService } from 'src/modules/line-integration/services/line-api.service';
-import { LinePersonService } from 'src/modules/line-integration/services/line-person.service';
+import { LineApiService } from 'src/engine/core-modules/line-integration/services/line-api.service';
+import { LineConfigService } from 'src/engine/core-modules/line-integration/services/line-config.service';
+import { LinePersonService } from 'src/engine/core-modules/line-integration/services/line-person.service';
 import {
   type LineWebhookEvent,
   type LineFollowEvent,
   type LineUnfollowEvent,
-} from 'src/modules/line-integration/types/line-webhook-event.type';
+} from 'src/engine/core-modules/line-integration/types/line-webhook-event.type';
 
 /**
  * LINE Webhook Service
@@ -30,6 +31,7 @@ export class LineWebhookService {
 
   constructor(
     private readonly lineApiService: LineApiService,
+    private readonly lineConfigService: LineConfigService,
     private readonly linePersonService: LinePersonService,
   ) {}
 
@@ -107,13 +109,23 @@ export class LineWebhookService {
     this.logger.log(`User ${userId} followed the LINE OA`);
 
     try {
+      // 取得 LINE 設定
+      const config = await this.lineConfigService.getDecryptedConfig(workspaceId);
+      if (!config) {
+        this.logger.error(
+          `LINE configuration not found for workspace ${workspaceId}`,
+        );
+        return;
+      }
+
       // 1. 取得 LINE Profile
-      const profile = await this.lineApiService.getProfile(workspaceId, userId);
+      const profile = await this.lineApiService.getProfile(config.channelAccessToken, userId);
 
       // 2. 建立或更新 Person
       const person = await this.linePersonService.createOrUpdateFromLineProfile(
+        workspaceId, // 傳入 workspaceId
         {
-          userId: profile.userId,
+          userId,
           displayName: profile.displayName,
           pictureUrl: profile.pictureUrl,
           statusMessage: profile.statusMessage,
@@ -126,7 +138,7 @@ export class LineWebhookService {
 
       // 可選: 發送歡迎訊息
       // await this.lineApiService.replyTextMessage(
-      //   workspaceId,
+      //   config.channelAccessToken,
       //   event.replyToken,
       //   '感謝您加入我們的 LINE 官方帳號！',
       // );
@@ -140,6 +152,9 @@ export class LineWebhookService {
 
   /**
    * 處理 unfollow 事件 (使用者封鎖或刪除)
+   *
+   * 注意：unfollow 後無法呼叫 LINE getProfile API
+   * 如果 person 不存在，會建立最小資料的 person 記錄
    */
   private async handleUnfollowEvent(
     workspaceId: string,
@@ -154,10 +169,32 @@ export class LineWebhookService {
     this.logger.log(`User ${userId} unfollowed the LINE OA`);
 
     try {
-      // 更新 Person 的 LINE 狀態為 blocked
-      await this.linePersonService.updateLineStatus(userId, 'blocked');
+      // 先嘗試更新現有 Person
+      const updated = await this.linePersonService.updateLineStatus(
+        workspaceId,
+        userId,
+        'blocked',
+      );
 
-      this.logger.log(`Successfully marked LINE user ${userId} as blocked`);
+      if (!updated) {
+        // 如果更新失敗（person 不存在），建立最小資料的 person
+        // 這種情況可能發生在：follow 事件處理失敗，但用戶已經加入 LINE OA
+        this.logger.warn(
+          `Person not found for LINE user ${userId}, creating minimal person record`,
+        );
+
+        await this.linePersonService.createMinimalPerson(
+          workspaceId,
+          userId,
+          'blocked',
+        );
+
+        this.logger.log(
+          `Created minimal person record for unfollowed LINE user ${userId}`,
+        );
+      } else {
+        this.logger.log(`Successfully marked LINE user ${userId} as blocked`);
+      }
     } catch (error) {
       this.logger.error(
         `Failed to handle unfollow event for user ${userId}: ${error.message}`,

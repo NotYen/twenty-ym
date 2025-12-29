@@ -5,10 +5,18 @@ import {
   Args,
   Context as GqlContext,
 } from '@nestjs/graphql';
-import { UseFilters, UseGuards, UsePipes, Logger } from '@nestjs/common';
+import {
+  UseFilters,
+  UseGuards,
+  UsePipes,
+  Logger,
+  BadRequestException,
+} from '@nestjs/common';
 
-import { LineConfigService } from 'src/modules/line-integration/services/line-config.service';
-import { LineApiService } from 'src/modules/line-integration/services/line-api.service';
+import { WorkspaceActivationStatus } from 'twenty-shared/workspace';
+
+import { LineConfigService } from 'src/engine/core-modules/line-integration/services/line-config.service';
+import { LineApiService } from 'src/engine/core-modules/line-integration/services/line-api.service';
 import {
   LineConfigDTO,
   UpdateLineConfigInput,
@@ -16,7 +24,7 @@ import {
   DeleteLineConfigResultDTO,
   UpdateLineConfigResultDTO,
   LineBotInfoDTO,
-} from 'src/modules/line-integration/dtos/line-config.dto';
+} from 'src/engine/core-modules/line-integration/dtos/line-config.dto';
 import { AuthGraphqlApiExceptionFilter } from 'src/engine/core-modules/auth/filters/auth-graphql-api-exception.filter';
 import { ResolverValidationPipe } from 'src/engine/core-modules/graphql/pipes/resolver-validation.pipe';
 import { WorkspaceAuthGuard } from 'src/engine/guards/workspace-auth.guard';
@@ -102,6 +110,16 @@ export class LineConfigResolver {
   ): Promise<UpdateLineConfigResultDTO> {
     this.logger.log(`Updating LINE config for workspace ${workspace.id}`);
 
+    // 驗證 Workspace 必須為 ACTIVE 狀態
+    if (workspace.activationStatus !== WorkspaceActivationStatus.ACTIVE) {
+      this.logger.warn(
+        `Workspace ${workspace.id} is not active (status: ${workspace.activationStatus}). LINE configuration update denied.`,
+      );
+      throw new BadRequestException(
+        `Workspace must be in ACTIVE status to configure LINE integration. Current status: ${workspace.activationStatus}`,
+      );
+    }
+
     try {
       await this.lineConfigService.createOrUpdate(workspace.id, {
         channelId: input.channelId,
@@ -140,7 +158,19 @@ export class LineConfigResolver {
     this.logger.log(`Testing LINE connection for workspace ${workspace.id}`);
 
     try {
-      const result = await this.lineApiService.testConnection(workspace.id);
+      // Get decrypted config
+      const config = await this.lineConfigService.getDecryptedConfig(workspace.id);
+      if (!config) {
+        this.logger.warn(
+          `LINE configuration not found for workspace ${workspace.id}`,
+        );
+        return {
+          success: false,
+          error: 'LINE configuration not found',
+        };
+      }
+
+      const result = await this.lineApiService.testConnection(config.channelAccessToken);
 
       if (result.success && result.botInfo) {
         this.logger.log(

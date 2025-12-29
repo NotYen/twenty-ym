@@ -2,14 +2,16 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { LineChannelConfigEntity } from 'src/modules/line-integration/entities/line-channel-config.entity';
-import { LineEncryptionService } from 'src/modules/line-integration/services/line-encryption.service';
+import { LineChannelConfigEntity } from 'src/engine/core-modules/line-integration/entities/line-channel-config.entity';
+import { LineEncryptionService } from 'src/engine/core-modules/line-integration/services/line-encryption.service';
+import { LineApiService } from 'src/engine/core-modules/line-integration/services/line-api.service';
 
 /**
  * LINE Config Service
  *
  * 負責管理 LINE Channel 的設定資訊，包括：
  * - Channel ID, Channel Secret, Channel Access Token
+ * - Bot User ID (自動從 LINE API 取得)
  * - 金鑰的加密儲存與解密讀取
  * - 多租戶 (Workspace) 隔離
  *
@@ -26,6 +28,7 @@ export class LineConfigService {
     @InjectRepository(LineChannelConfigEntity)
     private readonly lineChannelConfigRepository: Repository<LineChannelConfigEntity>,
     private readonly lineEncryptionService: LineEncryptionService,
+    private readonly lineApiService: LineApiService,
   ) {}
 
   /**
@@ -53,6 +56,21 @@ export class LineConfigService {
       configData.channelAccessToken,
     );
 
+    // 從 LINE API 取得 Bot User ID (用於 Webhook 路由)
+    let botUserId: string | null = null;
+    try {
+      botUserId = await this.lineApiService.getBotUserIdByToken(
+        configData.channelAccessToken,
+      );
+      this.logger.log(`Fetched Bot User ID: ${botUserId}`);
+    } catch (error) {
+      this.logger.error(
+        `Failed to fetch Bot User ID: ${error.message}. Config will be saved without botUserId.`,
+      );
+      // 繼續儲存設定，但 botUserId 為 null
+      // 這樣管理員可以稍後透過測試連線功能來補上
+    }
+
     // 查詢是否已存在設定
     const existingConfig = await this.lineChannelConfigRepository.findOne({
       where: { workspaceId },
@@ -63,6 +81,7 @@ export class LineConfigService {
       existingConfig.channelId = configData.channelId;
       existingConfig.channelSecretEncrypted = channelSecretEncrypted;
       existingConfig.channelAccessTokenEncrypted = channelAccessTokenEncrypted;
+      existingConfig.botUserId = botUserId;
       await this.lineChannelConfigRepository.save(existingConfig);
       this.logger.log(`Updated LINE config for workspace: ${workspaceId}`);
     } else {
@@ -72,6 +91,7 @@ export class LineConfigService {
         channelId: configData.channelId,
         channelSecretEncrypted,
         channelAccessTokenEncrypted,
+        botUserId,
       });
       await this.lineChannelConfigRepository.save(newConfig);
       this.logger.log(`Created LINE config for workspace: ${workspaceId}`);

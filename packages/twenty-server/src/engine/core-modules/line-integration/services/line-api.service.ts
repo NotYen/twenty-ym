@@ -2,8 +2,6 @@ import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 
-import { LineConfigService } from 'src/modules/line-integration/services/line-config.service';
-
 /**
  * LINE API Service
  *
@@ -15,6 +13,9 @@ import { LineConfigService } from 'src/modules/line-integration/services/line-co
  * - 取得使用者資料 (Get Profile)
  * - 錯誤處理與重試機制
  * - Rate Limit 處理 (指數退避)
+ *
+ * 注意：此服務不依賴 LineConfigService，避免循環依賴
+ * 所有方法都接受 channelAccessToken 作為參數
  */
 @Injectable()
 export class LineApiService {
@@ -25,29 +26,22 @@ export class LineApiService {
 
   constructor(
     private readonly httpService: HttpService,
-    private readonly lineConfigService: LineConfigService,
   ) {}
 
   /**
    * 發送文字訊息給指定使用者
-   * @param workspaceId - 工作區 ID
+   * @param channelAccessToken - Channel Access Token
    * @param to - LINE User ID
    * @param text - 訊息內容
    */
   async pushTextMessage(
-    workspaceId: string,
+    channelAccessToken: string,
     to: string,
     text: string,
   ): Promise<void> {
     this.logger.log(
-      `Sending LINE message to user ${to} in workspace ${workspaceId}`,
+      `Sending LINE message to user ${to}`,
     );
-
-    // 取得 Access Token
-    const config = await this.lineConfigService.getDecryptedConfig(workspaceId);
-    if (!config) {
-      throw new Error(`LINE config not found for workspace ${workspaceId}`);
-    }
 
     // 建構訊息格式
     const payload = {
@@ -67,7 +61,7 @@ export class LineApiService {
         this.httpService.post(url, payload, {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${config.channelAccessToken}`,
+            Authorization: `Bearer ${channelAccessToken}`,
           },
         }),
       );
@@ -82,11 +76,11 @@ export class LineApiService {
 
   /**
    * 取得 LINE 使用者資料
-   * @param workspaceId - 工作區 ID
+   * @param channelAccessToken - Channel Access Token
    * @param userId - LINE User ID
    */
   async getProfile(
-    workspaceId: string,
+    channelAccessToken: string,
     userId: string,
   ): Promise<{
     displayName: string;
@@ -94,21 +88,15 @@ export class LineApiService {
     statusMessage?: string;
   }> {
     this.logger.log(
-      `Getting LINE profile for user ${userId} in workspace ${workspaceId}`,
+      `Getting LINE profile for user ${userId}`,
     );
-
-    // 取得 Access Token
-    const config = await this.lineConfigService.getDecryptedConfig(workspaceId);
-    if (!config) {
-      throw new Error(`LINE config not found for workspace ${workspaceId}`);
-    }
 
     // 執行 API 呼叫
     const url = `${this.LINE_API_BASE_URL}/profile/${userId}`;
     const response = await firstValueFrom(
       this.httpService.get(url, {
         headers: {
-          Authorization: `Bearer ${config.channelAccessToken}`,
+          Authorization: `Bearer ${channelAccessToken}`,
         },
       }),
     );
@@ -122,22 +110,16 @@ export class LineApiService {
 
   /**
    * 回覆訊息 (使用 Reply Token)
-   * @param workspaceId - 工作區 ID
+   * @param channelAccessToken - Channel Access Token
    * @param replyToken - Reply Token (來自 Webhook 事件)
    * @param text - 訊息內容
    */
   async replyTextMessage(
-    workspaceId: string,
+    channelAccessToken: string,
     replyToken: string,
     text: string,
   ): Promise<void> {
     this.logger.log(`Replying LINE message with token ${replyToken}`);
-
-    // 取得 Access Token
-    const config = await this.lineConfigService.getDecryptedConfig(workspaceId);
-    if (!config) {
-      throw new Error(`LINE config not found for workspace ${workspaceId}`);
-    }
 
     // 建構訊息格式
     const payload = {
@@ -156,7 +138,7 @@ export class LineApiService {
       this.httpService.post(url, payload, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${config.channelAccessToken}`,
+          Authorization: `Bearer ${channelAccessToken}`,
         },
       }),
     );
@@ -223,8 +205,9 @@ export class LineApiService {
   /**
    * 測試 LINE 連線
    * 呼叫 Get Bot Info API 驗證設定是否正確
+   * @param channelAccessToken - Channel Access Token
    */
-  async testConnection(workspaceId: string): Promise<{
+  async testConnection(channelAccessToken: string): Promise<{
     success: boolean;
     botInfo?: {
       displayName: string;
@@ -234,21 +217,12 @@ export class LineApiService {
     error?: string;
   }> {
     try {
-      const config =
-        await this.lineConfigService.getDecryptedConfig(workspaceId);
-      if (!config) {
-        return {
-          success: false,
-          error: 'LINE configuration not found',
-        };
-      }
-
       // 呼叫 Get Bot Info API
       const url = `${this.LINE_API_BASE_URL}/info`;
       const response = await firstValueFrom(
         this.httpService.get(url, {
           headers: {
-            Authorization: `Bearer ${config.channelAccessToken}`,
+            Authorization: `Bearer ${channelAccessToken}`,
           },
         }),
       );
@@ -267,6 +241,37 @@ export class LineApiService {
         success: false,
         error: error.response?.data?.message || error.message,
       };
+    }
+  }
+
+  /**
+   * 使用 Channel Access Token 取得 Bot User ID
+   * 此方法不依賴 LineConfigService，避免循環依賴
+   * @param channelAccessToken - Channel Access Token
+   * @returns Bot User ID (33 字元的 Uxxxxxxx... 格式)
+   */
+  async getBotUserIdByToken(channelAccessToken: string): Promise<string> {
+    this.logger.log('Fetching Bot User ID from LINE API');
+
+    try {
+      const url = `${this.LINE_API_BASE_URL}/info`;
+      const response = await firstValueFrom(
+        this.httpService.get(url, {
+          headers: {
+            Authorization: `Bearer ${channelAccessToken}`,
+          },
+        }),
+      );
+
+      const botUserId = response.data.userId;
+      this.logger.log(`Successfully fetched Bot User ID: ${botUserId}`);
+
+      return botUserId;
+    } catch (error) {
+      this.logger.error(
+        `Failed to fetch Bot User ID: ${error.response?.data?.message || error.message}`,
+      );
+      throw new Error('Failed to fetch Bot User ID from LINE API');
     }
   }
 }
