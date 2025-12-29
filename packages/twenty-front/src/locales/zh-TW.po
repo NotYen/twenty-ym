@@ -10802,3 +10802,60 @@ msgstr "跳過同步並繼續"
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "郵件和日曆"
 msgstr "郵件和日曆"
+
+msgid "Channel Access Token"
+msgstr "頻道存取權杖 (Channel Access Token)"
+
+msgid "Channel Secret"
+msgstr "頻道密鑰 (Channel Secret)"
+
+msgid "Channel ID"
+msgstr "頻道 ID (Channel ID)"
+
+msgid "LINE Official Account Configuration"
+msgstr "LINE 官方帳號設定"
+
+msgid "Enter your LINE Channel ID"
+msgstr "輸入您的 LINE 頻道 ID"
+
+msgid "Webhook URL"
+msgstr "Webhook 網址"
+
+msgid "Configure this Webhook URL in your LINE Developers Console:"
+msgstr "請在您的 LINE Developers Console 中設定此 Webhook 網址："
+
+msgid "Setup Instructions"
+msgstr "設定指示"
+
+msgid "LINE configuration saved successfully"
+msgstr "LINE 設定已成功儲存"
+
+msgid "Connection successful"
+msgstr "連線成功"
+
+msgid "Webhook URL copied to clipboard"
+msgstr "Webhook 網址已複製到剪貼簿"
+
+msgid "Enter new secret to update"
+msgstr "輸入新密鑰以更新"
+
+msgid "Enter your LINE Channel Secret"
+msgstr "輸入您的 LINE 頻道密鑰"
+
+msgid "Enter new token to update"
+msgstr "輸入新權杖以更新"
+
+msgid "Enter your LINE Channel Access Token"
+msgstr "輸入您的 LINE 頻道存取權杖"
+
+msgid "Update Configuration"
+msgstr "更新設定"
+
+msgid "Save Configuration"
+msgstr "儲存設定"
+
+msgid "Test Connection"
+msgstr "測試連線"
+
+msgid "Delete Configuration"
+msgstr "刪除設定"
