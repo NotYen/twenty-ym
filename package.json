@@ -210,7 +210,11 @@
   "version": "0.2.1",
   "nx": {},
   "scripts": {
-    "start": "npx concurrently --kill-others 'npx nx run-many -t start -p twenty-server twenty-front' 'npx wait-on tcp:3000 && npx nx run twenty-server:worker'"
+    "start": "npx concurrently --kill-others 'npx nx run-many -t start -p twenty-server twenty-front' 'npx wait-on tcp:3000 && npx nx run twenty-server:worker'",
+    "dev:local": "npx cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" concurrently --kill-others \"npx nx start twenty-server\" \"npx nx start twenty-front\" \"npx wait-on tcp:3000 && npx nx worker twenty-server\"",
+    "dev:local:server": "npx cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" npx nx start twenty-server",
+    "dev:local:front": "npx cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" npx nx start twenty-front",
+    "dev:local:worker": "npx wait-on tcp:3000 && npx cross-env NODE_OPTIONS=\"--max-old-space-size=4096\" npx nx worker twenty-server"
   },
   "workspaces": {
     "packages": [

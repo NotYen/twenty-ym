@@ -7,9 +7,7 @@ import { type LineMessagingInput } from 'src/engine/core-modules/tool/tools/line
 import { type ToolInput } from 'src/engine/core-modules/tool/types/tool-input.type';
 import { type ToolOutput } from 'src/engine/core-modules/tool/types/tool-output.type';
 import { type Tool } from 'src/engine/core-modules/tool/types/tool.type';
-import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
-
-import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
+import { LineConfigService } from 'src/engine/core-modules/line-integration/services/line-config.service';
 import { ScopedWorkspaceContextFactory } from 'src/engine/twenty-orm/factories/scoped-workspace-context.factory';
 
 @Injectable()
@@ -21,8 +19,7 @@ export class LineMessagingTool implements Tool {
   inputSchema = LineMessagingToolParametersZodSchema;
 
   constructor(
-    private readonly twentyConfigService: TwentyConfigService,
-    private readonly workspaceConfigService: WorkspaceConfigService,
+    private readonly lineConfigService: LineConfigService,
     private readonly scopedWorkspaceContextFactory: ScopedWorkspaceContextFactory,
   ) {}
 
@@ -30,29 +27,8 @@ export class LineMessagingTool implements Tool {
     const { to, message } = parameters as LineMessagingInput;
     const { workspaceId } = this.scopedWorkspaceContextFactory.create();
 
-    const channelAccessToken =
-      (workspaceId
-        ? await this.workspaceConfigService.get(
-            workspaceId,
-            'LINE_CHANNEL_ACCESS_TOKEN',
-          )
-        : null) || this.twentyConfigService.get('LINE_CHANNEL_ACCESS_TOKEN');
-
-    // LINE_CHANNEL_SECRET: workspace config fallback to global config
-    const channelSecret =
-      (workspaceId
-        ? await this.workspaceConfigService.get(
-            workspaceId,
-            'LINE_CHANNEL_SECRET',
-          )
-        : null) || this.twentyConfigService.get('LINE_CHANNEL_SECRET');
-
-    this.logger.debug(
-      `LINE config - workspaceId: ${workspaceId?.substring(0, 8)}..., hasToken: ${!!channelAccessToken}, hasSecret: ${!!channelSecret}`,
-    );
-
-    if (!channelAccessToken) {
-      const errorMessage = 'LINE channel access token is not configured';
+    if (!workspaceId) {
+      const errorMessage = 'Workspace ID is not available';
 
       this.logger.error(errorMessage);
 
@@ -62,6 +38,24 @@ export class LineMessagingTool implements Tool {
         error: errorMessage,
       };
     }
+
+    // Get LINE channel config from database
+    const lineConfig =
+      await this.lineConfigService.getDecryptedConfig(workspaceId);
+
+    if (!lineConfig) {
+      const errorMessage = 'LINE channel is not configured for this workspace';
+
+      this.logger.error(errorMessage);
+
+      return {
+        success: false,
+        message: errorMessage,
+        error: errorMessage,
+      };
+    }
+
+    const channelAccessToken = lineConfig.channelAccessToken;
 
     try {
       const response = await axios.post(

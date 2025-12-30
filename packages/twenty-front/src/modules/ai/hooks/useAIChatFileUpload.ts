@@ -27,7 +27,7 @@ export const useAIChatFileUpload = () => {
       const result = await uploadFile({
         variables: {
           file,
-          fileFolder: FileFolder.AgentChat,
+                    // fileFolder: FileFolder.AgentChat,
         },
       });
 

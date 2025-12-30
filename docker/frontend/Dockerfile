@@ -50,6 +50,8 @@ ENV FRONTEND_IMAGE_VERSION=${FRONTEND_IMAGE_VERSION}
 ENV VITE_IS_DEBUG_MODE=${VITE_IS_DEBUG_MODE}
 ENV IS_DEBUG_MODE=${IS_DEBUG_MODE}
 
+# 建置前端應用（會自動執行 lingui compile）
+# 注意：lingui extract 應該在開發環境執行，.po 檔案應該已包含最新翻譯
 RUN yarn nx build twenty-front --configuration=production --skip-nx-cache
 
 # =====================================
