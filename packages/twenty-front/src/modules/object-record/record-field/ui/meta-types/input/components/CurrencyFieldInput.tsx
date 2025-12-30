@@ -16,7 +16,8 @@ import { convertCurrencyAmountToCurrencyMicros } from '~/utils/convertCurrencyTo
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 
 export const CurrencyFieldInput = () => {
-  const { draftValue, setDraftValue, defaultValue } = useCurrencyField();
+  const { draftValue, setDraftValue, defaultValue, decimals } =
+    useCurrencyField();
 
   const { onClickOutside, onEnter, onEscape, onShiftTab, onTab } = useContext(
     FieldInputEventContext,
@@ -136,6 +137,7 @@ export const CurrencyFieldInput = () => {
       instanceId={instanceId}
       value={draftValue?.amount?.toString() ?? ''}
       currencyCode={currencyCode}
+      decimals={decimals}
       autoFocus
       placeholder="Currency"
       onClickOutside={handleClickOutside}
