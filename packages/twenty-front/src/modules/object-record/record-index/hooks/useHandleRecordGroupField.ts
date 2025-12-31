@@ -5,6 +5,7 @@ import { useSetRecordGroups } from '@/object-record/record-group/hooks/useSetRec
 import { useLoadRecordIndexStates } from '@/object-record/record-index/hooks/useLoadRecordIndexStates';
 import { useRecoilComponentCallbackState } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentCallbackState';
 import { usePersistView } from '@/views/hooks/internal/usePersistView';
+import { usePersistViewGroupRecords } from '@/views/hooks/internal/usePersistViewGroup';
 import { useGetViewFromPrefetchState } from '@/views/hooks/useGetViewFromPrefetchState';
 import { useRefreshCoreViewsByObjectMetadataId } from '@/views/hooks/useRefreshCoreViewsByObjectMetadataId';
 import { type ViewGroup } from '@/views/types/ViewGroup';
@@ -16,6 +17,8 @@ import { type CoreView } from '~/generated/graphql';
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 
 export const useHandleRecordGroupField = () => {
+  const { createViewGroups, deleteViewGroups } = usePersistViewGroupRecords();
+
   const currentViewIdCallbackState = useRecoilComponentCallbackState(
     contextStoreCurrentViewIdComponentState,
   );
@@ -138,6 +141,8 @@ export const useHandleRecordGroupField = () => {
       objectMetadataItem,
       refreshCoreViewsByObjectMetadataId,
       loadRecordIndexStates,
+      createViewGroups,
+      deleteViewGroups,
     ],
   );
 

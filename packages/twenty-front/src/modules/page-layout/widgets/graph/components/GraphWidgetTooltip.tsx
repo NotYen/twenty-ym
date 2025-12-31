@@ -5,8 +5,8 @@ import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { t } from '@lingui/core/macro';
 import { isNonEmptyString } from '@sniptt/guards';
-import { IconArrowUpRight } from 'twenty-ui/display';
 import { isDefined } from 'twenty-shared/utils';
+import { IconArrowUpRight } from 'twenty-ui/display';
 
 const StyledTooltip = styled.div`
   background: ${({ theme }) => theme.background.primary};
@@ -122,6 +122,35 @@ const StyledHorizontalSectionPadding = styled.div<{
     addBottom ? theme.spacing(1) : 0};
 `;
 
+const StyledRecordListSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(1)};
+  padding-top: ${({ theme }) => theme.spacing(2)};
+  border-top: 1px solid ${({ theme }) => theme.border.color.light};
+`;
+
+const StyledRecordListHeader = styled.div`
+  color: ${({ theme }) => theme.font.color.tertiary};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+`;
+
+const StyledRecordListItem = styled.div`
+  color: ${({ theme }) => theme.font.color.secondary};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: ${({ theme }) => theme.spacing(2)};
+`;
+
+const StyledRecordListMore = styled.div`
+  color: ${({ theme }) => theme.font.color.light};
+  font-size: ${({ theme }) => theme.font.size.xs};
+  font-style: italic;
+`;
+
 export type GraphWidgetTooltipItem = {
   key: string;
   label: string;
@@ -130,11 +159,20 @@ export type GraphWidgetTooltipItem = {
   dotColor: string;
 };
 
+export type GraphWidgetTooltipRecord = {
+  id: string;
+  displayValue: string;
+};
+
 type GraphWidgetTooltipProps = {
   items: GraphWidgetTooltipItem[];
   indexLabel?: string;
   highlightedKey?: string;
   onGraphWidgetTooltipClick?: () => void;
+  // New props for record list display
+  records?: GraphWidgetTooltipRecord[];
+  totalRecordCount?: number;
+  recordsLoading?: boolean;
 };
 
 export const GraphWidgetTooltip = ({
@@ -142,6 +180,9 @@ export const GraphWidgetTooltip = ({
   indexLabel,
   highlightedKey,
   onGraphWidgetTooltipClick,
+  records,
+  totalRecordCount,
+  recordsLoading,
 }: GraphWidgetTooltipProps) => {
   const theme = useTheme();
 
@@ -151,12 +192,16 @@ export const GraphWidgetTooltip = ({
 
   const shouldHighlight = filteredItems.length > 1;
   const hasGraphWidgetTooltipClick = isDefined(onGraphWidgetTooltipClick);
+  const hasRecords = isDefined(records) && records.length > 0;
+  const remainingCount = (totalRecordCount ?? 0) - (records?.length ?? 0);
+  // Don't show loading state to prevent flickering - just wait for data
+  const showRecordsSection = hasRecords;
 
   return (
     <StyledTooltip>
       <StyledHorizontalSectionPadding
         addTop
-        addBottom={!hasGraphWidgetTooltipClick}
+        addBottom={!hasGraphWidgetTooltipClick && !showRecordsSection}
       >
         <StyledTooltipContent>
           {indexLabel && (
@@ -181,13 +226,28 @@ export const GraphWidgetTooltip = ({
               );
             })}
           </StyledTooltipRowContainer>
+          {showRecordsSection && (
+            <StyledRecordListSection>
+              <StyledRecordListHeader>{t`Records`}:</StyledRecordListHeader>
+              {records.map((record) => (
+                <StyledRecordListItem key={record.id}>
+                  • {record.displayValue}
+                </StyledRecordListItem>
+              ))}
+              {remainingCount > 0 && (
+                <StyledRecordListMore>
+                  {t`and ${remainingCount} more...`}
+                </StyledRecordListMore>
+              )}
+            </StyledRecordListSection>
+          )}
         </StyledTooltipContent>
       </StyledHorizontalSectionPadding>
       {hasGraphWidgetTooltipClick && (
         <>
           <StyledTooltipSeparator />
           <StyledHorizontalSectionPadding addBottom>
-            <StyledTooltipLink onClick={onGraphWidgetTooltipClick}>
+            <StyledTooltipLink onClick={onGraphWidgetTooltipClick} isClickable>
               <span>{t`Click to see data`}</span>
               <IconArrowUpRight size={theme.icon.size.sm} />
             </StyledTooltipLink>

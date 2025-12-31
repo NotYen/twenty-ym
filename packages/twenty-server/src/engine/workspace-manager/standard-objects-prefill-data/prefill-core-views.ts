@@ -133,6 +133,7 @@ export const createCoreViews = async (
       icon,
       isCustom,
       openRecordIn,
+      mainGroupByFieldMetadataId,
       kanbanAggregateOperation,
       kanbanAggregateOperationFieldMetadataId,
     }) => ({
@@ -151,6 +152,7 @@ export const createCoreViews = async (
           : ViewOpenRecordIn.SIDE_PANEL,
       kanbanAggregateOperation,
       kanbanAggregateOperationFieldMetadataId,
+      mainGroupByFieldMetadataId,
       workspaceId,
       anyFieldFilterValue: null,
       visibility: ViewVisibility.WORKSPACE,

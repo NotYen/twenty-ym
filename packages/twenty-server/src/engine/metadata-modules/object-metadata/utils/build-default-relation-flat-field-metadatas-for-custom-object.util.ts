@@ -64,6 +64,7 @@ const generateSourceFlatFieldMetadata = ({
 
   return {
     calendarViewIds: [],
+    mainGroupByFieldMetadataViewIds: [],
     kanbanAggregateOperationViewIds: [],
     viewFilterIds: [],
     viewFieldIds: [],
@@ -134,6 +135,7 @@ const generateTargetFlatFieldMetadata = ({
   return {
     morphId: null,
     calendarViewIds: [],
+    mainGroupByFieldMetadataViewIds: [],
     viewFieldIds: [],
     kanbanAggregateOperationViewIds: [],
     viewFilterIds: [],

@@ -78,3 +78,4 @@ docker/dev-flow/local_build_for_docker/env.local
 docker/dev-flow/aws/env.aws
 .kiro/steering/*
 docker/.claude/
+.kiro/*

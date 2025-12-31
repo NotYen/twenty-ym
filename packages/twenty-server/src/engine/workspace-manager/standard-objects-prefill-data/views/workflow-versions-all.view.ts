@@ -30,7 +30,6 @@ export const workflowVersionsAllView = (
     position: 0,
     icon: 'IconVersions',
     openRecordIn: ViewOpenRecordInType.RECORD_PAGE,
-    kanbanFieldMetadataId: '',
     filters: [],
     fields: [
       {

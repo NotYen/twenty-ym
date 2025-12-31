@@ -26,7 +26,6 @@ export const tasksAllView = (
     key: 'INDEX',
     position: 0,
     icon: 'IconList',
-    kanbanFieldMetadataId: '',
     filters: [] /* [
       {
         fieldMetadataId:

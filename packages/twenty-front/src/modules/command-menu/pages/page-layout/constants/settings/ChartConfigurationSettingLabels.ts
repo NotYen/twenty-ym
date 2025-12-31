@@ -24,4 +24,6 @@ export const CHART_CONFIGURATION_SETTING_LABELS = {
   PREFIX: msg`Prefix`,
   SUFFIX: msg`Suffix`,
   CUMULATIVE: msg`Cumulative`,
+  TOOLTIP_DISPLAY_FIELD: msg`Tooltip display field`,
+  VALUE_FORMAT: msg`Value format`,
 };

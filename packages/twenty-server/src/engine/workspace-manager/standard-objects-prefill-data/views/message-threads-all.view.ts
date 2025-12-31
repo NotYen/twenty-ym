@@ -27,7 +27,6 @@ export const messageThreadsAllView = (
     key: 'INDEX',
     position: 0,
     icon: 'IconList',
-    kanbanFieldMetadataId: '',
     filters: [],
     fields: [
       {

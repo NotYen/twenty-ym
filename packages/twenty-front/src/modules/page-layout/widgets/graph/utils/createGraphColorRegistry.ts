@@ -8,10 +8,10 @@ export const createGraphColorRegistry = (
   blue: {
     name: 'blue',
     gradient: {
-      normal: [theme.color.blue3, theme.color.blue5],
-      hover: [theme.color.blue7, theme.color.blue8],
+      normal: [theme.color.blue8, theme.color.blue9],
+      hover: [theme.color.blue9, theme.color.blue10],
     },
-    solid: theme.color.blue8,
+    solid: theme.color.blue9,
     variations: [
       theme.color.blue1,
       theme.color.blue2,
@@ -30,10 +30,10 @@ export const createGraphColorRegistry = (
   purple: {
     name: 'purple',
     gradient: {
-      normal: [theme.color.purple3, theme.color.purple5],
-      hover: [theme.color.purple7, theme.color.purple8],
+      normal: [theme.color.purple8, theme.color.purple9],
+      hover: [theme.color.purple9, theme.color.purple10],
     },
-    solid: theme.color.purple8,
+    solid: theme.color.purple9,
     variations: [
       theme.color.purple1,
       theme.color.purple2,
@@ -52,10 +52,10 @@ export const createGraphColorRegistry = (
   turquoise: {
     name: 'turquoise',
     gradient: {
-      normal: [theme.color.turquoise3, theme.color.turquoise5],
-      hover: [theme.color.turquoise7, theme.color.turquoise8],
+      normal: [theme.color.turquoise8, theme.color.turquoise9],
+      hover: [theme.color.turquoise9, theme.color.turquoise10],
     },
-    solid: theme.color.turquoise8,
+    solid: theme.color.turquoise9,
     variations: [
       theme.color.turquoise1,
       theme.color.turquoise2,
@@ -74,10 +74,10 @@ export const createGraphColorRegistry = (
   orange: {
     name: 'orange',
     gradient: {
-      normal: [theme.color.orange3, theme.color.orange5],
-      hover: [theme.color.orange7, theme.color.orange8],
+      normal: [theme.color.orange8, theme.color.orange9],
+      hover: [theme.color.orange9, theme.color.orange10],
     },
-    solid: theme.color.orange8,
+    solid: theme.color.orange9,
     variations: [
       theme.color.orange1,
       theme.color.orange2,
@@ -96,10 +96,10 @@ export const createGraphColorRegistry = (
   pink: {
     name: 'pink',
     gradient: {
-      normal: [theme.color.pink3, theme.color.pink5],
-      hover: [theme.color.pink7, theme.color.pink8],
+      normal: [theme.color.pink8, theme.color.pink9],
+      hover: [theme.color.pink9, theme.color.pink10],
     },
-    solid: theme.color.pink8,
+    solid: theme.color.pink9,
     variations: [
       theme.color.pink1,
       theme.color.pink2,
@@ -118,10 +118,10 @@ export const createGraphColorRegistry = (
   yellow: {
     name: 'yellow',
     gradient: {
-      normal: [theme.color.yellow3, theme.color.yellow5],
-      hover: [theme.color.yellow7, theme.color.yellow8],
+      normal: [theme.color.yellow8, theme.color.yellow9],
+      hover: [theme.color.yellow9, theme.color.yellow10],
     },
-    solid: theme.color.yellow8,
+    solid: theme.color.yellow9,
     variations: [
       theme.color.yellow1,
       theme.color.yellow2,
@@ -140,10 +140,10 @@ export const createGraphColorRegistry = (
   red: {
     name: 'red',
     gradient: {
-      normal: [theme.color.red3, theme.color.red5],
-      hover: [theme.color.red7, theme.color.red8],
+      normal: [theme.color.red8, theme.color.red9],
+      hover: [theme.color.red9, theme.color.red10],
     },
-    solid: theme.color.red8,
+    solid: theme.color.red9,
     variations: [
       theme.color.red1,
       theme.color.red2,
@@ -162,10 +162,10 @@ export const createGraphColorRegistry = (
   green: {
     name: 'green',
     gradient: {
-      normal: [theme.color.green3, theme.color.green5],
-      hover: [theme.color.green7, theme.color.green8],
+      normal: [theme.color.green8, theme.color.green9],
+      hover: [theme.color.green9, theme.color.green10],
     },
-    solid: theme.color.green8,
+    solid: theme.color.green9,
     variations: [
       theme.color.green1,
       theme.color.green2,
@@ -184,10 +184,10 @@ export const createGraphColorRegistry = (
   sky: {
     name: 'sky',
     gradient: {
-      normal: [theme.color.sky3, theme.color.sky5],
-      hover: [theme.color.sky7, theme.color.sky8],
+      normal: [theme.color.sky8, theme.color.sky9],
+      hover: [theme.color.sky9, theme.color.sky10],
     },
-    solid: theme.color.sky8,
+    solid: theme.color.sky9,
     variations: [
       theme.color.sky1,
       theme.color.sky2,
@@ -206,10 +206,10 @@ export const createGraphColorRegistry = (
   gray: {
     name: 'gray',
     gradient: {
-      normal: [theme.color.gray3, theme.color.gray5],
-      hover: [theme.color.gray7, theme.color.gray8],
+      normal: [theme.color.gray8, theme.color.gray9],
+      hover: [theme.color.gray9, theme.color.gray10],
     },
-    solid: theme.color.gray8,
+    solid: theme.color.gray9,
     variations: [
       theme.color.gray1,
       theme.color.gray2,
@@ -228,10 +228,10 @@ export const createGraphColorRegistry = (
   tomato: {
     name: 'tomato',
     gradient: {
-      normal: [theme.color.tomato3, theme.color.tomato5],
-      hover: [theme.color.tomato7, theme.color.tomato8],
+      normal: [theme.color.tomato8, theme.color.tomato9],
+      hover: [theme.color.tomato9, theme.color.tomato10],
     },
-    solid: theme.color.tomato8,
+    solid: theme.color.tomato9,
     variations: [
       theme.color.tomato1,
       theme.color.tomato2,
@@ -250,10 +250,10 @@ export const createGraphColorRegistry = (
   ruby: {
     name: 'ruby',
     gradient: {
-      normal: [theme.color.ruby3, theme.color.ruby5],
-      hover: [theme.color.ruby7, theme.color.ruby8],
+      normal: [theme.color.ruby8, theme.color.ruby9],
+      hover: [theme.color.ruby9, theme.color.ruby10],
     },
-    solid: theme.color.ruby8,
+    solid: theme.color.ruby9,
     variations: [
       theme.color.ruby1,
       theme.color.ruby2,
@@ -272,10 +272,10 @@ export const createGraphColorRegistry = (
   crimson: {
     name: 'crimson',
     gradient: {
-      normal: [theme.color.crimson3, theme.color.crimson5],
-      hover: [theme.color.crimson7, theme.color.crimson8],
+      normal: [theme.color.crimson8, theme.color.crimson9],
+      hover: [theme.color.crimson9, theme.color.crimson10],
     },
-    solid: theme.color.crimson8,
+    solid: theme.color.crimson9,
     variations: [
       theme.color.crimson1,
       theme.color.crimson2,
@@ -294,10 +294,10 @@ export const createGraphColorRegistry = (
   plum: {
     name: 'plum',
     gradient: {
-      normal: [theme.color.plum3, theme.color.plum5],
-      hover: [theme.color.plum7, theme.color.plum8],
+      normal: [theme.color.plum8, theme.color.plum9],
+      hover: [theme.color.plum9, theme.color.plum10],
     },
-    solid: theme.color.plum8,
+    solid: theme.color.plum9,
     variations: [
       theme.color.plum1,
       theme.color.plum2,
@@ -316,10 +316,10 @@ export const createGraphColorRegistry = (
   violet: {
     name: 'violet',
     gradient: {
-      normal: [theme.color.violet3, theme.color.violet5],
-      hover: [theme.color.violet7, theme.color.violet8],
+      normal: [theme.color.violet8, theme.color.violet9],
+      hover: [theme.color.violet9, theme.color.violet10],
     },
-    solid: theme.color.violet8,
+    solid: theme.color.violet9,
     variations: [
       theme.color.violet1,
       theme.color.violet2,
@@ -338,10 +338,10 @@ export const createGraphColorRegistry = (
   iris: {
     name: 'iris',
     gradient: {
-      normal: [theme.color.iris3, theme.color.iris5],
-      hover: [theme.color.iris7, theme.color.iris8],
+      normal: [theme.color.iris8, theme.color.iris9],
+      hover: [theme.color.iris9, theme.color.iris10],
     },
-    solid: theme.color.iris8,
+    solid: theme.color.iris9,
     variations: [
       theme.color.iris1,
       theme.color.iris2,
@@ -360,10 +360,10 @@ export const createGraphColorRegistry = (
   cyan: {
     name: 'cyan',
     gradient: {
-      normal: [theme.color.cyan3, theme.color.cyan5],
-      hover: [theme.color.cyan7, theme.color.cyan8],
+      normal: [theme.color.cyan8, theme.color.cyan9],
+      hover: [theme.color.cyan9, theme.color.cyan10],
     },
-    solid: theme.color.cyan8,
+    solid: theme.color.cyan9,
     variations: [
       theme.color.cyan1,
       theme.color.cyan2,
@@ -382,10 +382,10 @@ export const createGraphColorRegistry = (
   jade: {
     name: 'jade',
     gradient: {
-      normal: [theme.color.jade3, theme.color.jade5],
-      hover: [theme.color.jade7, theme.color.jade8],
+      normal: [theme.color.jade8, theme.color.jade9],
+      hover: [theme.color.jade9, theme.color.jade10],
     },
-    solid: theme.color.jade8,
+    solid: theme.color.jade9,
     variations: [
       theme.color.jade1,
       theme.color.jade2,
@@ -404,10 +404,10 @@ export const createGraphColorRegistry = (
   grass: {
     name: 'grass',
     gradient: {
-      normal: [theme.color.grass3, theme.color.grass5],
-      hover: [theme.color.grass7, theme.color.grass8],
+      normal: [theme.color.grass8, theme.color.grass9],
+      hover: [theme.color.grass9, theme.color.grass10],
     },
-    solid: theme.color.grass8,
+    solid: theme.color.grass9,
     variations: [
       theme.color.grass1,
       theme.color.grass2,
@@ -426,10 +426,10 @@ export const createGraphColorRegistry = (
   mint: {
     name: 'mint',
     gradient: {
-      normal: [theme.color.mint3, theme.color.mint5],
-      hover: [theme.color.mint7, theme.color.mint8],
+      normal: [theme.color.mint8, theme.color.mint9],
+      hover: [theme.color.mint9, theme.color.mint10],
     },
-    solid: theme.color.mint8,
+    solid: theme.color.mint9,
     variations: [
       theme.color.mint1,
       theme.color.mint2,
@@ -448,10 +448,10 @@ export const createGraphColorRegistry = (
   lime: {
     name: 'lime',
     gradient: {
-      normal: [theme.color.lime3, theme.color.lime5],
-      hover: [theme.color.lime7, theme.color.lime8],
+      normal: [theme.color.lime8, theme.color.lime9],
+      hover: [theme.color.lime9, theme.color.lime10],
     },
-    solid: theme.color.lime8,
+    solid: theme.color.lime9,
     variations: [
       theme.color.lime1,
       theme.color.lime2,
@@ -470,10 +470,10 @@ export const createGraphColorRegistry = (
   bronze: {
     name: 'bronze',
     gradient: {
-      normal: [theme.color.bronze3, theme.color.bronze5],
-      hover: [theme.color.bronze7, theme.color.bronze8],
+      normal: [theme.color.bronze8, theme.color.bronze9],
+      hover: [theme.color.bronze9, theme.color.bronze10],
     },
-    solid: theme.color.bronze8,
+    solid: theme.color.bronze9,
     variations: [
       theme.color.bronze1,
       theme.color.bronze2,
@@ -492,10 +492,10 @@ export const createGraphColorRegistry = (
   gold: {
     name: 'gold',
     gradient: {
-      normal: [theme.color.gold3, theme.color.gold5],
-      hover: [theme.color.gold7, theme.color.gold8],
+      normal: [theme.color.gold8, theme.color.gold9],
+      hover: [theme.color.gold9, theme.color.gold10],
     },
-    solid: theme.color.gold8,
+    solid: theme.color.gold9,
     variations: [
       theme.color.gold1,
       theme.color.gold2,
@@ -514,10 +514,10 @@ export const createGraphColorRegistry = (
   brown: {
     name: 'brown',
     gradient: {
-      normal: [theme.color.brown3, theme.color.brown5],
-      hover: [theme.color.brown7, theme.color.brown8],
+      normal: [theme.color.brown8, theme.color.brown9],
+      hover: [theme.color.brown9, theme.color.brown10],
     },
-    solid: theme.color.brown8,
+    solid: theme.color.brown9,
     variations: [
       theme.color.brown1,
       theme.color.brown2,
@@ -536,10 +536,10 @@ export const createGraphColorRegistry = (
   amber: {
     name: 'amber',
     gradient: {
-      normal: [theme.color.amber3, theme.color.amber5],
-      hover: [theme.color.amber7, theme.color.amber8],
+      normal: [theme.color.amber8, theme.color.amber9],
+      hover: [theme.color.amber9, theme.color.amber10],
     },
-    solid: theme.color.amber8,
+    solid: theme.color.amber9,
     variations: [
       theme.color.amber1,
       theme.color.amber2,

@@ -5,9 +5,14 @@ import { CHART_CONFIGURATION_SETTING_IDS } from '@/command-menu/pages/page-layou
 import { getChartAxisNameDisplayOptions } from '@/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions';
 import { getDateGranularityLabel } from '@/command-menu/pages/page-layout/utils/getDateGranularityLabel';
 import { getFieldLabelWithSubField } from '@/command-menu/pages/page-layout/utils/getFieldLabelWithSubField';
+import {
+    getValueFormatLabel,
+    type ValueDisplayType,
+} from '@/command-menu/pages/page-layout/utils/getValueFormatLabel';
 import { objectMetadataItemsState } from '@/object-metadata/states/objectMetadataItemsState';
 import { getAggregateOperationLabel } from '@/object-record/record-board/record-board-column/utils/getAggregateOperationLabel';
 import { convertAggregateOperationToExtendedAggregateOperation } from '@/object-record/utils/convertAggregateOperationToExtendedAggregateOperation';
+import { t } from '@lingui/core/macro';
 import { useRecoilValue } from 'recoil';
 import { type CompositeFieldSubFieldName } from 'twenty-shared/types';
 import { capitalize, isDefined } from 'twenty-shared/utils';
@@ -254,6 +259,21 @@ export const useChartSettingsValues = ({
         return isBarOrLineChart || isPieChart
           ? (configuration.displayLegend ?? true)
           : true;
+      case CHART_CONFIGURATION_SETTING_IDS.TOOLTIP_DISPLAY_FIELD: {
+        if (!isPieChart) return undefined;
+        const tooltipFieldId = configuration.tooltipDisplayFieldMetadataId;
+        if (!isDefined(tooltipFieldId)) return t`Default (Name)`;
+        const tooltipField = objectMetadataItem?.fields.find(
+          (field) => field.id === tooltipFieldId,
+        );
+        return tooltipField?.label ?? t`Default (Name)`;
+      }
+      case CHART_CONFIGURATION_SETTING_IDS.VALUE_FORMAT: {
+        if (!isPieChart) return undefined;
+        const valueDisplayType =
+          (configuration.valueDisplayType as ValueDisplayType) ?? 'shortNumber';
+        return getValueFormatLabel(valueDisplayType);
+      }
       default:
         return '';
     }

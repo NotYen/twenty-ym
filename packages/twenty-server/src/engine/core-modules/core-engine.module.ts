@@ -46,6 +46,7 @@ import { SearchModule } from 'src/engine/core-modules/search/search.module';
 import { serverlessModuleFactory } from 'src/engine/core-modules/serverless/serverless-module.factory';
 import { ServerlessModule } from 'src/engine/core-modules/serverless/serverless.module';
 import { WorkspaceSSOModule } from 'src/engine/core-modules/sso/sso.module';
+import { SuperAdminModule } from 'src/engine/core-modules/super-admin/super-admin.module';
 import { TelemetryModule } from 'src/engine/core-modules/telemetry/telemetry.module';
 import { TwentyConfigModule } from 'src/engine/core-modules/twenty-config/twenty-config.module';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
@@ -140,6 +141,7 @@ import { FileModule } from './file/file.module';
     TrashCleanupModule,
     TimelineCleanupModule,
     WorkspaceConfigModule,
+    SuperAdminModule,
   ],
   exports: [
     AuditModule,

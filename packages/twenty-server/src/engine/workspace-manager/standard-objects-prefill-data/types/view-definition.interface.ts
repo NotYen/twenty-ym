@@ -14,9 +14,11 @@ export interface ViewDefinition {
   icon?: string;
   isCustom?: boolean;
   openRecordIn?: ViewOpenRecordInType;
-  kanbanFieldMetadataId?: string;
   kanbanAggregateOperation?: AggregateOperations;
   kanbanAggregateOperationFieldMetadataId?: string;
+  mainGroupByFieldMetadataId?: string;
+  calendarFieldMetadataId?: string;
+  calendarLayout?: string;
   fields?: {
     fieldMetadataId: string;
     position: number;

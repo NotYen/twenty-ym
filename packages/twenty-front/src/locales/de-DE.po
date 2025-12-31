@@ -687,6 +687,13 @@ msgstr "Sortierung hinzufügen"
 msgid "Add SSO Identity Provider"
 msgstr "SSO-Identitätsanbieter hinzufügen"
 
+#. js-lingui-id: Nog5wG
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Add Super Admin"
+msgstr ""
+
 #. js-lingui-id: hWkQMS
 #: src/modules/activities/tasks/components/AddTaskButton.tsx
 msgid "Add task"
@@ -1061,6 +1068,9 @@ msgstr "Ein Fehler ist bei der Verarbeitung Ihrer Nachricht aufgetreten"
 #. js-lingui-id: XyOToQ
 #: src/utils/get-error-message-from-apollo-error.util.ts
 #: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
+#: src/modules/views/hooks/internal/usePersistViewGroup.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
 #: src/modules/views/hooks/internal/usePersistViewFilter.ts
@@ -1107,6 +1117,11 @@ msgstr "Ein unerwarteter Fehler ist aufgetreten"
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
 msgid "and"
 msgstr "und"
+
+#. js-lingui-id: 91gtiF
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
+msgid "and {remainingCount} more..."
+msgstr ""
 
 #. js-lingui-id: OpAwo5
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
@@ -1305,6 +1320,16 @@ msgstr "Sind Sie sicher, dass Sie diese Datensätze zerstören möchten? Sie kö
 #: src/modules/action-menu/actions/record-actions/single-record/components/DestroySingleRecordAction.tsx
 msgid "Are you sure you want to destroy this record? It cannot be recovered anymore."
 msgstr "Sind Sie sicher, dass Sie diesen Datensatz zerstören möchten? Er kann nicht wiederhergestellt werden."
+
+#. js-lingui-id: HdIOwP
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Are you sure you want to grant Super Admin privileges to <0>{selectedMemberName} ({selectedMemberEmail})</0>? They will be able to access Advanced Settings across all workspaces."
+msgstr ""
+
+#. js-lingui-id: ULnPt8
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Are you sure you want to remove Super Admin privileges from <0>{superAdminToRemoveEmail}</0>? They will no longer be able to access Advanced Settings."
+msgstr ""
 
 #. js-lingui-id: mcHVC1
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/RestoreMultipleRecordsAction.tsx
@@ -2759,6 +2784,11 @@ msgstr ""
 msgid "currencies"
 msgstr "Währungen"
 
+#. js-lingui-id: 3+GXsk
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Currency ($1,000,000)"
+msgstr ""
+
 #. js-lingui-id: Hp1l6f
 #: src/modules/billing/components/internal/SubscriptionInfoRowContainer.tsx
 msgid "Current"
@@ -3065,6 +3095,13 @@ msgstr "Entscheiden Sie, welche Unteradressfelder Sie anzeigen möchten"
 #: src/modules/settings/data-model/fields/forms/date/utils/getDisplayFormatLabel.ts
 msgid "Default"
 msgstr "Standard"
+
+#. js-lingui-id: CXnAkR
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+#: src/modules/command-menu/pages/page-layout/hooks/useChartSettingsValues.ts
+#: src/modules/command-menu/pages/page-layout/components/dropdown-content/ChartTooltipDisplayFieldSelectionDropdownContent.tsx
+msgid "Default (Name)"
+msgstr ""
 
 #. js-lingui-id: mC21D6
 #: src/modules/settings/data-model/fields/forms/address/components/SettingsDataModelFieldAddressForm.tsx
@@ -3649,6 +3686,7 @@ msgstr "Achte"
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/SettingsProfile.tsx
 #: src/pages/auth/PasswordReset.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTableHeader.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
@@ -4389,6 +4427,11 @@ msgstr ""
 msgid "Failed"
 msgstr "Fehlgeschlagen"
 
+#. js-lingui-id: e6IHER
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Failed to add Super Admin"
+msgstr ""
+
 #. js-lingui-id: fsNGMi
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
 msgid "Failed to create {translatedMetadataName}. Please try again."
@@ -4428,6 +4471,11 @@ msgstr "Fehler beim Entfernen der Weitergabe"
 #: src/modules/settings/admin-panel/config-variables/hooks/useConfigVariableActions.ts
 msgid "Failed to remove override"
 msgstr "Fehler beim Entfernen der Überschreibung"
+
+#. js-lingui-id: LY3AQ3
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Failed to remove Super Admin"
+msgstr ""
 
 #. js-lingui-id: SJEIIJ
 #: src/modules/settings/admin-panel/health-status/hooks/useRetryJobs.ts
@@ -4730,6 +4778,11 @@ msgstr "von {startDay} bis {endDay}"
 msgid "Frontend image version"
 msgstr ""
 
+#. js-lingui-id: +9IKTt
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Full (1,000,000)"
+msgstr ""
+
 #. js-lingui-id: scmRyR
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
 #: src/pages/onboarding/internal/ChooseYourPlanContent.tsx
@@ -4876,6 +4929,16 @@ msgstr ""
 #: src/modules/settings/workspace/components/ToggleImpersonate.tsx
 msgid "Grant access to your workspace so we can troubleshoot problems."
 msgstr "Gewähre uns Zugang zu deinem Arbeitsbereich, damit wir Probleme beheben können."
+
+#. js-lingui-id: LJ+Is6
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Granted At"
+msgstr ""
+
+#. js-lingui-id: k5S8+2
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Granted By"
+msgstr ""
 
 #. js-lingui-id: WUgtid
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -5259,6 +5322,7 @@ msgstr "In {dateDiff}"
 #. js-lingui-id: NoNwIX
 #: src/pages/settings/data-model/SettingsObjectFieldTable.tsx
 #: src/modules/settings/domains/components/SettingsWorkspaceDomainCard.tsx
+#: src/modules/settings/data-model/object-details/components/SettingsObjectFieldItemTableRow.tsx
 msgid "Inactive"
 msgstr "Inaktiv"
 
@@ -5874,6 +5938,7 @@ msgstr "Ladevorgang für Aufbewahrungskonfiguration..."
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminVersionDisplay.tsx
 #: src/modules/activities/timeline-activities/rows/message/components/EventCardMessage.tsx
@@ -5983,6 +6048,11 @@ msgstr "Support-Zugangseinstellungen verwalten"
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Manage the members of your workspace here"
 msgstr "Verwalten Sie hier die Mitglieder Ihres Arbeitsbereichs"
+
+#. js-lingui-id: OcGM1y
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Manage users who can access Advanced Settings."
+msgstr ""
 
 #. js-lingui-id: /berfj
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
@@ -6594,6 +6664,11 @@ msgstr "Keine API-Schlüssel passen zu Ihrer Suche"
 msgid "No available fields to select"
 msgstr "Keine verfügbaren Felder zur Auswahl"
 
+#. js-lingui-id: ixHR8T
+#: src/modules/settings/super-admin/components/SuperAdminMemberPickerDropdown.tsx
+msgid "No available members"
+msgstr ""
+
 #. js-lingui-id: OTe3RI
 #: src/pages/settings/domains/SettingsDomain.tsx
 msgid "No change detected"
@@ -6792,6 +6867,7 @@ msgid "No results"
 msgstr "Kein Ergebnis"
 
 #. js-lingui-id: MA3x23
+#: src/modules/settings/super-admin/components/SuperAdminMemberPickerDropdown.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentWorkspaceMemberPickerDropdownContent.tsx
 msgid "No Results"
 msgstr "Keine Ergebnisse"
@@ -6810,6 +6886,11 @@ msgstr "Keine Zeilen mit Fehlern"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "No Select field"
 msgstr "Kein Auswahlfeld"
+
+#. js-lingui-id: tL2EUu
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "No Super Admins found"
+msgstr ""
 
 #. js-lingui-id: A5XQ/A
 #: src/modules/settings/admin-panel/config-variables/components/SettingsAdminConfigVariables.tsx
@@ -7580,6 +7661,11 @@ msgstr "Vorherige KI-Chats"
 msgid "Price updated."
 msgstr "Preis aktualisiert."
 
+#. js-lingui-id: T/R+Qz
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Primary"
+msgstr ""
+
 #. js-lingui-id: 0Ni6nR
 #: src/modules/object-record/record-field/ui/form-types/components/FormEmailsFieldInput.tsx
 #: src/modules/object-record/record-field/ui/form-types/components/FormEmailsFieldInput.tsx
@@ -7758,6 +7844,7 @@ msgstr "Datensatz-Auswahl"
 
 #. js-lingui-id: PWlTvh
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelTableHeader.tsx
+#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
 msgid "Records"
 msgstr "Datensätze"
 
@@ -7900,6 +7987,12 @@ msgstr "Sortierung entfernen"
 #: src/modules/object-record/record-index/components/RecordIndexRemoveSortingModal.tsx
 msgid "Remove sorting?"
 msgstr "Sortierung entfernen?"
+
+#. js-lingui-id: 5ABwxp
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Remove Super Admin"
+msgstr ""
 
 #. js-lingui-id: oQjB9l
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
@@ -8245,6 +8338,7 @@ msgstr "Nach einer Rolle suchen..."
 
 #. js-lingui-id: xdl79x
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
+#: src/modules/settings/super-admin/components/SuperAdminMemberPickerDropdown.tsx
 msgid "Search a team member..."
 msgstr "Ein Teammitglied suchen..."
 
@@ -8777,6 +8871,12 @@ msgstr "Teilen Sie diesen Link, um Benutzer in Ihren Arbeitsbereich einzuladen"
 msgid "Short"
 msgstr "Kurz"
 
+#. js-lingui-id: NpJZsQ
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+#: src/modules/command-menu/pages/page-layout/utils/getValueFormatLabel.ts
+msgid "Short (1m, 1k)"
+msgstr ""
+
 #. js-lingui-id: gWk8gY
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIconLabelForm.tsx
 msgid "Should changing a field's label also change the API name?"
@@ -9199,6 +9299,21 @@ msgstr "Summe"
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 msgid "Sunday"
 msgstr "Sonntag"
+
+#. js-lingui-id: tjSkBZ
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Super Admin added successfully"
+msgstr ""
+
+#. js-lingui-id: VlpgUd
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Super Admin Management"
+msgstr ""
+
+#. js-lingui-id: sW2OjT
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "Super Admin removed successfully"
+msgstr ""
 
 #. js-lingui-id: XYLcNv
 #: src/pages/settings/security/SettingsSecurity.tsx
@@ -9717,6 +9832,11 @@ msgstr "Alle Einstellungsberechtigungen umschalten"
 msgid "Tomorrow"
 msgstr "Morgen"
 
+#. js-lingui-id: tMpLy9
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Tooltip display field"
+msgstr ""
+
 #. js-lingui-id: YT/cKI
 #: src/modules/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Track your {intervalLabel} workflow credit consumption."
@@ -10143,6 +10263,11 @@ msgstr "Daten validieren"
 msgid "Value"
 msgstr "Wert"
 
+#. js-lingui-id: aiGdMI
+#: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
+msgid "Value format"
+msgstr ""
+
 #. js-lingui-id: UZHvVi
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Value is set in the server environment, it may be a different value on the worker."
@@ -10266,6 +10391,11 @@ msgstr "Vorherige KI-Chats anzeigen"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "View type"
 msgstr "Ansichtstyp"
+
+#. js-lingui-id: GheqyX
+#: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
+msgid "View users who can access Advanced Settings. Only the Primary Super Admin can make changes."
+msgstr ""
 
 #. js-lingui-id: 2q/Q7x
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx

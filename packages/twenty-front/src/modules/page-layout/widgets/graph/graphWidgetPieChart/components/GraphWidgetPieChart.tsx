@@ -1,29 +1,28 @@
 import { GraphWidgetChartContainer } from '@/page-layout/widgets/graph/components/GraphWidgetChartContainer';
 import { GraphWidgetLegend } from '@/page-layout/widgets/graph/components/GraphWidgetLegend';
-import { GraphWidgetTooltip } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
+import { GraphPieChartTooltip } from '@/page-layout/widgets/graph/graphWidgetPieChart/components/GraphPieChartTooltip';
 import { PieChartEndLines } from '@/page-layout/widgets/graph/graphWidgetPieChart/components/PieChartEndLines';
 import { usePieChartData } from '@/page-layout/widgets/graph/graphWidgetPieChart/hooks/usePieChartData';
 import { usePieChartHandlers } from '@/page-layout/widgets/graph/graphWidgetPieChart/hooks/usePieChartHandlers';
-import { usePieChartTooltip } from '@/page-layout/widgets/graph/graphWidgetPieChart/hooks/usePieChartTooltip';
 import { type PieChartDataItem } from '@/page-layout/widgets/graph/graphWidgetPieChart/types/PieChartDataItem';
 import { createGraphColorRegistry } from '@/page-layout/widgets/graph/utils/createGraphColorRegistry';
 import { type GraphValueFormatOptions } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
-import {
-    ResponsivePie,
-    type PieCustomLayerProps,
-    type PieTooltipProps,
-} from '@nivo/pie';
+import { ResponsivePie, type PieCustomLayerProps } from '@nivo/pie';
 import { isDefined } from 'twenty-shared/utils';
 
 import { type GraphColor } from '@/page-layout/widgets/graph/types/GraphColor';
+import { type PieChartConfiguration } from '~/generated/graphql';
 
 type GraphWidgetPieChartProps = {
   data: PieChartDataItem[];
   showLegend?: boolean;
   id: string;
   color?: GraphColor;
+  // New props for record list in tooltip
+  objectMetadataItemId?: string;
+  configuration?: PieChartConfiguration;
 } & GraphValueFormatOptions;
 
 const StyledContainer = styled.div`
@@ -45,6 +44,8 @@ export const GraphWidgetPieChart = ({
   prefix,
   suffix,
   customFormatter,
+  objectMetadataItemId,
+  configuration,
 }: GraphWidgetPieChartProps) => {
   const theme = useTheme();
   const colorRegistry = createGraphColorRegistry(theme);
@@ -66,9 +67,12 @@ export const GraphWidgetPieChart = ({
 
   const {
     hoveredSliceId,
-    setHoveredSliceId,
+    handleMouseEnter,
+    handleMouseLeave,
     handleSliceClick,
     hasClickableItems,
+    handleTooltipMouseEnter,
+    handleTooltipMouseLeave,
   } = usePieChartHandlers({ data: coloredData });
 
   const { enrichedData, enrichedDataMap, defs, fill } = usePieChartData({
@@ -76,13 +80,6 @@ export const GraphWidgetPieChart = ({
     colorRegistry,
     id,
     hoveredSliceId,
-  });
-
-  const { createTooltipData } = usePieChartTooltip({
-    enrichedData,
-    formatOptions,
-    displayType,
-    data,
   });
 
   const renderSliceEndLines = (
@@ -98,24 +95,6 @@ export const GraphWidgetPieChart = ({
     />
   );
 
-  const renderTooltip = ({ datum }: PieTooltipProps<PieChartDataItem>) => {
-    const tooltipData = createTooltipData(datum);
-    if (!isDefined(tooltipData)) return null;
-
-    const onGraphWidgetTooltipClick = isDefined(tooltipData.linkTo)
-      ? () => {
-          window.location.href = tooltipData.linkTo!;
-        }
-      : undefined;
-
-    return (
-      <GraphWidgetTooltip
-        items={[tooltipData.tooltipItem]}
-        onGraphWidgetTooltipClick={onGraphWidgetTooltipClick}
-      />
-    );
-  };
-
   return (
     <StyledContainer id={id}>
       <GraphWidgetChartContainer
@@ -129,15 +108,26 @@ export const GraphWidgetPieChart = ({
           borderWidth={0}
           enableArcLinkLabels={false}
           enableArcLabels={false}
-          tooltip={renderTooltip}
+          tooltip={() => null}
           onClick={handleSliceClick}
-          onMouseEnter={(datum) => setHoveredSliceId(datum.id)}
-          onMouseLeave={() => setHoveredSliceId(null)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
           defs={defs}
           fill={fill}
           layers={['arcs', renderSliceEndLines]}
         />
       </GraphWidgetChartContainer>
+      <GraphPieChartTooltip
+        containerId={id}
+        enrichedData={enrichedData}
+        data={coloredData}
+        formatOptions={formatOptions}
+        displayType={displayType}
+        objectMetadataItemId={objectMetadataItemId}
+        configuration={configuration}
+        onMouseEnter={handleTooltipMouseEnter}
+        onMouseLeave={handleTooltipMouseLeave}
+      />
       <GraphWidgetLegend
         show={showLegend}
         items={enrichedData.map((item) => ({

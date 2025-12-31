@@ -4,6 +4,7 @@ import { useLingui } from '@lingui/react/macro';
 import { lazy, Suspense, useMemo, useState } from 'react';
 
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
+import { SuperAdminManagement } from '@/settings/super-admin/components/SuperAdminManagement';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { SettingsTextInput } from '@/ui/input/components/SettingsTextInput';
 import { SubMenuTopBarContainer } from '@/ui/layout/page/components/SubMenuTopBarContainer';
@@ -108,7 +109,6 @@ export const SettingsWorkspaceAdvanced = () => {
             setInitialValues({ ...formValues });
             enqueueSuccessSnackBar({ message: t`Settings saved successfully` });
         } catch (error) {
-            console.error(error);
             enqueueErrorSnackBar({ message: t`Failed to save settings`, apolloError: error as any });
         } finally {
             setIsSaving(false);
@@ -208,6 +208,7 @@ export const SettingsWorkspaceAdvanced = () => {
                         <SettingsRemoteConfigStatus />
                     </Suspense>
                 </Section>
+                <SuperAdminManagement />
             </SettingsPageContainer>
         </SubMenuTopBarContainer>
     );
