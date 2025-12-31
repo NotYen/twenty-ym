@@ -50,6 +50,12 @@ COPY packages/twenty-server ./packages/twenty-server
 COPY packages/twenty-shared ./packages/twenty-shared
 COPY packages/twenty-emails ./packages/twenty-emails
 
+# 禁用 Nx Daemon（避免 Docker build 時的問題）
+ENV NX_DAEMON=false
+
+# 先構建 twenty-shared（lingui compile 需要它）
+RUN yarn nx build twenty-shared
+
 # 編譯 i18n 翻譯（確保後端翻譯生效）
 # 注意: lingui compile 已整合到 nx build 流程中,不需要單獨執行
 # RUN cd packages/twenty-server && yarn lingui compile

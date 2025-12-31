@@ -23,10 +23,13 @@ COPY packages/twenty-server/package.json ./packages/twenty-server/package.json
 COPY packages/twenty-server/patches ./packages/twenty-server/patches
 COPY packages/twenty-emails/package.json ./packages/twenty-emails/package.json
 
+# 設定 Node.js 記憶體限制
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
 # 安裝所有依賴（只有 package.json 變動才會重新執行）
 # 註：twenty-shared 源代碼使用了 class-validator，但其 package.json 未聲明
 # 因此需要同時安裝 twenty-server 的依賴（包含 class-validator）
-RUN yarn install
+RUN yarn install --network-timeout 600000
 
 # =====================================
 # 階段 2: 構建應用（只有代碼變動才重新執行）

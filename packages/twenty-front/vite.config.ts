@@ -76,7 +76,7 @@ export default defineConfig(({ command, mode }) => {
       ...(VITE_HOST ? { host: VITE_HOST } : {}),
       proxy: {
         '/api': {
-          target: 'http://localhost:9999',
+          target: 'http://localhost:3000',
           changeOrigin: true,
         },
       },
