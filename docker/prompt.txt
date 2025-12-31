@@ -1,0 +1,18 @@
+docker file > cmd > wsl > claude:
+
+當前資料夾為一個 NX 專案於 Docker 環境下運行所使用的目錄。
+請先閱讀 DOCKER_DEPLOYMENT_GUIDE.md、.env 與 docker-compose.yml，以了解整體環境設定與服務配置。
+
+接著請執行以下流程，每一步完成後再進行下一步，不可並行執行：
+
+停止並移除所有現有的 Docker containers。
+
+使用 --no-cache 重新 build 所有 images，並確保 Docker build 完全結束（需確認 exporting to image 階段完成，且新 image 已出現在 docker images 中，時間戳為最新）。
+
+僅在確認新 image 已成功建置後，才使用該 image 啟動 containers。
+
+確認專案可於本地 Docker Desktop 正常運行。
+
+此目錄中另包含一個 full_backup.dump 檔案，請將該 dump 檔 還原至 docker-compose.yml 中所定義的 PostgreSQL（db）服務。
+
+請嚴格依照上述順序完成所有步驟後再結束作業。
