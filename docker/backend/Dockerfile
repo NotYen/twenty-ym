@@ -51,7 +51,8 @@ COPY packages/twenty-shared ./packages/twenty-shared
 COPY packages/twenty-emails ./packages/twenty-emails
 
 # 編譯 i18n 翻譯（確保後端翻譯生效）
-RUN cd packages/twenty-server && yarn lingui compile
+# 注意: lingui compile 已整合到 nx build 流程中,不需要單獨執行
+# RUN cd packages/twenty-server && yarn lingui compile
 
 # 構建 twenty-server（production 模式）
 RUN yarn nx build twenty-server --configuration=production
