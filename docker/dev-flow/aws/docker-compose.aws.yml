@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
@@ -19,7 +19,7 @@ services:
     container_name: Y-CRM-redis
     restart: unless-stopped
     ports:
-      - "${REDIS_PORT:-6379}:6379"
+      - "127.0.0.1:${REDIS_PORT:-6379}:6379"
     volumes:
       - redis-data:/data
 
@@ -34,9 +34,9 @@ services:
     env_file:
       - ./.env
     environment:
-      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-https://y-crm.youngming-mes.com}
     ports:
-      - "${BACKEND_PORT:-8867}:8867"
+      - "127.0.0.1:${BACKEND_PORT:-8867}:8867"
 
   worker:
     image: ycrm/y-crm:b_20251230_v2_aws_image
@@ -49,7 +49,7 @@ services:
     env_file:
       - ./.env
     environment:
-      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-https://y-crm.youngming-mes.com}
     working_dir: /app/packages/twenty-server
     command: ["node", "dist/src/queue-worker/queue-worker.js"]
 
@@ -59,11 +59,11 @@ services:
     depends_on:
       - backend
     ports:
-      - "${FRONTEND_PORT:-8866}:80"
+      - "127.0.0.1:${FRONTEND_PORT:-8866}:80"
     env_file:
       - ./.env
     environment:
-      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-http://52.195.151.185:8867}
+      BACKEND_PUBLIC_URL: ${BACKEND_PUBLIC_URL:-https://y-crm.youngming-mes.com}
 
 volumes:
   postgres-data:

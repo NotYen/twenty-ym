@@ -154,6 +154,11 @@ EOF
   fi
 
   echo ""
+  info "Cleaning up unused Docker images..."
+  docker image prune -af || true
+  success "Docker cleanup complete"
+
+  echo ""
   success "All services started!"
 
   cat <<EOF

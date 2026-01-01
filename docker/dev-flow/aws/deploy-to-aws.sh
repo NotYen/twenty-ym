@@ -180,6 +180,9 @@ if [[ "\${CRON_COUNT}" -gt 0 ]]; then
 else
   echo "⚠️ Warning: No CRON jobs found in Redis. Please check backend logs."
 fi
+echo "🧹 Cleaning up unused Docker images..."
+docker image prune -af || true
+echo "✅ Docker cleanup complete"
 EOF
 echo "✅ AWS services updated, migrations applied, cache cleared, and views seeded."
 
