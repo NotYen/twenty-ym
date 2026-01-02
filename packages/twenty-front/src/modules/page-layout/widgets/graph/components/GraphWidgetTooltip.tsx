@@ -25,7 +25,7 @@ const StyledTooltipContent = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(3)};
-  padding: ${({ theme }) => theme.spacing(2)};
+  padding: ${({ theme }) => theme.spacing(3)};
 `;
 
 const StyledTooltipRow = styled.div`
@@ -46,20 +46,21 @@ const StyledTooltipRowContainer = styled.div`
 const StyledDot = styled.div<{ color: string }>`
   background: ${({ color }) => color};
   border-radius: 50%;
-  height: 6px;
-  width: 6px;
+  height: 8px;
+  width: 8px;
   flex-shrink: 0;
 `;
 
 const StyledTooltipLink = styled.div<{ isClickable: boolean }>`
   align-items: center;
-  color: ${({ theme }) => theme.font.color.light};
+  color: ${({ theme }) => theme.font.color.secondary};
   cursor: ${({ isClickable }) => (isClickable ? 'pointer' : 'default')};
   display: flex;
   justify-content: space-between;
-  height: ${({ theme }) => theme.spacing(6)};
-  font-weight: ${({ theme }) => theme.font.weight.regular};
-  padding-inline: ${({ theme }) => theme.spacing(2)};
+  height: ${({ theme }) => theme.spacing(7)};
+  font-size: ${({ theme }) => theme.font.size.md};
+  font-weight: ${({ theme }) => theme.font.weight.medium};
+  padding-inline: ${({ theme }) => theme.spacing(3)};
   line-height: 140%;
 `;
 
@@ -71,8 +72,8 @@ const StyledTooltipSeparator = styled.div`
 
 const StyledTooltipHeader = styled.div`
   color: ${({ theme }) => theme.font.color.primary};
-  font-size: ${({ theme }) => theme.font.size.xs};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
+  font-size: ${({ theme }) => theme.font.size.md};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
   line-height: 140%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -83,29 +84,29 @@ const StyledTooltipRowRightContent = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  font-size: ${({ theme }) => theme.font.size.xs};
-  color: ${({ theme }) => theme.font.color.extraLight};
+  font-size: ${({ theme }) => theme.font.size.md};
+  color: ${({ theme }) => theme.font.color.secondary};
   font-weight: ${({ theme }) => theme.font.weight.regular};
-  gap: ${({ theme }) => theme.spacing(2)};
+  gap: ${({ theme }) => theme.spacing(3)};
   min-width: 0;
   width: 100%;
 `;
 
 const StyledTooltipLabel = styled.span<{ isHighlighted?: boolean }>`
   color: ${({ theme, isHighlighted }) =>
-    isHighlighted ? theme.font.color.secondary : theme.font.color.tertiary};
+    isHighlighted ? theme.font.color.primary : theme.font.color.secondary};
   flex: 1;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: ${({ theme, isHighlighted }) =>
-    isHighlighted ? theme.font.weight.medium : theme.font.weight.regular};
+    isHighlighted ? theme.font.weight.semiBold : theme.font.weight.medium};
 `;
 
 const StyledTooltipValue = styled.span<{ isHighlighted?: boolean }>`
   color: ${({ theme, isHighlighted }) =>
-    isHighlighted ? theme.font.color.tertiary : theme.font.color.extraLight};
+    isHighlighted ? theme.font.color.secondary : theme.font.color.tertiary};
   flex-shrink: 0;
   font-weight: ${({ theme, isHighlighted }) =>
     isHighlighted ? theme.font.weight.semiBold : theme.font.weight.medium};
@@ -130,25 +131,27 @@ const StyledRecordListSection = styled.div`
   border-top: 1px solid ${({ theme }) => theme.border.color.light};
 `;
 
+const StyledRecordListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${({ theme }) => theme.spacing(1)};
+  max-height: ${GRAPH_TOOLTIP_SCROLL_MAX_HEIGHT_PX}px;
+  overflow-y: auto;
+`;
+
 const StyledRecordListHeader = styled.div`
-  color: ${({ theme }) => theme.font.color.tertiary};
-  font-size: ${({ theme }) => theme.font.size.xs};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
+  color: ${({ theme }) => theme.font.color.secondary};
+  font-size: ${({ theme }) => theme.font.size.md};
+  font-weight: ${({ theme }) => theme.font.weight.semiBold};
 `;
 
 const StyledRecordListItem = styled.div`
-  color: ${({ theme }) => theme.font.color.secondary};
-  font-size: ${({ theme }) => theme.font.size.xs};
+  color: ${({ theme }) => theme.font.color.primary};
+  font-size: ${({ theme }) => theme.font.size.md};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   padding-left: ${({ theme }) => theme.spacing(2)};
-`;
-
-const StyledRecordListMore = styled.div`
-  color: ${({ theme }) => theme.font.color.light};
-  font-size: ${({ theme }) => theme.font.size.xs};
-  font-style: italic;
 `;
 
 export type GraphWidgetTooltipItem = {
@@ -193,7 +196,6 @@ export const GraphWidgetTooltip = ({
   const shouldHighlight = filteredItems.length > 1;
   const hasGraphWidgetTooltipClick = isDefined(onGraphWidgetTooltipClick);
   const hasRecords = isDefined(records) && records.length > 0;
-  const remainingCount = (totalRecordCount ?? 0) - (records?.length ?? 0);
   // Don't show loading state to prevent flickering - just wait for data
   const showRecordsSection = hasRecords;
 
@@ -229,16 +231,13 @@ export const GraphWidgetTooltip = ({
           {showRecordsSection && (
             <StyledRecordListSection>
               <StyledRecordListHeader>{t`Records`}:</StyledRecordListHeader>
-              {records.map((record) => (
-                <StyledRecordListItem key={record.id}>
-                  • {record.displayValue}
-                </StyledRecordListItem>
-              ))}
-              {remainingCount > 0 && (
-                <StyledRecordListMore>
-                  {t`and ${remainingCount} more...`}
-                </StyledRecordListMore>
-              )}
+              <StyledRecordListContainer>
+                {records.map((record) => (
+                  <StyledRecordListItem key={record.id}>
+                    • {record.displayValue}
+                  </StyledRecordListItem>
+                ))}
+              </StyledRecordListContainer>
             </StyledRecordListSection>
           )}
         </StyledTooltipContent>

@@ -5,7 +5,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
 import { type PieChartConfiguration } from '~/generated/graphql';
 
-const PIE_CHART_TOOLTIP_RECORDS_LIMIT = 5;
+const PIE_CHART_TOOLTIP_RECORDS_LIMIT = 50;
 
 type UsePieChartSliceRecordsProps = {
   objectMetadataItemId: string;
