@@ -80,25 +80,27 @@ export const GraphPieChartTooltip = ({
     return null;
   }
 
-  const item = enrichedData.find((d) => d.id === hoveredDatum.id);
-  if (!isDefined(item)) {
+  // Verify hovered item exists in enrichedData
+  const hoveredItemExists = enrichedData.some((d) => d.id === hoveredDatum.id);
+  if (!hoveredItemExists) {
     return null;
   }
 
-  const formattedValue =
-    displayType === 'percentage'
-      ? formatGraphValue(item.percentage / 100, formatOptions)
-      : `${formatGraphValue(item.value, formatOptions)} (${item.percentage.toFixed(1)}%)`;
+  // Build tooltip items for all slices (like bar chart), with hovered item highlighted
+  const tooltipItems = enrichedData.map((d) => {
+    const formattedValue =
+      displayType === 'percentage'
+        ? formatGraphValue(d.percentage / 100, formatOptions)
+        : `${formatGraphValue(d.value, formatOptions)} (${d.percentage.toFixed(1)}%)`;
 
-  const tooltipItems = [
-    {
-      key: item.id,
-      label: item.label || item.id,
+    return {
+      key: d.id,
+      label: d.label || d.id,
       formattedValue,
-      value: item.value,
-      dotColor: item.colorScheme.solid,
-    },
-  ];
+      value: d.value,
+      dotColor: d.colorScheme.solid,
+    };
+  });
 
   const handleTooltipClick = isDefined(hoveredDataItem?.to)
     ? () => {
@@ -132,6 +134,7 @@ export const GraphPieChartTooltip = ({
           >
             <GraphWidgetTooltip
               items={tooltipItems}
+              highlightedKey={hoveredDatum.id}
               onGraphWidgetTooltipClick={handleTooltipClick}
               records={records as GraphWidgetTooltipRecord[] | undefined}
               totalRecordCount={totalCount}
