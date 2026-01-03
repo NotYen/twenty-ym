@@ -3,6 +3,7 @@ import { TerminusModule } from '@nestjs/terminus';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { HealthController } from 'src/engine/core-modules/health/controllers/health.controller';
+import { SentryTestController } from 'src/engine/core-modules/health/controllers/sentry-test.controller';
 import { AppHealthIndicator } from 'src/engine/core-modules/health/indicators/app.health';
 import { MetricsModule } from 'src/engine/core-modules/metrics/metrics.module';
 import { RedisClientModule } from 'src/engine/core-modules/redis-client/redis-client.module';
@@ -21,7 +22,7 @@ import { WorkerHealthIndicator } from './indicators/worker.health';
     TypeOrmModule.forFeature([WorkspaceEntity]),
     MetricsModule,
   ],
-  controllers: [HealthController],
+  controllers: [HealthController, SentryTestController],
   providers: [
     DatabaseHealthIndicator,
     RedisHealthIndicator,

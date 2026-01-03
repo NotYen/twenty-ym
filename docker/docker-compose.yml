@@ -104,6 +104,7 @@ services:
         VITE_IS_DEBUG_MODE: ${VITE_IS_DEBUG_MODE:-true}
         IS_DEBUG_MODE: ${IS_DEBUG_MODE:-true}
         FRONTEND_IMAGE_VERSION: ${FRONTEND_IMAGE_VERSION:-dev}
+        VITE_SENTRY_DSN: ${VITE_SENTRY_DSN:-}
     depends_on:
       - backend
     ports:
