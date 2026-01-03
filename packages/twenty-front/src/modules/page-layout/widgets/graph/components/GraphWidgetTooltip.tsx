@@ -5,6 +5,7 @@ import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { t } from '@lingui/core/macro';
 import { isNonEmptyString } from '@sniptt/guards';
+import { useEffect, useRef } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { IconArrowUpRight } from 'twenty-ui/display';
 
@@ -28,10 +29,12 @@ const StyledTooltipContent = styled.div`
   padding: ${({ theme }) => theme.spacing(3)};
 `;
 
-const StyledTooltipRow = styled.div`
+const StyledTooltipRow = styled.div<{ isHighlighted?: boolean }>`
   align-items: center;
+  background: ${({ theme, isHighlighted }) =>
+    isHighlighted ? theme.background.transparent.light : 'transparent'};
+  border-radius: ${({ theme }) => theme.border.radius.sm};
   display: flex;
-
   gap: ${({ theme }) => theme.spacing(2)};
 `;
 
@@ -188,6 +191,7 @@ export const GraphWidgetTooltip = ({
   recordsLoading,
 }: GraphWidgetTooltipProps) => {
   const theme = useTheme();
+  const itemRefs = useRef<Map<string, HTMLDivElement>>(new Map());
 
   const filteredItems = items.filter(
     (item) => item.value !== 0 && isNonEmptyString(item.formattedValue),
@@ -198,6 +202,16 @@ export const GraphWidgetTooltip = ({
   const hasRecords = isDefined(records) && records.length > 0;
   // Don't show loading state to prevent flickering - just wait for data
   const showRecordsSection = hasRecords;
+
+  // Auto-scroll to highlighted item when highlightedKey changes
+  useEffect(() => {
+    if (highlightedKey && itemRefs.current.has(highlightedKey)) {
+      itemRefs.current.get(highlightedKey)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+      });
+    }
+  }, [highlightedKey]);
 
   return (
     <StyledTooltip>
@@ -214,7 +228,17 @@ export const GraphWidgetTooltip = ({
               const isHighlighted =
                 shouldHighlight && highlightedKey === item.key;
               return (
-                <StyledTooltipRow key={item.key}>
+                <StyledTooltipRow
+                  key={item.key}
+                  isHighlighted={isHighlighted}
+                  ref={(el) => {
+                    if (el) {
+                      itemRefs.current.set(item.key, el);
+                    } else {
+                      itemRefs.current.delete(item.key);
+                    }
+                  }}
+                >
                   <StyledDot color={item.dotColor} />
                   <StyledTooltipRowRightContent>
                     <StyledTooltipLabel isHighlighted={isHighlighted}>
