@@ -16,6 +16,7 @@ export type WidgetCardProps = {
   isDragging: boolean;
   isInPinnedTab: boolean;
   isResizing?: boolean;
+  isLastWidget?: boolean;
   className?: string;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -30,6 +31,7 @@ const StyledWidgetCard = styled.div<{
   isEditing: boolean;
   isDragging: boolean;
   isResizing: boolean;
+  isLastWidget: boolean;
 }>`
   box-sizing: border-box;
   display: flex;
@@ -47,6 +49,7 @@ const StyledWidgetCard = styled.div<{
     isDragging,
     isInPinnedTab,
     isResizing,
+    isLastWidget,
     onClick,
   }) => {
     if (layoutMode === 'canvas') {
@@ -137,6 +140,10 @@ const StyledWidgetCard = styled.div<{
             padding: 0;
             border-radius: 0;
             background: ${theme.background.secondary};
+            ${!isLastWidget &&
+            css`
+              border-bottom: 1px solid ${theme.border.color.light};
+            `}
           `}
         `;
       }
@@ -156,6 +163,7 @@ export const WidgetCard = ({
   isDragging,
   isInPinnedTab,
   isResizing = false,
+  isLastWidget = false,
   className,
   onMouseEnter,
   onMouseLeave,
@@ -174,6 +182,7 @@ export const WidgetCard = ({
       isDragging={isDragging}
       isInPinnedTab={isInPinnedTab}
       isResizing={isResizing}
+      isLastWidget={isLastWidget}
       className={className}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
