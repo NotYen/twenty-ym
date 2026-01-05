@@ -137,6 +137,7 @@ export type AggregateChartConfiguration = {
   graphType: GraphType;
   label?: Maybe<Scalars['String']>;
   timezone?: Maybe<Scalars['String']>;
+  tooltipDisplayFieldMetadataId?: Maybe<Scalars['UUID']>;
 };
 
 export enum AggregateOperations {
@@ -344,6 +345,7 @@ export type BarChartConfiguration = {
   secondaryAxisGroupBySubFieldName?: Maybe<Scalars['String']>;
   secondaryAxisOrderBy?: Maybe<GraphOrderBy>;
   timezone?: Maybe<Scalars['String']>;
+  tooltipDisplayFieldMetadataId?: Maybe<Scalars['UUID']>;
 };
 
 /** Display mode for bar charts with secondary grouping */
@@ -1397,6 +1399,7 @@ export type GaugeChartConfiguration = {
   firstDayOfTheWeek?: Maybe<Scalars['Int']>;
   graphType: GraphType;
   timezone?: Maybe<Scalars['String']>;
+  tooltipDisplayFieldMetadataId?: Maybe<Scalars['UUID']>;
 };
 
 export type GetApiKeyInput = {
@@ -1659,6 +1662,7 @@ export type LineChartConfiguration = {
   secondaryAxisGroupBySubFieldName?: Maybe<Scalars['String']>;
   secondaryAxisOrderBy?: Maybe<GraphOrderBy>;
   timezone?: Maybe<Scalars['String']>;
+  tooltipDisplayFieldMetadataId?: Maybe<Scalars['UUID']>;
 };
 
 export type LinkMetadata = {

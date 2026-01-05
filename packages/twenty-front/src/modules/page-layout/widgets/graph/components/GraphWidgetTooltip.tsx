@@ -150,11 +150,13 @@ const StyledRecordListHeader = styled.div`
 
 const StyledRecordListItem = styled.div`
   color: ${({ theme }) => theme.font.color.primary};
-  font-size: ${({ theme }) => theme.font.size.md};
+  font-size: ${({ theme }) => theme.font.size.sm};
+  line-height: ${({ theme }) => theme.spacing(5)};
+  min-height: ${({ theme }) => theme.spacing(5)};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding-left: ${({ theme }) => theme.spacing(2)};
+  padding: 0 ${({ theme }) => theme.spacing(2)};
 `;
 
 export type GraphWidgetTooltipItem = {

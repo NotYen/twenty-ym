@@ -2,8 +2,8 @@ import { GraphWidgetChartContainer } from '@/page-layout/widgets/graph/component
 import { GraphWidgetLegend } from '@/page-layout/widgets/graph/components/GraphWidgetLegend';
 import { CHART_LEGEND_ITEM_THRESHOLD } from '@/page-layout/widgets/graph/constants/ChartLegendItemThreshold';
 import {
-  CustomCrosshairLayer,
-  type SliceHoverData,
+    CustomCrosshairLayer,
+    type SliceHoverData,
 } from '@/page-layout/widgets/graph/graphWidgetLineChart/components/CustomCrosshairLayer';
 import { CustomPointLabelsLayer } from '@/page-layout/widgets/graph/graphWidgetLineChart/components/CustomPointLabelsLayer';
 import { GraphLineChartTooltip } from '@/page-layout/widgets/graph/graphWidgetLineChart/components/GraphLineChartTooltip';
@@ -21,8 +21,8 @@ import { getLineChartAxisBottomConfig } from '@/page-layout/widgets/graph/graphW
 import { getLineChartAxisLeftConfig } from '@/page-layout/widgets/graph/graphWidgetLineChart/utils/getLineChartAxisLeftConfig';
 import { createGraphColorRegistry } from '@/page-layout/widgets/graph/utils/createGraphColorRegistry';
 import {
-  formatGraphValue,
-  type GraphValueFormatOptions,
+    formatGraphValue,
+    type GraphValueFormatOptions,
 } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { NodeDimensionEffect } from '@/ui/utilities/dimensions/components/NodeDimensionEffect';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
@@ -30,15 +30,16 @@ import { useSetRecoilComponentState } from '@/ui/utilities/state/component-state
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-  ResponsiveLine,
-  type LineCustomSvgLayerProps,
-  type LineSeries,
-  type Point,
-  type SliceTooltipProps,
+    ResponsiveLine,
+    type LineCustomSvgLayerProps,
+    type LineSeries,
+    type Point,
+    type SliceTooltipProps,
 } from '@nivo/line';
 import { useCallback, useId, useRef, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { useDebouncedCallback } from 'use-debounce';
+import { type LineChartConfiguration } from '~/generated/graphql';
 
 type CrosshairLayerProps = LineCustomSvgLayerProps<LineSeries>;
 type PointLabelsLayerProps = LineCustomSvgLayerProps<LineSeries>;
@@ -57,6 +58,8 @@ type GraphWidgetLineChartProps = {
   omitNullValues?: boolean;
   groupMode?: 'stacked';
   onSliceClick?: (point: Point<LineSeries>) => void;
+  objectMetadataItemId?: string;
+  configuration?: LineChartConfiguration;
 } & GraphValueFormatOptions;
 
 const StyledContainer = styled.div`
@@ -87,6 +90,8 @@ export const GraphWidgetLineChart = ({
   suffix,
   customFormatter,
   onSliceClick,
+  objectMetadataItemId,
+  configuration,
 }: GraphWidgetLineChartProps) => {
   const theme = useTheme();
   const instanceId = useId();
@@ -284,6 +289,9 @@ export const GraphWidgetLineChart = ({
         onSliceClick={onSliceClick}
         onMouseEnter={handleTooltipMouseEnter}
         onMouseLeave={handleTooltipMouseLeave}
+        objectMetadataItemId={objectMetadataItemId}
+        configuration={configuration}
+        series={data}
       />
       <GraphWidgetLegend show={shouldShowLegend} items={legendItems} />
     </StyledContainer>

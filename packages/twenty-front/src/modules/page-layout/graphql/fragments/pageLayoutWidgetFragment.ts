@@ -40,6 +40,7 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         timezone
         firstDayOfTheWeek
         isCumulative
+        tooltipDisplayFieldMetadataId
       }
       ... on LineChartConfiguration {
         graphType
@@ -64,6 +65,7 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         timezone
         firstDayOfTheWeek
         isCumulative
+        tooltipDisplayFieldMetadataId
       }
       ... on PieChartConfiguration {
         graphType
@@ -93,6 +95,7 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         filter
         timezone
         firstDayOfTheWeek
+        tooltipDisplayFieldMetadataId
       }
       ... on GaugeChartConfiguration {
         graphType
@@ -104,6 +107,7 @@ export const PAGE_LAYOUT_WIDGET_FRAGMENT = gql`
         filter
         timezone
         firstDayOfTheWeek
+        tooltipDisplayFieldMetadataId
       }
       ... on IframeConfiguration {
         url

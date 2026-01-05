@@ -13,9 +13,22 @@ import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/ho
 import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { MenuItemSelect } from 'twenty-ui/navigation';
-import { type PieChartConfiguration } from '~/generated/graphql';
+import {
+    type AggregateChartConfiguration,
+    type BarChartConfiguration,
+    type GaugeChartConfiguration,
+    type LineChartConfiguration,
+    type PieChartConfiguration,
+} from '~/generated/graphql';
 
 const DEFAULT_FIELD_ID = '__default__';
+
+type SupportedChartConfiguration =
+  | PieChartConfiguration
+  | BarChartConfiguration
+  | LineChartConfiguration
+  | AggregateChartConfiguration
+  | GaugeChartConfiguration;
 
 export const ChartTooltipDisplayFieldSelectionDropdownContent = () => {
   const { pageLayoutId } = usePageLayoutIdFromContextStoreTargetedRecord();
@@ -36,10 +49,17 @@ export const ChartTooltipDisplayFieldSelectionDropdownContent = () => {
   const { closeDropdown } = useCloseDropdown();
 
   const configuration = widgetInEditMode?.configuration as
-    | PieChartConfiguration
+    | SupportedChartConfiguration
     | undefined;
 
-  if (configuration?.__typename !== 'PieChartConfiguration') {
+  const isSupportedChartType =
+    configuration?.__typename === 'PieChartConfiguration' ||
+    configuration?.__typename === 'BarChartConfiguration' ||
+    configuration?.__typename === 'LineChartConfiguration' ||
+    configuration?.__typename === 'AggregateChartConfiguration' ||
+    configuration?.__typename === 'GaugeChartConfiguration';
+
+  if (!isSupportedChartType) {
     throw new Error('Invalid configuration type');
   }
 

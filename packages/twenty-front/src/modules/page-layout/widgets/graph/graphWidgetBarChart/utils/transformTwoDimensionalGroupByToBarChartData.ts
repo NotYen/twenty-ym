@@ -61,6 +61,9 @@ export const transformTwoDimensionalGroupByToBarChartData = ({
     const dimensionValues = result.groupByDimensionValues;
     if (!isDefined(dimensionValues) || dimensionValues.length < 2) return;
 
+    // Store raw dimension value for filtering (before formatting)
+    const rawDimensionValue = dimensionValues[0] ?? null;
+
     const xValue = formatDimensionValue({
       value: dimensionValues[0],
       fieldMetadata: groupByFieldX,
@@ -117,6 +120,7 @@ export const transformTwoDimensionalGroupByToBarChartData = ({
     if (!dataMap.has(xValue)) {
       dataMap.set(xValue, {
         [indexByKey]: xValue,
+        rawDimensionValue,
       });
     }
 

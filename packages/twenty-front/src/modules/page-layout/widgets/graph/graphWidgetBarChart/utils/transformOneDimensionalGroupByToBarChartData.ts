@@ -56,6 +56,9 @@ export const transformOneDimensionalGroupByToBarChartData = ({
   const data: BarChartDataItem[] = limitedResults.map((result) => {
     const dimensionValues = result.groupByDimensionValues;
 
+    // Store raw dimension value for filtering (before formatting)
+    const rawDimensionValue = dimensionValues?.[0] ?? null;
+
     const xValue = isDefined(dimensionValues?.[0])
       ? formatDimensionValue({
           value: dimensionValues[0],
@@ -79,6 +82,7 @@ export const transformOneDimensionalGroupByToBarChartData = ({
     return {
       [indexByKey]: xValue,
       [aggregateValueKey]: aggregateValue,
+      rawDimensionValue,
     };
   });
 

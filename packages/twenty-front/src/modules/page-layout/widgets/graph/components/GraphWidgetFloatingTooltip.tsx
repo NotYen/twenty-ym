@@ -1,6 +1,7 @@
 import {
-  GraphWidgetTooltip,
-  type GraphWidgetTooltipItem,
+    GraphWidgetTooltip,
+    type GraphWidgetTooltipItem,
+    type GraphWidgetTooltipRecord,
 } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
 import { useGraphWidgetTooltipFloating } from '@/page-layout/widgets/graph/hooks/useGraphWidgetTooltipFloating';
 import { useTheme } from '@emotion/react';
@@ -17,6 +18,8 @@ type GraphWidgetFloatingTooltipProps = {
   onGraphWidgetTooltipClick?: () => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  records?: GraphWidgetTooltipRecord[];
+  totalRecordCount?: number;
 };
 
 export const GraphWidgetFloatingTooltip = ({
@@ -28,6 +31,8 @@ export const GraphWidgetFloatingTooltip = ({
   onGraphWidgetTooltipClick,
   onMouseEnter,
   onMouseLeave,
+  records,
+  totalRecordCount,
 }: GraphWidgetFloatingTooltipProps) => {
   const theme = useTheme();
 
@@ -68,6 +73,8 @@ export const GraphWidgetFloatingTooltip = ({
               indexLabel={indexLabel}
               highlightedKey={highlightedKey}
               onGraphWidgetTooltipClick={onGraphWidgetTooltipClick}
+              records={records}
+              totalRecordCount={totalRecordCount}
             />
           </motion.div>
         </AnimatePresence>
