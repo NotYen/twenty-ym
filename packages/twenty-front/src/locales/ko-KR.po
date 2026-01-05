@@ -165,6 +165,13 @@ msgstr "{count, plural, other {예: {2}{3}는 소수 {count}개를 위한 예}}"
 msgid "{days, plural, one {{days} day} other {{days} days}}"
 msgstr "{days, plural, other {{days}일}}"
 
+#. js-lingui-id: 0KwX9P
+#. placeholder {0}: (1000).toFixed(decimals)
+#. placeholder {1}: (1000).toFixed(decimals)
+#: src/modules/settings/data-model/fields/forms/currency/components/SettingsDataModelFieldCurrencyForm.tsx
+msgid "{decimals, plural, one {E.g. {0} for {decimals} decimal} other {E.g. {1} for {decimals} decimals}}"
+msgstr ""
+
 #. js-lingui-id: MIIEDl
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
@@ -890,9 +897,9 @@ msgstr "집계"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1299,6 +1306,11 @@ msgstr "아랍어"
 #. js-lingui-id: UYX7KQ
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 msgid "Are you sure you want to delete \"{recordName}\"?"
+msgstr ""
+
+#. js-lingui-id: Lejgsc
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Are you sure you want to delete LINE configuration?"
 msgstr ""
 
 #. js-lingui-id: 3H+5DU
@@ -1932,11 +1944,18 @@ msgstr "변경 로그"
 
 #. js-lingui-id: uHVuiy
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Channel Access Token"
+msgstr ""
+
+#. js-lingui-id: 4IVK41
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Channel ID"
 msgstr ""
 
 #. js-lingui-id: 4iLv/J
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Channel Secret"
 msgstr ""
 
@@ -1966,10 +1985,10 @@ msgstr "확인 확인"
 msgid "Check your Emails"
 msgstr "이메일을 확인하세요"
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: FG6XW/
 #: src/modules/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "결제 세션 오류입니다. 다시 시도하거나 Twenty 팀에 문의하십시오"
+msgid "Checkout session error. Please retry or contact Y-CRM team"
+msgstr "결제 세션 오류. 다시 시도하거나 Y-CRM 팀에 문의하세요"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -2031,6 +2050,11 @@ msgstr "지우기"
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Clear the field or \"X\" to revert to environment/default value."
 msgstr "필드를 지우거나 환경/기본값으로 되돌리기 위해 \"X\"를 누르세요."
+
+#. js-lingui-id: 3+0X+I
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Click \"Verify\" to test the connection"
+msgstr ""
 
 #. js-lingui-id: HevGC0
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormEmptyMessage.tsx
@@ -2279,6 +2303,11 @@ msgstr "이메일을 보내기 위해 SMTP 설정을 구성하십시오."
 msgid "Configure these DNS records with your domain provider"
 msgstr "도메인 제공업체와 함께 이 DNS 기록 구성하기"
 
+#. js-lingui-id: stSVPA
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Configure this Webhook URL in your LINE Developers Console:"
+msgstr ""
+
 #. js-lingui-id: SpV+F6
 #: src/pages/settings/ai/components/SettingsAgentHandoffSection.tsx
 msgid "Configure which agents this agent can hand off conversations to"
@@ -2372,10 +2401,26 @@ msgstr ""
 msgid "Connected accounts"
 msgstr "연결된 계정"
 
+#. js-lingui-id: vDvOdi
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection failed: {error}"
+msgstr ""
+
 #. js-lingui-id: W4Kgwq
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
 msgid "Connection settings"
 msgstr "연결 설정"
+
+#. js-lingui-id: sjPFYz
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection Status"
+msgstr ""
+
+#. js-lingui-id: QoS5CK
+#. placeholder {1}: botInfo.displayName
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection successful! Bot: {1}"
+msgstr ""
 
 #. js-lingui-id: f6bbrz
 #: src/modules/settings/accounts/hooks/useImapSmtpCaldavConnectionForm.ts
@@ -2463,6 +2508,7 @@ msgid "Copied to clipboard"
 msgstr "클립보드에 복사되었습니다"
 
 #. js-lingui-id: he3ygx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
@@ -3227,6 +3273,11 @@ msgstr "에이전트 삭제"
 msgid "Delete API key"
 msgstr "API 키 삭제"
 
+#. js-lingui-id: YfeGRe
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Delete Configuration"
+msgstr ""
+
 #. js-lingui-id: ikGfT5
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Delete dashboard"
@@ -3848,6 +3899,11 @@ msgstr "받은 편지함 비우기"
 msgid "Empty Object"
 msgstr "빈 객체"
 
+#. js-lingui-id: tUr4vE
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enable \"Use webhook\""
+msgstr ""
+
 #. js-lingui-id: q11Dk2
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 msgid "Enable bypass options"
@@ -3934,6 +3990,16 @@ msgstr ""
 msgid "Enter link"
 msgstr "링크 입력"
 
+#. js-lingui-id: rQRXo8
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter new secret to update"
+msgstr ""
+
+#. js-lingui-id: 5glT/L
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter new token to update"
+msgstr ""
+
 #. js-lingui-id: O0qPMN
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Enter number between 0 and 23"
@@ -3992,6 +4058,21 @@ msgstr "사용자 ID 또는 이메일 주소 입력"
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterValueInput.tsx
 msgid "Enter value"
 msgstr "값 입력"
+
+#. js-lingui-id: F0vsCW
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel Access Token"
+msgstr ""
+
+#. js-lingui-id: MGaJP1
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel ID"
+msgstr ""
+
+#. js-lingui-id: 4p2l8N
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel Secret"
+msgstr ""
 
 #. js-lingui-id: GpB8YV
 #: src/pages/settings/security/SettingsSecurity.tsx
@@ -4088,10 +4169,10 @@ msgstr "계측된 계층 전환 취소 중 오류 발생."
 msgid "Error while cancelling plan switching."
 msgstr "플랜 전환 취소 중 오류 발생."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: ZQ3p4S
 #: src/modules/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "시험 기간 종료 중 오류가 발생했습니다. Twenty 팀에 문의하세요."
+msgid "Error while ending trial period. Please contact Y-CRM team."
+msgstr "체험 기간 종료 중 오류가 발생했습니다. Y-CRM 팀에 문의하세요."
 
 #. js-lingui-id: QEee5f
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
@@ -4452,6 +4533,11 @@ msgstr "핸드오프 생성 실패"
 msgid "Failed to delete jobs. Please try again later."
 msgstr "작업 삭제에 실패했습니다. 나중에 다시 시도하세요."
 
+#. js-lingui-id: w6JJ0c
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to delete LINE configuration"
+msgstr ""
+
 #. js-lingui-id: Ukrbw5
 #: src/modules/ai/components/AIChatErrorMessage.tsx
 msgid "Failed to get response"
@@ -4482,6 +4568,12 @@ msgstr ""
 msgid "Failed to retry jobs. Please try again later."
 msgstr "작업 재시도 실패. 나중에 다시 시도하세요."
 
+#. js-lingui-id: D52UCB
+#. placeholder {0}: error?.message || 'Unknown error'
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to save LINE configuration: {0}"
+msgstr ""
+
 #. js-lingui-id: y3HIOa
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "Failed to save role permissions: {errorMessage}"
@@ -4490,6 +4582,11 @@ msgstr ""
 #. js-lingui-id: iQ1BL4
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Failed to save settings"
+msgstr ""
+
+#. js-lingui-id: OhzfU4
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to test LINE connection"
 msgstr ""
 
 #. js-lingui-id: HnBqPY
@@ -4852,6 +4949,11 @@ msgstr "대시보드로 이동"
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
 msgid "Go to Draft"
 msgstr "초안으로 이동"
+
+#. js-lingui-id: 5b2WKo
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Go to LINE Developers Console"
+msgstr ""
 
 #. js-lingui-id: BQE4ob
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -5386,6 +5488,7 @@ msgstr "AI 사용 지침"
 #. js-lingui-id: nbfdhU
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Integrations"
 msgstr "통합"
@@ -5879,9 +5982,35 @@ msgstr "이 필드에 추가할 수 있는 값의 개수 제한"
 msgid "Line"
 msgstr "라인"
 
+#. js-lingui-id: 5SpA60
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE"
+msgstr ""
+
+#. js-lingui-id: PBu9oz
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE configuration deleted successfully"
+msgstr ""
+
+#. js-lingui-id: 8wPGMl
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE configuration saved successfully"
+msgstr ""
+
 #. js-lingui-id: DAfq12
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "LINE Integration"
+msgstr ""
+
+#. js-lingui-id: 8qWezs
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE Official Account Configuration"
+msgstr ""
+
+#. js-lingui-id: RG05MI
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE Official Account is configured"
 msgstr ""
 
 #. js-lingui-id: pQjjYo
@@ -5937,6 +6066,7 @@ msgstr "보존 설정 로드 중..."
 #. js-lingui-id: Z3FXyt
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
@@ -6431,6 +6561,11 @@ msgstr "워크스페이스 이름"
 msgid "Navbar"
 msgstr "내비게이션 바"
 
+#. js-lingui-id: SFMNai
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Navigate to Messaging API > Webhook settings"
+msgstr ""
+
 #. js-lingui-id: dVQ33h
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Navigate to next dashboard"
@@ -6515,9 +6650,9 @@ msgid "New Account"
 msgstr "새 계정"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "새로운 에이전트"
 
@@ -6818,8 +6953,8 @@ msgstr "사용 가능한 메트릭스 데이터 없음"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 #: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
+#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "사용 가능한 모델이 없습니다. 작업 공간 설정에서 AI 모델을 구성해주세요."
 
@@ -7012,6 +7147,7 @@ msgstr "숫자 형식"
 
 #. js-lingui-id: 0fRFSb
 #: src/modules/settings/data-model/fields/forms/number/components/SettingsDataModelFieldNumberForm.tsx
+#: src/modules/settings/data-model/fields/forms/currency/components/SettingsDataModelFieldCurrencyForm.tsx
 msgid "Number of decimals"
 msgstr "소수점 자리수"
 
@@ -7377,6 +7513,11 @@ msgstr "비밀번호 재설정 링크가 이메일로 전송되었습니다"
 msgid "Paste the code below"
 msgstr "아래 코드를 붙여넣기"
 
+#. js-lingui-id: jfLrGO
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Paste the Webhook URL above"
+msgstr ""
+
 #. js-lingui-id: I6gXOa
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
 msgid "Path"
@@ -7546,6 +7687,11 @@ msgstr "인증 링크를 확인하려면 이메일을 확인하세요."
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutIframeSettings.tsx
 msgid "Please enter a valid URL"
 msgstr "유효한 URL을 입력하세요"
+
+#. js-lingui-id: EXe06s
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Please fill in all fields"
+msgstr ""
 
 #. js-lingui-id: CjNkdJ
 #: src/modules/error-handler/components/AppRootErrorFallback.tsx
@@ -8275,6 +8421,11 @@ msgstr ""
 msgid "Save as new view"
 msgstr "새 보기로 저장"
 
+#. js-lingui-id: DyBPvP
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Save Configuration"
+msgstr ""
+
 #. js-lingui-id: 7GK4Vt
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Save Dashboard"
@@ -8802,8 +8953,8 @@ msgstr "데이터베이스 설정 중..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -8833,6 +8984,11 @@ msgstr ""
 #. js-lingui-id: 4qiLkl
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
 msgid "Settings seen in \"Other / Admin Panel / Config Variables\" serve as the server-wide default values. These typically originate from the 'env.local' or '.env' files configured during deployment."
+msgstr ""
+
+#. js-lingui-id: iDaiGE
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Setup Instructions:"
 msgstr ""
 
 #. js-lingui-id: J2TlKG
@@ -9485,6 +9641,11 @@ msgstr "서비스 약관"
 msgid "Test"
 msgstr "테스트"
 
+#. js-lingui-id: s7uMvM
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Test Connection"
+msgstr ""
+
 #. js-lingui-id: bU9B27
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "Test Workflow"
@@ -10105,6 +10266,11 @@ msgstr "업데이트"
 msgid "Update"
 msgstr "업데이트"
 
+#. js-lingui-id: Hw/5o0
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Update Configuration"
+msgstr ""
+
 #. js-lingui-id: DUqztb
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
 msgid "Update view"
@@ -10521,6 +10687,16 @@ msgstr "삭제를 위해서는 웹훅 ID가 필요합니다"
 msgid "Webhook ID is required for updates"
 msgstr "업데이트를 위해서는 웹훅 ID가 필요합니다"
 
+#. js-lingui-id: nuh/Wq
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Webhook URL"
+msgstr ""
+
+#. js-lingui-id: RLiHU1
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Webhook URL copied to clipboard"
+msgstr ""
+
 #. js-lingui-id: v1kQyJ
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/developers/webhooks/components/SettingsWebhooks.tsx
@@ -10612,8 +10788,8 @@ msgstr "Workflows"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx

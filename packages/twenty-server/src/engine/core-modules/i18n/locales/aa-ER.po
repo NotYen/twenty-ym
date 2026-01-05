@@ -3913,9 +3913,9 @@ msgstr "crwdns8498:0crwdne8498:0"
 msgid "Wednesday"
 msgstr "crwdns8354:0crwdne8354:0"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: HPFGHN
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
+msgid "Welcome to Y-CRM: Please Confirm Your Email"
 msgstr "crwdns4981:0crwdne4981:0"
 
 #. js-lingui-id: bLt/0J

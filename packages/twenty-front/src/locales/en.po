@@ -160,6 +160,13 @@ msgstr "{count, plural, one {E.g. {0}{1} for {count} decimal} other {E.g. {2}{3}
 msgid "{days, plural, one {{days} day} other {{days} days}}"
 msgstr "{days, plural, one {{days} day} other {{days} days}}"
 
+#. js-lingui-id: 0KwX9P
+#. placeholder {0}: (1000).toFixed(decimals)
+#. placeholder {1}: (1000).toFixed(decimals)
+#: src/modules/settings/data-model/fields/forms/currency/components/SettingsDataModelFieldCurrencyForm.tsx
+msgid "{decimals, plural, one {E.g. {0} for {decimals} decimal} other {E.g. {1} for {decimals} decimals}}"
+msgstr "{decimals, plural, one {E.g. {0} for {decimals} decimal} other {E.g. {1} for {decimals} decimals}}"
+
 #. js-lingui-id: MIIEDl
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
@@ -885,9 +892,9 @@ msgstr "Aggregate"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1295,6 +1302,11 @@ msgstr "Arabic"
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 msgid "Are you sure you want to delete \"{recordName}\"?"
 msgstr "Are you sure you want to delete \"{recordName}\"?"
+
+#. js-lingui-id: Lejgsc
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Are you sure you want to delete LINE configuration?"
+msgstr "Are you sure you want to delete LINE configuration?"
 
 #. js-lingui-id: 3H+5DU
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DeleteMultipleRecordsAction.tsx
@@ -1927,11 +1939,18 @@ msgstr "Changelog"
 
 #. js-lingui-id: uHVuiy
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Channel Access Token"
 msgstr "Channel Access Token"
 
+#. js-lingui-id: 4IVK41
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Channel ID"
+msgstr "Channel ID"
+
 #. js-lingui-id: 4iLv/J
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Channel Secret"
 msgstr "Channel Secret"
 
@@ -1961,10 +1980,10 @@ msgstr "Check verification"
 msgid "Check your Emails"
 msgstr "Check your Emails"
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: FG6XW/
 #: src/modules/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "Checkout session error. Please retry or contact Twenty team"
+msgid "Checkout session error. Please retry or contact Y-CRM team"
+msgstr "Checkout session error. Please retry or contact Y-CRM team"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -2026,6 +2045,11 @@ msgstr "Clear"
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Clear the field or \"X\" to revert to environment/default value."
 msgstr "Clear the field or \"X\" to revert to environment/default value."
+
+#. js-lingui-id: 3+0X+I
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Click \"Verify\" to test the connection"
+msgstr "Click \"Verify\" to test the connection"
 
 #. js-lingui-id: HevGC0
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormEmptyMessage.tsx
@@ -2274,6 +2298,11 @@ msgstr "Configure SMTP settings to send emails from your account."
 msgid "Configure these DNS records with your domain provider"
 msgstr "Configure these DNS records with your domain provider"
 
+#. js-lingui-id: stSVPA
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Configure this Webhook URL in your LINE Developers Console:"
+msgstr "Configure this Webhook URL in your LINE Developers Console:"
+
 #. js-lingui-id: SpV+F6
 #: src/pages/settings/ai/components/SettingsAgentHandoffSection.tsx
 msgid "Configure which agents this agent can hand off conversations to"
@@ -2367,10 +2396,26 @@ msgstr "Connected"
 msgid "Connected accounts"
 msgstr "Connected accounts"
 
+#. js-lingui-id: vDvOdi
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection failed: {error}"
+msgstr "Connection failed: {error}"
+
 #. js-lingui-id: W4Kgwq
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
 msgid "Connection settings"
 msgstr "Connection settings"
+
+#. js-lingui-id: sjPFYz
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection Status"
+msgstr "Connection Status"
+
+#. js-lingui-id: QoS5CK
+#. placeholder {1}: botInfo.displayName
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection successful! Bot: {1}"
+msgstr "Connection successful! Bot: {1}"
 
 #. js-lingui-id: f6bbrz
 #: src/modules/settings/accounts/hooks/useImapSmtpCaldavConnectionForm.ts
@@ -2458,6 +2503,7 @@ msgid "Copied to clipboard"
 msgstr "Copied to clipboard"
 
 #. js-lingui-id: he3ygx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
@@ -3222,6 +3268,11 @@ msgstr "Delete Agent"
 msgid "Delete API key"
 msgstr "Delete API key"
 
+#. js-lingui-id: YfeGRe
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Delete Configuration"
+msgstr "Delete Configuration"
+
 #. js-lingui-id: ikGfT5
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Delete dashboard"
@@ -3843,6 +3894,11 @@ msgstr "Empty Inbox"
 msgid "Empty Object"
 msgstr "Empty Object"
 
+#. js-lingui-id: tUr4vE
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enable \"Use webhook\""
+msgstr "Enable \"Use webhook\""
+
 #. js-lingui-id: q11Dk2
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 msgid "Enable bypass options"
@@ -3929,6 +3985,16 @@ msgstr "Enter job title"
 msgid "Enter link"
 msgstr "Enter link"
 
+#. js-lingui-id: rQRXo8
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter new secret to update"
+msgstr "Enter new secret to update"
+
+#. js-lingui-id: 5glT/L
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter new token to update"
+msgstr "Enter new token to update"
+
 #. js-lingui-id: O0qPMN
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Enter number between 0 and 23"
@@ -3987,6 +4053,21 @@ msgstr "Enter user ID or email address"
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterValueInput.tsx
 msgid "Enter value"
 msgstr "Enter value"
+
+#. js-lingui-id: F0vsCW
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel Access Token"
+msgstr "Enter your LINE Channel Access Token"
+
+#. js-lingui-id: MGaJP1
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel ID"
+msgstr "Enter your LINE Channel ID"
+
+#. js-lingui-id: 4p2l8N
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel Secret"
+msgstr "Enter your LINE Channel Secret"
 
 #. js-lingui-id: GpB8YV
 #: src/pages/settings/security/SettingsSecurity.tsx
@@ -4083,10 +4164,10 @@ msgstr "Error while cancelling metered tier switching."
 msgid "Error while cancelling plan switching."
 msgstr "Error while cancelling plan switching."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: ZQ3p4S
 #: src/modules/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "Error while ending trial period. Please contact Twenty team."
+msgid "Error while ending trial period. Please contact Y-CRM team."
+msgstr "Error while ending trial period. Please contact Y-CRM team."
 
 #. js-lingui-id: QEee5f
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
@@ -4447,6 +4528,11 @@ msgstr "Failed to create handoff"
 msgid "Failed to delete jobs. Please try again later."
 msgstr "Failed to delete jobs. Please try again later."
 
+#. js-lingui-id: w6JJ0c
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to delete LINE configuration"
+msgstr "Failed to delete LINE configuration"
+
 #. js-lingui-id: Ukrbw5
 #: src/modules/ai/components/AIChatErrorMessage.tsx
 msgid "Failed to get response"
@@ -4477,6 +4563,12 @@ msgstr "Failed to remove Super Admin"
 msgid "Failed to retry jobs. Please try again later."
 msgstr "Failed to retry jobs. Please try again later."
 
+#. js-lingui-id: D52UCB
+#. placeholder {0}: error?.message || 'Unknown error'
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to save LINE configuration: {0}"
+msgstr "Failed to save LINE configuration: {0}"
+
 #. js-lingui-id: y3HIOa
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "Failed to save role permissions: {errorMessage}"
@@ -4486,6 +4578,11 @@ msgstr "Failed to save role permissions: {errorMessage}"
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Failed to save settings"
 msgstr "Failed to save settings"
+
+#. js-lingui-id: OhzfU4
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to test LINE connection"
+msgstr "Failed to test LINE connection"
 
 #. js-lingui-id: HnBqPY
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
@@ -4847,6 +4944,11 @@ msgstr "Go to Dashboards"
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
 msgid "Go to Draft"
 msgstr "Go to Draft"
+
+#. js-lingui-id: 5b2WKo
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Go to LINE Developers Console"
+msgstr "Go to LINE Developers Console"
 
 #. js-lingui-id: BQE4ob
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -5381,6 +5483,7 @@ msgstr "Instructions for AI"
 #. js-lingui-id: nbfdhU
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Integrations"
 msgstr "Integrations"
@@ -5874,10 +5977,36 @@ msgstr "Limit how many values can be added to this field"
 msgid "Line"
 msgstr "Line"
 
+#. js-lingui-id: 5SpA60
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE"
+msgstr "LINE"
+
+#. js-lingui-id: PBu9oz
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE configuration deleted successfully"
+msgstr "LINE configuration deleted successfully"
+
+#. js-lingui-id: 8wPGMl
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE configuration saved successfully"
+msgstr "LINE configuration saved successfully"
+
 #. js-lingui-id: DAfq12
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "LINE Integration"
 msgstr "LINE Integration"
+
+#. js-lingui-id: 8qWezs
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE Official Account Configuration"
+msgstr "LINE Official Account Configuration"
+
+#. js-lingui-id: RG05MI
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE Official Account is configured"
+msgstr "LINE Official Account is configured"
 
 #. js-lingui-id: pQjjYo
 #: src/pages/onboarding/InviteTeam.tsx
@@ -5932,6 +6061,7 @@ msgstr "Loading retention configuration..."
 #. js-lingui-id: Z3FXyt
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
@@ -6426,6 +6556,11 @@ msgstr "Name of your workspace"
 msgid "Navbar"
 msgstr "Navbar"
 
+#. js-lingui-id: SFMNai
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Navigate to Messaging API > Webhook settings"
+msgstr "Navigate to Messaging API > Webhook settings"
+
 #. js-lingui-id: dVQ33h
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Navigate to next dashboard"
@@ -6510,9 +6645,9 @@ msgid "New Account"
 msgstr "New Account"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "New Agent"
 
@@ -6813,8 +6948,8 @@ msgstr "No metrics data available"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 #: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
+#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "No models available. Please configure AI models in your workspace settings."
 
@@ -7007,6 +7142,7 @@ msgstr "Number format"
 
 #. js-lingui-id: 0fRFSb
 #: src/modules/settings/data-model/fields/forms/number/components/SettingsDataModelFieldNumberForm.tsx
+#: src/modules/settings/data-model/fields/forms/currency/components/SettingsDataModelFieldCurrencyForm.tsx
 msgid "Number of decimals"
 msgstr "Number of decimals"
 
@@ -7372,6 +7508,11 @@ msgstr "Password reset link has been sent to the email"
 msgid "Paste the code below"
 msgstr "Paste the code below"
 
+#. js-lingui-id: jfLrGO
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Paste the Webhook URL above"
+msgstr "Paste the Webhook URL above"
+
 #. js-lingui-id: I6gXOa
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
 msgid "Path"
@@ -7541,6 +7682,11 @@ msgstr "Please check your email for a verification link."
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutIframeSettings.tsx
 msgid "Please enter a valid URL"
 msgstr "Please enter a valid URL"
+
+#. js-lingui-id: EXe06s
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Please fill in all fields"
+msgstr "Please fill in all fields"
 
 #. js-lingui-id: CjNkdJ
 #: src/modules/error-handler/components/AppRootErrorFallback.tsx
@@ -8270,6 +8416,11 @@ msgstr "Save and Apply"
 msgid "Save as new view"
 msgstr "Save as new view"
 
+#. js-lingui-id: DyBPvP
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Save Configuration"
+msgstr "Save Configuration"
+
 #. js-lingui-id: 7GK4Vt
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Save Dashboard"
@@ -8797,8 +8948,8 @@ msgstr "Setting up your database..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -8829,6 +8980,11 @@ msgstr "Settings saved successfully"
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
 msgid "Settings seen in \"Other / Admin Panel / Config Variables\" serve as the server-wide default values. These typically originate from the 'env.local' or '.env' files configured during deployment."
 msgstr "Settings seen in \"Other / Admin Panel / Config Variables\" serve as the server-wide default values. These typically originate from the 'env.local' or '.env' files configured during deployment."
+
+#. js-lingui-id: iDaiGE
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Setup Instructions:"
+msgstr "Setup Instructions:"
 
 #. js-lingui-id: J2TlKG
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
@@ -9480,6 +9636,11 @@ msgstr "Terms of Service"
 msgid "Test"
 msgstr "Test"
 
+#. js-lingui-id: s7uMvM
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Test Connection"
+msgstr "Test Connection"
+
 #. js-lingui-id: bU9B27
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "Test Workflow"
@@ -10102,6 +10263,11 @@ msgstr "update"
 msgid "Update"
 msgstr "Update"
 
+#. js-lingui-id: Hw/5o0
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Update Configuration"
+msgstr "Update Configuration"
+
 #. js-lingui-id: DUqztb
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
 msgid "Update view"
@@ -10518,6 +10684,16 @@ msgstr "Webhook ID is required for deletion"
 msgid "Webhook ID is required for updates"
 msgstr "Webhook ID is required for updates"
 
+#. js-lingui-id: nuh/Wq
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Webhook URL"
+msgstr "Webhook URL"
+
+#. js-lingui-id: RLiHU1
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Webhook URL copied to clipboard"
+msgstr "Webhook URL copied to clipboard"
+
 #. js-lingui-id: v1kQyJ
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/developers/webhooks/components/SettingsWebhooks.tsx
@@ -10609,8 +10785,8 @@ msgstr "Workflows"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx

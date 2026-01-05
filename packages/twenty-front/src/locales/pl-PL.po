@@ -165,6 +165,13 @@ msgstr "{count, plural, one {Np. {0}{1} dla {count} dziesiętnego} few {Np. {2}{
 msgid "{days, plural, one {{days} day} other {{days} days}}"
 msgstr "{days, plural, one {{days} dzień} few {{days} dni} many {{days} dni} other {{days} dni}}"
 
+#. js-lingui-id: 0KwX9P
+#. placeholder {0}: (1000).toFixed(decimals)
+#. placeholder {1}: (1000).toFixed(decimals)
+#: src/modules/settings/data-model/fields/forms/currency/components/SettingsDataModelFieldCurrencyForm.tsx
+msgid "{decimals, plural, one {E.g. {0} for {decimals} decimal} other {E.g. {1} for {decimals} decimals}}"
+msgstr ""
+
 #. js-lingui-id: MIIEDl
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
@@ -890,9 +897,9 @@ msgstr "Zbierz"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1299,6 +1306,11 @@ msgstr "arabski"
 #. js-lingui-id: UYX7KQ
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
 msgid "Are you sure you want to delete \"{recordName}\"?"
+msgstr ""
+
+#. js-lingui-id: Lejgsc
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Are you sure you want to delete LINE configuration?"
 msgstr ""
 
 #. js-lingui-id: 3H+5DU
@@ -1932,11 +1944,18 @@ msgstr "Dziennik zmian"
 
 #. js-lingui-id: uHVuiy
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Channel Access Token"
+msgstr ""
+
+#. js-lingui-id: 4IVK41
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Channel ID"
 msgstr ""
 
 #. js-lingui-id: 4iLv/J
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Channel Secret"
 msgstr ""
 
@@ -1966,10 +1985,10 @@ msgstr "Sprawdź weryfikację"
 msgid "Check your Emails"
 msgstr "Sprawdź swoją pocztę"
 
-#. js-lingui-id: SxwQE8
+#. js-lingui-id: FG6XW/
 #: src/modules/billing/hooks/useHandleCheckoutSession.ts
-msgid "Checkout session error. Please retry or contact Twenty team"
-msgstr "Błąd sesji przy realizacji zakupu. Spróbuj ponownie lub skontaktuj się z zespołem Twenty"
+msgid "Checkout session error. Please retry or contact Y-CRM team"
+msgstr "Błąd sesji płatności. Spróbuj ponownie lub skontaktuj się z zespołem Y-CRM"
 
 #. js-lingui-id: SviKkE
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
@@ -2031,6 +2050,11 @@ msgstr "Wyczyść"
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Clear the field or \"X\" to revert to environment/default value."
 msgstr "Wyczyść pole lub \"X\", aby przywrócić wartość środowiska lub domyślną."
+
+#. js-lingui-id: 3+0X+I
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Click \"Verify\" to test the connection"
+msgstr ""
 
 #. js-lingui-id: HevGC0
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormEmptyMessage.tsx
@@ -2279,6 +2303,11 @@ msgstr "Skonfiguruj ustawienia SMTP, aby wysyłać e-maile z Twojego konta."
 msgid "Configure these DNS records with your domain provider"
 msgstr "Skonfiguruj te rekody DNS u swojego dostawcy domeny"
 
+#. js-lingui-id: stSVPA
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Configure this Webhook URL in your LINE Developers Console:"
+msgstr ""
+
 #. js-lingui-id: SpV+F6
 #: src/pages/settings/ai/components/SettingsAgentHandoffSection.tsx
 msgid "Configure which agents this agent can hand off conversations to"
@@ -2372,10 +2401,26 @@ msgstr ""
 msgid "Connected accounts"
 msgstr "Połączone konta"
 
+#. js-lingui-id: vDvOdi
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection failed: {error}"
+msgstr ""
+
 #. js-lingui-id: W4Kgwq
 #: src/modules/settings/accounts/components/SettingsAccountsRowDropdownMenu.tsx
 msgid "Connection settings"
 msgstr "Ustawienia Połączenia"
+
+#. js-lingui-id: sjPFYz
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection Status"
+msgstr ""
+
+#. js-lingui-id: QoS5CK
+#. placeholder {1}: botInfo.displayName
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Connection successful! Bot: {1}"
+msgstr ""
 
 #. js-lingui-id: f6bbrz
 #: src/modules/settings/accounts/hooks/useImapSmtpCaldavConnectionForm.ts
@@ -2463,6 +2508,7 @@ msgid "Copied to clipboard"
 msgstr "Skopiowano do schowka"
 
 #. js-lingui-id: he3ygx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
@@ -3227,6 +3273,11 @@ msgstr "Usuń Agenta"
 msgid "Delete API key"
 msgstr "Usuń klucz API"
 
+#. js-lingui-id: YfeGRe
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Delete Configuration"
+msgstr ""
+
 #. js-lingui-id: ikGfT5
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Delete dashboard"
@@ -3848,6 +3899,11 @@ msgstr "Pusta skrzynka odbiorcza"
 msgid "Empty Object"
 msgstr "Pusty obiekt"
 
+#. js-lingui-id: tUr4vE
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enable \"Use webhook\""
+msgstr ""
+
 #. js-lingui-id: q11Dk2
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 msgid "Enable bypass options"
@@ -3934,6 +3990,16 @@ msgstr ""
 msgid "Enter link"
 msgstr "Wprowadź link"
 
+#. js-lingui-id: rQRXo8
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter new secret to update"
+msgstr ""
+
+#. js-lingui-id: 5glT/L
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter new token to update"
+msgstr ""
+
 #. js-lingui-id: O0qPMN
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Enter number between 0 and 23"
@@ -3992,6 +4058,21 @@ msgstr "Wprowadź identyfikator użytkownika lub adres e-mail"
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterValueInput.tsx
 msgid "Enter value"
 msgstr "Wprowadź wartość"
+
+#. js-lingui-id: F0vsCW
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel Access Token"
+msgstr ""
+
+#. js-lingui-id: MGaJP1
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel ID"
+msgstr ""
+
+#. js-lingui-id: 4p2l8N
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Enter your LINE Channel Secret"
+msgstr ""
 
 #. js-lingui-id: GpB8YV
 #: src/pages/settings/security/SettingsSecurity.tsx
@@ -4088,10 +4169,10 @@ msgstr "Błąd podczas anulowania przełączania poziomu rozliczeń."
 msgid "Error while cancelling plan switching."
 msgstr "Błąd podczas anulowania przełączania planu."
 
-#. js-lingui-id: QmR+2U
+#. js-lingui-id: ZQ3p4S
 #: src/modules/billing/hooks/useEndSubscriptionTrialPeriod.ts
-msgid "Error while ending trial period. Please contact Twenty team."
-msgstr "Błąd podczas kończenia okresu próbnego. Proszę skontaktować się z zespołem Twenty."
+msgid "Error while ending trial period. Please contact Y-CRM team."
+msgstr "Błąd podczas kończenia okresu próbnego. Skontaktuj się z zespołem Y-CRM."
 
 #. js-lingui-id: QEee5f
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
@@ -4452,6 +4533,11 @@ msgstr "Nie udało się utworzyć przekazania"
 msgid "Failed to delete jobs. Please try again later."
 msgstr "Nie udało się usunąć zadań. Proszę spróbować ponownie później."
 
+#. js-lingui-id: w6JJ0c
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to delete LINE configuration"
+msgstr ""
+
 #. js-lingui-id: Ukrbw5
 #: src/modules/ai/components/AIChatErrorMessage.tsx
 msgid "Failed to get response"
@@ -4482,6 +4568,12 @@ msgstr ""
 msgid "Failed to retry jobs. Please try again later."
 msgstr "Nie udało się ponowić zadań. Proszę spróbować ponownie później."
 
+#. js-lingui-id: D52UCB
+#. placeholder {0}: error?.message || 'Unknown error'
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to save LINE configuration: {0}"
+msgstr ""
+
 #. js-lingui-id: y3HIOa
 #: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "Failed to save role permissions: {errorMessage}"
@@ -4490,6 +4582,11 @@ msgstr ""
 #. js-lingui-id: iQ1BL4
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Failed to save settings"
+msgstr ""
+
+#. js-lingui-id: OhzfU4
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Failed to test LINE connection"
 msgstr ""
 
 #. js-lingui-id: HnBqPY
@@ -4852,6 +4949,11 @@ msgstr "Przejdź do Pulpity nawigacyjne"
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
 msgid "Go to Draft"
 msgstr "Przejdź do wersji roboczej"
+
+#. js-lingui-id: 5b2WKo
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Go to LINE Developers Console"
+msgstr ""
 
 #. js-lingui-id: BQE4ob
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -5386,6 +5488,7 @@ msgstr "Instrukcje dla AI"
 #. js-lingui-id: nbfdhU
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Integrations"
 msgstr "Integracje"
@@ -5879,9 +5982,35 @@ msgstr "Ogranicz liczbę wartości, które można dodać do tego pola"
 msgid "Line"
 msgstr "Linia"
 
+#. js-lingui-id: 5SpA60
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE"
+msgstr ""
+
+#. js-lingui-id: PBu9oz
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE configuration deleted successfully"
+msgstr ""
+
+#. js-lingui-id: 8wPGMl
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE configuration saved successfully"
+msgstr ""
+
 #. js-lingui-id: DAfq12
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "LINE Integration"
+msgstr ""
+
+#. js-lingui-id: 8qWezs
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE Official Account Configuration"
+msgstr ""
+
+#. js-lingui-id: RG05MI
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "LINE Official Account is configured"
 msgstr ""
 
 #. js-lingui-id: pQjjYo
@@ -5937,6 +6066,7 @@ msgstr "Ładowanie konfiguracji retencji..."
 #. js-lingui-id: Z3FXyt
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
@@ -6431,6 +6561,11 @@ msgstr "Nazwa twojej przestrzeni roboczej"
 msgid "Navbar"
 msgstr "Pasek nawigacji"
 
+#. js-lingui-id: SFMNai
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Navigate to Messaging API > Webhook settings"
+msgstr ""
+
 #. js-lingui-id: dVQ33h
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Navigate to next dashboard"
@@ -6515,9 +6650,9 @@ msgid "New Account"
 msgstr "Nowe Konto"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "Nowy Agent"
 
@@ -6818,8 +6953,8 @@ msgstr "Brak dostępnych danych o metrykach"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 #: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
+#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "Brak dostępnych modeli. Skonfiguruj modele AI w ustawieniach przestrzeni roboczej."
 
@@ -7012,6 +7147,7 @@ msgstr "Format liczb"
 
 #. js-lingui-id: 0fRFSb
 #: src/modules/settings/data-model/fields/forms/number/components/SettingsDataModelFieldNumberForm.tsx
+#: src/modules/settings/data-model/fields/forms/currency/components/SettingsDataModelFieldCurrencyForm.tsx
 msgid "Number of decimals"
 msgstr "Liczba miejsc po przecinku"
 
@@ -7377,6 +7513,11 @@ msgstr "Link do resetowania hasła został wysłany na adres e-mail"
 msgid "Paste the code below"
 msgstr "Wklej kod poniżej"
 
+#. js-lingui-id: jfLrGO
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Paste the Webhook URL above"
+msgstr ""
+
 #. js-lingui-id: I6gXOa
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
 msgid "Path"
@@ -7546,6 +7687,11 @@ msgstr "Proszę sprawdzić swoją skrzynkę mailową w celu weryfikacji."
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutIframeSettings.tsx
 msgid "Please enter a valid URL"
 msgstr "Proszę wprowadzić prawidłowy adres URL"
+
+#. js-lingui-id: EXe06s
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Please fill in all fields"
+msgstr ""
 
 #. js-lingui-id: CjNkdJ
 #: src/modules/error-handler/components/AppRootErrorFallback.tsx
@@ -8275,6 +8421,11 @@ msgstr ""
 msgid "Save as new view"
 msgstr "Zapisz jako nowy widok"
 
+#. js-lingui-id: DyBPvP
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Save Configuration"
+msgstr ""
+
 #. js-lingui-id: 7GK4Vt
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Save Dashboard"
@@ -8802,8 +8953,8 @@ msgstr "Ustawianie twojej bazy danych..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -8833,6 +8984,11 @@ msgstr ""
 #. js-lingui-id: 4qiLkl
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
 msgid "Settings seen in \"Other / Admin Panel / Config Variables\" serve as the server-wide default values. These typically originate from the 'env.local' or '.env' files configured during deployment."
+msgstr ""
+
+#. js-lingui-id: iDaiGE
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Setup Instructions:"
 msgstr ""
 
 #. js-lingui-id: J2TlKG
@@ -9485,6 +9641,11 @@ msgstr "Warunki świadczenia usługi"
 msgid "Test"
 msgstr "Test"
 
+#. js-lingui-id: s7uMvM
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Test Connection"
+msgstr ""
+
 #. js-lingui-id: bU9B27
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "Test Workflow"
@@ -10105,6 +10266,11 @@ msgstr "zaktualizuj"
 msgid "Update"
 msgstr "Zaktualizuj"
 
+#. js-lingui-id: Hw/5o0
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Update Configuration"
+msgstr ""
+
 #. js-lingui-id: DUqztb
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
 msgid "Update view"
@@ -10521,6 +10687,16 @@ msgstr "ID webhooka jest wymagany do usunięcia"
 msgid "Webhook ID is required for updates"
 msgstr "ID webhooka jest wymagany do aktualizacji"
 
+#. js-lingui-id: nuh/Wq
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Webhook URL"
+msgstr ""
+
+#. js-lingui-id: RLiHU1
+#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+msgid "Webhook URL copied to clipboard"
+msgstr ""
+
 #. js-lingui-id: v1kQyJ
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/developers/webhooks/components/SettingsWebhooks.tsx
@@ -10612,8 +10788,8 @@ msgstr "Przepływy pracy"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx

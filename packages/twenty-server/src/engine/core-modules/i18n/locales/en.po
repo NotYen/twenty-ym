@@ -1854,10 +1854,10 @@ msgstr "January"
 msgid "Job Title"
 msgstr "Job Title"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: iq2qUA
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "Join your team on Twenty"
+msgid "Join your team on Y-CRM"
+msgstr "Join your team on Y-CRM"
 
 #. js-lingui-id: WNfJ8M
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
@@ -1942,6 +1942,16 @@ msgstr "Language"
 msgid "Last credentials refreshed at"
 msgstr "Last credentials refreshed at"
 
+#. js-lingui-id: VpqETK
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "Last interaction timestamp with LINE OA"
+msgstr "Last interaction timestamp with LINE OA"
+
+#. js-lingui-id: rwtrqD
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "Last LINE Interaction"
+msgstr "Last LINE Interaction"
+
 #. js-lingui-id: WvYp6o
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 msgid "Last published Version Id"
@@ -1977,10 +1987,50 @@ msgstr "Last time the record was changed"
 msgid "Last update"
 msgstr "Last update"
 
+#. js-lingui-id: j3uaua
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE display name"
+msgstr "LINE display name"
+
+#. js-lingui-id: B89UtR
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE Display Name"
+msgstr "LINE Display Name"
+
+#. js-lingui-id: 4wzW2z
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE friendship status"
+msgstr "LINE friendship status"
+
 #. js-lingui-id: SgduFH
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 msgid "Line Items"
 msgstr "Line Items"
+
+#. js-lingui-id: sB+VMa
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE Official Account user ID"
+msgstr "LINE Official Account user ID"
+
+#. js-lingui-id: 4OYMW5
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE Profile Picture"
+msgstr "LINE Profile Picture"
+
+#. js-lingui-id: HG/3aj
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE profile picture URL"
+msgstr "LINE profile picture URL"
+
+#. js-lingui-id: UqPeqF
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE Status"
+msgstr "LINE Status"
+
+#. js-lingui-id: /RYi6k
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE User ID"
+msgstr "LINE User ID"
 
 #. js-lingui-id: 9Pz2fl
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
@@ -4195,10 +4245,10 @@ msgstr "We encountered an issue connecting to your email account. Please check y
 msgid "Wednesday"
 msgstr "Wednesday"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: HPFGHN
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "Welcome to Twenty: Please Confirm Your Email"
+msgid "Welcome to Y-CRM: Please Confirm Your Email"
+msgstr "Welcome to Y-CRM: Please Confirm Your Email"
 
 #. js-lingui-id: bLt/0J
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
