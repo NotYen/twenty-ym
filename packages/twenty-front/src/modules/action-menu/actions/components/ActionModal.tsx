@@ -53,6 +53,11 @@ export const ActionModal = ({
     modalId,
   );
 
+  // 在 side panel 內的選項按鈕（command-menu-show-page-action-menu-dropdown）需要 ignoreContainer
+  // 讓 modal 渲染到 body，避免被 side panel container 裁切
+  const shouldIgnoreContainer =
+    actionMenuType === 'command-menu-show-page-action-menu-dropdown';
+
   if (!actionConfig) {
     return null;
   }
@@ -71,6 +76,7 @@ export const ActionModal = ({
           confirmButtonText={confirmButtonText}
           confirmButtonAccent={confirmButtonAccent}
           loading={isLoading}
+          ignoreContainer={shouldIgnoreContainer}
         />
       )}
     </>

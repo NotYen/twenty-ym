@@ -308,6 +308,12 @@ export const Modal = ({
     return createPortal(modalContent, effectiveContainer);
   }
 
+  // 當 ignoreContainer = true 時，portal 到 document.body
+  // 確保 modal 不會被 side panel 的 CSS 影響
+  if (ignoreContainer) {
+    return createPortal(modalContent, document.body);
+  }
+
   return modalContent;
 };
 

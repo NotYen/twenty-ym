@@ -1,4 +1,5 @@
 import { AuthModal } from '@/auth/components/AuthModal';
+import { SignInSuccessEffect } from '@/auth/sign-in-up/components/SignInSuccessEffect';
 import { AppErrorBoundary } from '@/error-handler/components/AppErrorBoundary';
 import { AppFullScreenErrorFallback } from '@/error-handler/components/AppFullScreenErrorFallback';
 import { AppPageErrorFallback } from '@/error-handler/components/AppPageErrorFallback';
@@ -19,7 +20,6 @@ import styled from '@emotion/styled';
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion';
 import { Outlet } from 'react-router-dom';
 import { useScreenSize } from 'twenty-ui/utilities';
-import { SignInSuccessEffect } from '@/auth/sign-in-up/components/SignInSuccessEffect';
 
 const StyledLayout = styled.div`
   background: transparent;
@@ -27,11 +27,12 @@ const StyledLayout = styled.div`
   flex-direction: column;
   height: 100dvh;
   position: relative;
-  scrollbar-color: ${({ theme }) => theme.border.color.medium} transparent;
+  scrollbar-color: ${({ theme }) => theme.border.color.strong} transparent;
   scrollbar-width: 4px;
   width: 100%;
 
   *::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.border.color.strong};
     border-radius: ${({ theme }) => theme.border.radius.sm};
   }
 `;

@@ -28,10 +28,11 @@ const StyledScrollableContainer = styled.div<{ maxHeight?: number }>`
   width: 100%;
 
   overflow-y: auto;
-  scrollbar-color: ${({ theme }) => theme.border.color.medium} transparent;
+  scrollbar-color: ${({ theme }) => theme.border.color.strong} transparent;
   scrollbar-width: 4px;
 
   *::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.border.color.strong};
     border-radius: ${({ theme }) => theme.border.radius.sm};
   }
 `;

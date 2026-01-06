@@ -1,11 +1,11 @@
-/* eslint-disable no-console */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useRecoilValue } from 'recoil';
 
 import { useQuoteCalculations } from '@/object-record/hooks/useQuoteCalculations';
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
 import { recordStoreFamilySelector } from '@/object-record/record-store/states/selectors/recordStoreFamilySelector';
 import { isDefined } from 'twenty-shared/utils';
+import { logDebug } from '~/utils/logDebug';
 
 type CurrencyValue = {
   amountMicros: number | null;
@@ -16,13 +16,11 @@ type SalesQuoteTaxCalculationEffectProps = {
   recordId: string;
 };
 
-type CurrencyAmount = {
-  amountMicros: number;
-  currencyCode: string;
-};
-
-// 報價單稅金自動計算組件
-// 當用戶修改小計或稅率時，自動計算稅金和總計
+// 報價單自動計算組件
+// 當用戶修改「小計」或「稅率」時，自動計算「稅額」和「總計」
+// 公式：
+//   稅額 = 小計 × 稅率
+//   總計 = 小計 + 稅額
 export const SalesQuoteTaxCalculationEffect = ({
   recordId,
 }: SalesQuoteTaxCalculationEffectProps) => {
@@ -30,102 +28,112 @@ export const SalesQuoteTaxCalculationEffect = ({
     objectNameSingular: 'salesQuote',
   });
 
-  const { calculateTaxAmount } = useQuoteCalculations();
+  const { calculateTaxAmount, calculateQuoteTotal } = useQuoteCalculations();
 
-  // 監聽總計（zongJi）
-  const total = useRecoilValue(
-    recordStoreFamilySelector({ recordId, fieldName: 'zongJi' }),
+  // 監聽小計（xiaoJi）
+  const subtotal = useRecoilValue(
+    recordStoreFamilySelector({ recordId, fieldName: 'xiaoJi' }),
   ) as CurrencyValue | null;
-  // ) as CurrencyAmount | undefined; Kant cherry-pick's code 12/19
 
   // 監聽稅率（shuiLu）
   const taxRate = useRecoilValue(
     recordStoreFamilySelector({ recordId, fieldName: 'shuiLu' }),
   ) as number | null;
-  // ) as number | undefined; Kant cherry-pick's code 12/19
 
-  const [lastCalculatedTax, setLastCalculatedTax] = useState<number | null>(
-    null,
-  );
+  // 使用 ref 追蹤上次計算結果，避免重複更新
+  const lastCalculationRef = useRef<{
+    taxAmountMicros: number;
+    totalMicros: number;
+  } | null>(null);
 
   useEffect(() => {
-    console.log('[SalesQuoteTaxCalculation] Effect triggered', {
+    logDebug('[SalesQuoteTaxCalculation] Effect triggered', {
       recordId,
-      total,
+      subtotal,
       taxRate,
     });
 
-    // 檢查：總計和稅率必須都存在
+    // 檢查：小計必須存在
     if (
-      !isDefined(total?.amountMicros) ||
-      !isDefined(total?.currencyCode) ||
-      !isDefined(taxRate)
+      !isDefined(subtotal?.amountMicros) ||
+      !isDefined(subtotal?.currencyCode)
     ) {
-      console.log(
-        '[SalesQuoteTaxCalculation] Skipped: missing total or taxRate',
-        {
-          hasTotal: isDefined(total?.amountMicros),
-          hasTaxRate: isDefined(taxRate),
-          hasCurrencyCode: isDefined(total?.currencyCode),
-        },
-      );
-      return;
-    }
-
-    // 檢查：稅率必須大於 0
-    if (taxRate <= 0) {
-      console.log('[SalesQuoteTaxCalculation] Skipped: taxRate <= 0', {
-        taxRate,
+      logDebug('[SalesQuoteTaxCalculation] Skipped: missing subtotal', {
+        hasSubtotal: isDefined(subtotal?.amountMicros),
+        hasCurrencyCode: isDefined(subtotal?.currencyCode),
       });
       return;
     }
 
-    // 計算稅金（微單位）
-    // 公式：稅金 = 總計 × 稅率 / 100
+    // 小計為 0 時，稅額和總計都應該是 0
+    const subtotalMicros = subtotal.amountMicros;
+
+    // 稅率可以是 0 或 null，這種情況下稅額為 0
+    const effectiveTaxRate = taxRate ?? 0;
+
+    // 計算稅額（微單位）
+    // 公式：稅額 = 小計 × 稅率
     const calculatedTaxAmountMicros = calculateTaxAmount(
-      total.amountMicros,
-      taxRate,
+      subtotalMicros,
+      effectiveTaxRate,
     );
 
-    console.log('[SalesQuoteTaxCalculation] Calculated tax', {
-      totalMicros: total.amountMicros,
-      taxRate,
-      calculatedTaxMicros: calculatedTaxAmountMicros,
-      lastCalculatedTax,
+    // 計算總計（微單位）
+    // 公式：總計 = 小計 + 稅額
+    const calculatedTotalMicros = calculateQuoteTotal(
+      subtotalMicros,
+      calculatedTaxAmountMicros,
+    );
+
+    logDebug('[SalesQuoteTaxCalculation] Calculated values', {
+      subtotalMicros,
+      taxRate: effectiveTaxRate,
+      calculatedTaxAmountMicros,
+      calculatedTotalMicros,
     });
 
     // 防止重複更新：如果計算結果與上次相同，跳過
-    if (calculatedTaxAmountMicros === lastCalculatedTax) {
-      console.log(
-        '[SalesQuoteTaxCalculation] Skipped: same as last calculation',
-      );
+    if (
+      lastCalculationRef.current?.taxAmountMicros === calculatedTaxAmountMicros &&
+      lastCalculationRef.current?.totalMicros === calculatedTotalMicros
+    ) {
+      logDebug('[SalesQuoteTaxCalculation] Skipped: same as last calculation');
       return;
     }
 
-    setLastCalculatedTax(calculatedTaxAmountMicros);
+    // 更新 ref
+    lastCalculationRef.current = {
+      taxAmountMicros: calculatedTaxAmountMicros,
+      totalMicros: calculatedTotalMicros,
+    };
 
-    console.log('[SalesQuoteTaxCalculation] Updating shuiJin field', {
-      amountMicros: calculatedTaxAmountMicros,
-      currencyCode: total.currencyCode,
+    logDebug('[SalesQuoteTaxCalculation] Updating shuiJin and zongJi fields', {
+      shuiJin: calculatedTaxAmountMicros,
+      zongJi: calculatedTotalMicros,
+      currencyCode: subtotal.currencyCode,
     });
 
-    // 只更新稅金字段（總計已經存在，不需要重新計算）
+    // 同時更新稅額和總計
     updateOneRecord?.({
       idToUpdate: recordId,
       updateOneRecordInput: {
         shuiJin: {
           amountMicros: calculatedTaxAmountMicros,
-          currencyCode: total.currencyCode,
+          currencyCode: subtotal.currencyCode,
+        },
+        zongJi: {
+          amountMicros: calculatedTotalMicros,
+          currencyCode: subtotal.currencyCode,
         },
       },
     });
   }, [
-    total,
+    subtotal,
     taxRate,
     recordId,
     updateOneRecord,
     calculateTaxAmount,
-    lastCalculatedTax,
+    calculateQuoteTotal,
   ]);
 
   return null;
