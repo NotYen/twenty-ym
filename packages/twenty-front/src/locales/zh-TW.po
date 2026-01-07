@@ -1391,7 +1391,7 @@ msgstr "指派 {roleTargetName}？"
 #. js-lingui-id: nerbkq
 #: src/modules/settings/roles/components/SettingsRolesList.tsx
 msgid "Assign roles to specify access permissions"
-msgstr ""
+msgstr "指派角色以設定存取權限"
 
 #. js-lingui-id: krsgB0
 #: src/modules/settings/roles/role-assignment/constants/RoleTargetConfig.ts
@@ -4943,7 +4943,7 @@ msgstr "前往公司"
 #. js-lingui-id: dvMw7T
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Go to Dashboards"
-msgstr ""
+msgstr "前往儀表板"
 
 #. js-lingui-id: dHvI9O
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
@@ -4994,7 +4994,7 @@ msgstr "前往任務"
 #. js-lingui-id: 203RqP
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Go to Workflows"
-msgstr ""
+msgstr "前往工作流程"
 
 #. js-lingui-id: eoe8BR
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
@@ -10124,7 +10124,7 @@ msgstr "類型"
 #. js-lingui-id: qzD6hf
 #: src/modules/command-menu/components/CommandMenuTopBar.tsx
 msgid "Type anything..."
-msgstr ""
+msgstr "輸入任何內容..."
 
 #. js-lingui-id: V9+2pH
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx

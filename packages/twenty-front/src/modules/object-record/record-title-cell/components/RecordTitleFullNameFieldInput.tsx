@@ -7,10 +7,18 @@ import { LAST_NAME_PLACEHOLDER_WITH_SPECIAL_CHARACTER_TO_AVOID_PASSWORD_MANAGERS
 import { useDuplicateNameSuggestion } from '@/object-record/record-field/ui/meta-types/input/hooks/useDuplicateNameSuggestion';
 import { isDoubleTextFieldEmpty } from '@/object-record/record-field/ui/meta-types/input/utils/isDoubleTextFieldEmpty';
 import { type FieldDoubleText } from '@/object-record/record-field/ui/types/FieldDoubleText';
-
+import { ConfirmationModal } from '@/ui/layout/modal/components/ConfirmationModal';
+import { useModal } from '@/ui/layout/modal/hooks/useModal';
+import { isModalOpenedComponentState } from '@/ui/layout/modal/states/isModalOpenedComponentState';
+import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import styled from '@emotion/styled';
+import { t } from '@lingui/core/macro';
 import { useCallback, useContext, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { RecordTitleDoubleTextInput } from './RecordTitleDoubleTextInput';
+
+const DUPLICATE_CONFIRMATION_MODAL_ID =
+  'duplicate-title-fullname-confirmation-modal';
 
 const StyledInputWrapper = styled.div`
   position: relative;
@@ -28,10 +36,20 @@ export const RecordTitleFullNameFieldInput = ({
     useFullNameField();
   const { recordId, isLabelIdentifier } = useContext(FieldContext);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [pendingValue, setPendingValue] = useState<{
+    firstName: string;
+    lastName: string;
+  } | null>(null);
 
   const { onEnter, onEscape, onClickOutside, onTab, onShiftTab, onCancel } =
     useContext(FieldInputEventContext);
+
+  const { openModal } = useModal();
+
+  const isModalOpened = useRecoilComponentValue(
+    isModalOpenedComponentState,
+    DUPLICATE_CONFIRMATION_MODAL_ID,
+  );
 
   const objectNameSingular =
     fieldDefinition.metadata.objectMetadataNameSingular ?? '';
@@ -54,6 +72,20 @@ export const RecordTitleFullNameFieldInput = ({
     onCancel?.();
   }, [setDraftValue, fieldValue, onCancel]);
 
+  // 確認建立新記錄
+  const handleConfirmCreate = useCallback(() => {
+    if (pendingValue !== null) {
+      closeSuggestions();
+      onEnter?.({ newValue: pendingValue });
+      setPendingValue(null);
+    }
+  }, [pendingValue, closeSuggestions, onEnter]);
+
+  // 取消建立
+  const handleCancelCreate = useCallback(() => {
+    setPendingValue(null);
+  }, []);
+
   const convertToFullName = (newDoubleText: FieldDoubleText) => {
     return {
       firstName: newDoubleText.firstValue.trim(),
@@ -70,8 +102,25 @@ export const RecordTitleFullNameFieldInput = ({
   };
 
   const handleEnter = (newDoubleText: FieldDoubleText) => {
+    const fullName = convertToFullName(newDoubleText);
+
+    // 檢查是否有「完全相同」的記錄（忽略大小寫和前後空格）
+    const trimmedFullName =
+      `${fullName.firstName} ${fullName.lastName}`.trim().toLowerCase();
+    const hasExactMatch = suggestions.some(
+      (s) => s.label.trim().toLowerCase() === trimmedFullName,
+    );
+
+    // 只有完全相同才阻擋並顯示確認對話框
+    if (hasExactMatch) {
+      setPendingValue(fullName);
+      openModal(DUPLICATE_CONFIRMATION_MODAL_ID);
+      return;
+    }
+
+    // 沒有完全相同的記錄，直接儲存
     closeSuggestions();
-    onEnter?.({ newValue: convertToFullName(newDoubleText) });
+    onEnter?.({ newValue: fullName });
   };
 
   const handleEscape = (newDoubleText: FieldDoubleText) => {
@@ -136,10 +185,21 @@ export const RecordTitleFullNameFieldInput = ({
           onClose={closeSuggestions}
           onNavigateToRecord={handleNavigateToRecord}
           anchorRef={inputWrapperRef}
-          selectedIndex={selectedIndex}
-          onSelectedIndexChange={setSelectedIndex}
         />
       )}
+      {isModalOpened &&
+        createPortal(
+          <ConfirmationModal
+            modalId={DUPLICATE_CONFIRMATION_MODAL_ID}
+            title={t`Possible duplicate detected`}
+            subtitle={t`Similar records were found. Are you sure you want to create a new record?`}
+            onConfirmClick={handleConfirmCreate}
+            onClose={handleCancelCreate}
+            confirmButtonText={t`Create anyway`}
+            confirmButtonAccent="blue"
+          />,
+          document.body,
+        )}
     </StyledInputWrapper>
   );
 };

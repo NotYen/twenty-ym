@@ -21,20 +21,39 @@
 - 當偵測到可能重複時，輸入框邊框變為橘色
 - 提供明顯的視覺提示
 
-### 3. 鍵盤導航
-- `↑` / `↓` 鍵：在建議項目間移動
+### 3. 鍵盤操作
 - `Enter` 鍵：
-  - 有選中項目時：跳轉到該記錄
-  - 無選中項目時：顯示確認對話框
+  - 名稱完全相同時：顯示確認對話框
+  - 名稱有差異時：直接儲存
 - `Esc` 鍵：取消輸入
 
-### 4. 確認對話框
-- 當有重複建議時按 Enter，會彈出確認對話框
+### 4. 確認對話框（2026-01-08 更新）
+- **只有名稱完全相同時**才會彈出確認對話框
+- 忽略大小寫和前後空格進行比對
 - 用戶可選擇「仍要建立」或「取消」
 
 ### 5. 快速跳轉
 - 點擊建議項目可直接跳轉到該記錄
 - 跳轉時會取消當前輸入（不儲存）
+
+## 彈窗顯示 vs 儲存阻擋邏輯（2026-01-08 更新）
+
+| 判斷條件 | 彈窗顯示 | 按 Enter 能否直接儲存 |
+|---------|---------|---------------------|
+| 有任何一個字相似 | ✅ 顯示提醒 | - |
+| 名稱完全相同 | - | ❌ 要先確認 |
+| 名稱有一點不同 | - | ✅ 直接儲存 |
+
+### 範例
+
+假設資料庫中已有「Android App」：
+
+| 輸入內容 | 彈窗顯示 | 按 Enter 行為 |
+|---------|---------|--------------|
+| iOS App | ✅ 顯示（"App" 相似） | ✅ 直接儲存 |
+| Android App | ✅ 顯示 | ❌ 彈出確認對話框 |
+| android app | ✅ 顯示 | ❌ 彈出確認對話框（忽略大小寫） |
+| Android | ✅ 顯示（"Android" 相似） | ✅ 直接儲存 |
 
 ## 技術實作
 
@@ -125,3 +144,25 @@ const { suggestions, isOpen, closeSuggestions, hasSuggestions } =
 
 **修復：**
 - 在 `handleClickOutside` 中檢查 `data-globally-prevent-click-outside` 屬性，如果點擊的是 dropdown 則不觸發儲存
+
+
+---
+
+## 2026-01-08 修改記錄
+
+### 移除 Enter 鍵跳轉功能
+
+**原本行為：**
+- 按 Enter 時，如果有選中的建議項目，會跳轉到該記錄
+- 這導致輸入完全相同名稱時，按 Enter 會直接跳轉而不是顯示確認對話框
+
+**修改後行為：**
+- 按 Enter 只會執行「儲存」或「顯示確認對話框」
+- 用戶如果想跳轉到已存在的記錄，需要點擊建議項目中的「點擊查看」
+
+**修改的檔案：**
+- `TextFieldInputWithDuplicateSuggestion.tsx` - 移除 selectedIndex 和 handleSelectSuggestion
+- `FullNameFieldInputWithDuplicateSuggestion.tsx` - 移除 selectedIndex 和 handleSelectSuggestion
+- `RecordTitleCellTextFieldInput.tsx` - 移除 selectedIndex 和 handleSelectSuggestion
+- `RecordTitleFullNameFieldInput.tsx` - 移除 selectedIndex
+- `DuplicateNameSuggestionDropdown.tsx` - 將 selectedIndex 和 onSelectedIndexChange 改為可選 props

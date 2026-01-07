@@ -1,4 +1,3 @@
-import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { FieldContext } from '@/object-record/record-field/ui/contexts/FieldContext';
 import { FieldInputEventContext } from '@/object-record/record-field/ui/contexts/FieldInputEventContext';
 import { useTextField } from '@/object-record/record-field/ui/meta-types/hooks/useTextField';
@@ -40,14 +39,12 @@ export const TextFieldInputWithDuplicateSuggestion = () => {
     useTextField();
   const { recordId, isLabelIdentifier } = useContext(FieldContext);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [pendingValue, setPendingValue] = useState<string | null>(null);
 
   const { onEnter, onEscape, onClickOutside, onTab, onShiftTab, onCancel } =
     useContext(FieldInputEventContext);
 
   const { openModal, closeModal } = useModal();
-  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
 
   const isModalOpened = useRecoilComponentValue(
     isModalOpenedComponentState,
@@ -77,19 +74,6 @@ export const TextFieldInputWithDuplicateSuggestion = () => {
     onCancel?.();
   }, [setDraftValue, fieldValue, onCancel]);
 
-  // 選中項目後跳轉
-  const handleSelectSuggestion = useCallback(
-    (suggestion: (typeof suggestions)[0]) => {
-      closeSuggestions();
-      handleNavigateToRecord();
-      openRecordInCommandMenu({
-        recordId: suggestion.recordId,
-        objectNameSingular: suggestion.objectNameSingular,
-      });
-    },
-    [closeSuggestions, handleNavigateToRecord, openRecordInCommandMenu],
-  );
-
   // 確認建立新記錄
   const handleConfirmCreate = useCallback(() => {
     if (pendingValue !== null) {
@@ -105,20 +89,20 @@ export const TextFieldInputWithDuplicateSuggestion = () => {
   }, []);
 
   const handleEnter = (newText: string) => {
-    // 如果有選中的建議項目，跳轉到該記錄
-    if (isOpen && suggestions.length > 0 && selectedIndex >= 0) {
-      handleSelectSuggestion(suggestions[selectedIndex]);
-      return;
-    }
+    // 檢查是否有「完全相同」的記錄（忽略大小寫和前後空格）
+    const trimmedNewText = newText.trim().toLowerCase();
+    const hasExactMatch = suggestions.some(
+      (s) => s.label.trim().toLowerCase() === trimmedNewText,
+    );
 
-    // 如果有重複建議但沒選中，顯示確認對話框
-    if (hasSuggestions) {
+    // 只有完全相同才阻擋並顯示確認對話框
+    if (hasExactMatch) {
       setPendingValue(newText);
       openModal(DUPLICATE_CONFIRMATION_MODAL_ID);
       return;
     }
 
-    // 沒有重複，直接儲存
+    // 沒有完全相同的記錄，直接儲存（即使有模糊匹配的建議）
     closeSuggestions();
     onEnter?.({ newValue: newText.trim() });
   };
@@ -151,8 +135,6 @@ export const TextFieldInputWithDuplicateSuggestion = () => {
 
   const handleChange = (newText: string) => {
     setDraftValue(turnIntoUndefinedIfWhitespacesOnly(newText));
-    // 重置選中索引
-    setSelectedIndex(0);
   };
 
   return (
@@ -176,8 +158,6 @@ export const TextFieldInputWithDuplicateSuggestion = () => {
             onClose={closeSuggestions}
             onNavigateToRecord={handleNavigateToRecord}
             anchorRef={inputWrapperRef}
-            selectedIndex={selectedIndex}
-            onSelectedIndexChange={setSelectedIndex}
           />
         )}
       </StyledInputWrapper>
