@@ -19,9 +19,9 @@ export const StyledIMaskInput = styled(IMaskInput)`
 
 const StyledContainer = styled.div`
   align-items: center;
-
   display: flex;
   justify-content: center;
+  min-width: 180px;
 `;
 
 const StyledIcon = styled.div`

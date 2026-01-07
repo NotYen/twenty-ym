@@ -24,6 +24,7 @@ export type ConfirmationModalProps = {
   confirmButtonAccent?: ButtonAccent;
   AdditionalButtons?: React.ReactNode;
   modalVariant?: ModalVariants;
+  ignoreContainer?: boolean;
 };
 
 const StyledConfirmationModal = styled(Modal)`
@@ -70,6 +71,7 @@ export const ConfirmationModal = ({
   confirmButtonAccent = 'danger',
   AdditionalButtons,
   modalVariant = 'primary',
+  ignoreContainer = false,
 }: ConfirmationModalProps) => {
   const { t } = useLingui();
   const actualConfirmButtonText = confirmButtonText ?? t`Confirm`;
@@ -118,7 +120,7 @@ export const ConfirmationModal = ({
       padding="large"
       modalVariant={modalVariant}
       dataGloballyPreventClickOutside
-      ignoreContainer
+      ignoreContainer={ignoreContainer}
     >
       <StyledCenteredTitle>
         <H1Title title={title} fontColor={H1TitleFontColor.Primary} />

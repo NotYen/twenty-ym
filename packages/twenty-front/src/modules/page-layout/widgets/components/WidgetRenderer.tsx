@@ -10,6 +10,7 @@ import { pageLayoutResizingWidgetIdComponentState } from '@/page-layout/states/p
 import { PageLayoutWidgetForbiddenDisplay } from '@/page-layout/widgets/components/PageLayoutWidgetForbiddenDisplay';
 import { WidgetContentRenderer } from '@/page-layout/widgets/components/WidgetContentRenderer';
 import { useIsInPinnedTab } from '@/page-layout/widgets/hooks/useIsInPinnedTab';
+import { useIsLastWidgetInTab } from '@/page-layout/widgets/hooks/useIsLastWidgetInTab';
 import { useWidgetPermissions } from '@/page-layout/widgets/hooks/useWidgetPermissions';
 import { WidgetCard } from '@/page-layout/widgets/widget-card/components/WidgetCard';
 import { WidgetCardContent } from '@/page-layout/widgets/widget-card/components/WidgetCardContent';
@@ -56,6 +57,7 @@ export const WidgetRenderer = ({ widget }: WidgetRendererProps) => {
 
   const { layoutMode } = usePageLayoutContentContext();
   const { isInPinnedTab } = useIsInPinnedTab();
+  const { isLastWidget } = useIsLastWidgetInTab(widget.id);
 
   const { currentPageLayout } = useCurrentPageLayoutOrThrow();
 
@@ -91,6 +93,7 @@ export const WidgetRenderer = ({ widget }: WidgetRendererProps) => {
       isEditing={isEditing}
       pageLayoutType={currentPageLayout.type}
       isInPinnedTab={isInPinnedTab}
+      isLastWidget={isLastWidget}
       onClick={isPageLayoutInEditMode ? handleClick : undefined}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

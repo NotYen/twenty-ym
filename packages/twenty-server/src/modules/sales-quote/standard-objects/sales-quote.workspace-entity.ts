@@ -187,7 +187,7 @@ export class SalesQuoteWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceField({
     standardId: SALES_QUOTE_STANDARD_FIELD_IDS.jiaoYiTiaoJian,
-    type: FieldMetadataType.RICH_TEXT,
+    type: FieldMetadataType.RICH_TEXT_V2,
     label: msg`Terms`,
     icon: 'IconFileDescription',
   })
@@ -196,7 +196,7 @@ export class SalesQuoteWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceField({
     standardId: SALES_QUOTE_STANDARD_FIELD_IDS.beiZhu,
-    type: FieldMetadataType.RICH_TEXT,
+    type: FieldMetadataType.RICH_TEXT_V2,
     label: msg`Notes`,
     icon: 'IconNote',
   })

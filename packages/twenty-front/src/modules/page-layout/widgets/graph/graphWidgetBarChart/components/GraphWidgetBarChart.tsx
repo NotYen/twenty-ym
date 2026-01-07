@@ -16,17 +16,17 @@ import { getBarChartColor } from '@/page-layout/widgets/graph/graphWidgetBarChar
 import { getBarChartMargins } from '@/page-layout/widgets/graph/graphWidgetBarChart/utils/getBarChartMargins';
 import { createGraphColorRegistry } from '@/page-layout/widgets/graph/utils/createGraphColorRegistry';
 import {
-  formatGraphValue,
-  type GraphValueFormatOptions,
+    formatGraphValue,
+    type GraphValueFormatOptions,
 } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { NodeDimensionEffect } from '@/ui/utilities/dimensions/components/NodeDimensionEffect';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-  ResponsiveBar,
-  type BarItemProps,
-  type ComputedBarDatum,
-  type ComputedDatum,
+    ResponsiveBar,
+    type BarItemProps,
+    type ComputedBarDatum,
+    type ComputedDatum,
 } from '@nivo/bar';
 import { useCallback, useMemo, useRef, useState, type MouseEvent } from 'react';
 import { isDefined } from 'twenty-shared/utils';
@@ -35,6 +35,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { CHART_LEGEND_ITEM_THRESHOLD } from '@/page-layout/widgets/graph/constants/ChartLegendItemThreshold';
 import { graphWidgetBarTooltipComponentState } from '@/page-layout/widgets/graph/graphWidgetBarChart/states/graphWidgetBarTooltipComponentState';
 import { useSetRecoilComponentState } from '@/ui/utilities/state/component-state/hooks/useSetRecoilComponentState';
+import { type BarChartConfiguration } from '~/generated/graphql';
 
 type GraphWidgetBarChartProps = {
   data: BarChartDataItem[];
@@ -55,6 +56,8 @@ type GraphWidgetBarChartProps = {
   enableGroupTooltip?: boolean;
   omitNullValues?: boolean;
   onBarClick?: (datum: ComputedDatum<BarChartDataItem>) => void;
+  objectMetadataItemId?: string;
+  configuration?: BarChartConfiguration;
 } & GraphValueFormatOptions;
 
 const StyledContainer = styled.div`
@@ -90,6 +93,8 @@ export const GraphWidgetBarChart = ({
   suffix,
   customFormatter,
   onBarClick,
+  objectMetadataItemId,
+  configuration,
 }: GraphWidgetBarChartProps) => {
   const theme = useTheme();
   const colorRegistry = createGraphColorRegistry(theme);
@@ -295,6 +300,9 @@ export const GraphWidgetBarChart = ({
         onBarClick={onBarClick}
         onMouseEnter={handleTooltipMouseEnter}
         onMouseLeave={handleTooltipMouseLeave}
+        objectMetadataItemId={objectMetadataItemId}
+        configuration={configuration}
+        data={data}
       />
       <GraphWidgetLegend
         show={shouldShowLegend}

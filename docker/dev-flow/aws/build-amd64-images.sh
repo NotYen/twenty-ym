@@ -202,6 +202,7 @@ build_frontend() {
       --build-arg FRONTEND_IMAGE_VERSION="${FRONTEND_VERSION}" \
       --build-arg VITE_IS_DEBUG_MODE="${VITE_IS_DEBUG_MODE:-false}" \
       --build-arg IS_DEBUG_MODE="${IS_DEBUG_MODE:-false}" \
+      --build-arg VITE_SENTRY_DSN="${VITE_SENTRY_DSN:-}" \
       -t "ycrm/y-crm:${FRONTEND_VERSION}" \
       -f docker/frontend/Dockerfile \
       --no-cache \

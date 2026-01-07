@@ -9,15 +9,31 @@ import { useSetRecoilComponentState } from '@/ui/utilities/state/component-state
 
 const StyledScrollWrapper = styled.div`
   &.scroll-wrapper-x-enabled {
-    overflow-x: overlay;
+    overflow-x: auto;
   }
   &.scroll-wrapper-y-enabled {
-    overflow-y: overlay;
+    overflow-y: auto;
   }
   overflow-x: hidden;
   overflow-y: hidden;
   width: 100%;
   height: 100%;
+
+  /* 自訂 scrollbar 樣式，覆蓋系統預設 */
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.border.color.strong};
+    border-radius: ${({ theme }) => theme.border.radius.sm};
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: ${({ theme }) => theme.border.color.strong};
+  }
 `;
 
 export type ScrollWrapperProps = {

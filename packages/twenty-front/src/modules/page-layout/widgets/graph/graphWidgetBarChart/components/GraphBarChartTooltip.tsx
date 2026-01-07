@@ -1,4 +1,6 @@
 import { GraphWidgetFloatingTooltip } from '@/page-layout/widgets/graph/components/GraphWidgetFloatingTooltip';
+import { type GraphWidgetTooltipRecord } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
+import { useBarChartRecords } from '@/page-layout/widgets/graph/graphWidgetBarChart/hooks/useBarChartRecords';
 import { graphWidgetBarTooltipComponentState } from '@/page-layout/widgets/graph/graphWidgetBarChart/states/graphWidgetBarTooltipComponentState';
 import { type BarChartDataItem } from '@/page-layout/widgets/graph/graphWidgetBarChart/types/BarChartDataItem';
 import { type BarChartEnrichedKey } from '@/page-layout/widgets/graph/graphWidgetBarChart/types/BarChartEnrichedKey';
@@ -8,6 +10,7 @@ import { type GraphValueFormatOptions } from '@/page-layout/widgets/graph/utils/
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { type ComputedDatum } from '@nivo/bar';
 import { isDefined } from 'twenty-shared/utils';
+import { type BarChartConfiguration } from '~/generated/graphql';
 
 type GraphBarChartTooltipProps = {
   containerId: string;
@@ -18,6 +21,9 @@ type GraphBarChartTooltipProps = {
   onBarClick?: (datum: ComputedDatum<BarChartDataItem>) => void;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
+  objectMetadataItemId?: string;
+  configuration?: BarChartConfiguration;
+  data?: BarChartDataItem[];
 };
 
 export const GraphBarChartTooltip = ({
@@ -29,10 +35,37 @@ export const GraphBarChartTooltip = ({
   onBarClick,
   onMouseEnter,
   onMouseLeave,
+  objectMetadataItemId,
+  configuration,
+  data,
 }: GraphBarChartTooltipProps) => {
   const tooltipState = useRecoilComponentValue(
     graphWidgetBarTooltipComponentState,
   );
+
+  // Get the hovered bar's data item to access rawDimensionValue
+  // Use the same pattern as Pie Chart: find from data prop using indexValue
+  const hoveredDatum = tooltipState?.datum;
+  // Find the matching data item by checking if any value in the item matches indexValue
+  // This works because indexValue is the formatted dimension value stored in data[indexBy]
+  const hoveredDataItem = data?.find((d) =>
+    Object.values(d).some((val) => val === hoveredDatum?.indexValue),
+  );
+  const hoveredRawDimensionValue = hoveredDataItem?.rawDimensionValue;
+
+  // Query records for the hovered bar
+  // Note: For stacked charts, this will show all records for the X-axis group
+  // because we don't have the raw Y-axis value stored.
+  const { records, totalCount } = useBarChartRecords({
+    objectMetadataItemId: objectMetadataItemId ?? '',
+    configuration: configuration ?? ({} as BarChartConfiguration),
+    barDimensionValue: hoveredRawDimensionValue,
+    enabled:
+      isDefined(objectMetadataItemId) &&
+      isDefined(configuration) &&
+      isDefined(hoveredDatum) &&
+      isDefined(hoveredRawDimensionValue),
+  });
 
   const handleTooltipClick: (() => void) | undefined = isDefined(onBarClick)
     ? () => {
@@ -87,6 +120,8 @@ export const GraphBarChartTooltip = ({
       onGraphWidgetTooltipClick={handleTooltipClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
+      records={records as GraphWidgetTooltipRecord[] | undefined}
+      totalRecordCount={totalCount}
     />
   );
 };
