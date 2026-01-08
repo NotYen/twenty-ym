@@ -46,6 +46,7 @@ import { useCreateBlockNote } from '@blocknote/react';
 import '@blocknote/react/style.css';
 import { isArray, isNonEmptyString } from '@sniptt/guards';
 import { isDefined } from 'twenty-shared/utils';
+import { logDebug } from '~/utils/logDebug';
 
 type ActivityRichTextEditorProps = {
   activityId: string;
@@ -122,6 +123,15 @@ export const ActivityRichTextEditor = ({
     recordId: activityId,
     objectMetadataId: objectMetadataItemActivity.id,
     fieldMetadataId: bodyV2FieldMetadataItem?.id ?? '',
+  });
+
+  // Debug log for Note editing issue
+  logDebug('[ActivityRichTextEditor] Debug info:', {
+    activityId,
+    objectMetadataId: objectMetadataItemActivity.id,
+    fieldMetadataId: bodyV2FieldMetadataItem?.id,
+    isRecordFieldReadOnly,
+    activityObjectNameSingular,
   });
 
   const persistBodyDebounced = useDebouncedCallback((blocknote: string) => {

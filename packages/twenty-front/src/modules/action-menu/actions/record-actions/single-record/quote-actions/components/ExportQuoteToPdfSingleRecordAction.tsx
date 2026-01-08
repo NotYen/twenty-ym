@@ -40,7 +40,6 @@ type QuoteRecord = ObjectRecord & {
   };
   baoJiaDanZhuangTai: string;
   jiaoYiTiaoJian?: string | null;
-  beiZhu?: string | null;
 };
 
 type QuoteLineItemRecord = ObjectRecord & {
@@ -256,7 +255,6 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
           },
           status: selectedQuote.baoJiaDanZhuangTai,
           terms: selectedQuote.jiaoYiTiaoJian,
-          notes: selectedQuote.beiZhu,
         },
         lineItems: normalizedLineItems,
         language: 'zh' as const,
