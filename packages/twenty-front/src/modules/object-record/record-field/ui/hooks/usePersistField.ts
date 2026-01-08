@@ -1,7 +1,7 @@
 import {
-  useRecoilCallback,
-  type CallbackInterface,
-  type Snapshot,
+    useRecoilCallback,
+    type CallbackInterface,
+    type Snapshot,
 } from 'recoil';
 
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
@@ -11,10 +11,10 @@ import { getRecordFromRecordNode } from '@/object-record/cache/utils/getRecordFr
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
 import { type FieldDefinition } from '@/object-record/record-field/ui/types/FieldDefinition';
 import {
-  type FieldCurrencyValue,
-  type FieldMetadata,
-  type FieldMorphRelationMetadata,
-  type FieldRelationMetadata,
+    type FieldCurrencyValue,
+    type FieldMetadata,
+    type FieldMorphRelationMetadata,
+    type FieldRelationMetadata,
 } from '@/object-record/record-field/ui/types/FieldMetadata';
 import { isFieldAddress } from '@/object-record/record-field/ui/types/guards/isFieldAddress';
 import { isFieldAddressValue } from '@/object-record/record-field/ui/types/guards/isFieldAddressValue';
@@ -362,6 +362,7 @@ export const usePersistField = ({
 
 const RESPONSIBLE_LABEL_KEYWORDS = ['負責', 'responsible'];
 const CHART_LABEL_KEYWORDS = ['圖表', 'chart'];
+const SALES_QUOTE_SUBTOTAL_FIELD_NAME = 'xiaoJi';
 const SALES_QUOTE_TOTAL_FIELD_NAME = 'zongJi';
 const SALES_QUOTE_TAX_RATE_FIELD_NAME = 'shuiLu';
 const SALES_QUOTE_TAX_AMOUNT_FIELD_NAME = 'shuiJin';
@@ -596,15 +597,17 @@ const getSalesQuoteTaxSyncPayload = ({
     return undefined;
   }
 
-  const isTotalField = fieldName === SALES_QUOTE_TOTAL_FIELD_NAME;
+  // 監聽小計和稅率欄位
+  const isSubtotalField = fieldName === SALES_QUOTE_SUBTOTAL_FIELD_NAME;
   const isTaxRateField = fieldName === SALES_QUOTE_TAX_RATE_FIELD_NAME;
 
-  if (!isTotalField && !isTaxRateField) {
+  if (!isSubtotalField && !isTaxRateField) {
     return undefined;
   }
 
-  const totalFromValue =
-    isTotalField && isFieldCurrencyValue(valueToPersist)
+  // 取得小計和稅率的值
+  const subtotalFromValue =
+    isSubtotalField && isFieldCurrencyValue(valueToPersist)
       ? valueToPersist
       : null;
   const taxRateFromValue =
@@ -612,12 +615,12 @@ const getSalesQuoteTaxSyncPayload = ({
       ? valueToPersist
       : null;
 
-  const resolvedTotal =
-    totalFromValue ??
+  const resolvedSubtotal =
+    subtotalFromValue ??
     getRecordFieldValueFromSnapshot<FieldCurrencyValue | null>({
       snapshot,
       recordId,
-      fieldName: SALES_QUOTE_TOTAL_FIELD_NAME,
+      fieldName: SALES_QUOTE_SUBTOTAL_FIELD_NAME,
     });
   const resolvedTaxRate =
     taxRateFromValue ??
@@ -627,55 +630,86 @@ const getSalesQuoteTaxSyncPayload = ({
       fieldName: SALES_QUOTE_TAX_RATE_FIELD_NAME,
     });
 
+  // 取得目前的稅額和總計值
   const currentTaxValue =
     getRecordFieldValueFromSnapshot<FieldCurrencyValue | null>({
       snapshot,
       recordId,
       fieldName: SALES_QUOTE_TAX_AMOUNT_FIELD_NAME,
     });
+  const currentTotalValue =
+    getRecordFieldValueFromSnapshot<FieldCurrencyValue | null>({
+      snapshot,
+      recordId,
+      fieldName: SALES_QUOTE_TOTAL_FIELD_NAME,
+    });
 
+  // 如果小計不存在，清空稅額和總計
   if (
-    !isFieldCurrencyValue(resolvedTotal) ||
-    !isDefined(resolvedTotal.amountMicros) ||
-    !isDefined(resolvedTaxRate)
+    !isFieldCurrencyValue(resolvedSubtotal) ||
+    !isDefined(resolvedSubtotal.amountMicros)
   ) {
-    if (currentTaxValue === null) {
+    if (currentTaxValue === null && currentTotalValue === null) {
       return undefined;
     }
 
     return {
       updatePayload: {
         [SALES_QUOTE_TAX_AMOUNT_FIELD_NAME]: null,
+        [SALES_QUOTE_TOTAL_FIELD_NAME]: null,
       },
       storeUpdates: {
         [SALES_QUOTE_TAX_AMOUNT_FIELD_NAME]: null,
+        [SALES_QUOTE_TOTAL_FIELD_NAME]: null,
       },
     };
   }
 
+  // 稅率可以是 0 或 null，這種情況下稅額為 0
+  const effectiveTaxRate = Number(resolvedTaxRate) || 0;
+
+  // 計算稅額：小計 × 稅率
   const calculatedTaxAmountMicros = Math.round(
-    resolvedTotal.amountMicros * (Number(resolvedTaxRate) || 0),
+    resolvedSubtotal.amountMicros * effectiveTaxRate,
   );
 
-  if (
-    isDefined(currentTaxValue?.amountMicros) &&
-    currentTaxValue.amountMicros === calculatedTaxAmountMicros &&
-    currentTaxValue.currencyCode === resolvedTotal.currencyCode
-  ) {
+  // 計算總計：小計 + 稅額
+  const calculatedTotalMicros =
+    resolvedSubtotal.amountMicros + calculatedTaxAmountMicros;
+
+  // 檢查是否需要更新（避免不必要的更新）
+  const taxNeedsUpdate =
+    !isDefined(currentTaxValue?.amountMicros) ||
+    currentTaxValue.amountMicros !== calculatedTaxAmountMicros ||
+    currentTaxValue.currencyCode !== resolvedSubtotal.currencyCode;
+
+  const totalNeedsUpdate =
+    !isDefined(currentTotalValue?.amountMicros) ||
+    currentTotalValue.amountMicros !== calculatedTotalMicros ||
+    currentTotalValue.currencyCode !== resolvedSubtotal.currencyCode;
+
+  if (!taxNeedsUpdate && !totalNeedsUpdate) {
     return undefined;
   }
 
   const taxFieldValue: FieldCurrencyValue = {
     amountMicros: calculatedTaxAmountMicros,
-    currencyCode: resolvedTotal.currencyCode,
+    currencyCode: resolvedSubtotal.currencyCode,
+  };
+
+  const totalFieldValue: FieldCurrencyValue = {
+    amountMicros: calculatedTotalMicros,
+    currencyCode: resolvedSubtotal.currencyCode,
   };
 
   return {
     updatePayload: {
       [SALES_QUOTE_TAX_AMOUNT_FIELD_NAME]: taxFieldValue,
+      [SALES_QUOTE_TOTAL_FIELD_NAME]: totalFieldValue,
     },
     storeUpdates: {
       [SALES_QUOTE_TAX_AMOUNT_FIELD_NAME]: taxFieldValue,
+      [SALES_QUOTE_TOTAL_FIELD_NAME]: totalFieldValue,
     },
   };
 };

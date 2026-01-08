@@ -48,7 +48,6 @@ type QuoteData = {
   };
   status: string;
   terms?: string | null;
-  notes?: string | null;
 };
 
 type ExportQuoteToPdfOptions = {

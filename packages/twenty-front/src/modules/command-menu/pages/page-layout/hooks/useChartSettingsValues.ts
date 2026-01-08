@@ -260,7 +260,12 @@ export const useChartSettingsValues = ({
           ? (configuration.displayLegend ?? true)
           : true;
       case CHART_CONFIGURATION_SETTING_IDS.TOOLTIP_DISPLAY_FIELD: {
-        if (!isPieChart) return undefined;
+        const isTooltipDisplayFieldSupported =
+          isPieChart ||
+          isBarOrLineChart ||
+          configuration.__typename === 'AggregateChartConfiguration' ||
+          configuration.__typename === 'GaugeChartConfiguration';
+        if (!isTooltipDisplayFieldSupported) return undefined;
         const tooltipFieldId = configuration.tooltipDisplayFieldMetadataId;
         if (!isDefined(tooltipFieldId)) return t`Default (Name)`;
         const tooltipField = objectMetadataItem?.fields.find(

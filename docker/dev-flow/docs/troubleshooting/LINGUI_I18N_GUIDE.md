@@ -449,6 +449,19 @@ packages/twenty-server/
                     └── zh-TW.po  # 後端翻譯
 ```
 
+---
+
+## 翻譯記錄
+
+### 2026-01-08 新增翻譯
+
+| 英文原文 | 繁體中文翻譯 | 檔案位置 |
+|---------|-------------|---------|
+| Type anything... | 輸入任何內容... | CommandMenuTopBar.tsx |
+| Assign roles to specify access permissions | 指派角色以設定存取權限 | SettingsRolesList.tsx |
+| Go to Dashboards | 前往儀表板 | DefaultRecordActionsConfig.tsx |
+| Go to Workflows | 前往工作流程 | DefaultRecordActionsConfig.tsx |
+
 ## 注意事項
 
 1. **不要手動編輯 .js 檔案** - 它們是自動生成的

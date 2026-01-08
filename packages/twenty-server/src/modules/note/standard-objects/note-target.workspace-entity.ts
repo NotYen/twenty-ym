@@ -19,6 +19,7 @@ import { CompanyWorkspaceEntity } from 'src/modules/company/standard-objects/com
 import { NoteWorkspaceEntity } from 'src/modules/note/standard-objects/note.workspace-entity';
 import { OpportunityWorkspaceEntity } from 'src/modules/opportunity/standard-objects/opportunity.workspace-entity';
 import { PersonWorkspaceEntity } from 'src/modules/person/standard-objects/person.workspace-entity';
+import { SalesQuoteLineItemWorkspaceEntity } from 'src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity';
 import { SalesQuoteWorkspaceEntity } from 'src/modules/sales-quote/standard-objects/sales-quote.workspace-entity';
 
 @WorkspaceEntity({
@@ -110,6 +111,22 @@ export class NoteTargetWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceJoinColumn('salesQuote')
   salesQuoteId: string | null;
+
+  @WorkspaceRelation({
+    standardId: NOTE_TARGET_STANDARD_FIELD_IDS.salesQuoteLineItem,
+    type: RelationType.MANY_TO_ONE,
+    label: msg`Sales Quote Line Item`,
+    description: msg`NoteTarget sales quote line item`,
+    icon: 'IconFileDescription',
+    inverseSideTarget: () => SalesQuoteLineItemWorkspaceEntity,
+    inverseSideFieldKey: 'noteTargets',
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsNullable()
+  salesQuoteLineItem: Relation<SalesQuoteLineItemWorkspaceEntity> | null;
+
+  @WorkspaceJoinColumn('salesQuoteLineItem')
+  salesQuoteLineItemId: string | null;
 
   @WorkspaceDynamicRelation({
     type: RelationType.MANY_TO_ONE,

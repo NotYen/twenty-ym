@@ -21,11 +21,18 @@ import { useId } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import { H1Title, H1TitleFontColor } from 'twenty-ui/display';
 
+type ChartRecord = {
+  id: string;
+  displayValue: string;
+};
+
 type GraphWidgetGaugeChartProps = {
   data: GaugeChartData;
   showValue?: boolean;
   showLegend?: boolean;
   id: string;
+  records?: ChartRecord[];
+  totalRecordCount?: number;
 } & GraphValueFormatOptions;
 
 const StyledContainer = styled.div`
@@ -68,6 +75,8 @@ export const GraphWidgetGaugeChart = ({
   prefix,
   suffix,
   customFormatter,
+  records,
+  totalRecordCount,
 }: GraphWidgetGaugeChartProps) => {
   const theme = useTheme();
   const instanceId = useId();
@@ -129,6 +138,8 @@ export const GraphWidgetGaugeChart = ({
       <GraphWidgetTooltip
         items={[tooltipData.tooltipItem]}
         onGraphWidgetTooltipClick={onGraphWidgetTooltipClick}
+        records={records}
+        totalRecordCount={totalRecordCount}
       />
     );
   };

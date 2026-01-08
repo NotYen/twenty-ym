@@ -1,7 +1,9 @@
 import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/ChartSkeletonLoader';
+import { useGaugeChartRecords } from '@/page-layout/widgets/graph/graphWidgetGaugeChart/hooks/useGaugeChartRecords';
 import { useGraphWidgetAggregateQuery } from '@/page-layout/widgets/graph/hooks/useGraphWidgetAggregateQuery';
 import { type GraphColor } from '@/page-layout/widgets/graph/types/GraphColor';
 import { lazy, Suspense } from 'react';
+import { isDefined } from 'twenty-shared/utils';
 import {
     type GaugeChartConfiguration,
     type PageLayoutWidget,
@@ -24,6 +26,12 @@ export const GraphWidgetGaugeChartRenderer = ({
   const { value, label: labelObject, loading } = useGraphWidgetAggregateQuery({
     objectMetadataItemId: widget.objectMetadataId,
     configuration,
+  });
+
+  const { records, totalCount } = useGaugeChartRecords({
+    objectMetadataItemId: widget.objectMetadataId ?? '',
+    configuration,
+    enabled: isDefined(widget.objectMetadataId),
   });
 
   if (loading) {
@@ -60,6 +68,8 @@ export const GraphWidgetGaugeChartRenderer = ({
         displayType="shortNumber"
         showValue
         id={`gauge-chart-${widget.id}`}
+        records={records}
+        totalRecordCount={totalCount}
       />
     </Suspense>
   );

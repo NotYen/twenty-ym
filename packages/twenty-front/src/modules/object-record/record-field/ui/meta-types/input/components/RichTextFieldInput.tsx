@@ -1,6 +1,6 @@
 import { SKELETON_LOADER_HEIGHT_SIZES } from '@/activities/components/SkeletonLoader';
 import { useRichTextCommandMenu } from '@/command-menu/hooks/useRichTextCommandMenu';
-import { type CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
+import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { useRegisterInputEvents } from '@/object-record/record-field/ui/meta-types/input/hooks/useRegisterInputEvents';
 import { RecordFieldComponentInstanceContext } from '@/object-record/record-field/ui/states/contexts/RecordFieldComponentInstanceContext';
 
@@ -19,6 +19,14 @@ import { FloatingIconButton } from 'twenty-ui/input';
 const ActivityRichTextEditor = lazy(() =>
   import('@/activities/components/ActivityRichTextEditor').then((module) => ({
     default: module.ActivityRichTextEditor,
+  })),
+);
+
+const GenericRichTextFieldInput = lazy(() =>
+  import(
+    '@/object-record/record-field/ui/meta-types/input/components/GenericRichTextFieldInput'
+  ).then((module) => ({
+    default: module.GenericRichTextFieldInput,
   })),
 );
 
@@ -53,19 +61,20 @@ const LoadingSkeleton = () => {
     </SkeletonTheme>
   );
 };
+
 export const RichTextFieldInput = () => {
   const { fieldDefinition, recordId } = useContext(FieldContext);
 
-  const targetableObject = {
-    id: recordId,
-    targetObjectNameSingular: (
-      fieldDefinition as {
-        metadata: FieldRichTextV2Metadata;
-      }
-    ).metadata.objectMetadataNameSingular as
-      | CoreObjectNameSingular.Note
-      | CoreObjectNameSingular.Task,
-  };
+  const objectMetadataNameSingular = (
+    fieldDefinition as {
+      metadata: FieldRichTextV2Metadata;
+    }
+  ).metadata.objectMetadataNameSingular;
+
+  // 只有 Note 和 Task 使用 ActivityRichTextEditor，其他 object 使用通用編輯器
+  const isActivityObject =
+    objectMetadataNameSingular === CoreObjectNameSingular.Note ||
+    objectMetadataNameSingular === CoreObjectNameSingular.Task;
 
   const { editRichText } = useRichTextCommandMenu();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -91,12 +100,27 @@ export const RichTextFieldInput = () => {
     onEscape: handleEscape,
   });
 
+  // 非 Activity object 使用通用 Rich Text 編輯器
+  if (!isActivityObject) {
+    return (
+      <StyledContainer ref={containerRef}>
+        <Suspense fallback={<LoadingSkeleton />}>
+          <GenericRichTextFieldInput />
+        </Suspense>
+      </StyledContainer>
+    );
+  }
+
   return (
     <StyledContainer ref={containerRef}>
       <Suspense fallback={<LoadingSkeleton />}>
         <ActivityRichTextEditor
-          activityId={targetableObject.id}
-          activityObjectNameSingular={targetableObject.targetObjectNameSingular}
+          activityId={recordId}
+          activityObjectNameSingular={
+            objectMetadataNameSingular as
+              | CoreObjectNameSingular.Note
+              | CoreObjectNameSingular.Task
+          }
         />
       </Suspense>
       <StyledCollapseButton>
@@ -106,8 +130,10 @@ export const RichTextFieldInput = () => {
           onClick={() => {
             onEscape?.({ skipPersist: true });
             editRichText(
-              targetableObject.id,
-              targetableObject.targetObjectNameSingular,
+              recordId,
+              objectMetadataNameSingular as
+                | CoreObjectNameSingular.Note
+                | CoreObjectNameSingular.Task,
             );
           }}
         />

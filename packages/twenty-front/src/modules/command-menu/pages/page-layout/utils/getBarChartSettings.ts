@@ -15,6 +15,7 @@ import { RANGE_MIN_SETTING } from '@/command-menu/pages/page-layout/constants/se
 import { SORT_BY_GROUP_BY_FIELD_SETTING } from '@/command-menu/pages/page-layout/constants/settings/SortByGroupByFieldSetting';
 import { SORT_BY_X_SETTING } from '@/command-menu/pages/page-layout/constants/settings/SortByXSetting';
 import { STACKED_BARS_SETTING } from '@/command-menu/pages/page-layout/constants/settings/StackedBarsSetting';
+import { TOOLTIP_DISPLAY_FIELD_SETTING } from '@/command-menu/pages/page-layout/constants/settings/TooltipDisplayFieldSetting';
 import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/ChartSettingsGroup';
 import { IconAxisX, IconAxisY } from 'twenty-ui/display';
 import { GraphType } from '~/generated-metadata/graphql';
@@ -50,7 +51,7 @@ export const getBarChartSettings = (
   return [
     {
       heading: 'Data',
-      items: [CHART_DATA_SOURCE_SETTING, FILTER_SETTING],
+      items: [CHART_DATA_SOURCE_SETTING, FILTER_SETTING, TOOLTIP_DISPLAY_FIELD_SETTING],
     },
     {
       heading: 'X axis',

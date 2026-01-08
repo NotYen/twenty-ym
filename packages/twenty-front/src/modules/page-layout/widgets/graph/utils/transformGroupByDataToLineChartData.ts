@@ -121,6 +121,9 @@ export const transformGroupByDataToLineChartData = ({
     .map((result) => {
       const dimensionValues = result.groupByDimensionValues;
 
+      // Store raw dimension value for filtering (before formatting)
+      const rawDimensionValue = dimensionValues?.[0] ?? null;
+
       const xValue = isDefined(dimensionValues?.[0])
         ? formatDimensionValue({
             value: dimensionValues[0],
@@ -143,6 +146,7 @@ export const transformGroupByDataToLineChartData = ({
       return {
         x: xValue,
         y: aggregateValue,
+        rawDimensionValue,
       };
     })
     .filter((point): point is LineChartDataPoint => isDefined(point));

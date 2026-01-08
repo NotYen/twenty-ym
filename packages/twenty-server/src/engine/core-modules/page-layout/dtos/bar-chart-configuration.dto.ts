@@ -1,18 +1,18 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 import {
-  IsBoolean,
-  IsEnum,
-  IsIn,
-  IsNotEmpty,
-  IsNumber,
-  IsObject,
-  IsOptional,
-  IsString,
-  IsTimeZone,
-  IsUUID,
-  Max,
-  Min,
+    IsBoolean,
+    IsEnum,
+    IsIn,
+    IsNotEmpty,
+    IsNumber,
+    IsObject,
+    IsOptional,
+    IsString,
+    IsTimeZone,
+    IsUUID,
+    Max,
+    Min,
 } from 'class-validator';
 import { GraphQLJSON } from 'graphql-type-json';
 import { CalendarStartDay } from 'twenty-shared/constants';
@@ -155,4 +155,9 @@ export class BarChartConfigurationDTO {
   @IsBoolean()
   @IsOptional()
   isCumulative?: boolean;
+
+  @Field(() => UUIDScalarType, { nullable: true })
+  @IsUUID()
+  @IsOptional()
+  tooltipDisplayFieldMetadataId?: string;
 }

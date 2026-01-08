@@ -72,8 +72,8 @@ type DuplicateNameSuggestionDropdownProps = {
   onClose: () => void;
   onNavigateToRecord?: () => void;
   anchorRef: RefObject<HTMLElement>;
-  selectedIndex: number;
-  onSelectedIndexChange: (index: number) => void;
+  selectedIndex?: number;
+  onSelectedIndexChange?: (index: number) => void;
 };
 
 export const DuplicateNameSuggestionDropdown = ({
@@ -81,7 +81,7 @@ export const DuplicateNameSuggestionDropdown = ({
   onClose,
   onNavigateToRecord,
   anchorRef,
-  selectedIndex,
+  selectedIndex = -1,
   onSelectedIndexChange,
 }: DuplicateNameSuggestionDropdownProps) => {
   const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
@@ -118,8 +118,10 @@ export const DuplicateNameSuggestionDropdown = ({
     [openRecordInCommandMenu, onClose, onNavigateToRecord],
   );
 
-  // 鍵盤導航
+  // 鍵盤導航（只有當提供 onSelectedIndexChange 時才啟用）
   useEffect(() => {
+    if (!onSelectedIndexChange) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
       if (suggestions.length === 0) return;
 
@@ -173,7 +175,7 @@ export const DuplicateNameSuggestionDropdown = ({
             // 在 mousedown 階段就阻止事件，避免 useListenClickOutside 設置 isMouseDownInside = false
             event.stopPropagation();
           }}
-          onMouseEnter={() => onSelectedIndexChange(index)}
+          onMouseEnter={() => onSelectedIndexChange?.(index)}
           data-globally-prevent-click-outside="true"
         >
           <StyledLabel>{suggestion.label}</StyledLabel>

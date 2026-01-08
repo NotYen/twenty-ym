@@ -187,21 +187,12 @@ export class SalesQuoteWorkspaceEntity extends BaseWorkspaceEntity {
 
   @WorkspaceField({
     standardId: SALES_QUOTE_STANDARD_FIELD_IDS.jiaoYiTiaoJian,
-    type: FieldMetadataType.RICH_TEXT,
+    type: FieldMetadataType.RICH_TEXT_V2,
     label: msg`Terms`,
     icon: 'IconFileDescription',
   })
   @WorkspaceIsNullable()
   jiaoYiTiaoJian: any;
-
-  @WorkspaceField({
-    standardId: SALES_QUOTE_STANDARD_FIELD_IDS.beiZhu,
-    type: FieldMetadataType.RICH_TEXT,
-    label: msg`Notes`,
-    icon: 'IconNote',
-  })
-  @WorkspaceIsNullable()
-  beiZhu: any;
 
   @WorkspaceRelation({
     standardId: SALES_QUOTE_STANDARD_FIELD_IDS.salesQuoteLineItems,
