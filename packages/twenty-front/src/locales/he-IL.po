@@ -605,6 +605,12 @@ msgstr "הוסף קובץ"
 msgid "Add filter"
 msgstr "הוסף מסנן"
 
+#. js-lingui-id: +NDti1
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterAddFilterRuleSelect.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterAddFilterRuleSelect.tsx
+msgid "Add filter rule"
+msgstr "הוסף כלל סינון"
+
 #. js-lingui-id: kydAxA
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterAddRootStepFilterButton.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterAddRootStepFilterButton.tsx
@@ -680,8 +686,16 @@ msgstr "הוסף נְחוּלוּת צוֹרֵכִים"
 
 #. js-lingui-id: O8tK4v
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelSection.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterAddFilterRuleSelect.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterAddFilterRuleSelect.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterAddFilterRuleSelect.tsx
 msgid "Add rule"
 msgstr "הוסף כלל"
+
+#. js-lingui-id: cLBcTT
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterAddFilterRuleSelect.tsx
+msgid "Add rule group"
+msgstr "הוסף קבוצת כללים"
 
 #. js-lingui-id: TdZwYb
 #: src/modules/workflow/workflow-steps/workflow-actions/find-records-action/components/WorkflowFindRecordsSorts.tsx
@@ -1124,11 +1138,6 @@ msgstr "אירעה שגיאה בלתי צפויה"
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
 msgid "and"
 msgstr "וגם"
-
-#. js-lingui-id: 91gtiF
-#: src/modules/page-layout/widgets/graph/components/GraphWidgetTooltip.tsx
-msgid "and {remainingCount} more..."
-msgstr ""
 
 #. js-lingui-id: OpAwo5
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
@@ -8123,6 +8132,16 @@ msgstr "הסר חבר מהמרחב"
 #: src/modules/settings/data-model/fields/forms/select/components/SettingsDataModelFieldSelectFormOptionRow.tsx
 msgid "Remove option"
 msgstr "הסר אפשרות"
+
+#. js-lingui-id: SjxzXf
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterRecordFilterOptionsDropdown.tsx
+msgid "Remove rule"
+msgstr "הסר כלל"
+
+#. js-lingui-id: 4bfSPA
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterRecordFilterGroupOptionsDropdown.tsx
+msgid "Remove rule group"
+msgstr "הסר קבוצת כללים"
 
 #. js-lingui-id: NRCCKG
 #: src/modules/object-record/record-index/components/RecordIndexRemoveSortingModal.tsx

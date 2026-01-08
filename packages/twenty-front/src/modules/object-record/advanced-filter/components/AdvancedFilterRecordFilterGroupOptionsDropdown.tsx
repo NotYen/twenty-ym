@@ -7,6 +7,7 @@ import { Dropdown } from '@/ui/layout/dropdown/components/Dropdown';
 import { DropdownContent } from '@/ui/layout/dropdown/components/DropdownContent';
 import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/DropdownMenuItemsContainer';
 import { useCloseDropdown } from '@/ui/layout/dropdown/hooks/useCloseDropdown';
+import { useLingui } from '@lingui/react/macro';
 import { IconDotsVertical, IconTrash } from 'twenty-ui/display';
 import { IconButton } from 'twenty-ui/input';
 import { MenuItem } from 'twenty-ui/navigation';
@@ -19,6 +20,8 @@ export const AdvancedFilterRecordFilterGroupOptionsDropdown = ({
   recordFilterGroupId,
 }: AdvancedFilterRecordFilterGroupOptionsDropdownProps) => {
   const dropdownId = `advanced-filter-record-filter-group-options-${recordFilterGroupId}`;
+
+  const { t } = useLingui();
 
   const { closeDropdown } = useCloseDropdown();
 
@@ -57,7 +60,7 @@ export const AdvancedFilterRecordFilterGroupOptionsDropdown = ({
         <DropdownContent>
           <DropdownMenuItemsContainer>
             <MenuItem
-              text="Remove rule group"
+              text={t`Remove rule group`}
               onClick={handleRemove}
               LeftIcon={IconTrash}
               accent="danger"
