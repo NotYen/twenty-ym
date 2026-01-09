@@ -87,7 +87,7 @@ export class EmailVerificationService {
       plainText: true,
     });
 
-    const emailVerificationMsg = msg`Welcome to Twenty: Please Confirm Your Email`;
+    const emailVerificationMsg = msg`Welcome to Y-CRM: Please Confirm Your Email`;
     const i18n = this.i18nService.getI18nInstance(locale);
     const subject = i18n._(emailVerificationMsg);
 
