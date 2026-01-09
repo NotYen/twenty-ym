@@ -1,7 +1,7 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
-import { RecordGqlOperationFilter } from '@/object-record/graphql/types/RecordGqlOperationFilter';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { useEffect, useMemo, useRef } from 'react';
+import { type RecordGqlOperationFilter } from 'twenty-shared/types';
 import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
 import { type LineChartConfiguration } from '~/generated/graphql';
 
@@ -63,7 +63,9 @@ export const useLineChartRecords = ({
         (field) => field.id === configuration.tooltipDisplayFieldMetadataId,
       )
     : objectMetadataItem?.fields?.find((field) => field.name === 'name') ||
-      objectMetadataItem?.labelIdentifierFieldMetadata;
+      objectMetadataItem?.fields?.find(
+        (field) => field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
+      );
 
 
   // Build filter for this point

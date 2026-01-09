@@ -1,7 +1,7 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
-import { RecordGqlOperationFilter } from '@/object-record/graphql/types/RecordGqlOperationFilter';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { useEffect, useMemo, useRef } from 'react';
+import { type RecordGqlOperationFilter } from 'twenty-shared/types';
 import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
 import { type BarChartConfiguration } from '~/generated/graphql';
 
@@ -67,7 +67,9 @@ export const useBarChartRecords = ({
         (field) => field.id === configuration.tooltipDisplayFieldMetadataId,
       )
     : objectMetadataItem?.fields?.find((field) => field.name === 'name') ||
-      objectMetadataItem?.labelIdentifierFieldMetadata;
+      objectMetadataItem?.fields?.find(
+        (field) => field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
+      );
 
   // Build filter for this bar (primary axis)
   const barFilter = useMemo((): RecordGqlOperationFilter | undefined => {

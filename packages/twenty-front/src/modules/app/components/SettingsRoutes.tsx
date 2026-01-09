@@ -219,13 +219,6 @@ const SettingsIntegrations = lazy(() =>
   ),
 );
 
-const SettingsIntegrationLine = lazy(() =>
-  import('~/pages/settings/integrations/SettingsIntegrationLine').then(
-    (module) => ({
-      default: module.SettingsIntegrationLine,
-    }),
-  ),
-);
 
 const SettingsObjects = lazy(() =>
   import('~/pages/settings/data-model/SettingsObjects').then((module) => ({
@@ -550,10 +543,6 @@ export const SettingsRoutes = ({ isAdminPageEnabled }: SettingsRoutesProps) => (
         <Route
           path={SettingsPath.Integrations}
           element={<SettingsIntegrations />}
-        />
-        <Route
-          path={SettingsPath.IntegrationsLine}
-          element={<SettingsIntegrationLine />}
         />
       </Route>
 

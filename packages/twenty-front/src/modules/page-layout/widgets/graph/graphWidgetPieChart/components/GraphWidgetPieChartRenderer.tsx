@@ -1,5 +1,7 @@
 import { ChartSkeletonLoader } from '@/page-layout/widgets/graph/components/ChartSkeletonLoader';
 import { useGraphPieChartWidgetData } from '@/page-layout/widgets/graph/graphWidgetPieChart/hooks/useGraphPieChartWidgetData';
+import { type GraphColor } from '@/page-layout/widgets/graph/types/GraphColor';
+import { type GraphValueFormatOptions } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { lazy, Suspense } from 'react';
 import {
     type PageLayoutWidget,
@@ -45,9 +47,12 @@ export const GraphWidgetPieChartRenderer = ({
       <GraphWidgetPieChart
         data={data}
         showLegend
-        displayType={configuration.valueDisplayType ?? 'shortNumber'}
+        displayType={
+          (configuration.valueDisplayType as GraphValueFormatOptions['displayType']) ??
+          'shortNumber'
+        }
         id={`pie-chart-${widget.id}`}
-        color={configuration.color ?? undefined}
+        color={(configuration.color as GraphColor) ?? undefined}
         objectMetadataItemId={widget.objectMetadataId}
         configuration={configuration}
       />

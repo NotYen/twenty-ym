@@ -2,11 +2,17 @@ import { type FieldMetadataItem } from '@/object-metadata/types/FieldMetadataIte
 import { GRAPH_DEFAULT_DATE_GRANULARITY } from '@/page-layout/widgets/graph/constants/GraphDefaultDateGranularity.constant';
 import {
   type ObjectRecordGroupByDateGranularity,
-  type ObjectRecordOrderByForRelationField,
+  type ObjectRecordOrderByForCompositeField,
   type ObjectRecordOrderByForScalarField,
+  type ObjectRecordOrderByWithGroupByDateField,
   type OrderByDirection,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
+
+type RelationFieldOrderBy = Record<
+  string,
+  Record<string, Record<string, unknown>>
+>;
 
 export const getRelationFieldOrderBy = (
   groupByField: FieldMetadataItem,
@@ -14,7 +20,11 @@ export const getRelationFieldOrderBy = (
   direction: OrderByDirection,
   dateGranularity?: ObjectRecordGroupByDateGranularity,
   isNestedDateField?: boolean,
-): ObjectRecordOrderByForScalarField | ObjectRecordOrderByForRelationField => {
+):
+  | ObjectRecordOrderByForScalarField
+  | ObjectRecordOrderByForCompositeField
+  | ObjectRecordOrderByWithGroupByDateField
+  | RelationFieldOrderBy => {
   if (!isDefined(groupBySubFieldName)) {
     return {
       [`${groupByField.name}Id`]: direction,

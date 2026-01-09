@@ -7,11 +7,8 @@ import {
   Logger,
   Inject,
 } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { createHmac, timingSafeEqual } from 'crypto';
 
-import { LineChannelConfigEntity } from 'src/engine/core-modules/line-integration/entities/line-channel-config.entity';
 import { LineConfigService } from 'src/engine/core-modules/line-integration/services/line-config.service';
 import { CacheStorageService } from 'src/engine/core-modules/cache-storage/services/cache-storage.service';
 import { CacheStorageNamespace } from 'src/engine/core-modules/cache-storage/types/cache-storage-namespace.enum';
@@ -36,7 +33,7 @@ import { type LineWebhookBody } from 'src/engine/core-modules/line-integration/t
  *
  * ⚠️ 注意:
  * - 需要在 main.ts 中配置 raw body parser
- * - workspaceId 的取得方式需要根據實際部署調整
+ * - 透過 LineConfigService.getWorkspaceIdByBotUserId() 查詢 workspace
  */
 @Injectable()
 export class LineSignatureGuard implements CanActivate {
@@ -44,8 +41,6 @@ export class LineSignatureGuard implements CanActivate {
   private readonly IDEMPOTENCY_TTL = 60000; // 60 seconds in milliseconds
 
   constructor(
-    @InjectRepository(LineChannelConfigEntity)
-    private readonly lineChannelConfigRepository: Repository<LineChannelConfigEntity>,
     private readonly lineConfigService: LineConfigService,
     @Inject(CacheStorageNamespace.ModuleLine)
     private readonly cacheStorage: CacheStorageService,
@@ -85,12 +80,8 @@ export class LineSignatureGuard implements CanActivate {
       throw new BadRequestException('Invalid JSON body');
     }
 
-    // 取得 workspaceId
-    // TODO: 實際部署時需要實作 workspaceId 取得邏輯
-    // 方案 1: 從 body.destination (Bot User ID) 查詢資料庫
-    // 方案 2: 使用不同的 Webhook URL (包含 workspaceId)
-    // 方案 3: 從 Channel ID 反查 workspace
-    const workspaceId = await this.getWorkspaceId(body.destination);
+    // 取得 workspaceId (透過 LineConfigService 查詢 workspace_config 表)
+    const workspaceId = await this.lineConfigService.getWorkspaceIdByBotUserId(body.destination);
 
     if (!workspaceId) {
       this.logger.warn(`Cannot determine workspaceId for destination: ${body.destination}`);
@@ -241,44 +232,5 @@ export class LineSignatureGuard implements CanActivate {
 
     // 只要有一個事件是新的，就處理整個 webhook
     return results.some((result) => result === true);
-  }
-
-  /**
-   * 取得 WorkspaceId
-   *
-   * 從 LINE Bot User ID (destination) 查詢對應的 workspace
-   *
-   * @param destination - LINE webhook body 中的 destination 欄位 (Bot User ID)
-   * @returns workspaceId 或 null (如果找不到)
-   */
-  private async getWorkspaceId(destination: string): Promise<string | null> {
-    try {
-      this.logger.debug(
-        `Querying workspaceId for LINE Bot User ID: ${destination}`,
-      );
-
-      const config = await this.lineChannelConfigRepository.findOne({
-        where: { botUserId: destination },
-        select: ['workspaceId'],
-      });
-
-      if (!config) {
-        this.logger.warn(
-          `No LINE channel config found for Bot User ID: ${destination}`,
-        );
-        return null;
-      }
-
-      this.logger.debug(
-        `Found workspaceId: ${config.workspaceId} for Bot User ID: ${destination}`,
-      );
-      return config.workspaceId;
-    } catch (error) {
-      this.logger.error(
-        `Failed to query workspaceId for destination ${destination}: ${error.message}`,
-        error.stack,
-      );
-      return null;
-    }
   }
 }

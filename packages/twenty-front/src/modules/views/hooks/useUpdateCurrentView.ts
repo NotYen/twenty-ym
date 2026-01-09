@@ -58,6 +58,7 @@ export const useUpdateCurrentView = () => {
                   ({
                     id: v4(),
                     __typename: 'ViewGroup',
+                    fieldMetadataId: newMainGroupByFieldMetadataId,
                     fieldValue: option.value,
                     isVisible: true,
                     position: index,
@@ -72,6 +73,7 @@ export const useUpdateCurrentView = () => {
             viewGroupsToCreate.push({
               __typename: 'ViewGroup',
               id: v4(),
+              fieldMetadataId: newMainGroupByFieldMetadataId,
               fieldValue: '',
               position: viewGroupsToCreate.length,
               isVisible: true,

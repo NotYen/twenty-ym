@@ -4,14 +4,20 @@ import {
   computeRecordGqlOperationFilter,
   isDefined,
 } from 'twenty-shared/utils';
-import { type AggregateChartConfiguration } from '~/generated/graphql';
+import {
+  type AggregateChartConfiguration,
+  type GaugeChartConfiguration,
+} from '~/generated/graphql';
 
 export const useGraphWidgetQueryCommon = ({
   objectMetadataItemId,
   configuration,
 }: {
   objectMetadataItemId: string;
-  configuration: GroupByChartConfiguration | AggregateChartConfiguration;
+  configuration:
+    | GroupByChartConfiguration
+    | AggregateChartConfiguration
+    | GaugeChartConfiguration;
 }) => {
   const { objectMetadataItem } = useObjectMetadataItemById({
     objectId: objectMetadataItemId,
