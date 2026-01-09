@@ -1,16 +1,23 @@
-import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { FieldContext } from '@/object-record/record-field/ui/contexts/FieldContext';
 import { FieldInputEventContext } from '@/object-record/record-field/ui/contexts/FieldInputEventContext';
 import { useTextField } from '@/object-record/record-field/ui/meta-types/hooks/useTextField';
 import { DuplicateNameSuggestionDropdown } from '@/object-record/record-field/ui/meta-types/input/components/DuplicateNameSuggestionDropdown';
 import { useDuplicateNameSuggestion } from '@/object-record/record-field/ui/meta-types/input/hooks/useDuplicateNameSuggestion';
 import { useRegisterInputEvents } from '@/object-record/record-field/ui/meta-types/input/hooks/useRegisterInputEvents';
-
 import { TextInput } from '@/ui/input/components/TextInput';
+import { ConfirmationModal } from '@/ui/layout/modal/components/ConfirmationModal';
+import { useModal } from '@/ui/layout/modal/hooks/useModal';
+import { isModalOpenedComponentState } from '@/ui/layout/modal/states/isModalOpenedComponentState';
+import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import styled from '@emotion/styled';
+import { t } from '@lingui/core/macro';
 import { useCallback, useContext, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { isDefined } from 'twenty-shared/utils';
 import { turnIntoUndefinedIfWhitespacesOnly } from '~/utils/string/turnIntoUndefinedIfWhitespacesOnly';
+
+const DUPLICATE_CONFIRMATION_MODAL_ID =
+  'duplicate-title-text-confirmation-modal';
 
 const StyledInputWrapper = styled.div`
   position: relative;
@@ -32,7 +39,14 @@ export const RecordTitleCellTextFieldInput = ({
 
   const wrapperRef = useRef<HTMLInputElement>(null);
   const inputWrapperRef = useRef<HTMLDivElement>(null);
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [pendingValue, setPendingValue] = useState<string | null>(null);
+
+  const { openModal } = useModal();
+
+  const isModalOpened = useRecoilComponentValue(
+    isModalOpenedComponentState,
+    DUPLICATE_CONFIRMATION_MODAL_ID,
+  );
 
   const objectNameSingular =
     fieldDefinition.metadata.objectMetadataNameSingular ?? '';
@@ -44,12 +58,8 @@ export const RecordTitleCellTextFieldInput = ({
     enabled: isLabelIdentifier && !!objectNameSingular,
   });
 
-  const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
-
   const handleChange = (newText: string) => {
     setDraftValue(turnIntoUndefinedIfWhitespacesOnly(newText));
-    // 重置選中索引
-    setSelectedIndex(0);
   };
 
   const { onEnter, onEscape, onClickOutside, onTab, onShiftTab, onCancel } =
@@ -63,30 +73,39 @@ export const RecordTitleCellTextFieldInput = ({
     onCancel?.();
   }, [setDraftValue, fieldValue, onCancel]);
 
-  // 選中項目後跳轉（和 TextFieldInputWithDuplicateSuggestion 行為一致）
-  const handleSelectSuggestion = useCallback(
-    (suggestion: (typeof suggestions)[0]) => {
+  // 確認建立新記錄
+  const handleConfirmCreate = useCallback(() => {
+    if (pendingValue !== null) {
       closeSuggestions();
-      handleNavigateToRecord();
-      openRecordInCommandMenu({
-        recordId: suggestion.recordId,
-        objectNameSingular: suggestion.objectNameSingular,
-      });
-    },
-    [closeSuggestions, handleNavigateToRecord, openRecordInCommandMenu],
-  );
+      onEnter?.({ newValue: pendingValue.trim() });
+      setPendingValue(null);
+    }
+  }, [pendingValue, closeSuggestions, onEnter]);
+
+  // 取消建立
+  const handleCancelCreate = useCallback(() => {
+    setPendingValue(null);
+  }, []);
 
   useRegisterInputEvents<string>({
     focusId: instanceId,
     inputRef: wrapperRef,
     inputValue: draftValue ?? '',
     onEnter: (inputValue) => {
-      // 如果有選中的建議項目，跳轉到該記錄（和資料表中的行為一致）
-      if (isOpen && suggestions.length > 0 && selectedIndex >= 0) {
-        handleSelectSuggestion(suggestions[selectedIndex]);
+      // 檢查是否有「完全相同」的記錄（忽略大小寫和前後空格）
+      const trimmedInputValue = inputValue.trim().toLowerCase();
+      const hasExactMatch = suggestions.some(
+        (s) => s.label.trim().toLowerCase() === trimmedInputValue,
+      );
+
+      // 只有完全相同才阻擋並顯示確認對話框
+      if (hasExactMatch) {
+        setPendingValue(inputValue);
+        openModal(DUPLICATE_CONFIRMATION_MODAL_ID);
         return;
       }
-      // 沒有選中項目，直接儲存
+
+      // 沒有完全相同的記錄，直接儲存
       closeSuggestions();
       onEnter?.({ newValue: inputValue });
     },
@@ -133,10 +152,21 @@ export const RecordTitleCellTextFieldInput = ({
           onClose={closeSuggestions}
           onNavigateToRecord={handleNavigateToRecord}
           anchorRef={inputWrapperRef}
-          selectedIndex={selectedIndex}
-          onSelectedIndexChange={setSelectedIndex}
         />
       )}
+      {isModalOpened &&
+        createPortal(
+          <ConfirmationModal
+            modalId={DUPLICATE_CONFIRMATION_MODAL_ID}
+            title={t`Possible duplicate detected`}
+            subtitle={t`Similar records were found. Are you sure you want to create a new record?`}
+            onConfirmClick={handleConfirmCreate}
+            onClose={handleCancelCreate}
+            confirmButtonText={t`Create anyway`}
+            confirmButtonAccent="blue"
+          />,
+          document.body,
+        )}
     </StyledInputWrapper>
   );
 };

@@ -1859,10 +1859,10 @@ msgstr "一月"
 msgid "Job Title"
 msgstr "職稱"
 
-#. js-lingui-id: PviVyk
+#. js-lingui-id: iq2qUA
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
-msgid "Join your team on Twenty"
-msgstr "加入您的團隊，使用 Twenty"
+msgid "Join your team on Y-CRM"
+msgstr ""
 
 #. js-lingui-id: WNfJ8M
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
@@ -1947,6 +1947,16 @@ msgstr "語言"
 msgid "Last credentials refreshed at"
 msgstr ""
 
+#. js-lingui-id: VpqETK
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "Last interaction timestamp with LINE OA"
+msgstr ""
+
+#. js-lingui-id: rwtrqD
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "Last LINE Interaction"
+msgstr ""
+
 #. js-lingui-id: WvYp6o
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
 msgid "Last published Version Id"
@@ -1982,10 +1992,50 @@ msgstr "上次更改記錄"
 msgid "Last update"
 msgstr "最後更新"
 
+#. js-lingui-id: j3uaua
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE display name"
+msgstr ""
+
+#. js-lingui-id: B89UtR
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE Display Name"
+msgstr ""
+
+#. js-lingui-id: 4wzW2z
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE friendship status"
+msgstr ""
+
 #. js-lingui-id: SgduFH
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
 msgid "Line Items"
 msgstr "報價細項"
+
+#. js-lingui-id: sB+VMa
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE Official Account user ID"
+msgstr ""
+
+#. js-lingui-id: 4OYMW5
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE Profile Picture"
+msgstr ""
+
+#. js-lingui-id: HG/3aj
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE profile picture URL"
+msgstr ""
+
+#. js-lingui-id: UqPeqF
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE Status"
+msgstr ""
+
+#. js-lingui-id: /RYi6k
+#: src/modules/person/standard-objects/person.workspace-entity.ts
+msgid "LINE User ID"
+msgstr ""
 
 #. js-lingui-id: 9Pz2fl
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
@@ -4200,10 +4250,10 @@ msgstr "我們遇到了連接您的電子郵件帳戶問題。請檢查您的設
 msgid "Wednesday"
 msgstr "星期三"
 
-#. js-lingui-id: TVkCrJ
+#. js-lingui-id: HPFGHN
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
-msgid "Welcome to Twenty: Please Confirm Your Email"
-msgstr "歡迎來到 Twenty：請確認您的電子郵件"
+msgid "Welcome to Y-CRM: Please Confirm Your Email"
+msgstr "歡迎使用 Y-CRM：請確認您的電子郵件"
 
 #. js-lingui-id: bLt/0J
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
@@ -4558,7 +4608,7 @@ msgstr "您的工作區已更新了新數據模型。請刷新頁面。"
 #. js-lingui-id: ZukXiD
 #: src/engine/metadata-modules/user-role/user-role.service.ts
 msgid "Your workspace membership could not be found. You may no longer have access to this workspace."
-msgstr "找不到您的工作區成員資格。您可能不再有權訪問此工作區。"
+msgstr "找不到您的工作區成員資格。您可能不再有權訪問此工作區。" 
 
 #. js-lingui-id: RiJXfW
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts

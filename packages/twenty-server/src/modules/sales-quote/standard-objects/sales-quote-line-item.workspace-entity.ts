@@ -25,6 +25,7 @@ import {
     type FieldTypeAndNameMetadata,
     getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
+import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
 import { SalesQuoteWorkspaceEntity } from './sales-quote.workspace-entity';
 
@@ -167,4 +168,16 @@ export class SalesQuoteLineItemWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceIsNullable()
   @WorkspaceIsSystem()
   timelineActivities: Relation<TimelineActivityWorkspaceEntity[]>;
+
+  @WorkspaceRelation({
+    standardId: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.noteTargets,
+    type: RelationType.ONE_TO_MANY,
+    label: msg`Notes`,
+    description: msg`Notes tied to the sales quote line item`,
+    icon: 'IconNotes',
+    inverseSideTarget: () => NoteTargetWorkspaceEntity,
+    onDelete: RelationOnDeleteAction.CASCADE,
+  })
+  @WorkspaceIsFieldUIReadOnly()
+  noteTargets: Relation<NoteTargetWorkspaceEntity[]>;
 }

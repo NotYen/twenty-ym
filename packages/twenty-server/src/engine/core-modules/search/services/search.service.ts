@@ -88,6 +88,7 @@ export class SearchService {
               objectMetadataItem,
               searchTerms: formatSearchTerms(searchInput, 'and'),
               searchTermsOr: formatSearchTerms(searchInput, 'or'),
+              searchInput: searchInput ?? '',
               limit: limit as number,
               filter: filter ?? ({} as ObjectRecordFilter),
               after,
@@ -133,6 +134,7 @@ export class SearchService {
     objectMetadataItem,
     searchTerms,
     searchTermsOr,
+    searchInput,
     limit,
     filter,
     after,
@@ -141,6 +143,7 @@ export class SearchService {
     objectMetadataItem: ObjectMetadataItemWithFieldMaps;
     searchTerms: string;
     searchTermsOr: string;
+    searchInput: string;
     limit: number;
     filter: ObjectRecordFilterInput;
     after?: string;
@@ -172,9 +175,12 @@ export class SearchService {
     const imageIdentifierField =
       this.getImageIdentifierColumn(objectMetadataItem);
 
+    const labelIdentifierColumns =
+      this.getLabelIdentifierColumns(objectMetadataItem);
+
     const fieldsToSelect = [
       'id',
-      ...this.getLabelIdentifierColumns(objectMetadataItem),
+      ...labelIdentifierColumns,
       ...(imageIdentifierField ? [imageIdentifierField] : []),
     ].map((field) => `"${field}"`);
 
@@ -195,15 +201,37 @@ export class SearchService {
       .addSelect(tsRankExpr, 'tsRank');
 
     if (isNonEmptyString(searchTerms)) {
+      // Build ILIKE conditions for label identifier columns (fallback for CJK characters)
+      // This is needed because PostgreSQL ts_vector with 'simple' parser doesn't handle
+      // CJK (Chinese/Japanese/Korean) characters well - it only supports prefix matching
+      const ilikeConditions = labelIdentifierColumns.map(
+        (column) =>
+          `public.unaccent_immutable("${column}"::text) ILIKE public.unaccent_immutable(:searchInputLike)`,
+      );
+
       queryBuilder.andWhere(
         new Brackets((qb) => {
+          // Original ts_vector search (fast, uses index)
           qb.where(
             `"${SEARCH_VECTOR_FIELD.name}" @@ to_tsquery('simple', public.unaccent_immutable(:searchTerms))`,
             { searchTerms },
-          ).orWhere(
-            `"${SEARCH_VECTOR_FIELD.name}" @@ to_tsquery('simple', public.unaccent_immutable(:searchTermsOr))`,
-            { searchTermsOr },
-          );
+          )
+            .orWhere(
+              `"${SEARCH_VECTOR_FIELD.name}" @@ to_tsquery('simple', public.unaccent_immutable(:searchTermsOr))`,
+              { searchTermsOr },
+            )
+            // ILIKE fallback for CJK characters (slower but accurate)
+            .orWhere(
+              new Brackets((ilikeQb) => {
+                ilikeConditions.forEach((condition, index) => {
+                  if (index === 0) {
+                    ilikeQb.where(condition);
+                  } else {
+                    ilikeQb.orWhere(condition);
+                  }
+                });
+              }),
+            );
         }),
       );
     } else {
@@ -224,6 +252,7 @@ export class SearchService {
       .addOrderBy('id', 'ASC', 'NULLS FIRST')
       .setParameter('searchTerms', searchTerms)
       .setParameter('searchTermsOr', searchTermsOr)
+      .setParameter('searchInputLike', `%${searchInput}%`)
       .take(limit + 1) // We take one more to check if hasNextPage is true
       .getRawMany();
   }

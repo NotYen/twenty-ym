@@ -26,9 +26,11 @@ export const useIsRecordReadOnly = ({
 
   const isRecordDeleted = useIsRecordDeleted({ recordId });
 
-  return isRecordReadOnly({
+  const result = isRecordReadOnly({
     objectPermissions,
     isRecordDeleted,
     objectMetadataItem,
   });
+
+  return result;
 };
