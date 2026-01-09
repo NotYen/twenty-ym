@@ -1,7 +1,11 @@
-docker file > cmd > wsl > claude:
-
 當前資料夾為一個 NX 專案於 Docker 環境下運行所使用的目錄。
-請先閱讀 DOCKER_DEPLOYMENT_GUIDE.md、.env 與 docker-compose.yml，以了解整體環境設定與服務配置。
+Nx專案的根目錄為D:\project\y-crm
+
+必需閱讀:
+D:\project\y-crm\docs\Guides\DOCKER_DEPLOYMENT_GUIDE.md、
+D:\project\y-crm\docs\Guides\.env
+D:\project\y-crm\docs\Guides\docker-compose.yml
+以了解整體環境設定與服務配置。
 
 接著請執行以下流程，每一步完成後再進行下一步，不可並行執行：
 
@@ -13,6 +17,10 @@ docker file > cmd > wsl > claude:
 
 確認專案可於本地 Docker Desktop 正常運行。
 
-此目錄中另包含一個 full_backup.dump 檔案，請將該 dump 檔 還原至 docker-compose.yml 中所定義的 PostgreSQL（db）服務。
+確認運行正常後，將docker-compose.yml中所定義的PostgreSQL(db)服務的資料庫清空(包含schema)，
+
+此目錄中另包含一個full_backup.dump檔案，
+
+該dump檔 還原至 docker-compose.yml 中所定義的 PostgreSQL（db）服務。
 
 請嚴格依照上述順序完成所有步驟後再結束作業。

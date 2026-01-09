@@ -1,7 +1,7 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
-import { RecordGqlOperationFilter } from '@/object-record/graphql/types/RecordGqlOperationFilter';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { useEffect, useMemo, useRef } from 'react';
+import { type RecordGqlOperationFilter } from 'twenty-shared/types';
 import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
 import { type GaugeChartConfiguration } from '~/generated/graphql';
 
@@ -55,7 +55,9 @@ export const useGaugeChartRecords = ({
         (field) => field.id === configuration.tooltipDisplayFieldMetadataId,
       )
     : objectMetadataItem?.fields?.find((field) => field.name === 'name') ||
-      objectMetadataItem?.labelIdentifierFieldMetadata;
+      objectMetadataItem?.fields?.find(
+        (field) => field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
+      );
 
   // Build filter from configuration
   const combinedFilter = useMemo((): RecordGqlOperationFilter | undefined => {

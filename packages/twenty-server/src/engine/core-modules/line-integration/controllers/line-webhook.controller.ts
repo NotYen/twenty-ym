@@ -1,11 +1,9 @@
 import { Controller, Post, Body, Headers, UseGuards, Logger } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 
 import { LineWebhookService } from 'src/engine/core-modules/line-integration/services/line-webhook.service';
+import { LineConfigService } from 'src/engine/core-modules/line-integration/services/line-config.service';
 import { LineSignatureGuard } from 'src/engine/core-modules/line-integration/guards/line-signature.guard';
 import { type LineWebhookBody } from 'src/engine/core-modules/line-integration/types/line-webhook-event.type';
-import { LineChannelConfigEntity } from 'src/engine/core-modules/line-integration/entities/line-channel-config.entity';
 
 /**
  * LINE Webhook Controller
@@ -21,7 +19,7 @@ import { LineChannelConfigEntity } from 'src/engine/core-modules/line-integratio
  * - 事件處理應該是非同步的
  *
  * WorkspaceId 查詢：
- * - 從 webhook body 的 destination (Bot User ID) 查詢 LineChannelConfig
+ * - 從 webhook body 的 destination (Bot User ID) 查詢 workspace_config 表
  * - 如果找不到對應的 workspace，仍返回 200 OK 避免 LINE 重送
  */
 @Controller('api/v1/webhooks/line')
@@ -30,8 +28,7 @@ export class LineWebhookController {
 
   constructor(
     private readonly lineWebhookService: LineWebhookService,
-    @InjectRepository(LineChannelConfigEntity)
-    private readonly lineChannelConfigRepository: Repository<LineChannelConfigEntity>,
+    private readonly lineConfigService: LineConfigService,
   ) {}
 
   /**
@@ -107,34 +104,6 @@ export class LineWebhookController {
    * @returns workspaceId 或 null (如果找不到)
    */
   private async getWorkspaceId(destination: string): Promise<string | null> {
-    try {
-      this.logger.debug(
-        `Querying workspaceId for LINE Bot User ID: ${destination}`,
-      );
-
-      const config = await this.lineChannelConfigRepository.findOne({
-        where: { botUserId: destination },
-        select: ['workspaceId'],
-      });
-
-      if (!config) {
-        this.logger.warn(
-          `No LINE channel config found for Bot User ID: ${destination}`,
-        );
-        return null;
-      }
-
-      this.logger.debug(
-        `Found workspaceId: ${config.workspaceId} for Bot User ID: ${destination}`,
-      );
-      return config.workspaceId;
-    } catch (error) {
-      this.logger.error(
-        `Failed to query workspaceId for destination ${destination}: ${error.message}`,
-        error.stack,
-      );
-      return null;
-    }
+    return this.lineConfigService.getWorkspaceIdByBotUserId(destination);
   }
 }
-

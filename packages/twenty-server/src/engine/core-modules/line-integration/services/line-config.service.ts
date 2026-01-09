@@ -1,10 +1,21 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, IsNull } from 'typeorm';
 
-import { LineChannelConfigEntity } from 'src/engine/core-modules/line-integration/entities/line-channel-config.entity';
-import { LineEncryptionService } from 'src/engine/core-modules/line-integration/services/line-encryption.service';
+import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
+import { WorkspaceConfigEntity } from 'src/engine/core-modules/workspace-config/workspace-config.entity';
 import { LineApiService } from 'src/engine/core-modules/line-integration/services/line-api.service';
+
+/**
+ * LINE Config Keys
+ * 用於 workspace_config 表的 key 定義
+ */
+export const LINE_CONFIG_KEYS = {
+  CHANNEL_ID: 'line_channel_id',
+  CHANNEL_SECRET: 'line_channel_secret',
+  CHANNEL_ACCESS_TOKEN: 'line_channel_access_token',
+  BOT_USER_ID: 'line_bot_user_id',
+} as const;
 
 /**
  * LINE Config Service
@@ -15,9 +26,14 @@ import { LineApiService } from 'src/engine/core-modules/line-integration/service
  * - 金鑰的加密儲存與解密讀取
  * - 多租戶 (Workspace) 隔離
  *
+ * 儲存方式：
+ * - 使用 workspace_config 表 (key-value 結構)
+ * - Channel Secret 和 Access Token 透過 WorkspaceConfigService 加密存儲
+ * - Bot User ID 不加密存儲，以支援索引查詢 (用於 webhook 路由)
+ *
  * 安全設計：
- * - 所有敏感資料 (Secret, Token) 在存入資料庫前必須加密
- * - 加密金鑰透過環境變數 LINE_CONFIG_ENCRYPTION_KEY 提供
+ * - 所有敏感資料 (Secret, Token) 在存入資料庫前透過 WorkspaceConfigService 加密
+ * - 加密金鑰透過環境變數 APP_SECRET 提供
  * - 解密後的資料僅在記憶體中存在，不寫入日誌
  */
 @Injectable()
@@ -25,9 +41,9 @@ export class LineConfigService {
   private readonly logger = new Logger(LineConfigService.name);
 
   constructor(
-    @InjectRepository(LineChannelConfigEntity)
-    private readonly lineChannelConfigRepository: Repository<LineChannelConfigEntity>,
-    private readonly lineEncryptionService: LineEncryptionService,
+    private readonly workspaceConfigService: WorkspaceConfigService,
+    @InjectRepository(WorkspaceConfigEntity)
+    private readonly workspaceConfigRepository: Repository<WorkspaceConfigEntity>,
     private readonly lineApiService: LineApiService,
   ) {}
 
@@ -48,14 +64,6 @@ export class LineConfigService {
       `Creating or updating LINE config for workspace: ${workspaceId}`,
     );
 
-    // 加密敏感資料
-    const channelSecretEncrypted = this.lineEncryptionService.encrypt(
-      configData.channelSecret,
-    );
-    const channelAccessTokenEncrypted = this.lineEncryptionService.encrypt(
-      configData.channelAccessToken,
-    );
-
     // 從 LINE API 取得 Bot User ID (用於 Webhook 路由)
     let botUserId: string | null = null;
     try {
@@ -71,30 +79,61 @@ export class LineConfigService {
       // 這樣管理員可以稍後透過測試連線功能來補上
     }
 
-    // 查詢是否已存在設定
-    const existingConfig = await this.lineChannelConfigRepository.findOne({
-      where: { workspaceId },
+    // 使用 WorkspaceConfigService 儲存加密資料
+    await this.workspaceConfigService.set(
+      workspaceId,
+      LINE_CONFIG_KEYS.CHANNEL_ID,
+      configData.channelId,
+      'string',
+    );
+
+    await this.workspaceConfigService.set(
+      workspaceId,
+      LINE_CONFIG_KEYS.CHANNEL_SECRET,
+      configData.channelSecret,
+      'string',
+    );
+
+    await this.workspaceConfigService.set(
+      workspaceId,
+      LINE_CONFIG_KEYS.CHANNEL_ACCESS_TOKEN,
+      configData.channelAccessToken,
+      'string',
+    );
+
+    // Bot User ID 不加密存儲，直接操作 repository
+    // 這樣可以支援索引查詢 (用於 webhook 路由)
+    if (botUserId) {
+      await this.setBotUserId(workspaceId, botUserId);
+    }
+
+    this.logger.log(`Successfully saved LINE config for workspace: ${workspaceId}`);
+  }
+
+  /**
+   * 設定 Bot User ID (不加密，直接操作 repository)
+   * @param workspaceId - 工作區 ID
+   * @param botUserId - LINE Bot User ID
+   */
+  private async setBotUserId(workspaceId: string, botUserId: string): Promise<void> {
+    const existingConfig = await this.workspaceConfigRepository.findOne({
+      where: {
+        workspaceId,
+        key: LINE_CONFIG_KEYS.BOT_USER_ID,
+        deletedAt: IsNull(),
+      },
     });
 
     if (existingConfig) {
-      // 更新現有設定
-      existingConfig.channelId = configData.channelId;
-      existingConfig.channelSecretEncrypted = channelSecretEncrypted;
-      existingConfig.channelAccessTokenEncrypted = channelAccessTokenEncrypted;
-      existingConfig.botUserId = botUserId;
-      await this.lineChannelConfigRepository.save(existingConfig);
-      this.logger.log(`Updated LINE config for workspace: ${workspaceId}`);
+      existingConfig.value = botUserId;
+      await this.workspaceConfigRepository.save(existingConfig);
     } else {
-      // 建立新設定
-      const newConfig = this.lineChannelConfigRepository.create({
+      await this.workspaceConfigRepository.save({
         workspaceId,
-        channelId: configData.channelId,
-        channelSecretEncrypted,
-        channelAccessTokenEncrypted,
-        botUserId,
+        key: LINE_CONFIG_KEYS.BOT_USER_ID,
+        value: botUserId,
+        valueType: 'string',
       });
-      await this.lineChannelConfigRepository.save(newConfig);
-      this.logger.log(`Created LINE config for workspace: ${workspaceId}`);
     }
   }
 
@@ -108,34 +147,37 @@ export class LineConfigService {
     channelSecret: string;
     channelAccessToken: string;
   } | null> {
-    const config = await this.lineChannelConfigRepository.findOne({
-      where: { workspaceId },
-    });
+    const channelId = await this.workspaceConfigService.get(
+      workspaceId,
+      LINE_CONFIG_KEYS.CHANNEL_ID,
+    );
 
-    if (!config) {
+    if (!channelId) {
       return null;
     }
 
-    try {
-      // 解密敏感資料
-      const channelSecret = this.lineEncryptionService.decrypt(
-        config.channelSecretEncrypted,
-      );
-      const channelAccessToken = this.lineEncryptionService.decrypt(
-        config.channelAccessTokenEncrypted,
-      );
+    const channelSecret = await this.workspaceConfigService.get(
+      workspaceId,
+      LINE_CONFIG_KEYS.CHANNEL_SECRET,
+    );
 
-      return {
-        channelId: config.channelId,
-        channelSecret,
-        channelAccessToken,
-      };
-    } catch (error) {
+    const channelAccessToken = await this.workspaceConfigService.get(
+      workspaceId,
+      LINE_CONFIG_KEYS.CHANNEL_ACCESS_TOKEN,
+    );
+
+    if (!channelSecret || !channelAccessToken) {
       this.logger.error(
-        `Failed to decrypt LINE config for workspace ${workspaceId}: ${error.message}`,
+        `Incomplete LINE config for workspace ${workspaceId}: missing secret or token`,
       );
-      throw new Error('Failed to decrypt LINE configuration');
+      return null;
     }
+
+    return {
+      channelId,
+      channelSecret,
+      channelAccessToken,
+    };
   }
 
   /**
@@ -147,11 +189,12 @@ export class LineConfigService {
     channelId: string;
     isConfigured: boolean;
   } | null> {
-    const config = await this.lineChannelConfigRepository.findOne({
-      where: { workspaceId },
-    });
+    const channelId = await this.workspaceConfigService.get(
+      workspaceId,
+      LINE_CONFIG_KEYS.CHANNEL_ID,
+    );
 
-    if (!config) {
+    if (!channelId) {
       return {
         channelId: '',
         isConfigured: false,
@@ -159,7 +202,7 @@ export class LineConfigService {
     }
 
     return {
-      channelId: config.channelId,
+      channelId,
       isConfigured: true,
     };
   }
@@ -167,18 +210,72 @@ export class LineConfigService {
   /**
    * 刪除 LINE Channel 設定
    * @param workspaceId - 工作區 ID
+   *
+   * 使用硬刪除而非軟刪除，原因：
+   * 1. 配置資料不需要審計追蹤
+   * 2. 避免與 UQ_workspace_config_workspaceId_key 唯一約束衝突
+   * 3. 不累積無用的已刪除記錄
    */
   async delete(workspaceId: string): Promise<void> {
-    const result = await this.lineChannelConfigRepository.delete({
-      workspaceId,
-    });
+    this.logger.log(`Deleting LINE config for workspace: ${workspaceId}`);
 
-    if (result.affected && result.affected > 0) {
-      this.logger.log(`Deleted LINE config for workspace: ${workspaceId}`);
-    } else {
-      this.logger.warn(
-        `No LINE config found to delete for workspace: ${workspaceId}`,
+    // 刪除所有 LINE 相關的設定（硬刪除）
+    const keysToDelete = [
+      LINE_CONFIG_KEYS.CHANNEL_ID,
+      LINE_CONFIG_KEYS.CHANNEL_SECRET,
+      LINE_CONFIG_KEYS.CHANNEL_ACCESS_TOKEN,
+      LINE_CONFIG_KEYS.BOT_USER_ID,
+    ];
+
+    for (const key of keysToDelete) {
+      await this.workspaceConfigRepository.delete({
+        workspaceId,
+        key,
+      });
+    }
+
+    this.logger.log(`Successfully deleted LINE config for workspace: ${workspaceId}`);
+  }
+
+  /**
+   * 從 Bot User ID 查詢 Workspace ID
+   * 用於 Webhook 路由，從 LINE webhook 的 destination 查詢對應的 workspace
+   *
+   * @param botUserId - LINE Bot User ID (destination)
+   * @returns workspaceId 或 null (如果找不到)
+   */
+  async getWorkspaceIdByBotUserId(botUserId: string): Promise<string | null> {
+    try {
+      this.logger.debug(
+        `Querying workspaceId for LINE Bot User ID: ${botUserId}`,
       );
+
+      const config = await this.workspaceConfigRepository.findOne({
+        where: {
+          key: LINE_CONFIG_KEYS.BOT_USER_ID,
+          value: botUserId,
+          deletedAt: IsNull(),
+        },
+        select: ['workspaceId'],
+      });
+
+      if (!config) {
+        this.logger.warn(
+          `No LINE channel config found for Bot User ID: ${botUserId}`,
+        );
+        return null;
+      }
+
+      this.logger.debug(
+        `Found workspaceId: ${config.workspaceId} for Bot User ID: ${botUserId}`,
+      );
+      return config.workspaceId;
+    } catch (error) {
+      this.logger.error(
+        `Failed to query workspaceId for Bot User ID ${botUserId}: ${error.message}`,
+        error.stack,
+      );
+      return null;
     }
   }
 }

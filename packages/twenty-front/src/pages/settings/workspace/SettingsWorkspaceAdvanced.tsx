@@ -5,8 +5,13 @@ import { lazy, Suspense, useMemo, useState } from 'react';
 
 import { SettingsPageContainer } from '@/settings/components/SettingsPageContainer';
 import { SuperAdminManagement } from '@/settings/super-admin/components/SuperAdminManagement';
+import { GET_LINE_CONFIG } from '@/settings/workspace/line/graphql/queries/getLineConfig';
+import { UPDATE_LINE_CONFIG } from '@/settings/workspace/line/graphql/mutations/updateLineConfig';
+import { TEST_LINE_CONNECTION } from '@/settings/workspace/line/graphql/mutations/testLineConnection';
+import { DELETE_LINE_CONFIG } from '@/settings/workspace/line/graphql/mutations/deleteLineConfig';
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { SettingsTextInput } from '@/ui/input/components/SettingsTextInput';
+import { TextInput } from '@/ui/input/components/TextInput';
 import { SubMenuTopBarContainer } from '@/ui/layout/page/components/SubMenuTopBarContainer';
 import { SettingsPath } from 'twenty-shared/types';
 import { getSettingsPath } from 'twenty-shared/utils';
@@ -53,6 +58,20 @@ export const SettingsWorkspaceAdvanced = () => {
     // Local state to track edits. Key -> Value
     const [formValues, setFormValues] = useState<Record<string, string>>({});
     const [isSaving, setIsSaving] = useState(false);
+
+    // LINE Integration state
+    const [lineChannelId, setLineChannelId] = useState('');
+    const [lineChannelSecret, setLineChannelSecret] = useState('');
+    const [lineChannelAccessToken, setLineChannelAccessToken] = useState('');
+
+    // LINE GraphQL queries and mutations
+    const { data: lineConfigData, loading: lineLoading, refetch: refetchLineConfig } = useQuery(GET_LINE_CONFIG);
+    const [updateLineConfig, { loading: isUpdatingLine }] = useMutation(UPDATE_LINE_CONFIG);
+    const [testLineConnection, { loading: isTestingLine }] = useMutation(TEST_LINE_CONNECTION);
+    const [deleteLineConfig, { loading: isDeletingLine }] = useMutation(DELETE_LINE_CONFIG);
+
+    const lineConfig = lineConfigData?.lineConfig;
+    const isLineConfigured = lineConfig?.isConfigured || false;
 
     // Populate formValues with initial data once loaded
     // We use a separate state to distinguish between "initial" and "current" for diffing
@@ -130,7 +149,92 @@ export const SettingsWorkspaceAdvanced = () => {
         });
     }, [formValues, initialValues]);
 
-    if (loading) return <SettingsPageContainer>{t`Loading...`}</SettingsPageContainer>;
+    // LINE Integration handlers
+    const handleLineSave = async () => {
+        if (!lineChannelId || !lineChannelSecret || !lineChannelAccessToken) {
+            enqueueErrorSnackBar({ message: t`Please fill in all LINE fields` });
+            return;
+        }
+
+        try {
+            await updateLineConfig({
+                variables: {
+                    input: {
+                        channelId: lineChannelId,
+                        channelSecret: lineChannelSecret,
+                        channelAccessToken: lineChannelAccessToken,
+                    },
+                },
+            });
+
+            enqueueSuccessSnackBar({ message: t`LINE configuration saved successfully` });
+
+            // Clear password fields
+            setLineChannelSecret('');
+            setLineChannelAccessToken('');
+
+            // Refetch config and auto-test to get bot user ID
+            await refetchLineConfig();
+
+            // Auto test connection to get bot user ID
+            try {
+                const testResult = await testLineConnection();
+                if (testResult.data?.testLineConnection?.success) {
+                    const botInfo = testResult.data.testLineConnection.botInfo;
+                    enqueueSuccessSnackBar({
+                        message: t`Bot verified: ${botInfo.displayName} (ID: ${botInfo.userId})`,
+                    });
+                }
+            } catch {
+                // Test failed but save succeeded, don't show error
+            }
+        } catch (error: any) {
+            enqueueErrorSnackBar({
+                message: t`Failed to save LINE configuration: ${error?.message || 'Unknown error'}`,
+            });
+        }
+    };
+
+    const handleLineTest = async () => {
+        try {
+            const result = await testLineConnection();
+
+            if (result.data?.testLineConnection?.success) {
+                const botInfo = result.data.testLineConnection.botInfo;
+                enqueueSuccessSnackBar({
+                    message: t`Connection successful! Bot: ${botInfo.displayName} (ID: ${botInfo.userId})`,
+                });
+            } else {
+                const error = result.data?.testLineConnection?.error || 'Unknown error';
+                enqueueErrorSnackBar({ message: t`Connection failed: ${error}` });
+            }
+        } catch {
+            enqueueErrorSnackBar({ message: t`Failed to test LINE connection` });
+        }
+    };
+
+    const handleLineDelete = async () => {
+        if (!confirm(t`Are you sure you want to delete LINE configuration?`)) {
+            return;
+        }
+
+        try {
+            await deleteLineConfig();
+            enqueueSuccessSnackBar({ message: t`LINE configuration deleted successfully` });
+
+            // Clear form
+            setLineChannelId('');
+            setLineChannelSecret('');
+            setLineChannelAccessToken('');
+
+            // Refetch config
+            await refetchLineConfig();
+        } catch {
+            enqueueErrorSnackBar({ message: t`Failed to delete LINE configuration` });
+        }
+    };
+
+    if (loading || lineLoading) return <SettingsPageContainer>{t`Loading...`}</SettingsPageContainer>;
 
     const getValue = (key: string) => formValues[key] !== undefined ? formValues[key] : (initialValues[key] || '');
 
@@ -165,10 +269,80 @@ export const SettingsWorkspaceAdvanced = () => {
                     </StyledInputContainer>
                 </Section>
                 <Section>
-                    <H2Title title={t`LINE Integration`} description={t`Configure LINE Messaging API credentials.`} />
+                    <H2Title
+                        title={t`LINE Integration`}
+                        description={t`Configure LINE Official Account credentials for messaging integration.`}
+                    />
                     <StyledInputContainer>
-                       <SettingsTextInput instanceId="LINE_CHANNEL_ACCESS_TOKEN" label={t`Channel Access Token`} value={getValue('LINE_CHANNEL_ACCESS_TOKEN')} onChange={(v) => handleChange('LINE_CHANNEL_ACCESS_TOKEN', v)} placeholder={t`Long access token string...`} type="password" fullWidth />
-                       <SettingsTextInput instanceId="LINE_CHANNEL_SECRET" label={t`Channel Secret`} value={getValue('LINE_CHANNEL_SECRET')} onChange={(v) => handleChange('LINE_CHANNEL_SECRET', v)} placeholder={t`Secret string`} type="password" fullWidth />
+                        <TextInput
+                            value={lineChannelId || lineConfig?.channelId || ''}
+                            onChange={(value) => setLineChannelId(value)}
+                            placeholder={t`Enter your LINE Channel ID`}
+                            label={t`Channel ID`}
+                            fullWidth
+                        />
+                        <TextInput
+                            value={lineChannelSecret}
+                            onChange={(value) => setLineChannelSecret(value)}
+                            placeholder={
+                                isLineConfigured
+                                    ? t`Enter new secret to update`
+                                    : t`Enter your LINE Channel Secret`
+                            }
+                            label={t`Channel Secret`}
+                            type="password"
+                            fullWidth
+                        />
+                        <TextInput
+                            value={lineChannelAccessToken}
+                            onChange={(value) => setLineChannelAccessToken(value)}
+                            placeholder={
+                                isLineConfigured
+                                    ? t`Enter new token to update`
+                                    : t`Enter your LINE Channel Access Token`
+                            }
+                            label={t`Channel Access Token`}
+                            type="password"
+                            fullWidth
+                        />
+                        <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
+                            <Button
+                                onClick={handleLineSave}
+                                variant="primary"
+                                disabled={isUpdatingLine}
+                                title={isLineConfigured ? t`Update Configuration` : t`Save Configuration`}
+                            />
+                            {isLineConfigured && (
+                                <>
+                                    <Button
+                                        onClick={handleLineTest}
+                                        variant="secondary"
+                                        disabled={isTestingLine}
+                                        title={t`Test Connection`}
+                                    />
+                                    <Button
+                                        onClick={handleLineDelete}
+                                        variant="secondary"
+                                        accent="danger"
+                                        disabled={isDeletingLine}
+                                        title={t`Delete Configuration`}
+                                    />
+                                </>
+                            )}
+                        </div>
+                        {isLineConfigured && (
+                            <div
+                                style={{
+                                    marginTop: '12px',
+                                    padding: '12px',
+                                    background: 'rgba(0, 200, 83, 0.1)',
+                                    borderRadius: '4px',
+                                    color: '#00c853',
+                                }}
+                            >
+                                ✓ {t`LINE Official Account is configured`}
+                            </div>
+                        )}
                     </StyledInputContainer>
                 </Section>
                 <Section>

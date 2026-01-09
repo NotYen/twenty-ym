@@ -118,11 +118,15 @@ export const transformGroupByDataToLineChartData = ({
   );
 
   const data: LineChartDataPoint[] = limitedResults
-    .map((result) => {
+    .map((result): LineChartDataPoint | undefined => {
       const dimensionValues = result.groupByDimensionValues;
 
       // Store raw dimension value for filtering (before formatting)
-      const rawDimensionValue = dimensionValues?.[0] ?? null;
+      const rawValue = dimensionValues?.[0];
+      const rawDimensionValue: string | number | null =
+        typeof rawValue === 'string' || typeof rawValue === 'number'
+          ? rawValue
+          : null;
 
       const xValue = isDefined(dimensionValues?.[0])
         ? formatDimensionValue({

@@ -43,6 +43,7 @@ const useViewsSideEffectsOnViewGroups = () => {
             ({
               id: v4(),
               __typename: 'ViewGroup',
+              fieldMetadataId: mainGroupByFieldMetadataId,
               fieldValue: option.value,
               isVisible: true,
               position: index,
@@ -57,6 +58,7 @@ const useViewsSideEffectsOnViewGroups = () => {
       viewGroupsToCreate.push({
         __typename: 'ViewGroup',
         id: v4(),
+        fieldMetadataId: mainGroupByFieldMetadataId,
         fieldValue: '',
         position: viewGroupsToCreate.length,
         isVisible: true,

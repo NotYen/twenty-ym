@@ -1,7 +1,7 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
-import { RecordGqlOperationFilter } from '@/object-record/graphql/types/RecordGqlOperationFilter';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { useEffect, useMemo, useRef } from 'react';
+import { type RecordGqlOperationFilter } from 'twenty-shared/types';
 import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
 import { type PieChartConfiguration } from '~/generated/graphql';
 
@@ -63,7 +63,9 @@ export const usePieChartSliceRecords = ({
         (field) => field.id === configuration.tooltipDisplayFieldMetadataId,
       )
     : objectMetadataItem?.fields?.find((field) => field.name === 'name') ||
-      objectMetadataItem?.labelIdentifierFieldMetadata;
+      objectMetadataItem?.fields?.find(
+        (field) => field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
+      );
 
   // Build filter for this slice
   const sliceFilter = useMemo((): RecordGqlOperationFilter | undefined => {
