@@ -2,6 +2,7 @@ import { AdvancedFilterLogicalOperatorDropdown } from '@/object-record/advanced-
 import { type RecordFilterGroup } from '@/object-record/record-filter-group/types/RecordFilterGroup';
 
 import styled from '@emotion/styled';
+import { useLingui } from '@lingui/react/macro';
 import { capitalize } from 'twenty-shared/utils';
 
 const StyledText = styled.div`
@@ -28,18 +29,23 @@ export const AdvancedFilterLogicalOperatorCell = ({
   index,
   recordFilterGroup,
 }: AdvancedFilterLogicalOperatorCellProps) => {
+  const { t } = useLingui();
+
+  const getLogicalOperatorLabel = () => {
+    const operator = recordFilterGroup.logicalOperator.toLowerCase();
+    return operator === 'and' ? t`And` : t`Or`;
+  };
+
   return (
     <StyledContainer>
       {index === 0 ? (
-        <StyledText>Where</StyledText>
+        <StyledText>{t`Where`}</StyledText>
       ) : index === 1 ? (
         <AdvancedFilterLogicalOperatorDropdown
           recordFilterGroup={recordFilterGroup}
         />
       ) : (
-        <StyledText>
-          {capitalize(recordFilterGroup.logicalOperator.toLowerCase())}
-        </StyledText>
+        <StyledText>{getLogicalOperatorLabel()}</StyledText>
       )}
     </StyledContainer>
   );

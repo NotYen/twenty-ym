@@ -635,6 +635,9 @@ msgstr "Add new"
 
 #. js-lingui-id: ApsD9J
 #: src/modules/object-record/record-table/components/RecordTableNoRecordGroupAddNew.tsx
+#: src/modules/object-record/record-picker/single-record-picker/components/SingleRecordPickerMenuItemsWithSearch.tsx
+#: src/modules/object-record/record-picker/single-record-picker/components/SingleRecordPickerMenuItemsWithSearch.tsx
+#: src/modules/object-record/record-picker/multiple-record-picker/components/MultipleRecordPicker.tsx
 msgid "Add New"
 msgstr "Add New"
 
@@ -986,6 +989,11 @@ msgstr "All Objects"
 msgid "All roles"
 msgstr "All roles"
 
+#. js-lingui-id: p+lpde
+#: src/modules/activities/tasks/components/TaskGroups.tsx
+msgid "All tasks addressed. Maintain the momentum."
+msgstr "All tasks addressed. Maintain the momentum."
+
 #. js-lingui-id: XuuWVF
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelObjectPicker.tsx
 msgid "All the standard objects"
@@ -1133,6 +1141,14 @@ msgstr "An unexpected error occurred"
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
 msgid "and"
 msgstr "and"
+
+#. js-lingui-id: qVyNMm
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterLogicalOperatorDropdown.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterLogicalOperatorCell.tsx
+#: src/modules/object-record/advanced-filter/command-menu/components/AdvancedFilterCommandMenuLogicalOperatorCell.tsx
+#: src/modules/object-record/advanced-filter/command-menu/components/AdvancedFilterCommandMenuLogicalOperatorCell.tsx
+msgid "And"
+msgstr "And"
 
 #. js-lingui-id: OpAwo5
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
@@ -2669,6 +2685,8 @@ msgid "Create and configure AI agents"
 msgstr "Create and configure AI agents"
 
 #. js-lingui-id: v0pVW+
+#: src/modules/object-record/record-title-cell/components/RecordTitleFullNameFieldInput.tsx
+#: src/modules/object-record/record-title-cell/components/RecordTitleCellTextFieldInput.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
 msgid "Create anyway"
@@ -3234,6 +3252,7 @@ msgstr "delete"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobRowDropdownMenu.tsx
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminDeleteJobsConfirmationModal.tsx
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutTabSettings.tsx
+#: src/modules/activities/files/components/AttachmentDropdown.tsx
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
 #: src/modules/action-menu/mock/action-menu-actions.mock.tsx
 #: src/modules/action-menu/actions/record-actions/single-record/components/DeleteSingleRecordAction.tsx
@@ -3581,6 +3600,11 @@ msgstr "Dots and comma - {dotsAndCommaExample}"
 msgid "Downgrade"
 msgstr "Downgrade"
 
+#. js-lingui-id: mzI/c+
+#: src/modules/activities/files/components/AttachmentDropdown.tsx
+msgid "Download"
+msgstr "Download"
+
 #. js-lingui-id: WcWS//
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 msgid "Download file"
@@ -3747,6 +3771,7 @@ msgstr "Eighth"
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
 #: src/modules/settings/profile/components/vcard/VCardFields.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
+#: src/modules/auth/sign-in-up/components/internal/SignInUpEmailField.tsx
 msgid "Email"
 msgstr "Email"
 
@@ -3780,6 +3805,11 @@ msgstr "Email integration"
 #: src/modules/auth/sign-in-up/hooks/useSignInUp.ts
 msgid "Email is required"
 msgstr "Email is required"
+
+#. js-lingui-id: pHx2eA
+#: src/modules/auth/sign-in-up/hooks/useSignInUpForm.ts
+msgid "Email must be a valid email"
+msgstr "Email must be a valid email"
 
 #. js-lingui-id: QT/Wo7
 #: src/modules/settings/accounts/components/SettingsAccountsBlocklistInput.tsx
@@ -3979,6 +4009,16 @@ msgstr "Enter array of items or variable expression"
 msgid "Enter company name"
 msgstr "Enter company name"
 
+#. js-lingui-id: FSFabs
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterValueInputDropdownButtonClickableSelect.tsx
+msgid "Enter date"
+msgstr "Enter date"
+
+#. js-lingui-id: 8Ao1Tl
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterValueInputDropdownButtonClickableSelect.tsx
+msgid "Enter filter"
+msgstr "Enter filter"
+
 #. js-lingui-id: 9/30HU
 #: src/modules/settings/data-model/fields/forms/date/utils/getDisplayFormatSelectDescription.tsx
 msgid "Enter in <0>Unicode</0> format"
@@ -4003,6 +4043,11 @@ msgstr "Enter new secret to update"
 #: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Enter new token to update"
 msgstr "Enter new token to update"
+
+#. js-lingui-id: 5L6L8T
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterValueInputDropdownButtonClickableSelect.tsx
+msgid "Enter number"
+msgstr "Enter number"
 
 #. js-lingui-id: O0qPMN
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
@@ -4060,8 +4105,16 @@ msgstr "Enter user ID or email address"
 #. js-lingui-id: pubQie
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterValueInput.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterValueInput.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterValueInputDropdownButtonClickableSelect.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterDropdownTextInput.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterDropdownNumberInput.tsx
 msgid "Enter value"
 msgstr "Enter value"
+
+#. js-lingui-id: zei6wK
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterValueInputDropdownButtonClickableSelect.tsx
+msgid "Enter value for {label}"
+msgstr "Enter value for {label}"
 
 #. js-lingui-id: F0vsCW
 #: src/pages/settings/integrations/SettingsIntegrationLine.tsx
@@ -6406,6 +6459,11 @@ msgstr "Minutes"
 msgid "Minutes between triggers"
 msgstr "Minutes between triggers"
 
+#. js-lingui-id: mibKsa
+#: src/modules/activities/tasks/components/TaskGroups.tsx
+msgid "Mission accomplished!"
+msgstr "Mission accomplished!"
+
 #. js-lingui-id: hty0d5
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
 msgid "Monday"
@@ -6879,6 +6937,17 @@ msgstr "No description"
 msgid "No email exchange has occurred with this record yet."
 msgstr "No email exchange has occurred with this record yet."
 
+#. js-lingui-id: l7y8S8
+#: src/modules/activities/calendar/components/CalendarEventsCard.tsx
+msgid "No Events"
+msgstr "No Events"
+
+#. js-lingui-id: REWPmU
+#. placeholder {0}: targetRecord.targetObjectNameSingular
+#: src/modules/activities/calendar/components/CalendarEventsCard.tsx
+msgid "No events have been scheduled with this {0} yet."
+msgstr "No events have been scheduled with this {0} yet."
+
 #. js-lingui-id: 23Rceg
 #: src/modules/activities/files/components/FilesCard.tsx
 msgid "No Files"
@@ -6961,6 +7030,11 @@ msgstr "No metrics data available"
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "No models available. Please configure AI models in your workspace settings."
+
+#. js-lingui-id: 9VrTfZ
+#: src/modules/activities/notes/components/NotesCard.tsx
+msgid "No notes"
+msgstr "No notes"
 
 #. js-lingui-id: daCzI1
 #: src/modules/ui/field/input/components/MultiSelectInput.tsx
@@ -7411,6 +7485,10 @@ msgstr "or"
 
 #. js-lingui-id: ZAVklK
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterLogicalOperatorDropdown.tsx
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterLogicalOperatorCell.tsx
+#: src/modules/object-record/advanced-filter/command-menu/components/AdvancedFilterCommandMenuLogicalOperatorCell.tsx
+#: src/modules/object-record/advanced-filter/command-menu/components/AdvancedFilterCommandMenuLogicalOperatorCell.tsx
 msgid "Or"
 msgstr "Or"
 
@@ -7494,6 +7572,7 @@ msgstr "paragraph"
 #. js-lingui-id: 8ZsakT
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
 #: src/modules/settings/security/components/SettingsSecurityAuthBypassOptionsList.tsx
+#: src/modules/auth/sign-in-up/components/internal/SignInUpPasswordField.tsx
 msgid "Password"
 msgstr "Password"
 
@@ -7506,6 +7585,12 @@ msgstr "Password has been set"
 #: src/pages/auth/PasswordReset.tsx
 msgid "Password has been updated"
 msgstr "Password has been updated"
+
+#. js-lingui-id: 1oqxe6
+#: src/pages/auth/PasswordReset.tsx
+#: src/modules/auth/sign-in-up/hooks/useSignInUpForm.ts
+msgid "Password must be min. 8 characters"
+msgstr "Password must be min. 8 characters"
 
 #. js-lingui-id: mi6Rel
 #: src/modules/auth/sign-in-up/hooks/useHandleResetPassword.ts
@@ -7760,6 +7845,8 @@ msgid "Portuguese — Portugal"
 msgstr "Portuguese — Portugal"
 
 #. js-lingui-id: r6uUPy
+#: src/modules/object-record/record-title-cell/components/RecordTitleFullNameFieldInput.tsx
+#: src/modules/object-record/record-title-cell/components/RecordTitleCellTextFieldInput.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
 msgid "Possible duplicate detected"
@@ -8154,6 +8241,11 @@ msgstr "Remove sorting?"
 msgid "Remove Super Admin"
 msgstr "Remove Super Admin"
 
+#. js-lingui-id: 2wxgft
+#: src/modules/activities/files/components/AttachmentDropdown.tsx
+msgid "Rename"
+msgstr "Rename"
+
 #. js-lingui-id: oQjB9l
 #: src/modules/billing/components/SettingsBillingSubscriptionInfo.tsx
 msgid "Renewal date"
@@ -8258,6 +8350,7 @@ msgid "Restart Import"
 msgstr "Restart Import"
 
 #. js-lingui-id: yKu/3Y
+#: src/modules/information-banner/components/deleted-record/InformationBannerDeletedRecord.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Restore"
@@ -8765,6 +8858,11 @@ msgstr "See workflow"
 msgid "See Workflows"
 msgstr "See Workflows"
 
+#. js-lingui-id: 7Voget
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterValueInputDropdownButtonClickableSelect.tsx
+msgid "Select {name}"
+msgstr "Select {name}"
+
 #. js-lingui-id: bP/w4M
 #: src/modules/workflow/workflow-steps/workflow-actions/filter-action/components/WorkflowStepFilterFieldSelect.tsx
 msgid "Select a field from a previous step"
@@ -8791,6 +8889,11 @@ msgstr "Select action"
 #: src/modules/command-menu/hooks/__tests__/useWorkflowCommandMenu.test.tsx
 msgid "Select Action"
 msgstr "Select Action"
+
+#. js-lingui-id: MJLc18
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterValueInputDropdownButtonClickableSelect.tsx
+msgid "Select actor"
+msgstr "Select actor"
 
 #. js-lingui-id: hVPa4O
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn.tsx
@@ -9099,6 +9202,8 @@ msgid "Sign Up"
 msgstr "Sign Up"
 
 #. js-lingui-id: oT020d
+#: src/modules/object-record/record-title-cell/components/RecordTitleFullNameFieldInput.tsx
+#: src/modules/object-record/record-title-cell/components/RecordTitleCellTextFieldInput.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
 msgid "Similar records were found. Are you sure you want to create a new record?"
@@ -9630,6 +9735,11 @@ msgstr "Table"
 msgid "Target Agent"
 msgstr "Target Agent"
 
+#. js-lingui-id: R+s8S+
+#: src/modules/activities/tasks/components/TaskRow.tsx
+msgid "Task title"
+msgstr "Task title"
+
 #. js-lingui-id: GtycJ/
 #: src/modules/page-layout/hooks/useTranslateTabTitle.ts
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -9793,6 +9903,11 @@ msgstr "then"
 msgid "There are no associated files with this record."
 msgstr "There are no associated files with this record."
 
+#. js-lingui-id: 6g0c8y
+#: src/modules/activities/notes/components/NotesCard.tsx
+msgid "There are no associated notes with this record."
+msgstr "There are no associated notes with this record."
+
 #. js-lingui-id: /cSDOy
 #: src/modules/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep.tsx
 msgid "There are required columns that are not matched or ignored. Do you want to continue?"
@@ -9881,6 +9996,11 @@ msgstr "This is required to enable manual row reordering."
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
 msgid "This is the newly implemented feature. Its purpose is to \"override\" the defaults mentioned above."
 msgstr "This is the newly implemented feature. Its purpose is to \"override\" the defaults mentioned above."
+
+#. js-lingui-id: dWJTyU
+#: src/modules/information-banner/components/deleted-record/InformationBannerDeletedRecord.tsx
+msgid "This record has been deleted"
+msgstr "This record has been deleted"
 
 #. js-lingui-id: vbLBMd
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -10754,6 +10874,12 @@ msgstr "When the API key will expire."
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
 msgid "When the key will be disabled"
 msgstr "When the key will be disabled"
+
+#. js-lingui-id: YvwwqC
+#: src/modules/object-record/advanced-filter/components/AdvancedFilterLogicalOperatorCell.tsx
+#: src/modules/object-record/advanced-filter/command-menu/components/AdvancedFilterCommandMenuLogicalOperatorCell.tsx
+msgid "Where"
+msgstr "Where"
 
 #. js-lingui-id: fANaAS
 #: src/modules/command-menu/pages/page-layout/components/CommandMenuPageLayoutWidgetTypeSelect.tsx

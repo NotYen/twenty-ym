@@ -17,6 +17,7 @@ const StyledCardContent = styled(CardContent)`
   border-color: ${({ theme }) => theme.border.color.light};
   display: flex;
   flex-direction: row;
+  flex-direction: row;
   gap: ${({ theme }) => theme.spacing(3)};
   padding: ${({ theme }) => theme.spacing(2, 3)};
 `;

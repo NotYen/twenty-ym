@@ -1,9 +1,19 @@
 import { type FieldMetadataItem } from '@/object-metadata/types/FieldMetadataItem';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 
+export type AdvancedFilterPlaceholderTranslations = {
+  enterValueFor: (label: string) => string;
+  enterNumber: string;
+  enterDate: string;
+  selectActor: string;
+  select: (name: string) => string;
+  enterValue: string;
+};
+
 // TODO: Refactor with composite filters
 export const getAdvancedFilterInputPlaceholderText = (
   fieldMetadataItem: FieldMetadataItem,
+  translations: AdvancedFilterPlaceholderTranslations,
 ) => {
   switch (fieldMetadataItem.type) {
     case FieldMetadataType.TEXT:
@@ -15,21 +25,23 @@ export const getAdvancedFilterInputPlaceholderText = (
     case FieldMetadataType.PHONES:
     case FieldMetadataType.ARRAY:
     case FieldMetadataType.FULL_NAME:
-      return `Enter value for ${fieldMetadataItem.label}`;
+      return translations.enterValueFor(fieldMetadataItem.label);
     case FieldMetadataType.NUMBER:
-      return 'Enter number';
+      return translations.enterNumber;
     case FieldMetadataType.DATE:
     case FieldMetadataType.DATE_TIME:
-      return 'Enter date';
+      return translations.enterDate;
     case FieldMetadataType.ACTOR:
-      return 'Select actor';
+      return translations.selectActor;
     case FieldMetadataType.RELATION:
-      return `Select ${fieldMetadataItem.relation?.targetObjectMetadata.nameSingular}`;
+      return translations.select(
+        fieldMetadataItem.relation?.targetObjectMetadata.nameSingular ?? '',
+      );
     case FieldMetadataType.SELECT:
     case FieldMetadataType.MULTI_SELECT:
-      return `Select ${fieldMetadataItem.label}`;
+      return translations.select(fieldMetadataItem.label);
 
     default:
-      return 'Enter value';
+      return translations.enterValue;
   }
 };

@@ -14,6 +14,7 @@ import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/Drop
 import { useSelectableList } from '@/ui/layout/selectable-list/hooks/useSelectableList';
 import { useHotkeysOnFocusedElement } from '@/ui/utilities/hotkey/hooks/useHotkeysOnFocusedElement';
 import { useRecoilComponentCallbackState } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentCallbackState';
+import { t } from '@lingui/core/macro';
 import { useRef } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { Key } from 'ts-key-enum';
@@ -118,7 +119,7 @@ export const MultipleRecordPicker = ({
         <CreateNewButton
           onClick={handleCreateNewButtonClick}
           LeftIcon={IconPlus}
-          text="Add New"
+          text={t`Add New`}
         />
       </DropdownMenuItemsContainer>
     ) : null;

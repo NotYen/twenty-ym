@@ -1,4 +1,7 @@
-import { getAdvancedFilterInputPlaceholderText } from '@/object-record/advanced-filter/utils/getAdvancedFilterInputPlacedholderText';
+import {
+  type AdvancedFilterPlaceholderTranslations,
+  getAdvancedFilterInputPlaceholderText,
+} from '@/object-record/advanced-filter/utils/getAdvancedFilterInputPlacedholderText';
 import { currentRecordFiltersComponentState } from '@/object-record/record-filter/states/currentRecordFiltersComponentState';
 import { SelectControl } from '@/ui/input/components/SelectControl';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
@@ -6,6 +9,7 @@ import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/ho
 import { isNonEmptyString } from '@sniptt/guards';
 
 import styled from '@emotion/styled';
+import { useLingui } from '@lingui/react/macro';
 
 import { useFieldMetadataItemById } from '@/object-metadata/hooks/useFieldMetadataItemById';
 import { useGetRecordFilterDisplayValue } from '@/object-record/record-filter/hooks/useGetRecordFilterDisplayValue';
@@ -35,6 +39,7 @@ type AdvancedFilterValueInputDropdownButtonClickableSelectProps = {
 export const AdvancedFilterValueInputDropdownButtonClickableSelect = ({
   recordFilterId,
 }: AdvancedFilterValueInputDropdownButtonClickableSelectProps) => {
+  const { t } = useLingui();
   const currentRecordFilters = useRecoilComponentValue(
     currentRecordFiltersComponentState,
   );
@@ -55,9 +60,21 @@ export const AdvancedFilterValueInputDropdownButtonClickableSelect = ({
     recordFilter?.fieldMetadataId ?? '',
   );
 
+  const placeholderTranslations: AdvancedFilterPlaceholderTranslations = {
+    enterValueFor: (label: string) => t`Enter value for ${label}`,
+    enterNumber: t`Enter number`,
+    enterDate: t`Enter date`,
+    selectActor: t`Select actor`,
+    select: (name: string) => t`Select ${name}`,
+    enterValue: t`Enter value`,
+  };
+
   const placeholderText = isDefined(fieldMetadataItem)
-    ? getAdvancedFilterInputPlaceholderText(fieldMetadataItem)
-    : 'Enter filter';
+    ? getAdvancedFilterInputPlaceholderText(
+        fieldMetadataItem,
+        placeholderTranslations,
+      )
+    : t`Enter filter`;
 
   const recordFilterDisplayValue = getRecordFilterDisplayValue(recordFilter);
 

@@ -1,12 +1,15 @@
 import { RecordFilterGroupLogicalOperator } from 'twenty-shared/types';
 
-export const ADVANCED_FILTER_LOGICAL_OPERATOR_OPTIONS = [
+export const getAdvancedFilterLogicalOperatorOptions = (
+  andLabel: string,
+  orLabel: string,
+) => [
   {
     value: RecordFilterGroupLogicalOperator.AND,
-    label: 'And',
+    label: andLabel,
   },
   {
     value: RecordFilterGroupLogicalOperator.OR,
-    label: 'Or',
+    label: orLabel,
   },
 ];

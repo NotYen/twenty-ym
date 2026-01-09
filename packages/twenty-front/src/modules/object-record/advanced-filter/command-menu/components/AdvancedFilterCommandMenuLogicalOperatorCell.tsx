@@ -1,5 +1,5 @@
 import { AdvancedFilterLogicalOperatorDropdown } from '@/object-record/advanced-filter/components/AdvancedFilterLogicalOperatorDropdown';
-import { ADVANCED_FILTER_LOGICAL_OPERATOR_OPTIONS } from '@/object-record/advanced-filter/constants/AdvancedFilterLogicalOperatorOptions';
+import { getAdvancedFilterLogicalOperatorOptions } from '@/object-record/advanced-filter/constants/AdvancedFilterLogicalOperatorOptions';
 import { DEFAULT_ADVANCED_FILTER_DROPDOWN_OFFSET } from '@/object-record/advanced-filter/constants/DefaultAdvancedFilterDropdownOffset';
 import { AdvancedFilterContext } from '@/object-record/advanced-filter/states/context/AdvancedFilterContext';
 import { type RecordFilterGroup } from '@/object-record/record-filter-group/types/RecordFilterGroup';
@@ -7,8 +7,8 @@ import { Select } from '@/ui/input/components/Select';
 import { GenericDropdownContentWidth } from '@/ui/layout/dropdown/constants/GenericDropdownContentWidth';
 
 import styled from '@emotion/styled';
+import { useLingui } from '@lingui/react/macro';
 import { useContext } from 'react';
-import { capitalize } from 'twenty-shared/utils';
 
 const StyledText = styled.div`
   align-items: center;
@@ -33,19 +33,25 @@ export const AdvancedFilterCommandMenuLogicalOperatorCell = ({
   index,
   recordFilterGroup,
 }: AdvancedFilterCommandMenuLogicalOperatorCellProps) => {
+  const { t } = useLingui();
   const { readonly } = useContext(AdvancedFilterContext);
+
+  const getLogicalOperatorLabel = () => {
+    const operator = recordFilterGroup.logicalOperator.toLowerCase();
+    return operator === 'and' ? t`And` : t`Or`;
+  };
 
   return (
     <StyledContainer>
       {index === 0 ? (
-        <StyledText>Where</StyledText>
+        <StyledText>{t`Where`}</StyledText>
       ) : index === 1 ? (
         readonly ? (
           <Select
             dropdownWidth={GenericDropdownContentWidth.Narrow}
             dropdownId={`advanced-filter-logical-operator-${recordFilterGroup.id}`}
             value={recordFilterGroup.logicalOperator}
-            options={ADVANCED_FILTER_LOGICAL_OPERATOR_OPTIONS}
+            options={getAdvancedFilterLogicalOperatorOptions(t`And`, t`Or`)}
             dropdownOffset={DEFAULT_ADVANCED_FILTER_DROPDOWN_OFFSET}
             disabled
           />
@@ -55,9 +61,7 @@ export const AdvancedFilterCommandMenuLogicalOperatorCell = ({
           />
         )
       ) : (
-        <StyledText>
-          {capitalize(recordFilterGroup.logicalOperator.toLowerCase())}
-        </StyledText>
+        <StyledText>{getLogicalOperatorLabel()}</StyledText>
       )}
     </StyledContainer>
   );

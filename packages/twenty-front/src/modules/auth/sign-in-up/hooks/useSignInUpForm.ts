@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useLingui } from '@lingui/react/macro';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSearchParams } from 'react-router-dom';
@@ -13,19 +14,18 @@ import { PASSWORD_REGEX } from '@/auth/utils/passwordRegex';
 import { isDeveloperDefaultSignInPrefilledState } from '@/client-config/states/isDeveloperDefaultSignInPrefilledState';
 import { isDefined } from 'twenty-shared/utils';
 
-const makeValidationSchema = (signInUpStep: SignInUpStep) =>
+const makeValidationSchema = (
+  signInUpStep: SignInUpStep,
+  emailErrorMessage: string,
+  passwordErrorMessage: string,
+) =>
   z
     .object({
       exist: z.boolean(),
-      email: z
-        .string()
-        .trim()
-        .pipe(z.email({ error: 'Email must be a valid email' })),
+      email: z.string().trim().pipe(z.email({ error: emailErrorMessage })),
       password:
         signInUpStep === SignInUpStep.Password
-          ? z
-              .string()
-              .regex(PASSWORD_REGEX, 'Password must be min. 8 characters')
+          ? z.string().regex(PASSWORD_REGEX, passwordErrorMessage)
           : z.string().optional(),
       captchaToken: z.string().default(''),
     })
@@ -33,9 +33,14 @@ const makeValidationSchema = (signInUpStep: SignInUpStep) =>
 
 export type Form = z.infer<ReturnType<typeof makeValidationSchema>>;
 export const useSignInUpForm = () => {
+  const { t } = useLingui();
   const signInUpStep = useRecoilValue(signInUpStepState);
 
-  const validationSchema = makeValidationSchema(signInUpStep); // Create schema based on the current step
+  const validationSchema = makeValidationSchema(
+    signInUpStep,
+    t`Email must be a valid email`,
+    t`Password must be min. 8 characters`,
+  ); // Create schema based on the current step
 
   const isDeveloperDefaultSignInPrefilled = useRecoilValue(
     isDeveloperDefaultSignInPrefilledState,

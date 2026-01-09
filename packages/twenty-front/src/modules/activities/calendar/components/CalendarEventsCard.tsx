@@ -26,7 +26,7 @@ import {
 } from 'twenty-ui/layout';
 import { type TimelineCalendarEventsWithTotal } from '~/generated/graphql';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
-
+import { t } from '@lingui/core/macro';
 const StyledContainer = styled.div`
   box-sizing: border-box;
   display: flex;
@@ -109,11 +109,10 @@ export const CalendarEventsCard = () => {
         <AnimatedPlaceholder type="noMatchRecord" />
         <AnimatedPlaceholderEmptyTextContainer>
           <AnimatedPlaceholderEmptyTitle>
-            No Events
+            {t`No Events`}
           </AnimatedPlaceholderEmptyTitle>
           <AnimatedPlaceholderEmptySubTitle>
-            No events have been scheduled with this{' '}
-            {targetRecord.targetObjectNameSingular} yet.
+            {t`No events have been scheduled with this ${targetRecord.targetObjectNameSingular} yet.`}
           </AnimatedPlaceholderEmptySubTitle>
         </AnimatedPlaceholderEmptyTextContainer>
       </AnimatedPlaceholderEmptyContainer>

@@ -15,6 +15,7 @@ import { FieldContextProvider } from '@/object-record/record-field/ui/components
 import { IconCalendar, OverflowingTextWithTooltip } from 'twenty-ui/display';
 import { Checkbox, CheckboxShape } from 'twenty-ui/input';
 import { useCompleteTask } from '../hooks/useCompleteTask';
+import { t } from '@lingui/core/macro';
 
 const StyledTaskBody = styled.div`
   color: ${({ theme }) => theme.font.color.tertiary};
@@ -114,7 +115,7 @@ export const TaskRow = ({ task }: { task: Task }) => {
           />
         </StyledCheckboxContainer>
         <StyledTaskTitle completed={task.status === 'DONE'}>
-          {task.title || <StyledPlaceholder>Task title</StyledPlaceholder>}
+          {task.title || <StyledPlaceholder>{t`Task title`}</StyledPlaceholder>}
         </StyledTaskTitle>
         <StyledTaskBody>
           <OverflowingTextWithTooltip text={body} />

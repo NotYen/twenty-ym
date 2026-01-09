@@ -2,8 +2,8 @@ import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadat
 import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
 import { SingleRecordPickerLoadingEffect } from '@/object-record/record-picker/single-record-picker/components/SingleRecordPickerLoadingEffect';
 import {
-    SingleRecordPickerMenuItems,
-    type SingleRecordPickerMenuItemsProps,
+  SingleRecordPickerMenuItems,
+  type SingleRecordPickerMenuItemsProps,
 } from '@/object-record/record-picker/single-record-picker/components/SingleRecordPickerMenuItems';
 import { useSingleRecordPickerRecords } from '@/object-record/record-picker/single-record-picker/hooks/useSingleRecordPickerRecords';
 import { useSingleRecordPickerSearch } from '@/object-record/record-picker/single-record-picker/hooks/useSingleRecordPickerSearch';
@@ -16,6 +16,7 @@ import { DropdownMenuSearchInput } from '@/ui/layout/dropdown/components/Dropdow
 import { DropdownMenuSeparator } from '@/ui/layout/dropdown/components/DropdownMenuSeparator';
 import { useAvailableComponentInstanceIdOrThrow } from '@/ui/utilities/state/component-state/hooks/useAvailableComponentInstanceIdOrThrow';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
+import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { IconPlus } from 'twenty-ui/display';
 
@@ -91,7 +92,7 @@ export const SingleRecordPickerMenuItemsWithSearch = ({
                 <CreateNewButton
                   onClick={handleCreateNew}
                   LeftIcon={IconPlus}
-                  text="Add New"
+                  text={t`Add New`}
                 />
               </DropdownMenuItemsContainer>
               <DropdownMenuSeparator />
@@ -140,7 +141,7 @@ export const SingleRecordPickerMenuItemsWithSearch = ({
                 <CreateNewButton
                   onClick={handleCreateNew}
                   LeftIcon={IconPlus}
-                  text="Add New"
+                  text={t`Add New`}
                 />
               </DropdownMenuItemsContainer>
             </>

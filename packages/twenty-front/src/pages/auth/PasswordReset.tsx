@@ -35,16 +35,15 @@ import {
 import { useNavigateApp } from '~/hooks/useNavigateApp';
 import { logError } from '~/utils/logError';
 
-const validationSchema = z
-  .object({
-    passwordResetToken: z.string(),
-    newPassword: z
-      .string()
-      .regex(PASSWORD_REGEX, 'Password must be min. 8 characters'),
-  })
-  .required();
+const makeValidationSchema = (passwordErrorMessage: string) =>
+  z
+    .object({
+      passwordResetToken: z.string(),
+      newPassword: z.string().regex(PASSWORD_REGEX, passwordErrorMessage),
+    })
+    .required();
 
-type Form = z.infer<typeof validationSchema>;
+type Form = z.infer<ReturnType<typeof makeValidationSchema>>;
 
 const StyledMainContainer = styled.div`
   display: flex;
@@ -98,6 +97,10 @@ export const PasswordReset = () => {
   const passwordResetToken = useParams().passwordResetToken;
 
   const isLoggedIn = useIsLogged();
+
+  const validationSchema = makeValidationSchema(
+    t`Password must be min. 8 characters`,
+  );
 
   const { control, handleSubmit } = useForm<Form>({
     mode: 'onChange',

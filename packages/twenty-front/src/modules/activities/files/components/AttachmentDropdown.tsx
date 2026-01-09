@@ -11,6 +11,7 @@ import {
 } from 'twenty-ui/display';
 import { LightIconButton } from 'twenty-ui/input';
 import { MenuItem } from 'twenty-ui/navigation';
+import { t } from '@lingui/core/macro';
 
 type AttachmentDropdownProps = {
   onDownload: () => void;
@@ -57,18 +58,18 @@ export const AttachmentDropdown = ({
           <DropdownMenuItemsContainer>
             {hasDownloadPermission && (
               <MenuItem
-                text="Download"
+                text={t`Download`}
                 LeftIcon={IconDownload}
                 onClick={handleDownload}
               />
             )}
             <MenuItem
-              text="Rename"
+              text={t`Rename`}
               LeftIcon={IconPencil}
               onClick={handleRename}
             />
             <MenuItem
-              text="Delete"
+              text={t`Delete`}
               accent="danger"
               LeftIcon={IconTrash}
               onClick={handleDelete}
