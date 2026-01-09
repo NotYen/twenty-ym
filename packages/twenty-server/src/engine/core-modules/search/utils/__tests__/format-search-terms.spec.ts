@@ -12,4 +12,25 @@ describe('formatSearchTerms', () => {
 
     expect(formattedTerms).toBe('my:* | search:* | input:*');
   });
+
+  it('should escape half-width parentheses', () => {
+    const formattedTerms = formatSearchTerms('test(value)', 'and');
+
+    expect(formattedTerms).toBe('test\\(value\\):*');
+  });
+
+  it('should remove full-width CJK parentheses', () => {
+    const formattedTerms = formatSearchTerms(
+      '美升鮮-WMS倉儲管理（硬體）',
+      'and',
+    );
+
+    expect(formattedTerms).toBe('美升鮮-WMS倉儲管理硬體:*');
+  });
+
+  it('should handle mixed parentheses in CJK text', () => {
+    const formattedTerms = formatSearchTerms('測試(硬體)', 'and');
+
+    expect(formattedTerms).toBe('測試\\(硬體\\):*');
+  });
 });

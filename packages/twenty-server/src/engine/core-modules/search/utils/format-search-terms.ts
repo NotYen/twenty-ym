@@ -6,11 +6,21 @@ export const formatSearchTerms = (
     return '';
   }
   const words = searchTerm.trim().split(/\s+/);
-  const formattedWords = words.map((word) => {
-    const escapedWord = word.replace(/[\\:'&|!()@<>]/g, '\\$&');
+  const formattedWords = words
+    .map((word) => {
+      // Remove full-width CJK brackets that cause tsquery syntax errors
+      const cleanedWord = word.replace(/[（）【】「」『』《》〈〉]/g, '');
 
-    return `${escapedWord}:*`;
-  });
+      // Escape half-width special characters (PostgreSQL tsquery syntax chars)
+      // Using function form to prepend backslash to matched character
+      const escapedWord = cleanedWord.replace(
+        /[\\:'&|!()@<>]/g,
+        (match) => '\\' + match,
+      );
+
+      return escapedWord ? `${escapedWord}:*` : '';
+    })
+    .filter(Boolean);
 
   return formattedWords.join(` ${operator === 'and' ? '&' : '|'} `);
 };
