@@ -2,9 +2,9 @@
 
 > 此文件記錄從 Twenty 開源專案 main 分支 cherry-pick 到本地 dev_yen 分支的 commits。
 >
-> 最後更新時間：2026-01-06
+> 最後更新時間：2026-01-11
 >
-> 開源 main 分支最新分析 commit：`3b05375419` - Fix authContext (#16936)
+> 開源 main 分支最新分析 commit：`20f62e05f5` - fix(search): add support for searching by additional emails, phones, and secondary links (#17034)
 
 ---
 
@@ -12,8 +12,8 @@
 
 | 類別 | 數量 |
 |------|------|
-| 已 Cherry-pick | 78 個 |
-| 添加的依賴檔案 | 6 個 |
+| 已 Cherry-pick | 80 個 |
+| 添加的依賴檔案 | 7 個 |
 | 分析後不建議 Cherry-pick | 54 個 |
 
 ---
@@ -125,6 +125,13 @@
 | `a2872b02ed` | #16732 | 禁止停用系統欄位（deletedAt 改善） | 2026-01-06 |
 | `229916def2` | #16879 | 修復 Opportunity Kanban 聚合從 MIN 改為 SUM | 2026-01-06 |
 | `61addf8b62` | #16415 | Email body URL 自動轉連結 | 2026-01-06 |
+
+### 2026-01-11 批次
+
+| 原始 Commit | PR | 說明 | Cherry-pick 日期 |
+|-------------|-----|------|------------------|
+| `a4daead678` | #16672 | 修復 View field 更新不保存（欄位寬度等）| 2026-01-11 |
+| `12189b378f` | #16953 | 修復 object 重命名後 activity target 關聯問題 | 2026-01-11 |
 
 ### 手動修復（2026-01-06）
 
@@ -429,3 +436,6 @@
 | 2026-01-06 | 手動修復 Widget 底部邊框（#16856），因架構差異無法直接 cherry-pick |
 | 2026-01-06 | 分析並跳過 7 個 commits（#16858, #16936, #16880, #16309, #16803, #16933, #16856）|
 | 2026-01-06 | 更新開源 main 分支最新分析 commit 至 `3b05375419` |
+| 2026-01-11 | 分析 103 個新 commits（從 3b05375419 到 20f62e05f5）|
+| 2026-01-11 | 新增 2 個 bugfix commits（#16672 View field 更新、#16953 activity target 關聯）|
+| 2026-01-11 | 跳過 3 個有衝突的 commits（#16886 qs 安全更新、#16864 Currency Save、#16874 圖表 toggle）以保護本地修改 |
