@@ -12,9 +12,10 @@
 
 | 類別 | 數量 |
 |------|------|
-| 已 Cherry-pick | 80 個 |
-| 添加的依賴檔案 | 7 個 |
-| 分析後不建議 Cherry-pick | 54 個 |
+| 已 Cherry-pick | 82 個 |
+| 手動合併修復 | 6 個 |
+| 添加的依賴檔案 | 9 個 |
+| 分析後不建議 Cherry-pick | 57 個 |
 
 ---
 
@@ -140,6 +141,9 @@
 | Widget 底部邊框 | #16856 | 修復 Pinned Tab 最後一個 Widget 不顯示底部邊框（因架構差異無法直接 cherry-pick，手動實作） | 2026-01-06 |
 | 圖表 toggle 修復 | #16874 | 修復圖表設定中 toggle 無法點擊的問題（ChartSettings.tsx 加入 closeAnyOpenDropdown、MenuItemToggle.tsx 移除 label htmlFor） | 2026-01-11 |
 | Currency Save 按鈕 | #16864 | 修復 Currency 欄位設定頁面 Save 按鈕無法正確追蹤 dirty state（新增 getFieldMetadataItemInitialValues.ts，保留本地 readonly 修改） | 2026-01-11 |
+| 導航記憶修復 | #16918 | 修復 custom object 重命名後導航記憶 URL 未更新（新增 computeUpdatedNavigationMemorizedUrlAfterObjectNamePluralChange.util.ts） | 2026-01-11 |
+| MS Office 預覽修復 | #17044 | 修復 MS Office 檔案在私有/本地 URL 無法預覽的問題（加入 isPrivateUrl 檢測，顯示友善訊息和下載按鈕） | 2026-01-11 |
+| App 崩潰修復 | #16977 | 修復 object view 設定只開記錄頁時 app 崩潰（在 useOpenRecordFromIndexView 和 useCreateNewIndexRecord 加入 closeCommandMenu） | 2026-01-11 |
 
 ### 已存在於分支中（無需 Cherry-pick）
 
@@ -164,6 +168,8 @@
 | `packages/twenty-front/src/modules/views/hooks/internal/useHasFiltersInQueryParams.ts` | 檢查 URL 參數中的 filters |
 | `packages/twenty-front/src/modules/views/schemas/` | 整個資料夾 - Views schemas |
 | `packages/twenty-front/src/modules/page-layout/widgets/hooks/useIsLastWidgetInTab.ts` | 判斷是否為 Tab 中最後一個 Widget（手動新增） |
+| `packages/twenty-front/src/modules/settings/data-model/object-details/utils/computeUpdatedNavigationMemorizedUrlAfterObjectNamePluralChange.util.ts` | 導航記憶 URL 更新工具函數（#16918 手動合併） |
+| `packages/twenty-front/src/modules/object-record/record-group/hooks/useShouldHideRecordGroup.ts` | 判斷是否隱藏空群組（#16494 cherry-pick 新增） |
 
 ---
 
@@ -321,6 +327,14 @@
 | `f069efe361` | #16933 | Fix Enable access to all options | 🟡 中 | 依賴 `ecd41fc9cb`，需要先 cherry-pick 前置 commit |
 | `62e496f65d` | #16856 | Widget border fix | 🟡 中 | 架構差異太大，改用手動修復（見上方手動修復區塊） |
 
+### 2026-01-11 分析後跳過
+
+| Commit | PR | 說明 | 風險等級 | 原因 |
+|--------|-----|------|----------|------|
+| `e83e616fde` | #16886 | qs 安全更新 | 🟡 中 | yarn.lock 變更 9000+ 行，NestJS 不支援 express 5，建議手動 `yarn upgrade express` |
+| `2fb099e198` | #17038 | Date filter stale value 修復 | 🟡 中 | 涉及核心 filter 邏輯，風險較高 |
+| `615ef1abdc` | #16998 | Kanban null 修復 | 🟢 低 | 本地架構已有類似處理（useRecordGroupFilter 已處理 null 值）|
+
 ---
 
 ### i18n 翻譯（自動生成，不需要）
@@ -442,3 +456,5 @@
 | 2026-01-11 | 新增 2 個 bugfix commits（#16672 View field 更新、#16953 activity target 關聯）|
 | 2026-01-11 | 手動合併 #16874 圖表 toggle 修復、#16864 Currency Save 按鈕修復（保留本地修改）|
 | 2026-01-11 | 跳過 #16886 qs 安全更新（yarn.lock 變更 9000+ 行，建議手動 yarn upgrade express）|
+| 2026-01-11 | 手動合併 #16918 導航記憶修復、#17044 MS Office 預覽修復、#16977 App 崩潰修復 |
+| 2026-01-11 | 跳過 #16998 Kanban null 修復（本地架構已有類似處理）|

@@ -15,8 +15,8 @@ import { filterGroupByResults } from '@/page-layout/widgets/graph/utils/filterGr
 import { formatDimensionValue } from '@/page-layout/widgets/graph/utils/formatDimensionValue';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    AxisNameDisplay,
-    type LineChartConfiguration,
+  AxisNameDisplay,
+  type LineChartConfiguration,
 } from '~/generated/graphql';
 
 type TransformGroupByDataToLineChartDataParams = {

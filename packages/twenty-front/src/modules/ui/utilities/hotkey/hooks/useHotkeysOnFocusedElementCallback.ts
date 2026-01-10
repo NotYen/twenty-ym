@@ -1,8 +1,8 @@
 import { DEBUG_FOCUS_STACK } from '@/ui/utilities/focus/constants/DebugFocusStack';
 import { isIMEComposing } from '@/ui/utilities/hotkey/utils/isIMEComposing';
 import {
-    type Hotkey,
-    type OptionsOrDependencyArray,
+  type Hotkey,
+  type OptionsOrDependencyArray,
 } from 'react-hotkeys-hook/dist/types';
 import { useRecoilCallback } from 'recoil';
 import { logDebug } from '~/utils/logDebug';

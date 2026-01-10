@@ -6,10 +6,10 @@ import styled from '@emotion/styled';
 import { useCallback, useRef, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    H1Title,
-    H1TitleFontColor,
-    IconTrendingDown,
-    IconTrendingUp,
+  H1Title,
+  H1TitleFontColor,
+  IconTrendingDown,
+  IconTrendingUp,
 } from 'twenty-ui/display';
 
 type ChartRecord = {
@@ -73,7 +73,8 @@ export const GraphWidgetAggregateChart = ({
     (event: React.MouseEvent<HTMLDivElement>) => {
       setIsHovered(true);
       refs.setReference({
-        getBoundingClientRect: () => event.currentTarget.getBoundingClientRect(),
+        getBoundingClientRect: () =>
+          event.currentTarget.getBoundingClientRect(),
       });
     },
     [refs],

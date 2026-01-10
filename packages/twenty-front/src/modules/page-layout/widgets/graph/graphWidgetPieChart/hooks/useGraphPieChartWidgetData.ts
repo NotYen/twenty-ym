@@ -56,7 +56,11 @@ export const useGraphPieChartWidgetData = ({
   });
 
   const transformedData = useMemo((): PieChartDataItem[] => {
-    if (!isDefined(queryData) || !isDefined(aggregateOperation) || !isDefined(aggregateField)) {
+    if (
+      !isDefined(queryData) ||
+      !isDefined(aggregateOperation) ||
+      !isDefined(aggregateField)
+    ) {
       return [];
     }
 
@@ -89,7 +93,8 @@ export const useGraphPieChartWidgetData = ({
       const aggregateValue = computeAggregateValueFromGroupByResult({
         rawResult: result,
         aggregateField,
-        aggregateOperation: configuration.aggregateOperation as unknown as ExtendedAggregateOperations,
+        aggregateOperation:
+          configuration.aggregateOperation as unknown as ExtendedAggregateOperations,
         aggregateOperationFromRawResult: aggregateOperation,
         objectMetadataItem,
       });
@@ -156,15 +161,18 @@ const generateSliceFilterUrl = ({
     : groupByField.name;
 
   // Handle null/empty values
-  const filterValue = isDefined(dimensionValue) && dimensionValue !== ''
-    ? String(dimensionValue)
-    : '';
+  const filterValue =
+    isDefined(dimensionValue) && dimensionValue !== ''
+      ? String(dimensionValue)
+      : '';
 
   // Use 'is' operand for null values, 'eq' for others
   const operand = filterValue === '' ? 'is' : 'eq';
   const value = filterValue === '' ? 'NULL' : filterValue;
 
-  return `${basePath}?filter=${encodeURIComponent(JSON.stringify({
-    [fieldName]: { [operand]: value },
-  }))}`;
+  return `${basePath}?filter=${encodeURIComponent(
+    JSON.stringify({
+      [fieldName]: { [operand]: value },
+    }),
+  )}`;
 };

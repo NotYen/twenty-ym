@@ -14,18 +14,18 @@ import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { Pill } from 'twenty-ui/components';
 import {
-    AppTooltip,
-    type IconComponent,
-    Label,
-    OverflowingTextWithTooltip,
-    type TablerIconsProps,
-    TooltipDelay,
-    TooltipPosition,
+  AppTooltip,
+  type IconComponent,
+  Label,
+  OverflowingTextWithTooltip,
+  type TablerIconsProps,
+  TooltipDelay,
+  TooltipPosition,
 } from 'twenty-ui/display';
 import { MOBILE_VIEWPORT } from 'twenty-ui/theme';
 import {
-    type TriggerEventType,
-    useMouseDownNavigation,
+  type TriggerEventType,
+  useMouseDownNavigation,
 } from 'twenty-ui/utilities';
 
 const DEFAULT_INDENTATION_LEVEL = 1;

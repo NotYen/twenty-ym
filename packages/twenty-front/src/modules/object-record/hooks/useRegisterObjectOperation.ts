@@ -1,6 +1,6 @@
 import {
-    type ObjectOperationData,
-    objectOperationsByObjectNameSingularFamilyState,
+  type ObjectOperationData,
+  objectOperationsByObjectNameSingularFamilyState,
 } from '@/object-record/states/objectOperationsByObjectNameSingularFamilyState';
 import { useRecoilCallback } from 'recoil';
 import { v4 } from 'uuid';

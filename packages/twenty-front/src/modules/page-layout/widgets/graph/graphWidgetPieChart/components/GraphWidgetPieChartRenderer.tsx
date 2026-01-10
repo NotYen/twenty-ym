@@ -4,8 +4,8 @@ import { type GraphColor } from '@/page-layout/widgets/graph/types/GraphColor';
 import { type GraphValueFormatOptions } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { lazy, Suspense } from 'react';
 import {
-    type PageLayoutWidget,
-    type PieChartConfiguration,
+  type PageLayoutWidget,
+  type PieChartConfiguration,
 } from '~/generated/graphql';
 
 const GraphWidgetPieChart = lazy(() =>

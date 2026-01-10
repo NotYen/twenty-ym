@@ -3,9 +3,9 @@ import { pendingHotkeyState } from '@/ui/utilities/hotkey/states/internal/pendin
 import { isIMEComposing } from '@/ui/utilities/hotkey/utils/isIMEComposing';
 import { useHotkeys } from 'react-hotkeys-hook';
 import {
-    type HotkeyCallback,
-    type Keys,
-    type Options,
+  type HotkeyCallback,
+  type Keys,
+  type Options,
 } from 'react-hotkeys-hook/dist/types';
 import { useRecoilState } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';

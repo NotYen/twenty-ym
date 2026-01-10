@@ -71,9 +71,7 @@ export const SignInSuccessModal = ({
     return `${displayName} ${t`successfully signed in`},`;
   }, [displayName]);
 
-  const titleLine2 = t`Welcome to ${
-    currentWorkspace?.displayName ?? 'Y-CRM'
-  }`;
+  const titleLine2 = t`Welcome to ${currentWorkspace?.displayName ?? 'Y-CRM'}`;
 
   const handleContinue = () => {
     onClose?.();

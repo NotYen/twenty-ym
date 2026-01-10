@@ -1,16 +1,19 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import {
-    buildDateRangeFilter,
-    extractYearFromFilter,
-    isNonIsoDateGranularity,
+  buildDateRangeFilter,
+  extractYearFromFilter,
+  isNonIsoDateGranularity,
 } from '@/page-layout/widgets/graph/utils/buildDateRangeFilter';
 import { useEffect, useMemo, useRef } from 'react';
 import {
-    ObjectRecordGroupByDateGranularity,
-    type RecordGqlOperationFilter,
+  type ObjectRecordGroupByDateGranularity,
+  type RecordGqlOperationFilter,
 } from 'twenty-shared/types';
-import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
+import {
+  computeRecordGqlOperationFilter,
+  isDefined,
+} from 'twenty-shared/utils';
 import { type LineChartConfiguration } from '~/generated/graphql';
 
 const LINE_CHART_TOOLTIP_RECORDS_LIMIT = 50;
@@ -72,9 +75,9 @@ export const useLineChartRecords = ({
       )
     : objectMetadataItem?.fields?.find((field) => field.name === 'name') ||
       objectMetadataItem?.fields?.find(
-        (field) => field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
+        (field) =>
+          field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
       );
-
 
   // Build filter for this point
   const pointFilter = useMemo((): RecordGqlOperationFilter | undefined => {
@@ -108,7 +111,9 @@ export const useLineChartRecords = ({
     const dateRangeFilter = buildDateRangeFilter({
       fieldName: groupByField.name,
       dimensionValue: pointDimensionValue,
-      dateGranularity: configuration?.primaryAxisDateGranularity as ObjectRecordGroupByDateGranularity | undefined,
+      dateGranularity: configuration?.primaryAxisDateGranularity as
+        | ObjectRecordGroupByDateGranularity
+        | undefined,
       subFieldName,
       field: groupByField,
       referenceYear,
@@ -120,7 +125,9 @@ export const useLineChartRecords = ({
 
     // 如果是非 ISO 日期格式的粒度（如 QUARTER_OF_THE_YEAR），且無法建立日期範圍 filter，
     // 返回空物件，讓 combinedFilter 只包含 widget 的 filter，等於顯示全部記錄
-    const primaryGranularity = configuration?.primaryAxisDateGranularity as ObjectRecordGroupByDateGranularity | undefined;
+    const primaryGranularity = configuration?.primaryAxisDateGranularity as
+      | ObjectRecordGroupByDateGranularity
+      | undefined;
     if (isNonIsoDateGranularity(primaryGranularity)) {
       return {}; // 空 filter，顯示全部記錄
     }
@@ -138,7 +145,14 @@ export const useLineChartRecords = ({
     return {
       [groupByField.name]: { eq: pointDimensionValue },
     };
-  }, [groupByField, pointDimensionValue, configuration?.primaryAxisGroupBySubFieldName, configuration?.primaryAxisDateGranularity, configuration?.filter, shouldQuery]);
+  }, [
+    groupByField,
+    pointDimensionValue,
+    configuration?.primaryAxisGroupBySubFieldName,
+    configuration?.primaryAxisDateGranularity,
+    configuration?.filter,
+    shouldQuery,
+  ]);
 
   // Combine with widget's existing filter
   const combinedFilter = useMemo((): RecordGqlOperationFilter | undefined => {
@@ -190,7 +204,10 @@ export const useLineChartRecords = ({
     objectNameSingular: objectMetadataItem?.nameSingular ?? 'skip',
     filter: combinedFilter,
     limit: LINE_CHART_TOOLTIP_RECORDS_LIMIT,
-    skip: !shouldQuery || combinedFilter === undefined || !objectMetadataItem?.nameSingular,
+    skip:
+      !shouldQuery ||
+      combinedFilter === undefined ||
+      !objectMetadataItem?.nameSingular,
   });
 
   const transformedRecords = useMemo((): ChartRecord[] => {
@@ -225,7 +242,6 @@ export const useLineChartRecords = ({
     });
   }, [records, displayField]);
 
-
   // Create a stable cache key
   const cacheKey = isDefined(pointDimensionValue)
     ? `${objectMetadataItemId}-${String(pointDimensionValue)}`
@@ -249,7 +265,9 @@ export const useLineChartRecords = ({
   // 3. If loading with no previous data, return empty (don't show records section)
   // 4. If loaded with new data, show it
 
-  const cachedData = isDefined(cacheKey) ? globalLineChartCache.get(cacheKey) : undefined;
+  const cachedData = isDefined(cacheKey)
+    ? globalLineChartCache.get(cacheKey)
+    : undefined;
 
   // Priority 1: Use cached data for current point
   if (isDefined(cachedData)) {

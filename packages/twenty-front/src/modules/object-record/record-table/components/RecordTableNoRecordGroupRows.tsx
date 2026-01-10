@@ -3,6 +3,7 @@ import { RecordTableRowVirtualizedContainer } from '@/object-record/record-table
 import { RecordTableVirtualizedBodyPlaceholder } from '@/object-record/record-table/virtualization/components/RecordTableVirtualizedBodyPlaceholder';
 import { RecordTableVirtualizedDebugHelper } from '@/object-record/record-table/virtualization/components/RecordTableVirtualizedDebugHelper';
 import { NUMBER_OF_VIRTUALIZED_ROWS } from '@/object-record/record-table/virtualization/constants/NumberOfVirtualizedRows';
+import { lowDetailsActivatedComponentState } from '@/object-record/record-table/virtualization/states/lowDetailsActivatedComponentState';
 import { totalNumberOfRecordsToVirtualizeComponentState } from '@/object-record/record-table/virtualization/states/totalNumberOfRecordsToVirtualizeComponentState';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { getContiguousIncrementalValues } from 'twenty-shared/utils';
@@ -11,6 +12,10 @@ export const RecordTableNoRecordGroupRows = () => {
   const totalNumberOfRecordsToVirtualize =
     useRecoilComponentValue(totalNumberOfRecordsToVirtualizeComponentState) ??
     0;
+
+  const lowDetailsActivated = useRecoilComponentValue(
+    lowDetailsActivatedComponentState,
+  );
 
   const numberOfRows = Math.min(
     totalNumberOfRecordsToVirtualize,
@@ -27,6 +32,8 @@ export const RecordTableNoRecordGroupRows = () => {
           <RecordTableRowVirtualizedContainer
             key={virtualRowIndex}
             virtualIndex={virtualRowIndex}
+            totalNumberOfRecordsToVirtualize={totalNumberOfRecordsToVirtualize}
+            lowDetailsActivated={lowDetailsActivated}
           />
         );
       })}

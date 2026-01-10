@@ -17,8 +17,8 @@ import { type ObjectPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { type ColorScheme } from 'twenty-ui/input';
 import {
-    useFindAllCoreViewsLazyQuery,
-    useGetCurrentUserLazyQuery,
+  useFindAllCoreViewsLazyQuery,
+  useGetCurrentUserLazyQuery,
 } from '~/generated-metadata/graphql';
 import { getWorkspaceUrl } from '~/utils/getWorkspaceUrl';
 import { dynamicActivate } from '~/utils/i18n/dynamicActivate';

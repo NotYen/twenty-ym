@@ -7,8 +7,8 @@
 import { atom, selector } from 'recoil';
 
 import {
-    getAllRemoteFeatureFlags,
-    isRemoteConfigInitialized,
+  getAllRemoteFeatureFlags,
+  isRemoteConfigInitialized,
 } from '../services/firebase-remote-config.service';
 
 /**

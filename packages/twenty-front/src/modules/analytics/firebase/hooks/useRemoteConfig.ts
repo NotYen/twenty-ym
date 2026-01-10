@@ -11,13 +11,13 @@ import { useRecoilValue } from 'recoil';
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
 
 import {
-    getAllRemoteFeatureFlags,
-    getBlocklist,
-    getRemoteFeatureFlag,
-    initializeRemoteConfig,
-    isRemoteConfigInitialized,
-    refreshRemoteConfig,
-    SUPPORTED_FEATURE_FLAGS,
+  getAllRemoteFeatureFlags,
+  getBlocklist,
+  getRemoteFeatureFlag,
+  initializeRemoteConfig,
+  isRemoteConfigInitialized,
+  refreshRemoteConfig,
+  SUPPORTED_FEATURE_FLAGS,
 } from '../services/firebase-remote-config.service';
 
 /**

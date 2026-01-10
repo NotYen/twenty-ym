@@ -5,11 +5,11 @@ import styled from '@emotion/styled';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const StyledLoadingBarContainer = styled.div`
-  height: 2px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
   flex-shrink: 0;
+  height: 2px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 `;
 
 const StyledLoadingBar = styled(motion.div)<{ barColor: string }>`

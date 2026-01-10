@@ -13,7 +13,7 @@ import { SignInSuccessModal } from './SignInSuccessModal';
 const SESSION_FLAG = 'signInSuccessShown';
 const MODAL_ID = 'sign-in-success-modal';
 
-export const SignInSuccessEffect = () => {
+export const SignInSuccess = () => {
   const isLogged = useIsLogged();
   const currentUser = useRecoilValue(currentUserState);
   const isCurrentUserLoaded = useRecoilValue(isCurrentUserLoadedState);

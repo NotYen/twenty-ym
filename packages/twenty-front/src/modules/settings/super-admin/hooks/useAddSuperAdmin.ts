@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client';
 
 import { ADD_SUPER_ADMIN } from '@/settings/super-admin/graphql/mutations/addSuperAdmin';
 import { GET_SUPER_ADMINS } from '@/settings/super-admin/graphql/queries/getSuperAdmins';
-import { SuperAdmin } from '@/settings/super-admin/hooks/useSuperAdmins';
+import { type SuperAdmin } from '@/settings/super-admin/hooks/useSuperAdmins';
 
 export const useAddSuperAdmin = () => {
   const [addSuperAdminMutation, { loading, error }] = useMutation<

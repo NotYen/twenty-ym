@@ -54,7 +54,8 @@ export const RecordTitleFullNameFieldInput = ({
   const objectNameSingular =
     fieldDefinition.metadata.objectMetadataNameSingular ?? '';
 
-  const searchValue = `${draftValue?.firstName ?? ''} ${draftValue?.lastName ?? ''}`.trim();
+  const searchValue =
+    `${draftValue?.firstName ?? ''} ${draftValue?.lastName ?? ''}`.trim();
 
   const { suggestions, isOpen, closeSuggestions } = useDuplicateNameSuggestion({
     objectNameSingular,
@@ -105,8 +106,9 @@ export const RecordTitleFullNameFieldInput = ({
     const fullName = convertToFullName(newDoubleText);
 
     // 檢查是否有「完全相同」的記錄（忽略大小寫和前後空格）
-    const trimmedFullName =
-      `${fullName.firstName} ${fullName.lastName}`.trim().toLowerCase();
+    const trimmedFullName = `${fullName.firstName} ${fullName.lastName}`
+      .trim()
+      .toLowerCase();
     const hasExactMatch = suggestions.some(
       (s) => s.label.trim().toLowerCase() === trimmedFullName,
     );

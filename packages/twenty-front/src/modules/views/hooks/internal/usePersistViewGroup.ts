@@ -8,14 +8,14 @@ import { ApolloError } from '@apollo/client';
 import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    type CreateManyCoreViewGroupsMutationVariables,
-    type DeleteCoreViewGroupMutationVariables,
-    type DestroyCoreViewGroupMutationVariables,
-    type UpdateCoreViewGroupMutationVariables,
-    useCreateManyCoreViewGroupsMutation,
-    useDeleteCoreViewGroupMutation,
-    useDestroyCoreViewGroupMutation,
-    useUpdateCoreViewGroupMutation,
+  type CreateManyCoreViewGroupsMutationVariables,
+  type DeleteCoreViewGroupMutationVariables,
+  type DestroyCoreViewGroupMutationVariables,
+  type UpdateCoreViewGroupMutationVariables,
+  useCreateManyCoreViewGroupsMutation,
+  useDeleteCoreViewGroupMutation,
+  useDestroyCoreViewGroupMutation,
+  useUpdateCoreViewGroupMutation,
 } from '~/generated/graphql';
 
 export const usePersistViewGroupRecords = () => {

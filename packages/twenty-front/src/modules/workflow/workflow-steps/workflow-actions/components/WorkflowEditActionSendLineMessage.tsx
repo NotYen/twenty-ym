@@ -8,7 +8,6 @@ import { WorkflowStepFooter } from '@/workflow/workflow-steps/components/Workflo
 import { WorkflowVariablePicker } from '@/workflow/workflow-variables/components/WorkflowVariablePicker';
 import { useTheme } from '@emotion/react';
 import { useEffect, useState } from 'react';
-import { isDefined } from 'twenty-shared/utils';
 import { type SelectOption } from 'twenty-ui/input';
 import { type JsonValue } from 'type-fest';
 import { useDebouncedCallback } from 'use-debounce';
@@ -116,21 +115,19 @@ export const WorkflowEditActionSendLineMessage = ({
     value: null,
   };
 
-  const personOptions: SelectOption<string | null>[] = persons.map(
-    (person) => {
-      // Build display name: firstName + lastName > lineDisplayName > email
-      const displayName =
-        [person.name.firstName, person.name.lastName].filter(Boolean).join(' ') ||
-        person.lineDisplayName ||
-        person.emailsPrimaryEmail ||
-        'Unknown';
+  const personOptions: SelectOption<string | null>[] = persons.map((person) => {
+    // Build display name: firstName + lastName > lineDisplayName > email
+    const displayName =
+      [person.name.firstName, person.name.lastName].filter(Boolean).join(' ') ||
+      person.lineDisplayName ||
+      person.emailsPrimaryEmail ||
+      'Unknown';
 
-      return {
-        label: displayName,
-        value: person.lineUserId, // Store LINE User ID, not person.id
-      };
-    },
-  );
+    return {
+      label: displayName,
+      value: person.lineUserId, // Store LINE User ID, not person.id
+    };
+  });
 
   // Combine emptyOption with personOptions to prevent auto-disable when only 1 person exists
   const allOptions: SelectOption<string | null>[] = [

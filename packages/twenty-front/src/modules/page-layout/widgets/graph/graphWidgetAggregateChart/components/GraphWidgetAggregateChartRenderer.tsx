@@ -4,8 +4,8 @@ import { useGraphWidgetAggregateQuery } from '@/page-layout/widgets/graph/hooks/
 import { lazy, Suspense } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    type AggregateChartConfiguration,
-    type PageLayoutWidget,
+  type AggregateChartConfiguration,
+  type PageLayoutWidget,
 } from '~/generated/graphql';
 
 const GraphWidgetAggregateChart = lazy(() =>

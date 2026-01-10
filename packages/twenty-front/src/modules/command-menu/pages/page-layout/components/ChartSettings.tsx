@@ -29,9 +29,9 @@ import { t } from '@lingui/core/macro';
 import { SidePanelInformationBanner } from 'twenty-ui/display';
 
 import {
-    FieldMetadataType,
-    GraphType,
-    type PageLayoutWidget,
+  FieldMetadataType,
+  GraphType,
+  type PageLayoutWidget,
 } from '~/generated/graphql';
 
 const StyledSidePanelInformationBanner = styled(SidePanelInformationBanner)`

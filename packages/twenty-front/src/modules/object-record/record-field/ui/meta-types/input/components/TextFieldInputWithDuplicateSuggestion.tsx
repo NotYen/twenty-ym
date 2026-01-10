@@ -28,8 +28,8 @@ const StyledInputWrapper = styled.div<{ hasWarning?: boolean }>`
     hasWarning &&
     css`
       textarea {
-        border-color: ${theme.color.orange} !important;
         background-color: ${theme.color.orange}10 !important;
+        border-color: ${theme.color.orange} !important;
       }
     `}
 `;
