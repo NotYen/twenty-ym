@@ -21,6 +21,7 @@ export const useOpenRecordFromIndexView = () => {
 
   const navigate = useNavigateApp();
   const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+  const { closeCommandMenu } = useCommandMenu();
 
   const isMobile = useIsMobile();
 
@@ -82,6 +83,7 @@ export const useOpenRecordFromIndexView = () => {
             resetNavigationStack: true,
           });
         } else {
+          closeCommandMenu();
           navigate(AppPath.RecordShowPage, {
             objectNameSingular,
             objectRecordId: recordId,
@@ -97,6 +99,7 @@ export const useOpenRecordFromIndexView = () => {
       navigate,
       openRecordInCommandMenu,
       isMobile,
+      closeCommandMenu,
     ],
   );
 

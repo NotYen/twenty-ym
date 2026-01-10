@@ -44,6 +44,7 @@ export const useCreateNewIndexRecord = ({
   );
 
   const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+  const { closeCommandMenu } = useCommandMenu();
 
   const { createOneRecord } = useCreateOneRecord({
     objectNameSingular: objectMetadataItem.nameSingular,
@@ -101,6 +102,7 @@ export const useCreateNewIndexRecord = ({
             });
           }
         } else {
+          closeCommandMenu();
           navigate(AppPath.RecordShowPage, {
             objectNameSingular: objectMetadataItem.nameSingular,
             objectRecordId: recordId,
@@ -154,6 +156,7 @@ export const useCreateNewIndexRecord = ({
       recordIndexGroupFieldMetadataItem,
       recordIndexRecordIdsByGroupCallbackState,
       upsertRecordsInStore,
+      closeCommandMenu,
     ],
   );
 
