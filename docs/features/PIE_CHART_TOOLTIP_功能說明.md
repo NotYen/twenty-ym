@@ -1,8 +1,61 @@
 # Chart Tooltip Records 功能說明
 
-> 版本：2026-01-05
+> 版本：2026-01-10
 > 作者：NotYen
 > 最後更新：Kiro AI
+
+---
+
+## ⚠️ 重要：Twenty 後端 Filter 限制
+
+### 限制說明
+
+**Twenty 後端 `GraphqlQueryFilterFieldParser` 只處理 filter 物件的第一個 operator！**
+
+```typescript
+// 後端程式碼位置：
+// packages/twenty-server/src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query-filter/graphql-query-filter-field.parser.ts
+
+const [[operator, value]] = Object.entries(filterValue);
+// ⚠️ 只取第一個 operator！後面的會被忽略！
+```
+
+### 錯誤範例
+
+```typescript
+// ❌ 錯誤：lte 會被忽略，只有 gte 生效
+{
+  yuJiJieDanRiQi: {
+    gte: "2026-07-01",
+    lte: "2026-09-30"
+  }
+}
+// 實際效果：查詢所有 >= 2026-07-01 的記錄（累加效果）
+```
+
+### 正確範例
+
+```typescript
+// ✅ 正確：用 and 組合兩個獨立的 filter
+{
+  and: [
+    { yuJiJieDanRiQi: { gte: "2026-07-01" } },
+    { yuJiJieDanRiQi: { lte: "2026-09-30" } }
+  ]
+}
+// 實際效果：查詢 2026-07-01 ~ 2026-09-30 之間的記錄
+```
+
+### 影響範圍
+
+這個限制影響所有需要**範圍查詢**的場景：
+- 日期範圍（gte + lte）
+- 數字範圍（gt + lt）
+- 任何需要多個 operator 的查詢
+
+### 解決方案
+
+使用 `buildDateRangeFilter` 工具函數（位於 `graph/utils/buildDateRangeFilter.ts`），它會自動處理這個限制。
 
 ---
 
@@ -409,24 +462,201 @@ fragment PageLayoutWidgetFragment on PageLayoutWidget {
 | 2026-01-03 | v1.1 | 新增選中項目自動滾動功能 |
 | 2026-01-05 | v2.0 | 擴展到所有 6 種圖表類型（Bar/Line/Aggregate/Gauge），修復 rawDimensionValue 取得邏輯 |
 | 2026-01-05 | v2.1 | 修復 Bar Chart Tooltip 紀錄不隨選中項目變化的問題，改用從 data prop 查找 rawDimensionValue |
+| 2026-01-09 | v2.2 | 堆疊條圖 Y 軸區分功能：hover segment 時精確顯示該 X+Y 軸分組的紀錄 |
+| 2026-01-10 | v2.3 | 修復日期欄位範圍查詢問題：後端只處理第一個 operator，改用 and 組合 gte/lte |
+
+---
+
+## 堆疊條圖 Y 軸區分功能（v2.2 新增）
+
+### 功能說明
+
+**之前**：hover 堆疊條圖的任何 segment → 顯示該 X 軸分組下的**所有紀錄**
+
+**現在**：hover 堆疊條圖的 segment → 顯示該 X 軸 + Y 軸分組下的**精確紀錄**
+
+### 使用範例
+
+假設有一個堆疊條圖：
+- X 軸：月份（2024-01, 2024-02, ...）
+- Y 軸：階段（洽談中、報價中、已成交）
+
+**之前**：hover「2024-01」的「已成交」segment → 顯示 2024-01 的所有商機（包含洽談中、報價中）
+
+**現在**：hover「2024-01」的「已成交」segment → 只顯示 2024-01 且階段為「已成交」的商機
+
+### 技術實作
+
+#### 1. 資料類型擴展
+
+```typescript
+// BarChartDataItem.ts
+export type BarChartDataItem = BarDatum & {
+  to?: string;
+  rawDimensionValue?: string | number | null;
+  // 新增：每個 series 的原始值 map
+  rawSeriesValues?: Record<string, string | number | null>;
+};
+```
+
+#### 2. 資料轉換修改
+
+```typescript
+// transformTwoDimensionalGroupByToBarChartData.ts
+// 存儲 Y 軸原始值
+const rawYValue = dimensionValues[1] ?? null;
+
+if (!dataMap.has(xValue)) {
+  dataMap.set(xValue, {
+    [indexByKey]: xValue,
+    rawDimensionValue,
+    rawSeriesValues: {},  // 新增
+  });
+}
+
+const dataItem = dataMap.get(xValue)!;
+dataItem[yValue] = aggregateValue;
+// 新增：存儲該 series 的原始值
+if (dataItem.rawSeriesValues) {
+  dataItem.rawSeriesValues[yValue] = rawYValue;
+}
+```
+
+#### 3. Hook 擴展
+
+```typescript
+// useBarChartRecords.ts
+type UseBarChartRecordsProps = {
+  objectMetadataItemId: string;
+  configuration: BarChartConfiguration;
+  barDimensionValue: string | number | null | undefined;
+  barSeriesValue?: string | number | null | undefined;  // 新增
+  enabled?: boolean;
+};
+
+// 在 combinedFilter 中加入 Y 軸 filter
+if (isDefined(barSeriesValue) && isDefined(secondaryGroupByField)) {
+  filters.push({
+    [secondaryGroupByField.name]: { eq: barSeriesValue },
+  });
+}
+```
+
+#### 4. Tooltip 元件修改
+
+```typescript
+// GraphBarChartTooltip.tsx
+// 取得 hover 的 series key（格式化後的 Y 軸值）
+const hoveredSeriesKey = hoveredDatum?.id ? String(hoveredDatum.id) : undefined;
+// 從 rawSeriesValues map 取得原始 Y 軸值
+const hoveredSeriesRawValue = hoveredSeriesKey
+  ? hoveredDataItem?.rawSeriesValues?.[hoveredSeriesKey]
+  : undefined;
+
+// 傳遞給 Hook
+const { records, totalCount } = useBarChartRecords({
+  // ...
+  barSeriesValue: hoveredSeriesRawValue,  // 新增
+});
+```
+
+### 修改的檔案
+
+| 檔案 | 修改內容 |
+|------|---------|
+| `graphWidgetBarChart/types/BarChartDataItem.ts` | 新增 `rawSeriesValues` 欄位 |
+| `graphWidgetBarChart/utils/transformTwoDimensionalGroupByToBarChartData.ts` | 存儲每個 series 的原始 Y 軸值 |
+| `graphWidgetBarChart/hooks/useBarChartRecords.ts` | 新增 `barSeriesValue` 參數，支援 Y 軸 filter |
+| `graphWidgetBarChart/components/GraphBarChartTooltip.tsx` | 傳遞 hover 的 series 原始值 |
+
+### 向後相容性
+
+- ✅ 一維條圖不受影響（`rawSeriesValues` 是 optional）
+- ✅ 現有的 Pie Chart、Line Chart 不受影響
+- ✅ 沒有 secondary axis 的圖表會自動 fallback 到只用 X 軸 filter
+- ✅ 快取 key 已更新，包含 series value 以區分不同 segment
 
 ---
 
 ## 已知限制
 
-### 堆疊條圖（Stacked Bar Chart）
+### ~~堆疊條圖（Stacked Bar Chart）~~ ✅ 已解決（v2.2）
 
-**限制**：堆疊條圖的 Tooltip 紀錄只能按 X 軸分組顯示，無法區分 Y 軸（series）的紀錄。
+~~**限制**：堆疊條圖的 Tooltip 紀錄只能按 X 軸分組顯示，無法區分 Y 軸（series）的紀錄。~~
 
-**原因**：
-- 堆疊條圖是二維的（X 軸 + Y 軸）
-- 目前只存了 X 軸的 `rawDimensionValue`
-- Y 軸的值是格式化後的顯示值，沒有存原始值
+**已解決**：v2.2 版本新增 `rawSeriesValues` 欄位，現在 hover 堆疊條圖的 segment 時會精確顯示該 X+Y 軸分組的紀錄。
 
-**行為**：
-- hover 堆疊的任何 segment，都會顯示該 X 軸分組下的所有紀錄
-- 例如：hover「2024-01」的「已成交」segment，會顯示「2024-01」的所有紀錄（包含其他階段）
+詳見上方「堆疊條圖 Y 軸區分功能（v2.2 新增）」章節。
 
-**未來改進**：
-- 需要在 `transformTwoDimensionalGroupByToBarChartData` 中額外存儲 Y 軸的原始值
-- 這是一個較大的改動，需要修改資料結構
+---
+
+## 日期欄位範圍查詢修復（v2.3 新增）
+
+### 問題描述
+
+當圖表使用日期欄位作為分組軸（如按季度分組），hover tooltip 時顯示的紀錄數量錯誤，呈現「累加」效果：
+- Q4：6 筆 ✓
+- Q3：10 筆 ✗（應該是 4 筆）
+- Q2：更多筆...
+
+### 根本原因
+
+後端 `GraphqlQueryFilterFieldParser` 只處理 filter 物件的**第一個 operator**：
+
+```typescript
+// 後端程式碼
+const [[operator, value]] = Object.entries(filterValue);
+// 只取第一個！
+```
+
+當前端傳送 `{ gte: "2026-07-01", lte: "2026-09-30" }` 時，後端只處理 `gte`，導致查詢變成「大於等於 Q3 開始日期」的所有記錄。
+
+### 解決方案
+
+修改 `buildDateRangeFilter` 函數，將 `gte` 和 `lte` 分開成兩個 filter，用 `and` 組合：
+
+```typescript
+// 之前（錯誤）
+return {
+  [fieldName]: {
+    gte: dateRange.start,
+    lte: dateRange.end,
+  },
+};
+
+// 之後（正確）
+const gteFilter = { [fieldName]: { gte: dateRange.start } };
+const lteFilter = { [fieldName]: { lte: dateRange.end } };
+return {
+  and: [gteFilter, lteFilter],
+};
+```
+
+### 日期格式
+
+後端 `DateScalarType` 期望的格式是 `yyyy-MM-dd`（如 `2026-07-01`），不需要時間部分。
+
+### 修改的檔案
+
+| 檔案 | 修改內容 |
+|------|---------|
+| `graph/utils/buildDateRangeFilter.ts` | 新增檔案，統一處理日期範圍 filter 建構 |
+| `graphWidgetBarChart/hooks/useBarChartRecords.ts` | 使用 `buildDateRangeFilter`，支援日期粒度 |
+| `graphWidgetPieChart/hooks/usePieChartSliceRecords.ts` | 使用 `buildDateRangeFilter`，支援日期粒度 |
+| `graphWidgetLineChart/hooks/useLineChartRecords.ts` | 使用 `buildDateRangeFilter`，支援日期粒度 |
+
+### 支援的日期粒度
+
+| 粒度 | 範例輸入 | 輸出範圍 |
+|------|---------|---------|
+| DAY | `2026-01-15T00:00:00.000Z` | `2026-01-15` ~ `2026-01-15` |
+| WEEK | `2026-01-06T00:00:00.000Z` | `2026-01-06` ~ `2026-01-12` |
+| MONTH | `2026-01-01T00:00:00.000Z` | `2026-01-01` ~ `2026-01-31` |
+| QUARTER | `2026-07-01T00:00:00.000Z` | `2026-07-01` ~ `2026-09-30` |
+| YEAR | `2026-01-01T00:00:00.000Z` | `2026-01-01` ~ `2026-12-31` |
+
+### 向後相容性
+
+- ✅ 非日期欄位不受影響（返回 `undefined`，使用預設 `eq` filter）
+- ✅ 沒有日期粒度的圖表不受影響
+- ✅ Pie Chart、Line Chart 同樣受益於此修復
