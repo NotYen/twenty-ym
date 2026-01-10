@@ -133,11 +133,13 @@
 | `a4daead678` | #16672 | 修復 View field 更新不保存（欄位寬度等）| 2026-01-11 |
 | `12189b378f` | #16953 | 修復 object 重命名後 activity target 關聯問題 | 2026-01-11 |
 
-### 手動修復（2026-01-06）
+### 手動修復（2026-01-06 ~ 2026-01-11）
 
 | 功能 | 參考 PR | 說明 | 修復日期 |
 |------|---------|------|----------|
 | Widget 底部邊框 | #16856 | 修復 Pinned Tab 最後一個 Widget 不顯示底部邊框（因架構差異無法直接 cherry-pick，手動實作） | 2026-01-06 |
+| 圖表 toggle 修復 | #16874 | 修復圖表設定中 toggle 無法點擊的問題（ChartSettings.tsx 加入 closeAnyOpenDropdown、MenuItemToggle.tsx 移除 label htmlFor） | 2026-01-11 |
+| Currency Save 按鈕 | #16864 | 修復 Currency 欄位設定頁面 Save 按鈕無法正確追蹤 dirty state（新增 getFieldMetadataItemInitialValues.ts，保留本地 readonly 修改） | 2026-01-11 |
 
 ### 已存在於分支中（無需 Cherry-pick）
 
@@ -438,4 +440,5 @@
 | 2026-01-06 | 更新開源 main 分支最新分析 commit 至 `3b05375419` |
 | 2026-01-11 | 分析 103 個新 commits（從 3b05375419 到 20f62e05f5）|
 | 2026-01-11 | 新增 2 個 bugfix commits（#16672 View field 更新、#16953 activity target 關聯）|
-| 2026-01-11 | 跳過 3 個有衝突的 commits（#16886 qs 安全更新、#16864 Currency Save、#16874 圖表 toggle）以保護本地修改 |
+| 2026-01-11 | 手動合併 #16874 圖表 toggle 修復、#16864 Currency Save 按鈕修復（保留本地修改）|
+| 2026-01-11 | 跳過 #16886 qs 安全更新（yarn.lock 變更 9000+ 行，建議手動 yarn upgrade express）|

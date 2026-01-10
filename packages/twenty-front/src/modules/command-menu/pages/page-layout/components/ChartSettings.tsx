@@ -20,6 +20,7 @@ import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadat
 import { BAR_CHART_MAXIMUM_NUMBER_OF_BARS } from '@/page-layout/widgets/graph/graphWidgetBarChart/constants/BarChartMaximumNumberOfBars.constant';
 import { LINE_CHART_MAXIMUM_NUMBER_OF_DATA_POINTS } from '@/page-layout/widgets/graph/graphWidgetLineChart/constants/LineChartMaximumNumberOfDataPoints.constant';
 import { hasWidgetTooManyGroupsComponentState } from '@/page-layout/widgets/graph/states/hasWidgetTooManyGroupsComponentState';
+import { useCloseAnyOpenDropdown } from '@/ui/layout/dropdown/hooks/useCloseAnyOpenDropdown';
 import { useOpenDropdown } from '@/ui/layout/dropdown/hooks/useOpenDropdown';
 import { useSelectableList } from '@/ui/layout/selectable-list/hooks/useSelectableList';
 import { useRecoilComponentState } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentState';
@@ -28,9 +29,9 @@ import { t } from '@lingui/core/macro';
 import { SidePanelInformationBanner } from 'twenty-ui/display';
 
 import {
-  FieldMetadataType,
-  GraphType,
-  type PageLayoutWidget,
+    FieldMetadataType,
+    GraphType,
+    type PageLayoutWidget,
 } from '~/generated/graphql';
 
 const StyledSidePanelInformationBanner = styled(SidePanelInformationBanner)`
@@ -44,6 +45,7 @@ export const ChartSettings = ({ widget }: { widget: PageLayoutWidget }) => {
   const { updateCurrentWidgetConfig } =
     useUpdateCurrentWidgetConfig(pageLayoutId);
   const { openDropdown } = useOpenDropdown();
+  const { closeAnyOpenDropdown } = useCloseAnyOpenDropdown();
   const { setSelectedItemId } = useSelectableList(
     COMMAND_MENU_LIST_SELECTABLE_LIST_ID,
   );
@@ -183,6 +185,7 @@ export const ChartSettings = ({ widget }: { widget: PageLayoutWidget }) => {
               };
 
               const handleItemDropdownOpen = () => {
+                closeAnyOpenDropdown();
                 openDropdown({
                   dropdownComponentInstanceIdFromProps: item.id,
                 });
