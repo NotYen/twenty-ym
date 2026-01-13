@@ -59,10 +59,11 @@ export const Logo = ({
   const { redirectToDefaultDomain } = useRedirectToDefaultDomain();
   const defaultPrimaryLogoUrl = `${window.location.origin}/images/icons/android/android-launchericon-192-192.png`;
 
-  const primaryLogoUrl = getImageAbsoluteURI({
-    imageUrl: primaryLogo ?? defaultPrimaryLogoUrl,
-    baseUrl: REACT_APP_SERVER_BASE_URL,
-  });
+  const primaryLogoUrl =
+    getImageAbsoluteURI({
+      imageUrl: primaryLogo ?? defaultPrimaryLogoUrl,
+      baseUrl: REACT_APP_SERVER_BASE_URL,
+    }) ?? defaultPrimaryLogoUrl;
 
   const secondaryLogoUrl = isNonEmptyString(secondaryLogo)
     ? getImageAbsoluteURI({

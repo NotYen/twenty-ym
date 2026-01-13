@@ -14,6 +14,7 @@ import { WORKFLOW_RUN_RECORD_LAYOUT } from '@/object-record/record-show/layouts/
 import { WORKFLOW_VERSION_RECORD_LAYOUT } from '@/object-record/record-show/layouts/workflow-version-record-layout';
 import { type RecordLayout } from '@/object-record/record-show/types/RecordLayout';
 import { evaluateTabVisibility } from '@/object-record/record-show/utils/evaluateTabVisibility';
+import { useTranslateTabTitle } from '@/page-layout/hooks/useTranslateTabTitle';
 import { type RecordLayoutTab } from '@/ui/layout/tab-list/types/RecordLayoutTab';
 import { type SingleTabProps } from '@/ui/layout/tab-list/types/SingleTabProps';
 import { useIsMobile } from '@/ui/utilities/responsive/hooks/useIsMobile';

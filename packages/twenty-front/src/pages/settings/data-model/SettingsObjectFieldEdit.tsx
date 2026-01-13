@@ -34,6 +34,7 @@ import { Section } from 'twenty-ui/layout';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 import { useNavigateApp } from '~/hooks/useNavigateApp';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
+import { getFieldMetadataItemInitialValues } from '~/pages/settings/data-model/utils/getFieldMetadataItemInitialValues';
 
 //TODO: fix this type
 export type SettingsDataModelFieldEditFormValues = z.infer<

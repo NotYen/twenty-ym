@@ -1,5 +1,6 @@
 import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { type DuplicateSuggestionRecord } from '@/object-record/record-field/ui/meta-types/input/hooks/useDuplicateNameSuggestion';
+import { isIMEComposing } from '@/ui/utilities/hotkey/utils/isIMEComposing';
 import styled from '@emotion/styled';
 import {
   autoUpdate,
@@ -9,7 +10,7 @@ import {
   useFloating,
 } from '@floating-ui/react';
 import { t } from '@lingui/core/macro';
-import { useCallback, useEffect, type RefObject } from 'react';
+import React, { useCallback, useEffect, type RefObject } from 'react';
 import { createPortal } from 'react-dom';
 import { IconAlertTriangle } from 'twenty-ui/display';
 
@@ -83,7 +84,7 @@ export const DuplicateNameSuggestionDropdown = ({
   anchorRef,
   selectedIndex = -1,
   onSelectedIndexChange,
-}: DuplicateNameSuggestionDropdownProps) => {
+}: DuplicateNameSuggestionDropdownProps): React.ReactNode => {
   const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
 
   const { refs, floatingStyles } = useFloating({

@@ -59,6 +59,7 @@ export const useFindOneRecord = <T extends ObjectRecord = ObjectRecord>({
     skip: !objectMetadataItem || !objectRecordId || skip || !hasReadPermission,
     variables: { objectRecordId },
     client: apolloCoreClient,
+    fetchPolicy: 'cache-and-network',
     onCompleted: (data) => {
       const recordWithoutConnection = getRecordFromRecordNode<T>({
         recordNode: { ...data[objectNameSingular] },

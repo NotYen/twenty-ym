@@ -26,7 +26,7 @@ import { transformPageLayout } from '@/page-layout/utils/transformPageLayout';
 import { useRecoilComponentCallbackState } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentCallbackState';
 import { getSnapshotValue } from '@/ui/utilities/state/utils/getSnapshotValue';
 import { useQuery } from '@apollo/client';
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useState } from 'react';
 import { useRecoilCallback } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 import { isDeeplyEqual } from '~/utils/isDeeplyEqual';
@@ -129,7 +129,9 @@ export const PageLayoutInitializationQueryEffect = ({
     ],
   );
 
-  useEffect(() => {
+  // 使用 useLayoutEffect 確保在 DOM 更新前同步執行
+  // 這樣可以避免閃爍，同時符合 React 的規則
+  useLayoutEffect(() => {
     if (!isInitialized && isDefined(pageLayout)) {
       initializePageLayout(pageLayout);
       onInitialized?.(pageLayout);

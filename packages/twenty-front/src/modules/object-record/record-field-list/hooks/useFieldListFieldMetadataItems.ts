@@ -5,6 +5,7 @@ import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSi
 import { getObjectPermissionsForObject } from '@/object-metadata/utils/getObjectPermissionsForObject';
 import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
 import { isFieldCellSupported } from '@/object-record/utils/isFieldCellSupported';
+import { useGetCurrentViewOnly } from '@/views/hooks/useGetCurrentViewOnly';
 import groupBy from 'lodash.groupby';
 import { FieldMetadataType } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
@@ -35,6 +36,8 @@ export const useFieldListFieldMetadataItems = ({
 
   const { objectMetadataItems } = useObjectMetadataItems();
 
+  const { currentView } = useGetCurrentViewOnly();
+
   const availableFieldMetadataItems = objectMetadataItem.readableFields
     .filter(
       (fieldMetadataItem) =>
@@ -48,9 +51,33 @@ export const useFieldListFieldMetadataItems = ({
           (fieldMetadataItem.type !== FieldMetadataType.RELATION &&
             fieldMetadataItem.type !== FieldMetadataType.MORPH_RELATION)),
     )
-    .sort((fieldMetadataItemA, fieldMetadataItemB) =>
-      fieldMetadataItemA.name.localeCompare(fieldMetadataItemB.name),
-    );
+    .sort((fieldMetadataItemA, fieldMetadataItemB) => {
+      // Get viewField positions from current view
+      const viewFieldA = currentView?.viewFields?.find(
+        (vf) => vf.fieldMetadataId === fieldMetadataItemA.id,
+      );
+      const viewFieldB = currentView?.viewFields?.find(
+        (vf) => vf.fieldMetadataId === fieldMetadataItemB.id,
+      );
+
+      // If both fields have positions in the view, sort by position
+      if (isDefined(viewFieldA?.position) && isDefined(viewFieldB?.position)) {
+        return viewFieldA.position - viewFieldB.position;
+      }
+
+      // If only A has a position, A comes first
+      if (isDefined(viewFieldA?.position)) {
+        return -1;
+      }
+
+      // If only B has a position, B comes first
+      if (isDefined(viewFieldB?.position)) {
+        return 1;
+      }
+
+      // If neither has a position, sort alphabetically by name
+      return fieldMetadataItemA.name.localeCompare(fieldMetadataItemB.name);
+    });
 
   const { inlineFieldMetadataItems, relationFieldMetadataItems } = groupBy(
     availableFieldMetadataItems

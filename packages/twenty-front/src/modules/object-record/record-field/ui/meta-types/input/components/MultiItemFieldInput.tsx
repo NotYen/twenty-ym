@@ -25,6 +25,7 @@ import { turnIntoEmptyStringIfWhitespacesOnly } from '~/utils/string/turnIntoEmp
 type MultiItemFieldInputProps<T> = {
   items: T[];
   onChange: (newItemsValue: T[]) => void;
+  onEnter?: (newItemsValue: T[]) => void;
   onEscape?: (newItemsValue: T[]) => void;
   placeholder: string;
   validateInput?: (input: string) => { isValid: boolean; errorMessage: string };
@@ -49,6 +50,7 @@ type MultiItemFieldInputProps<T> = {
 export const MultiItemFieldInput = <T,>({
   items,
   onChange,
+  onEnter,
   onEscape,
   placeholder,
   validateInput,
@@ -62,6 +64,10 @@ export const MultiItemFieldInput = <T,>({
   maxItemCount,
 }: MultiItemFieldInputProps<T>) => {
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleEnter = () => {
+    onEnter?.(items);
+  };
 
   const handleEscape = () => {
     onEscape?.(items);

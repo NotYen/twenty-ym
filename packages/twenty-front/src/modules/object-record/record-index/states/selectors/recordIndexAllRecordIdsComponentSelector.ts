@@ -29,19 +29,17 @@ export const recordIndexAllRecordIdsComponentSelector = createComponentSelector<
         );
       }
 
-      return recordGroupIds.reduce<ObjectRecord['id'][]>(
-        (acc, recordGroupId) => {
-          const rowIds = get(
-            recordIndexRecordIdsByGroupComponentFamilyState.atomFamily({
-              instanceId,
-              familyKey: recordGroupId,
-            }),
-          );
-
-          return [...acc, ...rowIds];
-        },
-        [],
+      // Use flat() instead of reduce with spread to avoid O(N²) array copying
+      const allRowIds = recordGroupIds.map((recordGroupId) =>
+        get(
+          recordIndexRecordIdsByGroupComponentFamilyState.atomFamily({
+            instanceId,
+            familyKey: recordGroupId,
+          }),
+        ),
       );
+
+      return allRowIds.flat();
     },
   set:
     ({ instanceId }) =>
