@@ -18,11 +18,15 @@ export const PageLayoutDispatcher = ({
     FeatureFlagKey.IS_RECORD_PAGE_LAYOUT_ENABLED,
   );
 
-  if (
-    targetRecordIdentifier.targetObjectNameSingular ===
+  // 在 right drawer (slide panel) 中時，使用原本穩定的 RecordShowContainer
+  // 避免 PageLayout 初始化時序問題導致空白
+  const shouldUsePageLayout =
+    !isInRightDrawer &&
+    (targetRecordIdentifier.targetObjectNameSingular ===
       CoreObjectNameSingular.Dashboard ||
-    isRecordPageEnabled
-  ) {
+      isRecordPageEnabled);
+
+  if (shouldUsePageLayout) {
     return (
       <PageLayoutRecordPageRenderer
         targetRecordIdentifier={targetRecordIdentifier}
