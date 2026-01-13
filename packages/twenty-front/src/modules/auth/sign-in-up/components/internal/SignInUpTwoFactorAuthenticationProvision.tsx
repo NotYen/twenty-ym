@@ -1,8 +1,8 @@
 import { TwoFactorAuthenticationSetupEffect } from '@/auth/components/TwoFactorAuthenticationProvisionEffect';
 import { qrCodeState } from '@/auth/states/qrCode';
 import {
-    SignInUpStep,
-    signInUpStepState,
+  SignInUpStep,
+  signInUpStepState,
 } from '@/auth/states/signInUpStepState';
 import { extractSecretFromOtpUri } from '@/settings/two-factor-authentication/utils/extractSecretFromOtpUri';
 import { useTheme } from '@emotion/react';

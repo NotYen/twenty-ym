@@ -1,7 +1,9 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { Test, type TestingModule } from '@nestjs/testing';
+
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
 import { ScopedWorkspaceContextFactory } from 'src/engine/twenty-orm/factories/scoped-workspace-context.factory';
+
 import { LineMessagingTool } from './line-messaging-tool';
 
 describe('LineMessagingTool', () => {
@@ -38,9 +40,13 @@ describe('LineMessagingTool', () => {
     }).compile();
 
     tool = module.get<LineMessagingTool>(LineMessagingTool);
-    workspaceConfigService = module.get<WorkspaceConfigService>(WorkspaceConfigService);
+    workspaceConfigService = module.get<WorkspaceConfigService>(
+      WorkspaceConfigService,
+    );
     twentyConfigService = module.get<TwentyConfigService>(TwentyConfigService);
-    scopedWorkspaceContextFactory = module.get<ScopedWorkspaceContextFactory>(ScopedWorkspaceContextFactory);
+    scopedWorkspaceContextFactory = module.get<ScopedWorkspaceContextFactory>(
+      ScopedWorkspaceContextFactory,
+    );
   });
 
   it('should be defined', () => {
@@ -48,7 +54,9 @@ describe('LineMessagingTool', () => {
   });
 
   it('should use workspace config if available', async () => {
-    jest.spyOn(workspaceConfigService, 'get').mockResolvedValue('workspace-token');
+    jest
+      .spyOn(workspaceConfigService, 'get')
+      .mockResolvedValue('workspace-token');
 
     // Mock axios to avoid actual call, or spy on private method if any (here logic is inside execute)
     // Since execute sends request, we expect it to fail on axios, but we can check if it tries to send with token
@@ -62,11 +70,17 @@ describe('LineMessagingTool', () => {
     // If we mock axios we can verify the token used in header.
 
     const axios = (await import('axios')).default;
-    jest.spyOn(axios, 'post').mockResolvedValue({ status: 200, statusText: 'OK', headers: {} });
+
+    jest
+      .spyOn(axios, 'post')
+      .mockResolvedValue({ status: 200, statusText: 'OK', headers: {} });
 
     const result = await tool.execute({ to: 'user', message: 'hello' });
 
-    expect(workspaceConfigService.get).toHaveBeenCalledWith(mockWorkspaceId, 'LINE_CHANNEL_ACCESS_TOKEN');
+    expect(workspaceConfigService.get).toHaveBeenCalledWith(
+      mockWorkspaceId,
+      'LINE_CHANNEL_ACCESS_TOKEN',
+    );
     expect(axios.post).toHaveBeenCalledWith(
       expect.any(String),
       expect.any(Object),
@@ -83,12 +97,20 @@ describe('LineMessagingTool', () => {
     jest.spyOn(twentyConfigService, 'get').mockReturnValue('global-token');
 
     const axios = (await import('axios')).default;
-    jest.spyOn(axios, 'post').mockResolvedValue({ status: 200, statusText: 'OK', headers: {} });
+
+    jest
+      .spyOn(axios, 'post')
+      .mockResolvedValue({ status: 200, statusText: 'OK', headers: {} });
 
     await tool.execute({ to: 'user', message: 'hello' });
 
-    expect(workspaceConfigService.get).toHaveBeenCalledWith(mockWorkspaceId, 'LINE_CHANNEL_ACCESS_TOKEN');
-    expect(twentyConfigService.get).toHaveBeenCalledWith('LINE_CHANNEL_ACCESS_TOKEN');
+    expect(workspaceConfigService.get).toHaveBeenCalledWith(
+      mockWorkspaceId,
+      'LINE_CHANNEL_ACCESS_TOKEN',
+    );
+    expect(twentyConfigService.get).toHaveBeenCalledWith(
+      'LINE_CHANNEL_ACCESS_TOKEN',
+    );
     expect(axios.post).toHaveBeenCalledWith(
       expect.any(String),
       expect.any(Object),
@@ -101,16 +123,23 @@ describe('LineMessagingTool', () => {
   });
 
   it('should use global config if workspaceId is missing', async () => {
-    jest.spyOn(scopedWorkspaceContextFactory, 'create').mockReturnValue({ workspaceId: undefined });
+    jest
+      .spyOn(scopedWorkspaceContextFactory, 'create')
+      .mockReturnValue({ workspaceId: undefined });
     jest.spyOn(twentyConfigService, 'get').mockReturnValue('global-token');
 
     const axios = (await import('axios')).default;
-    jest.spyOn(axios, 'post').mockResolvedValue({ status: 200, statusText: 'OK', headers: {} });
+
+    jest
+      .spyOn(axios, 'post')
+      .mockResolvedValue({ status: 200, statusText: 'OK', headers: {} });
 
     await tool.execute({ to: 'user', message: 'hello' });
 
     expect(workspaceConfigService.get).not.toHaveBeenCalled();
-    expect(twentyConfigService.get).toHaveBeenCalledWith('LINE_CHANNEL_ACCESS_TOKEN');
+    expect(twentyConfigService.get).toHaveBeenCalledWith(
+      'LINE_CHANNEL_ACCESS_TOKEN',
+    );
   });
 
   it('should return error if no token is configured', async () => {

@@ -1,7 +1,7 @@
 import {
-    useRecoilCallback,
-    type CallbackInterface,
-    type Snapshot,
+  useRecoilCallback,
+  type CallbackInterface,
+  type Snapshot,
 } from 'recoil';
 
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
@@ -11,10 +11,10 @@ import { getRecordFromRecordNode } from '@/object-record/cache/utils/getRecordFr
 import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
 import { type FieldDefinition } from '@/object-record/record-field/ui/types/FieldDefinition';
 import {
-    type FieldCurrencyValue,
-    type FieldMetadata,
-    type FieldMorphRelationMetadata,
-    type FieldRelationMetadata,
+  type FieldCurrencyValue,
+  type FieldMetadata,
+  type FieldMorphRelationMetadata,
+  type FieldRelationMetadata,
 } from '@/object-record/record-field/ui/types/FieldMetadata';
 import { isFieldAddress } from '@/object-record/record-field/ui/types/guards/isFieldAddress';
 import { isFieldAddressValue } from '@/object-record/record-field/ui/types/guards/isFieldAddressValue';

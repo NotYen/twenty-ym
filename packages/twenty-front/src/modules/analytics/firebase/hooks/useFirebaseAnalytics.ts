@@ -28,7 +28,8 @@ export const useFirebaseAnalytics = () => {
       if (isConfigLoading) return;
 
       const configs = data?.getWorkspaceConfigs || [];
-      const getConfig = (key: string) => configs.find((c: any) => c.key === key)?.value;
+      const getConfig = (key: string) =>
+        configs.find((c: any) => c.key === key)?.value;
 
       const workspaceFirebaseConfig: FirebaseOptions = {
         apiKey: getConfig('REACT_APP_FIREBASE_API_KEY'),
@@ -60,9 +61,13 @@ export const useFirebaseAnalytics = () => {
       // If config is {}, finalConfig is {}.
       // If we want to fallback to env when workspace has NOTHING set, we should check here.
 
-      const hasWorkspaceConfig = Object.values(workspaceFirebaseConfig).some(v => !!v);
+      const hasWorkspaceConfig = Object.values(workspaceFirebaseConfig).some(
+        (v) => !!v,
+      );
 
-      const configToUse = hasWorkspaceConfig ? workspaceFirebaseConfig : undefined;
+      const configToUse = hasWorkspaceConfig
+        ? workspaceFirebaseConfig
+        : undefined;
 
       const analyticsInstance = await initializeFirebaseAnalytics(configToUse);
       setAnalytics(analyticsInstance);

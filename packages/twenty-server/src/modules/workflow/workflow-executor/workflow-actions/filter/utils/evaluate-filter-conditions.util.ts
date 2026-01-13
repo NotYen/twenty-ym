@@ -1,18 +1,18 @@
 import {
-    isNonEmptyArray,
-    isNonEmptyString,
-    isObject,
-    isString,
+  isNonEmptyArray,
+  isNonEmptyString,
+  isObject,
+  isString,
 } from '@sniptt/guards';
 import {
-    type StepFilter,
-    type StepFilterGroup,
-    ViewFilterOperand,
-    type ViewFilterOperandDeprecated,
+  type StepFilter,
+  type StepFilterGroup,
+  ViewFilterOperand,
+  type ViewFilterOperandDeprecated,
 } from 'twenty-shared/types';
 import {
-    convertViewFilterOperandToCoreOperand as convertViewFilterOperandDeprecated,
-    isDefined,
+  convertViewFilterOperandToCoreOperand as convertViewFilterOperandDeprecated,
+  isDefined,
 } from 'twenty-shared/utils';
 import { parseBooleanFromStringValue } from 'twenty-shared/workflow';
 

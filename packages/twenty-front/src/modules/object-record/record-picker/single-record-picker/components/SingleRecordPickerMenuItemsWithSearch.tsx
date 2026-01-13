@@ -2,8 +2,8 @@ import { useObjectMetadataItems } from '@/object-metadata/hooks/useObjectMetadat
 import { useObjectPermissions } from '@/object-record/hooks/useObjectPermissions';
 import { SingleRecordPickerLoadingEffect } from '@/object-record/record-picker/single-record-picker/components/SingleRecordPickerLoadingEffect';
 import {
-    SingleRecordPickerMenuItems,
-    type SingleRecordPickerMenuItemsProps,
+  SingleRecordPickerMenuItems,
+  type SingleRecordPickerMenuItemsProps,
 } from '@/object-record/record-picker/single-record-picker/components/SingleRecordPickerMenuItems';
 import { useSingleRecordPickerRecords } from '@/object-record/record-picker/single-record-picker/hooks/useSingleRecordPickerRecords';
 import { useSingleRecordPickerSearch } from '@/object-record/record-picker/single-record-picker/hooks/useSingleRecordPickerSearch';

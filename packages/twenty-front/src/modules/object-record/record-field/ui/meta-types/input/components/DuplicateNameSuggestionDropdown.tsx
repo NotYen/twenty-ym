@@ -2,11 +2,11 @@ import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordIn
 import { type DuplicateSuggestionRecord } from '@/object-record/record-field/ui/meta-types/input/hooks/useDuplicateNameSuggestion';
 import styled from '@emotion/styled';
 import {
-    autoUpdate,
-    flip,
-    offset,
-    shift,
-    useFloating,
+  autoUpdate,
+  flip,
+  offset,
+  shift,
+  useFloating,
 } from '@floating-ui/react';
 import { t } from '@lingui/core/macro';
 import { useCallback, useEffect, type RefObject } from 'react';
@@ -25,13 +25,13 @@ const StyledDropdownContainer = styled.div`
 `;
 
 const StyledHeader = styled.div`
-  display: flex;
   align-items: center;
+  border-bottom: 1px solid ${({ theme }) => theme.border.color.light};
+  color: ${({ theme }) => theme.font.color.tertiary};
+  display: flex;
+  font-size: ${({ theme }) => theme.font.size.xs};
   gap: ${({ theme }) => theme.spacing(1)};
   padding: ${({ theme }) => theme.spacing(2)};
-  color: ${({ theme }) => theme.font.color.tertiary};
-  font-size: ${({ theme }) => theme.font.size.xs};
-  border-bottom: 1px solid ${({ theme }) => theme.border.color.light};
 `;
 
 const StyledSuggestionItem = styled.div<{ isSelected?: boolean }>`
@@ -88,11 +88,7 @@ export const DuplicateNameSuggestionDropdown = ({
 
   const { refs, floatingStyles } = useFloating({
     placement: 'bottom-start',
-    middleware: [
-      offset({ mainAxis: 4 }),
-      flip(),
-      shift({ padding: 8 }),
-    ],
+    middleware: [offset({ mainAxis: 4 }), flip(), shift({ padding: 8 })],
     whileElementsMounted: autoUpdate,
     elements: {
       reference: anchorRef.current,

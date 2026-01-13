@@ -5,8 +5,8 @@ import { type GraphColor } from '@/page-layout/widgets/graph/types/GraphColor';
 import { lazy, Suspense } from 'react';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    type GaugeChartConfiguration,
-    type PageLayoutWidget,
+  type GaugeChartConfiguration,
+  type PageLayoutWidget,
 } from '~/generated/graphql';
 
 const GraphWidgetGaugeChart = lazy(() =>
@@ -23,7 +23,11 @@ export const GraphWidgetGaugeChartRenderer = ({
   widget: PageLayoutWidget;
 }) => {
   const configuration = widget.configuration as GaugeChartConfiguration;
-  const { value, label: labelObject, loading } = useGraphWidgetAggregateQuery({
+  const {
+    value,
+    label: labelObject,
+    loading,
+  } = useGraphWidgetAggregateQuery({
     objectMetadataItemId: widget.objectMetadataId,
     configuration,
   });

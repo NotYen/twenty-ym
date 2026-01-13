@@ -5,8 +5,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import {
-    AuthException,
-    AuthExceptionCode,
+  AuthException,
+  AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { MicrosoftAPIsOauthRequestCodeStrategy } from 'src/engine/core-modules/auth/strategies/microsoft-apis-oauth-request-code.auth.strategy';
 import { TransientTokenService } from 'src/engine/core-modules/auth/token/services/transient-token.service';

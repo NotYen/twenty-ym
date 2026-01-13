@@ -1,6 +1,6 @@
 import {
-    GraphWidgetTooltip,
-    type GraphWidgetTooltipRecord,
+  GraphWidgetTooltip,
+  type GraphWidgetTooltipRecord,
 } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
 import { usePieChartSliceRecords } from '@/page-layout/widgets/graph/graphWidgetPieChart/hooks/usePieChartSliceRecords';
 import { graphWidgetPieTooltipComponentState } from '@/page-layout/widgets/graph/graphWidgetPieChart/states/graphWidgetPieTooltipComponentState';
@@ -8,8 +8,8 @@ import { type PieChartDataItem } from '@/page-layout/widgets/graph/graphWidgetPi
 import { type PieChartEnrichedData } from '@/page-layout/widgets/graph/graphWidgetPieChart/types/PieChartEnrichedData';
 import { useGraphWidgetTooltipFloating } from '@/page-layout/widgets/graph/hooks/useGraphWidgetTooltipFloating';
 import {
-    formatGraphValue,
-    type GraphValueFormatOptions,
+  formatGraphValue,
+  type GraphValueFormatOptions,
 } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { useTheme } from '@emotion/react';

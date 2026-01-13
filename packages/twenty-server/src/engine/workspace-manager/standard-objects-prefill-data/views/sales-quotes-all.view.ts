@@ -31,8 +31,7 @@ export const salesQuotesAllView = (
       {
         fieldMetadataId:
           salesQuoteObjectMetadata.fields.find(
-            (field) =>
-              field.standardId === SALES_QUOTE_STANDARD_FIELD_IDS.name,
+            (field) => field.standardId === SALES_QUOTE_STANDARD_FIELD_IDS.name,
           )?.id ?? '',
         position: 0,
         isVisible: true,

@@ -14,11 +14,11 @@ import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { MenuItemSelect } from 'twenty-ui/navigation';
 import {
-    type AggregateChartConfiguration,
-    type BarChartConfiguration,
-    type GaugeChartConfiguration,
-    type LineChartConfiguration,
-    type PieChartConfiguration,
+  type AggregateChartConfiguration,
+  type BarChartConfiguration,
+  type GaugeChartConfiguration,
+  type LineChartConfiguration,
+  type PieChartConfiguration,
 } from '~/generated/graphql';
 
 const DEFAULT_FIELD_ID = '__default__';

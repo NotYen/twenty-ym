@@ -19,9 +19,9 @@ import { useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 import { FieldMetadataType, SettingsPath } from 'twenty-shared/types';
 import {
-    getSettingsPath,
-    isDefined,
-    isLabelIdentifierFieldMetadataTypes,
+  getSettingsPath,
+  isDefined,
+  isLabelIdentifierFieldMetadataTypes,
 } from 'twenty-shared/utils';
 import { IconMinus, IconPlus, useIcons } from 'twenty-ui/display';
 import { LightIconButton } from 'twenty-ui/input';
@@ -55,14 +55,14 @@ const StyledNameLabel = styled.div`
 `;
 
 const StyledInactiveTag = styled.span`
-  color: ${({ theme }) => theme.color.red};
-  font-size: ${({ theme }) => theme.font.size.xs};
   background-color: ${({ theme }) => theme.background.transparent.light};
-  padding: 2px 6px;
-  border-radius: ${({ theme }) => theme.border.radius.sm};
-  margin-left: ${({ theme }) => theme.spacing(2)};
-  flex-shrink: 0;
   border: 1px solid ${({ theme }) => theme.color.red};
+  border-radius: ${({ theme }) => theme.border.radius.sm};
+  color: ${({ theme }) => theme.color.red};
+  flex-shrink: 0;
+  font-size: ${({ theme }) => theme.font.size.xs};
+  margin-left: ${({ theme }) => theme.spacing(2)};
+  padding: 2px 6px;
 `;
 
 const StyledIconTableCell = styled(TableCell)`

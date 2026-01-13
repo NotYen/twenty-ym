@@ -1,10 +1,4 @@
-import {
-  Resolver,
-  Query,
-  Mutation,
-  Args,
-  Context as GqlContext,
-} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import {
   UseFilters,
   UseGuards,
@@ -23,7 +17,6 @@ import {
   LineConnectionResultDTO,
   DeleteLineConfigResultDTO,
   UpdateLineConfigResultDTO,
-  LineBotInfoDTO,
 } from 'src/engine/core-modules/line-integration/dtos/line-config.dto';
 import { AuthGraphqlApiExceptionFilter } from 'src/engine/core-modules/auth/filters/auth-graphql-api-exception.filter';
 import { ResolverValidationPipe } from 'src/engine/core-modules/graphql/pipes/resolver-validation.pipe';
@@ -86,6 +79,7 @@ export class LineConfigResolver {
       this.logger.error(
         `Failed to get LINE config for workspace ${workspace.id}: ${error.message}`,
       );
+
       // 返回未設定狀態，不拋出錯誤
       return {
         channelId: undefined,
@@ -159,18 +153,24 @@ export class LineConfigResolver {
 
     try {
       // Get decrypted config
-      const config = await this.lineConfigService.getDecryptedConfig(workspace.id);
+      const config = await this.lineConfigService.getDecryptedConfig(
+        workspace.id,
+      );
+
       if (!config) {
         this.logger.warn(
           `LINE configuration not found for workspace ${workspace.id}`,
         );
+
         return {
           success: false,
           error: 'LINE configuration not found',
         };
       }
 
-      const result = await this.lineApiService.testConnection(config.channelAccessToken);
+      const result = await this.lineApiService.testConnection(
+        config.channelAccessToken,
+      );
 
       if (result.success && result.botInfo) {
         this.logger.log(

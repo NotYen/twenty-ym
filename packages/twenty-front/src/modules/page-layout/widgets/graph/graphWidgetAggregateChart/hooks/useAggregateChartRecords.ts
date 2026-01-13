@@ -2,7 +2,10 @@ import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMeta
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import { useEffect, useMemo, useRef } from 'react';
 import { type RecordGqlOperationFilter } from 'twenty-shared/types';
-import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
+import {
+  computeRecordGqlOperationFilter,
+  isDefined,
+} from 'twenty-shared/utils';
 import { type AggregateChartConfiguration } from '~/generated/graphql';
 
 const AGGREGATE_CHART_TOOLTIP_RECORDS_LIMIT = 50;
@@ -42,9 +45,7 @@ export const useAggregateChartRecords = ({
 
   // Early return if not enabled or missing required data
   const shouldQuery =
-    enabled &&
-    isDefined(objectMetadataItemId) &&
-    objectMetadataItemId !== '';
+    enabled && isDefined(objectMetadataItemId) && objectMetadataItemId !== '';
 
   const { objectMetadataItem } = useObjectMetadataItemById({
     objectId: objectMetadataItemId || 'skip',
@@ -56,7 +57,8 @@ export const useAggregateChartRecords = ({
       )
     : objectMetadataItem?.fields?.find((field) => field.name === 'name') ||
       objectMetadataItem?.fields?.find(
-        (field) => field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
+        (field) =>
+          field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
       );
 
   // Build filter from configuration

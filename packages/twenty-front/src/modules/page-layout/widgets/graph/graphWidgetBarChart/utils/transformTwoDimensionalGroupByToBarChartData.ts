@@ -13,8 +13,8 @@ import { getFieldKey } from '@/page-layout/widgets/graph/utils/getFieldKey';
 import { getSortedKeys } from '@/page-layout/widgets/graph/utils/getSortedKeys';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    BarChartGroupMode,
-    type BarChartConfiguration,
+  BarChartGroupMode,
+  type BarChartConfiguration,
 } from '~/generated/graphql';
 
 type TransformTwoDimensionalGroupByToBarChartDataParams = {

@@ -1,9 +1,9 @@
 import styled from '@emotion/styled';
 import {
-    type DraggableProvided,
-    type DraggableRubric,
-    type DraggableStateSnapshot,
-    Droppable,
+  type DraggableProvided,
+  type DraggableRubric,
+  type DraggableStateSnapshot,
+  Droppable,
 } from '@hello-pangea/dnd';
 import { TabButton } from 'twenty-ui/input';
 

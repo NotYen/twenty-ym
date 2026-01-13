@@ -16,7 +16,8 @@ interface SyncFeatureFlagsCommandOptions {
 
 @Command({
   name: 'workspace:sync-feature-flags',
-  description: 'Sync default feature flags to all workspaces or a specific workspace',
+  description:
+    'Sync default feature flags to all workspaces or a specific workspace',
 })
 export class SyncFeatureFlagsCommand extends CommandRunner {
   private readonly logger = new Logger(SyncFeatureFlagsCommand.name);
@@ -31,7 +32,8 @@ export class SyncFeatureFlagsCommand extends CommandRunner {
 
   @Option({
     flags: '-w, --workspace-id [workspaceId]',
-    description: 'Specific workspace ID to sync (optional, syncs all if not provided)',
+    description:
+      'Specific workspace ID to sync (optional, syncs all if not provided)',
   })
   parseWorkspaceId(val: string): string {
     return val;
@@ -54,7 +56,9 @@ export class SyncFeatureFlagsCommand extends CommandRunner {
     this.logger.log('='.repeat(60));
     this.logger.log('Sync Feature Flags Command');
     this.logger.log('='.repeat(60));
-    this.logger.log(`Default feature flags to sync: ${DEFAULT_FEATURE_FLAGS.length}`);
+    this.logger.log(
+      `Default feature flags to sync: ${DEFAULT_FEATURE_FLAGS.length}`,
+    );
     this.logger.log(`Feature flags: ${DEFAULT_FEATURE_FLAGS.join(', ')}`);
     this.logger.log(`Dry run: ${dryRun ? 'YES' : 'NO'}`);
     this.logger.log('='.repeat(60));
@@ -68,6 +72,7 @@ export class SyncFeatureFlagsCommand extends CommandRunner {
 
       if (!workspace) {
         this.logger.error(`Workspace not found: ${workspaceId}`);
+
         return;
       }
 
@@ -79,15 +84,20 @@ export class SyncFeatureFlagsCommand extends CommandRunner {
     this.logger.log(`Found ${workspaces.length} workspace(s) to process`);
 
     for (const workspace of workspaces) {
-      this.logger.log(`\nProcessing workspace: ${workspace.id} (${workspace.displayName || 'No name'})`);
+      this.logger.log(
+        `\nProcessing workspace: ${workspace.id} (${workspace.displayName || 'No name'})`,
+      );
 
       // Get current feature flags
-      const currentFlags = await this.featureFlagService.getWorkspaceFeatureFlagsMap(workspace.id);
+      const currentFlags =
+        await this.featureFlagService.getWorkspaceFeatureFlagsMap(workspace.id);
       const currentFlagKeys = Object.keys(currentFlags);
 
       // Find missing flags
       const missingFlags = DEFAULT_FEATURE_FLAGS.filter(
-        (flag) => !currentFlagKeys.includes(flag) || !currentFlags[flag as FeatureFlagKey],
+        (flag) =>
+          !currentFlagKeys.includes(flag) ||
+          !currentFlags[flag as FeatureFlagKey],
       );
 
       if (missingFlags.length === 0) {
@@ -98,7 +108,9 @@ export class SyncFeatureFlagsCommand extends CommandRunner {
       this.logger.log(`  Missing/disabled flags: ${missingFlags.join(', ')}`);
 
       if (dryRun) {
-        this.logger.log(`  [DRY RUN] Would enable ${missingFlags.length} feature flag(s)`);
+        this.logger.log(
+          `  [DRY RUN] Would enable ${missingFlags.length} feature flag(s)`,
+        );
       } else {
         await this.featureFlagService.enableFeatureFlags(
           missingFlags as FeatureFlagKey[],

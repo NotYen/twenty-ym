@@ -16,17 +16,17 @@ import { getBarChartColor } from '@/page-layout/widgets/graph/graphWidgetBarChar
 import { getBarChartMargins } from '@/page-layout/widgets/graph/graphWidgetBarChart/utils/getBarChartMargins';
 import { createGraphColorRegistry } from '@/page-layout/widgets/graph/utils/createGraphColorRegistry';
 import {
-    formatGraphValue,
-    type GraphValueFormatOptions,
+  formatGraphValue,
+  type GraphValueFormatOptions,
 } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { NodeDimensionEffect } from '@/ui/utilities/dimensions/components/NodeDimensionEffect';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-    ResponsiveBar,
-    type BarItemProps,
-    type ComputedBarDatum,
-    type ComputedDatum,
+  ResponsiveBar,
+  type BarItemProps,
+  type ComputedBarDatum,
+  type ComputedDatum,
 } from '@nivo/bar';
 import { useCallback, useMemo, useRef, useState, type MouseEvent } from 'react';
 import { isDefined } from 'twenty-shared/utils';

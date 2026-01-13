@@ -6,8 +6,8 @@ import { Strategy, type VerifyCallback } from 'passport-google-oauth20';
 import { type APP_LOCALES } from 'twenty-shared/translations';
 
 import {
-    AuthException,
-    AuthExceptionCode,
+  AuthException,
+  AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { type SocialSSOSignInUpActionType } from 'src/engine/core-modules/auth/types/signInUp.type';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
@@ -17,11 +17,13 @@ const getWorkspaceIdFromState = (req: Request): string | undefined => {
   if (typeof req.query.state === 'string') {
     try {
       const state = JSON.parse(req.query.state);
+
       return state.workspaceId;
     } catch (e) {
       // ignore
     }
   }
+
   return undefined;
 };
 
@@ -79,15 +81,20 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
         workspaceId,
         'AUTH_GOOGLE_CLIENT_SECRET',
       );
-      this.logger.debug(`Workspace Config - ClientID: ${clientID ? `${clientID.substring(0, 20)}...` : 'NULL'}`);
-      this.logger.debug(`Workspace Config - ClientSecret: ${clientSecret ? 'SET' : 'NULL'}`);
+      this.logger.debug(
+        `Workspace Config - ClientID: ${clientID ? `${clientID.substring(0, 20)}...` : 'NULL'}`,
+      );
+      this.logger.debug(
+        `Workspace Config - ClientSecret: ${clientSecret ? 'SET' : 'NULL'}`,
+      );
     }
 
     if (clientID && clientSecret) {
-      const callbackURL = (await this.workspaceConfigService.get(
-        workspaceId,
-        'AUTH_GOOGLE_CALLBACK_URL',
-      )) || this.twentyConfigService.get('AUTH_GOOGLE_CALLBACK_URL');
+      const callbackURL =
+        (await this.workspaceConfigService.get(
+          workspaceId,
+          'AUTH_GOOGLE_CALLBACK_URL',
+        )) || this.twentyConfigService.get('AUTH_GOOGLE_CALLBACK_URL');
 
       this.logger.debug(`Using workspace-specific OAuth config`);
       this.logger.debug(`Final CallbackURL: ${callbackURL}`);
@@ -116,8 +123,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
       });
     } else {
       this.logger.debug(`Using default OAuth config (no workspace override)`);
-      this.logger.debug(`Default ClientID: ${this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_ID')?.substring(0, 20)}...`);
-      this.logger.debug(`Default CallbackURL: ${this.twentyConfigService.get('AUTH_GOOGLE_CALLBACK_URL')}`);
+      this.logger.debug(
+        `Default ClientID: ${this.twentyConfigService.get('AUTH_GOOGLE_CLIENT_ID')?.substring(0, 20)}...`,
+      );
+      this.logger.debug(
+        `Default CallbackURL: ${this.twentyConfigService.get('AUTH_GOOGLE_CALLBACK_URL')}`,
+      );
       this.logger.debug('============================================');
 
       options = {

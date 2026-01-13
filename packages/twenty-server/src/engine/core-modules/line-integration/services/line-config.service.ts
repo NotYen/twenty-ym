@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
 import { Repository, IsNull } from 'typeorm';
 
 import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
@@ -66,6 +67,7 @@ export class LineConfigService {
 
     // 從 LINE API 取得 Bot User ID (用於 Webhook 路由)
     let botUserId: string | null = null;
+
     try {
       botUserId = await this.lineApiService.getBotUserIdByToken(
         configData.channelAccessToken,
@@ -107,7 +109,9 @@ export class LineConfigService {
       await this.setBotUserId(workspaceId, botUserId);
     }
 
-    this.logger.log(`Successfully saved LINE config for workspace: ${workspaceId}`);
+    this.logger.log(
+      `Successfully saved LINE config for workspace: ${workspaceId}`,
+    );
   }
 
   /**
@@ -115,7 +119,10 @@ export class LineConfigService {
    * @param workspaceId - 工作區 ID
    * @param botUserId - LINE Bot User ID
    */
-  private async setBotUserId(workspaceId: string, botUserId: string): Promise<void> {
+  private async setBotUserId(
+    workspaceId: string,
+    botUserId: string,
+  ): Promise<void> {
     const existingConfig = await this.workspaceConfigRepository.findOne({
       where: {
         workspaceId,
@@ -170,6 +177,7 @@ export class LineConfigService {
       this.logger.error(
         `Incomplete LINE config for workspace ${workspaceId}: missing secret or token`,
       );
+
       return null;
     }
 
@@ -234,7 +242,9 @@ export class LineConfigService {
       });
     }
 
-    this.logger.log(`Successfully deleted LINE config for workspace: ${workspaceId}`);
+    this.logger.log(
+      `Successfully deleted LINE config for workspace: ${workspaceId}`,
+    );
   }
 
   /**
@@ -263,18 +273,21 @@ export class LineConfigService {
         this.logger.warn(
           `No LINE channel config found for Bot User ID: ${botUserId}`,
         );
+
         return null;
       }
 
       this.logger.debug(
         `Found workspaceId: ${config.workspaceId} for Bot User ID: ${botUserId}`,
       );
+
       return config.workspaceId;
     } catch (error) {
       this.logger.error(
         `Failed to query workspaceId for Bot User ID ${botUserId}: ${error.message}`,
         error.stack,
       );
+
       return null;
     }
   }

@@ -39,14 +39,12 @@ export const SuperAdminMemberPickerDropdown = ({
 
   // Filter out already added super admins
   const filteredWorkspaceMembers =
-    workspaceMembers?.filter(
-      (workspaceMember) => {
-        const member = currentWorkspaceMembers.find(
-          (m) => m.id === workspaceMember.recordId,
-        );
-        return member && !excludedEmails.includes(member.userEmail.toLowerCase());
-      },
-    ) ?? [];
+    workspaceMembers?.filter((workspaceMember) => {
+      const member = currentWorkspaceMembers.find(
+        (m) => m.id === workspaceMember.recordId,
+      );
+      return member && !excludedEmails.includes(member.userEmail.toLowerCase());
+    }) ?? [];
 
   const enrichedWorkspaceMembers = filteredWorkspaceMembers
     .map((workspaceMember) =>
@@ -66,10 +64,14 @@ export const SuperAdminMemberPickerDropdown = ({
       <DropdownMenuSeparator />
       <DropdownMenuItemsContainer hasMaxHeight>
         {loading ? null : enrichedWorkspaceMembers.length === 0 ? (
-          <MenuItem disabled text={searchFilter ? t`No Results` : t`No available members`} />
+          <MenuItem
+            disabled
+            text={searchFilter ? t`No Results` : t`No available members`}
+          />
         ) : (
           enrichedWorkspaceMembers.map((workspaceMember) => {
-            const fullName = `${workspaceMember.name.firstName ?? ''} ${workspaceMember.name.lastName ?? ''}`.trim();
+            const fullName =
+              `${workspaceMember.name.firstName ?? ''} ${workspaceMember.name.lastName ?? ''}`.trim();
 
             return (
               <MenuItemAvatar

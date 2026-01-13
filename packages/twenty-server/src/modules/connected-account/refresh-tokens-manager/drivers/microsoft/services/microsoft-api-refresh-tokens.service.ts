@@ -4,8 +4,8 @@ import axios, { AxiosError } from 'axios';
 
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 import {
-    ConnectedAccountRefreshAccessTokenException,
-    ConnectedAccountRefreshAccessTokenExceptionCode,
+  ConnectedAccountRefreshAccessTokenException,
+  ConnectedAccountRefreshAccessTokenExceptionCode,
 } from 'src/modules/connected-account/refresh-tokens-manager/exceptions/connected-account-refresh-tokens.exception';
 import { type ConnectedAccountTokens } from 'src/modules/connected-account/refresh-tokens-manager/services/connected-account-refresh-tokens.service';
 

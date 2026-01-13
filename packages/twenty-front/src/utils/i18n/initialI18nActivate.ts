@@ -9,7 +9,11 @@ export const initialI18nActivate = () => {
   const storageLocale = fromStorage('locale');
   const navigatorLocale = fromNavigator();
 
-  logDebug('[i18n] initialI18nActivate:', { urlLocale, storageLocale, navigatorLocale });
+  logDebug('[i18n] initialI18nActivate:', {
+    urlLocale,
+    storageLocale,
+    navigatorLocale,
+  });
 
   let locale: keyof typeof APP_LOCALES = APP_LOCALES.en;
 

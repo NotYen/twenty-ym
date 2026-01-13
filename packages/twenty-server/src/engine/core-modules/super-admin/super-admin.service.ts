@@ -1,8 +1,8 @@
 import {
-    BadRequestException,
-    ForbiddenException,
-    Injectable,
-    Logger,
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+  Logger,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
@@ -71,7 +71,9 @@ export class SuperAdminService {
 
     // Add Primary Super Admin at the beginning if not already in the list
     const primaryExists = result.some(
-      (sa) => sa.userEmail.toLowerCase() === this.PRIMARY_SUPER_ADMIN_EMAIL.toLowerCase()
+      (sa) =>
+        sa.userEmail.toLowerCase() ===
+        this.PRIMARY_SUPER_ADMIN_EMAIL.toLowerCase(),
     );
 
     if (!primaryExists) {
@@ -87,8 +89,11 @@ export class SuperAdminService {
     } else {
       // Mark the existing Primary as isPrimary
       const primaryIndex = result.findIndex(
-        (sa) => sa.userEmail.toLowerCase() === this.PRIMARY_SUPER_ADMIN_EMAIL.toLowerCase()
+        (sa) =>
+          sa.userEmail.toLowerCase() ===
+          this.PRIMARY_SUPER_ADMIN_EMAIL.toLowerCase(),
       );
+
       if (primaryIndex !== -1) {
         result[primaryIndex].isPrimary = true;
       }
@@ -110,7 +115,9 @@ export class SuperAdminService {
 
     // Check if requester is Primary Super Admin
     if (!this.isPrimarySuperAdmin(normalizedGrantedBy)) {
-      throw new ForbiddenException('Only Primary Super Admin can add Super Admins');
+      throw new ForbiddenException(
+        'Only Primary Super Admin can add Super Admins',
+      );
     }
 
     // Check if user exists in the system
@@ -120,7 +127,7 @@ export class SuperAdminService {
 
     if (!user) {
       throw new BadRequestException(
-        `User with email "${userEmail}" does not exist. Please add the user first in Members settings.`
+        `User with email "${userEmail}" does not exist. Please add the user first in Members settings.`,
       );
     }
 
@@ -130,12 +137,16 @@ export class SuperAdminService {
     });
 
     if (existingSuperAdmin) {
-      throw new BadRequestException(`User "${userEmail}" is already a Super Admin`);
+      throw new BadRequestException(
+        `User "${userEmail}" is already a Super Admin`,
+      );
     }
 
     // Cannot add Primary Super Admin (they are always Super Admin)
     if (this.isPrimarySuperAdmin(normalizedEmail)) {
-      throw new BadRequestException('Primary Super Admin is already a Super Admin by default');
+      throw new BadRequestException(
+        'Primary Super Admin is already a Super Admin by default',
+      );
     }
 
     // Create new Super Admin record
@@ -147,7 +158,9 @@ export class SuperAdminService {
 
     const saved = await this.superAdminRepository.save(newSuperAdmin);
 
-    this.logger.log(`Super Admin added: ${normalizedEmail} by ${normalizedGrantedBy}`);
+    this.logger.log(
+      `Super Admin added: ${normalizedEmail} by ${normalizedGrantedBy}`,
+    );
 
     return {
       id: saved.id,
@@ -173,7 +186,9 @@ export class SuperAdminService {
 
     // Check if requester is Primary Super Admin
     if (!this.isPrimarySuperAdmin(normalizedRequestedBy)) {
-      throw new ForbiddenException('Only Primary Super Admin can remove Super Admins');
+      throw new ForbiddenException(
+        'Only Primary Super Admin can remove Super Admins',
+      );
     }
 
     // Cannot remove Primary Super Admin
@@ -192,7 +207,9 @@ export class SuperAdminService {
 
     await this.superAdminRepository.remove(superAdmin);
 
-    this.logger.log(`Super Admin removed: ${normalizedEmail} by ${normalizedRequestedBy}`);
+    this.logger.log(
+      `Super Admin removed: ${normalizedEmail} by ${normalizedRequestedBy}`,
+    );
 
     return true;
   }

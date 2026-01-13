@@ -1,7 +1,7 @@
 import {
-    GraphWidgetTooltip,
-    type GraphWidgetTooltipItem,
-    type GraphWidgetTooltipRecord,
+  GraphWidgetTooltip,
+  type GraphWidgetTooltipItem,
+  type GraphWidgetTooltipRecord,
 } from '@/page-layout/widgets/graph/components/GraphWidgetTooltip';
 import { useGraphWidgetTooltipFloating } from '@/page-layout/widgets/graph/hooks/useGraphWidgetTooltipFloating';
 import { useTheme } from '@emotion/react';

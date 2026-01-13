@@ -12,8 +12,8 @@ import { useRecoilValue } from 'recoil';
 import { AppPath } from 'twenty-shared/types';
 import { getAppPath, isDefined } from 'twenty-shared/utils';
 import {
-    type BarChartConfiguration,
-    type PageLayoutWidget,
+  type BarChartConfiguration,
+  type PageLayoutWidget,
 } from '~/generated/graphql';
 
 const GraphWidgetBarChart = lazy(() =>

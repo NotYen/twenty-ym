@@ -12,16 +12,16 @@ import { isDefined } from 'twenty-shared/utils';
 import { Repository } from 'typeorm';
 
 import {
-    AppTokenEntity,
-    AppTokenType,
+  AppTokenEntity,
+  AppTokenType,
 } from 'src/engine/core-modules/app-token/app-token.entity';
 import { EmailVerificationTokenService } from 'src/engine/core-modules/auth/token/services/email-verification-token.service';
 import { DomainServerConfigService } from 'src/engine/core-modules/domain/domain-server-config/services/domain-server-config.service';
 import { WorkspaceDomainsService } from 'src/engine/core-modules/domain/workspace-domains/services/workspace-domains.service';
 import { WorkspaceDomainConfig } from 'src/engine/core-modules/domain/workspace-domains/types/workspace-domain-config.type';
 import {
-    EmailVerificationException,
-    EmailVerificationExceptionCode,
+  EmailVerificationException,
+  EmailVerificationExceptionCode,
 } from 'src/engine/core-modules/email-verification/email-verification.exception';
 import { EmailService } from 'src/engine/core-modules/email/email.service';
 import { I18nService } from 'src/engine/core-modules/i18n/i18n.service';
@@ -91,17 +91,18 @@ export class EmailVerificationService {
     const i18n = this.i18nService.getI18nInstance(locale);
     const subject = i18n._(emailVerificationMsg);
 
-    await this.emailService.send({
-      from: `${this.twentyConfigService.get(
-        'EMAIL_FROM_NAME',
-      )} <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
-      to: email,
-      subject,
-      text,
-      html,
-    },
-    workspace?.id,
-  );
+    await this.emailService.send(
+      {
+        from: `${this.twentyConfigService.get(
+          'EMAIL_FROM_NAME',
+        )} <${this.twentyConfigService.get('EMAIL_FROM_ADDRESS')}>`,
+        to: email,
+        subject,
+        text,
+        html,
+      },
+      workspace?.id,
+    );
 
     return { success: true };
   }

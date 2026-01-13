@@ -6,8 +6,8 @@ import { getChartAxisNameDisplayOptions } from '@/command-menu/pages/page-layout
 import { getDateGranularityLabel } from '@/command-menu/pages/page-layout/utils/getDateGranularityLabel';
 import { getFieldLabelWithSubField } from '@/command-menu/pages/page-layout/utils/getFieldLabelWithSubField';
 import {
-    getValueFormatLabel,
-    type ValueDisplayType,
+  getValueFormatLabel,
+  type ValueDisplayType,
 } from '@/command-menu/pages/page-layout/utils/getValueFormatLabel';
 import { objectMetadataItemsState } from '@/object-metadata/states/objectMetadataItemsState';
 import { getAggregateOperationLabel } from '@/object-record/record-board/record-board-column/utils/getAggregateOperationLabel';

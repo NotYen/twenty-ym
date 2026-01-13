@@ -911,9 +911,9 @@ msgstr "Aggregat"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1888,6 +1888,21 @@ msgstr ""
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Cannot impersonate selected user"
 msgstr "Kan inte efterlikna vald användare"
+
+#. js-lingui-id: V9Xqbp
+#: src/modules/object-record/record-merge/hooks/useMergeRecordsActions.ts
+msgid "Cannot merge persons with different LINE User IDs. These records may represent different people."
+msgstr ""
+
+#. js-lingui-id: zsFflP
+#: src/modules/object-record/record-merge/hooks/useMergeRecordsActions.ts
+msgid "Cannot merge: Selected records have different LINE User IDs ({lineIds}). These may represent different people."
+msgstr ""
+
+#. js-lingui-id: +Nx0tu
+#: src/modules/object-record/record-merge/hooks/useValidatePersonMergeForLine.ts
+msgid "Cannot merge: Selected records have different LINE User IDs ({lineUserIdsStr}). These may represent different people."
+msgstr ""
 
 #. js-lingui-id: Po5MgW
 #: src/pages/auth/PasswordReset.tsx
@@ -4544,6 +4559,11 @@ msgstr "Kunde inte få svar"
 msgid "Failed to load webhook"
 msgstr "Det gick inte att ladda webbhook"
 
+#. js-lingui-id: TZV+Pv
+#: src/modules/object-record/record-merge/hooks/useMergeRecordsActions.ts
+msgid "Failed to merge records. Please try again."
+msgstr ""
+
 #. js-lingui-id: 99t8X7
 #: src/pages/settings/ai/components/SettingsAgentHandoffTable.tsx
 msgid "Failed to remove handoff"
@@ -6620,9 +6640,9 @@ msgid "New Account"
 msgstr "Nytt Konto"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "Ny agent"
 
@@ -6923,8 +6943,8 @@ msgstr "Ingen metrikdata tillgänglig"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 #: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
+#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "Inga modeller tillgängliga. Vänligen konfigurera AI-modeller i dina arbetsinställningar."
 
@@ -7086,6 +7106,11 @@ msgstr "Inte synkroniserad"
 #. js-lingui-id: KiJn9B
 #: src/modules/page-layout/hooks/useTranslateTabTitle.ts
 msgid "Note"
+msgstr ""
+
+#. js-lingui-id: vr5M7n
+#: src/modules/object-record/record-merge/hooks/useValidatePersonMergeForLine.ts
+msgid "Note: Multiple records have the same LINE data."
 msgstr ""
 
 #. js-lingui-id: 1DBGsz
@@ -8927,8 +8952,8 @@ msgstr "Konfigurerar din databas..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -10759,8 +10784,8 @@ msgstr "Arbetsflöden"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx

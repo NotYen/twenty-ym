@@ -1,14 +1,14 @@
 import { Injectable, Logger } from '@nestjs/common';
 
 import {
-    convertToModelMessages,
-    LanguageModelUsage,
-    stepCountIs,
-    streamText,
-    ToolSet,
-    UIDataTypes,
-    UIMessage,
-    UITools,
+  convertToModelMessages,
+  LanguageModelUsage,
+  stepCountIs,
+  streamText,
+  ToolSet,
+  UIDataTypes,
+  UIMessage,
+  UITools,
 } from 'ai';
 import { AppPath } from 'twenty-shared/types';
 import { getAppPath } from 'twenty-shared/utils';
@@ -85,7 +85,9 @@ export class AgentExecutionService implements AgentExecutionContext {
 
       const registeredModel =
         await this.aiModelRegistryService.resolveModelForAgent(
-            agent ? { modelId: agent.modelId, workspaceId: agent.workspaceId } : null
+          agent
+            ? { modelId: agent.modelId, workspaceId: agent.workspaceId }
+            : null,
         );
 
       let tools: ToolSet = {};
@@ -312,10 +314,11 @@ export class AgentExecutionService implements AgentExecutionContext {
         `Sending request to AI model with ${messages.length} messages`,
       );
 
-      const model =
-        await this.aiModelRegistryService.resolveModelForAgent(
-            agent ? { modelId: agent.modelId, workspaceId: agent.workspaceId } : null
-        );
+      const model = await this.aiModelRegistryService.resolveModelForAgent(
+        agent
+          ? { modelId: agent.modelId, workspaceId: agent.workspaceId }
+          : null,
+      );
 
       const stream = streamText(aiRequestConfig);
 

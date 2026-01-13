@@ -3,8 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { type SendMailOptions } from 'nodemailer';
 
 import {
-    EmailSenderJob,
-    type EmailSenderJobData,
+  EmailSenderJob,
+  type EmailSenderJobData,
 } from 'src/engine/core-modules/email/email-sender.job';
 import { InjectMessageQueue } from 'src/engine/core-modules/message-queue/decorators/message-queue.decorator';
 import { MessageQueue } from 'src/engine/core-modules/message-queue/message-queue.constants';

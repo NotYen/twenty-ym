@@ -20,7 +20,11 @@ import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/
 export const LINE_CHART_SETTINGS: ChartSettingsGroup[] = [
   {
     heading: 'Data',
-    items: [CHART_DATA_SOURCE_SETTING, FILTER_SETTING, TOOLTIP_DISPLAY_FIELD_SETTING],
+    items: [
+      CHART_DATA_SOURCE_SETTING,
+      FILTER_SETTING,
+      TOOLTIP_DISPLAY_FIELD_SETTING,
+    ],
   },
   {
     heading: 'X axis',

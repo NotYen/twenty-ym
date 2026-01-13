@@ -57,11 +57,24 @@ export const useMergeRecordsActions = ({
         objectRecordId: mergedRecord.id,
       });
     } catch (error) {
+      let errorMessage = t`Failed to merge records. Please try again.`;
+
+      if (error instanceof Error) {
+        // Check for LINE User ID conflict error from backend
+        if (error.message.includes('LINE User ID')) {
+          // Extract LINE User IDs from error message if present
+          const lineIdMatch = error.message.match(/: ([^.]+)\./);
+          const lineIds = lineIdMatch ? lineIdMatch[1] : '';
+          errorMessage = lineIds
+            ? t`Cannot merge: Selected records have different LINE User IDs (${lineIds}). These may represent different people.`
+            : t`Cannot merge persons with different LINE User IDs. These records may represent different people.`;
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
       enqueueErrorSnackBar({
-        message:
-          error instanceof Error
-            ? error.message
-            : 'Failed to merge records. Please try again.',
+        message: errorMessage,
       });
     } finally {
       setMergeInProgress(false);

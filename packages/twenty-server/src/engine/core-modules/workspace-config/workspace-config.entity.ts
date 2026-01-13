@@ -1,17 +1,17 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 import {
-    Column,
-    CreateDateColumn,
-    DeleteDateColumn,
-    Entity,
-    Index,
-    PrimaryGeneratedColumn,
-    Unique,
-    UpdateDateColumn,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  Index,
+  PrimaryGeneratedColumn,
+  Unique,
+  UpdateDateColumn,
 } from 'typeorm';
-
 import { IDField } from '@ptc-org/nestjs-query-graphql';
+
 import { UUIDScalarType } from 'src/engine/api/graphql/workspace-schema-builder/graphql-types/scalars';
 
 @ObjectType('WorkspaceConfig')

@@ -1,16 +1,19 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import {
-    buildDateRangeFilter,
-    extractYearFromFilter,
-    isNonIsoDateGranularity,
+  buildDateRangeFilter,
+  extractYearFromFilter,
+  isNonIsoDateGranularity,
 } from '@/page-layout/widgets/graph/utils/buildDateRangeFilter';
 import { useEffect, useMemo, useRef } from 'react';
 import {
-    ObjectRecordGroupByDateGranularity,
-    type RecordGqlOperationFilter,
+  type ObjectRecordGroupByDateGranularity,
+  type RecordGqlOperationFilter,
 } from 'twenty-shared/types';
-import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
+import {
+  computeRecordGqlOperationFilter,
+  isDefined,
+} from 'twenty-shared/utils';
 import { type BarChartConfiguration } from '~/generated/graphql';
 import { logDebug } from '~/utils/logDebug';
 
@@ -61,7 +64,6 @@ export const useBarChartRecords = ({
     isDefined(configuration?.primaryAxisGroupByFieldMetadataId) &&
     isDefined(barDimensionValue);
 
-
   const { objectMetadataItem } = useObjectMetadataItemById({
     objectId: objectMetadataItemId || 'skip',
   });
@@ -81,7 +83,8 @@ export const useBarChartRecords = ({
       )
     : objectMetadataItem?.fields?.find((field) => field.name === 'name') ||
       objectMetadataItem?.fields?.find(
-        (field) => field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
+        (field) =>
+          field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
       );
 
   // Build filter for this bar (primary axis)
@@ -116,7 +119,9 @@ export const useBarChartRecords = ({
     const dateRangeFilter = buildDateRangeFilter({
       fieldName: groupByField.name,
       dimensionValue: barDimensionValue,
-      dateGranularity: configuration?.primaryAxisDateGranularity as ObjectRecordGroupByDateGranularity | undefined,
+      dateGranularity: configuration?.primaryAxisDateGranularity as
+        | ObjectRecordGroupByDateGranularity
+        | undefined,
       subFieldName,
       field: groupByField,
       referenceYear,
@@ -128,7 +133,9 @@ export const useBarChartRecords = ({
 
     // 如果是非 ISO 日期格式的粒度（如 QUARTER_OF_THE_YEAR），且無法建立日期範圍 filter，
     // 返回空物件，讓 combinedFilter 只包含 widget 的 filter，等於顯示全部記錄
-    const primaryGranularity = configuration?.primaryAxisDateGranularity as ObjectRecordGroupByDateGranularity | undefined;
+    const primaryGranularity = configuration?.primaryAxisDateGranularity as
+      | ObjectRecordGroupByDateGranularity
+      | undefined;
     if (isNonIsoDateGranularity(primaryGranularity)) {
       return {}; // 空 filter，顯示全部記錄
     }
@@ -146,7 +153,14 @@ export const useBarChartRecords = ({
     return {
       [groupByField.name]: { eq: barDimensionValue },
     };
-  }, [groupByField, barDimensionValue, configuration?.primaryAxisGroupBySubFieldName, configuration?.primaryAxisDateGranularity, configuration?.filter, shouldQuery]);
+  }, [
+    groupByField,
+    barDimensionValue,
+    configuration?.primaryAxisGroupBySubFieldName,
+    configuration?.primaryAxisDateGranularity,
+    configuration?.filter,
+    shouldQuery,
+  ]);
 
   // Combine with widget's existing filter
   const combinedFilter = useMemo((): RecordGqlOperationFilter | undefined => {
@@ -166,8 +180,12 @@ export const useBarChartRecords = ({
 
     // Add secondary axis filter for stacked charts (if we have the raw value)
     if (isDefined(barSeriesValue) && isDefined(secondaryGroupByField)) {
-      const secondarySubFieldName = configuration?.secondaryAxisGroupBySubFieldName;
-      const secondaryGranularity = configuration?.secondaryAxisGroupByDateGranularity as ObjectRecordGroupByDateGranularity | undefined;
+      const secondarySubFieldName =
+        configuration?.secondaryAxisGroupBySubFieldName;
+      const secondaryGranularity =
+        configuration?.secondaryAxisGroupByDateGranularity as
+          | ObjectRecordGroupByDateGranularity
+          | undefined;
 
       // 嘗試從 filter 中提取年份（用於 MONTH_OF_THE_YEAR / QUARTER_OF_THE_YEAR）
       const secondaryReferenceYear = extractYearFromFilter(
@@ -203,7 +221,9 @@ export const useBarChartRecords = ({
         // 檢查是否為非 ISO 日期格式的粒度
         if (isNonIsoDateGranularity(secondaryGranularity)) {
           // 非 ISO 日期格式且無法建立日期範圍 filter，不加入 secondary filter（顯示全部）
-          logDebug('[useBarChartRecords] 非 ISO 日期格式粒度，不加入 secondary filter');
+          logDebug(
+            '[useBarChartRecords] 非 ISO 日期格式粒度，不加入 secondary filter',
+          );
         } else if (secondarySubFieldName) {
           // 只有非特殊粒度才使用 eq filter
           filters.push({
@@ -235,7 +255,10 @@ export const useBarChartRecords = ({
           recordFilterGroups: configFilter.recordFilterGroups ?? [],
         });
 
-        if (isDefined(convertedFilter) && Object.keys(convertedFilter).length > 0) {
+        if (
+          isDefined(convertedFilter) &&
+          Object.keys(convertedFilter).length > 0
+        ) {
           filters.push(convertedFilter);
         }
       } else {
@@ -258,13 +281,24 @@ export const useBarChartRecords = ({
       finalFilter,
     });
     return finalFilter;
-  }, [barFilter, barSeriesValue, secondaryGroupByField, configuration?.secondaryAxisGroupBySubFieldName, configuration?.secondaryAxisGroupByDateGranularity, configuration?.filter, objectMetadataItem]);
+  }, [
+    barFilter,
+    barSeriesValue,
+    secondaryGroupByField,
+    configuration?.secondaryAxisGroupBySubFieldName,
+    configuration?.secondaryAxisGroupByDateGranularity,
+    configuration?.filter,
+    objectMetadataItem,
+  ]);
 
   const { records, loading, totalCount } = useFindManyRecords({
     objectNameSingular: objectMetadataItem?.nameSingular ?? 'skip',
     filter: combinedFilter,
     limit: BAR_CHART_TOOLTIP_RECORDS_LIMIT,
-    skip: !shouldQuery || combinedFilter === undefined || !objectMetadataItem?.nameSingular,
+    skip:
+      !shouldQuery ||
+      combinedFilter === undefined ||
+      !objectMetadataItem?.nameSingular,
     fetchPolicy: 'network-only', // 確保每次都從後端取得最新資料
   });
 
@@ -279,7 +313,6 @@ export const useBarChartRecords = ({
       yuJiJieDanRiQi: r.yuJiJieDanRiQi,
     })),
   });
-
 
   const transformedRecords = useMemo((): ChartRecord[] => {
     if (!isDefined(records) || !isDefined(displayField)) {
@@ -336,7 +369,9 @@ export const useBarChartRecords = ({
   // 3. If loading with no previous data, return empty (don't show records section)
   // 4. If loaded with new data, show it
 
-  const cachedData = isDefined(cacheKey) ? globalBarChartCache.get(cacheKey) : undefined;
+  const cachedData = isDefined(cacheKey)
+    ? globalBarChartCache.get(cacheKey)
+    : undefined;
 
   // Priority 1: Use cached data for current bar
   if (isDefined(cachedData)) {

@@ -11,11 +11,11 @@ import { type MouseEvent } from 'react';
 import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 import {
-    AvatarChip,
-    Chip,
-    type ChipSize,
-    ChipVariant,
-    LinkChip,
+  AvatarChip,
+  Chip,
+  type ChipSize,
+  ChipVariant,
+  LinkChip,
 } from 'twenty-ui/components';
 import { type TriggerEventType } from 'twenty-ui/utilities';
 

@@ -5,29 +5,29 @@ import {
   QUERY_MAX_RECORDS,
 } from 'twenty-shared/constants';
 import {
-  FieldMetadataRelationSettings,
+  type FieldMetadataRelationSettings,
   FieldMetadataType,
-  ObjectRecord,
+  type ObjectRecord,
   RelationType,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
-import { FindOptionsRelations, In, ObjectLiteral } from 'typeorm';
+import { type FindOptionsRelations, In, type ObjectLiteral } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
 
-import { WorkspaceAuthContext } from 'src/engine/api/common/interfaces/workspace-auth-context.interface';
+import { type WorkspaceAuthContext } from 'src/engine/api/common/interfaces/workspace-auth-context.interface';
 
 import { CommonBaseQueryRunnerService } from 'src/engine/api/common/common-query-runners/common-base-query-runner.service';
 import {
   CommonQueryRunnerException,
   CommonQueryRunnerExceptionCode,
 } from 'src/engine/api/common/common-query-runners/errors/common-query-runner.exception';
-import { CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common-base-query-runner-context.type';
-import { CommonExtendedQueryRunnerContext } from 'src/engine/api/common/types/common-extended-query-runner-context.type';
+import { type CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common-base-query-runner-context.type';
+import { type CommonExtendedQueryRunnerContext } from 'src/engine/api/common/types/common-extended-query-runner-context.type';
 import {
-  CommonExtendedInput,
-  CommonInput,
+  type CommonExtendedInput,
+  type CommonInput,
   CommonQueryNames,
-  MergeManyQueryArgs,
+  type MergeManyQueryArgs,
 } from 'src/engine/api/common/types/common-query-args.type';
 import {
   GraphqlQueryRunnerException,
@@ -38,8 +38,8 @@ import { buildColumnsToSelect } from 'src/engine/api/graphql/graphql-query-runne
 import { hasRecordFieldValue } from 'src/engine/api/graphql/graphql-query-runner/utils/has-record-field-value.util';
 import { mergeFieldValues } from 'src/engine/api/graphql/graphql-query-runner/utils/merge-field-values.util';
 import { assertMutationNotOnRemoteObject } from 'src/engine/metadata-modules/object-metadata/utils/assert-mutation-not-on-remote-object.util';
-import { ObjectMetadataItemWithFieldMaps } from 'src/engine/metadata-modules/types/object-metadata-item-with-field-maps';
-import { ObjectMetadataMaps } from 'src/engine/metadata-modules/types/object-metadata-maps';
+import { type ObjectMetadataItemWithFieldMaps } from 'src/engine/metadata-modules/types/object-metadata-item-with-field-maps';
+import { type ObjectMetadataMaps } from 'src/engine/metadata-modules/types/object-metadata-maps';
 import { isFieldMetadataEntityOfType } from 'src/engine/utils/is-field-metadata-of-type.util';
 
 @Injectable()
@@ -477,6 +477,43 @@ export class CommonMergeManyQueryRunnerService extends CommonBaseQueryRunnerServ
         `Invalid conflict priority '${conflictPriorityIndex}'. Valid options for ${ids.length} records: 0-${ids.length - 1}`,
         CommonQueryRunnerExceptionCode.INVALID_QUERY_INPUT,
       );
+    }
+
+    // Person-specific validation for LINE integration
+    if (objectMetadataItemWithFieldMaps.nameSingular === 'person') {
+      await this.validatePersonMergeForLine(args, queryRunnerContext);
+    }
+  }
+
+  private async validatePersonMergeForLine(
+    args: CommonInput<MergeManyQueryArgs>,
+    queryRunnerContext: CommonExtendedQueryRunnerContext,
+  ): Promise<void> {
+    const { ids } = args;
+
+    const records = await queryRunnerContext.repository.find({
+      where: { id: In(ids) },
+      select: ['id', 'lineUserId'],
+    });
+
+    const recordsWithLineUserId = records.filter(
+      (record) =>
+        record.lineUserId &&
+        typeof record.lineUserId === 'string' &&
+        record.lineUserId.trim() !== '',
+    );
+
+    if (recordsWithLineUserId.length > 1) {
+      const uniqueLineUserIds = new Set(
+        recordsWithLineUserId.map((r) => r.lineUserId as string),
+      );
+
+      if (uniqueLineUserIds.size > 1) {
+        throw new CommonQueryRunnerException(
+          `Cannot merge persons with different LINE User IDs: ${[...uniqueLineUserIds].join(', ')}. These records may represent different people.`,
+          CommonQueryRunnerExceptionCode.INVALID_QUERY_INPUT,
+        );
+      }
     }
   }
 }

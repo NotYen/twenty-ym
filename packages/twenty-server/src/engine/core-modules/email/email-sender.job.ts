@@ -17,6 +17,7 @@ export class EmailSenderJob {
   @Process(EmailSenderJob.name)
   async handle(data: EmailSenderJobData): Promise<void> {
     const { mailOptions, workspaceId } = data;
+
     await this.emailSenderService.send(mailOptions, workspaceId);
   }
 }

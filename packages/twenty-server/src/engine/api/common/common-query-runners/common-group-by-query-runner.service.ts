@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
 
 import {
-    CompositeFieldSubFieldName,
-    PartialFieldMetadataItemOption,
-    RecordFilterGroupLogicalOperator,
+  CompositeFieldSubFieldName,
+  PartialFieldMetadataItemOption,
+  RecordFilterGroupLogicalOperator,
 } from 'twenty-shared/types';
 import {
-    assertIsDefinedOrThrow,
-    combineFilters,
-    computeRecordGqlOperationFilter,
-    convertViewFilterValueToString,
-    getFilterTypeFromFieldType,
-    turnAnyFieldFilterIntoRecordGqlFilter,
+  assertIsDefinedOrThrow,
+  combineFilters,
+  computeRecordGqlOperationFilter,
+  convertViewFilterValueToString,
+  getFilterTypeFromFieldType,
+  turnAnyFieldFilterIntoRecordGqlFilter,
 } from 'twenty-shared/utils';
 import { ObjectLiteral } from 'typeorm';
 
@@ -23,10 +23,10 @@ import { CommonBaseQueryRunnerContext } from 'src/engine/api/common/types/common
 import { CommonExtendedQueryRunnerContext } from 'src/engine/api/common/types/common-extended-query-runner-context.type';
 import { CommonGroupByOutputItem } from 'src/engine/api/common/types/common-group-by-output-item.type';
 import {
-    CommonExtendedInput,
-    CommonInput,
-    CommonQueryNames,
-    GroupByQueryArgs,
+  CommonExtendedInput,
+  CommonInput,
+  CommonQueryNames,
+  GroupByQueryArgs,
 } from 'src/engine/api/common/types/common-query-args.type';
 import { GraphqlQuerySelectedFieldsResult } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query-selected-fields/graphql-selected-fields.parser';
 import { GraphqlQueryParser } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query.parser';

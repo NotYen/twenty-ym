@@ -21,11 +21,11 @@ import { useContext } from 'react';
 import { useRecoilValue } from 'recoil';
 import { FIELD_FOR_TOTAL_COUNT_AGGREGATE_OPERATION } from 'twenty-shared/constants';
 import {
-    computeRecordGqlOperationFilter,
-    findById,
-    isDefined,
-    isFieldMetadataDateKind,
-    turnAnyFieldFilterIntoRecordGqlFilter,
+  computeRecordGqlOperationFilter,
+  findById,
+  isDefined,
+  isFieldMetadataDateKind,
+  turnAnyFieldFilterIntoRecordGqlFilter,
 } from 'twenty-shared/utils';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 

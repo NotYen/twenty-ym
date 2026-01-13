@@ -12,8 +12,8 @@ import { FileEntity } from 'src/engine/core-modules/file/entities/file.entity';
 import { FileService } from 'src/engine/core-modules/file/services/file.service';
 import { extractFolderPathAndFilename } from 'src/engine/core-modules/file/utils/extract-folderpath-and-filename.utils';
 import {
-    SendEmailToolException,
-    SendEmailToolExceptionCode,
+  SendEmailToolException,
+  SendEmailToolExceptionCode,
 } from 'src/engine/core-modules/tool/tools/send-email-tool/exceptions/send-email-tool.exception';
 import { SendEmailToolParametersZodSchema } from 'src/engine/core-modules/tool/tools/send-email-tool/send-email-tool.schema';
 import { type SendEmailInput } from 'src/engine/core-modules/tool/tools/send-email-tool/types/send-email-input.type';

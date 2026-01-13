@@ -45,7 +45,14 @@ export interface LineMessageEvent extends LineBaseEvent {
   replyToken: string;
   message: {
     id: string;
-    type: 'text' | 'image' | 'video' | 'audio' | 'file' | 'location' | 'sticker';
+    type:
+      | 'text'
+      | 'image'
+      | 'video'
+      | 'audio'
+      | 'file'
+      | 'location'
+      | 'sticker';
     text?: string;
   };
 }

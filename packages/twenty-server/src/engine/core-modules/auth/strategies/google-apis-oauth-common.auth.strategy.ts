@@ -34,14 +34,29 @@ export class GoogleAPIsOauthCommonStrategy extends PassportStrategy(
     this.scopes = scopes;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  authenticate(req: Request & { googleConfigOverride?: { clientID: string; clientSecret: string; callbackURL?: string } }, options: any) {
+  authenticate(
+    req: Request & {
+      googleConfigOverride?: {
+        clientID: string;
+        clientSecret: string;
+        callbackURL?: string;
+      };
+    },
+    options: any,
+  ) {
     // If workspace-specific config is provided, temporarily override OAuth2 credentials
-    if (req.googleConfigOverride?.clientID && req.googleConfigOverride?.clientSecret) {
+    if (
+      req.googleConfigOverride?.clientID &&
+      req.googleConfigOverride?.clientSecret
+    ) {
       this.logger.debug('========== Strategy Override Debug ==========');
-      this.logger.debug(`Override ClientID: ${req.googleConfigOverride.clientID.substring(0, 20)}...`);
+      this.logger.debug(
+        `Override ClientID: ${req.googleConfigOverride.clientID.substring(0, 20)}...`,
+      );
       this.logger.debug(`Override ClientSecret: SET`);
-      this.logger.debug(`Override CallbackURL: ${req.googleConfigOverride.callbackURL || 'NOT PROVIDED'}`);
+      this.logger.debug(
+        `Override CallbackURL: ${req.googleConfigOverride.callbackURL || 'NOT PROVIDED'}`,
+      );
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const oauth2 = (this as any)._oauth2;
@@ -50,7 +65,9 @@ export class GoogleAPIsOauthCommonStrategy extends PassportStrategy(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const originalCallbackURL = (this as any)._callbackURL;
 
-      this.logger.debug(`Original ClientID: ${originalClientId?.substring(0, 20)}...`);
+      this.logger.debug(
+        `Original ClientID: ${originalClientId?.substring(0, 20)}...`,
+      );
       this.logger.debug(`Original CallbackURL: ${originalCallbackURL}`);
 
       // Temporarily override credentials
@@ -63,10 +80,13 @@ export class GoogleAPIsOauthCommonStrategy extends PassportStrategy(
         (this as any)._callbackURL = req.googleConfigOverride.callbackURL;
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      this.logger.debug(`After Override - ClientID: ${oauth2._clientId?.substring(0, 20)}...`);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      this.logger.debug(`After Override - CallbackURL: ${(this as any)._callbackURL}`);
+      this.logger.debug(
+        `After Override - ClientID: ${oauth2._clientId?.substring(0, 20)}...`,
+      );
+
+      this.logger.debug(
+        `After Override - CallbackURL: ${(this as any)._callbackURL}`,
+      );
       this.logger.debug('==============================================');
 
       // Call parent authenticate
@@ -85,6 +105,7 @@ export class GoogleAPIsOauthCommonStrategy extends PassportStrategy(
     }
 
     this.logger.debug('No workspace override, using default config');
+
     return super.authenticate(req, options);
   }
 }
