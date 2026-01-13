@@ -2,6 +2,7 @@ import { SettingsDataModelPreviewFormCard } from '@/settings/data-model/componen
 import { SettingsDataModelFieldIsUniqueForm } from '@/settings/data-model/fields/forms/components/SettingsDataModelFieldIsUniqueForm';
 import { SettingsDataModelFieldNumberForm } from '@/settings/data-model/fields/forms/number/components/SettingsDataModelFieldNumberForm';
 import { SettingsDataModelFieldPreviewWidget } from '@/settings/data-model/fields/preview/components/SettingsDataModelFieldPreviewWidget';
+import { t } from '@lingui/core/macro';
 import { useFormContext } from 'react-hook-form';
 import { FieldMetadataType } from 'twenty-shared/types';
 
@@ -24,7 +25,7 @@ export const SettingsDataModelFieldNumberSettingsFormCard = ({
         <SettingsDataModelFieldPreviewWidget
           fieldMetadataItem={{
             icon: watch('icon'),
-            label: watch('label') || 'New Field',
+            label: watch('label') || t`New Field`,
             settings: watch('settings') || null,
             type: FieldMetadataType.NUMBER,
           }}

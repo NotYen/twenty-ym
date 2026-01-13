@@ -8,6 +8,7 @@ import { VariableChipStandalone } from '@/object-record/record-field/ui/form-typ
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { isStandaloneVariableString } from '@/workflow/utils/isStandaloneVariableString';
 import styled from '@emotion/styled';
+import { useLingui } from '@lingui/react/macro';
 
 const StyledRecordChip = styled(RecordChip)`
   margin: ${({ theme }) => theme.spacing(2)};
@@ -40,6 +41,8 @@ export const FormSingleRecordFieldChip = ({
   onRemove,
   disabled,
 }: FormSingleRecordFieldChipProps) => {
+  const { t } = useLingui();
+
   if (
     !!draftValue &&
     draftValue.type === 'variable' &&
@@ -63,5 +66,7 @@ export const FormSingleRecordFieldChip = ({
     );
   }
 
-  return <StyledPlaceholder>Select a {objectNameSingular}</StyledPlaceholder>;
+  return (
+    <StyledPlaceholder>{t`Select a ${objectNameSingular}`}</StyledPlaceholder>
+  );
 };

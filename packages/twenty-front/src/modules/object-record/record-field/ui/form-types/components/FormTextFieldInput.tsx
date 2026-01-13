@@ -8,9 +8,9 @@ import { InputErrorHelper } from '@/ui/input/components/InputErrorHelper';
 import { InputHint } from '@/ui/input/components/InputHint';
 import { InputLabel } from '@/ui/input/components/InputLabel';
 import { parseEditorContent } from '@/workflow/workflow-variables/utils/parseEditorContent';
+import { t } from '@lingui/core/macro';
 import { useId } from 'react';
 import { isDefined } from 'twenty-shared/utils';
-
 type FormTextFieldInputProps = {
   label?: string;
   error?: string;
@@ -39,7 +39,7 @@ export const FormTextFieldInput = ({
   const instanceId = useId();
 
   const editor = useTextVariableEditor({
-    placeholder: placeholder ?? 'Enter text',
+    placeholder: placeholder ?? t`Enter text`,
     multiline,
     readonly,
     defaultValue,

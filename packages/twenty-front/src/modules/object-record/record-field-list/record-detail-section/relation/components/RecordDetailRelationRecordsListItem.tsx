@@ -30,6 +30,7 @@ import { useModal } from '@/ui/layout/modal/hooks/useModal';
 import { useIsInRightDrawerOrThrow } from '@/ui/layout/right-drawer/contexts/RightDrawerContext';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { useSetRecoilComponentState } from '@/ui/utilities/state/component-state/hooks/useSetRecoilComponentState';
+import { t } from '@lingui/core/macro';
 import { createPortal } from 'react-dom';
 import {
   computeMorphRelationFieldName,
@@ -263,14 +264,14 @@ export const RecordDetailRelationRecordsListItem = ({
                 <DropdownMenuItemsContainer>
                   <MenuItem
                     LeftIcon={IconUnlink}
-                    text="Detach"
+                    text={t`Detach`}
                     onClick={handleDetach}
                   />
                   {!isAccountOwnerRelation &&
                     relationObjectPermissions.canSoftDeleteObjectRecords && (
                       <MenuItem
                         LeftIcon={IconTrash}
-                        text="Delete"
+                        text={t`Delete`}
                         accent="danger"
                         onClick={handleDelete}
                       />
@@ -295,17 +296,16 @@ export const RecordDetailRelationRecordsListItem = ({
       {createPortal(
         <ConfirmationModal
           modalId={getDeleteRelationModalId(relationRecord.id)}
-          title={`Delete Related ${relationObjectTypeName}`}
+          title={t`Delete Related ${relationObjectTypeName}`}
           subtitle={
             <>
-              Are you sure you want to delete this related{' '}
-              {relationObjectMetadataNameSingular}?
+              {t`Are you sure you want to delete this related ${relationObjectMetadataNameSingular}?`}
               <br />
-              This action will break all its relationships with other objects.
+              {t`This action will break all its relationships with other objects.`}
             </>
           }
           onConfirmClick={handleConfirmDelete}
-          confirmButtonText={`Delete ${relationObjectTypeName}`}
+          confirmButtonText={t`Delete ${relationObjectTypeName}`}
         />,
         document.body,
       )}

@@ -124,7 +124,7 @@ export const AppRootErrorFallback = ({
           </StyledEmptyTextContainer>
           <StyledButton onClick={resetErrorBoundary}>
             <StyledIcon size={16} />
-            Reload
+            {t`Reload`}
           </StyledButton>
         </StyledEmptyContainer>
       </StyledPanel>

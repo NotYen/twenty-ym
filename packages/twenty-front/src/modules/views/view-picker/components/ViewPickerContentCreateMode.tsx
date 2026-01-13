@@ -210,8 +210,7 @@ export const ViewPickerContentCreateMode = () => {
             </ViewPickerSelectContainer>
             {availableFieldsForKanban.length === 0 && (
               <StyledFieldAvailableContainer>
-                Set up a Select field on {objectMetadataItem.labelPlural} to
-                create a Kanban
+                {t`Set up a Select field on ${objectMetadataItem.labelPlural} to create a Kanban`}
               </StyledFieldAvailableContainer>
             )}
           </>
@@ -240,8 +239,7 @@ export const ViewPickerContentCreateMode = () => {
             </ViewPickerSelectContainer>
             {availableFieldsForCalendar.length === 0 && (
               <StyledFieldAvailableContainer>
-                Set up a Date field on {objectMetadataItem.labelPlural} to
-                create a Calendar
+                {t`Set up a Date field on ${objectMetadataItem.labelPlural} to create a Calendar`}
               </StyledFieldAvailableContainer>
             )}
           </>
