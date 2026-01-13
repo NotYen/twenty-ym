@@ -1,5 +1,4 @@
 import { useRecordIndexTableFetchMore } from '@/object-record/record-index/hooks/useRecordIndexTableFetchMore';
-import { recordIndexAllRecordIdsComponentSelector } from '@/object-record/record-index/states/selectors/recordIndexAllRecordIdsComponentSelector';
 import { useUpsertRecordsInStore } from '@/object-record/record-store/hooks/useUpsertRecordsInStore';
 import { RECORD_TABLE_HORIZONTAL_SCROLL_SHADOW_VISIBILITY_CSS_VARIABLE_NAME } from '@/object-record/record-table/constants/RecordTableHorizontalScrollShadowVisibilityCssVariableName';
 import { RECORD_TABLE_VERTICAL_SCROLL_SHADOW_VISIBILITY_CSS_VARIABLE_NAME } from '@/object-record/record-table/constants/RecordTableVerticalScrollShadowVisibilityCssVariableName';
@@ -50,10 +49,6 @@ export const useTriggerInitialRecordTableDataLoad = () => {
 
   const isRecordTableInitialLoadingCallbackState =
     useRecoilComponentCallbackState(isRecordTableInitialLoadingComponentState);
-
-  const recordIndexAllRecordIdsSelector = useRecoilComponentCallbackState(
-    recordIndexAllRecordIdsComponentSelector,
-  );
 
   const recordIdByRealIndexCallbackState =
     useRecoilComponentFamilyCallbackState(
@@ -130,11 +125,6 @@ export const useTriggerInitialRecordTableDataLoad = () => {
           'hidden',
         );
 
-        const currentRecordIds = getSnapshotValue(
-          snapshot,
-          recordIndexAllRecordIdsSelector,
-        );
-
         let records: ObjectRecord[] | null = null;
         let totalCount = 0;
 
@@ -142,24 +132,48 @@ export const useTriggerInitialRecordTableDataLoad = () => {
           records = SIGN_IN_BACKGROUND_MOCK_COMPANIES;
           totalCount = SIGN_IN_BACKGROUND_MOCK_COMPANIES.length;
         } else {
-          for (const [index] of currentRecordIds.entries()) {
-            set(
-              dataLoadingStatusByRealIndexCallbackState({
-                realIndex: index,
-              }),
-              null,
-            );
+          // Get the previous total count BEFORE fetching new records
+          // This is more reliable than recordIndexAllRecordIds because:
+          // 1. recordIndexAllRecordIds may be updated optimistically when records are deleted
+          // 2. totalNumberOfRecordsToVirtualize is only updated in this function
+          const previousTotalCount =
+            getSnapshotValue(
+              snapshot,
+              totalNumberOfRecordsToVirtualizeCallbackState,
+            ) ?? 0;
 
-            set(
-              recordIdByRealIndexCallbackState({
-                realIndex: index,
-              }),
-              null,
-            );
-          }
-
+          // Fetch new records
           const { records: findManyRecords, totalCount: findManyTotalCount } =
             await findManyRecordsLazy();
+
+          const newRecordCount = findManyRecords?.length ?? 0;
+
+          // Clear states for indices beyond the new record count
+          // This is essential when:
+          // 1. Records were deleted (previousTotalCount > newRecordCount)
+          // 2. User scrolled and loaded more pages, then navigated away and back
+          //    (initial load only returns first page, but old states remain)
+          if (previousTotalCount > newRecordCount) {
+            for (
+              let index = newRecordCount;
+              index < previousTotalCount;
+              index++
+            ) {
+              set(
+                dataLoadingStatusByRealIndexCallbackState({
+                  realIndex: index,
+                }),
+                null,
+              );
+
+              set(
+                recordIdByRealIndexCallbackState({
+                  realIndex: index,
+                }),
+                null,
+              );
+            }
+          }
 
           records = findManyRecords;
           totalCount = findManyTotalCount;
@@ -202,7 +216,6 @@ export const useTriggerInitialRecordTableDataLoad = () => {
       isInitializingVirtualTableDataLoadingCallbackState,
       resetTableFocuses,
       resetVirtualizedRowTreadmill,
-      recordIndexAllRecordIdsSelector,
       showAuthModal,
       dataPagesLoadedCallbackState,
       isRecordTableInitialLoadingCallbackState,

@@ -127,11 +127,11 @@ const StyledHorizontalSectionPadding = styled.div<{
 `;
 
 const StyledRecordListSection = styled.div`
+  border-top: 1px solid ${({ theme }) => theme.border.color.light};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(1)};
   padding-top: ${({ theme }) => theme.spacing(2)};
-  border-top: 1px solid ${({ theme }) => theme.border.color.light};
 `;
 
 const StyledRecordListContainer = styled.div`

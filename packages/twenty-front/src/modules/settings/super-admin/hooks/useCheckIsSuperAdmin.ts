@@ -1,8 +1,8 @@
 import { useQuery } from '@apollo/client';
 
 import {
-    CHECK_IS_PRIMARY_SUPER_ADMIN,
-    CHECK_IS_SUPER_ADMIN,
+  CHECK_IS_PRIMARY_SUPER_ADMIN,
+  CHECK_IS_SUPER_ADMIN,
 } from '@/settings/super-admin/graphql/queries/checkIsSuperAdmin';
 
 export const useCheckIsSuperAdmin = () => {

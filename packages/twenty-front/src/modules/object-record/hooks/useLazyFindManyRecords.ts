@@ -16,7 +16,6 @@ import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { getQueryIdentifier } from '@/object-record/utils/getQueryIdentifier';
 import { QUERY_DEFAULT_LIMIT_RECORDS } from 'twenty-shared/constants';
 import { isDefined } from 'twenty-shared/utils';
-import { logDebug } from '~/utils/logDebug';
 
 type UseLazyFindManyRecordsParams<T> = Omit<
   UseFindManyRecordsParams<T>,
@@ -84,15 +83,7 @@ export const useLazyFindManyRecords = <T extends ObjectRecord = ObjectRecord>({
   const findManyRecordsLazy = useRecoilCallback(
     ({ set }) =>
       async () => {
-        const queryStartTime = performance.now();
-        logDebug(`[📊 LazyFindManyRecords] 🚀 開始查詢 ${objectNameSingular}`, {
-          fetchPolicy,
-          limit,
-          hasFilter: !!filter,
-        });
-
         if (!hasReadPermission) {
-          logDebug(`[📊 LazyFindManyRecords] ⛔ 無讀取權限`);
           set(hasNextPageFamilyState(queryIdentifier), false);
           set(cursorFamilyState(queryIdentifier), '');
 
@@ -105,15 +96,9 @@ export const useLazyFindManyRecords = <T extends ObjectRecord = ObjectRecord>({
           };
         }
 
-        const apolloQueryStart = performance.now();
         const result = await findManyRecords();
-        const apolloQueryTime = performance.now() - apolloQueryStart;
-        logDebug(
-          `[📊 LazyFindManyRecords] ⏱️ Apollo 查詢耗時: ${apolloQueryTime.toFixed(2)}ms`,
-        );
 
         if (isDefined(result?.error)) {
-          logDebug(`[📊 LazyFindManyRecords] ❌ 查詢錯誤:`, result.error);
           handleFindManyRecordsError(result.error);
         }
 
@@ -144,15 +129,6 @@ export const useLazyFindManyRecords = <T extends ObjectRecord = ObjectRecord>({
         const totalCount =
           result?.data?.[objectMetadataItem.namePlural]?.totalCount ?? 0;
 
-        const totalTime = performance.now() - queryStartTime;
-        logDebug(`[📊 LazyFindManyRecords] ✅ 查詢完成 ${objectNameSingular}`, {
-          recordsCount: records.length,
-          totalCount,
-          hasNextPage,
-          totalTime: `${totalTime.toFixed(2)}ms`,
-          apolloQueryTime: `${apolloQueryTime.toFixed(2)}ms`,
-        });
-
         return {
           data: result?.data,
           records,
@@ -167,10 +143,6 @@ export const useLazyFindManyRecords = <T extends ObjectRecord = ObjectRecord>({
       objectMetadataItem.namePlural,
       queryIdentifier,
       handleFindManyRecordsError,
-      objectNameSingular,
-      fetchPolicy,
-      limit,
-      filter,
     ],
   );
 

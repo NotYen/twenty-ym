@@ -167,11 +167,17 @@ echo "🔄 Syncing workspace metadata..."
 docker compose -f docker-compose.aws.yml exec backend yarn command:prod workspace:sync-metadata || true
 echo "🔄 Seeding sales quote views for existing workspaces..."
 docker compose -f docker-compose.aws.yml exec backend yarn command:prod workspace:seed-sales-quote-views || true
-echo "🧹 Clearing Redis cache (feature flags, metadata)..."
+echo "🛑 Stopping backend and worker before cache clear..."
+docker compose -f docker-compose.aws.yml stop backend worker
+echo "🧹 Clearing Redis cache (feature flags, metadata, CRON jobs)..."
 docker compose -f docker-compose.aws.yml exec redis redis-cli FLUSHALL || true
-echo "🔄 Restarting backend to rebuild cache..."
-docker compose -f docker-compose.aws.yml restart backend worker
-sleep 10
+echo "✅ Redis cache cleared"
+echo "🔄 Starting backend and worker with clean cache..."
+docker compose -f docker-compose.aws.yml start backend worker
+echo "⏳ Waiting for services to fully initialize (15 seconds)..."
+sleep 15
+echo "🔍 Checking backend health..."
+docker compose -f docker-compose.aws.yml exec backend curl -f http://localhost:3000/healthz || echo "⚠️ Backend health check failed, but continuing..."
 echo "🔄 Registering CRON jobs (workflow triggers, background sync)..."
 docker compose -f docker-compose.aws.yml exec backend yarn command:prod cron:register:all || true
 CRON_COUNT=\$(docker compose -f docker-compose.aws.yml exec redis redis-cli KEYS 'bull:cron-queue:repeat:*' 2>/dev/null | wc -l | tr -d ' ')

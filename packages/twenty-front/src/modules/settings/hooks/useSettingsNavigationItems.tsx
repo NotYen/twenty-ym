@@ -10,26 +10,26 @@ import { useIsFeatureEnabled } from '@/workspace/hooks/useIsFeatureEnabled';
 import { t } from '@lingui/core/macro';
 import { useRecoilValue } from 'recoil';
 import {
-    IconApi,
-    IconApps,
-    IconAt,
-    IconCalendarEvent,
-    IconColorSwatch,
-    type IconComponent,
-    IconCurrencyDollar,
-    IconDoorEnter,
-    IconHierarchy2,
-    IconKey,
-    IconLock,
-    IconMail,
-    IconPuzzle2,
-    IconRocket,
-    IconServer,
-    IconSettings,
-    IconSparkles,
-    IconUserCircle,
-    IconUsers,
-    IconWorld,
+  IconApi,
+  IconApps,
+  IconAt,
+  IconCalendarEvent,
+  IconColorSwatch,
+  type IconComponent,
+  IconCurrencyDollar,
+  IconDoorEnter,
+  IconHierarchy2,
+  IconKey,
+  IconLock,
+  IconMail,
+  IconPuzzle2,
+  IconRocket,
+  IconServer,
+  IconSettings,
+  IconSparkles,
+  IconUserCircle,
+  IconUsers,
+  IconWorld,
 } from 'twenty-ui/display';
 import { FeatureFlagKey, PermissionFlagType } from '~/generated/graphql';
 
@@ -121,8 +121,7 @@ const useSettingsNavigationItems = (): SettingsNavigationSection[] => {
           path: SettingsPath.WorkspaceAdvanced,
           Icon: IconSettings,
           isHidden:
-            !permissionMap[PermissionFlagType.WORKSPACE] ||
-            !isSuperAdmin,
+            !permissionMap[PermissionFlagType.WORKSPACE] || !isSuperAdmin,
           isAdvanced: true,
         },
         {

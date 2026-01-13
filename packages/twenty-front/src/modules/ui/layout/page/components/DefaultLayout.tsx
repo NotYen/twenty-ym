@@ -1,5 +1,5 @@
 import { AuthModal } from '@/auth/components/AuthModal';
-import { SignInSuccessEffect } from '@/auth/sign-in-up/components/SignInSuccessEffect';
+import { SignInSuccess } from '@/auth/sign-in-up/components/SignInSuccessEffect';
 import { AppErrorBoundary } from '@/error-handler/components/AppErrorBoundary';
 import { AppFullScreenErrorFallback } from '@/error-handler/components/AppFullScreenErrorFallback';
 import { AppPageErrorFallback } from '@/error-handler/components/AppPageErrorFallback';
@@ -109,7 +109,7 @@ export const DefaultLayout = () => {
             ) : (
               <StyledMainContainer>
                 <AppErrorBoundary FallbackComponent={AppPageErrorFallback}>
-                  <SignInSuccessEffect />
+                  <SignInSuccess />
                   <Outlet />
                 </AppErrorBoundary>
               </StyledMainContainer>

@@ -15,14 +15,14 @@ import { H2Title, IconInfoCircle } from 'twenty-ui/display';
 import { IconButton } from 'twenty-ui/input';
 import { Section } from 'twenty-ui/layout';
 import {
-    ConfigSource,
-    useGetConfigVariablesGroupedQuery,
+  ConfigSource,
+  useGetConfigVariablesGroupedQuery,
 } from '~/generated-metadata/graphql';
 import { normalizeSearchText } from '~/utils/normalizeSearchText';
 import { ConfigVariableSearchInput } from './ConfigVariableSearchInput';
 import {
-    CONFIG_VARIABLES_INFO_MODAL_ID,
-    ConfigVariablesInfoModal,
+  CONFIG_VARIABLES_INFO_MODAL_ID,
+  ConfigVariablesInfoModal,
 } from './ConfigVariablesInfoModal';
 
 const StyledControlsContainer = styled.div`
@@ -45,7 +45,6 @@ const StyledHeaderContainer = styled.div`
 `;
 
 export const SettingsAdminConfigVariables = () => {
-
   const { data: configVariables, loading: configVariablesLoading } =
     useGetConfigVariablesGroupedQuery({
       fetchPolicy: 'network-only',

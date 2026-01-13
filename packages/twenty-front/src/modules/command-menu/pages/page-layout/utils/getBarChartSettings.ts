@@ -51,7 +51,11 @@ export const getBarChartSettings = (
   return [
     {
       heading: 'Data',
-      items: [CHART_DATA_SOURCE_SETTING, FILTER_SETTING, TOOLTIP_DISPLAY_FIELD_SETTING],
+      items: [
+        CHART_DATA_SOURCE_SETTING,
+        FILTER_SETTING,
+        TOOLTIP_DISPLAY_FIELD_SETTING,
+      ],
     },
     {
       heading: 'X axis',

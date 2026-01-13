@@ -1,5 +1,6 @@
 import { useUpdateOneObjectMetadataItem } from '@/object-metadata/hooks/useUpdateOneObjectMetadataItem';
 import { type ObjectMetadataItem } from '@/object-metadata/types/ObjectMetadataItem';
+import { isObjectMetadataSettingsReadOnly } from '@/object-record/read-only/utils/isObjectMetadataSettingsReadOnly';
 import { SettingsDataModelObjectAboutForm } from '@/settings/data-model/objects/forms/components/SettingsDataModelObjectAboutForm';
 import {
   type SettingsDataModelObjectAboutFormValues,
@@ -11,7 +12,6 @@ import { useSetRecoilState } from 'recoil';
 import { SettingsPath } from 'twenty-shared/types';
 import { useNavigateSettings } from '~/hooks/useNavigateSettings';
 import { updatedObjectNamePluralState } from '~/pages/settings/data-model/states/updatedObjectNamePluralState';
-import { isObjectMetadataSettingsReadOnly } from '@/object-record/read-only/utils/isObjectMetadataSettingsReadOnly';
 
 type SettingsUpdateDataModelObjectAboutFormProps = {
   objectMetadataItem: ObjectMetadataItem;
@@ -24,6 +24,9 @@ export const SettingsUpdateDataModelObjectAboutForm = ({
   const navigate = useNavigateSettings();
   const setUpdatedObjectNamePlural = useSetRecoilState(
     updatedObjectNamePluralState,
+  );
+  const setNavigationMemorizedUrl = useSetRecoilState(
+    navigationMemorizedUrlState,
   );
   const { updateOneObjectMetadataItem } = useUpdateOneObjectMetadataItem();
   const {
@@ -93,6 +96,21 @@ export const SettingsUpdateDataModelObjectAboutForm = ({
     navigate(SettingsPath.ObjectDetail, {
       objectNamePlural: objectNamePluralForRedirection,
     });
+
+    const updatedObjectNamePlural =
+      updatedObject?.data?.updateOneObject.namePlural;
+
+    if (!isDefined(updatedObjectNamePlural)) {
+      return;
+    }
+
+    setNavigationMemorizedUrl((previousNavigationMemorizedUrl) =>
+      computeUpdatedNavigationMemorizedUrlAfterObjectNamePluralChange(
+        previousNavigationMemorizedUrl,
+        objectMetadataItem.namePlural,
+        updatedObjectNamePlural,
+      ),
+    );
   };
 
   const updateObjectMetadata = async (

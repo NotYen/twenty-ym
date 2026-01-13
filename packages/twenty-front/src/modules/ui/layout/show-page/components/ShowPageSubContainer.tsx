@@ -21,6 +21,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React from 'react';
 import { isDefined } from 'twenty-shared/utils';
+import { logDebug } from '~/utils/logDebug';
 
 const StyledShowPageRightContainer = styled.div`
   display: flex;
@@ -105,7 +106,20 @@ export const ShowPageSubContainer = ({
   const fieldsCard = <FieldsCard />;
 
   const renderActiveTabContent = () => {
-    const activeTab = tabs.find((tab) => tab.id === activeTabId);
+    const visibleTabsForContent = tabs.filter((tab) => !tab.hide);
+    // 如果 activeTabId 還沒初始化，使用第一個 visible tab
+    const effectiveActiveTabId = activeTabId ?? visibleTabsForContent[0]?.id;
+    const activeTab = tabs.find((tab) => tab.id === effectiveActiveTabId);
+
+    logDebug('[ShowPageSubContainer] renderActiveTabContent', {
+      activeTabId,
+      effectiveActiveTabId,
+      visibleTabsCount: visibleTabsForContent.length,
+      visibleTabIds: visibleTabsForContent.map((t) => t.id),
+      activeTabFound: !!activeTab,
+      activeTabCardsCount: activeTab?.cards?.length ?? 0,
+    });
+
     if (!activeTab?.cards?.length) return null;
 
     return (

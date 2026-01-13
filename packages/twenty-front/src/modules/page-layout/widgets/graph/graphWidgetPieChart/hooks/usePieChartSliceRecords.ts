@@ -1,16 +1,19 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
 import {
-    buildDateRangeFilter,
-    extractYearFromFilter,
-    isNonIsoDateGranularity,
+  buildDateRangeFilter,
+  extractYearFromFilter,
+  isNonIsoDateGranularity,
 } from '@/page-layout/widgets/graph/utils/buildDateRangeFilter';
 import { useEffect, useMemo, useRef } from 'react';
 import {
-    ObjectRecordGroupByDateGranularity,
-    type RecordGqlOperationFilter,
+  type ObjectRecordGroupByDateGranularity,
+  type RecordGqlOperationFilter,
 } from 'twenty-shared/types';
-import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
+import {
+  computeRecordGqlOperationFilter,
+  isDefined,
+} from 'twenty-shared/utils';
 import { type PieChartConfiguration } from '~/generated/graphql';
 
 const PIE_CHART_TOOLTIP_RECORDS_LIMIT = 50;
@@ -72,7 +75,8 @@ export const usePieChartSliceRecords = ({
       )
     : objectMetadataItem?.fields?.find((field) => field.name === 'name') ||
       objectMetadataItem?.fields?.find(
-        (field) => field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
+        (field) =>
+          field.id === objectMetadataItem?.labelIdentifierFieldMetadataId,
       );
 
   // Build filter for this slice
@@ -107,7 +111,9 @@ export const usePieChartSliceRecords = ({
     const dateRangeFilter = buildDateRangeFilter({
       fieldName: groupByField.name,
       dimensionValue: sliceDimensionValue,
-      dateGranularity: configuration?.dateGranularity as ObjectRecordGroupByDateGranularity | undefined,
+      dateGranularity: configuration?.dateGranularity as
+        | ObjectRecordGroupByDateGranularity
+        | undefined,
       subFieldName,
       field: groupByField,
       referenceYear,
@@ -119,7 +125,9 @@ export const usePieChartSliceRecords = ({
 
     // 如果是非 ISO 日期格式的粒度（如 QUARTER_OF_THE_YEAR），且無法建立日期範圍 filter，
     // 返回空物件，讓 combinedFilter 只包含 widget 的 filter，等於顯示全部記錄
-    const pieGranularity = configuration?.dateGranularity as ObjectRecordGroupByDateGranularity | undefined;
+    const pieGranularity = configuration?.dateGranularity as
+      | ObjectRecordGroupByDateGranularity
+      | undefined;
     if (isNonIsoDateGranularity(pieGranularity)) {
       return {}; // 空 filter，顯示全部記錄
     }
@@ -137,7 +145,14 @@ export const usePieChartSliceRecords = ({
     return {
       [groupByField.name]: { eq: sliceDimensionValue },
     };
-  }, [groupByField, sliceDimensionValue, configuration?.groupBySubFieldName, configuration?.dateGranularity, configuration?.filter, shouldQuery]);
+  }, [
+    groupByField,
+    sliceDimensionValue,
+    configuration?.groupBySubFieldName,
+    configuration?.dateGranularity,
+    configuration?.filter,
+    shouldQuery,
+  ]);
 
   // Combine with widget's existing filter
   const combinedFilter = useMemo((): RecordGqlOperationFilter | undefined => {
@@ -189,7 +204,10 @@ export const usePieChartSliceRecords = ({
     objectNameSingular: objectMetadataItem?.nameSingular ?? 'skip',
     filter: combinedFilter,
     limit: PIE_CHART_TOOLTIP_RECORDS_LIMIT,
-    skip: !shouldQuery || combinedFilter === undefined || !objectMetadataItem?.nameSingular,
+    skip:
+      !shouldQuery ||
+      combinedFilter === undefined ||
+      !objectMetadataItem?.nameSingular,
   });
 
   const transformedRecords = useMemo((): SliceRecord[] => {
@@ -247,7 +265,9 @@ export const usePieChartSliceRecords = ({
   // 3. If loading with no previous data, return empty (don't show records section)
   // 4. If loaded with new data, show it
 
-  const cachedData = isDefined(cacheKey) ? globalSliceCache.get(cacheKey) : undefined;
+  const cachedData = isDefined(cacheKey)
+    ? globalSliceCache.get(cacheKey)
+    : undefined;
 
   // Priority 1: Use cached data for current slice
   if (isDefined(cachedData)) {

@@ -2,9 +2,9 @@ import { usePageLayoutIdFromContextStoreTargetedRecord } from '@/command-menu/pa
 import { useUpdateCurrentWidgetConfig } from '@/command-menu/pages/page-layout/hooks/useUpdateCurrentWidgetConfig';
 import { useWidgetInEditMode } from '@/command-menu/pages/page-layout/hooks/useWidgetInEditMode';
 import {
-    getValueFormatLabel,
-    VALUE_FORMAT_OPTIONS,
-    type ValueDisplayType,
+  getValueFormatLabel,
+  VALUE_FORMAT_OPTIONS,
+  type ValueDisplayType,
 } from '@/command-menu/pages/page-layout/utils/getValueFormatLabel';
 import { DropdownMenuItemsContainer } from '@/ui/layout/dropdown/components/DropdownMenuItemsContainer';
 import { DropdownComponentInstanceContext } from '@/ui/layout/dropdown/contexts/DropdownComponentInstanceContext';

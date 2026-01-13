@@ -8,7 +8,6 @@ import { useRecoilState } from 'recoil';
 import { buildSignedPath, isDefined } from 'twenty-shared/utils';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
 import { useUploadFileMutation } from '~/generated-metadata/graphql';
-import { FileFolder } from '~/generated/graphql';
 
 export const useAIChatFileUpload = () => {
   const coreClient = useApolloCoreClient();
@@ -27,7 +26,7 @@ export const useAIChatFileUpload = () => {
       const result = await uploadFile({
         variables: {
           file,
-                    // fileFolder: FileFolder.AgentChat,
+          // fileFolder: FileFolder.AgentChat,
         },
       });
 

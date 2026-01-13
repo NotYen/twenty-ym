@@ -20,8 +20,7 @@ import { t } from '@lingui/core/macro';
 import { useCallback, useContext, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-const DUPLICATE_CONFIRMATION_MODAL_ID =
-  'duplicate-fullname-confirmation-modal';
+const DUPLICATE_CONFIRMATION_MODAL_ID = 'duplicate-fullname-confirmation-modal';
 
 const StyledInputWrapper = styled.div<{ hasWarning?: boolean }>`
   position: relative;
@@ -31,8 +30,8 @@ const StyledInputWrapper = styled.div<{ hasWarning?: boolean }>`
     hasWarning &&
     css`
       input {
-        border-color: ${theme.color.orange} !important;
         background-color: ${theme.color.orange}10 !important;
+        border-color: ${theme.color.orange} !important;
       }
     `}
 `;
@@ -117,8 +116,9 @@ export const FullNameFieldInputWithDuplicateSuggestion = () => {
     const fullName = convertToFullName(newDoubleText);
 
     // 檢查是否有「完全相同」的記錄（忽略大小寫和前後空格）
-    const trimmedFullName =
-      `${fullName.firstName} ${fullName.lastName}`.trim().toLowerCase();
+    const trimmedFullName = `${fullName.firstName} ${fullName.lastName}`
+      .trim()
+      .toLowerCase();
     const hasExactMatch = suggestions.some(
       (s) => s.label.trim().toLowerCase() === trimmedFullName,
     );

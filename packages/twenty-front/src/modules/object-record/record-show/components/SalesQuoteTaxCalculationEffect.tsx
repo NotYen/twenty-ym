@@ -94,7 +94,8 @@ export const SalesQuoteTaxCalculationEffect = ({
 
     // 防止重複更新：如果計算結果與上次相同，跳過
     if (
-      lastCalculationRef.current?.taxAmountMicros === calculatedTaxAmountMicros &&
+      lastCalculationRef.current?.taxAmountMicros ===
+        calculatedTaxAmountMicros &&
       lastCalculationRef.current?.totalMicros === calculatedTotalMicros
     ) {
       logDebug('[SalesQuoteTaxCalculation] Skipped: same as last calculation');

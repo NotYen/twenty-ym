@@ -9,7 +9,5 @@
  * - key === 'Process': some IMEs send this during composition
  */
 export const isIMEComposing = (event: KeyboardEvent): boolean => {
-  return (
-    event.isComposing || event.keyCode === 229 || event.key === 'Process'
-  );
+  return event.isComposing || event.keyCode === 229 || event.key === 'Process';
 };

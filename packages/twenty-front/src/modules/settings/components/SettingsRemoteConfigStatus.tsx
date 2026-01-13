@@ -13,7 +13,13 @@ import { useRecoilValue } from 'recoil';
 import { isFirebaseEnabled } from '@/analytics/firebase/config/firebase.config';
 import { useAllRemoteFeatureFlags } from '@/analytics/firebase/hooks/useRemoteConfig';
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
-import { IconCheck, IconLock, IconRefresh, IconServer, IconX } from 'twenty-ui/display';
+import {
+  IconCheck,
+  IconLock,
+  IconRefresh,
+  IconServer,
+  IconX,
+} from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
 
 const StyledContainer = styled.div`
@@ -62,21 +68,21 @@ const StyledSectionTitle = styled.div`
 `;
 
 const StyledFlagList = styled.div`
+  background: ${({ theme }) => theme.background.secondary};
+  border-radius: ${({ theme }) => theme.border.radius.md};
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing(2)};
   padding: ${({ theme }) => theme.spacing(3)};
-  background: ${({ theme }) => theme.background.secondary};
-  border-radius: ${({ theme }) => theme.border.radius.md};
 `;
 
 const StyledFlagItem = styled.div`
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: ${({ theme }) => theme.spacing(2)};
   background: ${({ theme }) => theme.background.primary};
   border-radius: ${({ theme }) => theme.border.radius.sm};
+  display: flex;
+  justify-content: space-between;
+  padding: ${({ theme }) => theme.spacing(2)};
 `;
 
 const StyledFlagName = styled.span`
@@ -95,18 +101,18 @@ const StyledFlagValue = styled.span<{ isEnabled: boolean }>`
 `;
 
 const StyledBlocklistSection = styled.div`
-  padding: ${({ theme }) => theme.spacing(3)};
   background: ${({ theme }) => theme.background.secondary};
   border-radius: ${({ theme }) => theme.border.radius.md};
+  padding: ${({ theme }) => theme.spacing(3)};
 `;
 
 const StyledBlocklistItem = styled.div`
-  display: flex;
   align-items: center;
+  color: ${({ theme }) => theme.color.red};
+  display: flex;
+  font-size: ${({ theme }) => theme.font.size.sm};
   gap: ${({ theme }) => theme.spacing(1)};
   padding: ${({ theme }) => theme.spacing(1)} 0;
-  font-size: ${({ theme }) => theme.font.size.sm};
-  color: ${({ theme }) => theme.color.red};
 `;
 
 const StyledEmptyMessage = styled.div`
@@ -130,9 +136,9 @@ const StyledDisabledMessage = styled.div`
 `;
 
 const StyledWorkspaceId = styled.span`
-  font-size: ${({ theme }) => theme.font.size.xs};
   color: ${({ theme }) => theme.font.color.tertiary};
   font-family: monospace;
+  font-size: ${({ theme }) => theme.font.size.xs};
 `;
 
 export const SettingsRemoteConfigStatus = () => {
@@ -238,12 +244,12 @@ export const SettingsRemoteConfigStatus = () => {
             <StyledFlagItem key={key}>
               <StyledFlagName>{key}</StyledFlagName>
               <StyledFlagValue isEnabled={flags[key] ?? true}>
-                {flags[key] ?? true ? (
+                {(flags[key] ?? true) ? (
                   <IconCheck size={14} />
                 ) : (
                   <IconX size={14} />
                 )}
-                {flags[key] ?? true ? t`Enabled` : t`Disabled`}
+                {(flags[key] ?? true) ? t`Enabled` : t`Disabled`}
               </StyledFlagValue>
             </StyledFlagItem>
           ))}

@@ -2,8 +2,8 @@ import { GraphWidgetChartContainer } from '@/page-layout/widgets/graph/component
 import { GraphWidgetLegend } from '@/page-layout/widgets/graph/components/GraphWidgetLegend';
 import { CHART_LEGEND_ITEM_THRESHOLD } from '@/page-layout/widgets/graph/constants/ChartLegendItemThreshold';
 import {
-    CustomCrosshairLayer,
-    type SliceHoverData,
+  CustomCrosshairLayer,
+  type SliceHoverData,
 } from '@/page-layout/widgets/graph/graphWidgetLineChart/components/CustomCrosshairLayer';
 import { CustomPointLabelsLayer } from '@/page-layout/widgets/graph/graphWidgetLineChart/components/CustomPointLabelsLayer';
 import { GraphLineChartTooltip } from '@/page-layout/widgets/graph/graphWidgetLineChart/components/GraphLineChartTooltip';
@@ -21,8 +21,8 @@ import { getLineChartAxisBottomConfig } from '@/page-layout/widgets/graph/graphW
 import { getLineChartAxisLeftConfig } from '@/page-layout/widgets/graph/graphWidgetLineChart/utils/getLineChartAxisLeftConfig';
 import { createGraphColorRegistry } from '@/page-layout/widgets/graph/utils/createGraphColorRegistry';
 import {
-    formatGraphValue,
-    type GraphValueFormatOptions,
+  formatGraphValue,
+  type GraphValueFormatOptions,
 } from '@/page-layout/widgets/graph/utils/graphFormatters';
 import { NodeDimensionEffect } from '@/ui/utilities/dimensions/components/NodeDimensionEffect';
 import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
@@ -30,11 +30,11 @@ import { useSetRecoilComponentState } from '@/ui/utilities/state/component-state
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import {
-    ResponsiveLine,
-    type LineCustomSvgLayerProps,
-    type LineSeries,
-    type Point,
-    type SliceTooltipProps,
+  ResponsiveLine,
+  type LineCustomSvgLayerProps,
+  type LineSeries,
+  type Point,
+  type SliceTooltipProps,
 } from '@nivo/line';
 import { useCallback, useId, useRef, useState } from 'react';
 import { isDefined } from 'twenty-shared/utils';

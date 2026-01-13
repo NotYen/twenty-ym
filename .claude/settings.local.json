@@ -6,7 +6,18 @@
       "Bash(mkdir:*)",
       "Bash(npx nx run:*)",
       "Bash(npx tsc:*)",
-      "Bash(npx eslint:*)"
+      "Bash(npx eslint:*)",
+      "Bash(npx nx lint:*)",
+      "Bash(npx nx typecheck:*)",
+      "Bash(yarn start)",
+      "Bash(xargs -I {} sh -c 'filename=$\\(basename {} .tsx\\); filename=$\\(basename $filename .ts\\); export_name=$\\(grep \"\"^export const\"\" {} | head -1 | sed \"\"s/export const \\\\\\([^ =]*\\\\\\).*/\\\\1/\"\"\\); if [ \"\"$filename\"\" != \"\"$export_name\"\" ]; then echo \"\"❌ {}: export=$export_name, file=$filename\"\"; fi')",
+      "Bash(git stash pop:*)",
+      "Bash(ls:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker ps:*)",
+      "Bash(git stash:*)",
+      "Bash(git checkout:*)",
+      "Bash(grep:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

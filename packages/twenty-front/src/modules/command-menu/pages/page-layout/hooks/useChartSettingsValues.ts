@@ -6,8 +6,8 @@ import { getChartAxisNameDisplayOptions } from '@/command-menu/pages/page-layout
 import { getDateGranularityLabel } from '@/command-menu/pages/page-layout/utils/getDateGranularityLabel';
 import { getFieldLabelWithSubField } from '@/command-menu/pages/page-layout/utils/getFieldLabelWithSubField';
 import {
-    getValueFormatLabel,
-    type ValueDisplayType,
+  getValueFormatLabel,
+  type ValueDisplayType,
 } from '@/command-menu/pages/page-layout/utils/getValueFormatLabel';
 import { objectMetadataItemsState } from '@/object-metadata/states/objectMetadataItemsState';
 import { getAggregateOperationLabel } from '@/object-record/record-board/record-board-column/utils/getAggregateOperationLabel';
@@ -217,7 +217,7 @@ export const useChartSettingsValues = ({
         return configuration.displayDataLabel ?? undefined;
       case CHART_CONFIGURATION_SETTING_IDS.CENTER_METRIC:
         return isPieChart
-          ? (configuration.showCenterMetric ?? undefined)
+          ? ((configuration as { showCenterMetric?: boolean }).showCenterMetric ?? undefined)
           : undefined;
       case CHART_CONFIGURATION_SETTING_IDS.STACKED_BARS:
         return configuration.__typename === 'BarChartConfiguration'
@@ -225,7 +225,7 @@ export const useChartSettingsValues = ({
           : true;
       case CHART_CONFIGURATION_SETTING_IDS.STACKED_LINES:
         return configuration.__typename === 'LineChartConfiguration'
-          ? configuration.isStacked !== false
+          ? (configuration as { isStacked?: boolean }).isStacked !== false
           : true;
       case CHART_CONFIGURATION_SETTING_IDS.OMIT_NULL_VALUES:
         return isBarOrLineChart
@@ -257,7 +257,7 @@ export const useChartSettingsValues = ({
           : undefined;
       case CHART_CONFIGURATION_SETTING_IDS.SHOW_LEGEND:
         return isBarOrLineChart || isPieChart
-          ? (configuration.displayLegend ?? true)
+          ? ((configuration as { displayLegend?: boolean }).displayLegend ?? true)
           : true;
       case CHART_CONFIGURATION_SETTING_IDS.TOOLTIP_DISPLAY_FIELD: {
         const isTooltipDisplayFieldSupported =

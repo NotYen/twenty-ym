@@ -12,8 +12,9 @@ import { UserContext } from '@/users/contexts/UserContext';
 import { stringifyRelativeDateFilter } from '@/views/view-filter-value/utils/stringifyRelativeDateFilter';
 import { useContext } from 'react';
 import { useRecoilValue } from 'recoil';
-import { type FirstDayOfTheWeek, ViewFilterOperand } from 'twenty-shared/types';
+import { ViewFilterOperand } from 'twenty-shared/types';
 import {
+  type FirstDayOfTheWeek,
   isDefined,
   type RelativeDateFilter,
   resolveDateFilter,
@@ -106,7 +107,6 @@ export const ObjectFilterDropdownDateInput = () => {
 
   return (
     <DatePicker
-      instanceId={`object-filter-dropdown-date-input`}
       relativeDate={relativeDate}
       isRelative={isRelativeOperand}
       date={plainDateValue ?? null}

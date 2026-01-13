@@ -18,11 +18,11 @@ import { useTheme } from '@emotion/react';
 import { useLingui } from '@lingui/react/macro';
 import { createPortal } from 'react-dom';
 import {
-    AppTooltip,
-    IconChevronLeft,
-    IconCircle,
-    IconCircleDashed,
-    IconCopy,
+  AppTooltip,
+  IconChevronLeft,
+  IconCircle,
+  IconCircleDashed,
+  IconCopy,
 } from 'twenty-ui/display';
 import { MenuItem, MenuItemSelect } from 'twenty-ui/navigation';
 import { ViewVisibility } from '~/generated-metadata/graphql';

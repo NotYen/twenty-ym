@@ -4,10 +4,8 @@ import { RecordTableRowVirtualizedRouterLevel1 } from '@/object-record/record-ta
 import { TABLE_VIRTUALIZATION_DEBUG_ACTIVATED } from '@/object-record/record-table/virtualization/constants/TableVirtualizationDebugActivated';
 
 import { realIndexByVirtualIndexComponentFamilyState } from '@/object-record/record-table/virtualization/states/realIndexByVirtualIndexComponentFamilyState';
-import { totalNumberOfRecordsToVirtualizeComponentState } from '@/object-record/record-table/virtualization/states/totalNumberOfRecordsToVirtualizeComponentState';
 
 import { useRecoilComponentFamilyValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentFamilyValue';
-import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/hooks/useRecoilComponentValue';
 import { styled } from '@linaria/react';
 import { isDefined } from 'twenty-shared/utils';
 
@@ -21,19 +19,19 @@ const StyledVirtualizedRowContainer = styled.div<{
 
 type RecordTableRowVirtualizedContainerProps = {
   virtualIndex: number;
+  totalNumberOfRecordsToVirtualize: number;
+  lowDetailsActivated: boolean;
 };
 
 export const RecordTableRowVirtualizedContainer = ({
   virtualIndex,
+  totalNumberOfRecordsToVirtualize,
+  lowDetailsActivated,
 }: RecordTableRowVirtualizedContainerProps) => {
   const realIndex = useRecoilComponentFamilyValue(
     realIndexByVirtualIndexComponentFamilyState,
     { virtualIndex },
   );
-
-  const totalNumberOfRecordsToVirtualize =
-    useRecoilComponentValue(totalNumberOfRecordsToVirtualizeComponentState) ??
-    0;
 
   if (!isDefined(realIndex) || realIndex >= totalNumberOfRecordsToVirtualize) {
     return null;
@@ -50,7 +48,10 @@ export const RecordTableRowVirtualizedContainer = ({
       {TABLE_VIRTUALIZATION_DEBUG_ACTIVATED && (
         <RecordTableRowVirtualizedDebugRowHelper virtualIndex={virtualIndex} />
       )}
-      <RecordTableRowVirtualizedRouterLevel1 realIndex={realIndex} />
+      <RecordTableRowVirtualizedRouterLevel1
+        realIndex={realIndex}
+        lowDetailsActivated={lowDetailsActivated}
+      />
     </StyledVirtualizedRowContainer>
   );
 };

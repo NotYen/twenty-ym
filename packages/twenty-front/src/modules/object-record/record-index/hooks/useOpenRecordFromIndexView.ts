@@ -1,3 +1,4 @@
+import { useCommandMenu } from '@/command-menu/hooks/useCommandMenu';
 import { useOpenRecordInCommandMenu } from '@/command-menu/hooks/useOpenRecordInCommandMenu';
 import { MAIN_CONTEXT_STORE_INSTANCE_ID } from '@/context-store/constants/MainContextStoreInstanceId';
 import { contextStoreRecordShowParentViewComponentState } from '@/context-store/states/contextStoreRecordShowParentViewComponentState';
@@ -21,6 +22,7 @@ export const useOpenRecordFromIndexView = () => {
 
   const navigate = useNavigateApp();
   const { openRecordInCommandMenu } = useOpenRecordInCommandMenu();
+  const { closeCommandMenu } = useCommandMenu();
 
   const isMobile = useIsMobile();
 
@@ -82,6 +84,7 @@ export const useOpenRecordFromIndexView = () => {
             resetNavigationStack: true,
           });
         } else {
+          closeCommandMenu();
           navigate(AppPath.RecordShowPage, {
             objectNameSingular,
             objectRecordId: recordId,
@@ -97,6 +100,7 @@ export const useOpenRecordFromIndexView = () => {
       navigate,
       openRecordInCommandMenu,
       isMobile,
+      closeCommandMenu,
     ],
   );
 

@@ -72,13 +72,25 @@ export const useLoadRecordsToVirtualRows = () => {
 
         const recordIds = records.map((record) => record.id);
 
-        const newAllRecordIds = currentAllRecordIds.concat();
+        // When loading from the beginning (startingRealIndex === 0), we need to
+        // reset the array to only contain the new records. This prevents stale
+        // record IDs from remaining at the end of the array after deletions.
+        // For pagination (startingRealIndex > 0), we extend the existing array.
+        let newAllRecordIds: string[];
+        if (startingRealIndex === 0) {
+          // Initial load or reset: use only the new record IDs
+          newAllRecordIds = recordIds;
+        } else {
+          // Pagination: extend the existing array
+          newAllRecordIds = currentAllRecordIds.concat();
+          for (let i = 0; i < records.length; i++) {
+            newAllRecordIds[i + startingRealIndex] = recordIds[i];
+          }
+        }
 
-        for (let i = 0; i < records.length; i++) {
-          newAllRecordIds[i + startingRealIndex] = recordIds[i];
-
-          if (hasUserSelectedAllRows) {
-            set(isRowSelectedCallbackState(recordIds[i]), true);
+        if (hasUserSelectedAllRows) {
+          for (const recordId of recordIds) {
+            set(isRowSelectedCallbackState(recordId), true);
           }
         }
 

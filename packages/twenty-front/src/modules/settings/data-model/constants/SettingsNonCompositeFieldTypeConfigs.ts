@@ -1,34 +1,34 @@
 import {
-    type FieldArrayValue,
-    type FieldBooleanValue,
-    type FieldDateTimeValue,
-    type FieldDateValue,
-    type FieldJsonValue,
-    type FieldMultiSelectValue,
-    type FieldNumberValue,
-    type FieldRelationValue,
-    type FieldSelectValue,
-    type FieldTextValue,
-    type FieldUUidValue
+  type FieldArrayValue,
+  type FieldBooleanValue,
+  type FieldDateTimeValue,
+  type FieldDateValue,
+  type FieldJsonValue,
+  type FieldMultiSelectValue,
+  type FieldNumberValue,
+  type FieldRelationValue,
+  type FieldSelectValue,
+  type FieldTextValue,
+  type FieldUUidValue,
 } from '@/object-record/record-field/ui/types/FieldMetadata';
 import { DEFAULT_DATE_VALUE } from '@/settings/data-model/constants/DefaultDateValue';
 import { type SettingsFieldTypeCategoryType } from '@/settings/data-model/types/SettingsFieldTypeCategoryType';
 import { type SettingsNonCompositeFieldType } from '@/settings/data-model/types/SettingsNonCompositeFieldType';
 import { type FieldRatingValue } from 'twenty-shared/types';
 import {
-    IllustrationIconArray,
-    IllustrationIconCalendarEvent,
-    IllustrationIconCalendarTime,
-    IllustrationIconJson,
-    IllustrationIconNumbers,
-    IllustrationIconOneToMany,
-    IllustrationIconStar,
-    IllustrationIconTag,
-    IllustrationIconTags,
-    IllustrationIconText,
-    IllustrationIconToggle,
-    IllustrationIconUid,
-    type IconComponent,
+  IllustrationIconArray,
+  IllustrationIconCalendarEvent,
+  IllustrationIconCalendarTime,
+  IllustrationIconJson,
+  IllustrationIconNumbers,
+  IllustrationIconOneToMany,
+  IllustrationIconStar,
+  IllustrationIconTag,
+  IllustrationIconTags,
+  IllustrationIconText,
+  IllustrationIconToggle,
+  IllustrationIconUid,
+  type IconComponent,
 } from 'twenty-ui/display';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
 

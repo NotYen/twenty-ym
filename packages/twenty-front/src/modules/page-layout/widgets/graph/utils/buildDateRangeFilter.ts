@@ -1,8 +1,8 @@
 import { type FieldMetadataItem } from '@/object-metadata/types/FieldMetadataItem';
 import {
-    FieldMetadataType,
-    ObjectRecordGroupByDateGranularity,
-    type RecordGqlOperationFilter,
+  FieldMetadataType,
+  ObjectRecordGroupByDateGranularity,
+  type RecordGqlOperationFilter,
 } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import { logDebug } from '~/utils/logDebug';
@@ -206,8 +206,7 @@ const parseDateRange = (
         return undefined;
       }
 
-      const monthNum =
-        MONTH_OF_YEAR_MAP[dimensionValue.toLowerCase().trim()];
+      const monthNum = MONTH_OF_YEAR_MAP[dimensionValue.toLowerCase().trim()];
       if (!monthNum) {
         logDebug('[parseDateRange] MONTH_OF_THE_YEAR 無法解析月份', {
           dimensionValue,

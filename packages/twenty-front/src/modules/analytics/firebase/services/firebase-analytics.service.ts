@@ -8,6 +8,8 @@ import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
 import { firebaseConfig } from '../config/firebase.config';
 
+import type { FirebaseOptions } from 'firebase/app';
+
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 type FirebaseAppModule = typeof import('firebase/app');
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
@@ -15,7 +17,6 @@ type AnalyticsModule = typeof import('firebase/analytics');
 
 type FirebaseApp = ReturnType<FirebaseAppModule['initializeApp']>;
 type Analytics = ReturnType<AnalyticsModule['getAnalytics']>;
-type FirebaseOptions = Parameters<FirebaseAppModule['initializeApp']>[0];
 
 let firebaseApp: FirebaseApp | null = null;
 let analytics: Analytics | null = null;

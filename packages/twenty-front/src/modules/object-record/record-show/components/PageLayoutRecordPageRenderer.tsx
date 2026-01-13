@@ -5,9 +5,9 @@ import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSi
 import { RecordShowContainerContextStoreTargetedRecordsEffect } from '@/object-record/record-show/components/RecordShowContainerContextStoreTargetedRecordsEffect';
 import { RecordShowEffect } from '@/object-record/record-show/components/RecordShowEffect';
 import { recordStoreFamilySelector } from '@/object-record/record-store/states/selectors/recordStoreFamilySelector';
+import { OpportunityResponsibleBusinessSyncEffect } from '@/opportunities/components/OpportunityResponsibleBusinessSyncEffect';
 import { PageLayoutRenderer } from '@/page-layout/components/PageLayoutRenderer';
 import { useRecordPageLayoutId } from '@/page-layout/hooks/useRecordPageLayoutId';
-import { OpportunityResponsibleBusinessSyncEffect } from '@/opportunities/components/OpportunityResponsibleBusinessSyncEffect';
 import { LayoutRenderingProvider } from '@/ui/layout/contexts/LayoutRenderingContext';
 import { type TargetRecordIdentifier } from '@/ui/layout/contexts/TargetRecordIdentifier';
 import { RightDrawerFooter } from '@/ui/layout/right-drawer/components/RightDrawerFooter';
@@ -15,6 +15,7 @@ import styled from '@emotion/styled';
 import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 import { PageLayoutType } from '~/generated/graphql';
+import { logDebug } from '~/utils/logDebug';
 
 const StyledShowPageBannerContainer = styled.div`
   z-index: 1;
@@ -51,9 +52,27 @@ export const PageLayoutRecordPageRenderer = ({
     }),
   );
 
-  const { pageLayoutId } = useRecordPageLayoutId({
+  const { pageLayoutId, loading } = useRecordPageLayoutId({
     id: targetRecordIdentifier.id,
     targetObjectNameSingular: targetRecordIdentifier.targetObjectNameSingular,
+  });
+
+  // Dashboard 需要等 pageLayoutId 載入
+  const isDashboard =
+    targetRecordIdentifier.targetObjectNameSingular ===
+    CoreObjectNameSingular.Dashboard;
+  const isWaitingForPageLayoutId =
+    isDashboard && loading && !isDefined(pageLayoutId);
+
+  logDebug('[PageLayoutRecordPageRenderer] render', {
+    recordId: targetRecordIdentifier.id,
+    objectNameSingular: targetRecordIdentifier.targetObjectNameSingular,
+    pageLayoutId,
+    loading,
+    isInRightDrawer,
+    isDashboard,
+    isWaitingForPageLayoutId,
+    willRenderPageLayout: isDefined(pageLayoutId),
   });
 
   return (
@@ -92,11 +111,9 @@ export const PageLayoutRecordPageRenderer = ({
                 targetObjectNameSingular:
                   targetRecordIdentifier.targetObjectNameSingular,
               },
-              layoutType:
-                targetRecordIdentifier.targetObjectNameSingular ===
-                CoreObjectNameSingular.Dashboard
-                  ? PageLayoutType.DASHBOARD
-                  : PageLayoutType.RECORD_PAGE,
+              layoutType: isDashboard
+                ? PageLayoutType.DASHBOARD
+                : PageLayoutType.RECORD_PAGE,
               isInRightDrawer,
             }}
           >
