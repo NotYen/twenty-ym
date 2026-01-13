@@ -117,15 +117,24 @@ export const transformTwoDimensionalGroupByToBarChartData = ({
     xValues.add(xValue);
     yValues.add(yValue);
 
+    // Store raw Y-axis value for filtering in stacked charts
+    const rawYValue = dimensionValues[1] ?? null;
+
     if (!dataMap.has(xValue)) {
       dataMap.set(xValue, {
         [indexByKey]: xValue,
         rawDimensionValue,
+        rawSeriesValues: {},
       });
     }
 
     const dataItem = dataMap.get(xValue)!;
     dataItem[yValue] = aggregateValue;
+
+    // Store raw Y-axis value mapped by formatted label
+    if (dataItem.rawSeriesValues) {
+      dataItem.rawSeriesValues[yValue] = rawYValue;
+    }
   });
 
   // Sorting needed because yValues may be unordered despite BE orderBy, if there are empty groups

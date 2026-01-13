@@ -914,9 +914,9 @@ msgstr "Souhrn"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1334,7 +1334,7 @@ msgid "Are you sure you want to delete \"{recordName}\"?"
 msgstr ""
 
 #. js-lingui-id: Lejgsc
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Are you sure you want to delete LINE configuration?"
 msgstr ""
 
@@ -1699,6 +1699,13 @@ msgstr "Rezervujte si úvodní schůzku"
 msgid "Boolean"
 msgstr "Booleovská hodnota"
 
+#. js-lingui-id: 3zeIwb
+#. placeholder {0}: botInfo.displayName
+#. placeholder {1}: botInfo.userId
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Bot verified: {0} (ID: {1})"
+msgstr ""
+
 #. js-lingui-id: njBeMm
 #: src/modules/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
 msgid "Both"
@@ -1969,18 +1976,16 @@ msgstr "Changelog"
 
 #. js-lingui-id: uHVuiy
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Channel Access Token"
 msgstr ""
 
 #. js-lingui-id: 4IVK41
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Channel ID"
 msgstr ""
 
 #. js-lingui-id: 4iLv/J
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "Channel Secret"
 msgstr ""
 
@@ -2075,11 +2080,6 @@ msgstr "Vymazat"
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Clear the field or \"X\" to revert to environment/default value."
 msgstr "Vyčistěte pole nebo \"X\" pro návrat k výchozí hodnotě prostředí."
-
-#. js-lingui-id: 3+0X+I
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Click \"Verify\" to test the connection"
-msgstr ""
 
 #. js-lingui-id: HevGC0
 #: src/modules/workflow/workflow-steps/workflow-actions/form-action/components/WorkflowFormEmptyMessage.tsx
@@ -2313,9 +2313,9 @@ msgstr "Nakonfigurujte, jak by se měly zobrazovat vaše události ve vašem kal
 msgid "Configure IMAP settings to receive and sync your emails."
 msgstr "Konfigurujte nastavení IMAP pro přijímání a synchronizaci vašich e-mailů."
 
-#. js-lingui-id: TaNuxP
+#. js-lingui-id: oEOFSa
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
-msgid "Configure LINE Messaging API credentials."
+msgid "Configure LINE Official Account credentials for messaging integration."
 msgstr ""
 
 #. js-lingui-id: gk/8eh
@@ -2327,11 +2327,6 @@ msgstr "Nakonfigurujte nastavení SMTP pro odesílání e-mailů z vašeho účt
 #: src/modules/settings/domains/components/SettingsDomainRecords.tsx
 msgid "Configure these DNS records with your domain provider"
 msgstr "Nakonfigurujte tyto DNS záznamy u svého poskytovatele domény"
-
-#. js-lingui-id: stSVPA
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Configure this Webhook URL in your LINE Developers Console:"
-msgstr ""
 
 #. js-lingui-id: SpV+F6
 #: src/pages/settings/ai/components/SettingsAgentHandoffSection.tsx
@@ -2427,7 +2422,7 @@ msgid "Connected accounts"
 msgstr "Připojené účty"
 
 #. js-lingui-id: vDvOdi
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Connection failed: {error}"
 msgstr ""
 
@@ -2436,15 +2431,11 @@ msgstr ""
 msgid "Connection settings"
 msgstr "Nastavení připojení"
 
-#. js-lingui-id: sjPFYz
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Connection Status"
-msgstr ""
-
-#. js-lingui-id: QoS5CK
-#. placeholder {1}: botInfo.displayName
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Connection successful! Bot: {1}"
+#. js-lingui-id: gk1pkv
+#. placeholder {3}: botInfo.displayName
+#. placeholder {4}: botInfo.userId
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Connection successful! Bot: {3} (ID: {4})"
 msgstr ""
 
 #. js-lingui-id: f6bbrz
@@ -2533,7 +2524,6 @@ msgid "Copied to clipboard"
 msgstr "Zkopírováno do schránky"
 
 #. js-lingui-id: he3ygx
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
@@ -3302,7 +3292,7 @@ msgid "Delete API key"
 msgstr "Smazat API klíč"
 
 #. js-lingui-id: YfeGRe
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Delete Configuration"
 msgstr ""
 
@@ -3938,11 +3928,6 @@ msgstr "Prázdná schránka"
 msgid "Empty Object"
 msgstr "Prázdný objekt"
 
-#. js-lingui-id: tUr4vE
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Enable \"Use webhook\""
-msgstr ""
-
 #. js-lingui-id: q11Dk2
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 msgid "Enable bypass options"
@@ -4040,12 +4025,12 @@ msgid "Enter link"
 msgstr "Vložit odkaz"
 
 #. js-lingui-id: rQRXo8
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Enter new secret to update"
 msgstr ""
 
 #. js-lingui-id: 5glT/L
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Enter new token to update"
 msgstr ""
 
@@ -4122,17 +4107,17 @@ msgid "Enter value for {label}"
 msgstr ""
 
 #. js-lingui-id: F0vsCW
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Enter your LINE Channel Access Token"
 msgstr ""
 
 #. js-lingui-id: MGaJP1
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Enter your LINE Channel ID"
 msgstr ""
 
 #. js-lingui-id: 4p2l8N
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Enter your LINE Channel Secret"
 msgstr ""
 
@@ -4596,7 +4581,7 @@ msgid "Failed to delete jobs. Please try again later."
 msgstr "Nelze smazat úlohy. Prosím, zkuste to znovu později."
 
 #. js-lingui-id: w6JJ0c
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Failed to delete LINE configuration"
 msgstr ""
 
@@ -4630,10 +4615,10 @@ msgstr ""
 msgid "Failed to retry jobs. Please try again later."
 msgstr "Nepodařilo se znovu spustit úlohy. Prosím, zkuste to znovu později."
 
-#. js-lingui-id: D52UCB
-#. placeholder {0}: error?.message || 'Unknown error'
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Failed to save LINE configuration: {0}"
+#. js-lingui-id: xULd6S
+#. placeholder {2}: error?.message || 'Unknown error'
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Failed to save LINE configuration: {2}"
 msgstr ""
 
 #. js-lingui-id: y3HIOa
@@ -4647,7 +4632,7 @@ msgid "Failed to save settings"
 msgstr ""
 
 #. js-lingui-id: OhzfU4
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Failed to test LINE connection"
 msgstr ""
 
@@ -5011,11 +4996,6 @@ msgstr "Přejít na panely"
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
 msgid "Go to Draft"
 msgstr "Přejít na koncept"
-
-#. js-lingui-id: 5b2WKo
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Go to LINE Developers Console"
-msgstr ""
 
 #. js-lingui-id: BQE4ob
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -5550,7 +5530,6 @@ msgstr "Pokyny pro AI"
 #. js-lingui-id: nbfdhU
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
 #: src/pages/settings/integrations/SettingsIntegrations.tsx
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/modules/settings/hooks/useSettingsNavigationItems.tsx
 msgid "Integrations"
 msgstr "Integrace"
@@ -6044,34 +6023,23 @@ msgstr "Omezit, kolik hodnot lze do tohoto pole přidat"
 msgid "Line"
 msgstr "<b>Linie</b>"
 
-#. js-lingui-id: 5SpA60
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "LINE"
-msgstr ""
-
 #. js-lingui-id: PBu9oz
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "LINE configuration deleted successfully"
 msgstr ""
 
 #. js-lingui-id: 8wPGMl
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "LINE configuration saved successfully"
 msgstr ""
 
 #. js-lingui-id: DAfq12
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 msgid "LINE Integration"
 msgstr ""
 
-#. js-lingui-id: 8qWezs
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "LINE Official Account Configuration"
-msgstr ""
-
 #. js-lingui-id: RG05MI
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "LINE Official Account is configured"
 msgstr ""
 
@@ -6128,7 +6096,6 @@ msgstr "Načítám konfiguraci uložení..."
 #. js-lingui-id: Z3FXyt
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
@@ -6164,11 +6131,6 @@ msgstr "Odhlásit"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 msgid "Logs"
 msgstr "Protokoly"
-
-#. js-lingui-id: icY4ek
-#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
-msgid "Long access token string..."
-msgstr ""
 
 #. js-lingui-id: PTozs8
 #: src/modules/settings/admin-panel/components/SettingsAdminGeneral.tsx
@@ -6628,11 +6590,6 @@ msgstr "Název vašeho pracovního prostoru"
 msgid "Navbar"
 msgstr "Navigační lišta"
 
-#. js-lingui-id: SFMNai
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Navigate to Messaging API > Webhook settings"
-msgstr ""
-
 #. js-lingui-id: dVQ33h
 #: src/modules/action-menu/actions/record-actions/constants/DashboardActionsConfig.tsx
 msgid "Navigate to next dashboard"
@@ -6717,9 +6674,9 @@ msgid "New Account"
 msgstr "Nový účet"
 
 #. js-lingui-id: mJIA0/
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "Nový agent"
 
@@ -7031,8 +6988,8 @@ msgstr "Žádná data metrik nejsou k dispozici"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
+#: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "Nejsou dostupné žádné modely. Prosím, nakonfigurujte AI modely v nastavení vašeho pracovního prostoru."
 
@@ -7607,11 +7564,6 @@ msgstr "Odkaz pro resetování hesla byl odeslán na email"
 msgid "Paste the code below"
 msgstr "Vložte kód níže"
 
-#. js-lingui-id: jfLrGO
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Paste the Webhook URL above"
-msgstr ""
-
 #. js-lingui-id: I6gXOa
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
 msgid "Path"
@@ -7782,9 +7734,9 @@ msgstr "Zkontrolujte prosím svůj e-mail a klikněte na ověřovací odkaz."
 msgid "Please enter a valid URL"
 msgstr "Prosím zadejte platnou URL"
 
-#. js-lingui-id: EXe06s
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Please fill in all fields"
+#. js-lingui-id: kUMgrU
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
+msgid "Please fill in all LINE fields"
 msgstr ""
 
 #. js-lingui-id: CjNkdJ
@@ -8534,7 +8486,7 @@ msgid "Save as new view"
 msgstr "Uložit jako nové zobrazení"
 
 #. js-lingui-id: DyBPvP
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Save Configuration"
 msgstr ""
 
@@ -8756,11 +8708,6 @@ msgstr "Tajemství"
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
 msgid "Secret (optional)"
 msgstr "Tajný klíč (nepovinný)"
-
-#. js-lingui-id: 5+k/sc
-#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
-msgid "Secret string"
-msgstr ""
 
 #. js-lingui-id: a3LDKx
 #: src/pages/settings/security/SettingsSecuritySSOIdentifyProvider.tsx
@@ -9075,8 +9022,8 @@ msgstr "Nastavení vaší databáze..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -9106,11 +9053,6 @@ msgstr ""
 #. js-lingui-id: 4qiLkl
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariablesInfoModal.tsx
 msgid "Settings seen in \"Other / Admin Panel / Config Variables\" serve as the server-wide default values. These typically originate from the 'env.local' or '.env' files configured during deployment."
-msgstr ""
-
-#. js-lingui-id: iDaiGE
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Setup Instructions:"
 msgstr ""
 
 #. js-lingui-id: J2TlKG
@@ -9771,7 +9713,7 @@ msgid "Test"
 msgstr "Testovat"
 
 #. js-lingui-id: s7uMvM
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Test Connection"
 msgstr ""
 
@@ -10406,7 +10348,7 @@ msgid "Update"
 msgstr "Aktualizovat"
 
 #. js-lingui-id: Hw/5o0
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
+#: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Update Configuration"
 msgstr ""
 
@@ -10826,16 +10768,6 @@ msgstr "Webhook ID je vyžadován pro odstranění"
 msgid "Webhook ID is required for updates"
 msgstr "Webhook ID je vyžadován pro aktualizaci"
 
-#. js-lingui-id: nuh/Wq
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Webhook URL"
-msgstr ""
-
-#. js-lingui-id: RLiHU1
-#: src/pages/settings/integrations/SettingsIntegrationLine.tsx
-msgid "Webhook URL copied to clipboard"
-msgstr ""
-
 #. js-lingui-id: v1kQyJ
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/developers/webhooks/components/SettingsWebhooks.tsx
@@ -10933,8 +10865,8 @@ msgstr "Pracovní postupy"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx

@@ -1,7 +1,15 @@
 import { useObjectMetadataItemById } from '@/object-metadata/hooks/useObjectMetadataItemById';
 import { useFindManyRecords } from '@/object-record/hooks/useFindManyRecords';
+import {
+    buildDateRangeFilter,
+    extractYearFromFilter,
+    isNonIsoDateGranularity,
+} from '@/page-layout/widgets/graph/utils/buildDateRangeFilter';
 import { useEffect, useMemo, useRef } from 'react';
-import { type RecordGqlOperationFilter } from 'twenty-shared/types';
+import {
+    ObjectRecordGroupByDateGranularity,
+    type RecordGqlOperationFilter,
+} from 'twenty-shared/types';
 import { computeRecordGqlOperationFilter, isDefined } from 'twenty-shared/utils';
 import { type PieChartConfiguration } from '~/generated/graphql';
 
@@ -89,6 +97,33 @@ export const usePieChartSliceRecords = ({
       };
     }
 
+    // 嘗試從 filter 中提取年份（用於 MONTH_OF_THE_YEAR / QUARTER_OF_THE_YEAR）
+    const referenceYear = extractYearFromFilter(
+      configuration?.filter,
+      groupByField.name,
+    );
+
+    // Try to build date range filter for date fields with granularity
+    const dateRangeFilter = buildDateRangeFilter({
+      fieldName: groupByField.name,
+      dimensionValue: sliceDimensionValue,
+      dateGranularity: configuration?.dateGranularity as ObjectRecordGroupByDateGranularity | undefined,
+      subFieldName,
+      field: groupByField,
+      referenceYear,
+    });
+
+    if (dateRangeFilter) {
+      return dateRangeFilter;
+    }
+
+    // 如果是非 ISO 日期格式的粒度（如 QUARTER_OF_THE_YEAR），且無法建立日期範圍 filter，
+    // 返回空物件，讓 combinedFilter 只包含 widget 的 filter，等於顯示全部記錄
+    const pieGranularity = configuration?.dateGranularity as ObjectRecordGroupByDateGranularity | undefined;
+    if (isNonIsoDateGranularity(pieGranularity)) {
+      return {}; // 空 filter，顯示全部記錄
+    }
+
     // Handle subfield (e.g., address.city)
     if (subFieldName) {
       return {
@@ -102,12 +137,20 @@ export const usePieChartSliceRecords = ({
     return {
       [groupByField.name]: { eq: sliceDimensionValue },
     };
-  }, [groupByField, sliceDimensionValue, configuration?.groupBySubFieldName, shouldQuery]);
+  }, [groupByField, sliceDimensionValue, configuration?.groupBySubFieldName, configuration?.dateGranularity, configuration?.filter, shouldQuery]);
 
   // Combine with widget's existing filter
   const combinedFilter = useMemo((): RecordGqlOperationFilter | undefined => {
-    if (!isDefined(sliceFilter)) {
+    // sliceFilter 可能是 undefined（不查詢）或空物件 {}（顯示全部）
+    if (sliceFilter === undefined) {
       return undefined;
+    }
+
+    const filters: RecordGqlOperationFilter[] = [];
+
+    // 只有非空物件才加入 filters
+    if (Object.keys(sliceFilter).length > 0) {
+      filters.push(sliceFilter);
     }
 
     // Convert recordFilters/recordFilterGroups format to RecordGqlOperationFilter
@@ -127,26 +170,26 @@ export const usePieChartSliceRecords = ({
         });
 
         if (isDefined(convertedFilter)) {
-          return {
-            and: [sliceFilter, convertedFilter],
-          };
+          filters.push(convertedFilter);
         }
       } else {
         // Already in RecordGqlOperationFilter format
-        return {
-          and: [sliceFilter, configFilter as RecordGqlOperationFilter],
-        };
+        filters.push(configFilter as RecordGqlOperationFilter);
       }
     }
 
-    return sliceFilter;
+    // 如果 filters 為空，返回空物件（查詢全部）
+    if (filters.length === 0) {
+      return {};
+    }
+    return filters.length === 1 ? filters[0] : { and: filters };
   }, [sliceFilter, configuration?.filter, objectMetadataItem]);
 
   const { records, loading, totalCount } = useFindManyRecords({
     objectNameSingular: objectMetadataItem?.nameSingular ?? 'skip',
     filter: combinedFilter,
     limit: PIE_CHART_TOOLTIP_RECORDS_LIMIT,
-    skip: !shouldQuery || !isDefined(combinedFilter) || !objectMetadataItem?.nameSingular,
+    skip: !shouldQuery || combinedFilter === undefined || !objectMetadataItem?.nameSingular,
   });
 
   const transformedRecords = useMemo((): SliceRecord[] => {

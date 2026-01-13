@@ -76,7 +76,7 @@ msgstr "測試電子郵件"
 #. js-lingui-explicit-id
 #: src/emails/send-invite-link.email.tsx
 msgid "Join your team on Twenty"
-msgstr "加入您的團隊，使用 Twenty"
+msgstr "加入您的團隊，使用 Y-CRM"
 
 #. js-lingui-explicit-id
 #: src/emails/send-invite-link.email.tsx
@@ -96,7 +96,7 @@ msgstr "確認您的電子郵件地址"
 #. js-lingui-explicit-id
 #: src/emails/send-email-verification-link.email.tsx
 msgid "Thanks for registering for an account on Twenty! Before we get started, we just need to confirm that this is you. Click below to verify your email address."
-msgstr "感謝您在 Twenty 註冊帳戶！在開始之前，我們需要確認是您本人。請點擊以下驗證您的電子郵件地址。"
+msgstr "感謝您在 Y-CRM 註冊帳戶！在開始之前，我們需要確認是您本人。請點擊以下驗證您的電子郵件地址。"
 
 #. js-lingui-explicit-id
 #: src/emails/send-email-verification-link.email.tsx
@@ -121,7 +121,7 @@ msgstr "如果您未發起此更改，請立即聯繫您的工作區擁有者。
 #. js-lingui-explicit-id
 #: src/emails/password-update-notify.email.tsx
 msgid "Connect to Twenty"
-msgstr "連接到 Twenty"
+msgstr "連接到 Y-CRM"
 
 #. js-lingui-explicit-id
 #: src/emails/password-reset-link.email.tsx
@@ -166,7 +166,7 @@ msgstr "此工作區中的所有數據已被永久刪除。"
 #. js-lingui-explicit-id
 #: src/emails/clean-suspended-workspace.email.tsx
 msgid "If you wish to use Twenty again, you can create a new workspace."
-msgstr "如果您想再次使用 Twenty，可以創建一個新的工作區。"
+msgstr "如果您想再次使用 Y-CRM，可以創建一個新的工作區。"
 
 #. js-lingui-explicit-id
 #: src/emails/clean-suspended-workspace.email.tsx
@@ -176,7 +176,7 @@ msgstr "創建新的工作區"
 #. js-lingui-explicit-id
 #: src/components/WhatIsTwenty.tsx
 msgid "What is Twenty?"
-msgstr "什麼是Twenty？"
+msgstr "什麼是Y-CRM？"
 
 #. js-lingui-explicit-id
 #: src/components/WhatIsTwenty.tsx

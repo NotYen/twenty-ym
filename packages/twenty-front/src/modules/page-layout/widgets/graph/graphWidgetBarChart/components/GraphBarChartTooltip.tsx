@@ -11,6 +11,7 @@ import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/ho
 import { type ComputedDatum } from '@nivo/bar';
 import { isDefined } from 'twenty-shared/utils';
 import { type BarChartConfiguration } from '~/generated/graphql';
+import { logDebug } from '~/utils/logDebug';
 
 type GraphBarChartTooltipProps = {
   containerId: string;
@@ -53,13 +54,35 @@ export const GraphBarChartTooltip = ({
   );
   const hoveredRawDimensionValue = hoveredDataItem?.rawDimensionValue;
 
+  // Get the hovered series key (for stacked charts)
+  // datum.id is the series key (formatted Y-axis value)
+  const hoveredSeriesKey = hoveredDatum?.id
+    ? String(hoveredDatum.id)
+    : undefined;
+  // Get the raw Y-axis value from rawSeriesValues map
+  const hoveredSeriesRawValue = hoveredSeriesKey
+    ? hoveredDataItem?.rawSeriesValues?.[hoveredSeriesKey]
+    : undefined;
+
+  // 診斷 log
+  logDebug('[GraphBarChartTooltip] 診斷', {
+    indexValue: hoveredDatum?.indexValue,
+    seriesId: hoveredDatum?.id,
+    rawDimensionValue: hoveredRawDimensionValue,
+    rawSeriesValues: hoveredDataItem?.rawSeriesValues,
+    hoveredSeriesKey,
+    hoveredSeriesRawValue,
+    secondaryAxisDateGranularity:
+      configuration?.secondaryAxisGroupByDateGranularity,
+  });
+
   // Query records for the hovered bar
-  // Note: For stacked charts, this will show all records for the X-axis group
-  // because we don't have the raw Y-axis value stored.
+  // For stacked charts, if we have the raw series value, filter by both X and Y axis
   const { records, totalCount } = useBarChartRecords({
     objectMetadataItemId: objectMetadataItemId ?? '',
     configuration: configuration ?? ({} as BarChartConfiguration),
     barDimensionValue: hoveredRawDimensionValue,
+    barSeriesValue: hoveredSeriesRawValue,
     enabled:
       isDefined(objectMetadataItemId) &&
       isDefined(configuration) &&
