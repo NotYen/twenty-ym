@@ -22,7 +22,7 @@ import { Outlet } from 'react-router-dom';
 import { useScreenSize } from 'twenty-ui/utilities';
 
 const StyledLayout = styled.div`
-  background: transparent;
+  background: ${({ theme }) => theme.background.noisy};
   display: flex;
   flex-direction: column;
   height: 100dvh;

@@ -20,6 +20,7 @@ export type NavigationDrawerProps = {
 };
 
 const StyledAnimatedContainer = styled(motion.div)`
+  background: ${({ theme }) => theme.background.noisy};
   max-height: 100vh;
   overflow: hidden;
 `;

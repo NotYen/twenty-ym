@@ -185,11 +185,11 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
     return () => {
       // 不需要清理，因為背景是全局設置
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     currentWorkspace?.id, // 加上 workspace id，確保 workspace 載入時觸發
     currentWorkspace?.backgroundImage,
     currentWorkspace?.backgroundImageSettings,
+    theme, // 加入 theme 依賴，確保主題切換時重新執行
   ]);
 
   return (
