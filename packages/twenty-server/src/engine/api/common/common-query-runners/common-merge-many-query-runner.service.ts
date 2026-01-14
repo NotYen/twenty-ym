@@ -62,6 +62,11 @@ export class CommonMergeManyQueryRunnerService extends CommonBaseQueryRunnerServ
       args,
     );
 
+    // Person-specific validation for LINE integration (must be done after fetching records)
+    if (objectMetadataItemWithFieldMaps.nameSingular === 'person') {
+      this.validatePersonMergeForLine(recordsToMerge);
+    }
+
     const priorityRecord = this.validateAndGetPriorityRecord(
       recordsToMerge,
       args.ids,
@@ -183,6 +188,15 @@ export class CommonMergeManyQueryRunnerService extends CommonBaseQueryRunnerServ
     return priorityRecord;
   }
 
+  // LINE fields that should have priority over the selected primary record
+  private static readonly LINE_PRIORITY_FIELDS = [
+    'lineUserId',
+    'lineDisplayName',
+    'lineProfilePictureUrl',
+    'lineStatus',
+    'lastLineInteractionAt',
+  ];
+
   private performDeepMerge(
     recordsToMerge: ObjectRecord[],
     priorityRecordId: string,
@@ -190,6 +204,7 @@ export class CommonMergeManyQueryRunnerService extends CommonBaseQueryRunnerServ
     isDryRun = false,
   ): Partial<ObjectRecord> {
     const mergedResult: Partial<ObjectRecord> = {};
+    const isPerson = objectMetadataItemWithFieldMaps.nameSingular === 'person';
 
     const allFieldNames = new Set<string>();
 
@@ -205,6 +220,23 @@ export class CommonMergeManyQueryRunnerService extends CommonBaseQueryRunnerServ
         }
       });
     });
+
+    // For Person objects, find the record that has LINE data (if any)
+    // This record's LINE fields will have priority regardless of the selected primary
+    let lineDataRecordId: string | null = null;
+
+    if (isPerson) {
+      const recordWithLineData = recordsToMerge.find(
+        (record) =>
+          record.lineUserId &&
+          typeof record.lineUserId === 'string' &&
+          record.lineUserId.trim() !== '',
+      );
+
+      if (recordWithLineData) {
+        lineDataRecordId = recordWithLineData.id;
+      }
+    }
 
     allFieldNames.forEach((fieldName) => {
       const recordsWithValues: { value: unknown; recordId: string }[] = [];
@@ -230,6 +262,16 @@ export class CommonMergeManyQueryRunnerService extends CommonBaseQueryRunnerServ
           return;
         }
 
+        // For Person LINE fields, use LINE data record as priority instead of selected primary
+        const effectivePriorityRecordId =
+          isPerson &&
+          lineDataRecordId &&
+          CommonMergeManyQueryRunnerService.LINE_PRIORITY_FIELDS.includes(
+            fieldName,
+          )
+            ? lineDataRecordId
+            : priorityRecordId;
+
         const relationType =
           isDryRun && fieldMetadata.type === FieldMetadataType.RELATION
             ? (fieldMetadata.settings as FieldMetadataRelationSettings)
@@ -239,7 +281,7 @@ export class CommonMergeManyQueryRunnerService extends CommonBaseQueryRunnerServ
         mergedResult[fieldName] = mergeFieldValues(
           fieldMetadata.type,
           recordsWithValues,
-          priorityRecordId,
+          effectivePriorityRecordId,
           isDryRun,
           relationType,
         );
@@ -478,25 +520,10 @@ export class CommonMergeManyQueryRunnerService extends CommonBaseQueryRunnerServ
         CommonQueryRunnerExceptionCode.INVALID_QUERY_INPUT,
       );
     }
-
-    // Person-specific validation for LINE integration
-    if (objectMetadataItemWithFieldMaps.nameSingular === 'person') {
-      await this.validatePersonMergeForLine(args, queryRunnerContext);
-    }
   }
 
-  private async validatePersonMergeForLine(
-    args: CommonInput<MergeManyQueryArgs>,
-    queryRunnerContext: CommonExtendedQueryRunnerContext,
-  ): Promise<void> {
-    const { ids } = args;
-
-    const records = await queryRunnerContext.repository.find({
-      where: { id: In(ids) },
-      select: ['id', 'lineUserId'],
-    });
-
-    const recordsWithLineUserId = records.filter(
+  private validatePersonMergeForLine(recordsToMerge: ObjectRecord[]): void {
+    const recordsWithLineUserId = recordsToMerge.filter(
       (record) =>
         record.lineUserId &&
         typeof record.lineUserId === 'string' &&
