@@ -11,6 +11,13 @@ import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
 import { exportQuoteToPdf } from '../utils/exportQuoteToPdf';
 
+// Rich Text 欄位的結構（如 jiaoYiTiaoJian）
+type RichTextField = {
+  __typename?: string;
+  blocknote?: string;
+  markdown?: string;
+} | string | null;
+
 type QuoteRecord = ObjectRecord & {
   baoJiaDanHao: string;
   mingCheng: string;
@@ -39,7 +46,47 @@ type QuoteRecord = ObjectRecord & {
     currencyCode: string;
   };
   baoJiaDanZhuangTai: string;
-  jiaoYiTiaoJian?: string | null;
+  jiaoYiTiaoJian?: RichTextField;
+};
+
+/**
+ * 從 Rich Text 欄位提取純文字內容
+ * Rich Text 欄位可能是物件 {__typename, blocknote, markdown} 或字串
+ */
+const extractTextFromRichTextField = (field: RichTextField): string | null => {
+  if (!field) return null;
+
+  // 如果已經是字串，直接返回
+  if (typeof field === 'string') return field;
+
+  // 如果是物件，優先使用 markdown，其次 blocknote
+  if (typeof field === 'object') {
+    if (field.markdown) return field.markdown;
+    if (field.blocknote) {
+      // blocknote 是 JSON 格式，嘗試提取文字
+      try {
+        const blocks = JSON.parse(field.blocknote);
+        // 簡單提取所有文字內容
+        const extractText = (obj: unknown): string => {
+          if (typeof obj === 'string') return obj;
+          if (Array.isArray(obj)) return obj.map(extractText).join('');
+          if (typeof obj === 'object' && obj !== null) {
+            const record = obj as Record<string, unknown>;
+            if (record.text) return String(record.text);
+            if (record.content) return extractText(record.content);
+            if (record.children) return extractText(record.children);
+            return Object.values(record).map(extractText).join('');
+          }
+          return '';
+        };
+        return extractText(blocks) || null;
+      } catch {
+        return null;
+      }
+    }
+  }
+
+  return null;
 };
 
 type QuoteLineItemRecord = ObjectRecord & {
@@ -254,7 +301,7 @@ export const ExportQuoteToPdfSingleRecordAction = () => {
             currencyCode,
           },
           status: selectedQuote.baoJiaDanZhuangTai,
-          terms: selectedQuote.jiaoYiTiaoJian,
+          terms: extractTextFromRichTextField(selectedQuote.jiaoYiTiaoJian),
         },
         lineItems: normalizedLineItems,
         language: 'zh' as const,
