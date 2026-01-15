@@ -1,4 +1,5 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
+
 import * as Sentry from '@sentry/node';
 
 import { NoPermissionGuard } from 'src/engine/guards/no-permission.guard';

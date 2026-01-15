@@ -3,8 +3,8 @@ import { Injectable, Logger } from '@nestjs/common';
 import { google } from 'googleapis';
 
 import {
-    MessageFolder,
-    MessageFolderDriver,
+  MessageFolder,
+  MessageFolderDriver,
 } from 'src/modules/messaging/message-folder-manager/interfaces/message-folder-driver.interface';
 
 import { OAuth2ClientManagerService } from 'src/modules/connected-account/oauth2-client-manager/services/oauth2-client-manager.service';

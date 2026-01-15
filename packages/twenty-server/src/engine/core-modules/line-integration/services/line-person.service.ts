@@ -32,10 +32,9 @@ export class LinePersonService {
     try {
       const workspaceDataSource =
         await this.workspaceDataSourceFactory.create(workspaceId);
-      const personRepository = workspaceDataSource.getRepository(
-        'person',
-        { shouldBypassPermissionChecks: true },
-      );
+      const personRepository = workspaceDataSource.getRepository('person', {
+        shouldBypassPermissionChecks: true,
+      });
 
       const person = await personRepository.findOne({
         where: { lineUserId },
@@ -70,10 +69,9 @@ export class LinePersonService {
     try {
       const workspaceDataSource =
         await this.workspaceDataSourceFactory.create(workspaceId);
-      const personRepository = workspaceDataSource.getRepository(
-        'person',
-        { shouldBypassPermissionChecks: true },
-      );
+      const personRepository = workspaceDataSource.getRepository('person', {
+        shouldBypassPermissionChecks: true,
+      });
 
       // 檢查是否已存在
       const existingPerson = await personRepository.findOne({
@@ -145,10 +143,9 @@ export class LinePersonService {
     try {
       const workspaceDataSource =
         await this.workspaceDataSourceFactory.create(workspaceId);
-      const personRepository = workspaceDataSource.getRepository(
-        'person',
-        { shouldBypassPermissionChecks: true },
-      );
+      const personRepository = workspaceDataSource.getRepository('person', {
+        shouldBypassPermissionChecks: true,
+      });
 
       const result = await personRepository.update(
         { lineUserId },
@@ -162,11 +159,13 @@ export class LinePersonService {
         this.logger.warn(
           `No person found with LINE User ID: ${lineUserId} in workspace ${workspaceId} to update status`,
         );
+
         return false;
       } else {
         this.logger.log(
           `Updated LINE status to "${status}" for user: ${lineUserId} in workspace ${workspaceId}`,
         );
+
         return true;
       }
     } catch (error) {
@@ -197,10 +196,9 @@ export class LinePersonService {
     try {
       const workspaceDataSource =
         await this.workspaceDataSourceFactory.create(workspaceId);
-      const personRepository = workspaceDataSource.getRepository(
-        'person',
-        { shouldBypassPermissionChecks: true },
-      );
+      const personRepository = workspaceDataSource.getRepository('person', {
+        shouldBypassPermissionChecks: true,
+      });
 
       // 使用 userId 的前8碼作為暫時的顯示名稱
       const tempName = `LINE User ${lineUserId.substring(0, 8)}`;
@@ -245,10 +243,9 @@ export class LinePersonService {
     try {
       const workspaceDataSource =
         await this.workspaceDataSourceFactory.create(workspaceId);
-      const personRepository = workspaceDataSource.getRepository(
-        'person',
-        { shouldBypassPermissionChecks: true },
-      );
+      const personRepository = workspaceDataSource.getRepository('person', {
+        shouldBypassPermissionChecks: true,
+      });
 
       await personRepository
         .createQueryBuilder()
@@ -278,10 +275,9 @@ export class LinePersonService {
     try {
       const workspaceDataSource =
         await this.workspaceDataSourceFactory.create(workspaceId);
-      const personRepository = workspaceDataSource.getRepository(
-        'person',
-        { shouldBypassPermissionChecks: true },
-      );
+      const personRepository = workspaceDataSource.getRepository('person', {
+        shouldBypassPermissionChecks: true,
+      });
 
       const count = await personRepository.count({
         where: {

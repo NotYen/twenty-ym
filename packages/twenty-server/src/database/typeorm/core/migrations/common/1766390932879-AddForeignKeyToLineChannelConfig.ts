@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner } from 'typeorm';
+import { type MigrationInterface, type QueryRunner } from 'typeorm';
 
 /**
  * AddForeignKeyToLineChannelConfig Migration
@@ -51,7 +51,9 @@ export class AddForeignKeyToLineChannelConfig1766390932879
       ON DELETE CASCADE
     `);
 
-    console.log('Successfully added foreign key constraint to lineChannelConfig.workspaceId');
+    console.log(
+      'Successfully added foreign key constraint to lineChannelConfig.workspaceId',
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
@@ -61,6 +63,8 @@ export class AddForeignKeyToLineChannelConfig1766390932879
       DROP CONSTRAINT "FK_LINE_CHANNEL_CONFIG_WORKSPACE_ID"
     `);
 
-    console.log('Successfully removed foreign key constraint from lineChannelConfig.workspaceId');
+    console.log(
+      'Successfully removed foreign key constraint from lineChannelConfig.workspaceId',
+    );
   }
 }

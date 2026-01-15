@@ -1,7 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { Request } from 'express';
+import { Test, type TestingModule } from '@nestjs/testing';
+
+import { type Request } from 'express';
+
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
+
 import { MicrosoftStrategy } from '../microsoft.auth.strategy';
 
 describe('MicrosoftStrategy', () => {
@@ -18,8 +21,11 @@ describe('MicrosoftStrategy', () => {
           useValue: {
             get: jest.fn((key: string) => {
               if (key === 'AUTH_MICROSOFT_CLIENT_ID') return 'global-client-id';
-              if (key === 'AUTH_MICROSOFT_CLIENT_SECRET') return 'global-client-secret';
-              if (key === 'AUTH_MICROSOFT_CALLBACK_URL') return 'http://localhost/callback';
+              if (key === 'AUTH_MICROSOFT_CLIENT_SECRET')
+                return 'global-client-secret';
+              if (key === 'AUTH_MICROSOFT_CALLBACK_URL')
+                return 'http://localhost/callback';
+
               return null;
             }),
           },
@@ -35,19 +41,20 @@ describe('MicrosoftStrategy', () => {
 
     microsoftStrategy = module.get<MicrosoftStrategy>(MicrosoftStrategy);
     twentyConfigService = module.get<TwentyConfigService>(TwentyConfigService);
-    workspaceConfigService = module.get<WorkspaceConfigService>(WorkspaceConfigService);
-
+    workspaceConfigService = module.get<WorkspaceConfigService>(
+      WorkspaceConfigService,
+    );
 
     // Mock Passport methods needed for super.authenticate
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     (microsoftStrategy as any).redirect = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     (microsoftStrategy as any).success = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     (microsoftStrategy as any).fail = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     (microsoftStrategy as any).error = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     (microsoftStrategy as any).pass = jest.fn();
   });
 
@@ -62,7 +69,10 @@ describe('MicrosoftStrategy', () => {
         query: {},
       } as unknown as Request;
 
-      const superAuthenticateSpy = jest.spyOn(Object.getPrototypeOf(Object.getPrototypeOf(microsoftStrategy)), 'authenticate');
+      const superAuthenticateSpy = jest.spyOn(
+        Object.getPrototypeOf(Object.getPrototypeOf(microsoftStrategy)),
+        'authenticate',
+      );
 
       await microsoftStrategy.authenticate(req, {});
 
@@ -77,21 +87,29 @@ describe('MicrosoftStrategy', () => {
       } as unknown as Request;
 
       jest.spyOn(workspaceConfigService, 'get').mockResolvedValue(null);
-      const superAuthenticateSpy = jest.spyOn(Object.getPrototypeOf(Object.getPrototypeOf(microsoftStrategy)), 'authenticate');
+      const superAuthenticateSpy = jest.spyOn(
+        Object.getPrototypeOf(Object.getPrototypeOf(microsoftStrategy)),
+        'authenticate',
+      );
 
       await microsoftStrategy.authenticate(req, {});
 
-      expect(workspaceConfigService.get).toHaveBeenCalledWith('ws-1', 'AUTH_MICROSOFT_CLIENT_ID');
+      expect(workspaceConfigService.get).toHaveBeenCalledWith(
+        'ws-1',
+        'AUTH_MICROSOFT_CLIENT_ID',
+      );
       expect(superAuthenticateSpy).toHaveBeenCalled();
     });
 
     it('should attempt to fetch workspace config when workspaceId is present', async () => {
-       const req = {
+      const req = {
         params: { workspaceId: 'ws-1' },
         query: {},
       } as unknown as Request;
 
-      jest.spyOn(workspaceConfigService, 'get').mockResolvedValue('custom-value');
+      jest
+        .spyOn(workspaceConfigService, 'get')
+        .mockResolvedValue('custom-value');
 
       try {
         await microsoftStrategy.authenticate(req, {});
@@ -99,8 +117,14 @@ describe('MicrosoftStrategy', () => {
         // Expected to fail as we didn't mock the inner Strategy or its authenticate
       }
 
-      expect(workspaceConfigService.get).toHaveBeenCalledWith('ws-1', 'AUTH_MICROSOFT_CLIENT_ID');
-      expect(workspaceConfigService.get).toHaveBeenCalledWith('ws-1', 'AUTH_MICROSOFT_CLIENT_SECRET');
+      expect(workspaceConfigService.get).toHaveBeenCalledWith(
+        'ws-1',
+        'AUTH_MICROSOFT_CLIENT_ID',
+      );
+      expect(workspaceConfigService.get).toHaveBeenCalledWith(
+        'ws-1',
+        'AUTH_MICROSOFT_CLIENT_SECRET',
+      );
     });
   });
 });

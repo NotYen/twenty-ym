@@ -6,9 +6,9 @@ import { createXai, xai } from '@ai-sdk/xai';
 import { type LanguageModel } from 'ai';
 
 import {
-    AI_MODELS,
-    ModelProvider,
-    type AIModelConfig,
+  AI_MODELS,
+  ModelProvider,
+  type AIModelConfig,
 } from 'src/engine/core-modules/ai/constants/ai-models.const';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
@@ -154,14 +154,23 @@ export class AiModelRegistryService {
     let apiKey: string | null | undefined;
 
     switch (provider) {
-       case ModelProvider.OPENAI:
-        apiKey = await this.workspaceConfigService.get(workspaceId, 'OPENAI_API_KEY');
+      case ModelProvider.OPENAI:
+        apiKey = await this.workspaceConfigService.get(
+          workspaceId,
+          'OPENAI_API_KEY',
+        );
         break;
       case ModelProvider.ANTHROPIC:
-        apiKey = await this.workspaceConfigService.get(workspaceId, 'ANTHROPIC_API_KEY');
+        apiKey = await this.workspaceConfigService.get(
+          workspaceId,
+          'ANTHROPIC_API_KEY',
+        );
         break;
       case ModelProvider.XAI:
-        apiKey = await this.workspaceConfigService.get(workspaceId, 'XAI_API_KEY');
+        apiKey = await this.workspaceConfigService.get(
+          workspaceId,
+          'XAI_API_KEY',
+        );
         break;
       // Note: OPENAI_COMPATIBLE dynamic config not supported yet for workspace
     }
@@ -171,12 +180,15 @@ export class AiModelRegistryService {
 
       if (provider === ModelProvider.OPENAI) {
         const openaiProvider = createOpenAI({ apiKey });
+
         model = openaiProvider(effectiveModelConfig.modelId);
       } else if (provider === ModelProvider.ANTHROPIC) {
         const anthropicProvider = createAnthropic({ apiKey });
+
         model = anthropicProvider(effectiveModelConfig.modelId);
       } else if (provider === ModelProvider.XAI) {
         const xaiProvider = createXai({ apiKey });
+
         model = xaiProvider(effectiveModelConfig.modelId);
       }
 
@@ -281,15 +293,23 @@ export class AiModelRegistryService {
     this.buildModelRegistry();
   }
 
-  async resolveModelForAgent(agent: { modelId: string; workspaceId?: string } | null) {
-    const aiModelConfig = this.getEffectiveModelConfig(agent?.modelId ?? 'auto');
+  async resolveModelForAgent(
+    agent: { modelId: string; workspaceId?: string } | null,
+  ) {
+    const aiModelConfig = this.getEffectiveModelConfig(
+      agent?.modelId ?? 'auto',
+    );
 
     // Try to get workspace specific model if workspaceId is present
     if (agent?.workspaceId) {
-        const workspaceModel = await this.getWorkspaceModel(agent.workspaceId, aiModelConfig.modelId);
-        if (workspaceModel) {
-            return workspaceModel;
-        }
+      const workspaceModel = await this.getWorkspaceModel(
+        agent.workspaceId,
+        aiModelConfig.modelId,
+      );
+
+      if (workspaceModel) {
+        return workspaceModel;
+      }
     }
 
     await this.validateApiKey(aiModelConfig.provider);

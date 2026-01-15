@@ -2,8 +2,8 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable, Logger } from '@nestjs/common';
 
 import {
-    AuthException,
-    AuthExceptionCode,
+  AuthException,
+  AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { includesExpectedScopes } from 'src/engine/core-modules/auth/services/google-apis-scopes.service.util';
 import { getGoogleApisOauthScopes } from 'src/engine/core-modules/auth/utils/get-google-apis-oauth-scopes';
@@ -44,8 +44,12 @@ export class GoogleAPIScopesService {
       this.logger.debug('========== Scope Validation Debug ==========');
       this.logger.debug(`Token Client ID: ${response.data.client_id}`);
       this.logger.debug(`Token Email: ${response.data.email}`);
-      this.logger.debug(`Received scopes (${scopes.length}): ${JSON.stringify(scopes)}`);
-      this.logger.debug(`Expected scopes (${expectedScopes.length}): ${JSON.stringify(expectedScopes)}`);
+      this.logger.debug(
+        `Received scopes (${scopes.length}): ${JSON.stringify(scopes)}`,
+      );
+      this.logger.debug(
+        `Expected scopes (${expectedScopes.length}): ${JSON.stringify(expectedScopes)}`,
+      );
 
       const isValid = includesExpectedScopes(scopes, expectedScopes);
 
@@ -54,8 +58,11 @@ export class GoogleAPIScopesService {
         const missingScopes = expectedScopes.filter(
           (expected) =>
             !scopes.includes(expected) &&
-            !scopes.includes(`https://www.googleapis.com/auth/userinfo.${expected}`),
+            !scopes.includes(
+              `https://www.googleapis.com/auth/userinfo.${expected}`,
+            ),
         );
+
         this.logger.error(`Missing scopes: ${JSON.stringify(missingScopes)}`);
       } else {
         this.logger.debug('All expected scopes are present!');
