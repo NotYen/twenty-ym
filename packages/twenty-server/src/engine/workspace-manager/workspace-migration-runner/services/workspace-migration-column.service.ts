@@ -4,13 +4,13 @@ import { isDefined } from 'twenty-shared/utils';
 import { type QueryRunner, TableColumn } from 'typeorm';
 
 import {
-    type WorkspaceMigrationColumnAction,
-    WorkspaceMigrationColumnActionType,
-    type WorkspaceMigrationColumnAlter,
-    type WorkspaceMigrationColumnCreate,
-    type WorkspaceMigrationColumnCreateForeignKey,
-    type WorkspaceMigrationColumnDrop,
-    type WorkspaceMigrationColumnDropForeignKey,
+  type WorkspaceMigrationColumnAction,
+  WorkspaceMigrationColumnActionType,
+  type WorkspaceMigrationColumnAlter,
+  type WorkspaceMigrationColumnCreate,
+  type WorkspaceMigrationColumnCreateForeignKey,
+  type WorkspaceMigrationColumnDrop,
+  type WorkspaceMigrationColumnDropForeignKey,
 } from 'src/engine/metadata-modules/workspace-migration/workspace-migration.entity';
 import { WorkspaceMigrationEnumService } from 'src/engine/workspace-manager/workspace-migration-runner/services/workspace-migration-enum.service';
 import { WorkspaceMigrationTypeService } from 'src/engine/workspace-manager/workspace-migration-runner/services/workspace-migration-type.service';

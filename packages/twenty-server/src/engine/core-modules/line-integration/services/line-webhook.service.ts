@@ -55,6 +55,7 @@ export class LineWebhookService {
 
     // 記錄失敗的事件
     const failures = results.filter((r) => r.status === 'rejected');
+
     if (failures.length > 0) {
       this.logger.error(
         `Failed to process ${failures.length} out of ${events.length} events`,
@@ -101,8 +102,10 @@ export class LineWebhookService {
     event: LineFollowEvent,
   ): Promise<void> {
     const userId = event.source.userId;
+
     if (!userId) {
       this.logger.warn('Follow event missing userId');
+
       return;
     }
 
@@ -110,16 +113,22 @@ export class LineWebhookService {
 
     try {
       // 取得 LINE 設定
-      const config = await this.lineConfigService.getDecryptedConfig(workspaceId);
+      const config =
+        await this.lineConfigService.getDecryptedConfig(workspaceId);
+
       if (!config) {
         this.logger.error(
           `LINE configuration not found for workspace ${workspaceId}`,
         );
+
         return;
       }
 
       // 1. 取得 LINE Profile
-      const profile = await this.lineApiService.getProfile(config.channelAccessToken, userId);
+      const profile = await this.lineApiService.getProfile(
+        config.channelAccessToken,
+        userId,
+      );
 
       // 2. 建立或更新 Person
       const person = await this.linePersonService.createOrUpdateFromLineProfile(
@@ -161,8 +170,10 @@ export class LineWebhookService {
     event: LineUnfollowEvent,
   ): Promise<void> {
     const userId = event.source.userId;
+
     if (!userId) {
       this.logger.warn('Unfollow event missing userId');
+
       return;
     }
 

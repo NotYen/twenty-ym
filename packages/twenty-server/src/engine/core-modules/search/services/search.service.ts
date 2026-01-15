@@ -10,8 +10,8 @@ import { type ObjectRecordFilter } from 'src/engine/api/graphql/workspace-query-
 
 import { GraphqlQueryParser } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query.parser';
 import {
-    decodeCursor,
-    encodeCursorData,
+  decodeCursor,
+  encodeCursorData,
 } from 'src/engine/api/graphql/graphql-query-runner/utils/cursors.util';
 import { FileService } from 'src/engine/core-modules/file/services/file.service';
 import { STANDARD_OBJECTS_BY_PRIORITY_RANK } from 'src/engine/core-modules/search/constants/standard-objects-by-priority-rank';
@@ -21,8 +21,8 @@ import { type SearchRecordDTO } from 'src/engine/core-modules/search/dtos/search
 import { type SearchResultConnectionDTO } from 'src/engine/core-modules/search/dtos/search-result-connection.dto';
 import { type SearchResultEdgeDTO } from 'src/engine/core-modules/search/dtos/search-result-edge.dto';
 import {
-    SearchException,
-    SearchExceptionCode,
+  SearchException,
+  SearchExceptionCode,
 } from 'src/engine/core-modules/search/exceptions/search.exception';
 import { type RecordsWithObjectMetadataItem } from 'src/engine/core-modules/search/types/records-with-object-metadata-item';
 import { formatSearchTerms } from 'src/engine/core-modules/search/utils/format-search-terms';

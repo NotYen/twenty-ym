@@ -1,7 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'crypto';
+import {
+  createCipheriv,
+  createDecipheriv,
+  createHash,
+  randomBytes,
+} from 'crypto';
+
 import { Repository } from 'typeorm';
 
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
@@ -19,6 +25,7 @@ export class WorkspaceConfigService {
     private readonly twentyConfigService: TwentyConfigService,
   ) {
     const appSecret = this.twentyConfigService.get('APP_SECRET');
+
     if (!appSecret) {
       throw new Error('APP_SECRET is not defined');
     }
@@ -26,35 +33,57 @@ export class WorkspaceConfigService {
     this.secretKey = createHash('sha256').update(appSecret).digest();
   }
 
-  async get(workspaceId: string, key: string, defaultValue?: string): Promise<string | null> {
+  async get(
+    workspaceId: string,
+    key: string,
+    defaultValue?: string,
+  ): Promise<string | null> {
     // Guard against undefined/empty workspaceId to prevent substring error
     if (!workspaceId) {
-      this.logger.debug(`[GET] No workspaceId provided for key "${key}", returning ${defaultValue ? 'defaultValue' : 'null'}`);
+      this.logger.debug(
+        `[GET] No workspaceId provided for key "${key}", returning ${defaultValue ? 'defaultValue' : 'null'}`,
+      );
+
       return defaultValue ?? null;
     }
 
-    this.logger.debug(`[GET] Looking up key "${key}" for workspace ${workspaceId.substring(0, 8)}...`);
+    this.logger.debug(
+      `[GET] Looking up key "${key}" for workspace ${workspaceId.substring(0, 8)}...`,
+    );
 
     const config = await this.workspaceConfigRepository.findOne({
       where: { workspaceId, key },
     });
 
     if (!config) {
-      this.logger.debug(`[GET] Key "${key}" not found in workspace config, returning ${defaultValue ? 'defaultValue' : 'null'}`);
+      this.logger.debug(
+        `[GET] Key "${key}" not found in workspace config, returning ${defaultValue ? 'defaultValue' : 'null'}`,
+      );
+
       return defaultValue ?? null;
     }
 
     try {
       const decryptedValue = this.decrypt(config.value);
-      this.logger.debug(`[GET] Key "${key}" found and decrypted successfully (length: ${decryptedValue?.length || 0})`);
+
+      this.logger.debug(
+        `[GET] Key "${key}" found and decrypted successfully (length: ${decryptedValue?.length || 0})`,
+      );
+
       return decryptedValue;
     } catch (error) {
-      this.logger.error(`[GET] Failed to decrypt config value for key ${key} in workspace ${workspaceId}`, error);
+      this.logger.error(
+        `[GET] Failed to decrypt config value for key ${key} in workspace ${workspaceId}`,
+        error,
+      );
+
       return null;
     }
   }
 
-  async getAll(workspaceId: string): Promise<{ key: string; value: string; valueType: string }[]> {
+  async getAll(
+    workspaceId: string,
+  ): Promise<{ key: string; value: string; valueType: string }[]> {
     const configs = await this.workspaceConfigRepository.find({
       where: { workspaceId },
     });
@@ -67,7 +96,11 @@ export class WorkspaceConfigService {
           valueType: config.valueType,
         };
       } catch (error) {
-        console.error(`Failed to decrypt config value for key ${config.key} in workspace ${workspaceId}`, error);
+        console.error(
+          `Failed to decrypt config value for key ${config.key} in workspace ${workspaceId}`,
+          error,
+        );
+
         return {
           key: config.key,
           value: '', // Return empty if decryption fails to avoid breaking UI
@@ -77,7 +110,12 @@ export class WorkspaceConfigService {
     });
   }
 
-  async set(workspaceId: string, key: string, value: string, valueType: string = 'string'): Promise<void> {
+  async set(
+    workspaceId: string,
+    key: string,
+    value: string,
+    valueType: string = 'string',
+  ): Promise<void> {
     const encryptedValue = this.encrypt(value);
 
     // Upsert logic
@@ -103,20 +141,25 @@ export class WorkspaceConfigService {
     const iv = randomBytes(16);
     const cipher = createCipheriv(this.algorithm, this.secretKey, iv);
     let encrypted = cipher.update(text);
+
     encrypted = Buffer.concat([encrypted, cipher.final()]);
+
     return iv.toString('hex') + ':' + encrypted.toString('hex');
   }
 
   private decrypt(text: string): string {
     const textParts = text.split(':');
     const ivHex = textParts.shift();
+
     if (!ivHex) throw new Error('Invalid encrypted text format');
 
     const iv = Buffer.from(ivHex, 'hex');
     const encryptedText = Buffer.from(textParts.join(':'), 'hex');
     const decipher = createDecipheriv(this.algorithm, this.secretKey, iv);
     let decrypted = decipher.update(encryptedText);
+
     decrypted = Buffer.concat([decrypted, decipher.final()]);
+
     return decrypted.toString();
   }
 }

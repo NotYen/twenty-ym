@@ -1,9 +1,11 @@
 import { SIDE_PANEL_FOCUS_ID } from '@/command-menu/constants/SidePanelFocusId';
 import { useMergeRecordsActions } from '@/object-record/record-merge/hooks/useMergeRecordsActions';
+import { useMergeRecordsSelectedRecords } from '@/object-record/record-merge/hooks/useMergeRecordsSelectedRecords';
+import { useValidatePersonMergeForLine } from '@/object-record/record-merge/hooks/useValidatePersonMergeForLine';
 import { useHotkeysOnFocusedElement } from '@/ui/utilities/hotkey/hooks/useHotkeysOnFocusedElement';
 import styled from '@emotion/styled';
 import { Key } from 'ts-key-enum';
-import { IconArrowMerge } from 'twenty-ui/display';
+import { IconAlertTriangle, IconArrowMerge } from 'twenty-ui/display';
 import { Button } from 'twenty-ui/input';
 
 const StyledFooterContainer = styled.div`
@@ -11,15 +13,26 @@ const StyledFooterContainer = styled.div`
   background: ${({ theme }) => theme.background.primary};
   border-top: 1px solid ${({ theme }) => theme.border.color.light};
   display: flex;
+  flex-direction: column;
   gap: ${({ theme }) => theme.spacing(2)};
-  justify-content: flex-end;
   padding: ${({ theme }) => theme.spacing(3)};
 `;
 
 const StyledFooterActions = styled.div`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: flex-end;
   gap: ${({ theme }) => theme.spacing(2)};
+  width: 100%;
+`;
+
+const StyledErrorMessage = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing(1)};
+  color: ${({ theme }) => theme.color.red};
+  font-size: ${({ theme }) => theme.font.size.sm};
+  width: 100%;
 `;
 
 type MergeRecordsFooterProps = {
@@ -33,19 +46,34 @@ export const MergeRecordsFooter = ({
     objectNameSingular,
   });
 
+  const { selectedRecords } = useMergeRecordsSelectedRecords();
+
+  const { isValid, error } = useValidatePersonMergeForLine(
+    selectedRecords,
+    objectNameSingular,
+  );
+
+  const isDisabled = isMerging || !isValid;
+
   useHotkeysOnFocusedElement({
     keys: [`${Key.Control}+${Key.Enter}`, `${Key.Meta}+${Key.Enter}`],
     callback: () => {
-      if (!isMerging) {
+      if (!isDisabled) {
         handleMergeRecords();
       }
     },
     focusId: SIDE_PANEL_FOCUS_ID,
-    dependencies: [handleMergeRecords, isMerging],
+    dependencies: [handleMergeRecords, isDisabled],
   });
 
   return (
     <StyledFooterContainer>
+      {error && (
+        <StyledErrorMessage>
+          <IconAlertTriangle size={16} />
+          {error}
+        </StyledErrorMessage>
+      )}
       <StyledFooterActions>
         <Button
           title={isMerging ? 'Merging...' : 'Merge'}
@@ -53,9 +81,9 @@ export const MergeRecordsFooter = ({
           accent="blue"
           size="medium"
           Icon={IconArrowMerge}
-          hotkeys={isMerging ? undefined : ['⌘', '⏎']}
+          hotkeys={isDisabled ? undefined : ['⌘', '⏎']}
           onClick={handleMergeRecords}
-          disabled={isMerging}
+          disabled={isDisabled}
         />
       </StyledFooterActions>
     </StyledFooterContainer>

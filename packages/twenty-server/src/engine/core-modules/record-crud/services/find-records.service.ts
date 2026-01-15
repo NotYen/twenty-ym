@@ -6,8 +6,8 @@ import { OrderByDirection } from 'twenty-shared/types';
 import { type ObjectLiteral } from 'typeorm';
 
 import {
-    type ObjectRecordFilter,
-    type ObjectRecordOrderBy,
+  type ObjectRecordFilter,
+  type ObjectRecordOrderBy,
 } from 'src/engine/api/graphql/workspace-query-builder/interfaces/object-record.interface';
 
 import { GraphqlQueryParser } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query.parser';

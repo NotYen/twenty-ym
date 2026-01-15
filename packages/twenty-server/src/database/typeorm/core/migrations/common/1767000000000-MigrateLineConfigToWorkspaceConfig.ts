@@ -1,4 +1,4 @@
-import { MigrationInterface, QueryRunner } from 'typeorm';
+import { type MigrationInterface, type QueryRunner } from 'typeorm';
 
 /**
  * MigrateLineConfigToWorkspaceConfig Migration
@@ -28,7 +28,9 @@ export class MigrateLineConfigToWorkspaceConfig1767000000000
       WHERE "key" = 'line_bot_user_id' AND "deletedAt" IS NULL
     `);
 
-    console.log('Created unique index for line_bot_user_id on workspace_config');
+    console.log(
+      'Created unique index for line_bot_user_id on workspace_config',
+    );
 
     // 2. 刪除 lineChannelConfig 表的外鍵約束
     await queryRunner.query(`

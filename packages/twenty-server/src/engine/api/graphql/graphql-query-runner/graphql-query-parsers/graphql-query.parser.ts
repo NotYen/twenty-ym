@@ -2,19 +2,19 @@ import { type OrderByWithGroupBy } from 'twenty-shared/types';
 import { type FindOptionsWhere, type ObjectLiteral } from 'typeorm';
 
 import {
-    type ObjectRecordFilter,
-    type ObjectRecordOrderBy,
+  type ObjectRecordFilter,
+  type ObjectRecordOrderBy,
 } from 'src/engine/api/graphql/workspace-query-builder/interfaces/object-record.interface';
 
 import {
-    GraphqlQueryRunnerException,
-    GraphqlQueryRunnerExceptionCode,
+  GraphqlQueryRunnerException,
+  GraphqlQueryRunnerExceptionCode,
 } from 'src/engine/api/graphql/graphql-query-runner/errors/graphql-query-runner.exception';
 import { GraphqlQueryFilterConditionParser } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query-filter/graphql-query-filter-condition.parser';
 import { GraphqlQueryOrderFieldParser } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query-order/graphql-query-order.parser';
 import {
-    GraphqlQuerySelectedFieldsParser,
-    type GraphqlQuerySelectedFieldsResult,
+  GraphqlQuerySelectedFieldsParser,
+  type GraphqlQuerySelectedFieldsResult,
 } from 'src/engine/api/graphql/graphql-query-runner/graphql-query-parsers/graphql-query-selected-fields/graphql-selected-fields.parser';
 import { type GroupByField } from 'src/engine/api/graphql/graphql-query-runner/group-by/resolvers/types/group-by-field.types';
 import { type ObjectMetadataItemWithFieldMaps } from 'src/engine/metadata-modules/types/object-metadata-item-with-field-maps';

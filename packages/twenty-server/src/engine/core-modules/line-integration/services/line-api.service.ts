@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
+
 import { firstValueFrom } from 'rxjs';
 
 /**
@@ -24,9 +25,7 @@ export class LineApiService {
   private readonly MAX_RETRIES = 3;
   private readonly INITIAL_RETRY_DELAY = 1000; // 1 second
 
-  constructor(
-    private readonly httpService: HttpService,
-  ) {}
+  constructor(private readonly httpService: HttpService) {}
 
   /**
    * 發送文字訊息給指定使用者
@@ -39,9 +38,7 @@ export class LineApiService {
     to: string,
     text: string,
   ): Promise<void> {
-    this.logger.log(
-      `Sending LINE message to user ${to}`,
-    );
+    this.logger.log(`Sending LINE message to user ${to}`);
 
     // 建構訊息格式
     const payload = {
@@ -87,9 +84,7 @@ export class LineApiService {
     pictureUrl?: string;
     statusMessage?: string;
   }> {
-    this.logger.log(
-      `Getting LINE profile for user ${userId}`,
-    );
+    this.logger.log(`Getting LINE profile for user ${userId}`);
 
     // 執行 API 呼叫
     const url = `${this.LINE_API_BASE_URL}/profile/${userId}`;
@@ -134,6 +129,7 @@ export class LineApiService {
 
     // 執行 API 呼叫
     const url = `${this.LINE_API_BASE_URL}/message/reply`;
+
     await firstValueFrom(
       this.httpService.post(url, payload, {
         headers: {
@@ -160,12 +156,14 @@ export class LineApiService {
       // 檢查是否為 Rate Limit 錯誤
       if (error.response?.status === 429 && attempt <= this.MAX_RETRIES) {
         const delay = this.INITIAL_RETRY_DELAY * Math.pow(2, attempt - 1);
+
         this.logger.warn(
           `Rate limit hit. Retrying in ${delay}ms (attempt ${attempt}/${this.MAX_RETRIES})`,
         );
 
         // 等待後重試
         await this.sleep(delay);
+
         return this.executeWithRetry(apiCall, attempt + 1);
       }
 
@@ -237,6 +235,7 @@ export class LineApiService {
       };
     } catch (error) {
       this.logApiError(error);
+
       return {
         success: false,
         error: error.response?.data?.message || error.message,
@@ -264,6 +263,7 @@ export class LineApiService {
       );
 
       const botUserId = response.data.userId;
+
       this.logger.log(`Successfully fetched Bot User ID: ${botUserId}`);
 
       return botUserId;

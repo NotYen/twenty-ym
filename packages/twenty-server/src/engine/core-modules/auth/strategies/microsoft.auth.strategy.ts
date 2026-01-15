@@ -5,25 +5,27 @@ import { type Request } from 'express';
 import { type VerifyCallback } from 'passport-google-oauth20';
 import { Strategy } from 'passport-microsoft';
 import { type APP_LOCALES } from 'twenty-shared/translations';
+import { undefined } from 'zod';
 
 import {
-    AuthException,
-    AuthExceptionCode,
+  AuthException,
+  AuthExceptionCode,
 } from 'src/engine/core-modules/auth/auth.exception';
 import { type SocialSSOSignInUpActionType } from 'src/engine/core-modules/auth/types/signInUp.type';
 import { TwentyConfigService } from 'src/engine/core-modules/twenty-config/twenty-config.service';
 import { WorkspaceConfigService } from 'src/engine/core-modules/workspace-config/workspace-config.service';
-import { undefined } from 'zod';
 
 const getWorkspaceIdFromState = (req: Request): string | undefined => {
   if (typeof req.query.state === 'string') {
     try {
       const state = JSON.parse(req.query.state);
+
       return state.workspaceId;
     } catch (e) {
       // ignore
     }
   }
+
   return undefined;
 };
 

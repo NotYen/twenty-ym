@@ -7,6 +7,7 @@ import {
   Logger,
   Inject,
 } from '@nestjs/common';
+
 import { createHmac, timingSafeEqual } from 'crypto';
 
 import { LineConfigService } from 'src/engine/core-modules/line-integration/services/line-config.service';
@@ -52,101 +53,140 @@ export class LineSignatureGuard implements CanActivate {
       const signature = request.headers['x-line-signature'];
       const rawBody = request.rawBody; // 需要在 main.ts 配置
 
-    // 驗證簽章是否存在
-    if (!signature) {
-      this.logger.warn('Missing X-Line-Signature header');
-      throw new BadRequestException('Missing signature');
-    }
+      // 驗證簽章是否存在
+      if (!signature) {
+        this.logger.warn('Missing X-Line-Signature header');
+        throw new BadRequestException('Missing signature');
+      }
 
-    // 驗證 body 是否存在
-    if (!rawBody) {
-      this.logger.error('Raw body not available. Check main.ts configuration.');
-      throw new BadRequestException('Raw body required for signature verification');
-    }
+      // 驗證 body 是否存在
+      if (!rawBody) {
+        this.logger.error(
+          'Raw body not available. Check main.ts configuration.',
+        );
+        throw new BadRequestException(
+          'Raw body required for signature verification',
+        );
+      }
 
-    // 解析 body 以取得 destination (bot user ID)
-    // 將 raw body 轉換為字串（處理 Buffer 和 string 兩種情況）
-    const rawBodyString = Buffer.isBuffer(rawBody)
-      ? rawBody.toString('utf8')
-      : typeof rawBody === 'string'
-        ? rawBody
-        : JSON.stringify(rawBody);
+      // 解析 body 以取得 destination (bot user ID)
+      // 將 raw body 轉換為字串（處理 Buffer 和 string 兩種情況）
+      const rawBodyString = Buffer.isBuffer(rawBody)
+        ? rawBody.toString('utf8')
+        : typeof rawBody === 'string'
+          ? rawBody
+          : JSON.stringify(rawBody);
 
-    let body: LineWebhookBody;
-    try {
-      body = JSON.parse(rawBodyString);
-    } catch (error) {
-      this.logger.warn('Invalid JSON body');
-      throw new BadRequestException('Invalid JSON body');
-    }
+      let body: LineWebhookBody;
 
-    // 取得 workspaceId (透過 LineConfigService 查詢 workspace_config 表)
-    const workspaceId = await this.lineConfigService.getWorkspaceIdByBotUserId(body.destination);
+      try {
+        body = JSON.parse(rawBodyString);
+      } catch (error) {
+        this.logger.warn('Invalid JSON body');
+        throw new BadRequestException('Invalid JSON body');
+      }
 
-    if (!workspaceId) {
-      this.logger.warn(`Cannot determine workspaceId for destination: ${body.destination}`);
-      throw new ForbiddenException('Invalid destination');
-    }
+      // 取得 workspaceId (透過 LineConfigService 查詢 workspace_config 表)
+      const workspaceId =
+        await this.lineConfigService.getWorkspaceIdByBotUserId(
+          body.destination,
+        );
 
-    // 取得 Channel Secret
-    const config = await this.lineConfigService.getDecryptedConfig(workspaceId);
-    if (!config) {
-      this.logger.warn(`LINE config not found for workspace ${workspaceId}`);
-      throw new ForbiddenException('LINE config not found');
-    }
+      if (!workspaceId) {
+        this.logger.warn(
+          `Cannot determine workspaceId for destination: ${body.destination}`,
+        );
+        throw new ForbiddenException('Invalid destination');
+      }
 
-    // 驗證簽章
-    this.logger.log(
-      `[LINE Signature Verification] Workspace: ${workspaceId}`,
-    );
-    this.logger.log(`[LINE Signature Verification] rawBody type: ${typeof rawBody}, isBuffer: ${Buffer.isBuffer(rawBody)}`);
-    this.logger.log(`[LINE Signature Verification] rawBodyString length: ${rawBodyString.length}`);
-    this.logger.log(`[LINE Signature Verification] rawBodyString: ${rawBodyString}`);
-    this.logger.log(`[LINE Signature Verification] LINE signature: ${signature}`);
-    this.logger.log(`[LINE Signature Verification] Channel secret (first 8 chars): ${config.channelSecret.substring(0, 8)}...`);
+      // 取得 Channel Secret
+      const config =
+        await this.lineConfigService.getDecryptedConfig(workspaceId);
 
-    const isValidSignature = this.verifySignature(
-      signature,
-      rawBodyString,
-      config.channelSecret,
-    );
+      if (!config) {
+        this.logger.warn(`LINE config not found for workspace ${workspaceId}`);
+        throw new ForbiddenException('LINE config not found');
+      }
 
-    if (!isValidSignature) {
-      this.logger.warn(`[LINE Signature Verification] FAILED for workspace ${workspaceId}`);
-      throw new ForbiddenException('Invalid signature');
-    }
+      // 驗證簽章
+      this.logger.log(
+        `[LINE Signature Verification] Workspace: ${workspaceId}`,
+      );
+      this.logger.log(
+        `[LINE Signature Verification] rawBody type: ${typeof rawBody}, isBuffer: ${Buffer.isBuffer(rawBody)}`,
+      );
+      this.logger.log(
+        `[LINE Signature Verification] rawBodyString length: ${rawBodyString.length}`,
+      );
+      this.logger.log(
+        `[LINE Signature Verification] rawBodyString: ${rawBodyString}`,
+      );
+      this.logger.log(
+        `[LINE Signature Verification] LINE signature: ${signature}`,
+      );
+      this.logger.log(
+        `[LINE Signature Verification] Channel secret (first 8 chars): ${config.channelSecret.substring(0, 8)}...`,
+      );
 
-    this.logger.log(`[LINE Signature Verification] SUCCESS for workspace ${workspaceId}`);
+      const isValidSignature = this.verifySignature(
+        signature,
+        rawBodyString,
+        config.channelSecret,
+      );
 
-    // 冪等性檢查
-    this.logger.log(`[LINE Guard] Starting idempotency check, events count: ${body.events.length}`);
-    const isNewEvent = await this.checkIdempotency(body.events);
-    this.logger.log(`[LINE Guard] Idempotency check completed, isNewEvent: ${isNewEvent}`);
+      if (!isValidSignature) {
+        this.logger.warn(
+          `[LINE Signature Verification] FAILED for workspace ${workspaceId}`,
+        );
+        throw new ForbiddenException('Invalid signature');
+      }
 
-    if (!isNewEvent) {
-      this.logger.log('Duplicate webhook event detected (idempotency check)');
-      // 仍然返回 true，但事件會在 Service 層被忽略
-      // 這樣可以確保 LINE Platform 收到 200 OK
-    }
+      this.logger.log(
+        `[LINE Signature Verification] SUCCESS for workspace ${workspaceId}`,
+      );
 
-    this.logger.log(
-      `LINE webhook signature verified for workspace ${workspaceId}, events: ${body.events.length}`,
-    );
+      // 冪等性檢查
+      this.logger.log(
+        `[LINE Guard] Starting idempotency check, events count: ${body.events.length}`,
+      );
+      const isNewEvent = await this.checkIdempotency(body.events);
 
-    // 將 workspaceId 設置到 request，供 TwentyORMManager 使用
-    // TwentyORMManager 透過 ScopedWorkspaceContextFactory 從 request.workspaceId 提取
-    request['workspaceId'] = workspaceId;
-    this.logger.log(`[LINE Guard] Set request.workspaceId = ${workspaceId}`);
+      this.logger.log(
+        `[LINE Guard] Idempotency check completed, isNewEvent: ${isNewEvent}`,
+      );
 
-    // 將解析後的 body 附加到 request，供 Controller 使用
-    // 因為 rawBody 已經被讀取，@Body() 裝飾器無法再次解析
-    request.body = body;
-    this.logger.log(`[LINE Guard] Set request.body, events count: ${body.events.length}`);
+      if (!isNewEvent) {
+        this.logger.log('Duplicate webhook event detected (idempotency check)');
+        // 仍然返回 true，但事件會在 Service 層被忽略
+        // 這樣可以確保 LINE Platform 收到 200 OK
+      }
 
-      this.logger.log(`[LINE Guard] Guard completed successfully, returning true`);
+      this.logger.log(
+        `LINE webhook signature verified for workspace ${workspaceId}, events: ${body.events.length}`,
+      );
+
+      // 將 workspaceId 設置到 request，供 TwentyORMManager 使用
+      // TwentyORMManager 透過 ScopedWorkspaceContextFactory 從 request.workspaceId 提取
+      request['workspaceId'] = workspaceId;
+      this.logger.log(`[LINE Guard] Set request.workspaceId = ${workspaceId}`);
+
+      // 將解析後的 body 附加到 request，供 Controller 使用
+      // 因為 rawBody 已經被讀取，@Body() 裝飾器無法再次解析
+      request.body = body;
+      this.logger.log(
+        `[LINE Guard] Set request.body, events count: ${body.events.length}`,
+      );
+
+      this.logger.log(
+        `[LINE Guard] Guard completed successfully, returning true`,
+      );
+
       return true;
     } catch (error) {
-      this.logger.error(`[LINE Guard] Unexpected error in canActivate: ${error.message}`, error.stack);
+      this.logger.error(
+        `[LINE Guard] Unexpected error in canActivate: ${error.message}`,
+        error.stack,
+      );
       throw error;
     }
   }
@@ -180,6 +220,7 @@ export class LineSignatureGuard implements CanActivate {
       return timingSafeEqual(signatureBuffer, hashBuffer);
     } catch (error) {
       this.logger.error(`Signature verification error: ${error.message}`);
+
       return false;
     }
   }
@@ -201,6 +242,7 @@ export class LineSignatureGuard implements CanActivate {
 
     if (eventIds.length === 0) {
       this.logger.warn('No webhookEventId found in events');
+
       return true; // 沒有事件 ID，無法檢查，視為新請求
     }
 
@@ -224,6 +266,7 @@ export class LineSignatureGuard implements CanActivate {
           this.logger.error(
             `Idempotency check failed for event ${eventId}: ${error.message}`,
           );
+
           // 錯誤情況下視為新事件，避免遺失訊息
           return true;
         }

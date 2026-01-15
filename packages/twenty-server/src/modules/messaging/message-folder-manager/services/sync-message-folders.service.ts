@@ -56,7 +56,10 @@ export class SyncMessageFoldersService {
   async syncMessageFolders(input: SyncMessageFoldersInput): Promise<void> {
     const { workspaceId, messageChannelId, connectedAccount, manager } = input;
 
-    const folders = await this.discoverAllFolders(connectedAccount, workspaceId);
+    const folders = await this.discoverAllFolders(
+      connectedAccount,
+      workspaceId,
+    );
 
     await this.upsertDiscoveredFolders({
       workspaceId,

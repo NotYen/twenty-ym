@@ -22,11 +22,12 @@ import { WorkspaceRelation } from 'src/engine/twenty-orm/decorators/workspace-re
 import { SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-field-ids';
 import { STANDARD_OBJECT_ICONS } from 'src/engine/workspace-manager/workspace-sync-metadata/constants/standard-object-icons';
 import {
-    type FieldTypeAndNameMetadata,
-    getTsVectorColumnExpressionFromFields,
+  type FieldTypeAndNameMetadata,
+  getTsVectorColumnExpressionFromFields,
 } from 'src/engine/workspace-manager/workspace-sync-metadata/utils/get-ts-vector-column-expression.util';
 import { NoteTargetWorkspaceEntity } from 'src/modules/note/standard-objects/note-target.workspace-entity';
 import { TimelineActivityWorkspaceEntity } from 'src/modules/timeline/standard-objects/timeline-activity.workspace-entity';
+
 import { SalesQuoteWorkspaceEntity } from './sales-quote.workspace-entity';
 
 const NAME_FIELD_NAME = 'name';
@@ -63,7 +64,8 @@ export class SalesQuoteLineItemWorkspaceEntity extends BaseWorkspaceEntity {
   chanPinMingCheng: string;
 
   @WorkspaceField({
-    standardId: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.baoJiaDanXiXiangMiaoShu,
+    standardId:
+      SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS.baoJiaDanXiXiangMiaoShu,
     type: FieldMetadataType.TEXT, // Description is often text or richtext? Frontend calls it description.
     label: msg`Description`,
     icon: 'IconFileDescription',
