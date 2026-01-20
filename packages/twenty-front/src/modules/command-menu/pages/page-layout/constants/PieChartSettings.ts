@@ -9,10 +9,11 @@ import { SORT_BY_PIE_CHART_SETTING } from '@/command-menu/pages/page-layout/cons
 import { TOOLTIP_DISPLAY_FIELD_SETTING } from '@/command-menu/pages/page-layout/constants/settings/TooltipDisplayFieldSetting';
 import { VALUE_FORMAT_SETTING } from '@/command-menu/pages/page-layout/constants/settings/ValueFormatSetting';
 import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/ChartSettingsGroup';
+import { t } from '@lingui/core/macro';
 
-export const PIE_CHART_SETTINGS: ChartSettingsGroup[] = [
+export const getPieChartSettings = (): ChartSettingsGroup[] => [
   {
-    heading: 'Data',
+    heading: t`Data`,
     items: [
       CHART_DATA_SOURCE_SETTING,
       FILTER_SETTING,
@@ -24,7 +25,7 @@ export const PIE_CHART_SETTINGS: ChartSettingsGroup[] = [
     ],
   },
   {
-    heading: 'Style',
+    heading: t`Style`,
     items: [COLORS_SETTING, DATA_LABELS_SETTING, VALUE_FORMAT_SETTING],
   },
 ];

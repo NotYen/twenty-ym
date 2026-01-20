@@ -1,7 +1,7 @@
-import { AGGREGATE_CHART_SETTINGS } from '@/command-menu/pages/page-layout/constants/AggregateChartSettings';
-import { GAUGE_CHART_SETTINGS } from '@/command-menu/pages/page-layout/constants/GaugeChartSettings';
-import { LINE_CHART_SETTINGS } from '@/command-menu/pages/page-layout/constants/LineChartSettings';
-import { PIE_CHART_SETTINGS } from '@/command-menu/pages/page-layout/constants/PieChartSettings';
+import { getAggregateChartSettings } from '@/command-menu/pages/page-layout/constants/AggregateChartSettings';
+import { getGaugeChartSettings } from '@/command-menu/pages/page-layout/constants/GaugeChartSettings';
+import { getLineChartSettings } from '@/command-menu/pages/page-layout/constants/LineChartSettings';
+import { getPieChartSettings } from '@/command-menu/pages/page-layout/constants/PieChartSettings';
 import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/ChartSettingsGroup';
 import { getBarChartSettings } from '@/command-menu/pages/page-layout/utils/getBarChartSettings';
 import { type MessageDescriptor } from '@lingui/core';
@@ -38,21 +38,21 @@ export const GRAPH_TYPE_INFORMATION: Record<
   [GraphType.PIE]: {
     label: msg`Pie`,
     icon: IconChartPie,
-    settings: PIE_CHART_SETTINGS,
+    settings: getPieChartSettings(),
   },
   [GraphType.LINE]: {
     label: msg`Line`,
     icon: IconChartLine,
-    settings: LINE_CHART_SETTINGS,
+    settings: getLineChartSettings(),
   },
   [GraphType.AGGREGATE]: {
     label: msg`Aggregate`,
     icon: IconSum,
-    settings: AGGREGATE_CHART_SETTINGS,
+    settings: getAggregateChartSettings(),
   },
   [GraphType.GAUGE]: {
     label: msg`Gauge`,
     icon: IconGauge,
-    settings: GAUGE_CHART_SETTINGS,
+    settings: getGaugeChartSettings(),
   },
 };

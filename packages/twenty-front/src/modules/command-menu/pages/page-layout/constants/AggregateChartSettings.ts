@@ -5,10 +5,11 @@ import { PREFIX_SETTING } from '@/command-menu/pages/page-layout/constants/setti
 import { SUFFIX_SETTING } from '@/command-menu/pages/page-layout/constants/settings/SuffixSetting';
 import { TOOLTIP_DISPLAY_FIELD_SETTING } from '@/command-menu/pages/page-layout/constants/settings/TooltipDisplayFieldSetting';
 import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/ChartSettingsGroup';
+import { t } from '@lingui/core/macro';
 
-export const AGGREGATE_CHART_SETTINGS: ChartSettingsGroup[] = [
+export const getAggregateChartSettings = (): ChartSettingsGroup[] => [
   {
-    heading: 'Data',
+    heading: t`Data`,
     items: [
       CHART_DATA_SOURCE_SETTING,
       FILTER_SETTING,
@@ -17,7 +18,7 @@ export const AGGREGATE_CHART_SETTINGS: ChartSettingsGroup[] = [
     ],
   },
   {
-    heading: 'Style',
+    heading: t`Style`,
     items: [PREFIX_SETTING, SUFFIX_SETTING],
   },
 ];

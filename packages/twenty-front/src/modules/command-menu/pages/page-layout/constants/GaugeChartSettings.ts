@@ -4,10 +4,11 @@ import { DATA_LABELS_SETTING } from '@/command-menu/pages/page-layout/constants/
 import { FILTER_SETTING } from '@/command-menu/pages/page-layout/constants/settings/FilterSetting';
 import { TOOLTIP_DISPLAY_FIELD_SETTING } from '@/command-menu/pages/page-layout/constants/settings/TooltipDisplayFieldSetting';
 import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/ChartSettingsGroup';
+import { t } from '@lingui/core/macro';
 
-export const GAUGE_CHART_SETTINGS: ChartSettingsGroup[] = [
+export const getGaugeChartSettings = (): ChartSettingsGroup[] => [
   {
-    heading: 'Data',
+    heading: t`Data`,
     items: [
       CHART_DATA_SOURCE_SETTING,
       FILTER_SETTING,
@@ -16,7 +17,7 @@ export const GAUGE_CHART_SETTINGS: ChartSettingsGroup[] = [
     ],
   },
   {
-    heading: 'Style',
+    heading: t`Style`,
     items: [DATA_LABELS_SETTING],
   },
 ];

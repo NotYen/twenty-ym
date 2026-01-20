@@ -38,6 +38,18 @@ import {
 } from 'twenty-ui/display';
 import { MenuItem, MenuItemSelect, MenuItemToggle } from 'twenty-ui/navigation';
 import { ViewCalendarLayout } from '~/generated/graphql';
+import { t } from '@lingui/core/macro';
+
+export const getViewTypeLabel = (viewType: ViewType): string => {
+  switch (viewType) {
+    case ViewType.Table:
+      return t`Table`;
+    case ViewType.Kanban:
+      return t`Kanban`;
+    case ViewType.Calendar:
+      return t`Calendar`;
+  }
+};
 
 export const ObjectOptionsDropdownLayoutContent = () => {
   const { t } = useLingui();

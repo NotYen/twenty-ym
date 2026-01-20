@@ -17,6 +17,7 @@ import { SORT_BY_X_SETTING } from '@/command-menu/pages/page-layout/constants/se
 import { STACKED_BARS_SETTING } from '@/command-menu/pages/page-layout/constants/settings/StackedBarsSetting';
 import { TOOLTIP_DISPLAY_FIELD_SETTING } from '@/command-menu/pages/page-layout/constants/settings/TooltipDisplayFieldSetting';
 import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/ChartSettingsGroup';
+import { t } from '@lingui/core/macro';
 import { IconAxisX, IconAxisY } from 'twenty-ui/display';
 import { GraphType } from '~/generated-metadata/graphql';
 
@@ -50,7 +51,7 @@ export const getBarChartSettings = (
 
   return [
     {
-      heading: 'Data',
+      heading: t`Data`,
       items: [
         CHART_DATA_SOURCE_SETTING,
         FILTER_SETTING,
@@ -58,15 +59,15 @@ export const getBarChartSettings = (
       ],
     },
     {
-      heading: 'X axis',
+      heading: t`X axis`,
       items: xAxisItems,
     },
     {
-      heading: 'Y axis',
+      heading: t`Y axis`,
       items: yAxisItems,
     },
     {
-      heading: 'Style',
+      heading: t`Style`,
       items: [
         COLORS_SETTING,
         AXIS_NAME_SETTING,

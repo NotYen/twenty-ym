@@ -136,6 +136,12 @@ msgstr "{0, plural, other {# Đối tượng}}"
 msgid "{0, plural, one {You do not have permission to access the {fieldsList} field} other {You do not have permission to access the {fieldsList} fields}}"
 msgstr "{0, plural, other {Bạn không có quyền truy cập vào trường {fieldsList}}}"
 
+#. js-lingui-id: peiknr
+#. placeholder {0}: visibleBoardFields.length
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
+msgid "{0} shown"
+msgstr ""
+
 #. js-lingui-id: qdQhzv
 #: src/modules/views/advanced-filter-chip/components/AdvancedFilterChip.tsx
 msgid "{advancedFilterCount, plural, one {{advancedFilterCount} advanced rule} other {{advancedFilterCount} advanced rules}}"
@@ -273,6 +279,11 @@ msgstr ""
 #: src/pages/settings/accounts/SettingsAccountsConfigurationStepCalendar.tsx
 msgid "{stepNumber}. Calendar"
 msgstr "{stepNumber}. Lịch"
+
+#. js-lingui-id: ITVweg
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownDefaultView.tsx
+msgid "{visibleFieldsCount} shown"
+msgstr ""
 
 #. js-lingui-id: riMLMq
 #: src/modules/workflow/workflow-steps/workflow-actions/iterator-action/components/WorkflowIteratorSubStepSwitcher.tsx
@@ -914,9 +925,9 @@ msgstr "Tổng hợp"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1078,6 +1089,11 @@ msgstr "Cho phép tải lên tệp và tệp đính kèm"
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
 msgid "Allow users to sign in with an email and password."
 msgstr "Cho phép người dùng đăng nhập với email và mật khẩu."
+
+#. js-lingui-id: 315BhT
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Alphabetical"
+msgstr ""
 
 #. js-lingui-id: Vw8l6h
 #: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/HttpRequestExecutionResult.tsx
@@ -1721,6 +1737,11 @@ msgstr "Cả hai"
 msgid "Brief explanation of this output field"
 msgstr "Giải thích ngắn gọn về trường đầu ra này"
 
+#. js-lingui-id: r1LXoG
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
+msgid "Bulk"
+msgstr ""
+
 #. js-lingui-id: VkwIHa
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "bullet"
@@ -1780,6 +1801,7 @@ msgstr "caldav.example.com"
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
 #: src/modules/settings/accounts/components/SettingsAccountsSettingsSection.tsx
 #: src/modules/page-layout/hooks/useTranslateTabTitle.ts
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Calendar"
 msgstr "Lịch"
@@ -2847,6 +2869,11 @@ msgstr "Tín dụng đã sử dụng"
 msgid "Cron"
 msgstr "Cron"
 
+#. js-lingui-id: mBCjtr
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
+msgid "Cron (Custom)"
+msgstr ""
+
 #. js-lingui-id: t87/Oe
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
 msgid "cron trigger"
@@ -2990,7 +3017,13 @@ msgid "Dashboards"
 msgstr "Bảng điều khiển"
 
 #. js-lingui-id: HKH+W+
+#: src/modules/command-menu/pages/workflow/trigger-type/components/CommandMenuWorkflowSelectTriggerTypeContent.tsx
 #: src/modules/command-menu/pages/workflow/action/components/CommandMenuWorkflowSelectAction.tsx
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/PieChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/GaugeChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/AggregateChartSettings.ts
 msgid "Data"
 msgstr "Dữ liệu"
 
@@ -3124,6 +3157,7 @@ msgid "days"
 msgstr "ngày"
 
 #. js-lingui-id: HuVZMK
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Days"
 msgstr "Ngày"
@@ -3781,6 +3815,11 @@ msgstr "Chỉnh sửa phương pháp thanh toán, xem hóa đơn của bạn và
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsSection.tsx
 msgid "Edit Records on All Objects"
 msgstr "Chỉnh sửa bản ghi trên tất cả các đối tượng"
+
+#. js-lingui-id: eMFB6/
+#: src/modules/views/view-picker/components/ViewPickerContentEditMode.tsx
+msgid "Edit view"
+msgstr ""
 
 #. js-lingui-id: 6o1M/Q
 #: src/pages/settings/domains/SettingsDomains.tsx
@@ -5024,6 +5063,7 @@ msgid "Get your subscription"
 msgstr "\\"
 
 #. js-lingui-id: 2GT3Hf
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
 #: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
 #: src/modules/command-menu/components/CommandMenu.tsx
 msgid "Global"
@@ -5163,6 +5203,7 @@ msgstr "Tiếng Hy Lạp"
 
 #. js-lingui-id: L8fEEm
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableOptionsDropdownContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Group"
@@ -5310,6 +5351,7 @@ msgid "Horizontal Position"
 msgstr ""
 
 #. js-lingui-id: yY8wAv
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Hours"
 msgstr "Giờ"
@@ -5896,6 +5938,7 @@ msgstr ""
 #. js-lingui-id: OGXtL8
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Kanban"
 msgstr "Kanban"
 
@@ -6015,6 +6058,11 @@ msgstr "Phiên bản mới nhất"
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
 msgid "Launch"
 msgstr "Khởi chạy"
+
+#. js-lingui-id: 9BjbLR
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "Launch manually"
+msgstr ""
 
 #. js-lingui-id: rdU729
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
@@ -6270,6 +6318,16 @@ msgstr "Quản lý các quy trình công việc"
 msgid "Manage your internet accounts."
 msgstr "Quản lý các tài khoản internet của bạn."
 
+#. js-lingui-id: BWTzAb
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Manual"
+msgstr ""
+
+#. js-lingui-id: FD1NX6
+#: src/modules/workflow/workflow-diagram/utils/getWorkflowDiagramTriggerNode.ts
+msgid "Manual trigger"
+msgstr ""
+
 #. js-lingui-id: gDLior
 #: src/modules/spreadsheet-import/steps/components/SpreadsheetImportStepperContainer.tsx
 msgid "Match Columns"
@@ -6464,6 +6522,7 @@ msgid "Minute value cannot exceed 60. For intervals greater than 60 minutes, use
 msgstr ""
 
 #. js-lingui-id: agRWc1
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Minutes"
 msgstr "Phút"
@@ -6499,6 +6558,7 @@ msgid "month"
 msgstr "tháng"
 
 #. js-lingui-id: HajiZl
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
@@ -6710,6 +6770,7 @@ msgstr "Không bao giờ hết hạn"
 #. js-lingui-id: isRobC
 #: src/pages/settings/data-model/SettingsNewObject.tsx
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
+#: src/modules/object-record/record-board/record-board-column/components/RecordBoardColumnNewRecordButton.tsx
 msgid "New"
 msgstr "Mới"
 
@@ -6731,9 +6792,9 @@ msgid "New Account"
 msgstr "Tài Khoản Mới"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "Tác nhân mới"
 
@@ -7047,8 +7108,8 @@ msgstr "Không có dữ liệu chỉ số khả dụng"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 #: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
+#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "Không có mô hình nào có sẵn. Vui lòng cấu hình mô hình AI trong cài đặt không gian làm việc của bạn."
 
@@ -7189,6 +7250,11 @@ msgstr "Không trống"
 #: src/modules/object-record/record-field/ui/form-types/components/VariableChip.tsx
 msgid "Not Found"
 msgstr "Không tìm thấy"
+
+#. js-lingui-id: cURAbX
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerIsPinnedOptions.ts
+msgid "Not Pinned"
+msgstr ""
 
 #. js-lingui-id: NpVtef
 #: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
@@ -7348,6 +7414,11 @@ msgstr ""
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Omit zero values"
 msgstr "Bỏ qua giá trị bằng 0"
+
+#. js-lingui-id: 2AKHUG
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "On a schedule"
+msgstr ""
 
 #. js-lingui-id: jcwJgk
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
@@ -7560,6 +7631,11 @@ msgstr "Các cài đặt bảo mật khác"
 msgid "Other workspaces"
 msgstr "Không gian làm việc khác"
 
+#. js-lingui-id: NuKR0h
+#: src/modules/command-menu/pages/workflow/trigger-type/components/CommandMenuWorkflowSelectTriggerTypeContent.tsx
+msgid "Others"
+msgstr ""
+
 #. js-lingui-id: p5ufK6
 #: src/pages/onboarding/BookCallDecision.tsx
 msgid "Our team can help you set up your workspace to match your specific needs and workflows."
@@ -7767,6 +7843,11 @@ msgstr "Hình ảnh"
 #: src/modules/command-menu/pages/page-layout/constants/GraphTypeInformation.ts
 msgid "Pie"
 msgstr "Biểu đồ hình tròn"
+
+#. js-lingui-id: kNiQp6
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerIsPinnedOptions.ts
+msgid "Pinned"
+msgstr ""
 
 #. js-lingui-id: fQtTho
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -8081,6 +8162,26 @@ msgstr "Đã dừng tạo bản ghi. {formattedCreatedRecordsCount} bản ghi đ
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 msgid "Record image"
 msgstr "Ảnh hồ sơ"
+
+#. js-lingui-id: wNysMp
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is created"
+msgstr ""
+
+#. js-lingui-id: /zKa2x
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is created or updated"
+msgstr ""
+
+#. js-lingui-id: pTBjmd
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is deleted"
+msgstr ""
+
+#. js-lingui-id: rdLUKj
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is updated"
+msgstr ""
 
 #. js-lingui-id: K6/7kH
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
@@ -8436,6 +8537,11 @@ msgstr "Thử lại Tất cả Thất bại"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 msgid "Return Value"
 msgstr "Giá trị Trả về"
+
+#. js-lingui-id: fS4pwl
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Reverse Alphabetical"
+msgstr ""
 
 #. js-lingui-id: GG37FL
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -9104,8 +9210,8 @@ msgstr "Thiết lập cơ sở dữ liệu của bạn..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -9238,6 +9344,11 @@ msgstr "Đăng ký"
 msgid "Similar records were found. Are you sure you want to create a new record?"
 msgstr ""
 
+#. js-lingui-id: S8G1qk
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
+msgid "Single"
+msgstr ""
+
 #. js-lingui-id: 5v3IHX
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithSSO.tsx
 msgid "Single sign-on (SSO)"
@@ -9355,6 +9466,7 @@ msgstr "Xin lỗi, có sự cố xảy ra"
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 msgid "Sort"
 msgstr "Sắp xếp"
@@ -9480,6 +9592,15 @@ msgstr "Đã lưu trữ trong cơ sở dữ liệu"
 #. js-lingui-id: UJNV7l
 #: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
 msgid "String"
+msgstr ""
+
+#. js-lingui-id: 1CalO6
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/PieChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/GaugeChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/AggregateChartSettings.ts
+msgid "Style"
 msgstr ""
 
 #. js-lingui-id: WIUeUf
@@ -9757,6 +9878,7 @@ msgstr "Cài đặt Tab"
 
 #. js-lingui-id: 4hJhzz
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Table"
 msgstr "Bảng"
@@ -10127,6 +10249,7 @@ msgstr "Múi giờ"
 
 #. js-lingui-id: cklVjM
 #: src/modules/page-layout/hooks/useTranslateTabTitle.ts
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
 msgid "Timeline"
 msgstr "Dòng thời gian"
@@ -10205,6 +10328,26 @@ msgstr "Thử nghiệm đã hết hạn. Vui lòng cập nhật chi tiết thanh
 #: src/modules/command-menu/components/CommandMenuWorkflowStepInfo.tsx
 msgid "Trigger"
 msgstr "Kích hoạt"
+
+#. js-lingui-id: QuQCj9
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · {defaultLabel}"
+msgstr ""
+
+#. js-lingui-id: q/OKK0
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Cron"
+msgstr ""
+
+#. js-lingui-id: 8/WvlR
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Manual"
+msgstr ""
+
+#. js-lingui-id: GdnJyL
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Webhook"
+msgstr ""
 
 #. js-lingui-id: SzG8Sm
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
@@ -10843,6 +10986,11 @@ msgstr "Chúng tôi sẽ gửi cho bạn một liên kết để xác minh quy�
 msgid "Web Search"
 msgstr "Tìm kiếm web"
 
+#. js-lingui-id: TRDppN
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "Webhook"
+msgstr ""
+
 #. js-lingui-id: Tvdycs
 #: src/modules/settings/developers/hooks/useWebhookForm.ts
 msgid "Webhook {targetUrl} created successfully"
@@ -10877,6 +11025,7 @@ msgid "Webhooks"
 msgstr "Webhooks"
 
 #. js-lingui-id: zx4BuL
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
@@ -10965,8 +11114,8 @@ msgstr "Quy Trình Làm Việc"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -11068,6 +11217,8 @@ msgstr "Viết chức năng của bạn (dưới dạng TypeScript) bên dưới
 
 #. js-lingui-id: SHqkdn
 #: src/modules/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
 msgid "X axis"
 msgstr "Trục X"
 
@@ -11084,6 +11235,8 @@ msgstr ""
 
 #. js-lingui-id: fplGg6
 #: src/modules/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
 msgid "Y axis"
 msgstr "Trục Y"
 

@@ -1,3 +1,4 @@
+import { getViewTypeLabel } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent';
 import { ObjectOptionsDropdownMenuViewName } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownMenuViewName';
 import { OBJECT_OPTIONS_DROPDOWN_ID } from '@/object-record/object-options-dropdown/constants/ObjectOptionsDropdownId';
 import { useObjectOptionsDropdown } from '@/object-record/object-options-dropdown/hooks/useObjectOptionsDropdown';
@@ -20,7 +21,7 @@ import { useDeleteViewFromCurrentState } from '@/views/view-picker/hooks/useDele
 import { viewPickerReferenceViewIdComponentState } from '@/views/view-picker/states/viewPickerReferenceViewIdComponentState';
 import { useLingui } from '@lingui/react/macro';
 import { useRecoilValue } from 'recoil';
-import { capitalize, isDefined } from 'twenty-shared/utils';
+import { isDefined } from 'twenty-shared/utils';
 import {
   AppTooltip,
   IconCalendar,
@@ -132,7 +133,9 @@ export const ObjectOptionsDropdownCustomView = ({
                 customViewData?.type ?? ViewType.Table,
               )}
               text={t`Layout`}
-              contextualText={`${capitalize(customViewData?.type ?? '')}`}
+              contextualText={getViewTypeLabel(
+                customViewData?.type ?? ViewType.Table,
+              )}
               contextualTextPosition="right"
               hasSubMenu
             />
@@ -211,7 +214,7 @@ export const ObjectOptionsDropdownCustomView = ({
               onClick={() => onContentChange('fields')}
               LeftIcon={IconListDetails}
               text={t`Fields`}
-              contextualText={`${visibleBoardFields.length} shown`}
+              contextualText={t`${visibleBoardFields.length} shown`}
               contextualTextPosition="right"
               hasSubMenu
             />

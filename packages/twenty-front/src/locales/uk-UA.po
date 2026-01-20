@@ -136,6 +136,12 @@ msgstr "{0, plural, one {# Об'єкт} few {# Об'єкти} many {# Об'єк�
 msgid "{0, plural, one {You do not have permission to access the {fieldsList} field} other {You do not have permission to access the {fieldsList} fields}}"
 msgstr "{0, plural, one {Ви не маєте доступу до поля {fieldsList}} few {Ви не маєте доступу до полів {fieldsList}} many {Ви не маєте доступу до полів {fieldsList}} other {Ви не маєте доступу до полів {fieldsList}}}"
 
+#. js-lingui-id: peiknr
+#. placeholder {0}: visibleBoardFields.length
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
+msgid "{0} shown"
+msgstr ""
+
 #. js-lingui-id: qdQhzv
 #: src/modules/views/advanced-filter-chip/components/AdvancedFilterChip.tsx
 msgid "{advancedFilterCount, plural, one {{advancedFilterCount} advanced rule} other {{advancedFilterCount} advanced rules}}"
@@ -273,6 +279,11 @@ msgstr ""
 #: src/pages/settings/accounts/SettingsAccountsConfigurationStepCalendar.tsx
 msgid "{stepNumber}. Calendar"
 msgstr "{stepNumber}. Календар"
+
+#. js-lingui-id: ITVweg
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownDefaultView.tsx
+msgid "{visibleFieldsCount} shown"
+msgstr ""
 
 #. js-lingui-id: riMLMq
 #: src/modules/workflow/workflow-steps/workflow-actions/iterator-action/components/WorkflowIteratorSubStepSwitcher.tsx
@@ -914,9 +925,9 @@ msgstr "Агрегат"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1078,6 +1089,11 @@ msgstr "Дозволити завантаження файлів та вклад
 #: src/modules/settings/security/components/SettingsSecurityAuthProvidersOptionsList.tsx
 msgid "Allow users to sign in with an email and password."
 msgstr "Дозволити користувачам входити за допомогою електронної адреси та пароля."
+
+#. js-lingui-id: 315BhT
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Alphabetical"
+msgstr ""
 
 #. js-lingui-id: Vw8l6h
 #: src/modules/workflow/workflow-steps/workflow-actions/http-request-action/components/HttpRequestExecutionResult.tsx
@@ -1721,6 +1737,11 @@ msgstr "Обидві"
 msgid "Brief explanation of this output field"
 msgstr "Короткий опис цього поля результату"
 
+#. js-lingui-id: r1LXoG
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
+msgid "Bulk"
+msgstr ""
+
 #. js-lingui-id: VkwIHa
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "bullet"
@@ -1780,6 +1801,7 @@ msgstr "caldav.example.com"
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
 #: src/modules/settings/accounts/components/SettingsAccountsSettingsSection.tsx
 #: src/modules/page-layout/hooks/useTranslateTabTitle.ts
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Calendar"
 msgstr "Календар"
@@ -2847,6 +2869,11 @@ msgstr "Використано кредити"
 msgid "Cron"
 msgstr "Крон"
 
+#. js-lingui-id: mBCjtr
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
+msgid "Cron (Custom)"
+msgstr ""
+
 #. js-lingui-id: t87/Oe
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
 msgid "cron trigger"
@@ -2990,7 +3017,13 @@ msgid "Dashboards"
 msgstr "Інформаційні панелі"
 
 #. js-lingui-id: HKH+W+
+#: src/modules/command-menu/pages/workflow/trigger-type/components/CommandMenuWorkflowSelectTriggerTypeContent.tsx
 #: src/modules/command-menu/pages/workflow/action/components/CommandMenuWorkflowSelectAction.tsx
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/PieChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/GaugeChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/AggregateChartSettings.ts
 msgid "Data"
 msgstr "Дані"
 
@@ -3124,6 +3157,7 @@ msgid "days"
 msgstr "дні"
 
 #. js-lingui-id: HuVZMK
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Days"
 msgstr "Дні"
@@ -3781,6 +3815,11 @@ msgstr "Редагувати спосіб оплати, переглядати �
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsSection.tsx
 msgid "Edit Records on All Objects"
 msgstr "Редагувати записи на всіх об'єктах"
+
+#. js-lingui-id: eMFB6/
+#: src/modules/views/view-picker/components/ViewPickerContentEditMode.tsx
+msgid "Edit view"
+msgstr ""
 
 #. js-lingui-id: 6o1M/Q
 #: src/pages/settings/domains/SettingsDomains.tsx
@@ -5024,6 +5063,7 @@ msgid "Get your subscription"
 msgstr "Отримайте свою передплату"
 
 #. js-lingui-id: 2GT3Hf
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
 #: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
 #: src/modules/command-menu/components/CommandMenu.tsx
 msgid "Global"
@@ -5163,6 +5203,7 @@ msgstr "Грецька"
 
 #. js-lingui-id: L8fEEm
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableOptionsDropdownContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Group"
@@ -5310,6 +5351,7 @@ msgid "Horizontal Position"
 msgstr ""
 
 #. js-lingui-id: yY8wAv
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Hours"
 msgstr "Години"
@@ -5896,6 +5938,7 @@ msgstr ""
 #. js-lingui-id: OGXtL8
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Kanban"
 msgstr "Канбан"
 
@@ -6015,6 +6058,11 @@ msgstr "Остання версія"
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
 msgid "Launch"
 msgstr "Запустити"
+
+#. js-lingui-id: 9BjbLR
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "Launch manually"
+msgstr ""
 
 #. js-lingui-id: rdU729
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
@@ -6270,6 +6318,16 @@ msgstr "Керувати робочими процесами"
 msgid "Manage your internet accounts."
 msgstr "Управління своїми інтернет-акаунтами."
 
+#. js-lingui-id: BWTzAb
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Manual"
+msgstr ""
+
+#. js-lingui-id: FD1NX6
+#: src/modules/workflow/workflow-diagram/utils/getWorkflowDiagramTriggerNode.ts
+msgid "Manual trigger"
+msgstr ""
+
 #. js-lingui-id: gDLior
 #: src/modules/spreadsheet-import/steps/components/SpreadsheetImportStepperContainer.tsx
 msgid "Match Columns"
@@ -6464,6 +6522,7 @@ msgid "Minute value cannot exceed 60. For intervals greater than 60 minutes, use
 msgstr ""
 
 #. js-lingui-id: agRWc1
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Minutes"
 msgstr "Хвилини"
@@ -6499,6 +6558,7 @@ msgid "month"
 msgstr "місяць"
 
 #. js-lingui-id: HajiZl
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
@@ -6710,6 +6770,7 @@ msgstr "Ніколи не закінчується"
 #. js-lingui-id: isRobC
 #: src/pages/settings/data-model/SettingsNewObject.tsx
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
+#: src/modules/object-record/record-board/record-board-column/components/RecordBoardColumnNewRecordButton.tsx
 msgid "New"
 msgstr "Новий"
 
@@ -6731,9 +6792,9 @@ msgid "New Account"
 msgstr "Новий обліковий запис"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "Новий агент"
 
@@ -7047,8 +7108,8 @@ msgstr "Дані метрик недоступні"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 #: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
+#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "Немає доступних моделей. Увімкніть конфігурацію моделей ШІ в налаштуваннях робочої області."
 
@@ -7189,6 +7250,11 @@ msgstr "Не пустий"
 #: src/modules/object-record/record-field/ui/form-types/components/VariableChip.tsx
 msgid "Not Found"
 msgstr "Не знайдено"
+
+#. js-lingui-id: cURAbX
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerIsPinnedOptions.ts
+msgid "Not Pinned"
+msgstr ""
 
 #. js-lingui-id: NpVtef
 #: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
@@ -7348,6 +7414,11 @@ msgstr ""
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Omit zero values"
 msgstr "Пропускати нульові значення"
+
+#. js-lingui-id: 2AKHUG
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "On a schedule"
+msgstr ""
 
 #. js-lingui-id: jcwJgk
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
@@ -7560,6 +7631,11 @@ msgstr "Інші налаштування безпеки"
 msgid "Other workspaces"
 msgstr "Інші робочі простори"
 
+#. js-lingui-id: NuKR0h
+#: src/modules/command-menu/pages/workflow/trigger-type/components/CommandMenuWorkflowSelectTriggerTypeContent.tsx
+msgid "Others"
+msgstr ""
+
 #. js-lingui-id: p5ufK6
 #: src/pages/onboarding/BookCallDecision.tsx
 msgid "Our team can help you set up your workspace to match your specific needs and workflows."
@@ -7767,6 +7843,11 @@ msgstr "Зображення"
 #: src/modules/command-menu/pages/page-layout/constants/GraphTypeInformation.ts
 msgid "Pie"
 msgstr "Пиріг"
+
+#. js-lingui-id: kNiQp6
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerIsPinnedOptions.ts
+msgid "Pinned"
+msgstr ""
 
 #. js-lingui-id: fQtTho
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -8081,6 +8162,26 @@ msgstr "Створення запису зупинено. Створено {form
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 msgid "Record image"
 msgstr "Зображення запису"
+
+#. js-lingui-id: wNysMp
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is created"
+msgstr ""
+
+#. js-lingui-id: /zKa2x
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is created or updated"
+msgstr ""
+
+#. js-lingui-id: pTBjmd
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is deleted"
+msgstr ""
+
+#. js-lingui-id: rdLUKj
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is updated"
+msgstr ""
 
 #. js-lingui-id: K6/7kH
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
@@ -8436,6 +8537,11 @@ msgstr "Повторити всі невдалі"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 msgid "Return Value"
 msgstr "Значення результату"
+
+#. js-lingui-id: fS4pwl
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Reverse Alphabetical"
+msgstr ""
 
 #. js-lingui-id: GG37FL
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -9104,8 +9210,8 @@ msgstr "Налаштування вашої бази даних..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -9238,6 +9344,11 @@ msgstr "Зареєструватися"
 msgid "Similar records were found. Are you sure you want to create a new record?"
 msgstr ""
 
+#. js-lingui-id: S8G1qk
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
+msgid "Single"
+msgstr ""
+
 #. js-lingui-id: 5v3IHX
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithSSO.tsx
 msgid "Single sign-on (SSO)"
@@ -9355,6 +9466,7 @@ msgstr "Вибачте, щось пішло не так"
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 msgid "Sort"
 msgstr "Сортування"
@@ -9480,6 +9592,15 @@ msgstr "Збережено в базі даних"
 #. js-lingui-id: UJNV7l
 #: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
 msgid "String"
+msgstr ""
+
+#. js-lingui-id: 1CalO6
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/PieChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/GaugeChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/AggregateChartSettings.ts
+msgid "Style"
 msgstr ""
 
 #. js-lingui-id: WIUeUf
@@ -9757,6 +9878,7 @@ msgstr "Налаштування вкладки"
 
 #. js-lingui-id: 4hJhzz
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Table"
 msgstr "Таблиця"
@@ -10129,6 +10251,7 @@ msgstr "Часовий пояс"
 
 #. js-lingui-id: cklVjM
 #: src/modules/page-layout/hooks/useTranslateTabTitle.ts
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
 msgid "Timeline"
 msgstr "Хронологія"
@@ -10207,6 +10330,26 @@ msgstr "Термін пробного періоду минув. Будь лас
 #: src/modules/command-menu/components/CommandMenuWorkflowStepInfo.tsx
 msgid "Trigger"
 msgstr "Тригер"
+
+#. js-lingui-id: QuQCj9
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · {defaultLabel}"
+msgstr ""
+
+#. js-lingui-id: q/OKK0
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Cron"
+msgstr ""
+
+#. js-lingui-id: 8/WvlR
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Manual"
+msgstr ""
+
+#. js-lingui-id: GdnJyL
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Webhook"
+msgstr ""
 
 #. js-lingui-id: SzG8Sm
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
@@ -10845,6 +10988,11 @@ msgstr "Ми надішлемо вам посилання для перевір�
 msgid "Web Search"
 msgstr "Веб-пошук"
 
+#. js-lingui-id: TRDppN
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "Webhook"
+msgstr ""
+
 #. js-lingui-id: Tvdycs
 #: src/modules/settings/developers/hooks/useWebhookForm.ts
 msgid "Webhook {targetUrl} created successfully"
@@ -10879,6 +11027,7 @@ msgid "Webhooks"
 msgstr "Веб-хуки"
 
 #. js-lingui-id: zx4BuL
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
@@ -10967,8 +11116,8 @@ msgstr "Робочі процеси"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -11070,6 +11219,8 @@ msgstr "Напишіть свою функцію (TypeScript) нижче"
 
 #. js-lingui-id: SHqkdn
 #: src/modules/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
 msgid "X axis"
 msgstr "Вісь X"
 
@@ -11086,6 +11237,8 @@ msgstr ""
 
 #. js-lingui-id: fplGg6
 #: src/modules/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
 msgid "Y axis"
 msgstr "Вісь Y"
 

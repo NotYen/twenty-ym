@@ -1,21 +1,22 @@
+import { t } from '@lingui/core/macro';
 import {
   type IconComponent,
   IconPinned,
   IconPinnedOff,
 } from 'twenty-ui/display';
 
-export const MANUAL_TRIGGER_IS_PINNED_OPTIONS: Array<{
+export const getManualTriggerIsPinnedOptions = (): Array<{
   label: string;
   value: boolean;
   Icon: IconComponent;
-}> = [
+}> => [
   {
-    label: 'Not Pinned',
+    label: t`Not Pinned`,
     value: false,
     Icon: IconPinnedOff,
   },
   {
-    label: 'Pinned',
+    label: t`Pinned`,
     value: true,
     Icon: IconPinned,
   },
