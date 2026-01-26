@@ -166,3 +166,57 @@ const { suggestions, isOpen, closeSuggestions, hasSuggestions } =
 - `RecordTitleCellTextFieldInput.tsx` - 移除 selectedIndex 和 handleSelectSuggestion
 - `RecordTitleFullNameFieldInput.tsx` - 移除 selectedIndex
 - `DuplicateNameSuggestionDropdown.tsx` - 將 selectedIndex 和 onSelectedIndexChange 改為可選 props
+
+---
+
+## 2026-01-27 修復記錄
+
+### 問題：Slide Panel（Command Menu）中重複名稱建議功能失效
+
+**現象：**
+- 在表格視圖中編輯標題欄位時，重複名稱建議功能正常運作
+- 但在側邊滑動面板（Slide Panel / Command Menu）中編輯標題時，重複建議不會顯示
+
+**根本原因：**
+- `CommandMenuRecordInfo.tsx` 中的 `FieldContext.Provider` 設定了 `isLabelIdentifier: false`
+- `useDuplicateNameSuggestion` hook 只在 `isLabelIdentifier === true` 時啟用
+- 因此 slide panel 中的重複建議功能被禁用
+
+**修復：**
+- 修改 `CommandMenuRecordInfo.tsx` 第 82 行
+- 將 `isLabelIdentifier: false` 改為 `isLabelIdentifier: true`
+
+**修改的檔案：**
+```
+packages/twenty-front/src/modules/command-menu/components/CommandMenuRecordInfo.tsx
+```
+
+**修改前：**
+```typescript
+<FieldContext.Provider
+  value={{
+    recordId: objectRecordId,
+    isLabelIdentifier: false,  // ❌ 禁用了重複建議功能
+    fieldDefinition,
+    ...
+  }}
+>
+```
+
+**修改後：**
+```typescript
+<FieldContext.Provider
+  value={{
+    recordId: objectRecordId,
+    isLabelIdentifier: true,   // ✅ 啟用重複建議功能
+    fieldDefinition,
+    ...
+  }}
+>
+```
+
+**驗證方式：**
+1. 開啟任一 Person 或 Company 記錄的側邊面板
+2. 編輯標題欄位（聯絡人姓名或公司名稱）
+3. 輸入與現有記錄相似的名稱
+4. 確認重複建議下拉選單正常顯示

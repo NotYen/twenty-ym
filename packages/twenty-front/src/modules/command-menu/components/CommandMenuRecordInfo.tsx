@@ -138,7 +138,7 @@ export const CommandMenuRecordInfo = ({
         <FieldContext.Provider
           value={{
             recordId: objectRecordId,
-            isLabelIdentifier: false,
+            isLabelIdentifier: true,
             fieldDefinition,
             useUpdateRecord: useUpdateOneObjectRecordMutation,
             isCentered: false,

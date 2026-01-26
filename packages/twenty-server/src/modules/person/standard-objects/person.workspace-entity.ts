@@ -99,8 +99,11 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.linkedinLink,
     type: FieldMetadataType.LINKS,
     label: msg`Linkedin`,
-    description: msg`Contact’s Linkedin account`,
+    description: msg`Contact's Linkedin account`,
     icon: 'IconBrandLinkedin',
+    settings: {
+      maxNumberOfValues: 1,
+    },
   })
   @WorkspaceIsNullable()
   linkedinLink: LinksMetadata | null;
@@ -109,8 +112,11 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
     standardId: PERSON_STANDARD_FIELD_IDS.xLink,
     type: FieldMetadataType.LINKS,
     label: msg`X`,
-    description: msg`Contact’s X/Twitter account`,
+    description: msg`Contact's X/Twitter account`,
     icon: 'IconBrandX',
+    settings: {
+      maxNumberOfValues: 1,
+    },
   })
   @WorkspaceIsNullable()
   xLink: LinksMetadata | null;
@@ -190,8 +196,8 @@ export class PersonWorkspaceEntity extends BaseWorkspaceEntity {
   @WorkspaceRelation({
     standardId: PERSON_STANDARD_FIELD_IDS.company,
     type: RelationType.MANY_TO_ONE,
-    label: msg`Company`,
-    description: msg`Contact’s company`,
+    label: msg`所屬公司`,
+    description: msg`Contact's company`,
     icon: 'IconBuildingSkyscraper',
     inverseSideTarget: () => CompanyWorkspaceEntity,
     inverseSideFieldKey: 'people',
