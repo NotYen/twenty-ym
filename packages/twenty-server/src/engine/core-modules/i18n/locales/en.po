@@ -144,6 +144,16 @@ msgstr "A workflow version"
 msgid "A workspace member"
 msgstr "A workspace member"
 
+#. js-lingui-id: qu+/9Z
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Access Count"
+msgstr "Access Count"
+
+#. js-lingui-id: 3+9ACO
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Access Mode"
+msgstr "Access Mode"
+
 #. js-lingui-id: GDKKxT
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
 msgid "Access Token"
@@ -469,6 +479,11 @@ msgstr "Authentication is not enabled with this provider."
 #: src/engine/metadata-modules/permissions/permissions.service.ts
 msgid "Authentication is required to access this feature. Please sign in and try again."
 msgstr "Authentication is required to access this feature. Please sign in and try again."
+
+#. js-lingui-id: vWyP0D
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Authentication requirement for access"
+msgstr "Authentication requirement for access"
 
 #. js-lingui-id: VbeIOx
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
@@ -849,6 +864,11 @@ msgstr "Could not find relation field parent flat object"
 msgid "Created by"
 msgstr "Created by"
 
+#. js-lingui-id: egTba/
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Created By"
+msgstr "Created By"
+
 #. js-lingui-id: 2ZhYYy
 #: src/engine/metadata-modules/flat-field-metadata/utils/from-create-field-input-to-flat-field-metadatas-to-create.util.ts
 msgid "Created field metadata, parent object metadata not found"
@@ -951,6 +971,11 @@ msgstr "Date format"
 #: src/engine/twenty-orm/base.workspace-entity.ts
 msgid "Date when the record was deleted"
 msgstr "Date when the record was deleted"
+
+#. js-lingui-id: 5Xu4YX
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Days of inactivity before link expires"
+msgstr "Days of inactivity before link expires"
 
 #. js-lingui-id: r6zgGo
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -1223,11 +1248,21 @@ msgstr "Executed by"
 msgid "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 msgstr "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 
+#. js-lingui-id: FYjp37
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Expires At"
+msgstr "Expires At"
+
 #. js-lingui-id: 5KfWxA
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 msgid "External ID"
 msgstr "External ID"
+
+#. js-lingui-id: Vo8Scz
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "External share links for data records and charts"
+msgstr "External share links for data records and charts"
 
 #. js-lingui-id: pUligB
 #: src/engine/core-modules/admin-panel/admin-panel-queue.service.ts
@@ -1637,6 +1672,11 @@ msgstr "ICP"
 msgid "Id"
 msgstr "Id"
 
+#. js-lingui-id: vm5Fs5
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "ID of the shared resource"
+msgstr "ID of the shared resource"
+
 #. js-lingui-id: Ebc83S
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Ideal Customer Profile:  Indicates whether the company is the most suitable and valuable customer for you"
@@ -1647,6 +1687,11 @@ msgstr "Ideal Customer Profile:  Indicates whether the company is the most suita
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "If defined default value must contain at least one value"
 msgstr "If defined default value must contain at least one value"
+
+#. js-lingui-id: hKtVqO
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Inactivity Expiration Days"
+msgstr "Inactivity Expiration Days"
 
 #. js-lingui-id: Kfy/ML
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
@@ -1793,6 +1838,11 @@ msgstr "Invalid uuid {id}"
 msgid "Invalid verification code. Please try again."
 msgstr "Invalid verification code. Please try again."
 
+#. js-lingui-id: bhnh17
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Is Active"
+msgstr "Is Active"
+
 #. js-lingui-id: grHYXZ
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
@@ -1935,6 +1985,11 @@ msgstr "Label must not contain a comma"
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "Language"
 msgstr "Language"
+
+#. js-lingui-id: HUNA6y
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Last Accessed At"
+msgstr "Last Accessed At"
 
 #. js-lingui-id: hHtzNQ
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
@@ -2480,7 +2535,7 @@ msgstr "Note title"
 
 #. js-lingui-id: 1DBGsz
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
-#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -2514,6 +2569,11 @@ msgstr "Notes tied to the opportunity"
 msgid "Notes tied to the sales quote"
 msgstr "Notes tied to the sales quote"
 
+#. js-lingui-id: LqBbr9
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Notes tied to the sales quote line item"
+msgstr "Notes tied to the sales quote line item"
+
 #. js-lingui-id: B2Y6QU
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget company"
@@ -2539,6 +2599,11 @@ msgstr "NoteTarget person"
 msgid "NoteTarget sales quote"
 msgstr "NoteTarget sales quote"
 
+#. js-lingui-id: rvvcVk
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget sales quote line item"
+msgstr "NoteTarget sales quote line item"
+
 #. js-lingui-id: t9QlBd
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
 msgid "November"
@@ -2553,6 +2618,11 @@ msgstr "Number format"
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Number of employees in the company"
 msgstr "Number of employees in the company"
+
+#. js-lingui-id: Sg8eFh
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Number of times the link has been accessed"
+msgstr "Number of times the link has been accessed"
 
 #. js-lingui-id: ECRKYR
 #: src/engine/metadata-modules/utils/validate-no-other-object-with-same-name-exists-or-throw.util.ts
@@ -2755,6 +2825,11 @@ msgstr "Option value is required"
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
 msgid "Option value must be a string of at least one character"
 msgstr "Option value must be a string of at least one character"
+
+#. js-lingui-id: sJ/RsU
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Optional expiration date"
+msgstr "Optional expiration date"
 
 #. js-lingui-id: EabrTR
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
@@ -3015,6 +3090,16 @@ msgstr "Remote objects are not supported yet"
 msgid "Request has expired, please try again."
 msgstr "Request has expired, please try again."
 
+#. js-lingui-id: vR4NXz
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Resource ID"
+msgstr "Resource ID"
+
+#. js-lingui-id: esl+Tv
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Resource Type"
+msgstr "Resource Type"
+
 #. js-lingui-id: rnCndp
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
@@ -3073,6 +3158,7 @@ msgstr "Sales Quote"
 
 #. js-lingui-id: EA564t
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "Sales Quote Line Item"
 msgstr "Sales Quote Line Item"
 
@@ -3152,6 +3238,16 @@ msgstr "Serverless function with same id already exists"
 #: src/modules/workflow/common/standard-objects/workflow-automated-trigger.workspace-entity.ts
 msgid "Settings"
 msgstr "Settings"
+
+#. js-lingui-id: woDwPr
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Share Link"
+msgstr "Share Link"
+
+#. js-lingui-id: f75RTJ
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Share Links"
+msgstr "Share Links"
 
 #. js-lingui-id: RyE+Of
 #: src/engine/metadata-modules/role/role.service.ts
@@ -3815,6 +3911,11 @@ msgstr "Timeline Activity"
 msgid "Title"
 msgstr "Title"
 
+#. js-lingui-id: TP9/K5
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Token"
+msgstr "Token"
+
 #. js-lingui-id: mfqtz7
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
 msgid "Too many workspace invitations sent. Please try again later."
@@ -3840,6 +3941,11 @@ msgstr "Type"
 msgid "Type (deprecated)"
 msgstr "Type (deprecated)"
 
+#. js-lingui-id: UGl1vp
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Type of shared resource"
+msgstr "Type of shared resource"
+
 #. js-lingui-id: RBJNRI
 #: src/engine/metadata-modules/field-metadata/services/field-metadata.service.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata.service.ts
@@ -3851,6 +3957,11 @@ msgstr "Unique field cannot have a default value"
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
 msgid "Unique index cannot be created for field {fieldName} of type {fieldType}"
 msgstr "Unique index cannot be created for field {fieldName} of type {fieldType}"
+
+#. js-lingui-id: IeWxMa
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Unique share link token"
+msgstr "Unique share link token"
 
 #. js-lingui-id: vWelsN
 #: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
@@ -3929,6 +4040,11 @@ msgstr "User time zone"
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "User was not created with email/password"
 msgstr "User was not created with email/password"
+
+#. js-lingui-id: NZ+d6D
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "User who created the share link"
+msgstr "User who created the share link"
 
 #. js-lingui-id: 43zCwQ
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
@@ -4249,6 +4365,16 @@ msgstr "Wednesday"
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
 msgid "Welcome to Y-CRM: Please Confirm Your Email"
 msgstr "Welcome to Y-CRM: Please Confirm Your Email"
+
+#. js-lingui-id: PT83hD
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "When the link was last accessed"
+msgstr "When the link was last accessed"
+
+#. js-lingui-id: RnkhgV
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Whether the share link is active"
+msgstr "Whether the share link is active"
 
 #. js-lingui-id: bLt/0J
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts

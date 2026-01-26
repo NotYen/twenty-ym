@@ -143,6 +143,9 @@ export class CalendarEventWorkspaceEntity extends BaseWorkspaceEntity {
     label: msg`Meet Link`,
     description: msg`Meet Link`,
     icon: 'IconLink',
+    settings: {
+      maxNumberOfValues: 1,
+    },
   })
   @WorkspaceIsNullable()
   conferenceLink: LinksMetadata;

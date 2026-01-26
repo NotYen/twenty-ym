@@ -149,6 +149,16 @@ msgstr "工作流程版本"
 msgid "A workspace member"
 msgstr "工作區成員"
 
+#. js-lingui-id: qu+/9Z
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Access Count"
+msgstr ""
+
+#. js-lingui-id: 3+9ACO
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Access Mode"
+msgstr "訪問模式"
+
 #. js-lingui-id: GDKKxT
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
 msgid "Access Token"
@@ -474,6 +484,11 @@ msgstr "此供應商的身份驗證未啟用。"
 #: src/engine/metadata-modules/permissions/permissions.service.ts
 msgid "Authentication is required to access this feature. Please sign in and try again."
 msgstr "需要身份驗證才能使用此功能。請登入後再試一次。"
+
+#. js-lingui-id: vWyP0D
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Authentication requirement for access"
+msgstr ""
 
 #. js-lingui-id: VbeIOx
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
@@ -854,6 +869,11 @@ msgstr ""
 msgid "Created by"
 msgstr "創建者"
 
+#. js-lingui-id: egTba/
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Created By"
+msgstr ""
+
 #. js-lingui-id: 2ZhYYy
 #: src/engine/metadata-modules/flat-field-metadata/utils/from-create-field-input-to-flat-field-metadatas-to-create.util.ts
 msgid "Created field metadata, parent object metadata not found"
@@ -956,6 +976,11 @@ msgstr "日期格式"
 #: src/engine/twenty-orm/base.workspace-entity.ts
 msgid "Date when the record was deleted"
 msgstr "記錄刪除日期"
+
+#. js-lingui-id: 5Xu4YX
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Days of inactivity before link expires"
+msgstr ""
 
 #. js-lingui-id: r6zgGo
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -1228,11 +1253,21 @@ msgstr "執行者"
 msgid "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 msgstr "預期在所有操作中對 {connectFieldName} 使用相同的限制條件字段。"
 
+#. js-lingui-id: FYjp37
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Expires At"
+msgstr ""
+
 #. js-lingui-id: 5KfWxA
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 msgid "External ID"
 msgstr "外部 ID"
+
+#. js-lingui-id: Vo8Scz
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "External share links for data records and charts"
+msgstr "資料記錄和圖表的外部分享連結"
 
 #. js-lingui-id: pUligB
 #: src/engine/core-modules/admin-panel/admin-panel-queue.service.ts
@@ -1642,6 +1677,11 @@ msgstr "ICP"
 msgid "Id"
 msgstr "ID"
 
+#. js-lingui-id: vm5Fs5
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "ID of the shared resource"
+msgstr ""
+
 #. js-lingui-id: Ebc83S
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Ideal Customer Profile:  Indicates whether the company is the most suitable and valuable customer for you"
@@ -1652,6 +1692,11 @@ msgstr "理想客戶簡介：說明該公司是否是您最合適、最有價值
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "If defined default value must contain at least one value"
 msgstr "若定義，預設值必須至少包含一個值"
+
+#. js-lingui-id: hKtVqO
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Inactivity Expiration Days"
+msgstr ""
 
 #. js-lingui-id: Kfy/ML
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
@@ -1798,6 +1843,11 @@ msgstr "無效的 UUID {id}"
 msgid "Invalid verification code. Please try again."
 msgstr "驗證碼無效。請再試一次。"
 
+#. js-lingui-id: bhnh17
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Is Active"
+msgstr ""
+
 #. js-lingui-id: grHYXZ
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
@@ -1940,6 +1990,11 @@ msgstr "標籤不得包含逗號"
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "Language"
 msgstr "語言"
+
+#. js-lingui-id: HUNA6y
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Last Accessed At"
+msgstr ""
 
 #. js-lingui-id: hHtzNQ
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
@@ -2485,7 +2540,7 @@ msgstr "備註標題"
 
 #. js-lingui-id: 1DBGsz
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
-#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -2519,6 +2574,11 @@ msgstr "與機會相關的備註"
 msgid "Notes tied to the sales quote"
 msgstr "與報價單相關的備註"
 
+#. js-lingui-id: LqBbr9
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Notes tied to the sales quote line item"
+msgstr ""
+
 #. js-lingui-id: B2Y6QU
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget company"
@@ -2544,6 +2604,11 @@ msgstr "備註目標人"
 msgid "NoteTarget sales quote"
 msgstr ""
 
+#. js-lingui-id: rvvcVk
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget sales quote line item"
+msgstr ""
+
 #. js-lingui-id: t9QlBd
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
 msgid "November"
@@ -2558,6 +2623,11 @@ msgstr "數字格式"
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Number of employees in the company"
 msgstr "公司員工數量"
+
+#. js-lingui-id: Sg8eFh
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Number of times the link has been accessed"
+msgstr ""
 
 #. js-lingui-id: ECRKYR
 #: src/engine/metadata-modules/utils/validate-no-other-object-with-same-name-exists-or-throw.util.ts
@@ -2760,6 +2830,11 @@ msgstr "需要選項值"
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
 msgid "Option value must be a string of at least one character"
 msgstr "選項值必須為至少一個字符的字符串"
+
+#. js-lingui-id: sJ/RsU
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Optional expiration date"
+msgstr ""
 
 #. js-lingui-id: EabrTR
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
@@ -3020,6 +3095,16 @@ msgstr "遠程對象尚不支持"
 msgid "Request has expired, please try again."
 msgstr "請求已過期，請重試。"
 
+#. js-lingui-id: vR4NXz
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Resource ID"
+msgstr ""
+
+#. js-lingui-id: esl+Tv
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Resource Type"
+msgstr "資源類型"
+
 #. js-lingui-id: rnCndp
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
@@ -3078,6 +3163,7 @@ msgstr "報價單"
 
 #. js-lingui-id: EA564t
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "Sales Quote Line Item"
 msgstr "報價單細項"
 
@@ -3157,6 +3243,16 @@ msgstr "具有相同ID的無伺服器函數已存在"
 #: src/modules/workflow/common/standard-objects/workflow-automated-trigger.workspace-entity.ts
 msgid "Settings"
 msgstr "設置"
+
+#. js-lingui-id: woDwPr
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Share Link"
+msgstr "分享連結"
+
+#. js-lingui-id: f75RTJ
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Share Links"
+msgstr "分享連結"
 
 #. js-lingui-id: RyE+Of
 #: src/engine/metadata-modules/role/role.service.ts
@@ -3820,6 +3916,11 @@ msgstr "時間軸活動"
 msgid "Title"
 msgstr "標題"
 
+#. js-lingui-id: TP9/K5
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Token"
+msgstr "令牌"
+
 #. js-lingui-id: mfqtz7
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
 msgid "Too many workspace invitations sent. Please try again later."
@@ -3845,6 +3946,11 @@ msgstr "類型"
 msgid "Type (deprecated)"
 msgstr "類型（已棄用）"
 
+#. js-lingui-id: UGl1vp
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Type of shared resource"
+msgstr ""
+
 #. js-lingui-id: RBJNRI
 #: src/engine/metadata-modules/field-metadata/services/field-metadata.service.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata.service.ts
@@ -3856,6 +3962,11 @@ msgstr "唯一欄位不能設置默認值"
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
 msgid "Unique index cannot be created for field {fieldName} of type {fieldType}"
 msgstr "無法為類型為{fieldType}的欄位{fieldName}建立唯一索引"
+
+#. js-lingui-id: IeWxMa
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Unique share link token"
+msgstr "唯一分享連結令牌"
 
 #. js-lingui-id: vWelsN
 #: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
@@ -3934,6 +4045,11 @@ msgstr "用戶時區"
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "User was not created with email/password"
 msgstr "使用者未以電郵/密碼建立"
+
+#. js-lingui-id: NZ+d6D
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "User who created the share link"
+msgstr "建立分享連結的用戶"
 
 #. js-lingui-id: 43zCwQ
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
@@ -4254,6 +4370,16 @@ msgstr "星期三"
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
 msgid "Welcome to Y-CRM: Please Confirm Your Email"
 msgstr "歡迎使用 Y-CRM：請確認您的電子郵件"
+
+#. js-lingui-id: PT83hD
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "When the link was last accessed"
+msgstr ""
+
+#. js-lingui-id: RnkhgV
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Whether the share link is active"
+msgstr "分享連結是否啟用"
 
 #. js-lingui-id: bLt/0J
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
@@ -4608,7 +4734,7 @@ msgstr "您的工作區已更新了新數據模型。請刷新頁面。"
 #. js-lingui-id: ZukXiD
 #: src/engine/metadata-modules/user-role/user-role.service.ts
 msgid "Your workspace membership could not be found. You may no longer have access to this workspace."
-msgstr "找不到您的工作區成員資格。您可能不再有權訪問此工作區。" 
+msgstr "找不到您的工作區成員資格。您可能不再有權訪問此工作區。"
 
 #. js-lingui-id: RiJXfW
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts

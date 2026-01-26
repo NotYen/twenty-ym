@@ -149,6 +149,16 @@ msgstr "Bir iş akışı sürümü"
 msgid "A workspace member"
 msgstr "Bir çalışma alanı üyesi"
 
+#. js-lingui-id: qu+/9Z
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Access Count"
+msgstr ""
+
+#. js-lingui-id: 3+9ACO
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Access Mode"
+msgstr ""
+
 #. js-lingui-id: GDKKxT
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
 msgid "Access Token"
@@ -474,6 +484,11 @@ msgstr "Kimlik doğrulama bu sağlayıcı ile etkin değil."
 #: src/engine/metadata-modules/permissions/permissions.service.ts
 msgid "Authentication is required to access this feature. Please sign in and try again."
 msgstr "Bu özelliğe erişim için kimlik doğrulaması gereklidir. Lütfen giriş yapın ve tekrar deneyin."
+
+#. js-lingui-id: vWyP0D
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Authentication requirement for access"
+msgstr ""
 
 #. js-lingui-id: VbeIOx
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
@@ -854,6 +869,11 @@ msgstr ""
 msgid "Created by"
 msgstr "Oluşturan"
 
+#. js-lingui-id: egTba/
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Created By"
+msgstr ""
+
 #. js-lingui-id: 2ZhYYy
 #: src/engine/metadata-modules/flat-field-metadata/utils/from-create-field-input-to-flat-field-metadatas-to-create.util.ts
 msgid "Created field metadata, parent object metadata not found"
@@ -956,6 +976,11 @@ msgstr "Tarih formatı"
 #: src/engine/twenty-orm/base.workspace-entity.ts
 msgid "Date when the record was deleted"
 msgstr "Kaydın silindiği tarih"
+
+#. js-lingui-id: 5Xu4YX
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Days of inactivity before link expires"
+msgstr ""
 
 #. js-lingui-id: r6zgGo
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -1228,11 +1253,21 @@ msgstr "Tarafından yürütüldü"
 msgid "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 msgstr "{connectFieldName} için tüm işlemlerde aynı kısıtlama alanlarının tutarlı bir şekilde kullanılması beklenir."
 
+#. js-lingui-id: FYjp37
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Expires At"
+msgstr ""
+
 #. js-lingui-id: 5KfWxA
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 msgid "External ID"
 msgstr "Dış ID"
+
+#. js-lingui-id: Vo8Scz
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "External share links for data records and charts"
+msgstr ""
 
 #. js-lingui-id: pUligB
 #: src/engine/core-modules/admin-panel/admin-panel-queue.service.ts
@@ -1642,6 +1677,11 @@ msgstr "IKP"
 msgid "Id"
 msgstr "Kimlik"
 
+#. js-lingui-id: vm5Fs5
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "ID of the shared resource"
+msgstr ""
+
 #. js-lingui-id: Ebc83S
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Ideal Customer Profile:  Indicates whether the company is the most suitable and valuable customer for you"
@@ -1652,6 +1692,11 @@ msgstr "Ideal Müşteri Profili: Şirketin sizin için en uygun ve değerli mü�
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "If defined default value must contain at least one value"
 msgstr "Tanımlanmışsa, varsayılan değer en az bir değer içermelidir"
+
+#. js-lingui-id: hKtVqO
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Inactivity Expiration Days"
+msgstr ""
 
 #. js-lingui-id: Kfy/ML
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
@@ -1798,6 +1843,11 @@ msgstr "Geçersiz UUID {id}"
 msgid "Invalid verification code. Please try again."
 msgstr "Geçersiz doğrulama kodu. Lütfen tekrar deneyin."
 
+#. js-lingui-id: bhnh17
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Is Active"
+msgstr ""
+
 #. js-lingui-id: grHYXZ
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
@@ -1940,6 +1990,11 @@ msgstr "Etiket virgül içeremez"
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "Language"
 msgstr "Dil"
+
+#. js-lingui-id: HUNA6y
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Last Accessed At"
+msgstr ""
 
 #. js-lingui-id: hHtzNQ
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
@@ -2485,7 +2540,7 @@ msgstr "Not başlığı"
 
 #. js-lingui-id: 1DBGsz
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
-#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -2519,6 +2574,11 @@ msgstr "Fırsatla ilgili notlar"
 msgid "Notes tied to the sales quote"
 msgstr ""
 
+#. js-lingui-id: LqBbr9
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Notes tied to the sales quote line item"
+msgstr ""
+
 #. js-lingui-id: B2Y6QU
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget company"
@@ -2544,6 +2604,11 @@ msgstr "NoteTarget kişi"
 msgid "NoteTarget sales quote"
 msgstr ""
 
+#. js-lingui-id: rvvcVk
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget sales quote line item"
+msgstr ""
+
 #. js-lingui-id: t9QlBd
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
 msgid "November"
@@ -2558,6 +2623,11 @@ msgstr "Sayı formatı"
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Number of employees in the company"
 msgstr "Şirkette çalışanların sayısı"
+
+#. js-lingui-id: Sg8eFh
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Number of times the link has been accessed"
+msgstr ""
 
 #. js-lingui-id: ECRKYR
 #: src/engine/metadata-modules/utils/validate-no-other-object-with-same-name-exists-or-throw.util.ts
@@ -2760,6 +2830,11 @@ msgstr "Seçenek değeri gerekli"
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
 msgid "Option value must be a string of at least one character"
 msgstr "Seçenek değeri en az bir karakter uzunluğunda bir dize olmalıdır"
+
+#. js-lingui-id: sJ/RsU
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Optional expiration date"
+msgstr ""
 
 #. js-lingui-id: EabrTR
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
@@ -3020,6 +3095,16 @@ msgstr "Uzaktan nesneler henüz desteklenmiyor"
 msgid "Request has expired, please try again."
 msgstr "Talep süresi doldu, lütfen tekrar deneyin."
 
+#. js-lingui-id: vR4NXz
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Resource ID"
+msgstr ""
+
+#. js-lingui-id: esl+Tv
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Resource Type"
+msgstr ""
+
 #. js-lingui-id: rnCndp
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
@@ -3078,6 +3163,7 @@ msgstr ""
 
 #. js-lingui-id: EA564t
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "Sales Quote Line Item"
 msgstr ""
 
@@ -3157,6 +3243,16 @@ msgstr "Aynı ID'ye sahip sunucusuz işlev zaten mevcut"
 #: src/modules/workflow/common/standard-objects/workflow-automated-trigger.workspace-entity.ts
 msgid "Settings"
 msgstr "Ayarlar"
+
+#. js-lingui-id: woDwPr
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Share Link"
+msgstr ""
+
+#. js-lingui-id: f75RTJ
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Share Links"
+msgstr ""
 
 #. js-lingui-id: RyE+Of
 #: src/engine/metadata-modules/role/role.service.ts
@@ -3820,6 +3916,11 @@ msgstr "Zaman Çizelgesi Aktivitesi"
 msgid "Title"
 msgstr "Başlık"
 
+#. js-lingui-id: TP9/K5
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Token"
+msgstr ""
+
 #. js-lingui-id: mfqtz7
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
 msgid "Too many workspace invitations sent. Please try again later."
@@ -3845,6 +3946,11 @@ msgstr "Tür"
 msgid "Type (deprecated)"
 msgstr "Tür (kullanım dışı)."
 
+#. js-lingui-id: UGl1vp
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Type of shared resource"
+msgstr ""
+
 #. js-lingui-id: RBJNRI
 #: src/engine/metadata-modules/field-metadata/services/field-metadata.service.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata.service.ts
@@ -3856,6 +3962,11 @@ msgstr "Benzersiz alan varsayılan bir değere sahip olamaz"
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
 msgid "Unique index cannot be created for field {fieldName} of type {fieldType}"
 msgstr "{fieldType} türünde {fieldName} alanı için benzersiz indeks oluşturulamadı"
+
+#. js-lingui-id: IeWxMa
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Unique share link token"
+msgstr ""
 
 #. js-lingui-id: vWelsN
 #: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
@@ -3934,6 +4045,11 @@ msgstr "Kullanıcının zaman dilimi"
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "User was not created with email/password"
 msgstr "Kullanıcı e-posta/şifre ile oluşturulmadı"
+
+#. js-lingui-id: NZ+d6D
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "User who created the share link"
+msgstr ""
 
 #. js-lingui-id: 43zCwQ
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
@@ -4254,6 +4370,16 @@ msgstr "Çarşamba"
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
 msgid "Welcome to Y-CRM: Please Confirm Your Email"
 msgstr "Y-CRM'e Hoş Geldiniz: Lütfen E-postanızı Onaylayın"
+
+#. js-lingui-id: PT83hD
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "When the link was last accessed"
+msgstr ""
+
+#. js-lingui-id: RnkhgV
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Whether the share link is active"
+msgstr ""
 
 #. js-lingui-id: bLt/0J
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts

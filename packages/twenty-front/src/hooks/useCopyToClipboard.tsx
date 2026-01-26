@@ -1,7 +1,6 @@
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { useTheme } from '@emotion/react';
 import { useLingui } from '@lingui/react/macro';
-import { IconCopy, IconExclamationCircle } from 'twenty-ui/display';
 
 export const useCopyToClipboard = () => {
   const theme = useTheme();
@@ -40,18 +39,10 @@ export const useCopyToClipboard = () => {
 
       enqueueSuccessSnackBar({
         message: message || t`Copied to clipboard`,
-        options: {
-          icon: options?.icon ?? <IconCopy size={theme.icon.size.md} />,
-          duration: 2000,
-        },
       });
     } catch {
       enqueueErrorSnackBar({
         message: t`Couldn't copy to clipboard`,
-        options: {
-          icon: <IconExclamationCircle size={16} color="red" />,
-          duration: 2000,
-        },
       });
     }
   };

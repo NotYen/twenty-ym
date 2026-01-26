@@ -149,6 +149,16 @@ msgstr "Μια έκδοση ροής εργασιών"
 msgid "A workspace member"
 msgstr "Ένα μέλος χώρου εργασίας"
 
+#. js-lingui-id: qu+/9Z
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Access Count"
+msgstr ""
+
+#. js-lingui-id: 3+9ACO
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Access Mode"
+msgstr ""
+
 #. js-lingui-id: GDKKxT
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
 msgid "Access Token"
@@ -474,6 +484,11 @@ msgstr "Η ταυτοποίηση δεν είναι ενεργοποιημένη
 #: src/engine/metadata-modules/permissions/permissions.service.ts
 msgid "Authentication is required to access this feature. Please sign in and try again."
 msgstr "Απαιτείται έλεγχος ταυτότητας για να αποκτήσετε πρόσβαση σε αυτή τη λειτουργία. Παρακαλώ συνδεθείτε και δοκιμάστε ξανά."
+
+#. js-lingui-id: vWyP0D
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Authentication requirement for access"
+msgstr ""
 
 #. js-lingui-id: VbeIOx
 #: src/modules/attachment/standard-objects/attachment.workspace-entity.ts
@@ -854,6 +869,11 @@ msgstr ""
 msgid "Created by"
 msgstr "Δημιουργημένο Από"
 
+#. js-lingui-id: egTba/
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Created By"
+msgstr ""
+
 #. js-lingui-id: 2ZhYYy
 #: src/engine/metadata-modules/flat-field-metadata/utils/from-create-field-input-to-flat-field-metadatas-to-create.util.ts
 msgid "Created field metadata, parent object metadata not found"
@@ -956,6 +976,11 @@ msgstr "Μορφή Ημερομηνίας"
 #: src/engine/twenty-orm/base.workspace-entity.ts
 msgid "Date when the record was deleted"
 msgstr "Ημερομηνία Διαγραφής Εγγραφής"
+
+#. js-lingui-id: 5Xu4YX
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Days of inactivity before link expires"
+msgstr ""
 
 #. js-lingui-id: r6zgGo
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
@@ -1228,11 +1253,21 @@ msgstr "Εκτελέστηκε από"
 msgid "Expected the same constraint fields to be used consistently across all operations for {connectFieldName}."
 msgstr "Αναμενόταν να χρησιμοποιηθούν τα ίδια πεδία περιορισμού με συνέπεια σε όλες τις λειτουργίες για το {connectFieldName}."
 
+#. js-lingui-id: FYjp37
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Expires At"
+msgstr ""
+
 #. js-lingui-id: 5KfWxA
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 #: src/modules/messaging/common/standard-objects/message-folder.workspace-entity.ts
 msgid "External ID"
 msgstr "Εξωτερικό ID"
+
+#. js-lingui-id: Vo8Scz
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "External share links for data records and charts"
+msgstr ""
 
 #. js-lingui-id: pUligB
 #: src/engine/core-modules/admin-panel/admin-panel-queue.service.ts
@@ -1642,6 +1677,11 @@ msgstr "ICP"
 msgid "Id"
 msgstr "Ταυτότητα"
 
+#. js-lingui-id: vm5Fs5
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "ID of the shared resource"
+msgstr ""
+
 #. js-lingui-id: Ebc83S
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Ideal Customer Profile:  Indicates whether the company is the most suitable and valuable customer for you"
@@ -1652,6 +1692,11 @@ msgstr "Ιδανικό Προφίλ Πελάτη: Δείχνει εάν η ετ�
 #: src/engine/metadata-modules/field-metadata/services/field-metadata-enum-validation.service.ts
 msgid "If defined default value must contain at least one value"
 msgstr "Αν οριστεί, η αρχική τιμή πρέπει να περιέχει τουλάχιστον μία τιμή"
+
+#. js-lingui-id: hKtVqO
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Inactivity Expiration Days"
+msgstr ""
 
 #. js-lingui-id: Kfy/ML
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
@@ -1798,6 +1843,11 @@ msgstr "Μη έγκυρο uuid {id}"
 msgid "Invalid verification code. Please try again."
 msgstr "Μη έγκυρος κωδικός επαλήθευσης. Παρακαλώ προσπαθήστε ξανά."
 
+#. js-lingui-id: bhnh17
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Is Active"
+msgstr ""
+
 #. js-lingui-id: grHYXZ
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event.workspace-entity.ts
@@ -1940,6 +1990,11 @@ msgstr "Η ετικέτα δεν πρέπει να περιέχει κόμμα"
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
 msgid "Language"
 msgstr "Γλώσσα"
+
+#. js-lingui-id: HUNA6y
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Last Accessed At"
+msgstr ""
 
 #. js-lingui-id: hHtzNQ
 #: src/modules/connected-account/standard-objects/connected-account.workspace-entity.ts
@@ -2485,7 +2540,7 @@ msgstr "Τίτλος Σημειώματος"
 
 #. js-lingui-id: 1DBGsz
 #: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
-#: src/modules/sales-quote/standard-objects/sales-quote.workspace-entity.ts
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
 #: src/modules/person/standard-objects/person.workspace-entity.ts
 #: src/modules/opportunity/standard-objects/opportunity.workspace-entity.ts
 #: src/modules/note/standard-objects/note.workspace-entity.ts
@@ -2519,6 +2574,11 @@ msgstr "Σημειώματα συνδεδεμένα με την ευκαιρία
 msgid "Notes tied to the sales quote"
 msgstr ""
 
+#. js-lingui-id: LqBbr9
+#: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
+msgid "Notes tied to the sales quote line item"
+msgstr ""
+
 #. js-lingui-id: B2Y6QU
 #: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "NoteTarget company"
@@ -2544,6 +2604,11 @@ msgstr "NoteTarget άτομο"
 msgid "NoteTarget sales quote"
 msgstr ""
 
+#. js-lingui-id: rvvcVk
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
+msgid "NoteTarget sales quote line item"
+msgstr ""
+
 #. js-lingui-id: t9QlBd
 #: src/engine/api/graphql/graphql-query-runner/group-by/resolvers/utils/format-result-with-group-by-dimension-values.util.ts
 msgid "November"
@@ -2558,6 +2623,11 @@ msgstr "Μορφή αριθμού"
 #: src/modules/company/standard-objects/company.workspace-entity.ts
 msgid "Number of employees in the company"
 msgstr "Αριθμός εργαζομένων στην εταιρεία"
+
+#. js-lingui-id: Sg8eFh
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Number of times the link has been accessed"
+msgstr ""
 
 #. js-lingui-id: ECRKYR
 #: src/engine/metadata-modules/utils/validate-no-other-object-with-same-name-exists-or-throw.util.ts
@@ -2760,6 +2830,11 @@ msgstr "Απαιτείται τιμή επιλογής"
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
 msgid "Option value must be a string of at least one character"
 msgstr "Η τιμή επιλογής πρέπει να είναι μια χορδή τουλάχιστον ενός χαρακτήρα"
+
+#. js-lingui-id: sJ/RsU
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Optional expiration date"
+msgstr ""
 
 #. js-lingui-id: EabrTR
 #: src/engine/metadata-modules/flat-field-metadata/validators/utils/validate-enum-flat-field-metadata.util.ts
@@ -3020,6 +3095,16 @@ msgstr "Τα απομακρυσμένα αντικείμενα δεν υποστ
 msgid "Request has expired, please try again."
 msgstr "Το αίτημα έχει λήξει, παρακαλούμε προσπαθήστε ξανά."
 
+#. js-lingui-id: vR4NXz
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Resource ID"
+msgstr ""
+
+#. js-lingui-id: esl+Tv
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Resource Type"
+msgstr ""
+
 #. js-lingui-id: rnCndp
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
 #: src/modules/calendar/common/standard-objects/calendar-event-participant.workspace-entity.ts
@@ -3078,6 +3163,7 @@ msgstr ""
 
 #. js-lingui-id: EA564t
 #: src/modules/timeline/standard-objects/timeline-activity.workspace-entity.ts
+#: src/modules/note/standard-objects/note-target.workspace-entity.ts
 msgid "Sales Quote Line Item"
 msgstr ""
 
@@ -3157,6 +3243,16 @@ msgstr "Η λειτουργία χωρίς διακομιστή με το ίδι
 #: src/modules/workflow/common/standard-objects/workflow-automated-trigger.workspace-entity.ts
 msgid "Settings"
 msgstr "Ρυθμίσεις"
+
+#. js-lingui-id: woDwPr
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Share Link"
+msgstr ""
+
+#. js-lingui-id: f75RTJ
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Share Links"
+msgstr ""
 
 #. js-lingui-id: RyE+Of
 #: src/engine/metadata-modules/role/role.service.ts
@@ -3820,6 +3916,11 @@ msgstr "Δραστηριότητα Χρονοδιαγράμματος"
 msgid "Title"
 msgstr "Τίτλος"
 
+#. js-lingui-id: TP9/K5
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Token"
+msgstr ""
+
 #. js-lingui-id: mfqtz7
 #: src/engine/core-modules/workspace-invitation/services/workspace-invitation.service.ts
 msgid "Too many workspace invitations sent. Please try again later."
@@ -3845,6 +3946,11 @@ msgstr "Τύπος"
 msgid "Type (deprecated)"
 msgstr "Τύπος (καταργημένο)"
 
+#. js-lingui-id: UGl1vp
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Type of shared resource"
+msgstr ""
+
 #. js-lingui-id: RBJNRI
 #: src/engine/metadata-modules/field-metadata/services/field-metadata.service.ts
 #: src/engine/metadata-modules/field-metadata/services/field-metadata.service.ts
@@ -3856,6 +3962,11 @@ msgstr "Ένα μοναδικό πεδίο δεν μπορεί να έχει π�
 #: src/engine/workspace-manager/workspace-migration-v2/workspace-migration-builder-v2/validators/services/flat-index-metadata-validator.service.ts
 msgid "Unique index cannot be created for field {fieldName} of type {fieldType}"
 msgstr "Μοναδικό ευρετήριο δεν μπορεί να δημιουργηθεί για το πεδίο {fieldName} τύπου {fieldType}"
+
+#. js-lingui-id: IeWxMa
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Unique share link token"
+msgstr ""
 
 #. js-lingui-id: vWelsN
 #: src/modules/sales-quote/standard-objects/sales-quote-line-item.workspace-entity.ts
@@ -3934,6 +4045,11 @@ msgstr "Ζώνη ώρας χρήστη"
 #: src/engine/core-modules/auth/services/auth.service.ts
 msgid "User was not created with email/password"
 msgstr "Ο χρήστης δεν δημιουργήθηκε με email/κωδικό πρόσβασης"
+
+#. js-lingui-id: NZ+d6D
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "User who created the share link"
+msgstr ""
 
 #. js-lingui-id: 43zCwQ
 #: src/modules/workspace-member/standard-objects/workspace-member.workspace-entity.ts
@@ -4254,6 +4370,16 @@ msgstr "Τετάρτη"
 #: src/engine/core-modules/email-verification/services/email-verification.service.ts
 msgid "Welcome to Y-CRM: Please Confirm Your Email"
 msgstr "Καλώς ήρθατε στο Y-CRM: Παρακαλώ επιβεβαιώστε το email σας"
+
+#. js-lingui-id: PT83hD
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "When the link was last accessed"
+msgstr ""
+
+#. js-lingui-id: RnkhgV
+#: src/modules/share-link/standard-objects/share-link.workspace-entity.ts
+msgid "Whether the share link is active"
+msgstr ""
 
 #. js-lingui-id: bLt/0J
 #: src/modules/workflow/common/standard-objects/workflow.workspace-entity.ts
