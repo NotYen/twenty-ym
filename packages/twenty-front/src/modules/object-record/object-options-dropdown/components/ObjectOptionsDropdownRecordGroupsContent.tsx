@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 
+import { getRecordGroupSortLabel } from '@/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent';
 import { OBJECT_OPTIONS_DROPDOWN_ID } from '@/object-record/object-options-dropdown/constants/ObjectOptionsDropdownId';
 import { useObjectOptionsDropdown } from '@/object-record/object-options-dropdown/hooks/useObjectOptionsDropdown';
 import { RecordGroupsVisibilityDropdownSection } from '@/object-record/record-group/components/RecordGroupsVisibilityDropdownSection';
@@ -103,7 +104,7 @@ export const ObjectOptionsDropdownRecordGroupsContent = () => {
           />
         }
       >
-        Group
+        {t`Group`}
       </DropdownMenuHeader>
       <DropdownMenuItemsContainer>
         <SelectableList
@@ -133,7 +134,7 @@ export const ObjectOptionsDropdownRecordGroupsContent = () => {
                   onClick={() => onContentChange('recordGroupSort')}
                   LeftIcon={IconSortDescending}
                   text={t`Sort`}
-                  contextualText={recordGroupSort}
+                  contextualText={getRecordGroupSortLabel(recordGroupSort)}
                   contextualTextPosition="right"
                   hasSubMenu
                 />

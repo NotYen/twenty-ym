@@ -1,22 +1,23 @@
 import { type WorkflowTrigger } from '@/workflow/types/Workflow';
 import { getTriggerDefaultLabel } from '@/workflow/workflow-trigger/utils/getTriggerDefaultLabel';
+import { t } from '@lingui/core/macro';
 import { assertUnreachable } from 'twenty-shared/utils';
 
 export const getTriggerHeaderType = (trigger: WorkflowTrigger) => {
   switch (trigger.type) {
     case 'CRON': {
-      return 'Trigger · Cron';
+      return t`Trigger · Cron`;
     }
     case 'WEBHOOK': {
-      return 'Trigger · Webhook';
+      return t`Trigger · Webhook`;
     }
     case 'MANUAL': {
-      return 'Trigger · Manual';
+      return t`Trigger · Manual`;
     }
     case 'DATABASE_EVENT': {
       const defaultLabel = getTriggerDefaultLabel(trigger);
 
-      return `Trigger · ${defaultLabel}`;
+      return t`Trigger · ${defaultLabel}`;
     }
     default: {
       assertUnreachable(trigger, 'Unknown trigger type');

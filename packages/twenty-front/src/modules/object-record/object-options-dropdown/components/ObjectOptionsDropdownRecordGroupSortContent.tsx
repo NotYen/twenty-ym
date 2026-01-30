@@ -21,6 +21,18 @@ import {
   IconSortZA,
 } from 'twenty-ui/display';
 import { MenuItemSelect } from 'twenty-ui/navigation';
+import { t } from '@lingui/core/macro';
+
+export const getRecordGroupSortLabel = (sort: RecordGroupSort): string => {
+  switch (sort) {
+    case RecordGroupSort.Manual:
+      return t`Manual`;
+    case RecordGroupSort.Alphabetical:
+      return t`Alphabetical`;
+    case RecordGroupSort.ReverseAlphabetical:
+      return t`Reverse Alphabetical`;
+  }
+};
 
 export const ObjectOptionsDropdownRecordGroupSortContent = () => {
   const { currentContentId, onContentChange } = useObjectOptionsDropdown();
@@ -67,7 +79,7 @@ export const ObjectOptionsDropdownRecordGroupSortContent = () => {
           />
         }
       >
-        Sort
+        {t`Sort`}
       </DropdownMenuHeader>
       <DropdownMenuItemsContainer>
         <SelectableList
@@ -84,7 +96,7 @@ export const ObjectOptionsDropdownRecordGroupSortContent = () => {
                 handleRecordGroupSortChange(RecordGroupSort.Manual)
               }
               LeftIcon={IconHandMove}
-              text={RecordGroupSort.Manual}
+              text={getRecordGroupSortLabel(RecordGroupSort.Manual)}
               selected={recordGroupSort === RecordGroupSort.Manual}
               focused={selectedItemId === RecordGroupSort.Manual}
             />
@@ -100,7 +112,7 @@ export const ObjectOptionsDropdownRecordGroupSortContent = () => {
                 handleRecordGroupSortChange(RecordGroupSort.Alphabetical)
               }
               LeftIcon={IconSortAZ}
-              text={RecordGroupSort.Alphabetical}
+              text={getRecordGroupSortLabel(RecordGroupSort.Alphabetical)}
               selected={recordGroupSort === RecordGroupSort.Alphabetical}
               focused={selectedItemId === RecordGroupSort.Alphabetical}
             />
@@ -116,7 +128,7 @@ export const ObjectOptionsDropdownRecordGroupSortContent = () => {
                 handleRecordGroupSortChange(RecordGroupSort.ReverseAlphabetical)
               }
               LeftIcon={IconSortZA}
-              text={RecordGroupSort.ReverseAlphabetical}
+              text={getRecordGroupSortLabel(RecordGroupSort.ReverseAlphabetical)}
               selected={recordGroupSort === RecordGroupSort.ReverseAlphabetical}
               focused={selectedItemId === RecordGroupSort.ReverseAlphabetical}
             />

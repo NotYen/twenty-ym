@@ -136,6 +136,12 @@ msgstr "{0, plural, one {# Objekt} other {# Objekte}}"
 msgid "{0, plural, one {You do not have permission to access the {fieldsList} field} other {You do not have permission to access the {fieldsList} fields}}"
 msgstr "{0, plural, one {Sie haben keine Berechtigung, auf das Feld {fieldsList} zuzugreifen} other {Sie haben keine Berechtigung, auf die Felder {fieldsList} zuzugreifen}}"
 
+#. js-lingui-id: peiknr
+#. placeholder {0}: visibleBoardFields.length
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
+msgid "{0} shown"
+msgstr ""
+
 #. js-lingui-id: qdQhzv
 #: src/modules/views/advanced-filter-chip/components/AdvancedFilterChip.tsx
 msgid "{advancedFilterCount, plural, one {{advancedFilterCount} advanced rule} other {{advancedFilterCount} advanced rules}}"
@@ -274,6 +280,11 @@ msgstr ""
 msgid "{stepNumber}. Calendar"
 msgstr "{stepNumber}. Kalender"
 
+#. js-lingui-id: ITVweg
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownDefaultView.tsx
+msgid "{visibleFieldsCount} shown"
+msgstr ""
+
 #. js-lingui-id: riMLMq
 #: src/modules/workflow/workflow-steps/workflow-actions/iterator-action/components/WorkflowIteratorSubStepSwitcher.tsx
 msgid "{workflowRunIteratorSubStepIterationsCount, plural, one {# item} other {# items}}"
@@ -328,11 +339,6 @@ msgstr "12h - {hour12Label}"
 msgid "12h ({hour12Label})"
 msgstr "12h ({hour12Label})"
 
-#. js-lingui-id: 65Fqzp
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "14 days of inactivity"
-msgstr ""
-
 #. js-lingui-id: yXvRMf
 #: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
@@ -373,26 +379,6 @@ msgstr "2FA Methode wurde erfolgreich gelöscht."
 #: src/modules/settings/two-factor-authentication/components/DeleteTwoFactorAuthenticationMethod.tsx
 msgid "2FA Method Reset"
 msgstr "2FA Methode zurückgesetzt"
-
-#. js-lingui-id: c/R8wA
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "30 days of inactivity"
-msgstr ""
-
-#. js-lingui-id: UPwK1j
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "60 days of inactivity"
-msgstr ""
-
-#. js-lingui-id: GLUdJr
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "7 days of inactivity"
-msgstr ""
-
-#. js-lingui-id: wLkL14
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "90 days of inactivity"
-msgstr ""
 
 #. js-lingui-id: keUlu+
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
@@ -472,16 +458,6 @@ msgstr "Über diesen Benutzer"
 msgid "About this workspace"
 msgstr "Über diesen Arbeitsbereich"
 
-#. js-lingui-id: qu+/9Z
-#: src/modules/share-link/components/SettingsShareLinksTable.tsx
-msgid "Access Count"
-msgstr ""
-
-#. js-lingui-id: 3+9ACO
-#: src/modules/share-link/components/SettingsShareLinksTable.tsx
-msgid "Access Mode"
-msgstr ""
-
 #. js-lingui-id: c2UA7k
 #: src/pages/settings/ai/components/SettingsAIMCP.tsx
 msgid "Access your workspace data from your favorite MCP client like Claude Desktop, Windsurf or Cursor."
@@ -532,7 +508,6 @@ msgid "Action"
 msgstr "Aktion"
 
 #. js-lingui-id: 7L01XJ
-#: src/modules/share-link/components/SettingsShareLinksTable.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsTableHeader.tsx
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsTableHeader.tsx
@@ -822,11 +797,6 @@ msgstr "Hinzugefügt am {beautifyPastDateRelative}"
 msgid "Added to blocklist"
 msgstr "Zur Blockliste hinzugefügt"
 
-#. js-lingui-id: Du6bPw
-#: src/modules/share-link/components/renderers/CompanyContentRenderer.tsx
-msgid "Address"
-msgstr ""
-
 #. js-lingui-id: hW/fMg
 #: src/modules/settings/data-model/fields/forms/address/constants/DefaultSelectionAddressWithMessages.ts
 msgid "Address 1"
@@ -955,9 +925,9 @@ msgstr "Zusammenfassen"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1120,9 +1090,9 @@ msgstr "Hochladen von Dateien und Anhängen erlauben"
 msgid "Allow users to sign in with an email and password."
 msgstr "Benutzern erlauben, sich mit E-Mail und Passwort anzumelden."
 
-#. js-lingui-id: hehnjM
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Amount"
+#. js-lingui-id: 315BhT
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Alphabetical"
 msgstr ""
 
 #. js-lingui-id: Vw8l6h
@@ -1399,11 +1369,6 @@ msgstr ""
 msgid "Are you sure you want to delete this related {relationObjectMetadataNameSingular}?"
 msgstr ""
 
-#. js-lingui-id: RSKgUT
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Are you sure you want to delete this share link? This action cannot be undone."
-msgstr ""
-
 #. js-lingui-id: OJOR8q
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DestroyMultipleRecordsAction.tsx
 msgid "Are you sure you want to destroy these records? They won't be recoverable anymore."
@@ -1594,12 +1559,6 @@ msgstr "Authentifizierung"
 msgid "Authentication failed"
 msgstr "Authentifizierung fehlgeschlagen"
 
-#. js-lingui-id: TOWTDS
-#: src/pages/external/ExternalSharedContent.tsx
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Authentication Required"
-msgstr ""
-
 #. js-lingui-id: H7qgYQ
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
 msgid "Authenticator app"
@@ -1778,6 +1737,11 @@ msgstr "Beide"
 msgid "Brief explanation of this output field"
 msgstr "Kurze Erklärung dieses Ausgabefeldes"
 
+#. js-lingui-id: r1LXoG
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
+msgid "Bulk"
+msgstr ""
+
 #. js-lingui-id: VkwIHa
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "bullet"
@@ -1837,6 +1801,7 @@ msgstr "caldav.example.com"
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
 #: src/modules/settings/accounts/components/SettingsAccountsSettingsSection.tsx
 #: src/modules/page-layout/hooks/useTranslateTabTitle.ts
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Calendar"
 msgstr "Kalender"
@@ -2143,7 +2108,6 @@ msgid "Choose your Trial"
 msgstr "Wählen Sie Ihre Testphase"
 
 #. js-lingui-id: 3wV73y
-#: src/modules/share-link/components/renderers/PersonContentRenderer.tsx
 #: src/modules/settings/data-model/fields/forms/address/constants/DefaultSelectionAddressWithMessages.ts
 msgid "City"
 msgstr "Stadt"
@@ -2282,17 +2246,9 @@ msgid "Companies"
 msgstr "Unternehmen"
 
 #. js-lingui-id: 7i8j3G
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-#: src/modules/share-link/components/renderers/PersonContentRenderer.tsx
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
 #: src/modules/settings/profile/components/vcard/VCardFields.tsx
 msgid "Company"
-msgstr ""
-
-#. js-lingui-id: zGbOVS
-#: src/modules/share-link/components/renderers/CompanyContentRenderer.tsx
-msgid "Company Name"
 msgstr ""
 
 #. js-lingui-id: 2PsTzL
@@ -2544,11 +2500,6 @@ msgstr ""
 msgid "Consider adding a filter to display more data."
 msgstr ""
 
-#. js-lingui-id: jfC/xh
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Contact"
-msgstr ""
-
 #. js-lingui-id: Y2y0mC
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelDetails.tsx
@@ -2564,16 +2515,6 @@ msgstr ""
 #: src/modules/object-record/object-filter-dropdown/utils/getOperandLabel.ts
 msgid "Contains"
 msgstr "Enthält"
-
-#. js-lingui-id: HBDEKd
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Content Not Available"
-msgstr ""
-
-#. js-lingui-id: 5CvkPd
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Content Not Found"
-msgstr ""
 
 #. js-lingui-id: M73whl
 #: src/modules/command-menu/components/CommandMenu.tsx
@@ -2624,13 +2565,7 @@ msgstr "Kontrollieren, welche Arten von Entitäten diese Rolle zugewiesen werden
 msgid "Copied to clipboard"
 msgstr "In die Zwischenablage kopiert"
 
-#. js-lingui-id: PiH3UR
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Copied!"
-msgstr ""
-
 #. js-lingui-id: he3ygx
-#: src/modules/share-link/components/ShareLinkModal.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
@@ -2646,7 +2581,6 @@ msgstr "Einladungslink kopieren"
 
 #. js-lingui-id: y1eoq1
 #: src/modules/workspace/components/WorkspaceInviteLink.tsx
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
 msgid "Copy link"
 msgstr "Link kopieren"
 
@@ -2772,11 +2706,6 @@ msgstr "Erstelle {targetObjectLabelSingular}"
 msgid "Create a role to define permissions for this agent."
 msgstr ""
 
-#. js-lingui-id: bl1XO7
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Create a share link to allow others to view this record. You can configure access permissions and expiration settings."
-msgstr ""
-
 #. js-lingui-id: zNoOC2
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateSubTitle.ts
 msgid "Create a workflow and return here to view its versions"
@@ -2862,11 +2791,6 @@ msgstr "Auswahlfeld erstellen"
 msgid "Create Select..."
 msgstr "Auswahl erstellen..."
 
-#. js-lingui-id: dGi+Ea
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Create Share Link"
-msgstr ""
-
 #. js-lingui-id: zt6Erc
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
@@ -2920,11 +2844,6 @@ msgstr "Erstellen Ihres Datenmodells..."
 msgid "Creating your workspace"
 msgstr "Erstellen Ihres Arbeitsbereichs"
 
-#. js-lingui-id: HM56Bx
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Creating..."
-msgstr ""
-
 #. js-lingui-id: Efny36
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
 msgid "Credit Plan"
@@ -2949,6 +2868,11 @@ msgstr "Verwendete Guthaben"
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTriggersTab.tsx
 msgid "Cron"
 msgstr "Cron"
+
+#. js-lingui-id: mBCjtr
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
+msgid "Cron (Custom)"
+msgstr ""
 
 #. js-lingui-id: t87/Oe
 #: src/modules/metadata-error-handler/hooks/useMetadataErrorHandler.ts
@@ -3087,19 +3011,19 @@ msgstr "D\\u00e4nisch"
 msgid "Dark"
 msgstr "Dunkel"
 
-#. js-lingui-id: i1r++K
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Dashboard Chart"
-msgstr ""
-
 #. js-lingui-id: w6iIMm
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
 msgid "Dashboards"
 msgstr "Dashboards"
 
 #. js-lingui-id: HKH+W+
+#: src/modules/command-menu/pages/workflow/trigger-type/components/CommandMenuWorkflowSelectTriggerTypeContent.tsx
 #: src/modules/command-menu/pages/workflow/action/components/CommandMenuWorkflowSelectAction.tsx
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/PieChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/GaugeChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/AggregateChartSettings.ts
 msgid "Data"
 msgstr "Daten"
 
@@ -3233,6 +3157,7 @@ msgid "days"
 msgstr "Tage"
 
 #. js-lingui-id: HuVZMK
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Days"
 msgstr "Tage"
@@ -3365,8 +3290,6 @@ msgstr "löschen"
 #: src/modules/views/view-picker/components/ViewPickerEditButton.tsx
 #: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
 #: src/modules/ui/input/editor/components/CustomSideMenu.tsx
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTabEnvironmentVariableTableRow.tsx
 #: src/modules/settings/security/components/SSO/SettingsSecuritySSORowDropdownMenu.tsx
 #: src/modules/settings/members/ManageMembersDropdownMenu.tsx
@@ -3478,11 +3401,6 @@ msgstr "Rolle löschen"
 msgid "Delete Role Permanently"
 msgstr "Rolle dauerhaft löschen"
 
-#. js-lingui-id: zIUJl7
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Delete Share Link"
-msgstr ""
-
 #. js-lingui-id: DgHnjS
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "Delete this agent"
@@ -3576,7 +3494,6 @@ msgstr "Beschreiben Sie, wann diese Weitergabe genutzt werden soll"
 #: src/pages/settings/applications/components/SettingsApplicationsTable.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffTable.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/ai-agent-action/components/WorkflowOutputSchemaBuilder.tsx
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsTableHeader.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
@@ -3624,11 +3541,6 @@ msgstr "Datensätze auf allen Objekten zerstören"
 msgid "Detach"
 msgstr ""
 
-#. js-lingui-id: cO9+2L
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Disable"
-msgstr ""
-
 #. js-lingui-id: 8q/qbz
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Disable SMTP TLS"
@@ -3645,11 +3557,6 @@ msgstr ""
 #: src/modules/action-menu/actions/record-actions/constants/WorkflowActionsConfig.tsx
 msgid "Discard Draft"
 msgstr "Entwurf verwerfen"
-
-#. js-lingui-id: H6Ma8Z
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Discount"
-msgstr ""
 
 #. js-lingui-id: Xm/s+u
 #: src/modules/settings/accounts/components/SettingsAccountsCalendarChannelsGeneral.tsx
@@ -3703,7 +3610,6 @@ msgstr "Enthält nicht"
 #: src/pages/settings/emailing-domains/SettingsNewEmailingDomain.tsx
 #: src/pages/settings/domains/SettingsDomain.tsx
 #: src/pages/settings/domains/SettingsDomain.tsx
-#: src/modules/share-link/components/renderers/CompanyContentRenderer.tsx
 msgid "Domain"
 msgstr "Domäne"
 
@@ -3747,11 +3653,6 @@ msgstr "Keine Kontakte aus/von Gmail, Outlook E-Mails erstellen"
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
 msgid "Don't sync emails from team@ support@ noreply@..."
 msgstr "Keine E-Mails von team@ support@ noreply@... synchronisieren"
-
-#. js-lingui-id: DPfwMq
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Done"
-msgstr ""
 
 #. js-lingui-id: bd+DPX
 #: src/modules/settings/experience/components/NumberFormatSelect.tsx
@@ -3915,6 +3816,11 @@ msgstr "Zahlungsmethode bearbeiten, Rechnungen einsehen und mehr"
 msgid "Edit Records on All Objects"
 msgstr "Datensätze auf allen Objekten bearbeiten"
 
+#. js-lingui-id: eMFB6/
+#: src/modules/views/view-picker/components/ViewPickerContentEditMode.tsx
+msgid "Edit view"
+msgstr ""
+
 #. js-lingui-id: 6o1M/Q
 #: src/pages/settings/domains/SettingsDomains.tsx
 msgid "Edit your subdomain name or set a custom domain."
@@ -3930,7 +3836,6 @@ msgstr "Achte"
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/SettingsProfile.tsx
 #: src/pages/auth/PasswordReset.tsx
-#: src/modules/share-link/components/renderers/PersonContentRenderer.tsx
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTableHeader.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentTable.tsx
@@ -4059,7 +3964,6 @@ msgid "employees"
 msgstr "Mitarbeiter"
 
 #. js-lingui-id: gqv5ZL
-#: src/modules/share-link/components/renderers/CompanyContentRenderer.tsx
 #: src/modules/settings/data-model/fields/forms/components/SettingsDataModelFieldIconLabelForm.tsx
 msgid "Employees"
 msgstr "Mitarbeiter"
@@ -4099,11 +4003,6 @@ msgstr "Leerer Posteingang"
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Empty Object"
 msgstr "Leeres Objekt"
-
-#. js-lingui-id: PaQ3df
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Enable"
-msgstr ""
 
 #. js-lingui-id: q11Dk2
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -4604,11 +4503,6 @@ msgstr "Abgelaufen"
 msgid "Expires"
 msgstr "Läuft ab"
 
-#. js-lingui-id: FYjp37
-#: src/modules/share-link/components/SettingsShareLinksTable.tsx
-msgid "Expires At"
-msgstr ""
-
 #. js-lingui-id: i9qiyR
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Expires in"
@@ -4618,11 +4512,6 @@ msgstr "Läuft ab in"
 #: src/modules/settings/developers/utils/formatExpiration.ts
 msgid "Expires in {dateDiff}"
 msgstr "Läuft ab in {dateDiff}"
-
-#. js-lingui-id: RIcSTA
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Expires on"
-msgstr ""
 
 #. js-lingui-id: GS+Mus
 #: src/modules/object-record/record-index/export/hooks/useRecordIndexExportRecords.ts
@@ -4766,11 +4655,6 @@ msgstr "Das Erstellen von {translatedMetadataName} ist fehlgeschlagen. Die Valid
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 msgid "Failed to create handoff"
 msgstr "Fehler beim Erstellen der Weitergabe"
-
-#. js-lingui-id: ulo3eE
-#: src/modules/share-link/hooks/useCreateShareLink.ts
-msgid "Failed to create share link. Please try again."
-msgstr ""
 
 #. js-lingui-id: pUligB
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
@@ -5179,6 +5063,7 @@ msgid "Get your subscription"
 msgstr "Abonnement abschließen"
 
 #. js-lingui-id: 2GT3Hf
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
 #: src/modules/settings/components/SettingsRemoteConfigStatus.tsx
 #: src/modules/command-menu/components/CommandMenu.tsx
 msgid "Global"
@@ -5318,6 +5203,7 @@ msgstr "Griechisch"
 
 #. js-lingui-id: L8fEEm
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableOptionsDropdownContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 msgid "Group"
@@ -5465,6 +5351,7 @@ msgid "Horizontal Position"
 msgstr ""
 
 #. js-lingui-id: yY8wAv
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Hours"
 msgstr "Stunden"
@@ -5776,11 +5663,6 @@ msgstr "Ungültiger Authentifizierungs-Umgehungsanbieter"
 msgid "Invalid auth provider"
 msgstr "Ungültiger Authentifizierungsanbieter"
 
-#. js-lingui-id: znFVvL
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Invalid Chart Configuration"
-msgstr ""
-
 #. js-lingui-id: ER/0YT
 #: src/modules/workflow/workflow-trigger/utils/getTriggerScheduleDescription.ts
 msgid "Invalid cron expression"
@@ -5833,11 +5715,6 @@ msgstr "Ungültiger Minutenwert '{newMinute}'. Sollte eine ganze Zahl zwischen 0
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Invalid minute value '{newMinute}'. Should be integer greater than 1"
 msgstr "Ungültiger Minutenwert '{newMinute}'. Sollte eine Zahl größer als 1 sein"
-
-#. js-lingui-id: JCiXVC
-#: src/pages/external/ExternalSharedContent.tsx
-msgid "Invalid share link"
-msgstr ""
 
 #. js-lingui-id: VEKoJx
 #: src/modules/settings/two-factor-authentication/hooks/useTwoFactorVerificationForSettings.ts
@@ -6028,7 +5905,6 @@ msgid "Job Name"
 msgstr "Job-Name"
 
 #. js-lingui-id: 27z+FV
-#: src/modules/share-link/components/renderers/PersonContentRenderer.tsx
 #: src/modules/settings/profile/components/vcard/VCardFields.tsx
 msgid "Job Title"
 msgstr ""
@@ -6061,6 +5937,7 @@ msgstr ""
 
 #. js-lingui-id: OGXtL8
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Kanban"
 msgstr "Kanban"
@@ -6135,11 +6012,6 @@ msgstr "Letzte 4 Stunden (älteste → neueste)"
 msgid "Last 7 Days (oldest → newest)"
 msgstr "Letzte 7 Tage (älteste → neueste)"
 
-#. js-lingui-id: p6vDKM
-#: src/modules/share-link/components/SettingsShareLinksTable.tsx
-msgid "Last Accessed"
-msgstr ""
-
 #. js-lingui-id: P4FGJG
 #: src/modules/activities/emails/components/EmailThreadHeader.tsx
 msgid "Last message {lastMessageSentAtFormatted}"
@@ -6186,6 +6058,11 @@ msgstr "Neueste Version"
 #: src/modules/settings/playground/components/PlaygroundSetupForm.tsx
 msgid "Launch"
 msgstr "Starten"
+
+#. js-lingui-id: 9BjbLR
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "Launch manually"
+msgstr ""
 
 #. js-lingui-id: rdU729
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
@@ -6256,11 +6133,6 @@ msgstr ""
 msgid "LINE Integration"
 msgstr ""
 
-#. js-lingui-id: SgduFH
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Line Items"
-msgstr ""
-
 #. js-lingui-id: RG05MI
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "LINE Official Account is configured"
@@ -6274,11 +6146,6 @@ msgstr ""
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownDefaultView.tsx
 msgid "Link copied to clipboard"
 msgstr "Link in die Zwischenablage kopiert"
-
-#. js-lingui-id: gggTBm
-#: src/modules/share-link/components/renderers/CompanyContentRenderer.tsx
-msgid "LinkedIn"
-msgstr ""
 
 #. js-lingui-id: 82kQhK
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -6301,11 +6168,6 @@ msgstr "Auflistungen"
 msgid "Loading csv ... "
 msgstr "Laden csv ... "
 
-#. js-lingui-id: jFhkAv
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Loading existing share link..."
-msgstr ""
-
 #. js-lingui-id: IFQsdb
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "Loading jobs..."
@@ -6326,17 +6188,10 @@ msgstr "Mehr laden..."
 msgid "Loading retention configuration..."
 msgstr "Ladevorgang für Aufbewahrungskonfiguration..."
 
-#. js-lingui-id: TxVTsW
-#: src/pages/external/ExternalSharedContent.tsx
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Loading shared content..."
-msgstr ""
-
 #. js-lingui-id: Z3FXyt
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
-#: src/modules/share-link/components/SettingsShareLinksTable.tsx
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminVersionDisplay.tsx
@@ -6356,16 +6211,6 @@ msgstr "Abmelden"
 #: src/modules/information-banner/components/impersonate/InformationBannerIsImpersonating.tsx
 msgid "Logged in as {impersonatedUser}"
 msgstr "Eingeloggt als {impersonatedUser}"
-
-#. js-lingui-id: SYIxS6
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Login Required"
-msgstr ""
-
-#. js-lingui-id: AIufEv
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Login required - Authentication needed"
-msgstr ""
 
 #. js-lingui-id: VLuNNu
 #: src/modules/auth/components/TwoFactorAuthenticationProvisionEffect.tsx
@@ -6416,11 +6261,6 @@ msgstr "Abrechnung und Abonnements verwalten"
 #: src/modules/billing/components/SettingsBillingContent.tsx
 msgid "Manage billing information"
 msgstr "Verwalten Sie die Rechnungsdaten"
-
-#. js-lingui-id: ZSuwX+
-#: src/pages/settings/SettingsShareLinks.tsx
-msgid "Manage external share links for your data records and charts."
-msgstr ""
 
 #. js-lingui-id: U8dG4j
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
@@ -6477,6 +6317,16 @@ msgstr "Workflows verwalten"
 #: src/pages/settings/accounts/SettingsAccounts.tsx
 msgid "Manage your internet accounts."
 msgstr "Verwalten Sie Ihre Internetkonten."
+
+#. js-lingui-id: BWTzAb
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Manual"
+msgstr ""
+
+#. js-lingui-id: FD1NX6
+#: src/modules/workflow/workflow-diagram/utils/getWorkflowDiagramTriggerNode.ts
+msgid "Manual trigger"
+msgstr ""
 
 #. js-lingui-id: gDLior
 #: src/modules/spreadsheet-import/steps/components/SpreadsheetImportStepperContainer.tsx
@@ -6672,6 +6522,7 @@ msgid "Minute value cannot exceed 60. For intervals greater than 60 minutes, use
 msgstr ""
 
 #. js-lingui-id: agRWc1
+#: src/modules/workflow/workflow-trigger/constants/CronTriggerIntervalOptions.ts
 #: src/modules/workflow/workflow-steps/workflow-actions/delay-actions/components/WorkflowEditActionDelay.tsx
 msgid "Minutes"
 msgstr "Minuten"
@@ -6707,6 +6558,7 @@ msgid "month"
 msgstr "Monat"
 
 #. js-lingui-id: HajiZl
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
@@ -6790,7 +6642,6 @@ msgstr "Meine nicht gelisteten Ansichten"
 #: src/pages/settings/applications/components/SettingsApplicationsTable.tsx
 #: src/pages/settings/ai/constants/SettingsAiAgentTableMetadata.ts
 #: src/pages/onboarding/CreateProfile.tsx
-#: src/modules/share-link/components/renderers/PersonContentRenderer.tsx
 #: src/modules/settings/workspace/components/NameField.tsx
 #: src/modules/settings/serverless-functions/components/SettingsServerlessFunctionsTable.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOIdentitiesProvidersForm.tsx
@@ -6919,6 +6770,7 @@ msgstr "Niemals abläuft"
 #. js-lingui-id: isRobC
 #: src/pages/settings/data-model/SettingsNewObject.tsx
 #: src/modules/settings/developers/components/SettingsDevelopersWebhookForm.tsx
+#: src/modules/object-record/record-board/record-board-column/components/RecordBoardColumnNewRecordButton.tsx
 msgid "New"
 msgstr "Neu"
 
@@ -6940,9 +6792,9 @@ msgid "New Account"
 msgstr "Neues Konto"
 
 #. js-lingui-id: mJIA0/
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "Neuer Agent"
 
@@ -7121,11 +6973,6 @@ msgstr "Kein Land"
 msgid "No Data"
 msgstr "Keine Daten"
 
-#. js-lingui-id: l2nVE4
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "No Data Available"
-msgstr ""
-
 #. js-lingui-id: 7tCnBa
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
 msgid "No Data Available for Remote Table"
@@ -7218,11 +7065,6 @@ msgstr "Keine Weitergaben für diesen Agenten konfiguriert"
 msgid "No handoffs match your search"
 msgstr "Keine Weitergaben passen zu Ihrer Suche"
 
-#. js-lingui-id: FQUvQA
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "No inactivity expiration"
-msgstr ""
-
 #. js-lingui-id: lj3GoP
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "No jobs found"
@@ -7266,8 +7108,8 @@ msgstr "Keine Metrik-Daten verfügbar"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 #: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
+#: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "Keine Modelle verfügbar. Bitte konfigurieren Sie KI-Modelle in Ihren Arbeitsbereichseinstellungen."
 
@@ -7340,11 +7182,6 @@ msgstr "Keine Zeilen mit Fehlern"
 msgid "No Select field"
 msgstr "Kein Auswahlfeld"
 
-#. js-lingui-id: o/Nqgr
-#: src/modules/share-link/components/SettingsShareLinksTable.tsx
-msgid "No share links created yet."
-msgstr ""
-
 #. js-lingui-id: tL2EUu
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 msgid "No Super Admins found"
@@ -7413,6 +7250,11 @@ msgstr "Nicht leer"
 #: src/modules/object-record/record-field/ui/form-types/components/VariableChip.tsx
 msgid "Not Found"
 msgstr "Nicht gefunden"
+
+#. js-lingui-id: cURAbX
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerIsPinnedOptions.ts
+msgid "Not Pinned"
+msgstr ""
 
 #. js-lingui-id: NpVtef
 #: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
@@ -7572,6 +7414,11 @@ msgstr ""
 #: src/modules/command-menu/pages/page-layout/constants/settings/ChartConfigurationSettingLabels.ts
 msgid "Omit zero values"
 msgstr "Nullwerte auslassen"
+
+#. js-lingui-id: 2AKHUG
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "On a schedule"
+msgstr ""
 
 #. js-lingui-id: jcwJgk
 #: src/modules/workflow/workflow-trigger/utils/cron-to-human/descriptors/getDayOfMonthDescription.ts
@@ -7784,6 +7631,11 @@ msgstr "Andere Sicherheitseinstellungen"
 msgid "Other workspaces"
 msgstr "Andere Arbeitsbereiche"
 
+#. js-lingui-id: NuKR0h
+#: src/modules/command-menu/pages/workflow/trigger-type/components/CommandMenuWorkflowSelectTriggerTypeContent.tsx
+msgid "Others"
+msgstr ""
+
 #. js-lingui-id: p5ufK6
 #: src/pages/onboarding/BookCallDecision.tsx
 msgid "Our team can help you set up your workspace to match your specific needs and workflows."
@@ -7963,13 +7815,7 @@ msgstr "Berechtigungen"
 msgid "Permissions · {objectLabelSingular}"
 msgstr "Berechtigungen · {objectLabelSingular}"
 
-#. js-lingui-id: OZdaTZ
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Person"
-msgstr ""
-
 #. js-lingui-id: zmwvG2
-#: src/modules/share-link/components/renderers/PersonContentRenderer.tsx
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
 #: src/modules/settings/profile/components/vcard/VCardFields.tsx
 msgid "Phone"
@@ -7997,6 +7843,11 @@ msgstr "Bild"
 #: src/modules/command-menu/pages/page-layout/constants/GraphTypeInformation.ts
 msgid "Pie"
 msgstr "Kreisdiagramm"
+
+#. js-lingui-id: kNiQp6
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerIsPinnedOptions.ts
+msgid "Pinned"
+msgstr ""
 
 #. js-lingui-id: fQtTho
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
@@ -8113,12 +7964,6 @@ msgstr ""
 msgid "Postcode"
 msgstr "Postleitzahl"
 
-#. js-lingui-id: rsJegg
-#: src/pages/external/ExternalSharedContent.tsx
-#: src/pages/external/ExternalSharedContent.tsx
-msgid "Powered by Y-CRM"
-msgstr ""
-
 #. js-lingui-id: /v6Rp9
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Prefilling your workspace data..."
@@ -8193,11 +8038,6 @@ msgstr "Pro"
 msgid "Processing..."
 msgstr "Verarbeitung..."
 
-#. js-lingui-id: K47k8R
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Product"
-msgstr ""
-
 #. js-lingui-id: vERlcd
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
 #: src/pages/settings/SettingsProfile.tsx
@@ -8231,16 +8071,6 @@ msgstr "Stellen Sie eine vollständige und sichere Hosting-Umgebung auf diesen D
 msgid "Pseudo-English"
 msgstr "Pseudo-Englisch"
 
-#. js-lingui-id: 7d1a0d
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Public"
-msgstr ""
-
-#. js-lingui-id: KDqaoz
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Public access - No login required"
-msgstr ""
-
 #. js-lingui-id: knP82t
 #: src/modules/settings/domains/components/SettingPublicDomain.tsx
 #: src/modules/settings/domains/components/SettingPublicDomain.tsx
@@ -8268,11 +8098,6 @@ msgstr "Öffentliche Domäne erfolgreich gelöscht"
 msgid "Public Domains"
 msgstr "Öffentliche Domains"
 
-#. js-lingui-id: VbWX2u
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Quantity"
-msgstr ""
-
 #. js-lingui-id: 2vudsu
 #: src/modules/command-menu/pages/page-layout/utils/getDateGranularityLabel.ts
 msgid "Quarter"
@@ -8297,21 +8122,6 @@ msgstr "Queue-Leistung"
 #: src/pages/settings/admin-panel/SettingsAdminQueueDetail.tsx
 msgid "Queue: {queueName}"
 msgstr "Warteschlange: {queueName}"
-
-#. js-lingui-id: YSmkLe
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Quote Date"
-msgstr ""
-
-#. js-lingui-id: 4g3atH
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Quote Name"
-msgstr ""
-
-#. js-lingui-id: S1VNuo
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Quote Number"
-msgstr ""
 
 #. js-lingui-id: BT7pY+
 #: src/modules/settings/profile/components/SetOrChangePassword.tsx
@@ -8352,6 +8162,26 @@ msgstr "Datensatz-Erstellung gestoppt. {formattedCreatedRecordsCount} Datensätz
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
 msgid "Record image"
 msgstr "Bild aufzeichnen"
+
+#. js-lingui-id: wNysMp
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is created"
+msgstr ""
+
+#. js-lingui-id: /zKa2x
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is created or updated"
+msgstr ""
+
+#. js-lingui-id: pTBjmd
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is deleted"
+msgstr ""
+
+#. js-lingui-id: rdLUKj
+#: src/modules/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel.ts
+msgid "Record is updated"
+msgstr ""
 
 #. js-lingui-id: K6/7kH
 #: src/modules/settings/data-model/objects/forms/components/SettingsDataModelObjectIdentifiersForm.tsx
@@ -8620,11 +8450,6 @@ msgstr "Auf Standard zurücksetzen"
 msgid "Reset variable"
 msgstr "Variable zurücksetzen"
 
-#. js-lingui-id: esl+Tv
-#: src/modules/share-link/components/SettingsShareLinksTable.tsx
-msgid "Resource Type"
-msgstr ""
-
 #. js-lingui-id: WMdA7Y
 #: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
 msgid "Response Format"
@@ -8712,6 +8537,11 @@ msgstr "Alle fehlgeschlagenen erneut versuchen"
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminJobDetailsExpandable.tsx
 msgid "Return Value"
 msgstr "Rückgabewert"
+
+#. js-lingui-id: fS4pwl
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
+msgid "Reverse Alphabetical"
+msgstr ""
 
 #. js-lingui-id: GG37FL
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectFormObjectLevelTableRow.tsx
@@ -8802,11 +8632,6 @@ msgstr "Funktion ausführen"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Russian"
 msgstr "Russisch"
-
-#. js-lingui-id: Q1a1cW
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Sales Quote"
-msgstr ""
 
 #. js-lingui-id: +5kO8P
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
@@ -9385,8 +9210,8 @@ msgstr "Einrichten Ihrer Datenbank..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -9444,44 +9269,10 @@ msgstr "Siebte"
 msgid "Share"
 msgstr "Teilen"
 
-#. js-lingui-id: rse8o8
-#: src/modules/share-link/components/ShareLinkModal.tsx
-#: src/modules/share-link/components/ShareButton.tsx
-msgid "Share {resourceName}"
-msgstr ""
-
-#. js-lingui-id: BkgQSO
-#: src/modules/share-link/components/ShareLinkModal.tsx
-#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
-msgid "Share link copied to clipboard"
-msgstr ""
-
-#. js-lingui-id: aJ45q9
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Share link created successfully! Copy the link below and share it with others."
-msgstr ""
-
-#. js-lingui-id: f75RTJ
-#: src/pages/settings/SettingsShareLinks.tsx
-#: src/pages/settings/SettingsShareLinks.tsx
-#: src/pages/settings/SettingsShareLinks.tsx
-msgid "Share Links"
-msgstr ""
-
 #. js-lingui-id: Vy9kmk
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Share this link to invite users to join your workspace"
 msgstr "Teilen Sie diesen Link, um Benutzer in Ihren Arbeitsbereich einzuladen"
-
-#. js-lingui-id: SBlWEw
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Shared Content"
-msgstr ""
-
-#. js-lingui-id: nOwgNi
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Shared on"
-msgstr ""
 
 #. js-lingui-id: RRXpo1
 #: src/modules/settings/data-model/fields/forms/number/constants/NumberDataModelSelectOptions.ts
@@ -9535,12 +9326,6 @@ msgstr "Anmelden"
 msgid "Sign in or Create an account"
 msgstr "Anmelden oder ein Konto erstellen"
 
-#. js-lingui-id: gM04Rn
-#: src/pages/external/ExternalSharedContent.tsx
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Sign In to Continue"
-msgstr ""
-
 #. js-lingui-id: e+RpCP
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
 msgid "Sign up"
@@ -9557,6 +9342,11 @@ msgstr "Registrieren"
 #: src/modules/object-record/record-field/ui/meta-types/input/components/TextFieldInputWithDuplicateSuggestion.tsx
 #: src/modules/object-record/record-field/ui/meta-types/input/components/FullNameFieldInputWithDuplicateSuggestion.tsx
 msgid "Similar records were found. Are you sure you want to create a new record?"
+msgstr ""
+
+#. js-lingui-id: S8G1qk
+#: src/modules/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions.ts
+msgid "Single"
 msgstr ""
 
 #. js-lingui-id: 5v3IHX
@@ -9676,6 +9466,7 @@ msgstr "Entschuldigung, etwas ist schiefgelaufen"
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
 msgid "Sort"
 msgstr "Sortieren"
@@ -9771,7 +9562,6 @@ msgstr "Zustand"
 
 #. js-lingui-id: uAQUqI
 #: src/pages/settings/admin-panel/SettingsAdminIndicatorHealthStatus.tsx
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
 #: src/modules/settings/components/SettingsDnsRecordsTable.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminWorkspaceContent.tsx
 #: src/modules/settings/accounts/components/SettingsConnectedAccountsTableHeader.tsx
@@ -9802,6 +9592,15 @@ msgstr "In der Datenbank gespeichert"
 #. js-lingui-id: UJNV7l
 #: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
 msgid "String"
+msgstr ""
+
+#. js-lingui-id: 1CalO6
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/PieChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/GaugeChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/AggregateChartSettings.ts
+msgid "Style"
 msgstr ""
 
 #. js-lingui-id: WIUeUf
@@ -9896,11 +9695,6 @@ msgstr "Das Abonnement wird zum {beautifiedRenewDate} auf Monatlich umgestellt."
 #. js-lingui-id: pEToQK
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "subtitle"
-msgstr ""
-
-#. js-lingui-id: X2rrlw
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Subtotal"
 msgstr ""
 
 #. js-lingui-id: OjK1bU
@@ -10085,6 +9879,7 @@ msgstr "Registerkarteneinstellungen"
 #. js-lingui-id: 4hJhzz
 #: src/modules/views/view-picker/constants/ViewPickerTypeSelectOptions.ts
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 msgid "Table"
 msgstr "Tabelle"
 
@@ -10105,25 +9900,10 @@ msgstr ""
 msgid "Tasks"
 msgstr "Aufgaben"
 
-#. js-lingui-id: hwTkXl
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Tax Amount"
-msgstr ""
-
-#. js-lingui-id: EsKQ1d
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Tax Rate"
-msgstr ""
-
 #. js-lingui-id: lKXcJz
 #: src/pages/settings/emailing-domains/utils/getEmailingDomainStatusText.ts
 msgid "Temporary Failure"
 msgstr "Vorübergehender Fehler"
-
-#. js-lingui-id: mvP/25
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Terms and Conditions"
-msgstr ""
 
 #. js-lingui-id: xowcRf
 #: src/modules/auth/sign-in-up/components/FooterNote.tsx
@@ -10242,21 +10022,6 @@ msgstr "Der ausgewählte Datensatz wird an Ihren Workflow übergeben"
 msgid "The selected records will be passed to your workflow"
 msgstr "Die ausgewählten Datensätze werden an Ihren Workflow übergeben"
 
-#. js-lingui-id: lz6Y/R
-#: src/pages/external/ExternalSharedContent.tsx
-msgid "The share link you're trying to access is invalid."
-msgstr ""
-
-#. js-lingui-id: 0aMy/q
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "The shared content you're looking for does not exist or has been removed."
-msgstr ""
-
-#. js-lingui-id: HT068X
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "The shared content you're looking for is not available."
-msgstr ""
-
 #. js-lingui-id: uWikAA
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
 msgid "The values of this field"
@@ -10374,16 +10139,6 @@ msgstr "Diese Aktion kann nicht rückgängig gemacht werden. Dadurch wird Ihre M
 msgid "This action will break all its relationships with other objects."
 msgstr ""
 
-#. js-lingui-id: zVqk7j
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "This chart has no data to display."
-msgstr ""
-
-#. js-lingui-id: rXzGGc
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "This chart is missing configuration data."
-msgstr ""
-
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This database value overrides environment settings. "
@@ -10433,16 +10188,6 @@ msgstr ""
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This setting can only be configured through environment variables."
 msgstr "Diese Einstellung kann nur über Umgebungsvariablen konfiguriert werden."
-
-#. js-lingui-id: rvXIDk
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "This shared content requires authentication to access."
-msgstr ""
-
-#. js-lingui-id: ldsfZ5
-#: src/pages/external/ExternalSharedContent.tsx
-msgid "This shared content requires authentication to access. Please sign in to your Y-CRM account to continue."
-msgstr ""
 
 #. js-lingui-id: iAubP2
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
@@ -10504,6 +10249,7 @@ msgstr "Zeitzone"
 
 #. js-lingui-id: cklVjM
 #: src/modules/page-layout/hooks/useTranslateTabTitle.ts
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
 msgid "Timeline"
 msgstr "Zeitleiste"
@@ -10556,11 +10302,6 @@ msgstr "Morgen"
 msgid "Tooltip display field"
 msgstr ""
 
-#. js-lingui-id: 72c5Qo
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Total"
-msgstr ""
-
 #. js-lingui-id: YT/cKI
 #: src/modules/billing/components/SettingsBillingCreditsSection.tsx
 msgid "Track your {intervalLabel} workflow credit consumption."
@@ -10587,6 +10328,26 @@ msgstr "Probezeit abgelaufen. Bitte aktualisieren Sie Ihre Rechnungsdaten."
 #: src/modules/command-menu/components/CommandMenuWorkflowStepInfo.tsx
 msgid "Trigger"
 msgstr "Auslöser"
+
+#. js-lingui-id: QuQCj9
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · {defaultLabel}"
+msgstr ""
+
+#. js-lingui-id: q/OKK0
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Cron"
+msgstr ""
+
+#. js-lingui-id: 8/WvlR
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Manual"
+msgstr ""
+
+#. js-lingui-id: GdnJyL
+#: src/modules/workflow/workflow-trigger/utils/getTriggerHeaderType.ts
+msgid "Trigger · Webhook"
+msgstr ""
 
 #. js-lingui-id: SzG8Sm
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
@@ -10625,11 +10386,6 @@ msgstr "Löst die Funktion mit HTTP-Anfrage aus"
 #: src/modules/object-record/record-board/record-board-column/utils/getAggregateOperationShortLabel.ts
 msgid "True"
 msgstr "Wahr"
-
-#. js-lingui-id: qJb6G2
-#: src/modules/share-link/components/ExternalViewer.tsx
-msgid "Try Again"
-msgstr ""
 
 #. js-lingui-id: haaL9N
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
@@ -10704,11 +10460,6 @@ msgstr "Ukrainisch"
 msgid "ul"
 msgstr ""
 
-#. js-lingui-id: Nm6UvX
-#: src/pages/external/ExternalSharedContent.tsx
-msgid "Unable to load content"
-msgstr ""
-
 #. js-lingui-id: l+ALBd
 #: src/modules/client-config/components/ClientConfigProvider.tsx
 msgid "Unable to Reach Back-end"
@@ -10751,11 +10502,6 @@ msgstr "Einzigartig"
 #: src/modules/workflow/workflow-steps/workflow-actions/components/WorkflowEditActionUpsertRecord.tsx
 msgid "Unique fields"
 msgstr "Eindeutige Felder"
-
-#. js-lingui-id: vWelsN
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Unit Price"
-msgstr ""
 
 #. js-lingui-id: Ef7StM
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
@@ -10847,11 +10593,6 @@ msgstr "Aktualisieren"
 #. js-lingui-id: Hw/5o0
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Update Configuration"
-msgstr ""
-
-#. js-lingui-id: KzmvG6
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "Update Share Link"
 msgstr ""
 
 #. js-lingui-id: DUqztb
@@ -10994,11 +10735,6 @@ msgstr "Verwendung des standardmäßigen Anwendungswertes. Konfiguration über U
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "Using default value. Set a custom value to override."
 msgstr "Verwendung des Standardwertes. Setzen Sie einen benutzerdefinierten Wert, um ihn zu überschreiben."
-
-#. js-lingui-id: 0tttqe
-#: src/modules/share-link/components/renderers/SalesQuoteContentRenderer.tsx
-msgid "Valid Until"
-msgstr ""
 
 #. js-lingui-id: Clr4qp
 #: src/modules/spreadsheet-import/steps/components/SpreadsheetImportStepperContainer.tsx
@@ -11250,6 +10986,11 @@ msgstr "Wir senden Ihnen einen Link, um den Besitz der Domain zu verifizieren"
 msgid "Web Search"
 msgstr "Websuche"
 
+#. js-lingui-id: TRDppN
+#: src/modules/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel.ts
+msgid "Webhook"
+msgstr ""
+
 #. js-lingui-id: Tvdycs
 #: src/modules/settings/developers/hooks/useWebhookForm.ts
 msgid "Webhook {targetUrl} created successfully"
@@ -11284,6 +11025,7 @@ msgid "Webhooks"
 msgstr "Webhooks"
 
 #. js-lingui-id: zx4BuL
+#: src/modules/object-record/record-calendar/components/RecordCalendarTopBar.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownLayoutContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCustomView.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownCalendarViewContent.tsx
@@ -11346,7 +11088,6 @@ msgstr "Workflows"
 #. js-lingui-id: pmUArF
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/SettingsWorkspace.tsx
-#: src/pages/settings/SettingsShareLinks.tsx
 #: src/pages/settings/SettingsBilling.tsx
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
@@ -11373,8 +11114,8 @@ msgstr "Workflows"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -11474,13 +11215,10 @@ msgstr "Schreiben Sie eine Beschreibung für diesen Agenten"
 msgid "Write your function (in typescript) below"
 msgstr "Schreiben Sie Ihre Funktion (in TypeScript) unten"
 
-#. js-lingui-id: nhtR6Y
-#: src/modules/share-link/components/renderers/CompanyContentRenderer.tsx
-msgid "X (Twitter)"
-msgstr ""
-
 #. js-lingui-id: SHqkdn
 #: src/modules/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
 msgid "X axis"
 msgstr "X-Achse"
 
@@ -11497,6 +11235,8 @@ msgstr ""
 
 #. js-lingui-id: fplGg6
 #: src/modules/command-menu/pages/page-layout/utils/getChartAxisNameDisplayOptions.ts
+#: src/modules/command-menu/pages/page-layout/utils/getBarChartSettings.ts
+#: src/modules/command-menu/pages/page-layout/constants/LineChartSettings.ts
 msgid "Y axis"
 msgstr "Y-Achse"
 
@@ -11669,11 +11409,6 @@ msgstr "Ihr Arbeitsbereich hat kein aktives Abonnement. Bitte kontaktieren Sie I
 msgid "Your workspace will be disabled"
 msgstr "Ihr Arbeitsbereich wird deaktiviert"
 
-#. js-lingui-id: Ww6Q0Z
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "分享連結"
-msgstr ""
-
 #. js-lingui-id: 1FYy0d
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "同步您的郵件和日曆。選擇您的隱私設定。"
@@ -11694,32 +11429,12 @@ msgstr ""
 msgid "與 Outlook 同步"
 msgstr ""
 
-#. js-lingui-id: UEKoz+
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "訪問模式"
-msgstr ""
-
-#. js-lingui-id: zjVsTY
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "設定過期日期"
-msgstr ""
-
 #. js-lingui-id: UajW8q
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "跳過同步並繼續"
 msgstr ""
 
-#. js-lingui-id: sdI2iZ
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "選擇過期日期"
-msgstr ""
-
 #. js-lingui-id: NR/ELf
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "郵件和日曆"
-msgstr ""
-
-#. js-lingui-id: pMrx2x
-#: src/modules/share-link/components/ShareLinkModal.tsx
-msgid "非活躍過期"
 msgstr ""

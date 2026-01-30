@@ -10,11 +10,14 @@ import {
 import { workflowSelectedNodeComponentState } from '@/workflow/workflow-diagram/states/workflowSelectedNodeComponentState';
 import { RightDrawerStepListContainer } from '@/workflow/workflow-steps/components/RightDrawerWorkflowSelectStepContainer';
 import { RightDrawerWorkflowSelectStepTitle } from '@/workflow/workflow-steps/components/RightDrawerWorkflowSelectStepTitle';
+import { getDatabaseTriggerLabel } from '@/workflow/workflow-trigger/constants/DatabaseTriggerDefaultLabel';
 import { DATABASE_TRIGGER_TYPES } from '@/workflow/workflow-trigger/constants/DatabaseTriggerTypes';
+import { getOtherTriggerLabel } from '@/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel';
 import { OTHER_TRIGGER_TYPES } from '@/workflow/workflow-trigger/constants/OtherTriggerTypes';
 import { useUpdateWorkflowVersionTrigger } from '@/workflow/workflow-trigger/hooks/useUpdateWorkflowVersionTrigger';
 import { getTriggerDefaultDefinition } from '@/workflow/workflow-trigger/utils/getTriggerDefaultDefinition';
 import { useTheme } from '@emotion/react';
+import { t } from '@lingui/core/macro';
 import { isDefined } from 'twenty-shared/utils';
 import { TRIGGER_STEP_ID } from 'twenty-shared/workflow';
 import { useIcons } from 'twenty-ui/display';
@@ -76,7 +79,7 @@ export const CommandMenuWorkflowSelectTriggerTypeContent = () => {
   return (
     <RightDrawerStepListContainer>
       <RightDrawerWorkflowSelectStepTitle>
-        Data
+        {t`Data`}
       </RightDrawerWorkflowSelectStepTitle>
       {DATABASE_TRIGGER_TYPES.map((action) => {
         const Icon = getIcon(action.icon);
@@ -85,14 +88,14 @@ export const CommandMenuWorkflowSelectTriggerTypeContent = () => {
             withIconContainer={true}
             key={action.defaultLabel}
             LeftIcon={() => <Icon color={theme.color.blue} size={16} />}
-            text={action.defaultLabel}
+            text={getDatabaseTriggerLabel(action.defaultLabel)}
             onClick={handleTriggerTypeClick(action)}
           />
         );
       })}
 
       <RightDrawerWorkflowSelectStepTitle>
-        Others
+        {t`Others`}
       </RightDrawerWorkflowSelectStepTitle>
       {OTHER_TRIGGER_TYPES.map((action) => {
         const Icon = getIcon(action.icon);
@@ -101,7 +104,7 @@ export const CommandMenuWorkflowSelectTriggerTypeContent = () => {
             withIconContainer={true}
             key={action.defaultLabel}
             LeftIcon={() => <Icon color={theme.color.purple} size={16} />}
-            text={action.defaultLabel}
+            text={getOtherTriggerLabel(action.defaultLabel)}
             onClick={handleTriggerTypeClick(action)}
           />
         );

@@ -16,10 +16,11 @@ import { SORT_BY_GROUP_BY_FIELD_SETTING } from '@/command-menu/pages/page-layout
 import { SORT_BY_X_SETTING } from '@/command-menu/pages/page-layout/constants/settings/SortByXSetting';
 import { TOOLTIP_DISPLAY_FIELD_SETTING } from '@/command-menu/pages/page-layout/constants/settings/TooltipDisplayFieldSetting';
 import { type ChartSettingsGroup } from '@/command-menu/pages/page-layout/types/ChartSettingsGroup';
+import { t } from '@lingui/core/macro';
 
-export const LINE_CHART_SETTINGS: ChartSettingsGroup[] = [
+export const getLineChartSettings = (): ChartSettingsGroup[] => [
   {
-    heading: 'Data',
+    heading: t`Data`,
     items: [
       CHART_DATA_SOURCE_SETTING,
       FILTER_SETTING,
@@ -27,7 +28,7 @@ export const LINE_CHART_SETTINGS: ChartSettingsGroup[] = [
     ],
   },
   {
-    heading: 'X axis',
+    heading: t`X axis`,
     items: [
       DATA_DISPLAY_X_SETTING,
       DATE_GRANULARITY_X_SETTING,
@@ -37,7 +38,7 @@ export const LINE_CHART_SETTINGS: ChartSettingsGroup[] = [
     ],
   },
   {
-    heading: 'Y axis',
+    heading: t`Y axis`,
     items: [
       DATA_DISPLAY_Y_SETTING,
       GROUP_BY_SETTING,
@@ -48,7 +49,7 @@ export const LINE_CHART_SETTINGS: ChartSettingsGroup[] = [
     ],
   },
   {
-    heading: 'Style',
+    heading: t`Style`,
     items: [COLORS_SETTING, AXIS_NAME_SETTING, DATA_LABELS_SETTING],
   },
 ];

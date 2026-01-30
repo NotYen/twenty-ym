@@ -1,34 +1,35 @@
+import { t } from '@lingui/core/macro';
 import {
+  IconBrandDaysCounter,
   IconClockPlay,
   type IconComponent,
   IconHours24,
   IconTimeDuration60,
-  IconBrandDaysCounter,
 } from 'twenty-ui/display';
 export type CronTriggerInterval = 'DAYS' | 'HOURS' | 'MINUTES' | 'CUSTOM';
 
-export const CRON_TRIGGER_INTERVAL_OPTIONS: Array<{
+export const getCronTriggerIntervalOptions = (): Array<{
   label: string;
   value: CronTriggerInterval;
   Icon: IconComponent;
-}> = [
+}> => [
   {
-    label: 'Days',
+    label: t`Days`,
     value: 'DAYS',
     Icon: IconBrandDaysCounter,
   },
   {
-    label: 'Hours',
+    label: t`Hours`,
     value: 'HOURS',
     Icon: IconHours24,
   },
   {
-    label: 'Minutes',
+    label: t`Minutes`,
     value: 'MINUTES',
     Icon: IconTimeDuration60,
   },
   {
-    label: 'Cron (Custom)',
+    label: t`Cron (Custom)`,
     value: 'CUSTOM',
     Icon: IconClockPlay,
   },

@@ -6,8 +6,8 @@ import { GenericDropdownContentWidth } from '@/ui/layout/dropdown/constants/Gene
 import { type WorkflowManualTrigger } from '@/workflow/types/Workflow';
 import { WorkflowStepBody } from '@/workflow/workflow-steps/components/WorkflowStepBody';
 import { WorkflowStepFooter } from '@/workflow/workflow-steps/components/WorkflowStepFooter';
-import { MANUAL_TRIGGER_AVAILABILITY_TYPE_OPTIONS } from '@/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions';
-import { MANUAL_TRIGGER_IS_PINNED_OPTIONS } from '@/workflow/workflow-trigger/constants/ManualTriggerIsPinnedOptions';
+import { getManualTriggerAvailabilityTypeOptions } from '@/workflow/workflow-trigger/constants/ManualTriggerAvailabilityTypeOptions';
+import { getManualTriggerIsPinnedOptions } from '@/workflow/workflow-trigger/constants/ManualTriggerIsPinnedOptions';
 import { getManualTriggerDefaultSettings } from '@/workflow/workflow-trigger/utils/getManualTriggerDefaultSettings';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -89,7 +89,7 @@ export const WorkflowEditTriggerManual = ({
           fullWidth
           disabled={triggerOptions.readonly}
           value={availability?.type}
-          options={MANUAL_TRIGGER_AVAILABILITY_TYPE_OPTIONS}
+          options={getManualTriggerAvailabilityTypeOptions()}
           onChange={(availabilityType) => {
             if (triggerOptions.readonly === true) {
               return;
@@ -191,7 +191,7 @@ export const WorkflowEditTriggerManual = ({
           description={t`Display a button in the top navbar to trigger this workflow`}
           fullWidth
           value={trigger.settings.isPinned}
-          options={MANUAL_TRIGGER_IS_PINNED_OPTIONS}
+          options={getManualTriggerIsPinnedOptions()}
           disabled={triggerOptions.readonly}
           onChange={(updatedValue) => {
             if (triggerOptions.readonly === true) {

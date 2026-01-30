@@ -1,3 +1,4 @@
+import { t } from '@lingui/core/macro';
 import {
   IconCheckbox,
   type IconComponent,
@@ -5,23 +6,23 @@ import {
   IconListDetails,
 } from 'twenty-ui/display';
 
-export const MANUAL_TRIGGER_AVAILABILITY_TYPE_OPTIONS: Array<{
+export const getManualTriggerAvailabilityTypeOptions = (): Array<{
   label: string;
   value: 'GLOBAL' | 'SINGLE_RECORD' | 'BULK_RECORDS';
   Icon: IconComponent;
-}> = [
+}> => [
   {
-    label: 'Global',
+    label: t`Global`,
     value: 'GLOBAL',
     Icon: IconCheckbox,
   },
   {
-    label: 'Single',
+    label: t`Single`,
     value: 'SINGLE_RECORD',
     Icon: IconId,
   },
   {
-    label: 'Bulk',
+    label: t`Bulk`,
     value: 'BULK_RECORDS',
     Icon: IconListDetails,
   },

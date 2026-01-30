@@ -1,11 +1,12 @@
 import { type WorkflowTriggerType } from '@/workflow/types/Workflow';
+import { OtherTriggerDefaultLabel } from '@/workflow/workflow-trigger/constants/OtherTriggerDefaultLabel';
 
 export const MANUAL_TRIGGER: {
-  defaultLabel: string;
+  defaultLabel: OtherTriggerDefaultLabel;
   type: WorkflowTriggerType;
   icon: string;
 } = {
-  defaultLabel: 'Launch manually',
+  defaultLabel: OtherTriggerDefaultLabel.LAUNCH_MANUALLY,
   type: 'MANUAL',
   icon: 'IconHandMove',
 };
