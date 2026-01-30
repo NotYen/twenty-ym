@@ -339,6 +339,11 @@ msgstr "12小時 - {hour12Label}"
 msgid "12h ({hour12Label})"
 msgstr "12小時 ({hour12Label})"
 
+#. js-lingui-id: 65Fqzp
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "14 days of inactivity"
+msgstr ""
+
 #. js-lingui-id: yXvRMf
 #: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
@@ -379,6 +384,26 @@ msgstr "2FA 方法已成功刪除。"
 #: src/modules/settings/two-factor-authentication/components/DeleteTwoFactorAuthenticationMethod.tsx
 msgid "2FA Method Reset"
 msgstr "2FA 方法重置"
+
+#. js-lingui-id: c/R8wA
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "30 days of inactivity"
+msgstr ""
+
+#. js-lingui-id: UPwK1j
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "60 days of inactivity"
+msgstr ""
+
+#. js-lingui-id: GLUdJr
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "7 days of inactivity"
+msgstr ""
+
+#. js-lingui-id: wLkL14
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "90 days of inactivity"
+msgstr ""
 
 #. js-lingui-id: keUlu+
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
@@ -458,6 +483,16 @@ msgstr "關於此使用者"
 msgid "About this workspace"
 msgstr "關於此工作區"
 
+#. js-lingui-id: qu+/9Z
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Access Count"
+msgstr ""
+
+#. js-lingui-id: 3+9ACO
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Access Mode"
+msgstr ""
+
 #. js-lingui-id: c2UA7k
 #: src/pages/settings/ai/components/SettingsAIMCP.tsx
 msgid "Access your workspace data from your favorite MCP client like Claude Desktop, Windsurf or Cursor."
@@ -508,6 +543,7 @@ msgid "Action"
 msgstr "操作"
 
 #. js-lingui-id: 7L01XJ
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsTableHeader.tsx
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsTableHeader.tsx
@@ -925,9 +961,9 @@ msgstr "彙總"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1369,6 +1405,11 @@ msgstr "您確定要刪除此記錄嗎？"
 msgid "Are you sure you want to delete this related {relationObjectMetadataNameSingular}?"
 msgstr "您確定要刪除此相關{relationObjectMetadataNameSingular}?"
 
+#. js-lingui-id: RSKgUT
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Are you sure you want to delete this share link? This action cannot be undone."
+msgstr "確定要刪除此分享連結嗎？此操作無法撤銷。"
+
 #. js-lingui-id: OJOR8q
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DestroyMultipleRecordsAction.tsx
 msgid "Are you sure you want to destroy these records? They won't be recoverable anymore."
@@ -1558,6 +1599,12 @@ msgstr "身份驗證"
 #: src/modules/auth/hooks/useVerifyLogin.ts
 msgid "Authentication failed"
 msgstr "身份驗證失敗"
+
+#. js-lingui-id: TOWTDS
+#: src/pages/external/ExternalSharedContent.tsx
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Authentication Required"
+msgstr ""
 
 #. js-lingui-id: H7qgYQ
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
@@ -2246,6 +2293,7 @@ msgid "Companies"
 msgstr "公司"
 
 #. js-lingui-id: 7i8j3G
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
 #: src/modules/settings/profile/components/vcard/VCardFields.tsx
 msgid "Company"
@@ -2516,6 +2564,16 @@ msgstr "包含"
 msgid "Contains"
 msgstr "包含"
 
+#. js-lingui-id: HBDEKd
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Content Not Available"
+msgstr ""
+
+#. js-lingui-id: 5CvkPd
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Content Not Found"
+msgstr ""
+
 #. js-lingui-id: M73whl
 #: src/modules/command-menu/components/CommandMenu.tsx
 #: src/modules/ai/components/internal/AgentChatContextRecordPreview.tsx
@@ -2565,7 +2623,13 @@ msgstr "控制此角色可指派於哪些實體類型"
 msgid "Copied to clipboard"
 msgstr "已複製到剪貼板"
 
+#. js-lingui-id: PiH3UR
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Copied!"
+msgstr ""
+
 #. js-lingui-id: he3ygx
+#: src/modules/share-link/components/ShareLinkModal.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
@@ -2581,6 +2645,7 @@ msgstr "複製邀請鏈接"
 
 #. js-lingui-id: y1eoq1
 #: src/modules/workspace/components/WorkspaceInviteLink.tsx
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
 msgid "Copy link"
 msgstr "複製連結"
 
@@ -2706,6 +2771,11 @@ msgstr "創建 {targetObjectLabelSingular}"
 msgid "Create a role to define permissions for this agent."
 msgstr ""
 
+#. js-lingui-id: bl1XO7
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Create a share link to allow others to view this record. You can configure access permissions and expiration settings."
+msgstr "創建分享連結以允許其他人查看此記錄。您可以配置訪問權限和過期設定。"
+
 #. js-lingui-id: zNoOC2
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateSubTitle.ts
 msgid "Create a workflow and return here to view its versions"
@@ -2791,6 +2861,11 @@ msgstr "創建選擇字段"
 msgid "Create Select..."
 msgstr "創建選擇……"
 
+#. js-lingui-id: dGi+Ea
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Create Share Link"
+msgstr "創建分享連結"
+
 #. js-lingui-id: zt6Erc
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
@@ -2843,6 +2918,11 @@ msgstr "正在創建您的數據模型..."
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Creating your workspace"
 msgstr "創建您的工作區"
+
+#. js-lingui-id: HM56Bx
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Creating..."
+msgstr ""
 
 #. js-lingui-id: Efny36
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
@@ -3010,6 +3090,12 @@ msgstr "丹麥語"
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownThemesComponents.tsx
 msgid "Dark"
 msgstr "深色模式"
+
+#. js-lingui-id: i1r++K
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "Dashboard Chart"
+msgstr ""
 
 #. js-lingui-id: w6iIMm
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -3290,6 +3376,8 @@ msgstr "刪除"
 #: src/modules/views/view-picker/components/ViewPickerEditButton.tsx
 #: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
 #: src/modules/ui/input/editor/components/CustomSideMenu.tsx
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTabEnvironmentVariableTableRow.tsx
 #: src/modules/settings/security/components/SSO/SettingsSecuritySSORowDropdownMenu.tsx
 #: src/modules/settings/members/ManageMembersDropdownMenu.tsx
@@ -3400,6 +3488,11 @@ msgstr "刪除角色"
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModal.tsx
 msgid "Delete Role Permanently"
 msgstr "永久刪除角色"
+
+#. js-lingui-id: zIUJl7
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Delete Share Link"
+msgstr "刪除分享連結"
 
 #. js-lingui-id: DgHnjS
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
@@ -3541,6 +3634,11 @@ msgstr "銷毀所有物件的記錄"
 msgid "Detach"
 msgstr "解除關聯"
 
+#. js-lingui-id: cO9+2L
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Disable"
+msgstr ""
+
 #. js-lingui-id: 8q/qbz
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Disable SMTP TLS"
@@ -3652,6 +3750,11 @@ msgstr ""
 #. js-lingui-id: yjhBSV
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
 msgid "Don't sync emails from team@ support@ noreply@..."
+msgstr ""
+
+#. js-lingui-id: DPfwMq
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Done"
 msgstr ""
 
 #. js-lingui-id: bd+DPX
@@ -4003,6 +4106,11 @@ msgstr "清空收件箱"
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Empty Object"
 msgstr "空對象"
+
+#. js-lingui-id: PaQ3df
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Enable"
+msgstr ""
 
 #. js-lingui-id: q11Dk2
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -4503,6 +4611,11 @@ msgstr "已過期"
 msgid "Expires"
 msgstr "過期"
 
+#. js-lingui-id: FYjp37
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Expires At"
+msgstr ""
+
 #. js-lingui-id: i9qiyR
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Expires in"
@@ -4512,6 +4625,11 @@ msgstr "到期時間"
 #: src/modules/settings/developers/utils/formatExpiration.ts
 msgid "Expires in {dateDiff}"
 msgstr "在 {dateDiff} 過期"
+
+#. js-lingui-id: RIcSTA
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Expires on"
+msgstr ""
 
 #. js-lingui-id: GS+Mus
 #: src/modules/object-record/record-index/export/hooks/useRecordIndexExportRecords.ts
@@ -4655,6 +4773,11 @@ msgstr ""
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 msgid "Failed to create handoff"
 msgstr "創建交接失敗"
+
+#. js-lingui-id: ulo3eE
+#: src/modules/share-link/hooks/useCreateShareLink.ts
+msgid "Failed to create share link. Please try again."
+msgstr "創建分享連結失敗。請重試。"
 
 #. js-lingui-id: pUligB
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
@@ -5663,6 +5786,11 @@ msgstr ""
 msgid "Invalid auth provider"
 msgstr "無效的身份驗證提供者"
 
+#. js-lingui-id: znFVvL
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "Invalid Chart Configuration"
+msgstr ""
+
 #. js-lingui-id: ER/0YT
 #: src/modules/workflow/workflow-trigger/utils/getTriggerScheduleDescription.ts
 msgid "Invalid cron expression"
@@ -5715,6 +5843,11 @@ msgstr "分鐘值無效。應為0到59之間的整數"
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Invalid minute value '{newMinute}'. Should be integer greater than 1"
 msgstr "分鐘值無效。應為大於1的整數"
+
+#. js-lingui-id: JCiXVC
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "Invalid share link"
+msgstr "無效的分享連結"
 
 #. js-lingui-id: VEKoJx
 #: src/modules/settings/two-factor-authentication/hooks/useTwoFactorVerificationForSettings.ts
@@ -6012,6 +6145,11 @@ msgstr "最近4小時（最早 → 最新）"
 msgid "Last 7 Days (oldest → newest)"
 msgstr "最近7天（最早 → 最新）"
 
+#. js-lingui-id: p6vDKM
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Last Accessed"
+msgstr ""
+
 #. js-lingui-id: P4FGJG
 #: src/modules/activities/emails/components/EmailThreadHeader.tsx
 msgid "Last message {lastMessageSentAtFormatted}"
@@ -6168,6 +6306,11 @@ msgstr "列表"
 msgid "Loading csv ... "
 msgstr "載入 csv..."
 
+#. js-lingui-id: jFhkAv
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Loading existing share link..."
+msgstr "載入現有分享連結..."
+
 #. js-lingui-id: IFQsdb
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "Loading jobs..."
@@ -6188,10 +6331,17 @@ msgstr "載入更多..."
 msgid "Loading retention configuration..."
 msgstr "正在加載保留配置..."
 
+#. js-lingui-id: TxVTsW
+#: src/pages/external/ExternalSharedContent.tsx
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Loading shared content..."
+msgstr "載入分享內容..."
+
 #. js-lingui-id: Z3FXyt
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminVersionDisplay.tsx
@@ -6211,6 +6361,16 @@ msgstr "登出"
 #: src/modules/information-banner/components/impersonate/InformationBannerIsImpersonating.tsx
 msgid "Logged in as {impersonatedUser}"
 msgstr "以 {impersonatedUser} 登入"
+
+#. js-lingui-id: SYIxS6
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Login Required"
+msgstr ""
+
+#. js-lingui-id: AIufEv
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Login required - Authentication needed"
+msgstr ""
 
 #. js-lingui-id: VLuNNu
 #: src/modules/auth/components/TwoFactorAuthenticationProvisionEffect.tsx
@@ -6261,6 +6421,11 @@ msgstr "管理賬單和訂閱"
 #: src/modules/billing/components/SettingsBillingContent.tsx
 msgid "Manage billing information"
 msgstr "管理帳單資訊"
+
+#. js-lingui-id: ZSuwX+
+#: src/pages/settings/SettingsShareLinks.tsx
+msgid "Manage external share links for your data records and charts."
+msgstr "管理資料記錄和圖表的外部分享連結。"
 
 #. js-lingui-id: U8dG4j
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
@@ -6792,9 +6957,9 @@ msgid "New Account"
 msgstr "新帳戶"
 
 #. js-lingui-id: mJIA0/
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "新代理"
 
@@ -6887,6 +7052,7 @@ msgid "Ninth"
 msgstr "第九"
 
 #. js-lingui-id: 1UzENP
+#: src/modules/share-link/components/renderers/RecordRenderer.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelUpdateFieldsValueForObject.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelSeeFieldsValueForObject.tsx
 #: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
@@ -6972,6 +7138,12 @@ msgstr "無國家"
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetNoDataDisplay.tsx
 msgid "No Data"
 msgstr "無數據"
+
+#. js-lingui-id: l2nVE4
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "No Data Available"
+msgstr ""
 
 #. js-lingui-id: 7tCnBa
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
@@ -7065,6 +7237,11 @@ msgstr "此代理無交接配置"
 msgid "No handoffs match your search"
 msgstr "沒有符合您搜索的交接"
 
+#. js-lingui-id: FQUvQA
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "No inactivity expiration"
+msgstr ""
+
 #. js-lingui-id: lj3GoP
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "No jobs found"
@@ -7108,8 +7285,8 @@ msgstr "沒有可用的數據指標"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
+#: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "無模型可用。請在工作區設置中配置AI模型。"
 
@@ -7181,6 +7358,11 @@ msgstr "沒有錯誤的行"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "No Select field"
 msgstr "無選擇字段"
+
+#. js-lingui-id: o/Nqgr
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "No share links created yet."
+msgstr "尚未創建分享連結。"
 
 #. js-lingui-id: tL2EUu
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
@@ -7815,6 +7997,11 @@ msgstr "權限"
 msgid "Permissions · {objectLabelSingular}"
 msgstr "權限 · {objectLabelSingular}"
 
+#. js-lingui-id: OZdaTZ
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Person"
+msgstr ""
+
 #. js-lingui-id: zmwvG2
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
 #: src/modules/settings/profile/components/vcard/VCardFields.tsx
@@ -7964,6 +8151,12 @@ msgstr "可能重複的記錄"
 msgid "Postcode"
 msgstr "郵政編碼"
 
+#. js-lingui-id: rsJegg
+#: src/pages/external/ExternalSharedContent.tsx
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "Powered by Y-CRM"
+msgstr ""
+
 #. js-lingui-id: /v6Rp9
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Prefilling your workspace data..."
@@ -8070,6 +8263,16 @@ msgstr "在這些域名上提供完整且安全的託管環境。"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Pseudo-English"
 msgstr "偽英語"
+
+#. js-lingui-id: 7d1a0d
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Public"
+msgstr ""
+
+#. js-lingui-id: KDqaoz
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Public access - No login required"
+msgstr ""
 
 #. js-lingui-id: knP82t
 #: src/modules/settings/domains/components/SettingPublicDomain.tsx
@@ -8450,6 +8653,11 @@ msgstr "重置為默認"
 msgid "Reset variable"
 msgstr "重置變量"
 
+#. js-lingui-id: esl+Tv
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Resource Type"
+msgstr ""
+
 #. js-lingui-id: WMdA7Y
 #: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
 msgid "Response Format"
@@ -8632,6 +8840,11 @@ msgstr "執行功能"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Russian"
 msgstr "俄語"
+
+#. js-lingui-id: Q1a1cW
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Sales Quote"
+msgstr ""
 
 #. js-lingui-id: +5kO8P
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
@@ -9210,8 +9423,8 @@ msgstr "正在設置您的數據庫..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -9269,10 +9482,45 @@ msgstr "第七"
 msgid "Share"
 msgstr "分享"
 
+#. js-lingui-id: rse8o8
+#: src/modules/share-link/components/ShareLinkModal.tsx
+#: src/modules/share-link/components/ShareButton.tsx
+msgid "Share {resourceName}"
+msgstr "分享 {resourceName}"
+
+#. js-lingui-id: BkgQSO
+#: src/modules/share-link/components/ShareLinkModal.tsx
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Share link copied to clipboard"
+msgstr "分享連結已複製到剪貼簿"
+
+#. js-lingui-id: aJ45q9
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Share link created successfully! Copy the link below and share it with others."
+msgstr "分享連結創建成功！複製下方連結並分享給其他人。"
+
+#. js-lingui-id: f75RTJ
+#: src/pages/settings/SettingsShareLinks.tsx
+#: src/pages/settings/SettingsShareLinks.tsx
+#: src/pages/settings/SettingsShareLinks.tsx
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+msgid "Share Links"
+msgstr "分享連結"
+
 #. js-lingui-id: Vy9kmk
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Share this link to invite users to join your workspace"
 msgstr "分享此鏈接以邀請用戶加入您的工作區"
+
+#. js-lingui-id: SBlWEw
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Shared Content"
+msgstr "分享內容"
+
+#. js-lingui-id: nOwgNi
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Shared on"
+msgstr "分享於"
 
 #. js-lingui-id: RRXpo1
 #: src/modules/settings/data-model/fields/forms/number/constants/NumberDataModelSelectOptions.ts
@@ -9325,6 +9573,12 @@ msgstr "登錄"
 #: src/utils/title-utils.ts
 msgid "Sign in or Create an account"
 msgstr "登入或建立賬戶"
+
+#. js-lingui-id: gM04Rn
+#: src/pages/external/ExternalSharedContent.tsx
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Sign In to Continue"
+msgstr ""
 
 #. js-lingui-id: e+RpCP
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
@@ -9466,8 +9720,8 @@ msgstr "抱歉，出問題了"
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
 msgid "Sort"
 msgstr "排序"
 
@@ -10022,6 +10276,21 @@ msgstr "所選的紀錄將會傳送至您的工作流"
 msgid "The selected records will be passed to your workflow"
 msgstr "所選的紀錄將會傳送至您的工作流"
 
+#. js-lingui-id: lz6Y/R
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "The share link you're trying to access is invalid."
+msgstr "您嘗試訪問的分享連結無效。"
+
+#. js-lingui-id: 0aMy/q
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "The shared content you're looking for does not exist or has been removed."
+msgstr "您尋找的分享內容不存在或已被移除。"
+
+#. js-lingui-id: HT068X
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "The shared content you're looking for is not available."
+msgstr "您尋找的分享內容不可用。"
+
 #. js-lingui-id: uWikAA
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
 msgid "The values of this field"
@@ -10139,6 +10408,17 @@ msgstr "此操作無法撤銷。這將永久將您從此工作區中移除。"
 msgid "This action will break all its relationships with other objects."
 msgstr "此操作將解除它與其他物件的所有關聯。"
 
+#. js-lingui-id: zVqk7j
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart has no data to display."
+msgstr ""
+
+#. js-lingui-id: rXzGGc
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart is missing configuration data."
+msgstr ""
+
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This database value overrides environment settings. "
@@ -10188,6 +10468,16 @@ msgstr ""
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This setting can only be configured through environment variables."
 msgstr "此設置只能通過環境變量配置。"
+
+#. js-lingui-id: rvXIDk
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "This shared content requires authentication to access."
+msgstr "此分享內容需要身份驗證才能訪問。"
+
+#. js-lingui-id: ldsfZ5
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "This shared content requires authentication to access. Please sign in to your Y-CRM account to continue."
+msgstr "此分享內容需要身份驗證才能訪問。請登入您的 Y-CRM 帳戶以繼續。"
 
 #. js-lingui-id: iAubP2
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
@@ -10387,6 +10677,11 @@ msgstr "使用Http請求觸發功能"
 msgid "True"
 msgstr "真"
 
+#. js-lingui-id: qJb6G2
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Try Again"
+msgstr ""
+
 #. js-lingui-id: haaL9N
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/developers/api-keys/SettingsApiKeys.tsx
@@ -10458,6 +10753,16 @@ msgstr "烏克蘭語"
 #. js-lingui-id: GNgAlk
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "ul"
+msgstr ""
+
+#. js-lingui-id: Nm6UvX
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "Unable to load content"
+msgstr ""
+
+#. js-lingui-id: hrLsnv
+#: src/modules/share-link/components/renderers/RecordRenderer.tsx
+msgid "Unable to load record data"
 msgstr ""
 
 #. js-lingui-id: l+ALBd
@@ -10594,6 +10899,11 @@ msgstr "更新"
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Update Configuration"
 msgstr "更新設定"
+
+#. js-lingui-id: KzmvG6
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Update Share Link"
+msgstr "更新分享連結"
 
 #. js-lingui-id: DUqztb
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
@@ -11088,6 +11398,7 @@ msgstr "自動化工作流"
 #. js-lingui-id: pmUArF
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/SettingsWorkspace.tsx
+#: src/pages/settings/SettingsShareLinks.tsx
 #: src/pages/settings/SettingsBilling.tsx
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
@@ -11114,8 +11425,8 @@ msgstr "自動化工作流"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -11270,6 +11581,7 @@ msgid "yes"
 msgstr "是"
 
 #. js-lingui-id: l75CjT
+#: src/modules/share-link/components/renderers/RecordRenderer.tsx
 #: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
 msgid "Yes"
 msgstr "是"
@@ -11409,6 +11721,11 @@ msgstr "您的工作區沒有有效的訂閱。請聯絡您的管理員。"
 msgid "Your workspace will be disabled"
 msgstr "您的工作區將被禁用"
 
+#. js-lingui-id: Ww6Q0Z
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "分享連結"
+msgstr ""
+
 #. js-lingui-id: 1FYy0d
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "同步您的郵件和日曆。選擇您的隱私設定。"
@@ -11429,12 +11746,32 @@ msgstr "與 Google 同步"
 msgid "與 Outlook 同步"
 msgstr "與 Outlook 同步"
 
+#. js-lingui-id: UEKoz+
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "訪問模式"
+msgstr ""
+
+#. js-lingui-id: zjVsTY
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "設定過期日期"
+msgstr ""
+
 #. js-lingui-id: UajW8q
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "跳過同步並繼續"
 msgstr "跳過同步並繼續"
 
+#. js-lingui-id: sdI2iZ
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "選擇過期日期"
+msgstr ""
+
 #. js-lingui-id: NR/ELf
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "郵件和日曆"
 msgstr "郵件和日曆"
+
+#. js-lingui-id: pMrx2x
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "非活躍過期"
+msgstr ""

@@ -339,6 +339,11 @@ msgstr "12h - {hour12Label}"
 msgid "12h ({hour12Label})"
 msgstr "12h ({hour12Label})"
 
+#. js-lingui-id: 65Fqzp
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "14 days of inactivity"
+msgstr ""
+
 #. js-lingui-id: yXvRMf
 #: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
 #: src/modules/settings/data-model/components/SettingsDataModelNewFieldBreadcrumbDropDown.tsx
@@ -379,6 +384,26 @@ msgstr "Phương thức 2FA đã được xóa thành công."
 #: src/modules/settings/two-factor-authentication/components/DeleteTwoFactorAuthenticationMethod.tsx
 msgid "2FA Method Reset"
 msgstr "Đặt lại phương thức 2FA"
+
+#. js-lingui-id: c/R8wA
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "30 days of inactivity"
+msgstr ""
+
+#. js-lingui-id: UPwK1j
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "60 days of inactivity"
+msgstr ""
+
+#. js-lingui-id: GLUdJr
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "7 days of inactivity"
+msgstr ""
+
+#. js-lingui-id: wLkL14
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "90 days of inactivity"
+msgstr ""
 
 #. js-lingui-id: keUlu+
 #: src/modules/workflow/components/OverrideWorkflowDraftConfirmationModal.tsx
@@ -458,6 +483,16 @@ msgstr "Về người dùng này"
 msgid "About this workspace"
 msgstr "Giới thiệu về không gian làm việc này"
 
+#. js-lingui-id: qu+/9Z
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Access Count"
+msgstr ""
+
+#. js-lingui-id: 3+9ACO
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Access Mode"
+msgstr ""
+
 #. js-lingui-id: c2UA7k
 #: src/pages/settings/ai/components/SettingsAIMCP.tsx
 msgid "Access your workspace data from your favorite MCP client like Claude Desktop, Windsurf or Cursor."
@@ -508,6 +543,7 @@ msgid "Action"
 msgstr "Hành động"
 
 #. js-lingui-id: 7L01XJ
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsToolSection.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsTableHeader.tsx
 #: src/modules/settings/roles/role-permissions/objects-permissions/components/SettingsRolePermissionsObjectsTableHeader.tsx
@@ -925,9 +961,9 @@ msgstr "Tổng hợp"
 
 #. js-lingui-id: jsQZMk
 #: src/pages/settings/roles/SettingsRoleAddObjectLevel.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/workflow/workflow-steps/workflow-actions/utils/getActionHeaderTypeOrThrow.ts
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/object-form/components/SettingsRolePermissionsObjectLevelObjectForm.tsx
@@ -1369,6 +1405,11 @@ msgstr ""
 msgid "Are you sure you want to delete this related {relationObjectMetadataNameSingular}?"
 msgstr ""
 
+#. js-lingui-id: RSKgUT
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Are you sure you want to delete this share link? This action cannot be undone."
+msgstr ""
+
 #. js-lingui-id: OJOR8q
 #: src/modules/action-menu/actions/record-actions/multiple-records/components/DestroyMultipleRecordsAction.tsx
 msgid "Are you sure you want to destroy these records? They won't be recoverable anymore."
@@ -1558,6 +1599,12 @@ msgstr "Xác thực"
 #: src/modules/auth/hooks/useVerifyLogin.ts
 msgid "Authentication failed"
 msgstr "Xác thực thất bại"
+
+#. js-lingui-id: TOWTDS
+#: src/pages/external/ExternalSharedContent.tsx
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Authentication Required"
+msgstr ""
 
 #. js-lingui-id: H7qgYQ
 #: src/pages/settings/SettingsTwoFactorAuthenticationMethod.tsx
@@ -2246,6 +2293,7 @@ msgid "Companies"
 msgstr "Các công ty"
 
 #. js-lingui-id: 7i8j3G
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
 #: src/modules/settings/profile/components/vcard/VCardFields.tsx
 msgid "Company"
@@ -2516,6 +2564,16 @@ msgstr ""
 msgid "Contains"
 msgstr "Chứa"
 
+#. js-lingui-id: HBDEKd
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Content Not Available"
+msgstr ""
+
+#. js-lingui-id: 5CvkPd
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Content Not Found"
+msgstr ""
+
 #. js-lingui-id: M73whl
 #: src/modules/command-menu/components/CommandMenu.tsx
 #: src/modules/ai/components/internal/AgentChatContextRecordPreview.tsx
@@ -2565,7 +2623,13 @@ msgstr "Kiểm soát loại thực thể nào mà vai trò này có thể đư�
 msgid "Copied to clipboard"
 msgstr "Đã sao chép vào bảng tạm"
 
+#. js-lingui-id: PiH3UR
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Copied!"
+msgstr ""
+
 #. js-lingui-id: he3ygx
+#: src/modules/share-link/components/ShareLinkModal.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOSAMLForm.tsx
 #: src/modules/settings/security/components/SSO/SettingsSSOOIDCForm.tsx
@@ -2581,6 +2645,7 @@ msgstr "Sao chép liên kết mời"
 
 #. js-lingui-id: y1eoq1
 #: src/modules/workspace/components/WorkspaceInviteLink.tsx
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
 msgid "Copy link"
 msgstr "Sao chép liên kết"
 
@@ -2706,6 +2771,11 @@ msgstr "Tạo {targetObjectLabelSingular}"
 msgid "Create a role to define permissions for this agent."
 msgstr ""
 
+#. js-lingui-id: bl1XO7
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Create a share link to allow others to view this record. You can configure access permissions and expiration settings."
+msgstr ""
+
 #. js-lingui-id: zNoOC2
 #: src/modules/object-record/record-table/empty-state/utils/getEmptyStateSubTitle.ts
 msgid "Create a workflow and return here to view its versions"
@@ -2791,6 +2861,11 @@ msgstr "Tạo trường chọn"
 msgid "Create Select..."
 msgstr "Tạo Chọn..."
 
+#. js-lingui-id: dGi+Ea
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Create Share Link"
+msgstr ""
+
 #. js-lingui-id: zt6Erc
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 #: src/modules/views/components/UpdateViewButtonGroup.tsx
@@ -2843,6 +2918,11 @@ msgstr "Đang tạo mô hình dữ liệu của bạn..."
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Creating your workspace"
 msgstr "Đang tạo không gian làm việc của bạn"
+
+#. js-lingui-id: HM56Bx
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Creating..."
+msgstr ""
 
 #. js-lingui-id: Efny36
 #: src/modules/billing/components/internal/MeteredPriceSelector.tsx
@@ -3010,6 +3090,12 @@ msgstr "Tiếng Đan Mạch"
 #: src/modules/ui/navigation/navigation-drawer/components/MultiWorkspaceDropdown/internal/MultiWorkspaceDropdownThemesComponents.tsx
 msgid "Dark"
 msgstr "Giao diện tối"
+
+#. js-lingui-id: i1r++K
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "Dashboard Chart"
+msgstr ""
 
 #. js-lingui-id: w6iIMm
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -3290,6 +3376,8 @@ msgstr "xóa"
 #: src/modules/views/view-picker/components/ViewPickerEditButton.tsx
 #: src/modules/views/view-picker/components/ViewPickerCreateButton.tsx
 #: src/modules/ui/input/editor/components/CustomSideMenu.tsx
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
 #: src/modules/settings/serverless-functions/components/tabs/SettingsServerlessFunctionTabEnvironmentVariableTableRow.tsx
 #: src/modules/settings/security/components/SSO/SettingsSecuritySSORowDropdownMenu.tsx
 #: src/modules/settings/members/ManageMembersDropdownMenu.tsx
@@ -3400,6 +3488,11 @@ msgstr "Xóa vai trò"
 #: src/modules/settings/roles/role-settings/components/SettingsRoleSettingsDeleteRoleConfirmationModal.tsx
 msgid "Delete Role Permanently"
 msgstr "Xóa Vai Trò Vĩnh Viễn"
+
+#. js-lingui-id: zIUJl7
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Delete Share Link"
+msgstr ""
 
 #. js-lingui-id: DgHnjS
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
@@ -3541,6 +3634,11 @@ msgstr "Hủy bản ghi trên tất cả các đối tượng"
 msgid "Detach"
 msgstr ""
 
+#. js-lingui-id: cO9+2L
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Disable"
+msgstr ""
+
 #. js-lingui-id: 8q/qbz
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Disable SMTP TLS"
@@ -3653,6 +3751,11 @@ msgstr "Không tạo danh bạ từ/đến email Gmail, Outlook"
 #: src/modules/settings/accounts/components/SettingsAccountsMessageChannelDetails.tsx
 msgid "Don't sync emails from team@ support@ noreply@..."
 msgstr "Không đồng bộ email từ team@ support@ noreply@..."
+
+#. js-lingui-id: DPfwMq
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Done"
+msgstr ""
 
 #. js-lingui-id: bd+DPX
 #: src/modules/settings/experience/components/NumberFormatSelect.tsx
@@ -4003,6 +4106,11 @@ msgstr "Hộp thư rỗng"
 #: src/modules/ai/components/ToolStepRenderer.tsx
 msgid "Empty Object"
 msgstr "Đối tượng trống"
+
+#. js-lingui-id: PaQ3df
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Enable"
+msgstr ""
 
 #. js-lingui-id: q11Dk2
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -4503,6 +4611,11 @@ msgstr "Đã hết hạn"
 msgid "Expires"
 msgstr "Ngày hết hạn"
 
+#. js-lingui-id: FYjp37
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Expires At"
+msgstr ""
+
 #. js-lingui-id: i9qiyR
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Expires in"
@@ -4512,6 +4625,11 @@ msgstr "\"Hết hạn trong\""
 #: src/modules/settings/developers/utils/formatExpiration.ts
 msgid "Expires in {dateDiff}"
 msgstr "Hết hạn sau {dateDiff}"
+
+#. js-lingui-id: RIcSTA
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Expires on"
+msgstr ""
 
 #. js-lingui-id: GS+Mus
 #: src/modules/object-record/record-index/export/hooks/useRecordIndexExportRecords.ts
@@ -4655,6 +4773,11 @@ msgstr "Đã tạo thất bại {translatedMetadataName}. Kiểm tra liên quan 
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
 msgid "Failed to create handoff"
 msgstr "Không tạo được chuyển giao"
+
+#. js-lingui-id: ulo3eE
+#: src/modules/share-link/hooks/useCreateShareLink.ts
+msgid "Failed to create share link. Please try again."
+msgstr ""
 
 #. js-lingui-id: pUligB
 #: src/modules/settings/admin-panel/health-status/hooks/useDeleteJobs.ts
@@ -5663,6 +5786,11 @@ msgstr "Nhà cung cấp bỏ qua xác thực không hợp lệ"
 msgid "Invalid auth provider"
 msgstr "Nhà cung cấp xác thực không hợp lệ"
 
+#. js-lingui-id: znFVvL
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "Invalid Chart Configuration"
+msgstr ""
+
 #. js-lingui-id: ER/0YT
 #: src/modules/workflow/workflow-trigger/utils/getTriggerScheduleDescription.ts
 msgid "Invalid cron expression"
@@ -5715,6 +5843,11 @@ msgstr "Giá trị phút '{newMinute}' không hợp lệ. Phải là số nguyê
 #: src/modules/workflow/workflow-trigger/components/WorkflowEditTriggerCronForm.tsx
 msgid "Invalid minute value '{newMinute}'. Should be integer greater than 1"
 msgstr "Giá trị phút '{newMinute}' không hợp lệ. Phải là số nguyên lớn hơn 1"
+
+#. js-lingui-id: JCiXVC
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "Invalid share link"
+msgstr ""
 
 #. js-lingui-id: VEKoJx
 #: src/modules/settings/two-factor-authentication/hooks/useTwoFactorVerificationForSettings.ts
@@ -6012,6 +6145,11 @@ msgstr "4 Giờ Cuối (cũ nhất → mới nhất)"
 msgid "Last 7 Days (oldest → newest)"
 msgstr "7 Ngày Qua (cũ nhất → mới nhất)"
 
+#. js-lingui-id: p6vDKM
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Last Accessed"
+msgstr ""
+
 #. js-lingui-id: P4FGJG
 #: src/modules/activities/emails/components/EmailThreadHeader.tsx
 msgid "Last message {lastMessageSentAtFormatted}"
@@ -6168,6 +6306,11 @@ msgstr "Danh sách"
 msgid "Loading csv ... "
 msgstr "Đang tải csv ... "
 
+#. js-lingui-id: jFhkAv
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Loading existing share link..."
+msgstr ""
+
 #. js-lingui-id: IFQsdb
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "Loading jobs..."
@@ -6188,10 +6331,17 @@ msgstr "Đang tải thêm..."
 msgid "Loading retention configuration..."
 msgstr "Đang tải cấu hình lưu trữ..."
 
+#. js-lingui-id: TxVTsW
+#: src/pages/external/ExternalSharedContent.tsx
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Loading shared content..."
+msgstr ""
+
 #. js-lingui-id: Z3FXyt
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/releases/components/SettingsReleasesVersionInfoContent.tsx
 #: src/pages/settings/ai/components/SettingsAgentHandoffForm.tsx
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
 #: src/modules/settings/roles/role-assignment/components/SettingsRoleAssignmentEntityPickerDropdown.tsx
 #: src/modules/settings/admin-panel/components/SettingsAdminVersionDisplay.tsx
@@ -6211,6 +6361,16 @@ msgstr "Đăng xuất"
 #: src/modules/information-banner/components/impersonate/InformationBannerIsImpersonating.tsx
 msgid "Logged in as {impersonatedUser}"
 msgstr "Đăng nhập là {impersonatedUser}"
+
+#. js-lingui-id: SYIxS6
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Login Required"
+msgstr ""
+
+#. js-lingui-id: AIufEv
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Login required - Authentication needed"
+msgstr ""
 
 #. js-lingui-id: VLuNNu
 #: src/modules/auth/components/TwoFactorAuthenticationProvisionEffect.tsx
@@ -6261,6 +6421,11 @@ msgstr "Quản lý thanh toán và đăng ký"
 #: src/modules/billing/components/SettingsBillingContent.tsx
 msgid "Manage billing information"
 msgstr "Quản lý thông tin thanh toán"
+
+#. js-lingui-id: ZSuwX+
+#: src/pages/settings/SettingsShareLinks.tsx
+msgid "Manage external share links for your data records and charts."
+msgstr ""
 
 #. js-lingui-id: U8dG4j
 #: src/modules/views/view-picker/components/ViewPickerOptionDropdown.tsx
@@ -6792,9 +6957,9 @@ msgid "New Account"
 msgstr "Tài Khoản Mới"
 
 #. js-lingui-id: mJIA0/
+#: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAgentForm.tsx
 #: src/pages/settings/ai/SettingsAI.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
-#: src/pages/settings/ai/SettingsAgentForm.tsx
 msgid "New Agent"
 msgstr "Tác nhân mới"
 
@@ -6887,6 +7052,7 @@ msgid "Ninth"
 msgstr "Thứ chín"
 
 #. js-lingui-id: 1UzENP
+#: src/modules/share-link/components/renderers/RecordRenderer.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelUpdateFieldsValueForObject.tsx
 #: src/modules/settings/roles/role-permissions/object-level-permissions/components/SettingsRolePermissionsObjectLevelSeeFieldsValueForObject.tsx
 #: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
@@ -6972,6 +7138,12 @@ msgstr "Không có quốc gia"
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetNoDataDisplay.tsx
 msgid "No Data"
 msgstr "Không có dữ liệu"
+
+#. js-lingui-id: l2nVE4
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "No Data Available"
+msgstr ""
 
 #. js-lingui-id: 7tCnBa
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
@@ -7065,6 +7237,11 @@ msgstr "Không có cấu hình chuyển giao cho tác nhân này"
 msgid "No handoffs match your search"
 msgstr "Không có chuyển giao nào phù hợp với tìm kiếm của bạn"
 
+#. js-lingui-id: FQUvQA
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "No inactivity expiration"
+msgstr ""
+
 #. js-lingui-id: lj3GoP
 #: src/modules/settings/admin-panel/health-status/components/SettingsAdminQueueJobsTable.tsx
 msgid "No jobs found"
@@ -7108,8 +7285,8 @@ msgstr "Không có dữ liệu chỉ số khả dụng"
 
 #. js-lingui-id: UWZZdQ
 #: src/pages/settings/ai/forms/components/SettingsAIAgentForm.tsx
-#: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
 #: src/pages/settings/ai/components/SettingsAgentSettingsTab.tsx
+#: src/pages/settings/ai/components/SettingsAIRouterSettings.tsx
 msgid "No models available. Please configure AI models in your workspace settings."
 msgstr "Không có mô hình nào có sẵn. Vui lòng cấu hình mô hình AI trong cài đặt không gian làm việc của bạn."
 
@@ -7181,6 +7358,11 @@ msgstr "Không có hàng nào có lỗi"
 #: src/modules/views/view-picker/components/ViewPickerContentCreateMode.tsx
 msgid "No Select field"
 msgstr "Không có trường chọn"
+
+#. js-lingui-id: o/Nqgr
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "No share links created yet."
+msgstr ""
 
 #. js-lingui-id: tL2EUu
 #: src/modules/settings/super-admin/components/SuperAdminManagement.tsx
@@ -7815,6 +7997,11 @@ msgstr "Quyền"
 msgid "Permissions · {objectLabelSingular}"
 msgstr "Quyền · {objectLabelSingular}"
 
+#. js-lingui-id: OZdaTZ
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Person"
+msgstr ""
+
 #. js-lingui-id: zmwvG2
 #: src/modules/settings/profile/components/vcard/VCardPreview.tsx
 #: src/modules/settings/profile/components/vcard/VCardFields.tsx
@@ -7964,6 +8151,12 @@ msgstr ""
 msgid "Postcode"
 msgstr "Mã bưu điện"
 
+#. js-lingui-id: rsJegg
+#: src/pages/external/ExternalSharedContent.tsx
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "Powered by Y-CRM"
+msgstr ""
+
 #. js-lingui-id: /v6Rp9
 #: src/pages/onboarding/CreateWorkspace.tsx
 msgid "Prefilling your workspace data..."
@@ -8070,6 +8263,16 @@ msgstr "Chuẩn bị một môi trường lưu trữ hoàn chỉnh và an toàn 
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Pseudo-English"
 msgstr "Tiếng Anh giả"
+
+#. js-lingui-id: 7d1a0d
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Public"
+msgstr ""
+
+#. js-lingui-id: KDqaoz
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Public access - No login required"
+msgstr ""
 
 #. js-lingui-id: knP82t
 #: src/modules/settings/domains/components/SettingPublicDomain.tsx
@@ -8450,6 +8653,11 @@ msgstr "Đặt lại về mặc định"
 msgid "Reset variable"
 msgstr "Đặt lại biến"
 
+#. js-lingui-id: esl+Tv
+#: src/modules/share-link/components/SettingsShareLinksTable.tsx
+msgid "Resource Type"
+msgstr ""
+
 #. js-lingui-id: WMdA7Y
 #: src/pages/settings/ai/components/SettingsAgentResponseFormat.tsx
 msgid "Response Format"
@@ -8632,6 +8840,11 @@ msgstr "Chạy chức năng"
 #: src/pages/settings/profile/appearance/components/LocalePicker.tsx
 msgid "Russian"
 msgstr "Tiếng Nga"
+
+#. js-lingui-id: Q1a1cW
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Sales Quote"
+msgstr ""
 
 #. js-lingui-id: +5kO8P
 #: src/pages/settings/profile/appearance/components/DateTimeSettingsCalendarStartDaySelect.tsx
@@ -9210,8 +9423,8 @@ msgstr "Thiết lập cơ sở dữ liệu của bạn..."
 
 #. js-lingui-id: Tz0i8g
 #: src/pages/settings/data-model/SettingsObjectDetailPage.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
 #: src/modules/settings/roles/role/components/SettingsRole.tsx
@@ -9269,10 +9482,45 @@ msgstr "Thứ bảy"
 msgid "Share"
 msgstr "Chia sẻ"
 
+#. js-lingui-id: rse8o8
+#: src/modules/share-link/components/ShareLinkModal.tsx
+#: src/modules/share-link/components/ShareButton.tsx
+msgid "Share {resourceName}"
+msgstr ""
+
+#. js-lingui-id: BkgQSO
+#: src/modules/share-link/components/ShareLinkModal.tsx
+#: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+msgid "Share link copied to clipboard"
+msgstr ""
+
+#. js-lingui-id: aJ45q9
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Share link created successfully! Copy the link below and share it with others."
+msgstr ""
+
+#. js-lingui-id: f75RTJ
+#: src/pages/settings/SettingsShareLinks.tsx
+#: src/pages/settings/SettingsShareLinks.tsx
+#: src/pages/settings/SettingsShareLinks.tsx
+#: src/modules/settings/hooks/useSettingsNavigationItems.tsx
+msgid "Share Links"
+msgstr ""
+
 #. js-lingui-id: Vy9kmk
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 msgid "Share this link to invite users to join your workspace"
 msgstr "Chia sẻ liên kết này để mời người dùng tham gia không gian làm việc của bạn"
+
+#. js-lingui-id: SBlWEw
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Shared Content"
+msgstr ""
+
+#. js-lingui-id: nOwgNi
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Shared on"
+msgstr ""
 
 #. js-lingui-id: RRXpo1
 #: src/modules/settings/data-model/fields/forms/number/constants/NumberDataModelSelectOptions.ts
@@ -9325,6 +9573,12 @@ msgstr "Đăng nhập"
 #: src/utils/title-utils.ts
 msgid "Sign in or Create an account"
 msgstr "Đăng nhập hoặc Tạo tài khoản"
+
+#. js-lingui-id: gM04Rn
+#: src/pages/external/ExternalSharedContent.tsx
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Sign In to Continue"
+msgstr ""
 
 #. js-lingui-id: e+RpCP
 #: src/modules/auth/sign-in-up/components/internal/SignInUpWithCredentials.tsx
@@ -9466,8 +9720,8 @@ msgstr "Xin lỗi, có sự cố xảy ra"
 #: src/modules/object-record/record-table/record-table-header/components/RecordTableColumnHeadDropdownMenu.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
 #: src/modules/object-record/object-sort-dropdown/components/ObjectSortDropdownButton.tsx
-#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
 #: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupsContent.tsx
+#: src/modules/object-record/object-options-dropdown/components/ObjectOptionsDropdownRecordGroupSortContent.tsx
 msgid "Sort"
 msgstr "Sắp xếp"
 
@@ -10022,6 +10276,21 @@ msgstr "Các bản ghi được chọn sẽ được truyền vào quy trình l�
 msgid "The selected records will be passed to your workflow"
 msgstr "Các bản ghi được chọn sẽ được truyền vào quy trình làm việc của bạn"
 
+#. js-lingui-id: lz6Y/R
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "The share link you're trying to access is invalid."
+msgstr ""
+
+#. js-lingui-id: 0aMy/q
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "The shared content you're looking for does not exist or has been removed."
+msgstr ""
+
+#. js-lingui-id: HT068X
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "The shared content you're looking for is not available."
+msgstr ""
+
 #. js-lingui-id: uWikAA
 #: src/pages/settings/data-model/SettingsObjectFieldEdit.tsx
 msgid "The values of this field"
@@ -10139,6 +10408,17 @@ msgstr "Hành động này không thể được hoàn tác. Điều này sẽ x
 msgid "This action will break all its relationships with other objects."
 msgstr ""
 
+#. js-lingui-id: zVqk7j
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart has no data to display."
+msgstr ""
+
+#. js-lingui-id: rXzGGc
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart is missing configuration data."
+msgstr ""
+
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This database value overrides environment settings. "
@@ -10188,6 +10468,16 @@ msgstr ""
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
 msgid "This setting can only be configured through environment variables."
 msgstr "Cài đặt này chỉ có thể cấu hình thông qua các biến môi trường."
+
+#. js-lingui-id: rvXIDk
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "This shared content requires authentication to access."
+msgstr ""
+
+#. js-lingui-id: ldsfZ5
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "This shared content requires authentication to access. Please sign in to your Y-CRM account to continue."
+msgstr ""
 
 #. js-lingui-id: iAubP2
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx
@@ -10387,6 +10677,11 @@ msgstr "Kích hoạt chức năng với yêu cầu Http"
 msgid "True"
 msgstr "Đúng"
 
+#. js-lingui-id: qJb6G2
+#: src/modules/share-link/components/ExternalViewer.tsx
+msgid "Try Again"
+msgstr ""
+
 #. js-lingui-id: haaL9N
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
 #: src/pages/settings/developers/api-keys/SettingsApiKeys.tsx
@@ -10458,6 +10753,16 @@ msgstr "Tiếng Ukraine"
 #. js-lingui-id: GNgAlk
 #: src/modules/advanced-text-editor/extensions/slash-command/DefaultSlashCommands.ts
 msgid "ul"
+msgstr ""
+
+#. js-lingui-id: Nm6UvX
+#: src/pages/external/ExternalSharedContent.tsx
+msgid "Unable to load content"
+msgstr ""
+
+#. js-lingui-id: hrLsnv
+#: src/modules/share-link/components/renderers/RecordRenderer.tsx
+msgid "Unable to load record data"
 msgstr ""
 
 #. js-lingui-id: l+ALBd
@@ -10593,6 +10898,11 @@ msgstr "Cập nhật"
 #. js-lingui-id: Hw/5o0
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 msgid "Update Configuration"
+msgstr ""
+
+#. js-lingui-id: KzmvG6
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "Update Share Link"
 msgstr ""
 
 #. js-lingui-id: DUqztb
@@ -11088,6 +11398,7 @@ msgstr "Quy Trình Làm Việc"
 #. js-lingui-id: pmUArF
 #: src/pages/settings/SettingsWorkspaceMembers.tsx
 #: src/pages/settings/SettingsWorkspace.tsx
+#: src/pages/settings/SettingsShareLinks.tsx
 #: src/pages/settings/SettingsBilling.tsx
 #: src/pages/settings/workspace/SettingsWorkspaceAdvanced.tsx
 #: src/pages/settings/workspace/SettingsApiWebhooks.tsx
@@ -11114,8 +11425,8 @@ msgstr "Quy Trình Làm Việc"
 #: src/pages/settings/data-model/new-field/SettingsObjectNewFieldConfigure.tsx
 #: src/pages/settings/applications/SettingsApplications.tsx
 #: src/pages/settings/applications/SettingsApplicationDetails.tsx
-#: src/pages/settings/ai/SettingsAI.tsx
 #: src/pages/settings/ai/SettingsAgentForm.tsx
+#: src/pages/settings/ai/SettingsAI.tsx
 #: src/modules/views/view-picker/components/ViewPickerListContent.tsx
 #: src/modules/sign-in-background-mock/components/SignInAppNavigationDrawerMock.tsx
 #: src/modules/settings/roles/role-permissions/permission-flags/components/SettingsRolePermissionsSettingsSection.tsx
@@ -11270,6 +11581,7 @@ msgid "yes"
 msgstr "có"
 
 #. js-lingui-id: l75CjT
+#: src/modules/share-link/components/renderers/RecordRenderer.tsx
 #: src/modules/page-layout/widgets/graph/utils/formatDimensionValue.ts
 msgid "Yes"
 msgstr "Có"
@@ -11409,6 +11721,11 @@ msgstr "Không gian làm việc của bạn không có đăng ký hoạt động
 msgid "Your workspace will be disabled"
 msgstr "Không gian làm việc của bạn sẽ bị vô hiệu hóa"
 
+#. js-lingui-id: Ww6Q0Z
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "分享連結"
+msgstr ""
+
 #. js-lingui-id: 1FYy0d
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "同步您的郵件和日曆。選擇您的隱私設定。"
@@ -11429,12 +11746,32 @@ msgstr ""
 msgid "與 Outlook 同步"
 msgstr ""
 
+#. js-lingui-id: UEKoz+
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "訪問模式"
+msgstr ""
+
+#. js-lingui-id: zjVsTY
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "設定過期日期"
+msgstr ""
+
 #. js-lingui-id: UajW8q
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "跳過同步並繼續"
 msgstr ""
 
+#. js-lingui-id: sdI2iZ
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "選擇過期日期"
+msgstr ""
+
 #. js-lingui-id: NR/ELf
 #: src/pages/onboarding/SyncEmails.tsx
 msgid "郵件和日曆"
+msgstr ""
+
+#. js-lingui-id: pMrx2x
+#: src/modules/share-link/components/ShareLinkModal.tsx
+msgid "非活躍過期"
 msgstr ""
