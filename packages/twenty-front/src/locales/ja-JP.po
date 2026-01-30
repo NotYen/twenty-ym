@@ -2072,16 +2072,6 @@ msgstr ""
 msgid "Chart"
 msgstr "チャート"
 
-#. js-lingui-id: rfFVlK
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Chart rendering will be implemented in the next phase"
-msgstr ""
-
-#. js-lingui-id: i91kr0
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Chart Type"
-msgstr ""
-
 #. js-lingui-id: AHZflp
 #: src/modules/ai/components/AIChatEmptyState.tsx
 msgid "Chat"
@@ -3099,6 +3089,7 @@ msgstr "\\\\u30c0\\\\u30fc\\\\u30af"
 
 #. js-lingui-id: i1r++K
 #: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
 msgid "Dashboard Chart"
 msgstr ""
 
@@ -4336,11 +4327,6 @@ msgstr "環境変数"
 #: src/pages/settings/security/SettingsSecurity.tsx
 msgid "Erasure of soft-deleted records"
 msgstr "ソフト削除されたレコードの消去"
-
-#. js-lingui-id: SlfejT
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Error"
-msgstr ""
 
 #. js-lingui-id: GHKxvg
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -5790,6 +5776,11 @@ msgstr "無効な認証プロバイダー"
 msgid "Invalid auth provider"
 msgstr "無効な認証プロバイダー"
 
+#. js-lingui-id: znFVvL
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "Invalid Chart Configuration"
+msgstr ""
+
 #. js-lingui-id: ER/0YT
 #: src/modules/workflow/workflow-trigger/utils/getTriggerScheduleDescription.ts
 msgid "Invalid cron expression"
@@ -7129,6 +7120,11 @@ msgstr "国なし"
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetNoDataDisplay.tsx
 msgid "No Data"
 msgstr "データなし"
+
+#. js-lingui-id: l2nVE4
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "No Data Available"
+msgstr ""
 
 #. js-lingui-id: 7tCnBa
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
@@ -10376,6 +10372,16 @@ msgstr "この操作は取り消せません。これにより、ワークスペ
 #. js-lingui-id: oozGC3
 #: src/modules/object-record/record-field-list/record-detail-section/relation/components/RecordDetailRelationRecordsListItem.tsx
 msgid "This action will break all its relationships with other objects."
+msgstr ""
+
+#. js-lingui-id: zVqk7j
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart has no data to display."
+msgstr ""
+
+#. js-lingui-id: rXzGGc
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart is missing configuration data."
 msgstr ""
 
 #. js-lingui-id: SLIRqz

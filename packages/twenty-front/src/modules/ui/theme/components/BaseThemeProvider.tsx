@@ -10,7 +10,6 @@ import { getImageAbsoluteURI } from 'twenty-shared/utils';
 import { type ColorScheme } from 'twenty-ui/input';
 import { THEME_DARK, THEME_LIGHT, ThemeContextProvider } from 'twenty-ui/theme';
 import { REACT_APP_SERVER_BASE_URL } from '~/config';
-import { logDebug } from '~/utils/logDebug';
 
 type BaseThemeProviderProps = {
   children: JSX.Element | JSX.Element[];
@@ -48,18 +47,14 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
     const backgroundImage = currentWorkspace?.backgroundImage;
     const settings = currentWorkspace?.backgroundImageSettings;
 
-    logDebug('[🎨 BaseThemeProvider] useEffect 觸發', {
-      backgroundImage,
-      settings,
-      currentWorkspaceId: currentWorkspace?.id,
-    });
+    // BaseThemeProvider useEffect triggered
 
     if (
       backgroundImage !== null &&
       backgroundImage !== undefined &&
       typeof backgroundImage === 'string'
     ) {
-      logDebug('[🎨 BaseThemeProvider] ✅ 背景圖片存在，準備應用...');
+      // 背景圖片存在，準備應用
       // 將相對路徑轉換為絕對 URL（參考 ImageInput 組件）
       const absoluteBackgroundImageUrl = getImageAbsoluteURI({
         imageUrl: backgroundImage,
@@ -158,19 +153,9 @@ export const BaseThemeProvider = ({ children }: BaseThemeProviderProps) => {
         }
       `;
 
-      logDebug(
-        '[🎨 BaseThemeProvider] ✅ CSS 已注入，absoluteBackgroundImageUrl:',
-        absoluteBackgroundImageUrl,
-      );
-      logDebug('[🎨 BaseThemeProvider] 📐 背景設置:', {
-        opacity,
-        scale,
-        backgroundSize,
-        position: `${positionX}% ${positionY}%`,
-        repeat,
-      });
+      // Background CSS injected successfully
     } else {
-      logDebug('[🎨 BaseThemeProvider] ❌ 背景圖片不存在或格式錯誤，移除 CSS');
+      // Background image not found or invalid format, removing CSS
       // 移除全局 CSS 樣式
       const styleElement = document.getElementById(
         'workspace-background-style',

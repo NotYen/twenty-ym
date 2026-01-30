@@ -21,9 +21,9 @@ import { type APP_LOCALES, SOURCE_LOCALE } from 'twenty-shared/translations';
 import { AppPath, type ObjectPermissions } from 'twenty-shared/types';
 import { isDefined } from 'twenty-shared/utils';
 import {
-  type WorkspaceMember,
-  useFindAllCoreViewsQuery,
-  useGetCurrentUserQuery,
+    type WorkspaceMember,
+    useFindAllCoreViewsQuery,
+    useGetCurrentUserQuery,
 } from '~/generated-metadata/graphql';
 import { dateLocaleState } from '~/localization/states/dateLocaleState';
 import { dynamicActivate } from '~/utils/i18n/dynamicActivate';
@@ -92,7 +92,8 @@ export const UserAndViewsProviderEffect = () => {
     !isLoggedIn ||
     isCurrentUserLoaded ||
     isMatchingLocation(location, AppPath.Verify) ||
-    isMatchingLocation(location, AppPath.VerifyEmail);
+    isMatchingLocation(location, AppPath.VerifyEmail) ||
+    location.pathname.startsWith('/shared/'); // Skip for external share links
 
   const { data: userQueryData, loading: userQueryLoading } =
     useGetCurrentUserQuery({

@@ -4,7 +4,6 @@
  * 使用動態 import 載入 Firebase SDK，避免在沒配置時影響整個 app
  */
 
-import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
 import { getFirebaseAnalytics } from '../services/firebase-analytics.service';
 
@@ -29,7 +28,7 @@ export const trackEvent = async (
   try {
     const { logEvent } = await getAnalyticsModule();
     logEvent(analytics, eventName, params);
-    logDebug(`[GA] Event tracked: ${eventName}`, params);
+    // GA Event tracked successfully
   } catch (error) {
     logError('[GA] 追蹤事件失敗:');
     logError(error);
@@ -44,7 +43,7 @@ export const setAnalyticsUserId = async (userId: string): Promise<void> => {
   try {
     const { setUserId } = await getAnalyticsModule();
     setUserId(analytics, userId);
-    logDebug(`[GA] User ID set: ${userId}`);
+    // GA User ID set successfully
   } catch (error) {
     logError('[GA] 設置用戶 ID 失敗:');
     logError(error);
@@ -61,7 +60,7 @@ export const setAnalyticsUserProperties = async (
   try {
     const { setUserProperties } = await getAnalyticsModule();
     setUserProperties(analytics, properties);
-    logDebug('[GA] User properties set:', properties);
+    // GA User properties set successfully
   } catch (error) {
     logError('[GA] 設置用戶屬性失敗:');
     logError(error);

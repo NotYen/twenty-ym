@@ -10,6 +10,7 @@ import { RecordComponentInstanceContextsWrapper } from '@/object-record/componen
 import { PageLayoutDispatcher } from '@/object-record/record-show/components/PageLayoutDispatcher';
 import { useRecordShowPage } from '@/object-record/record-show/hooks/useRecordShowPage';
 import { computeRecordShowComponentInstanceId } from '@/object-record/record-show/utils/computeRecordShowComponentInstanceId';
+import { ShareButton } from '@/share-link/components/ShareButton';
 import { PageHeaderToggleCommandMenuButton } from '@/ui/layout/page-header/components/PageHeaderToggleCommandMenuButton';
 import { PageContainer } from '@/ui/layout/page/components/PageContainer';
 import { RecordShowPageHeader } from '~/pages/object-record/RecordShowPageHeader';
@@ -21,13 +22,36 @@ export const RecordShowPage = () => {
     objectRecordId: string;
   }>();
 
-  const { objectNameSingular, objectRecordId } = useRecordShowPage(
-    parameters.objectNameSingular ?? '',
-    parameters.objectRecordId ?? '',
-  );
+  const { objectNameSingular, objectRecordId, objectMetadataItem } =
+    useRecordShowPage(
+      parameters.objectNameSingular ?? '',
+      parameters.objectRecordId ?? '',
+    );
 
   const recordShowComponentInstanceId =
     computeRecordShowComponentInstanceId(objectRecordId);
+
+  // Determine if this object type supports sharing
+  const shareableObjectTypes = ['company', 'person', 'salesQuote'];
+  const isShareable = shareableObjectTypes.includes(objectNameSingular);
+
+  // Map object name singular to resource type
+  const getResourceType = (
+    nameSingular: string,
+  ): 'COMPANY' | 'PERSON' | 'SALES_QUOTE' | undefined => {
+    switch (nameSingular) {
+      case 'company':
+        return 'COMPANY';
+      case 'person':
+        return 'PERSON';
+      case 'salesQuote':
+        return 'SALES_QUOTE';
+      default:
+        return undefined;
+    }
+  };
+
+  const resourceType = getResourceType(objectNameSingular);
 
   return (
     <RecordComponentInstanceContextsWrapper
@@ -49,6 +73,13 @@ export const RecordShowPage = () => {
               objectRecordId={objectRecordId}
             >
               <RecordShowActionMenu />
+              {isShareable && resourceType && (
+                <ShareButton
+                  resourceType={resourceType}
+                  resourceId={objectRecordId}
+                  resourceName={objectMetadataItem?.labelSingular ?? ''}
+                />
+              )}
               <PageHeaderToggleCommandMenuButton />
             </RecordShowPageHeader>
             <MainContainerLayoutWithCommandMenu>

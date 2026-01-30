@@ -2,7 +2,6 @@ import { CalendarWidget } from '@/page-layout/widgets/calendar/components/Calend
 import { EmailWidget } from '@/page-layout/widgets/emails/components/EmailWidget';
 import { FieldsWidget } from '@/page-layout/widgets/fields/components/FieldsWidget';
 import { FileWidget } from '@/page-layout/widgets/files/components/FileWidget';
-import { GraphWidgetRenderer } from '@/page-layout/widgets/graph/components/GraphWidgetRenderer';
 import { IframeWidget } from '@/page-layout/widgets/iframe/components/IframeWidget';
 import { NoteWidget } from '@/page-layout/widgets/notes/components/NoteWidget';
 import { RichTextWidget } from '@/page-layout/widgets/rich-text/components/RichTextWidget';
@@ -11,6 +10,7 @@ import { TimelineWidget } from '@/page-layout/widgets/timeline/components/Timeli
 import { WorkflowRunWidget } from '@/page-layout/widgets/workflow/components/WorkflowRunWidget';
 import { WorkflowVersionWidget } from '@/page-layout/widgets/workflow/components/WorkflowVersionWidget';
 import { WorkflowWidget } from '@/page-layout/widgets/workflow/components/WorkflowWidget';
+import { GraphWidgetWithShare } from '@/share-link/components/GraphWidgetWithShare';
 import {
   type PageLayoutWidget,
   WidgetType,
@@ -25,7 +25,7 @@ export const WidgetContentRenderer = ({
 }: WidgetContentRendererProps) => {
   switch (widget.type) {
     case WidgetType.GRAPH:
-      return <GraphWidgetRenderer widget={widget} />;
+      return <GraphWidgetWithShare widget={widget} />;
 
     case WidgetType.IFRAME:
       return <IframeWidget widget={widget} />;

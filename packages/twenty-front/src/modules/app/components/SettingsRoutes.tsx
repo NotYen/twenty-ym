@@ -372,6 +372,12 @@ const SettingsRoleAddObjectLevel = lazy(() =>
   ),
 );
 
+const SettingsShareLinks = lazy(() =>
+  import('~/pages/settings/SettingsShareLinks').then((module) => ({
+    default: module.SettingsShareLinks,
+  })),
+);
+
 type SettingsRoutesProps = {
   isFunctionSettingsEnabled?: boolean;
   isAdminPageEnabled?: boolean;
@@ -616,6 +622,7 @@ export const SettingsRoutes = ({ isAdminPageEnabled }: SettingsRoutesProps) => (
         }
       >
         <Route path={SettingsPath.Releases} element={<SettingsReleases />} />
+        <Route path={SettingsPath.ShareLinks} element={<SettingsShareLinks />} />
       </Route>
     </Routes>
   </Suspense>

@@ -1,13 +1,13 @@
 import {
-  ApolloClient,
-  type ApolloClientOptions,
-  ApolloLink,
-  type FetchResult,
-  fromPromise,
-  type Observable,
-  type Operation,
-  type ServerError,
-  type ServerParseError,
+    ApolloClient,
+    type ApolloClientOptions,
+    ApolloLink,
+    type FetchResult,
+    fromPromise,
+    type Observable,
+    type Operation,
+    type ServerError,
+    type ServerParseError,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
@@ -19,17 +19,16 @@ import { renewToken } from '@/auth/services/AuthService';
 import { type CurrentWorkspaceMember } from '@/auth/states/currentWorkspaceMemberState';
 import { type CurrentWorkspace } from '@/auth/states/currentWorkspaceState';
 import { type AuthTokenPair } from '~/generated/graphql';
-import { logDebug } from '~/utils/logDebug';
 
 import { REST_API_BASE_URL } from '@/apollo/constant/rest-api-base-url';
 import { getTokenPair } from '@/apollo/utils/getTokenPair';
 import { i18n } from '@lingui/core';
 import { t } from '@lingui/core/macro';
 import {
-  type DefinitionNode,
-  type DirectiveNode,
-  type GraphQLFormattedError,
-  type SelectionNode,
+    type DefinitionNode,
+    type DirectiveNode,
+    type GraphQLFormattedError,
+    type SelectionNode,
 } from 'graphql';
 import isEmpty from 'lodash.isempty';
 import { getGenericOperationName, isDefined } from 'twenty-shared/utils';
@@ -93,10 +92,42 @@ export class ApolloFactory<TCacheShape> implements ApolloManager<TCacheShape> {
         uri: REST_API_BASE_URL,
       });
 
+      // 攔截外部分享路由的特定查詢，避免發送需要認證的請求
+      const blockAuthQueriesLink = new ApolloLink((operation, forward) => {
+        const isExternalShareRoute = typeof window !== 'undefined' &&
+          window.location.pathname.startsWith('/shared/');
+
+        // 在外部分享路由中，攔截 GetWorkspaceConfigs 查詢
+        if (isExternalShareRoute && operation.operationName === 'GetWorkspaceConfigs') {
+          // 返回空結果，不發送到後端
+          return new Observable((observer) => {
+            observer.next({ data: { getWorkspaceConfigs: [] } });
+            observer.complete();
+          });
+        }
+
+        return forward(operation);
+      });
+
       const authLink = setContext(async (_, { headers }) => {
+        // 檢查是否是外部分享路由 - 不添加認證 header
+        const isExternalShareRoute = typeof window !== 'undefined' &&
+          window.location.pathname.startsWith('/shared/');
+
         const tokenPair = getTokenPair();
 
         const locale = this.currentWorkspaceMember?.locale ?? i18n.locale;
+
+        // 外部分享路由：只添加 locale，不添加認證
+        if (isExternalShareRoute) {
+          return {
+            headers: {
+              ...headers,
+              ...options.headers,
+              'x-locale': locale,
+            },
+          };
+        }
 
         if (isUndefinedOrNull(tokenPair)) {
           return {
@@ -165,13 +196,7 @@ export class ApolloFactory<TCacheShape> implements ApolloManager<TCacheShape> {
         operation: Operation;
       }) => {
         if (isDebugMode === true) {
-          logDebug(
-            `[GraphQL error]: Message: ${graphQLError.message}, Location: ${
-              graphQLError.locations
-                ? JSON.stringify(graphQLError.locations)
-                : graphQLError.locations
-            }, Path: ${graphQLError.path}`,
-          );
+          // GraphQL error debug info
         }
         import('@sentry/react')
           .then(({ captureException, withScope }) => {
@@ -263,7 +288,7 @@ export class ApolloFactory<TCacheShape> implements ApolloManager<TCacheShape> {
             }
 
             if (isDebugMode === true) {
-              logDebug(`[Network error]: ${networkError}`);
+              // Network error debug info
             }
             onNetworkError?.(networkError);
           }
@@ -272,6 +297,7 @@ export class ApolloFactory<TCacheShape> implements ApolloManager<TCacheShape> {
 
       return ApolloLink.from(
         [
+          blockAuthQueriesLink, // 必須在最前面，攔截外部分享路由的認證查詢
           errorLink,
           authLink,
           ...(extraLinks || []),

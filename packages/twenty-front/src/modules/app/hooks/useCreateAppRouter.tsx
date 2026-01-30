@@ -9,13 +9,14 @@ import { DefaultLayout } from '@/ui/layout/page/components/DefaultLayout';
 import { AppPath } from 'twenty-shared/types';
 
 import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
 } from 'react-router-dom';
 import { Authorize } from '~/pages/auth/Authorize';
 import { PasswordReset } from '~/pages/auth/PasswordReset';
 import { SignInUp } from '~/pages/auth/SignInUp';
+import { ExternalSharedContent } from '~/pages/external/ExternalSharedContent';
 import { NotFound } from '~/pages/not-found/NotFound';
 import { RecordIndexPage } from '~/pages/object-record/RecordIndexPage';
 import { RecordShowPage } from '~/pages/object-record/RecordShowPage';
@@ -40,6 +41,12 @@ export const useCreateAppRouter = (
         // to set scroll position before the page is rendered
         loader={async () => Promise.resolve(null)}
       >
+        {/* 外部分享連結路由 - 必須在 DefaultLayout 之前，避免被 wildcard 捕獲 */}
+        <Route element={<BlankLayout />}>
+          <Route path="/shared/:token" element={<ExternalSharedContent />} />
+          <Route path={AppPath.Authorize} element={<Authorize />} />
+        </Route>
+
         <Route element={<DefaultLayout />}>
           <Route path={AppPath.Verify} element={<VerifyLoginTokenEffect />} />
           <Route path={AppPath.VerifyEmail} element={<VerifyEmailEffect />} />
@@ -73,9 +80,6 @@ export const useCreateAppRouter = (
             }
           />
           <Route path={AppPath.NotFoundWildcard} element={<NotFound />} />
-        </Route>
-        <Route element={<BlankLayout />}>
-          <Route path={AppPath.Authorize} element={<Authorize />} />
         </Route>
       </Route>,
     ),

@@ -7,6 +7,7 @@ import {
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 import { existsSync } from 'fs';
 import { join } from 'path';
@@ -51,6 +52,12 @@ const MIGRATED_REST_METHODS = [
       isGlobal: true,
       envFilePath: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
     }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60000, // 1 分鐘
+        limit: 100, // 100 次請求
+      },
+    ]),
     GraphQLModule.forRootAsync<YogaDriverConfig>({
       driver: YogaDriver,
       imports: [GraphQLConfigModule, MetricsModule, DataloaderModule],

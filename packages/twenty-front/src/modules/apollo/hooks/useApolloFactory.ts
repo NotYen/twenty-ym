@@ -73,7 +73,8 @@ export const useApolloFactory = (options: Partial<Options<any>> = {}) => {
           !isMatchingLocation(location, AppPath.Verify) &&
           !isMatchingLocation(location, AppPath.SignInUp) &&
           !isMatchingLocation(location, AppPath.Invite) &&
-          !isMatchingLocation(location, AppPath.ResetPassword)
+          !isMatchingLocation(location, AppPath.ResetPassword) &&
+          !location.pathname.startsWith('/shared/') // 排除外部分享連結頁面
         ) {
           setPreviousUrl(`${location.pathname}${location.search}`);
           navigate(AppPath.SignInUp);

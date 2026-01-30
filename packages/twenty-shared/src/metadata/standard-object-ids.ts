@@ -51,4 +51,5 @@ export const STANDARD_OBJECT_IDS = {
   workflowAutomatedTrigger: '20202020-3319-4234-a34c-7f3b9d2e4d1f',
   salesQuote: '52496086-5666-4876-92d5-455792272895',
   salesQuoteLineItem: '33615456-4354-474c-8151-22927e1f486d',
+  shareLink: '20202020-8f3d-4e95-a9d7-6c00874f8a3c',
 } as const;

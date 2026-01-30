@@ -3,11 +3,21 @@ import { useFilteredObjectMetadataItems } from '@/object-metadata/hooks/useFilte
 import { isNavigationDrawerExpandedState } from '@/ui/navigation/states/isNavigationDrawerExpanded';
 import { navigationDrawerExpandedMemorizedState } from '@/ui/navigation/states/navigationDrawerExpandedMemorizedState';
 import { useGoToHotkeys } from '@/ui/utilities/hotkey/hooks/useGoToHotkeys';
+import { useLocation } from 'react-router-dom';
 import { useRecoilCallback } from 'recoil';
 import { AppPath, SettingsPath } from 'twenty-shared/types';
 import { getAppPath, getSettingsPath } from 'twenty-shared/utils';
 
 export const GotoHotkeysEffectsProvider = () => {
+  const location = useLocation();
+
+  // Skip for external share links - they don't need hotkeys
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
+  if (isExternalShareRoute) {
+    return null;
+  }
+
   const { activeNonSystemObjectMetadataItems } =
     useFilteredObjectMetadataItems();
 

@@ -4,7 +4,6 @@
  * 使用動態 import 載入 Firebase SDK，避免在沒配置時影響整個 app
  */
 
-import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
 import { firebaseConfig } from '../config/firebase.config';
 
@@ -45,11 +44,11 @@ export const initializeFirebaseAnalytics = async (
         finalConfig.measurementId,
     );
 
-    logDebug(`[Firebase][Config] Enabled: ${String(enabled)}`);
+    // Firebase config enabled status logged
     if (missingKeys.length > 0) {
       logError(`[Firebase][Config] Missing keys: ${missingKeys.join(', ')}`);
     } else {
-      logDebug('[Firebase][Config] All required keys are present');
+      // All required keys are present
     }
 
     hasLoggedFirebaseConfig = true;
@@ -95,17 +94,17 @@ export const initializeFirebaseAnalytics = async (
       const existingApps = getApps();
       if (existingApps.length > 0) {
         firebaseApp = existingApps[0];
-        logDebug('[Firebase] 使用現有的 Firebase App');
+        // Using existing Firebase App
       } else {
         firebaseApp = initializeApp(finalConfig);
-        logDebug('[Firebase] Firebase App 已初始化');
+        // Firebase App initialized
       }
     }
 
     // 初始化 Analytics
     analytics = getAnalytics(firebaseApp);
     isInitialized = true;
-    logDebug('[Firebase] Firebase Analytics 已初始化');
+    // Firebase Analytics initialized
 
     return analytics;
   } catch (error) {

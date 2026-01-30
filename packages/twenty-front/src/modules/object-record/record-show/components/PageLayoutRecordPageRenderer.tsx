@@ -12,10 +12,10 @@ import { LayoutRenderingProvider } from '@/ui/layout/contexts/LayoutRenderingCon
 import { type TargetRecordIdentifier } from '@/ui/layout/contexts/TargetRecordIdentifier';
 import { RightDrawerFooter } from '@/ui/layout/right-drawer/components/RightDrawerFooter';
 import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 import { PageLayoutType } from '~/generated/graphql';
-import { logDebug } from '~/utils/logDebug';
 
 const StyledShowPageBannerContainer = styled.div`
   z-index: 1;
@@ -45,6 +45,11 @@ export const PageLayoutRecordPageRenderer = ({
   targetRecordIdentifier: TargetRecordIdentifier;
   isInRightDrawer: boolean;
 }) => {
+  const location = useLocation();
+
+  // Skip for external share links - they don't have workspace member metadata
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
   const recordDeletedAt = useRecoilValue<string | null>(
     recordStoreFamilySelector({
       recordId: targetRecordIdentifier.id,
@@ -64,16 +69,7 @@ export const PageLayoutRecordPageRenderer = ({
   const isWaitingForPageLayoutId =
     isDashboard && loading && !isDefined(pageLayoutId);
 
-  logDebug('[PageLayoutRecordPageRenderer] render', {
-    recordId: targetRecordIdentifier.id,
-    objectNameSingular: targetRecordIdentifier.targetObjectNameSingular,
-    pageLayoutId,
-    loading,
-    isInRightDrawer,
-    isDashboard,
-    isWaitingForPageLayoutId,
-    willRenderPageLayout: isDefined(pageLayoutId),
-  });
+  // Debug info for PageLayoutRecordPageRenderer render
 
   return (
     <>
@@ -82,12 +78,14 @@ export const PageLayoutRecordPageRenderer = ({
         recordId={targetRecordIdentifier.id}
       />
 
-      {targetRecordIdentifier.targetObjectNameSingular ===
-        CoreObjectNameSingular.Opportunity && (
-        <OpportunityResponsibleBusinessSyncEffect
-          recordId={targetRecordIdentifier.id}
-        />
-      )}
+      {/* Skip OpportunityResponsibleBusinessSyncEffect for external share links */}
+      {!isExternalShareRoute &&
+        targetRecordIdentifier.targetObjectNameSingular ===
+          CoreObjectNameSingular.Opportunity && (
+          <OpportunityResponsibleBusinessSyncEffect
+            recordId={targetRecordIdentifier.id}
+          />
+        )}
 
       <RecordShowContainerContextStoreTargetedRecordsEffect
         recordId={targetRecordIdentifier.id}

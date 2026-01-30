@@ -11,6 +11,7 @@ import { useRecordShowContainerTabs } from '@/object-record/record-show/hooks/us
 import { recordStoreFamilySelector } from '@/object-record/record-store/states/selectors/recordStoreFamilySelector';
 import { ShowPageSubContainer } from '@/ui/layout/show-page/components/ShowPageSubContainer';
 import styled from '@emotion/styled';
+import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 const StyledShowPageBannerContainer = styled.div`
@@ -28,6 +29,15 @@ export const RecordShowContainer = ({
   objectRecordId,
   isInRightDrawer = false,
 }: RecordShowContainerProps) => {
+  const location = useLocation();
+
+  // Skip for external share links - they don't have metadata items
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
+  if (isExternalShareRoute) {
+    return null;
+  }
+
   const { objectMetadataItem } = useObjectMetadataItem({
     objectNameSingular,
   });

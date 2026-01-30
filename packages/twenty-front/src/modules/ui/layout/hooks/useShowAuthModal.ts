@@ -8,6 +8,12 @@ export const useShowAuthModal = () => {
   const location = useLocation();
 
   return useMemo(() => {
+    // Skip auth modal for external share links
+    if (location.pathname.startsWith('/shared/')) {
+      // Skipping auth modal for external share link
+      return false;
+    }
+
     if (
       isMatchingLocation(location, AppPath.Invite) ||
       isMatchingLocation(location, AppPath.InviteTeam) ||
@@ -23,9 +29,11 @@ export const useShowAuthModal = () => {
       isMatchingLocation(location, AppPath.BookCallDecision) ||
       isMatchingLocation(location, AppPath.BookCall)
     ) {
+      // Showing auth modal for path
       return true;
     }
 
+    // Not showing auth modal for path
     return false;
   }, [location]);
 };

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useRecoilCallback, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { currentWorkspaceState } from '@/auth/states/currentWorkspaceState';
@@ -21,11 +22,19 @@ import { WorkspaceActivationStatus } from 'twenty-shared/workspace';
 import { isDeeplyEqual } from '~/utils/isDeeplyEqual';
 
 export const PrefetchRunFavoriteQueriesEffect = () => {
+  const location = useLocation();
   const showAuthModal = useShowAuthModal();
   const isSettingsPage = useIsSettingsPage();
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
   const isWorkspaceActive =
     currentWorkspace?.activationStatus === WorkspaceActivationStatus.ACTIVE;
+
+  // Skip prefetch for external share links - they don't need favorites data
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
+  if (isExternalShareRoute) {
+    return <></>;
+  }
 
   const { objectMetadataItems } = useObjectMetadataItems();
 

@@ -2065,16 +2065,6 @@ msgstr "頻道密鑰 (Channel Secret)"
 msgid "Chart"
 msgstr "圖表"
 
-#. js-lingui-id: rfFVlK
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Chart rendering will be implemented in the next phase"
-msgstr ""
-
-#. js-lingui-id: i91kr0
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Chart Type"
-msgstr ""
-
 #. js-lingui-id: AHZflp
 #: src/modules/ai/components/AIChatEmptyState.tsx
 msgid "Chat"
@@ -3092,8 +3082,9 @@ msgstr "深色模式"
 
 #. js-lingui-id: i1r++K
 #: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
 msgid "Dashboard Chart"
-msgstr ""
+msgstr "儀表板圖表"
 
 #. js-lingui-id: w6iIMm
 #: src/modules/action-menu/actions/record-actions/constants/DefaultRecordActionsConfig.tsx
@@ -4329,11 +4320,6 @@ msgstr "環境變量"
 #: src/pages/settings/security/SettingsSecurity.tsx
 msgid "Erasure of soft-deleted records"
 msgstr "擦除已軟刪除的記錄"
-
-#. js-lingui-id: SlfejT
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Error"
-msgstr ""
 
 #. js-lingui-id: GHKxvg
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -5801,6 +5787,11 @@ msgstr ""
 msgid "Invalid auth provider"
 msgstr "無效的身份驗證提供者"
 
+#. js-lingui-id: znFVvL
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "Invalid Chart Configuration"
+msgstr "無效的圖表配置"
+
 #. js-lingui-id: ER/0YT
 #: src/modules/workflow/workflow-trigger/utils/getTriggerScheduleDescription.ts
 msgid "Invalid cron expression"
@@ -7140,6 +7131,11 @@ msgstr "無國家"
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetNoDataDisplay.tsx
 msgid "No Data"
 msgstr "無數據"
+
+#. js-lingui-id: l2nVE4
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "No Data Available"
+msgstr "無可用數據"
 
 #. js-lingui-id: 7tCnBa
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
@@ -10388,6 +10384,16 @@ msgstr "此操作無法撤銷。這將永久將您從此工作區中移除。"
 #: src/modules/object-record/record-field-list/record-detail-section/relation/components/RecordDetailRelationRecordsListItem.tsx
 msgid "This action will break all its relationships with other objects."
 msgstr "此操作將解除它與其他物件的所有關聯。"
+
+#. js-lingui-id: zVqk7j
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart has no data to display."
+msgstr "此圖表沒有可顯示的數據。"
+
+#. js-lingui-id: rXzGGc
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart is missing configuration data."
+msgstr "此圖表缺少配置數據。"
 
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx

@@ -6,6 +6,7 @@ import { buildFindOneRecordForShowPageOperationSignature } from '@/object-record
 import { recordStoreFamilyState } from '@/object-record/record-store/states/recordStoreFamilyState';
 import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useRecoilCallback } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 
@@ -20,6 +21,15 @@ export const RecordShowEffect = ({
   objectNameSingular,
   recordId,
 }: RecordShowEffectProps) => {
+  const location = useLocation();
+
+  // Skip for external share links - they don't have metadata items
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
+  if (isExternalShareRoute) {
+    return null;
+  }
+
   const { objectMetadataItem } = useObjectMetadataItem({ objectNameSingular });
   const { objectMetadataItems } = useObjectMetadataItems();
 

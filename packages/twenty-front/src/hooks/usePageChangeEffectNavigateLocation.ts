@@ -25,6 +25,11 @@ export const usePageChangeEffectNavigateLocation = () => {
   const location = useLocation();
   const calendarBookingPageId = useRecoilValue(calendarBookingPageIdState);
 
+  // Skip all redirect logic for external share links
+  if (location.pathname.startsWith('/shared/')) {
+    return;
+  }
+
   const someMatchingLocationOf = (appPaths: AppPath[]): boolean =>
     appPaths.some((appPath) => isMatchingLocation(location, appPath));
   const onGoingUserCreationPaths = [

@@ -2,7 +2,7 @@ import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { t } from '@lingui/core/macro';
 import { type ReactNode } from 'react';
-import { IconTrash, OverflowingTextWithTooltip } from 'twenty-ui/display';
+import { IconShare, IconTrash, OverflowingTextWithTooltip } from 'twenty-ui/display';
 import { IconButton } from 'twenty-ui/input';
 
 import { WidgetGrip } from '@/page-layout/widgets/widget-card/components/WidgetGrip';
@@ -15,6 +15,7 @@ export type WidgetCardHeaderProps = {
   isEmpty?: boolean;
   title: string;
   onRemove?: (e?: React.MouseEvent) => void;
+  onShare?: (e?: React.MouseEvent) => void;
   forbiddenDisplay?: ReactNode;
   className?: string;
   isResizing?: boolean;
@@ -56,6 +57,7 @@ export const WidgetCardHeader = ({
   isResizing = false,
   title,
   onRemove,
+  onShare,
   forbiddenDisplay,
   className,
 }: WidgetCardHeaderProps) => {
@@ -77,6 +79,30 @@ export const WidgetCardHeader = ({
       <StyledRightContainer>
         {isDefined(forbiddenDisplay) && forbiddenDisplay}
         <AnimatePresence>
+          {/* Share button - only show when NOT in edit mode and share handler exists */}
+          {!isResizing &&
+            !isEmpty &&
+            !isInEditMode &&
+            onShare &&
+            isWidgetCardHovered && (
+              <StyledIconButtonContainer
+                initial={{ width: 0, opacity: 0 }}
+                animate={{ width: 'auto', opacity: 1 }}
+                exit={{ width: 0, opacity: 0 }}
+                transition={{
+                  duration: theme.animation.duration.fast,
+                  ease: 'easeInOut',
+                }}
+              >
+                <IconButton
+                  onClick={onShare}
+                  Icon={IconShare}
+                  variant="tertiary"
+                  size="small"
+                />
+              </StyledIconButtonContainer>
+            )}
+          {/* Delete button - only show in edit mode */}
           {!isResizing &&
             !isEmpty &&
             isInEditMode &&

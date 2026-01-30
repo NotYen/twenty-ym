@@ -24,10 +24,11 @@ export const useFirebaseAnalytics = () => {
   });
 
   useEffect(() => {
-    const initialize = async () => {
+    const initializeAnalytics = async () => {
       if (isConfigLoading) return;
+      if (!data) return;
 
-      const configs = data?.getWorkspaceConfigs || [];
+      const configs = data.getWorkspaceConfigs || [];
       const getConfig = (key: string) =>
         configs.find((c: any) => c.key === key)?.value;
 
@@ -40,26 +41,6 @@ export const useFirebaseAnalytics = () => {
         appId: getConfig('REACT_APP_FIREBASE_APP_ID'),
         measurementId: getConfig('REACT_APP_FIREBASE_MEASUREMENT_ID'),
       };
-
-      // Filter out undefined values to let fallback work if needed,
-      // though our service logic prefers the passed config if valid.
-      // Actually service logic: const finalConfig = config || firebaseConfig;
-      // If we pass an object with undefined keys, it is still an object.
-      // But service checks keys on finalConfig.
-      // If workspace config is empty, we might want to pass undefined to trigger fallback?
-      // But the requirement is "override global".
-      // If workspace has ANY key, we probably want to try it.
-      // If workspace has NO keys, maybe fallback?
-      // Let's pass the object. The service checks `finalConfig.apiKey`.
-      // If `apiKey` is undefined in workspace config, it will fail the enabled check in service
-      // (unless we merge? No, complete override is safer for multi-tenant).
-
-      // However, if the query returns empty (no config set), all values are undefined.
-      // If we pass { apiKey: undefined, ... }, finalConfig will be that object.
-      // finalConfig.apiKey will be undefined. Service will log "Missing keys".
-      // exact logic: const finalConfig = config || firebaseConfig;
-      // If config is {}, finalConfig is {}.
-      // If we want to fallback to env when workspace has NOTHING set, we should check here.
 
       const hasWorkspaceConfig = Object.values(workspaceFirebaseConfig).some(
         (v) => !!v,
@@ -74,8 +55,8 @@ export const useFirebaseAnalytics = () => {
       setIsLoading(false);
     };
 
-    initialize();
+    initializeAnalytics();
   }, [data, isConfigLoading]);
 
-  return { analytics, isLoading: isLoading || isConfigLoading };
+  return { analytics, isLoading };
 };

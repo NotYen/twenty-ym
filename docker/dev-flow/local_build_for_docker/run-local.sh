@@ -38,7 +38,8 @@ error() {
   printf '❌ %s\n' "$1" >&2
 }
 
-# 修復版：直接輸出到終端，可以看到即時進度
+# 修復版：使用 --progress plain 確保輸出可以即時顯示
+# 注意：--progress 是 docker compose 的全域參數，必須放在 build 之前
 build_service() {
   local service="$1"
   local start_time=$(date +%s)
@@ -46,9 +47,8 @@ build_service() {
   echo "⏳ Building ${service} (--no-cache)..."
   echo ""
 
-  # 直接執行並輸出到終端（同時保存到 log）
-  # 使用 --no-cache 確保每次都重新 build，避免使用舊的 cache
-  if docker compose build --no-cache "$service" 2>&1 | tee "$BUILD_LOG"; then
+  # --progress plain 必須放在 compose 和 build 之間（全域參數）
+  if docker compose --progress plain build --no-cache "$service" 2>&1 | tee "$BUILD_LOG"; then
     local end_time=$(date +%s)
     local duration=$((end_time - start_time))
     echo ""
@@ -105,6 +105,15 @@ EOF
 
   info "Stopping existing containers..."
   docker compose down 2>/dev/null || true
+
+  echo ""
+  info "Cleaning Nx cache and local build artifacts..."
+  # 清除 Nx cache（避免 Docker build 時使用舊的 cache）
+  rm -rf ../.nx/cache/* 2>/dev/null || true
+  # 清除本地 build 產物（避免被 COPY 進 Docker）
+  rm -rf ../packages/twenty-front/build/* 2>/dev/null || true
+  rm -rf ../packages/twenty-server/dist/* 2>/dev/null || true
+  success "Cache and build artifacts cleaned"
 
   echo ""
   info "Starting infrastructure services (postgres, redis)..."

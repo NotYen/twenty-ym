@@ -15,10 +15,16 @@ export const UserProvider = ({ children }: React.PropsWithChildren) => {
 
   const { dateFormat, timeFormat, timeZone } = useDateTimeFormat();
 
-  return !isCurrentUserLoaded &&
+  // Skip loading check for external share links
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
+  const shouldShowLoader = !isCurrentUserLoaded &&
+    !isExternalShareRoute &&
     !isMatchingLocation(location, AppPath.Verify) &&
     !isMatchingLocation(location, AppPath.VerifyEmail) &&
-    !isMatchingLocation(location, AppPath.CreateWorkspace) ? (
+    !isMatchingLocation(location, AppPath.CreateWorkspace);
+
+  return shouldShowLoader ? (
     <UserOrMetadataLoader />
   ) : (
     <UserContext.Provider

@@ -621,6 +621,19 @@ export const SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS = {
   noteTargets: '20202020-2222-2222-2222-222222222212',
 } as const;
 
+export const SHARE_LINK_STANDARD_FIELD_IDS = {
+  token: '20202020-8f3d-4e95-a9d7-6c00874f8a3d',
+  resourceType: '20202020-8f3d-4e95-a9d7-6c00874f8a3e',
+  resourceId: '20202020-8f3d-4e95-a9d7-6c00874f8a3f',
+  accessMode: '20202020-8f3d-4e95-a9d7-6c00874f8a40',
+  isActive: '20202020-8f3d-4e95-a9d7-6c00874f8a41',
+  expiresAt: '20202020-8f3d-4e95-a9d7-6c00874f8a42',
+  inactivityExpirationDays: '20202020-8f3d-4e95-a9d7-6c00874f8a43',
+  accessCount: '20202020-8f3d-4e95-a9d7-6c00874f8a44',
+  lastAccessedAt: '20202020-8f3d-4e95-a9d7-6c00874f8a45',
+  createdBy: '20202020-8f3d-4e95-a9d7-6c00874f8a46',
+} as const;
+
 export const STANDARD_OBJECT_FIELD_IDS = {
   activityTarget: ACTIVITY_TARGET_STANDARD_FIELD_IDS,
   activity: ACTIVITY_STANDARD_FIELD_IDS,
@@ -663,4 +676,5 @@ export const STANDARD_OBJECT_FIELD_IDS = {
   workspaceMember: WORKSPACE_MEMBER_STANDARD_FIELD_IDS,
   salesQuote: SALES_QUOTE_STANDARD_FIELD_IDS,
   salesQuoteLineItem: SALES_QUOTE_LINE_ITEM_STANDARD_FIELD_IDS,
+  shareLink: SHARE_LINK_STANDARD_FIELD_IDS,
 } as const;

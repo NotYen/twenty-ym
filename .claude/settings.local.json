@@ -17,7 +17,16 @@
       "Bash(docker ps:*)",
       "Bash(git stash:*)",
       "Bash(git checkout:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(ssh:*)",
+      "Bash(scp:*)",
+      "mcp__playwright__browser_snapshot",
+      "Bash(lsof:*)",
+      "Bash(docker/dev-flow/local_build_for_docker/run-local.sh)",
+      "Bash(docker system:*)",
+      "Bash(docker builder prune:*)",
+      "Bash(docker buildx prune:*)",
+      "Bash(echo:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

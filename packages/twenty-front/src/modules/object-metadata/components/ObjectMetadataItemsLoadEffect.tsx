@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 
 import { currentUserState } from '@/auth/states/currentUserState';
@@ -9,6 +10,7 @@ import { isWorkspaceActiveOrSuspended } from 'twenty-shared/workspace';
 import { isUndefinedOrNull } from '~/utils/isUndefinedOrNull';
 
 export const ObjectMetadataItemsLoadEffect = () => {
+  const location = useLocation();
   const currentUser = useRecoilValue(currentUserState);
   const currentWorkspace = useRecoilValue(currentWorkspaceState);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -17,7 +19,11 @@ export const ObjectMetadataItemsLoadEffect = () => {
     useRefreshObjectMetadataItems('cache-first');
   const { loadMockedObjectMetadataItems } = useLoadMockedObjectMetadataItems();
 
+  // Skip for external share links
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
   useEffect(() => {
+    if (isExternalShareRoute) return;
     if (isInitialized) {
       return;
     }
@@ -36,6 +42,7 @@ export const ObjectMetadataItemsLoadEffect = () => {
 
     loadObjectMetadata();
   }, [
+    isExternalShareRoute,
     currentUser,
     currentWorkspace,
     loadMockedObjectMetadataItems,

@@ -2067,16 +2067,6 @@ msgstr "Channel Secret"
 msgid "Chart"
 msgstr "Chart"
 
-#. js-lingui-id: rfFVlK
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Chart rendering will be implemented in the next phase"
-msgstr "Chart rendering will be implemented in the next phase"
-
-#. js-lingui-id: i91kr0
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Chart Type"
-msgstr "Chart Type"
-
 #. js-lingui-id: AHZflp
 #: src/modules/ai/components/AIChatEmptyState.tsx
 msgid "Chat"
@@ -3094,6 +3084,7 @@ msgstr "Dark"
 
 #. js-lingui-id: i1r++K
 #: src/modules/share-link/components/SettingsShareLinksTableRow.tsx
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
 msgid "Dashboard Chart"
 msgstr "Dashboard Chart"
 
@@ -4331,11 +4322,6 @@ msgstr "Environment Variables"
 #: src/pages/settings/security/SettingsSecurity.tsx
 msgid "Erasure of soft-deleted records"
 msgstr "Erasure of soft-deleted records"
-
-#. js-lingui-id: SlfejT
-#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
-msgid "Error"
-msgstr "Error"
 
 #. js-lingui-id: GHKxvg
 #: src/pages/settings/developers/api-keys/SettingsDevelopersApiKeyDetail.tsx
@@ -5785,6 +5771,11 @@ msgstr "Invalid auth bypass provider"
 msgid "Invalid auth provider"
 msgstr "Invalid auth provider"
 
+#. js-lingui-id: znFVvL
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "Invalid Chart Configuration"
+msgstr "Invalid Chart Configuration"
+
 #. js-lingui-id: ER/0YT
 #: src/modules/workflow/workflow-trigger/utils/getTriggerScheduleDescription.ts
 msgid "Invalid cron expression"
@@ -7124,6 +7115,11 @@ msgstr "No country"
 #: src/modules/page-layout/widgets/components/PageLayoutWidgetNoDataDisplay.tsx
 msgid "No Data"
 msgstr "No Data"
+
+#. js-lingui-id: l2nVE4
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "No Data Available"
+msgstr "No Data Available"
 
 #. js-lingui-id: 7tCnBa
 #: src/modules/object-record/record-table/empty-state/components/RecordTableEmptyStateRemote.tsx
@@ -10374,6 +10370,16 @@ msgstr "This action cannot be undone. This will permanently remove your membersh
 #: src/modules/object-record/record-field-list/record-detail-section/relation/components/RecordDetailRelationRecordsListItem.tsx
 msgid "This action will break all its relationships with other objects."
 msgstr "This action will break all its relationships with other objects."
+
+#. js-lingui-id: zVqk7j
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart has no data to display."
+msgstr "This chart has no data to display."
+
+#. js-lingui-id: rXzGGc
+#: src/modules/share-link/components/renderers/DashboardChartRenderer.tsx
+msgid "This chart is missing configuration data."
+msgstr "This chart is missing configuration data."
 
 #. js-lingui-id: SLIRqz
 #: src/modules/settings/admin-panel/config-variables/components/ConfigVariableHelpText.tsx

@@ -19,7 +19,9 @@ import { useRecoilComponentValue } from '@/ui/utilities/state/component-state/ho
 import { useTheme } from '@emotion/react';
 import { useState, type MouseEvent } from 'react';
 import { IconLock } from 'twenty-ui/display';
-import { PageLayoutType, type PageLayoutWidget } from '~/generated/graphql';
+import { PageLayoutType, WidgetType, type PageLayoutWidget } from '~/generated/graphql';
+import { ShareLinkModal } from '~/modules/share-link/components/ShareLinkModal';
+import { useModal } from '~/modules/ui/layout/modal/hooks/useModal';
 
 type WidgetRendererProps = {
   widget: PageLayoutWidget;
@@ -30,6 +32,7 @@ export const WidgetRenderer = ({ widget }: WidgetRendererProps) => {
   const { deletePageLayoutWidget } = useDeletePageLayoutWidget();
   const { handleEditWidget } = useEditPageLayoutWidget();
   const { translateTabTitle } = useTranslateTabTitle();
+  const { openModal } = useModal();
 
   const isPageLayoutInEditMode = useRecoilComponentValue(
     isPageLayoutInEditModeComponentState,
@@ -63,6 +66,10 @@ export const WidgetRenderer = ({ widget }: WidgetRendererProps) => {
 
   const showHeader = layoutMode !== 'canvas' && !isInPinnedTab;
 
+  // Check if this is a Graph widget (shareable)
+  const isGraphWidget = widget.type === WidgetType.GRAPH;
+  const shareModalId = `share-link-modal-DASHBOARD_CHART-${widget.id}`;
+
   const handleClick = () => {
     handleEditWidget({
       widgetId: widget.id,
@@ -73,6 +80,11 @@ export const WidgetRenderer = ({ widget }: WidgetRendererProps) => {
   const handleRemove = (e?: MouseEvent) => {
     e?.stopPropagation();
     deletePageLayoutWidget(widget.id);
+  };
+
+  const handleShare = (e?: MouseEvent) => {
+    e?.stopPropagation();
+    openModal(shareModalId);
   };
 
   const [isHovered, setIsHovered] = useState(false);
@@ -86,50 +98,63 @@ export const WidgetRenderer = ({ widget }: WidgetRendererProps) => {
   };
 
   return (
-    <WidgetCard
-      isDragging={isDragging}
-      isResizing={isResizing}
-      layoutMode={layoutMode}
-      isEditing={isEditing}
-      pageLayoutType={currentPageLayout.type}
-      isInPinnedTab={isInPinnedTab}
-      isLastWidget={isLastWidget}
-      onClick={isPageLayoutInEditMode ? handleClick : undefined}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {showHeader && (
-        <WidgetCardHeader
-          isWidgetCardHovered={isHovered}
-          isInEditMode={isPageLayoutInEditMode}
-          isResizing={isResizing}
-          title={translateTabTitle(widget.title)}
-          onRemove={handleRemove}
-          forbiddenDisplay={
-            !hasAccess && (
-              <PageLayoutWidgetForbiddenDisplay
-                widgetId={widget.id}
-                restriction={restriction}
-              />
-            )
-          }
-        />
-      )}
-
-      <WidgetCardContent
+    <>
+      <WidgetCard
+        isDragging={isDragging}
+        isResizing={isResizing}
         layoutMode={layoutMode}
+        isEditing={isEditing}
         pageLayoutType={currentPageLayout.type}
         isInPinnedTab={isInPinnedTab}
-        isPageLayoutInEditMode={isPageLayoutInEditMode}
+        isLastWidget={isLastWidget}
+        onClick={isPageLayoutInEditMode ? handleClick : undefined}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
-        {hasAccess && <WidgetContentRenderer widget={widget} />}
-        {!hasAccess && currentPageLayout.type === PageLayoutType.DASHBOARD && (
-          <IconLock
-            color={theme.font.color.tertiary}
-            stroke={theme.icon.stroke.sm}
+        {showHeader && (
+          <WidgetCardHeader
+            isWidgetCardHovered={isHovered}
+            isInEditMode={isPageLayoutInEditMode}
+            isResizing={isResizing}
+            title={translateTabTitle(widget.title)}
+            onRemove={handleRemove}
+            onShare={isGraphWidget ? handleShare : undefined}
+            forbiddenDisplay={
+              !hasAccess && (
+                <PageLayoutWidgetForbiddenDisplay
+                  widgetId={widget.id}
+                  restriction={restriction}
+                />
+              )
+            }
           />
         )}
-      </WidgetCardContent>
-    </WidgetCard>
+
+        <WidgetCardContent
+          layoutMode={layoutMode}
+          pageLayoutType={currentPageLayout.type}
+          isInPinnedTab={isInPinnedTab}
+          isPageLayoutInEditMode={isPageLayoutInEditMode}
+        >
+          {hasAccess && <WidgetContentRenderer widget={widget} />}
+          {!hasAccess && currentPageLayout.type === PageLayoutType.DASHBOARD && (
+            <IconLock
+              color={theme.font.color.tertiary}
+              stroke={theme.icon.stroke.sm}
+            />
+          )}
+        </WidgetCardContent>
+      </WidgetCard>
+
+      {/* Share Link Modal for Graph Widgets */}
+      {isGraphWidget && (
+        <ShareLinkModal
+          modalId={shareModalId}
+          resourceType="DASHBOARD_CHART"
+          resourceId={widget.id}
+          resourceName={widget.title || 'Chart'}
+        />
+      )}
+    </>
   );
 };

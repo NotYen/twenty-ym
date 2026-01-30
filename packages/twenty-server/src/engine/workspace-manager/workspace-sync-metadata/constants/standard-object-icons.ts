@@ -43,4 +43,5 @@ export const STANDARD_OBJECT_ICONS = {
   workspaceMember: 'IconUserCircle',
   salesQuote: 'IconFileInvoice',
   salesQuoteLineItem: 'IconList',
+  shareLink: 'IconShare',
 } as const;

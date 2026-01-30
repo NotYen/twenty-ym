@@ -1,11 +1,12 @@
 import { useObjectMetadataItem } from '@/object-metadata/hooks/useObjectMetadataItem';
 import { CoreObjectNameSingular } from '@/object-metadata/types/CoreObjectNameSingular';
 import { getObjectRecordIdentifier } from '@/object-metadata/utils/getObjectRecordIdentifier';
-import { recordStoreFamilySelector } from '@/object-record/record-store/states/selectors/recordStoreFamilySelector';
-import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
-import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { useFindOneRecord } from '@/object-record/hooks/useFindOneRecord';
+import { useUpdateOneRecord } from '@/object-record/hooks/useUpdateOneRecord';
+import { recordStoreFamilySelector } from '@/object-record/record-store/states/selectors/recordStoreFamilySelector';
+import { type ObjectRecord } from '@/object-record/types/ObjectRecord';
 import { useEffect, useMemo, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { isDefined } from 'twenty-shared/utils';
 import { FieldMetadataType } from '~/generated-metadata/graphql';
@@ -21,6 +22,15 @@ type OpportunityResponsibleBusinessSyncEffectProps = {
 export const OpportunityResponsibleBusinessSyncEffect = ({
   recordId,
 }: OpportunityResponsibleBusinessSyncEffectProps) => {
+  const location = useLocation();
+
+  // Skip for external share links - they don't have workspace member metadata
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
+  if (isExternalShareRoute) {
+    return null;
+  }
+
   const { objectMetadataItem: opportunityMetadata } = useObjectMetadataItem({
     objectNameSingular: CoreObjectNameSingular.Opportunity,
   });

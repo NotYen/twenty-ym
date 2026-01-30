@@ -1,5 +1,4 @@
 import { ApolloLink, gql, type Operation } from '@apollo/client';
-import { logDebug } from '~/utils/logDebug';
 import { logError } from '~/utils/logError';
 
 import { isDefined } from 'twenty-shared/utils';
@@ -41,10 +40,10 @@ export const loggerLink = (getSchemaName: (operation: Operation) => string) =>
       console.groupCollapsed(...titleArgs);
 
       if (variables && Object.keys(variables).length !== 0) {
-        logDebug('VARIABLES', variables);
+        // Variables logged for debugging
       }
 
-      logDebug('QUERY', query);
+      // Query logged for debugging
 
       console.groupEnd();
 
@@ -68,35 +67,16 @@ export const loggerLink = (getSchemaName: (operation: Operation) => string) =>
 
         if (isDefined(errors)) {
           errors.forEach((err: any) => {
-            logDebug(
-              `%c${err.message}`,
-              // eslint-disable-next-line @nx/workspace-no-hardcoded-colors
-              'color: #F51818; font-weight: lighter',
-            );
+            // Error message logged for debugging
           });
         }
 
-        logDebug('HEADERS: ', headers);
-
-        if (variables && Object.keys(variables).length !== 0) {
-          logDebug('VARIABLES', variables);
-        }
-
-        logDebug('QUERY', query);
-
-        if (isDefined(result.data)) {
-          logDebug('RESULT', result.data);
-        }
-        if (isDefined(errors)) {
-          logDebug('ERRORS', errors);
-        }
+        // Headers, variables, query, and results logged for debugging
 
         console.groupEnd();
       } catch {
         // this may happen if console group is not supported
-        logDebug(
-          `${operationType} ${schemaName}::${queryName} (in ${time} ms)`,
-        );
+        // Apollo operation logged for debugging
         if (isDefined(errors)) {
           logError(errors);
         }

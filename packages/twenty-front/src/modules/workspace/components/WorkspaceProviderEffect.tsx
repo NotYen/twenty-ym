@@ -4,7 +4,8 @@ import { isMultiWorkspaceEnabledState } from '@/client-config/states/isMultiWork
 import { useReadWorkspaceUrlFromCurrentLocation } from '@/domain-manager/hooks/useReadWorkspaceUrlFromCurrentLocation';
 import { useRedirectToWorkspaceDomain } from '@/domain-manager/hooks/useRedirectToWorkspaceDomain';
 import { lastAuthenticatedWorkspaceDomainState } from '@/domain-manager/states/lastAuthenticatedWorkspaceDomainState';
-import { useEffect, useCallback } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { useInitializeQueryParamState } from '@/app/hooks/useInitializeQueryParamState';
 import { useGetPublicWorkspaceDataByDomain } from '@/domain-manager/hooks/useGetPublicWorkspaceDataByDomain';
@@ -14,6 +15,7 @@ import { type WorkspaceUrls } from '~/generated/graphql';
 import { getWorkspaceUrl } from '~/utils/getWorkspaceUrl';
 
 export const WorkspaceProviderEffect = () => {
+  const location = useLocation();
   const { data: getPublicWorkspaceData } = useGetPublicWorkspaceDataByDomain();
 
   const lastAuthenticatedWorkspaceDomain = useRecoilValue(
@@ -29,6 +31,9 @@ export const WorkspaceProviderEffect = () => {
 
   const { initializeQueryParamState } = useInitializeQueryParamState();
 
+  // Skip all workspace provider logic for external share links
+  const isExternalShareRoute = location.pathname.startsWith('/shared/');
+
   const isWorkspaceHostnameMatchCurrentLocationHostname = useCallback(
     (workspaceUrls: WorkspaceUrls) => {
       const { hostname } = new URL(getWorkspaceUrl(workspaceUrls));
@@ -38,6 +43,8 @@ export const WorkspaceProviderEffect = () => {
   );
 
   useEffect(() => {
+    if (isExternalShareRoute) return; // Skip for external share links
+
     if (
       isMultiWorkspaceEnabled &&
       isDefined(getPublicWorkspaceData) &&
@@ -50,6 +57,7 @@ export const WorkspaceProviderEffect = () => {
       );
     }
   }, [
+    isExternalShareRoute,
     isMultiWorkspaceEnabled,
     redirectToWorkspaceDomain,
     getPublicWorkspaceData,
@@ -58,6 +66,8 @@ export const WorkspaceProviderEffect = () => {
   ]);
 
   useEffect(() => {
+    if (isExternalShareRoute) return; // Skip for external share links
+
     if (
       isMultiWorkspaceEnabled &&
       isDefaultDomain &&
@@ -69,6 +79,7 @@ export const WorkspaceProviderEffect = () => {
       redirectToWorkspaceDomain(lastAuthenticatedWorkspaceDomain.workspaceUrl);
     }
   }, [
+    isExternalShareRoute,
     isMultiWorkspaceEnabled,
     isDefaultDomain,
     lastAuthenticatedWorkspaceDomain,
